@@ -15,13 +15,6 @@ export default function Home() {
       <main className={styles.main}>
         <h1 className={styles.title}>Welcome to my page</h1>
         <Hero />
-        <Hero />
-        <Hero />
-        <Hero />
-        <Hero />
-        <Hero />
-        <Hero />
-        <Hero />
 
         <p className={styles.description}>This page is under construction</p>
       </main>
