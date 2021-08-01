@@ -1,9 +1,15 @@
+import {InferGetStaticPropsType} from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
 import Hero from '../components/Hero';
+import Resume from '../components/Resume';
+import {WorkExperience} from '../models/resume';
 import styles from '../styles/Home.module.css';
+import {supabase} from '../utils/supabaseClient';
 
-export default function Home() {
+export default function Home({
+  workExperiences,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <div className={styles.container}>
       <Head>
@@ -14,9 +20,9 @@ export default function Home() {
 
       <main className={styles.main}>
         <h1 className={styles.title}>Welcome to my page</h1>
-        <Hero />
-
         <p className={styles.description}>This page is under construction</p>
+        <Hero />
+        <Resume workExperiences={workExperiences} />
       </main>
 
       <footer className={styles.footer}>
@@ -34,3 +40,15 @@ export default function Home() {
     </div>
   );
 }
+
+export const getStaticProps = async () => {
+  let {data: workExperiences} = await supabase
+    .from<WorkExperience>('work_experiences')
+    .select('*');
+
+  return {
+    props: {
+      workExperiences: workExperiences as WorkExperience[],
+    },
+  };
+};
