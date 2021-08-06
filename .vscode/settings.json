@@ -1,3 +1,11 @@
 {
-  "conventionalCommits.scopes": ["cleanup", "config", "hero", "deps", "resume"]
+  "conventionalCommits.scopes": [
+    "cleanup",
+    "config",
+    "hero",
+    "deps",
+    "resume",
+    "layout",
+    "about-me"
+  ]
 }
