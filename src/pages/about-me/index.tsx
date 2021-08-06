@@ -4,6 +4,7 @@ import Head from 'next/head';
 import Footer from '../../components/Footer';
 import {StaticContent} from '../../models/static-content';
 import {supabase} from '../../utils/supabaseClient';
+import dompurify from 'isomorphic-dompurify';
 
 const AboutMeDetail = styled.div`
   padding: 1rem;
@@ -28,7 +29,11 @@ export default function AboutMe({
         return (
           <AboutMeDetail key={detail.key}>
             <h3>{detail.label}</h3>
-            <p>{detail.content}</p>
+            <div
+              dangerouslySetInnerHTML={{
+                __html: dompurify.sanitize(detail.content),
+              }}
+            />
           </AboutMeDetail>
         );
       })}
