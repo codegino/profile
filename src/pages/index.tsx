@@ -2,7 +2,7 @@ import {InferGetStaticPropsType} from 'next';
 import Head from 'next/head';
 import Footer from '../components/Footer';
 import Hero from '../components/Hero';
-import Resume from '../components/Resume';
+import Timeline from '../components/Timeline';
 import {WorkExperience} from '../models/resume';
 import {supabase} from '../utils/supabaseClient';
 
@@ -20,7 +20,7 @@ export default function Home({
       <h1>Welcome to my page</h1>
       <p>This page is under construction</p>
       <Hero />
-      <Resume workExperiences={workExperiences} />
+      <Timeline workExperiences={workExperiences} />
       <Footer />
     </>
   );

@@ -2,12 +2,12 @@ import React from 'react';
 import {WorkExperience} from '../models/resume';
 import styled from '@emotion/styled';
 
-const WorkExperienceContainer = styled.div`
+const TimelineContainer = styled.div`
   padding: 1rem;
   border: 1px solid black;
 `;
 
-export default function Resume({
+export default function Timeline({
   workExperiences,
 }: {
   workExperiences: WorkExperience[];
@@ -17,11 +17,11 @@ export default function Resume({
       <h2>Work Experience</h2>
       {workExperiences.map(exp => {
         return (
-          <WorkExperienceContainer key={exp.id}>
+          <TimelineContainer key={exp.id}>
             <p>{exp.company_name}</p>
             <p>{exp.title}</p>
             <p>{exp.role}</p>
-          </WorkExperienceContainer>
+          </TimelineContainer>
         );
       })}
     </main>
