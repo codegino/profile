@@ -14,7 +14,6 @@ const AboutMeDetail = styled.div`
 export default function AboutMe({
   aboutMeDetails,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  console.log(aboutMeDetails);
   return (
     <>
       <Head>
@@ -43,7 +42,7 @@ export default function AboutMe({
 }
 
 export const getStaticProps = async () => {
-  const {data: aboutMe, error} = await supabase
+  const {data: aboutMe} = await supabase
     .from('static_content')
     .select('key, content, label')
     .eq('category', 'about_me');
