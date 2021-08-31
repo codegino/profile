@@ -44,6 +44,22 @@ const ExperienceContainer = styled.div`
       display: none;
     }
   }
+
+  text-align: center;
+
+  .date {
+    font-weight: 0.8em;
+    font-style: italic;
+  }
+
+  .name {
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+
+  .title {
+    font-weight: bold;
+  }
 `;
 
 const Experience = ({children}: {children: any}) => {
@@ -76,9 +92,13 @@ export default function Timeline({
           return (
             <Experience key={exp.id}>
               <div>
-                <p>{exp.company_name}</p>
-                <p>{exp.title}</p>
-                <p>{exp.role}</p>
+                <p className="name">{exp.company_name}</p>
+                <p>
+                  <span className="title">{exp.title}</span> ({exp.role})
+                </p>
+                <p className="date">
+                  {exp.start_date} - {exp.end_date}
+                </p>
               </div>
             </Experience>
           );
@@ -90,9 +110,13 @@ export default function Timeline({
           return (
             <Experience key={exp.id}>
               <div>
-                <p>{exp.company_name}</p>
-                <p>{exp.title}</p>
-                <p>{exp.role}</p>
+                <p className="name">{exp.company_name}</p>
+                <p>
+                  <span className="title">{exp.title}</span> ({exp.role})
+                </p>
+                <p className="date">
+                  {exp.start_date} - {exp.end_date}
+                </p>
               </div>
             </Experience>
           );

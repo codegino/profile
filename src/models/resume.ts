@@ -3,4 +3,6 @@ export type WorkExperience = {
   company_name: string;
   role: string;
   title: string;
+  start_date: string;
+  end_date: string;
 };
