@@ -5,4 +5,5 @@ export type WorkExperience = {
   title: string;
   start_date: string;
   end_date: string;
+  content: string;
 };

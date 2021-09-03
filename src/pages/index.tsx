@@ -28,7 +28,7 @@ export default function Home({
 
 export const getStaticProps = async () => {
   let {data: workExperiences} = await supabase
-    .from<WorkExperience>('work_experience')
+    .from<WorkExperience>('experience')
     .select('*');
 
   return {

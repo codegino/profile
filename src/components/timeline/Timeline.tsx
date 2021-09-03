@@ -1,6 +1,7 @@
 import React from 'react';
 import {WorkExperience} from '../../models/resume';
 import styled from '@emotion/styled';
+import dompurify from 'isomorphic-dompurify';
 
 const ExperienceContainer = styled.div`
   position: relative;
@@ -99,24 +100,11 @@ export default function Timeline({
                 <p className="date">
                   {exp.start_date} - {exp.end_date}
                 </p>
-              </div>
-            </Experience>
-          );
-        })}
-        <Experience>
-          <h3>Education</h3>
-        </Experience>
-        {workExperiences.map(exp => {
-          return (
-            <Experience key={exp.id}>
-              <div>
-                <p className="name">{exp.company_name}</p>
-                <p>
-                  <span className="title">{exp.title}</span> ({exp.role})
-                </p>
-                <p className="date">
-                  {exp.start_date} - {exp.end_date}
-                </p>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: dompurify.sanitize(exp.content),
+                  }}
+                />
               </div>
             </Experience>
           );
