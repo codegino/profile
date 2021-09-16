@@ -1,7 +1,7 @@
-import React from 'react';
-import {WorkExperience} from '../../models/resume';
+import React, {useCallback} from 'react';
 import styled from '@emotion/styled';
 import dompurify from 'isomorphic-dompurify';
+import {WorkExperience} from '../../models/resume';
 
 const ExperienceContainer = styled.div`
   position: relative;

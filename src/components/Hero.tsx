@@ -1,7 +1,7 @@
 import React from 'react';
-import {Fade, Bounce} from 'react-awesome-reveal';
-import Image from 'next/image';
 import styled from '@emotion/styled';
+import Image from 'next/image';
+import {Fade, Bounce} from 'react-awesome-reveal';
 
 export default function Hero() {
   return (

@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import Link from 'next/link';
 import React from 'react';
+
 import {CategorizedSkill} from '../../models/skill';
 
 const SkillContainer = styled.div`
