@@ -18,3 +18,46 @@ p {
 * {
   box-sizing: border-box;
 }
+
+:root {
+  --color-primary: #55c57a;
+  --color-primary-contrast: #fff;
+  --color-primary-light: #aaff00;
+  --color-primary-dark: green;
+  --color-primary-accent: #3ff000;
+
+  --color-secondary: blue;
+  --color-secondary-contrast: rgb(255, 255, 255);
+  --color-secondary-light: rgb(12, 110, 185);
+  --color-secondary-dark: rgb(5, 8, 100);
+  --color-secondary-accent: rgb(52, 97, 194);
+
+  --color-dark: #222;
+  --color-dark-contrast: #fff;
+  --color-dark-light: #555;
+  --color-dark-dark: #000;
+  --color-dark-accent: green;
+
+  --color-light: #eee;
+  --color-light-contrast: rgb(39, 38, 38);
+  --color-light-light: #fff;
+  --color-light-dark: #aaa;
+  --color-light-accent: #eee;
+
+  --light-gray-1: #eee;
+  --light-gray-2: #bbb;
+  --dark-gray-1: #222;
+  --dark-gray-2: #777;
+
+  --font-primary-color: #444;
+
+  --margin-big: 5rem;
+  --margin-medium: 2.5rem;
+  --margin-small: 1rem;
+  --margin-very-small: 0.25rem;
+
+  --padding-big: 5rem;
+  --padding-medium: 2.5rem;
+  --padding-small: 1rem;
+  --padding-very-small: 0.25rem;
+}

@@ -1,7 +1,7 @@
 import React, {useCallback} from 'react';
 import styled from '@emotion/styled';
-import dompurify from 'isomorphic-dompurify';
 import {WorkExperience} from '../../models/resume';
+import dompurify from 'isomorphic-dompurify';
 
 const ExperienceContainer = styled.div`
   position: relative;
@@ -76,6 +76,7 @@ const TimelineContainer = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
+  padding: var(--padding-medium) 0;
 `;
 
 export default function Timeline({

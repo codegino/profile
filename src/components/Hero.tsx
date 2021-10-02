@@ -7,39 +7,26 @@ export default function Hero() {
   return (
     <HeroContainer>
       <Image src="/assets/hero-placeholder.jpg" alt="me" layout="fill" />
-      <MessageContainer top={0} left={0}>
-        <Fade cascade duration={1500}>
-          <p>I enter first...</p>
-          <p>...then comes my turn...</p>
-          <p>...and finally you see me!</p>
-        </Fade>
-      </MessageContainer>
-      <MessageContainer top={0} right={0}>
-        <Fade cascade delay={2000}>
-          <p>I enter first...</p>
-          <p>...then comes my turn...</p>
-          <p>...and finally you see me!</p>
-        </Fade>
-      </MessageContainer>
+      <LeftMessageContainer cascade duration={1500} triggerOnce={true}>
+        <p>Hi</p>
+        <p>I am Carlo Gino Catapang</p>
+        <p>Welcome to my page!</p>
+      </LeftMessageContainer>
     </HeroContainer>
   );
 }
 
-const MessageContainer = styled(Fade)<{
-  top?: number;
-  bottom?: number;
-  left?: number;
-  right?: number;
-}>`
-  position: absolute;
-  top: ${prop => prop.top};
-  right: ${prop => prop.right};
-  left: ${prop => prop.left};
-  bottom: ${prop => prop.bottom};
+const LeftMessageContainer = styled(Fade)`
+  position: relative;
+  top: 1rem;
+  left: 1rem;
   z-index: 1;
+  display: flex;
+  flex-direction: column;
 
   p {
     color: white;
+    font-size: 2em;
   }
 `;
 
