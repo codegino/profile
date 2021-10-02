@@ -1,5 +1,6 @@
 import Footer from '../components/Footer';
 import Hero from '../components/Hero';
+import ResumeSummary from '../components/ResumeSummary';
 import Skills from '../components/skills/Skills';
 import Timeline from '../components/timeline/Timeline';
 import {WorkExperience} from '../models/resume';
@@ -21,6 +22,7 @@ export default function Home({
       </Head>
 
       <Hero />
+      <ResumeSummary />
       <Skills skills={skills} />
       <Timeline workExperiences={workExperiences} />
       <Footer />
