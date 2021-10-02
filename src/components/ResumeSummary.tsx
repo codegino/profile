@@ -29,7 +29,7 @@ export default function ResumeSummary() {
 }
 
 const Container = styled.div<{flowDirection: 'row' | 'column'}>`
-  margin-top: 2rem;
+  margin: 2rem 0;
   border-radius: 0.5rem;
   width: 100%;
   display: flex;
