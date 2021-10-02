@@ -1,14 +1,12 @@
 import React from 'react';
-import {Fade, Bounce} from 'react-awesome-reveal';
-import Image from 'next/image';
 import styled from '@emotion/styled';
+import Image from 'next/image';
+import {Fade} from 'react-awesome-reveal';
 
 export default function Hero() {
   return (
     <HeroContainer>
-      <Bounce style={{height: '300px', width: '100%'}}>
-        <Image src="/assets/hero-placeholder.png" alt="me" layout="fill" />
-      </Bounce>
+      <Image src="/assets/hero-placeholder.jpg" alt="me" layout="fill" />
       <MessageContainer top={0} left={0}>
         <Fade cascade duration={1500}>
           <p>I enter first...</p>
@@ -39,6 +37,10 @@ const MessageContainer = styled(Fade)<{
   left: ${prop => prop.left};
   bottom: ${prop => prop.bottom};
   z-index: 1;
+
+  p {
+    color: white;
+  }
 `;
 
 const HeroContainer = styled.div`
