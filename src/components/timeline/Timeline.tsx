@@ -20,7 +20,11 @@ export default function Timeline({
         </Slide>
         {workExperiences.map((exp, i) => {
           return (
-            <Slide key={exp.id} direction={i % 2 ? 'left' : 'right'}>
+            <Slide
+              key={exp.id}
+              direction={i % 2 ? 'left' : 'right'}
+              triggerOnce={true}
+            >
               <Experience key={exp.id}>
                 <Content exp={exp}></Content>
               </Experience>
