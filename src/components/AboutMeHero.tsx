@@ -5,7 +5,14 @@ import {Fade} from 'react-awesome-reveal';
 import {mediaQuery} from '../utils/media-query';
 import {BlurredImage} from './BlurredImage';
 
-const quote = `Everybody is a genius. But if you judge a fish by its ability to climb a tree, it will live its whole life believing that it is stupid. -Albert Einstein`;
+const quote = [
+  'Everybody is a genius.',
+  'But if you judge a fish',
+  'by its ability to climb a tree,',
+  'it will live its whole life',
+  'believing that it is stupid.',
+  '-Albert Einstein',
+];
 
 export default function AboutMeHero({
   img,
@@ -22,9 +29,9 @@ export default function AboutMeHero({
         width={undefined}
       />
       <MessageContainer>
-        <Message cascade={true} duration={400} triggerOnce={true}>
-          {quote.split(' ').map((word, i) => (
-            <p key={`${word}-${i}`}>{word}</p>
+        <Message cascade={true} duration={2000} triggerOnce={true}>
+          {quote.map((word, i) => (
+            <p key={`${word}-${i}`}>{word}&nbsp;</p>
           ))}
         </Message>
       </MessageContainer>
@@ -42,13 +49,14 @@ const Container = styled.div`
   ${mediaQuery(1200, 'height: 100vh;')}
 `;
 
-const MessageContainer = styled.span`
+const MessageContainer = styled.div`
   position: absolute;
   top: 1rem;
   right: 1rem;
   display: flex;
+  justify-content: flex-end;
   flex-wrap: wrap;
-  max-width: 20rem;
+  max-width: 30rem;
 `;
 
 const Message = styled(Fade)`
