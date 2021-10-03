@@ -1,83 +1,9 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import dompurify from 'isomorphic-dompurify';
+import {Zoom, Slide} from 'react-awesome-reveal';
 import {WorkExperience} from '../../models/resume';
-
-const ExperienceContainer = styled.div`
-  position: relative;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  z-index: 1;
-  margin-bottom: 2rem;
-  border: 1px solid black;
-
-  .content {
-    padding: 1rem;
-    height: 100%;
-    width: 100%;
-  }
-
-  :not(:first-of-type) {
-    .connector {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-color: black;
-      width: 0.25rem;
-      height: 2.5rem;
-      position: absolute;
-      top: -2.25rem;
-
-      ::before {
-        content: '';
-        width: 0.75rem;
-        height: 0.75rem;
-        position: absolute;
-        background-color: red;
-        border-radius: 50%;
-      }
-    }
-  }
-
-  :first-of-type {
-    .connector {
-      display: none;
-    }
-  }
-
-  text-align: center;
-
-  .date {
-    font-weight: 0.8em;
-    font-style: italic;
-  }
-
-  .name {
-    font-size: 1.5em;
-    font-weight: bold;
-  }
-
-  .title {
-    font-weight: bold;
-  }
-`;
-
-const Experience = ({children}: {children: any}) => {
-  return (
-    <ExperienceContainer>
-      <div className="connector">&nbsp;</div>
-      <div className="content">{children}</div>
-    </ExperienceContainer>
-  );
-};
-
-const TimelineContainer = styled.div`
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  padding: var(--padding-medium) 0;
-`;
+import {Experience} from './Experience';
 
 export default function Timeline({
   workExperiences,
@@ -85,32 +11,55 @@ export default function Timeline({
   workExperiences: WorkExperience[];
 }) {
   return (
-    <TimelineContainer>
+    <Container>
       <div>
-        <Experience>
-          <h3>Work Experiences</h3>
-        </Experience>
-        {workExperiences.map(exp => {
+        <Slide triggerOnce={true} direction="down">
+          <Experience>
+            <h3>Work Experiences</h3>
+          </Experience>
+        </Slide>
+        {workExperiences.map((exp, i) => {
           return (
-            <Experience key={exp.id}>
-              <div>
-                <p className="name">{exp.company_name}</p>
-                <p>
-                  <span className="title">{exp.title}</span> ({exp.role})
-                </p>
-                <p className="date">
-                  {exp.start_date} - {exp.end_date}
-                </p>
-                <div
-                  dangerouslySetInnerHTML={{
-                    __html: dompurify.sanitize(exp.content),
-                  }}
-                />
-              </div>
-            </Experience>
+            <Slide key={exp.id} direction={i % 2 ? 'left' : 'right'}>
+              <Experience key={exp.id}>
+                <Content exp={exp}></Content>
+              </Experience>
+            </Slide>
           );
         })}
       </div>
-    </TimelineContainer>
+    </Container>
   );
 }
+
+const Content: React.FC<{exp: WorkExperience}> = ({exp}) => {
+  return (
+    <Zoom triggerOnce={true} cascade={true} duration={800}>
+      <p className="name">{exp.company_name}</p>
+      <p>
+        <span className="title">{exp.title}</span> ({exp.role})
+      </p>
+      <p className="date">
+        {exp.start_date} - {exp.end_date}
+      </p>
+      <ContentDescription
+        dangerouslySetInnerHTML={{
+          __html: dompurify.sanitize(exp.content),
+        }}
+      />
+    </Zoom>
+  );
+};
+
+const ContentDescription = styled.div`
+  margin-top: 1rem;
+`;
+
+const Container = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  cursor: pointer;
+
+  padding: var(--padding-medium) 0;
+`;
