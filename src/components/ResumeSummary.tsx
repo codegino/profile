@@ -1,16 +1,23 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import Image from 'next/image';
-import {useMediaQuery} from 'react-responsive';
+
+const mediaQuery = (
+  width: number,
+  style: string,
+  type: 'min' | 'max' = 'min',
+) => {
+  return `@media only screen and (${type}-width: ${width}px) {
+      & {
+        ${style}
+      }
+    }`;
+};
 
 export default function ResumeSummary() {
-  const isSmallSize = useMediaQuery({query: '(max-width: 375px)'});
-  const isMediumSize = useMediaQuery({query: '(max-width: 900px)'});
-
   return (
-    <Container flowDirection={isSmallSize || isMediumSize ? 'column' : 'row'}>
+    <Container>
       <ProfileImage
-        size={isSmallSize || isMediumSize ? 'small' : 'large'}
         src="/assets/profile-picture.jpeg"
         alt="My Photo"
         layout="fixed"
@@ -28,29 +35,32 @@ export default function ResumeSummary() {
   );
 }
 
-const Container = styled.div<{flowDirection: 'row' | 'column'}>`
+const Container = styled.div`
   margin: 2rem 0;
   border-radius: 0.5rem;
   width: 100%;
   display: flex;
-  flex-direction: ${props => props.flowDirection};
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+
+  ${mediaQuery(900, `flex-direction: row;`)}
 
   .summary {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    margin-left: ${props => (props.flowDirection === 'row' ? '2rem' : '0')};
+    flex-direction: column;
+    margin-left: 0;
+    ${mediaQuery(900, `margin-left: 2rem;`)}
   }
 `;
 
-const ProfileImage = styled(Image)<{size?: 'small' | 'large'}>(props => {
-  return {
-    borderRadius: props.size === 'small' ? '50%' : '0',
-  };
-});
+const ProfileImage = styled(Image)`
+  border-radius: 50%;
+  ${mediaQuery(900, `border-radius: 0`)}
+`;
 
 const summary = {
   jobTitle: 'Senior Software Engineer',

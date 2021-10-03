@@ -6,6 +6,7 @@
     "deps",
     "resume",
     "layout",
-    "about-me"
+    "about-me",
+    "component"
   ]
 }

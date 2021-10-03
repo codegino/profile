@@ -1,29 +1,41 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import Image from 'next/image';
+import {IGetPlaiceholderReturn} from 'plaiceholder';
 import {Fade} from 'react-awesome-reveal';
+import {BlurredImage} from './BlurredImage';
 
-export default function Hero() {
+export default function Hero({
+  img,
+  svg,
+}: Pick<IGetPlaiceholderReturn, 'svg' | 'img'>) {
   return (
     <HeroContainer>
-      <Image src="/assets/hero-placeholder.jpg" alt="me" layout="fill" />
-      <LeftMessageContainer cascade duration={1500} triggerOnce={true}>
-        <p>Hi!</p>
-        <h1>I am Carlo Gino Catapang</h1>
-        <p>Welcome to my page!</p>
+      <BlurredImage
+        alt="Hero photo"
+        img={img}
+        svg={svg}
+        layout="fill"
+        height={undefined}
+        width={undefined}
+      />
+      <LeftMessageContainer>
+        <Message cascade duration={1500} triggerOnce={true} delay={500}>
+          <p>Hi!</p>
+          <h1>I am Carlo Gino Catapang</h1>
+          <p>Welcome to my page!</p>
+        </Message>
       </LeftMessageContainer>
     </HeroContainer>
   );
 }
 
-const LeftMessageContainer = styled(Fade)`
-  position: relative;
+const LeftMessageContainer = styled.div`
+  position: absolute;
   top: 1rem;
   left: 1rem;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
+`;
 
+const Message = styled(Fade)`
   p,
   h1 {
     color: white;
