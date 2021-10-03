@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import {CategorizedSkill} from '../../models/skill';
 import Link from 'next/link';
+import {CategorizedSkill} from '../../models/skill';
 
 export default function Skills({skills}: {skills: CategorizedSkill[]}) {
   return (

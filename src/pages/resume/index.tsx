@@ -1,26 +1,32 @@
 import {InferGetStaticPropsType} from 'next';
 import Head from 'next/head';
-import Hero from '../components/Hero';
-import ResumeSummary from '../components/ResumeSummary';
-import Skills from '../components/skills/Skills';
-import Timeline from '../components/timeline/Timeline';
-import {WorkExperience} from '../models/resume';
-import {CategorizedSkill, Skill} from '../models/skill';
-import {supabase} from '../utils/supabaseClient';
+import Link from 'next/link';
+import Footer from '../../components/Footer';
+import ResumeSummary from '../../components/ResumeSummary';
+import Skills from '../../components/skills/Skills';
+import Timeline from '../../components/timeline/Timeline';
+import {WorkExperience} from '../../models/resume';
+import {CategorizedSkill, Skill} from '../../models/skill';
+import {supabase} from '../../utils/supabaseClient';
 
-export default function Home({
+export default function Resume({
   workExperiences,
   skills,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <>
       <Head>
-        <title>Carlo Gino</title>
-        <meta name="description" content="Carlo Gino Catapang" />
+        <title>Carlo Gino Catapang Resume</title>
+        <meta name="description" content="Carlo Gino Catapang resume" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Hero />
+      <Link href={process.env.NEXT_PUBLIC_RESUME_PDF_URL as string}>
+        <a target="_blank">Download PDF</a>
+      </Link>
+      <Link href={process.env.NEXT_PUBLIC_RESUME_DOC_URL as string}>
+        <a target="_blank">Download Doc</a>
+      </Link>
       <ResumeSummary />
       <Skills skills={skills} />
       <Timeline workExperiences={workExperiences} />
