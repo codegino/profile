@@ -1,18 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import Image from 'next/image';
-
-const mediaQuery = (
-  width: number,
-  style: string,
-  type: 'min' | 'max' = 'min',
-) => {
-  return `@media only screen and (${type}-width: ${width}px) {
-      & {
-        ${style}
-      }
-    }`;
-};
+import {mediaQuery} from '../utils/media-query';
 
 export default function ResumeSummary() {
   return (
