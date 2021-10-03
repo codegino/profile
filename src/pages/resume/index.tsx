@@ -1,13 +1,21 @@
+import styled from '@emotion/styled';
+import {FaFilePdf} from '@react-icons/all-files/fa/FaFilePdf';
+import {FaFileWord} from '@react-icons/all-files/fa/FaFileWord';
 import {InferGetStaticPropsType} from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
-import Footer from '../../components/Footer';
 import ResumeSummary from '../../components/ResumeSummary';
 import Skills from '../../components/skills/Skills';
 import Timeline from '../../components/timeline/Timeline';
 import {WorkExperience} from '../../models/resume';
 import {CategorizedSkill, Skill} from '../../models/skill';
 import {supabase} from '../../utils/supabaseClient';
+
+const ResumeDownloadWrapper = styled.div`
+  position: absolute;
+  right: 1rem;
+  top: 4rem;
+`;
 
 export default function Resume({
   workExperiences,
@@ -21,12 +29,18 @@ export default function Resume({
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Link href={process.env.NEXT_PUBLIC_RESUME_PDF_URL as string}>
-        <a target="_blank">Download PDF</a>
-      </Link>
-      <Link href={process.env.NEXT_PUBLIC_RESUME_DOC_URL as string}>
-        <a target="_blank">Download Doc</a>
-      </Link>
+      <ResumeDownloadWrapper>
+        <Link href={process.env.NEXT_PUBLIC_RESUME_PDF_URL as string}>
+          <a target="_blank">
+            <FaFilePdf size={30} title="Download PDF Version" />
+          </a>
+        </Link>
+        <Link href={process.env.NEXT_PUBLIC_RESUME_DOC_URL as string}>
+          <a target="_blank">
+            <FaFileWord size={30} title="Download Word Version" />
+          </a>
+        </Link>
+      </ResumeDownloadWrapper>
       <ResumeSummary />
       <Skills skills={skills} />
       <Timeline workExperiences={workExperiences} />

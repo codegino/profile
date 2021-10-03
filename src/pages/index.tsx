@@ -1,5 +1,6 @@
 import {InferGetStaticPropsType} from 'next';
 import Head from 'next/head';
+import {getPlaiceholder} from 'plaiceholder';
 import Hero from '../components/Hero';
 import ResumeSummary from '../components/ResumeSummary';
 import Skills from '../components/skills/Skills';
@@ -11,6 +12,8 @@ import {supabase} from '../utils/supabaseClient';
 export default function Home({
   workExperiences,
   skills,
+  img,
+  svg,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <>
@@ -20,7 +23,7 @@ export default function Home({
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Hero />
+      <Hero img={img} svg={svg} />
       <ResumeSummary />
       <Skills skills={skills} />
       <Timeline workExperiences={workExperiences} />
@@ -34,6 +37,8 @@ export const getStaticProps = async () => {
     .select('*');
 
   let {data: skills} = await supabase.from<Skill>('skill').select('*');
+
+  const {img, svg} = await getPlaiceholder('/assets/hero-placeholder.jpg');
 
   const categorizedSkills: CategorizedSkill[] =
     skills?.reduce(
@@ -69,6 +74,8 @@ export const getStaticProps = async () => {
     props: {
       workExperiences: workExperiences as WorkExperience[],
       skills: categorizedSkills as CategorizedSkill[],
+      svg,
+      img,
     },
   };
 };
