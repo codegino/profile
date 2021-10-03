@@ -34,13 +34,17 @@ const SkillContainer = styled.div`
   padding: var(--padding-very-small) var(--padding-small);
   border-radius: 0.5rem;
   width: fit-content;
+  background-color: var(--color-dark);
+  color: var(--color-light);
+  transition: all 0.5s;
 
   :not(:last-child) {
     margin-right: var(--margin-very-small);
   }
 
   :hover {
-    background-color: $primary;
+    color: var(--color-dark);
+    background-color: var(--color-light);
   }
 `;
 

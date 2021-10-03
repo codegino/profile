@@ -8,8 +8,8 @@ export default function Hero() {
     <HeroContainer>
       <Image src="/assets/hero-placeholder.jpg" alt="me" layout="fill" />
       <LeftMessageContainer cascade duration={1500} triggerOnce={true}>
-        <p>Hi</p>
-        <p>I am Carlo Gino Catapang</p>
+        <p>Hi!</p>
+        <h1>I am Carlo Gino Catapang</h1>
         <p>Welcome to my page!</p>
       </LeftMessageContainer>
     </HeroContainer>
@@ -24,7 +24,8 @@ const LeftMessageContainer = styled(Fade)`
   display: flex;
   flex-direction: column;
 
-  p {
+  p,
+  h1 {
     color: white;
     font-size: 2em;
   }
