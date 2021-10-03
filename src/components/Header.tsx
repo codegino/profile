@@ -5,7 +5,9 @@ import Link from 'next/link';
 const HeaderContainer = styled.header`
   height: 50px;
   width: 100%;
-  padding: 0.5rem 1rem;
+  padding: var(--padding-small) var(--padding-small);
+  background-color: var(--color-dark);
+  color: var(--color-light);
 
   > nav {
     > ul {

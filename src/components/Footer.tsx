@@ -7,6 +7,8 @@ const FooterContainer = styled.footer`
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: var(--color-dark);
+  color: var(--color-light);
 `;
 
 export default function Footer() {
