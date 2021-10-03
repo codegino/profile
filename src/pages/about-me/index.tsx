@@ -1,18 +1,18 @@
 import styled from '@emotion/styled';
+import dompurify from 'isomorphic-dompurify';
 import {InferGetStaticPropsType} from 'next';
 import Head from 'next/head';
+import {getPlaiceholder} from 'plaiceholder';
+import AboutMeHero from '../../components/AboutMeHero';
+import {BlurredImage} from '../../components/BlurredImage';
 import Footer from '../../components/Footer';
 import {StaticContent} from '../../models/static-content';
 import {supabase} from '../../utils/supabaseClient';
-import dompurify from 'isomorphic-dompurify';
-
-const AboutMeDetail = styled.div`
-  padding: 1rem;
-  border: 1px solid black;
-`;
 
 export default function AboutMe({
   aboutMeDetails,
+  img,
+  svg,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <>
@@ -22,6 +22,7 @@ export default function AboutMe({
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      <AboutMeHero img={img} svg={svg} />
       <h1>About Me</h1>
       <p>This page is under construction</p>
       {aboutMeDetails.map(detail => {
@@ -47,9 +48,18 @@ export const getStaticProps = async () => {
     .select('key, content, label')
     .eq('category', 'about_me');
 
+  const {img, svg} = await getPlaiceholder('/assets/einstein-cover.png');
+
   return {
     props: {
       aboutMeDetails: aboutMe as StaticContent[],
+      img,
+      svg,
     },
   };
 };
+
+const AboutMeDetail = styled.div`
+  padding: 1rem;
+  border: 1px solid black;
+`;
