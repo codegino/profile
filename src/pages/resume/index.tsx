@@ -1,5 +1,6 @@
 import {InferGetStaticPropsType} from 'next';
 import Head from 'next/head';
+import Link from 'next/link';
 import Footer from '../../components/Footer';
 import ResumeSummary from '../../components/ResumeSummary';
 import Skills from '../../components/skills/Skills';
@@ -8,7 +9,7 @@ import {WorkExperience} from '../../models/resume';
 import {CategorizedSkill, Skill} from '../../models/skill';
 import {supabase} from '../../utils/supabaseClient';
 
-export default function Home({
+export default function Resume({
   workExperiences,
   skills,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
@@ -20,10 +21,15 @@ export default function Home({
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      <Link href={process.env.NEXT_PUBLIC_RESUME_PDF_URL as string}>
+        <a target="_blank">Download PDF</a>
+      </Link>
+      <Link href={process.env.NEXT_PUBLIC_RESUME_DOC_URL as string}>
+        <a target="_blank">Download Doc</a>
+      </Link>
       <ResumeSummary />
       <Skills skills={skills} />
       <Timeline workExperiences={workExperiences} />
-      <Footer />
     </>
   );
 }

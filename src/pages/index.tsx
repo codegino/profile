@@ -1,4 +1,5 @@
-import Footer from '../components/Footer';
+import {InferGetStaticPropsType} from 'next';
+import Head from 'next/head';
 import Hero from '../components/Hero';
 import ResumeSummary from '../components/ResumeSummary';
 import Skills from '../components/skills/Skills';
@@ -6,8 +7,6 @@ import Timeline from '../components/timeline/Timeline';
 import {WorkExperience} from '../models/resume';
 import {CategorizedSkill, Skill} from '../models/skill';
 import {supabase} from '../utils/supabaseClient';
-import {InferGetStaticPropsType} from 'next';
-import Head from 'next/head';
 
 export default function Home({
   workExperiences,
@@ -25,7 +24,6 @@ export default function Home({
       <ResumeSummary />
       <Skills skills={skills} />
       <Timeline workExperiences={workExperiences} />
-      <Footer />
     </>
   );
 }
