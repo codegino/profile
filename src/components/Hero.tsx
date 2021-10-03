@@ -2,6 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import {IGetPlaiceholderReturn} from 'plaiceholder';
 import {Fade} from 'react-awesome-reveal';
+import {mediaQuery} from '../utils/media-query';
 import {BlurredImage} from './BlurredImage';
 
 export default function Hero({
@@ -14,9 +15,9 @@ export default function Hero({
         alt="Hero photo"
         img={img}
         svg={svg}
-        layout="fill"
-        height={undefined}
-        width={undefined}
+        layout="responsive"
+        height={100}
+        width={100}
       />
       <LeftMessageContainer>
         <Message cascade duration={1500} triggerOnce={true} delay={500}>
@@ -44,7 +45,9 @@ const Message = styled(Fade)`
 `;
 
 const HeroContainer = styled.div`
-  height: 100vh;
+  height: 50vh;
   overflow: hidden;
   position: relative;
+
+  ${mediaQuery(600, 'height: 100vh;')}
 `;

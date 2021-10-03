@@ -34,7 +34,7 @@ export const BlurredImage = ({
         ),
       )}
 
-      <Image {...img} {...props} alt={alt} layout="fill" />
+      <Image {...img} {...props} alt={alt} />
     </Container>
   );
 };

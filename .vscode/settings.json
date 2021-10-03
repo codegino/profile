@@ -8,6 +8,7 @@
     "layout",
     "about-me",
     "component",
-    "utils"
+    "utils",
+    "aboutme"
   ]
 }
