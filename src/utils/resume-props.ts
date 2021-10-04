@@ -65,8 +65,8 @@ export const resumeProps = async () => {
   });
 
   return {
-    workExperiences: transformedWorkExperiences,
-    educationExperiences: transformedEducationExperiences,
+    workExperiences: transformedWorkExperiences as WorkExperience[],
+    educationExperiences: transformedEducationExperiences as WorkExperience[],
     skills: categorizedSkills as CategorizedSkill[],
   };
 };
