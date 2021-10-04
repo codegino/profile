@@ -63,6 +63,9 @@ const SkillsContainer = styled.div`
   .skills {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 0.5rem;
   }
 
   .label {
