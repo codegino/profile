@@ -5,12 +5,11 @@ import Hero from '../components/Hero';
 import ResumeSummary from '../components/ResumeSummary';
 import Skills from '../components/skills/Skills';
 import Timeline from '../components/timeline/Timeline';
-import {WorkExperience} from '../models/resume';
-import {CategorizedSkill, Skill} from '../models/skill';
-import {supabase} from '../utils/supabaseClient';
+import {resumeProps} from '../utils/resume-props';
 
 export default function Home({
   workExperiences,
+  educationExperiences,
   skills,
   img,
   svg,
@@ -26,54 +25,22 @@ export default function Home({
       <Hero img={img} svg={svg} />
       <ResumeSummary />
       <Skills skills={skills} />
-      <Timeline workExperiences={workExperiences} />
+      <Timeline
+        workExperiences={workExperiences}
+        educationExperiences={educationExperiences}
+      />
     </>
   );
 }
 
 export const getStaticProps = async () => {
-  let {data: workExperiences} = await supabase
-    .from<WorkExperience>('experience')
-    .select('*');
-
-  let {data: skills} = await supabase.from<Skill>('skill').select('*');
-
   const {img, svg} = await getPlaiceholder('/assets/hero-placeholder.jpg');
 
-  const categorizedSkills: CategorizedSkill[] =
-    skills?.reduce(
-      (acc: CategorizedSkill[], curr: Skill): CategorizedSkill[] => {
-        const existingCategory = acc.find(
-          category => category.category === curr.category,
-        );
-
-        if (existingCategory) {
-          existingCategory.skills.push(curr);
-        } else {
-          acc.push({
-            category: curr.category,
-            skills: [curr],
-          });
-        }
-
-        return acc;
-      },
-      [],
-    ) ?? [];
-
-  // Create category for active skills
-  const activeSkills = skills?.filter(skill => skill.is_active) ?? [];
-
-  // Set active skills as the first element
-  categorizedSkills.unshift({
-    category: 'Active Skills',
-    skills: activeSkills,
-  });
+  const resume = await resumeProps();
 
   return {
     props: {
-      workExperiences: workExperiences as WorkExperience[],
-      skills: categorizedSkills as CategorizedSkill[],
+      ...resume,
       svg,
       img,
     },

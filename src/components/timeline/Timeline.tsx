@@ -1,21 +1,32 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import {FaBriefcase} from '@react-icons/all-files/fa/FaBriefcase';
+import {FaBuilding} from '@react-icons/all-files/fa/FaBuilding';
+import {FaGraduationCap} from '@react-icons/all-files/fa/FaGraduationCap';
+import {FaScroll} from '@react-icons/all-files/fa/FaScroll';
 import dompurify from 'isomorphic-dompurify';
+import Link from 'next/link';
 import {Zoom, Slide} from 'react-awesome-reveal';
 import {WorkExperience} from '../../models/resume';
+import {mediaQuery} from '../../utils/media-query';
 import {Experience} from './Experience';
 
 export default function Timeline({
   workExperiences,
+  educationExperiences,
 }: {
   workExperiences: WorkExperience[];
+  educationExperiences: WorkExperience[];
 }) {
   return (
     <Container>
       <div>
         <Slide triggerOnce={true} direction="down">
           <Experience>
-            <h3>Work Experiences</h3>
+            <CategoryTitle>
+              <FaBriefcase />
+              &nbsp; Work Experiences
+            </CategoryTitle>
           </Experience>
         </Slide>
         {workExperiences.map((exp, i) => {
@@ -25,8 +36,38 @@ export default function Timeline({
               direction={i % 2 ? 'left' : 'right'}
               triggerOnce={true}
             >
-              <Experience key={exp.id}>
-                <Content exp={exp}></Content>
+              <Experience key={exp.id} hasConnector>
+                <Content exp={exp}>
+                  <ContentDescription
+                    dangerouslySetInnerHTML={{
+                      __html: dompurify.sanitize(exp.content),
+                    }}
+                  />
+                </Content>
+              </Experience>
+            </Slide>
+          );
+        })}
+
+        <Slide triggerOnce={true} direction="down">
+          <Experience hasConnector>
+            <CategoryTitle>
+              <FaScroll />
+              &nbsp;Education
+            </CategoryTitle>
+          </Experience>
+        </Slide>
+        {educationExperiences.map((exp, i) => {
+          return (
+            <Slide
+              key={exp.id}
+              direction={i % 2 ? 'left' : 'right'}
+              triggerOnce={true}
+            >
+              <Experience key={exp.id} hasConnector={true}>
+                <Content exp={exp}>
+                  <span />
+                </Content>
               </Experience>
             </Slide>
           );
@@ -36,34 +77,53 @@ export default function Timeline({
   );
 }
 
-const Content: React.FC<{exp: WorkExperience}> = ({exp}) => {
+const Content: React.FC<{exp: WorkExperience}> = ({exp, children = null}) => {
   return (
-    <Zoom triggerOnce={true} cascade={true} duration={800}>
-      <p className="name">{exp.company_name}</p>
-      <p>
-        <span className="title">{exp.title}</span> ({exp.role})
-      </p>
-      <p className="date">
-        {exp.start_date} - {exp.end_date}
-      </p>
-      <ContentDescription
-        dangerouslySetInnerHTML={{
-          __html: dompurify.sanitize(exp.content),
-        }}
-      />
+    <Zoom
+      triggerOnce={true}
+      cascade={true}
+      duration={800}
+      style={{maxWidth: '45rem'}}
+    >
+      <div>
+        <p className="date">{exp.end_date}</p>
+        <div className="name">
+          {exp.category === 'work' ? <FaBuilding /> : <FaGraduationCap />}
+          &nbsp;
+          <Link href={exp.url}>
+            <a target="_blank">{exp.organization}</a>
+          </Link>
+        </div>
+        <ContentTitle>
+          <div className="title">{exp.title}</div> <div>({exp.role})</div>
+        </ContentTitle>
+      </div>
+      <div>{children}</div>
+      <p className="date">{exp.start_date}</p>
     </Zoom>
   );
 };
 
+const CategoryTitle = styled.h2`
+  margin: 0;
+`;
+
+const ContentTitle = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  ${mediaQuery(900, `flex-direction: row;`)}
+`;
+
 const ContentDescription = styled.div`
   margin-top: 1rem;
+  text-align: left;
 `;
 
 const Container = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  cursor: pointer;
 
   padding: var(--padding-medium) 0;
 `;

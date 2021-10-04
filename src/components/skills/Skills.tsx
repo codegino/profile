@@ -1,12 +1,16 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import {FaDumbbell} from '@react-icons/all-files/fa/FaDumbbell';
 import Link from 'next/link';
 import {CategorizedSkill} from '../../models/skill';
 
 export default function Skills({skills}: {skills: CategorizedSkill[]}) {
   return (
     <SkillsContainer>
-      <h2>Skills</h2>
+      <h2>
+        <FaDumbbell />
+        &nbsp; Skills
+      </h2>
       {skills.map(category => {
         return (
           <div key={category.category}>
@@ -59,6 +63,9 @@ const SkillsContainer = styled.div`
   .skills {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 0.5rem;
   }
 
   .label {
