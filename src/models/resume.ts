@@ -7,4 +7,5 @@ export type WorkExperience = {
   end_date: string;
   content: string;
   category: 'work' | 'education';
+  url: string;
 };

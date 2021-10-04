@@ -1,7 +1,6 @@
 import React from 'react';
 import {keyframes} from '@emotion/react';
 import styled from '@emotion/styled';
-import {mediaQuery} from '../../utils/media-query';
 
 export const Experience: React.FC<{hasConnector?: boolean}> = ({
   children,
@@ -35,19 +34,9 @@ const Container = styled.div`
   flex-direction: column;
   z-index: 1;
   margin-bottom: 2rem;
-  border: 1px solid var(--light-gray-2);
-  border-left: none;
-  border-right: none;
-
-  ${mediaQuery(
-    800,
-    `
-      border: 1px solid var(--light-gray-2);
-    `,
-  )}
 
   .content {
-    padding: 1rem;
+    padding: 0.25rem 1rem;
     height: 100%;
     width: 100%;
   }
