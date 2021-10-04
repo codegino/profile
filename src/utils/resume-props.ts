@@ -1,3 +1,4 @@
+import dateFormat from 'dateformat';
 import {WorkExperience} from '../models/resume';
 import {CategorizedSkill, Skill} from '../models/skill';
 import {supabase} from '../utils/supabaseClient';
@@ -39,17 +40,33 @@ export const resumeProps = async () => {
     ) ?? [];
 
   // Create category for active skills
-  const activeSkills = skills?.filter(skill => skill.is_active) ?? [];
+  const activeSkills = skills?.filter(skill => skill.is_highlight) ?? [];
 
   // Set active skills as the first element
   categorizedSkills.unshift({
-    category: 'Active Skills',
+    category: 'highlights',
     skills: activeSkills,
   });
 
+  const transformedWorkExperiences = workExperiences?.map(exp => {
+    return {
+      ...exp,
+      start_date: dateFormat(exp.start_date, 'dd mmmm yyyy'),
+      end_date: dateFormat(exp.end_date, 'dd mmmm yyyy'),
+    };
+  });
+
+  const transformedEducationExperiences = educationExperiences?.map(exp => {
+    return {
+      ...exp,
+      start_date: dateFormat(exp.start_date, 'dd mmmm yyyy'),
+      end_date: dateFormat(exp.end_date, 'dd mmmm yyyy'),
+    };
+  });
+
   return {
-    workExperiences: workExperiences as WorkExperience[],
-    educationExperiences: educationExperiences as WorkExperience[],
+    workExperiences: transformedWorkExperiences,
+    educationExperiences: transformedEducationExperiences,
     skills: categorizedSkills as CategorizedSkill[],
   };
 };
