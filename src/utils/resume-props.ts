@@ -6,7 +6,8 @@ export const resumeProps = async () => {
   let {data: workExperiences} = await supabase
     .from<WorkExperience>('experience')
     .select('*')
-    .eq('category', 'work');
+    .eq('category', 'work')
+    .order('id', {ascending: true});
 
   let {data: educationExperiences} = await supabase
     .from<WorkExperience>('experience')

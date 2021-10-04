@@ -27,15 +27,21 @@ export default function Timeline({
               direction={i % 2 ? 'left' : 'right'}
               triggerOnce={true}
             >
-              <Experience key={exp.id} hasConnector={true}>
-                <Content exp={exp}></Content>
+              <Experience key={exp.id} hasConnector>
+                <Content exp={exp}>
+                  <ContentDescription
+                    dangerouslySetInnerHTML={{
+                      __html: dompurify.sanitize(exp.content),
+                    }}
+                  />
+                </Content>
               </Experience>
             </Slide>
           );
         })}
 
         <Slide triggerOnce={true} direction="down">
-          <Experience>
+          <Experience hasConnector>
             <h3>Education</h3>
           </Experience>
         </Slide>
@@ -47,7 +53,9 @@ export default function Timeline({
               triggerOnce={true}
             >
               <Experience key={exp.id} hasConnector={true}>
-                <Content exp={exp}></Content>
+                <Content exp={exp}>
+                  <span />
+                </Content>
               </Experience>
             </Slide>
           );
@@ -57,9 +65,14 @@ export default function Timeline({
   );
 }
 
-const Content: React.FC<{exp: WorkExperience}> = ({exp}) => {
+const Content: React.FC<{exp: WorkExperience}> = ({exp, children = null}) => {
   return (
-    <Zoom triggerOnce={true} cascade={true} duration={800}>
+    <Zoom
+      triggerOnce={true}
+      cascade={true}
+      duration={800}
+      style={{maxWidth: '45rem'}}
+    >
       <p className="name">{exp.organization}</p>
       <p>
         <span className="title">{exp.title}</span> ({exp.role})
@@ -67,24 +80,20 @@ const Content: React.FC<{exp: WorkExperience}> = ({exp}) => {
       <p className="date">
         {exp.start_date} - {exp.end_date}
       </p>
-      <ContentDescription
-        dangerouslySetInnerHTML={{
-          __html: dompurify.sanitize(exp.content),
-        }}
-      />
+      {children}
     </Zoom>
   );
 };
 
 const ContentDescription = styled.div`
   margin-top: 1rem;
+  text-align: left;
 `;
 
 const Container = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  cursor: pointer;
 
   padding: var(--padding-medium) 0;
 `;

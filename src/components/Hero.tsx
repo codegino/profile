@@ -15,9 +15,9 @@ export default function Hero({
         alt="Hero photo"
         img={img}
         svg={svg}
-        layout="responsive"
-        height={100}
-        width={100}
+        layout="fill"
+        height={undefined}
+        width={undefined}
       />
       <LeftMessageContainer>
         <Message cascade duration={1500} triggerOnce={true} delay={500}>
