@@ -14,6 +14,7 @@ export type SkillCategory =
   | 'styling'
   | 'testing'
   | 'tools'
+  | 'discipline'
   | 'hosting'
   | 'others';
 

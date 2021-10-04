@@ -8,6 +8,7 @@ import {FaRandom} from '@react-icons/all-files/fa/FaRandom';
 import {FaReact} from '@react-icons/all-files/fa/FaReact';
 import {FaServer} from '@react-icons/all-files/fa/FaServer';
 import {FaStar} from '@react-icons/all-files/fa/FaStar';
+import {FaThumbsUp} from '@react-icons/all-files/fa/FaThumbsUp';
 import {FaTools} from '@react-icons/all-files/fa/FaTools';
 import Link from 'next/link';
 import {Zoom, Slide} from 'react-awesome-reveal';
@@ -92,6 +93,8 @@ function getSkillCategoryIcon(category: SkillCategory) {
       return <FaReact />;
     case 'highlights':
       return <FaStar />;
+    case 'discipline':
+      return <FaThumbsUp />;
     default:
       return null;
   }

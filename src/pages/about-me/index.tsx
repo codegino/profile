@@ -22,13 +22,12 @@ export default function AboutMe({
       </Head>
 
       <AboutMeHero img={img} svg={svg} />
-      <h1>About Me</h1>
-      <p>This page is under construction</p>
       {aboutMeDetails.map(detail => {
         return (
           <AboutMeDetail key={detail.key}>
             <h3>{detail.label}</h3>
             <div
+              className="content"
               dangerouslySetInnerHTML={{
                 __html: dompurify.sanitize(detail.content),
               }}
@@ -58,6 +57,13 @@ export const getStaticProps = async () => {
 };
 
 const AboutMeDetail = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 1rem;
-  border: 1px solid black;
+
+  .content {
+    max-width: 40rem;
+    text-align: justify;
+  }
 `;
