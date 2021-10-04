@@ -4,7 +4,6 @@ import {InferGetStaticPropsType} from 'next';
 import Head from 'next/head';
 import {getPlaiceholder} from 'plaiceholder';
 import AboutMeHero from '../../components/AboutMeHero';
-import {BlurredImage} from '../../components/BlurredImage';
 import Footer from '../../components/Footer';
 import {StaticContent} from '../../models/static-content';
 import {supabase} from '../../utils/supabaseClient';
