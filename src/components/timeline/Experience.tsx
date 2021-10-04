@@ -1,14 +1,31 @@
 import React from 'react';
+import {keyframes} from '@emotion/react';
 import styled from '@emotion/styled';
 
-export const Experience = ({children}: {children: any}) => {
+export const Experience: React.FC<{hasConnector?: boolean}> = ({
+  children,
+  hasConnector = false,
+}) => {
   return (
     <Container>
-      <div className="connector">&nbsp;</div>
-      <div className="content">{children}</div>
+      <div
+        className={`'connector ${
+          hasConnector ? 'connector--visible' : 'connector--hidden'
+        }`}
+      >
+        &nbsp;
+      </div>
+      <div className={`content`}>{children}</div>
     </Container>
   );
 };
+
+const appear = keyframes`
+  0% {opacity: 0;}
+  70%  {opacity: 0;}
+  90%  {opacity: 0.1;}
+  100% {opacity: 1;}
+`;
 
 const Container = styled.div`
   position: relative;
@@ -25,8 +42,8 @@ const Container = styled.div`
     width: 100%;
   }
 
-  :not(:first-of-type) {
-    .connector {
+  .connector {
+    &--visible {
       display: flex;
       align-items: center;
       justify-content: center;
@@ -35,6 +52,7 @@ const Container = styled.div`
       height: 2.5rem;
       position: absolute;
       top: -2.25rem;
+      animation: ${appear} 1s;
 
       ::before {
         content: '';
@@ -45,10 +63,8 @@ const Container = styled.div`
         border-radius: 50%;
       }
     }
-  }
 
-  :first-of-type {
-    .connector {
+    &--hidden {
       display: none;
     }
   }

@@ -7,8 +7,10 @@ import {Experience} from './Experience';
 
 export default function Timeline({
   workExperiences,
+  educationExperiences,
 }: {
   workExperiences: WorkExperience[];
+  educationExperiences: WorkExperience[];
 }) {
   return (
     <Container>
@@ -25,7 +27,26 @@ export default function Timeline({
               direction={i % 2 ? 'left' : 'right'}
               triggerOnce={true}
             >
-              <Experience key={exp.id}>
+              <Experience key={exp.id} hasConnector={true}>
+                <Content exp={exp}></Content>
+              </Experience>
+            </Slide>
+          );
+        })}
+
+        <Slide triggerOnce={true} direction="down">
+          <Experience>
+            <h3>Education</h3>
+          </Experience>
+        </Slide>
+        {educationExperiences.map((exp, i) => {
+          return (
+            <Slide
+              key={exp.id}
+              direction={i % 2 ? 'left' : 'right'}
+              triggerOnce={true}
+            >
+              <Experience key={exp.id} hasConnector={true}>
                 <Content exp={exp}></Content>
               </Experience>
             </Slide>
@@ -39,7 +60,7 @@ export default function Timeline({
 const Content: React.FC<{exp: WorkExperience}> = ({exp}) => {
   return (
     <Zoom triggerOnce={true} cascade={true} duration={800}>
-      <p className="name">{exp.company_name}</p>
+      <p className="name">{exp.organization}</p>
       <p>
         <span className="title">{exp.title}</span> ({exp.role})
       </p>

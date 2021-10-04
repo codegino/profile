@@ -36,7 +36,6 @@ export default function AboutMe({
           </AboutMeDetail>
         );
       })}
-      <Footer />
     </>
   );
 }
