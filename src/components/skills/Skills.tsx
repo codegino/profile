@@ -1,8 +1,18 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import {FaCheckDouble} from '@react-icons/all-files/fa/FaCheckDouble';
 import {FaDumbbell} from '@react-icons/all-files/fa/FaDumbbell';
+import {FaNodeJs} from '@react-icons/all-files/fa/FaNodeJs';
+import {FaPalette} from '@react-icons/all-files/fa/FaPalette';
+import {FaRandom} from '@react-icons/all-files/fa/FaRandom';
+import {FaReact} from '@react-icons/all-files/fa/FaReact';
+import {FaServer} from '@react-icons/all-files/fa/FaServer';
+import {FaStar} from '@react-icons/all-files/fa/FaStar';
+import {FaThumbsUp} from '@react-icons/all-files/fa/FaThumbsUp';
+import {FaTools} from '@react-icons/all-files/fa/FaTools';
 import Link from 'next/link';
-import {CategorizedSkill} from '../../models/skill';
+import {Zoom, Slide} from 'react-awesome-reveal';
+import {CategorizedSkill, SkillCategory} from '../../models/skill';
 
 export default function Skills({skills}: {skills: CategorizedSkill[]}) {
   return (
@@ -14,13 +24,25 @@ export default function Skills({skills}: {skills: CategorizedSkill[]}) {
       {skills.map(category => {
         return (
           <div key={category.category}>
-            <h3 className="label">{category.category.toUpperCase()}</h3>
+            <Slide direction="down" triggerOnce={true}>
+              <h3 className="label">
+                {getSkillCategoryIcon(category.category)}&nbsp;
+                {category.category.toUpperCase()}
+              </h3>
+            </Slide>
             <div className="skills">
-              {category.skills.map(skill => {
+              {category.skills.map((skill, i) => {
                 return (
-                  <SkillContainer key={skill.id} title={skill.description}>
+                  <SkillContainer
+                    key={skill.id}
+                    triggerOnce={true}
+                    delay={i * 100}
+                    direction={i % 2 === 0 ? 'left' : 'right'}
+                  >
                     <Link href={skill.url}>
-                      <a target="_blank">{skill.name}</a>
+                      <a target="_blank" title={skill.description}>
+                        {skill.name}
+                      </a>
                     </Link>
                   </SkillContainer>
                 );
@@ -33,7 +55,7 @@ export default function Skills({skills}: {skills: CategorizedSkill[]}) {
   );
 }
 
-const SkillContainer = styled.div`
+const SkillContainer = styled(Zoom)`
   border: 1px solid black;
   padding: var(--padding-very-small) var(--padding-small);
   border-radius: 0.5rem;
@@ -41,6 +63,7 @@ const SkillContainer = styled.div`
   background-color: var(--color-dark);
   color: var(--color-light);
   transition: all 0.5s;
+  cursor: pointer;
 
   :not(:last-child) {
     margin-right: var(--margin-very-small);
@@ -52,6 +75,31 @@ const SkillContainer = styled.div`
   }
 `;
 
+function getSkillCategoryIcon(category: SkillCategory) {
+  switch (category) {
+    case 'backend':
+      return <FaNodeJs />;
+    case 'hosting':
+      return <FaServer />;
+    case 'styling':
+      return <FaPalette />;
+    case 'testing':
+      return <FaCheckDouble />;
+    case 'others':
+      return <FaRandom />;
+    case 'tools':
+      <FaTools />;
+    case 'frontend':
+      return <FaReact />;
+    case 'highlights':
+      return <FaStar />;
+    case 'discipline':
+      return <FaThumbsUp />;
+    default:
+      return null;
+  }
+}
+
 const SkillsContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -61,6 +109,7 @@ const SkillsContainer = styled.div`
   padding-bottom: var(--padding-small);
 
   .skills {
+    max-width: 40rem;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;

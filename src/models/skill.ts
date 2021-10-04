@@ -3,11 +3,22 @@ export type Skill = {
   id: number;
   description: string;
   url: string;
-  category: string;
-  is_active: string;
+  category: SkillCategory;
+  is_highlight: string;
 };
 
+export type SkillCategory =
+  | 'highlights'
+  | 'frontend'
+  | 'backend'
+  | 'styling'
+  | 'testing'
+  | 'tools'
+  | 'discipline'
+  | 'hosting'
+  | 'others';
+
 export type CategorizedSkill = {
-  category: string;
+  category: SkillCategory;
   skills: Skill[];
 };
