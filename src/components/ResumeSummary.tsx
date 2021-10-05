@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import {FaEnvelopeSquare} from '@react-icons/all-files/fa/FaEnvelopeSquare';
 import {FaMapMarkerAlt} from '@react-icons/all-files/fa/FaMapMarkerAlt';
 import Image from 'next/image';
+import Link from 'next/link';
 import {mediaQuery} from '../utils/media-query';
 
 export default function ResumeSummary() {
@@ -21,8 +22,12 @@ export default function ResumeSummary() {
           <h2>&nbsp;at {summary.company}</h2>
         </div>
         <h3>
-          <FaEnvelopeSquare />
-          &nbsp;{summary.email}
+          <Link href={`mailto:${summary.email}`}>
+            <a target="_blank" style={{cursor: 'pointer'}}>
+              <FaEnvelopeSquare />
+              &nbsp;{summary.email}
+            </a>
+          </Link>
         </h3>
         <h3>
           <FaMapMarkerAlt />

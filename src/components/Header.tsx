@@ -2,10 +2,11 @@ import React from 'react';
 import styled from '@emotion/styled';
 import Image from 'next/image';
 import Link from 'next/link';
+import SocialMedia from './social/SocialMedia';
 
 export default function Header() {
   return (
-    <HeaderContainer>
+    <Container>
       <nav>
         <ul>
           <StyledImage className="logo">
@@ -37,7 +38,8 @@ export default function Header() {
           </li>
         </ul>
       </nav>
-    </HeaderContainer>
+      <SocialMedia />
+    </Container>
   );
 }
 
@@ -70,14 +72,16 @@ const StyledImage = styled.li`
   }
 `;
 
-const HeaderContainer = styled.header`
+const Container = styled.header`
   height: 50px;
   width: 100%;
   background-color: var(--color-dark);
   color: var(--color-light);
   display: flex;
   align-items: center;
-  padding-left: var(--padding-very-small);
+  padding: 0 var(--padding-small);
+  justify-content: space-between;
+  overflow: hidden;
 
   > nav {
     > ul {
