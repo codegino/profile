@@ -33,7 +33,7 @@ export default function Hero({
 const LeftMessageContainer = styled.div`
   position: absolute;
   top: 1rem;
-  left: 1rem;
+  left: 1.5rem;
 `;
 
 const Message = styled(Fade)`

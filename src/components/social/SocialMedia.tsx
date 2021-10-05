@@ -16,7 +16,7 @@ export default function SocialMedia() {
             <li key={sm.name}>
               <Link href={sm.url}>
                 <a target="_blank">
-                  <sm.icon />
+                  <sm.icon size={28} />
                 </a>
               </Link>
             </li>
