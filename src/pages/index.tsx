@@ -17,7 +17,7 @@ export default function Home({
   return (
     <>
       <Head>
-        <title>Carlo Gino</title>
+        <title>Carlo Gino Catapang</title>
         <meta name="description" content="Carlo Gino Catapang" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
