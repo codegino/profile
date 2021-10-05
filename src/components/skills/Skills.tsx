@@ -107,6 +107,7 @@ const SkillsContainer = styled.div`
   flex-direction: column;
   background-color: var(--color-light);
   padding-bottom: var(--padding-small);
+  overflow: hidden;
 
   .skills {
     max-width: 40rem;

@@ -124,6 +124,7 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
+  overflow: hidden;
 
   padding: var(--padding-medium) 0;
 `;
