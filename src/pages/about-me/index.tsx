@@ -4,7 +4,6 @@ import {InferGetStaticPropsType} from 'next';
 import Head from 'next/head';
 import {getPlaiceholder} from 'plaiceholder';
 import AboutMeHero from '../../components/AboutMeHero';
-import Footer from '../../components/Footer';
 import {StaticContent} from '../../models/static-content';
 import {supabase} from '../../utils/supabaseClient';
 
@@ -16,7 +15,7 @@ export default function AboutMe({
   return (
     <>
       <Head>
-        <title>Carlo Gino</title>
+        <title>About Carlo Gino Catapang</title>
         <meta name="description" content="Carlo Gino Catapang" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
