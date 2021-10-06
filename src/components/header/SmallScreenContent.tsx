@@ -1,0 +1,160 @@
+import React, {useState, useRef} from 'react';
+import styled from '@emotion/styled';
+import {FaEnvelopeSquare} from '@react-icons/all-files/fa/FaEnvelopeSquare';
+import {FaFacebookMessenger} from '@react-icons/all-files/fa/FaFacebookMessenger';
+import {GrClose} from '@react-icons/all-files/gr/GrClose';
+import {TiThMenu} from '@react-icons/all-files/ti/TiThMenu';
+import Link from 'next/link';
+import {CSSTransition} from 'react-transition-group';
+import SocialMedia from '../social/SocialMedia';
+
+export default function SmallScreenContent() {
+  const EMAIL_ADDRESS = 'carloginocatapang@gmail.com';
+  const [isOpen, setIsOpen] = useState(false);
+  const nodeRef = useRef(null);
+
+  const sidebarOpen = () => {
+    setIsOpen(true);
+  };
+
+  const sidebarClose = (e: React.MouseEvent<HTMLElement>) => {
+    e.stopPropagation();
+    setIsOpen(false);
+  };
+
+  return (
+    <Container>
+      <OpenButton size={30} onClick={sidebarOpen} />
+      <CSSTransition
+        in={isOpen}
+        timeout={100}
+        classNames="fade"
+        unmountOnExit
+        nodeRef={nodeRef}
+      >
+        <SidebarMask onClick={sidebarClose} ref={nodeRef}>
+          <Sidebar onClick={e => e.stopPropagation()}>
+            <CloseButton onClick={sidebarClose}>
+              <GrClose size={30} />
+            </CloseButton>
+            <h3>Links</h3>
+            <nav>
+              <ul>
+                <li>
+                  <Link href="/">
+                    <a>Home</a>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/resume">
+                    <a>Resume</a>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/about-me">
+                    <a>About Me</a>
+                  </Link>
+                </li>
+              </ul>
+            </nav>
+            <h3>Social</h3>
+            <SocialMedia />
+            <h3>Contact me</h3>
+            <div>
+              <Link href={`mailto:${EMAIL_ADDRESS}`}>
+                <a target="_blank" style={{cursor: 'pointer'}}>
+                  <FaEnvelopeSquare size={30} />
+                </a>
+              </Link>
+              <Link href={`https://m.me/codegino`}>
+                <a target="_blank" style={{cursor: 'pointer'}}>
+                  <FaFacebookMessenger size={30} />
+                </a>
+              </Link>
+            </div>
+          </Sidebar>
+        </SidebarMask>
+      </CSSTransition>
+    </Container>
+  );
+}
+
+const Container = styled.div`
+  position: relative;
+  width: 100%;
+  text-align: right;
+`;
+
+const Sidebar = styled.div`
+  height: 100vh;
+  width: 50vw;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: var(--color-light-light);
+  color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: var(--padding-small);
+  font-size: 1.3em;
+
+  > nav {
+    > ul {
+      align-items: center;
+      display: flex;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      flex-direction: column;
+      align-items: flex-start;
+
+      > li {
+        :not(:last-child) {
+          margin-right: 1rem;
+        }
+      }
+    }
+  }
+`;
+
+const SidebarMask = styled.div`
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 10;
+  height: 100vh;
+  width: 200vw;
+  transition: transform 0.5s;
+
+  // enter from
+  &.fade-enter {
+    transform: translateX(100%);
+  }
+
+  // enter to
+  &.fade-enter-active {
+    transform: translateX(0%);
+  }
+
+  // exit from
+  &.fade-exit {
+    transform: translateX(0%);
+  }
+
+  // exit to
+  &.fade-exit-active {
+    transform: translateX(100%);
+  }
+`;
+
+const OpenButton = styled(TiThMenu)`
+  cursor: pointer;
+`;
+
+const CloseButton = styled.div`
+  cursor: pointer;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+`;
