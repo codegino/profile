@@ -57,8 +57,6 @@ const socialMedia: SocialMediaProps[] = [
 ];
 
 const Container = styled.div`
-  border: 1px solid black;
-
   > nav {
     > ul {
       display: flex;

@@ -1,5 +1,7 @@
 import React, {useState, useRef} from 'react';
 import styled from '@emotion/styled';
+import {FaEnvelopeSquare} from '@react-icons/all-files/fa/FaEnvelopeSquare';
+import {FaFacebookMessenger} from '@react-icons/all-files/fa/FaFacebookMessenger';
 import {GrClose} from '@react-icons/all-files/gr/GrClose';
 import {TiThMenu} from '@react-icons/all-files/ti/TiThMenu';
 import Link from 'next/link';
@@ -7,6 +9,7 @@ import {CSSTransition} from 'react-transition-group';
 import SocialMedia from '../social/SocialMedia';
 
 export default function SmallScreenContent() {
+  const EMAIL_ADDRESS = 'carloginocatapang@gmail.com';
   const [isOpen, setIsOpen] = useState(false);
   const nodeRef = useRef(null);
 
@@ -21,27 +24,20 @@ export default function SmallScreenContent() {
 
   return (
     <Container>
-      <TiThMenu size={30} style={{cursor: 'pointer'}} onClick={sidebarOpen} />
+      <OpenButton size={30} onClick={sidebarOpen} />
       <CSSTransition
         in={isOpen}
-        timeout={200}
+        timeout={100}
         classNames="fade"
         unmountOnExit
         nodeRef={nodeRef}
       >
         <SidebarMask onClick={sidebarClose} ref={nodeRef}>
           <Sidebar onClick={e => e.stopPropagation()}>
-            <div
-              onClick={sidebarClose}
-              style={{
-                cursor: 'pointer',
-                position: 'relative',
-                right: '5px',
-                top: '5px',
-              }}
-            >
+            <CloseButton onClick={sidebarClose}>
               <GrClose size={30} />
-            </div>
+            </CloseButton>
+            <h3>Links</h3>
             <nav>
               <ul>
                 <li>
@@ -61,7 +57,21 @@ export default function SmallScreenContent() {
                 </li>
               </ul>
             </nav>
+            <h3>Social</h3>
             <SocialMedia />
+            <h3>Contact me</h3>
+            <div>
+              <Link href={`mailto:${EMAIL_ADDRESS}`}>
+                <a target="_blank" style={{cursor: 'pointer'}}>
+                  <FaEnvelopeSquare size={30} />
+                </a>
+              </Link>
+              <Link href={`https://m.me/codegino`}>
+                <a target="_blank" style={{cursor: 'pointer'}}>
+                  <FaFacebookMessenger size={30} />
+                </a>
+              </Link>
+            </div>
           </Sidebar>
         </SidebarMask>
       </CSSTransition>
@@ -77,13 +87,17 @@ const Container = styled.div`
 
 const Sidebar = styled.div`
   height: 100vh;
-  width: 75vw;
+  width: 50vw;
   position: absolute;
-
   top: 0;
   right: 0;
-  background-color: var(--color-light);
+  background-color: var(--color-light-light);
   color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: var(--padding-small);
+  font-size: 1.3em;
 
   > nav {
     > ul {
@@ -93,6 +107,7 @@ const Sidebar = styled.div`
       padding: 0;
       list-style: none;
       flex-direction: column;
+      align-items: flex-start;
 
       > li {
         :not(:last-child) {
@@ -131,4 +146,15 @@ const SidebarMask = styled.div`
   &.fade-exit-active {
     transform: translateX(100%);
   }
+`;
+
+const OpenButton = styled(TiThMenu)`
+  cursor: pointer;
+`;
+
+const CloseButton = styled.div`
+  cursor: pointer;
+  position: absolute;
+  right: 5px;
+  top: 5px;
 `;
