@@ -5,15 +5,10 @@ import {InferGetStaticPropsType} from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
 import ResumeSummary from '../../components/ResumeSummary';
+import CustomIcon from '../../components/icon/CustomIcon';
 import Skills from '../../components/skills/Skills';
 import Timeline from '../../components/timeline/Timeline';
 import {resumeProps} from '../../utils/resume-props';
-
-const ResumeDownloadWrapper = styled.div`
-  position: absolute;
-  right: 1rem;
-  top: 4rem;
-`;
 
 export default function Resume({
   workExperiences,
@@ -26,17 +21,29 @@ export default function Resume({
         <title>Carlo Gino Catapang Resume</title>
         <meta name="description" content="Carlo Gino Catapang resume" />
         <link rel="icon" href="/favicon.ico" />
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+        />
       </Head>
 
       <ResumeDownloadWrapper>
         <Link href={process.env.NEXT_PUBLIC_RESUME_PDF_URL as string}>
-          <a target="_blank">
-            <FaFilePdf size={30} title="Download PDF Version" />
+          <a
+            target="_blank"
+            title="Download PDF Version"
+            className="animate__animated animate__pulse animate__infinite"
+          >
+            <CustomIcon icon={FaFilePdf} size={30} color="red" />
           </a>
         </Link>
         <Link href={process.env.NEXT_PUBLIC_RESUME_DOC_URL as string}>
-          <a target="_blank">
-            <FaFileWord size={30} title="Download Word Version" />
+          <a
+            target="_blank"
+            title="Download Word Version"
+            className="animate__animated animate__pulse animate__infinite"
+          >
+            <CustomIcon icon={FaFileWord} size={30} color="blue" />
           </a>
         </Link>
       </ResumeDownloadWrapper>
@@ -59,3 +66,10 @@ export const getStaticProps = async () => {
     },
   };
 };
+
+const ResumeDownloadWrapper = styled.div`
+  position: absolute;
+  display: flex;
+  right: 1rem;
+  top: 4rem;
+`;

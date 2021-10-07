@@ -8,6 +8,7 @@ import Link from 'next/link';
 import {useRouter} from 'next/router';
 import {CSSTransition} from 'react-transition-group';
 import {mediaQuery} from '../../utils/media-query';
+import CustomIcon from '../icon/CustomIcon';
 import SocialMedia from '../social/SocialMedia';
 import {navigationLinks} from './nav-links';
 
@@ -65,12 +66,20 @@ export default function SmallScreenContent() {
             <div>
               <Link href={`mailto:${EMAIL_ADDRESS}`}>
                 <a target="_blank" style={{cursor: 'pointer'}}>
-                  <FaEnvelopeSquare size={30} />
+                  <CustomIcon
+                    color="#ea4335"
+                    icon={FaEnvelopeSquare}
+                    size={30}
+                  />
                 </a>
               </Link>
               <Link href={`https://m.me/codegino`}>
                 <a target="_blank" style={{cursor: 'pointer'}}>
-                  <FaFacebookMessenger size={30} />
+                  <CustomIcon
+                    color="#3b5998"
+                    icon={FaFacebookMessenger}
+                    size={30}
+                  />
                 </a>
               </Link>
             </div>

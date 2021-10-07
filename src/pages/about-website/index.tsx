@@ -29,7 +29,7 @@ export default function AboutMe({
         .
       </p>
       <p style={{textAlign: 'center', marginBottom: '1.5rem'}}>
-        Here is the link to the&nbsp;
+        Here is the link to my&nbsp;
         <Link href="https://github.com/codegino/profile">
           <a style={{color: 'blue'}} target="_blank">
             Github Repo
