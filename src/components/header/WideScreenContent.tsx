@@ -1,33 +1,26 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import Link from 'next/link';
+import {useRouter} from 'next/router';
 import SocialMedia from '../social/SocialMedia';
+import {navigationLinks} from './nav-links';
 
 export default function WideScreenContentImpl() {
+  const router = useRouter();
+
   return (
     <WideScreenContainer>
       <nav>
         <ul>
-          <li>
-            <Link href="/">
-              <a>Home</a>
-            </Link>
-          </li>
-          <li>
-            <Link href="/resume">
-              <a>Resume</a>
-            </Link>
-          </li>
-          <li>
-            <Link href="/about-me">
-              <a>About Me</a>
-            </Link>
-          </li>
-          <li>
-            <Link href="/about-website">
-              <a>Techstack</a>
-            </Link>
-          </li>
+          {navigationLinks.map(link => (
+            <li key={link.label}>
+              <Link href={link.url}>
+                <a className={router.asPath == `${link.url}` ? 'active' : ''}>
+                  {link.label}
+                </a>
+              </Link>
+            </li>
+          ))}
         </ul>
       </nav>
       <SocialMedia />
@@ -50,6 +43,14 @@ const WideScreenContainer = styled.div`
       list-style: none;
 
       > li {
+        &:hover {
+          color: var(--color-primary-light);
+        }
+
+        .active {
+          color: var(--color-primary);
+        }
+
         :not(:last-child) {
           margin-right: 1rem;
         }

@@ -5,10 +5,14 @@ import {FaFacebookMessenger} from '@react-icons/all-files/fa/FaFacebookMessenger
 import {GrClose} from '@react-icons/all-files/gr/GrClose';
 import {TiThMenu} from '@react-icons/all-files/ti/TiThMenu';
 import Link from 'next/link';
+import {useRouter} from 'next/router';
 import {CSSTransition} from 'react-transition-group';
+import {mediaQuery} from '../../utils/media-query';
 import SocialMedia from '../social/SocialMedia';
+import {navigationLinks} from './nav-links';
 
 export default function SmallScreenContent() {
+  const router = useRouter();
   const EMAIL_ADDRESS = 'carloginocatapang@gmail.com';
   const [isOpen, setIsOpen] = useState(false);
   const nodeRef = useRef(null);
@@ -40,21 +44,19 @@ export default function SmallScreenContent() {
             <h3>Links</h3>
             <nav>
               <ul>
-                <li>
-                  <Link href="/">
-                    <a>Home</a>
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/resume">
-                    <a>Resume</a>
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/about-me">
-                    <a>About Me</a>
-                  </Link>
-                </li>
+                {navigationLinks.map(link => (
+                  <li key={link.label} onClick={sidebarClose}>
+                    <Link href={link.url}>
+                      <a
+                        className={
+                          router.asPath == `${link.url}` ? 'active' : ''
+                        }
+                      >
+                        {link.label}
+                      </a>
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </nav>
             <h3>Social</h3>
@@ -87,7 +89,7 @@ const Container = styled.div`
 
 const Sidebar = styled.div`
   height: 100vh;
-  width: 50vw;
+  width: 55vw;
   position: absolute;
   top: 0;
   right: 0;
@@ -98,6 +100,8 @@ const Sidebar = styled.div`
   align-items: flex-start;
   padding: var(--padding-small);
   font-size: 1.3em;
+
+  ${mediaQuery(400, `width: 45vw`)}
 
   > nav {
     > ul {
@@ -110,6 +114,18 @@ const Sidebar = styled.div`
       align-items: flex-start;
 
       > li {
+        a {
+          padding: 0 0.5rem;
+
+          &.active {
+            color: var(--color-primary-dark);
+          }
+
+          &:hover {
+            color: var(--color-primary);
+          }
+        }
+
         :not(:last-child) {
           margin-right: 1rem;
         }
