@@ -23,6 +23,11 @@ export default function WideScreenContentImpl() {
               <a>About Me</a>
             </Link>
           </li>
+          <li>
+            <Link href="/about-website">
+              <a>Techstack</a>
+            </Link>
+          </li>
         </ul>
       </nav>
       <SocialMedia />
