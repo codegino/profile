@@ -5,6 +5,8 @@ import {InferGetStaticPropsType} from 'next';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import Link from 'next/link';
+import {useMediaQuery} from 'react-responsive';
+import ReactTooltip from 'react-tooltip';
 import ResumeSummary from '../../components/ResumeSummary';
 import CustomIcon from '../../components/icon/CustomIcon';
 import Skills from '../../components/skills/Skills';
@@ -20,6 +22,10 @@ export default function Resume({
   educationExperiences,
   skills,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
+  const is500PxAndUp = useMediaQuery({
+    query: '(min-width: 500px)',
+  });
+
   return (
     <>
       <Head>
@@ -29,16 +35,17 @@ export default function Resume({
       </Head>
 
       <ResumeDownloadWrapper>
+        <ReactTooltip />
         <Link href={process.env.NEXT_PUBLIC_RESUME_PDF_URL as string}>
           <a
             target="_blank"
-            title="Download PDF Version"
+            data-tip="Download PDF Version"
             arial-label="Download PDF Version"
             rel="noopener"
           >
             <CustomIcon
               icon={FaFilePdf}
-              size={48}
+              size={is500PxAndUp ? 48 : 40}
               color="#F40F02"
               hoverColor="red"
             />
@@ -47,13 +54,13 @@ export default function Resume({
         <Link href={process.env.NEXT_PUBLIC_RESUME_DOC_URL as string}>
           <a
             target="_blank"
-            title="Download Word Version"
+            data-tip="Download Word Version"
             aria-label="Download Word Version"
             rel="noopener"
           >
             <CustomIcon
               icon={FaFileWord}
-              size={48}
+              size={is500PxAndUp ? 48 : 40}
               color="#015299"
               hoverColor="blue"
             />

@@ -4,17 +4,24 @@ import {FaEnvelopeSquare} from '@react-icons/all-files/fa/FaEnvelopeSquare';
 import {FaMapMarkerAlt} from '@react-icons/all-files/fa/FaMapMarkerAlt';
 import Image from 'next/image';
 import Link from 'next/link';
+import {useMediaQuery} from 'react-responsive';
+import ReactTooltip from 'react-tooltip';
 import {mediaQuery} from '../utils/media-query';
 
 export default function ResumeSummary() {
+  const is500PxAndUp = useMediaQuery({
+    query: '(min-width: 500px)',
+  });
+
   return (
     <Container>
+      <ReactTooltip />
       <ProfileImage
         src="/assets/profile-picture.jpeg"
         alt="My Photo"
         layout="fixed"
-        height={250}
-        width={250}
+        height={is500PxAndUp ? 250 : 200}
+        width={is500PxAndUp ? 250 : 200}
       />
       <div className="summary">
         <div className="designation">
@@ -27,6 +34,7 @@ export default function ResumeSummary() {
               target="_blank"
               style={{cursor: 'pointer'}}
               aria-label="Email me"
+              data-tip="Send me an email"
               rel="noopener"
             >
               <FaEnvelopeSquare />
@@ -102,6 +110,7 @@ const Container = styled.div`
 
 const ProfileImage = styled(Image)`
   border-radius: 50%;
+
   ${mediaQuery(900, `border-radius: 0`)}
 `;
 

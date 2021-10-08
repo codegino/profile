@@ -7,6 +7,7 @@ import {FaScroll} from '@react-icons/all-files/fa/FaScroll';
 import dompurify from 'isomorphic-dompurify';
 import Link from 'next/link';
 import {Zoom, Slide} from 'react-awesome-reveal';
+import ReactTooltip from 'react-tooltip';
 import {WorkExperience} from '../../models/resume';
 import {mediaQuery} from '../../utils/media-query';
 import {Experience} from './Experience';
@@ -20,6 +21,7 @@ export default function Timeline({
 }) {
   return (
     <Container>
+      <ReactTooltip />
       <div>
         <Slide triggerOnce={true} direction="down">
           <Experience>
@@ -91,7 +93,12 @@ const Content: React.FC<{exp: WorkExperience}> = ({exp, children = null}) => {
           {exp.category === 'work' ? <FaBuilding /> : <FaGraduationCap />}
           &nbsp;
           <Link href={exp.url}>
-            <a target="_blank" aria-label={exp.organization} rel="noopener">
+            <a
+              target="_blank"
+              aria-label={exp.organization}
+              rel="noopener"
+              data-tip={`Click to visit ${exp.organization}`}
+            >
               {exp.organization}
             </a>
           </Link>

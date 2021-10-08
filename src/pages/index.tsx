@@ -10,6 +10,7 @@ import {resumeProps} from '../utils/resume-props';
 
 const CustomGithubCalendar = dynamic(
   () => import('../components/CustomGithubCalendar'),
+  {ssr: false},
 );
 
 export default function Home({
