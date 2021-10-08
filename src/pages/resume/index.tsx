@@ -4,6 +4,7 @@ import {FaFileWord} from '@react-icons/all-files/fa/FaFileWord';
 import {InferGetStaticPropsType} from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
+import CustomGithubCalendar from '../../components/CustomGithubCalendar';
 import ResumeSummary from '../../components/ResumeSummary';
 import CustomIcon from '../../components/icon/CustomIcon';
 import Skills from '../../components/skills/Skills';
@@ -21,29 +22,27 @@ export default function Resume({
         <title>Carlo Gino Catapang Resume</title>
         <meta name="description" content="Carlo Gino Catapang resume" />
         <link rel="icon" href="/favicon.ico" />
-        <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-        />
       </Head>
 
       <ResumeDownloadWrapper>
         <Link href={process.env.NEXT_PUBLIC_RESUME_PDF_URL as string}>
-          <a
-            target="_blank"
-            title="Download PDF Version"
-            className="animate__animated animate__pulse animate__infinite"
-          >
-            <CustomIcon icon={FaFilePdf} size={30} color="red" />
+          <a target="_blank" title="Download PDF Version">
+            <CustomIcon
+              icon={FaFilePdf}
+              size={30}
+              color="#F40F02"
+              hoverColor="red"
+            />
           </a>
         </Link>
         <Link href={process.env.NEXT_PUBLIC_RESUME_DOC_URL as string}>
-          <a
-            target="_blank"
-            title="Download Word Version"
-            className="animate__animated animate__pulse animate__infinite"
-          >
-            <CustomIcon icon={FaFileWord} size={30} color="blue" />
+          <a target="_blank" title="Download Word Version">
+            <CustomIcon
+              icon={FaFileWord}
+              size={30}
+              color="#015299"
+              hoverColor="blue"
+            />
           </a>
         </Link>
       </ResumeDownloadWrapper>
@@ -53,6 +52,7 @@ export default function Resume({
         workExperiences={workExperiences}
         educationExperiences={educationExperiences}
       />
+      <CustomGithubCalendar />
     </>
   );
 }

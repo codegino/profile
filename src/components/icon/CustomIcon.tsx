@@ -8,7 +8,7 @@ export default function CustomIcon(sm: IconProps) {
     <sm.icon
       size={sm.size || 28}
       className="icon"
-      style={{fill: hover ? sm.color : ''}}
+      style={{fill: hover ? sm.hoverColor : sm.color}}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
     />
@@ -24,4 +24,5 @@ export type IconProps = {
   size?: number;
   icon: IconType;
   color: string;
+  hoverColor: string;
 };

@@ -17,7 +17,7 @@ export default function SocialMedia() {
             <li key={sm.name}>
               <Link href={sm.url}>
                 <a target="_blank">
-                  <Zoom duration={500}>
+                  <Zoom duration={500} triggerOnce>
                     <CustomIcon {...sm} />
                   </Zoom>
                 </a>
@@ -35,25 +35,29 @@ const socialMedia: SocialMediaProps[] = [
     url: 'https://www.facebook.com/codegino',
     icon: FaFacebookSquare,
     name: 'facebook',
-    color: '#1877f2',
+    color: '',
+    hoverColor: '#1877f2',
   },
   {
     url: 'https://github.com/codegino',
     icon: FaGithubSquare,
     name: 'github',
-    color: '#171515',
+    color: '',
+    hoverColor: '#cccccc',
   },
   {
     url: 'https://www.linkedin.com/in/carlogino/',
     icon: FaLinkedin,
     name: 'linkedin',
-    color: '#0a66c2',
+    color: '',
+    hoverColor: '#0a66c2',
   },
   {
     url: 'https://twitter.com/code_gino',
     icon: FaTwitterSquare,
     name: 'twitter',
-    color: '#1da1f2',
+    color: '',
+    hoverColor: '#1da1f2',
   },
 ];
 
