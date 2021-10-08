@@ -71,10 +71,10 @@ margin-right: var(--margin-small);
 
 @keyframes appearFromLarge {
   0% {
-    transform: scale(1) rotate(360deg);
+    transform: rotate(360deg);
     box-shadow: 0 0 10px 3px var(--color-primary-accent);
   }
   100% {
-    transform: scale(1) rotate(0deg);
+    transform: rotate(0deg);
 }
 `;
