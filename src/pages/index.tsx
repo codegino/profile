@@ -1,6 +1,7 @@
 import {InferGetStaticPropsType} from 'next';
 import Head from 'next/head';
 import {getPlaiceholder} from 'plaiceholder';
+import CustomGithubCalendar from '../components/CustomGithubCalendar';
 import Hero from '../components/Hero';
 import ResumeSummary from '../components/ResumeSummary';
 import Skills from '../components/skills/Skills';
@@ -29,6 +30,7 @@ export default function Home({
         workExperiences={workExperiences}
         educationExperiences={educationExperiences}
       />
+      <CustomGithubCalendar />
     </>
   );
 }

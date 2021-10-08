@@ -126,5 +126,5 @@ const Container = styled.div`
   flex-direction: column;
   overflow: hidden;
 
-  padding: var(--padding-medium) 0;
+  padding-top: var(--padding-medium);
 `;
