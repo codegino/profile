@@ -22,7 +22,12 @@ export default function AboutMe({
       >
         This awesome carousel is easily made using&nbsp;
         <Link href="https://github.com/leandrowd/react-responsive-carousel">
-          <a style={{color: 'blue'}} target="_blank">
+          <a
+            style={{color: 'blue'}}
+            target="_blank"
+            aria-label="React Responsive Carousel"
+            rel="noopener"
+          >
             React Responsive Carousel
           </a>
         </Link>
@@ -31,7 +36,12 @@ export default function AboutMe({
       <p style={{textAlign: 'center', marginBottom: '1.5rem'}}>
         Here is the link to my&nbsp;
         <Link href="https://github.com/codegino/profile">
-          <a style={{color: 'blue'}} target="_blank">
+          <a
+            style={{color: 'blue'}}
+            target="_blank"
+            aria-label="Github Repo"
+            rel="noopener"
+          >
             Github Repo
           </a>
         </Link>

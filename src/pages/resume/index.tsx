@@ -2,14 +2,18 @@ import styled from '@emotion/styled';
 import {FaFilePdf} from '@react-icons/all-files/fa/FaFilePdf';
 import {FaFileWord} from '@react-icons/all-files/fa/FaFileWord';
 import {InferGetStaticPropsType} from 'next';
+import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import Link from 'next/link';
-import CustomGithubCalendar from '../../components/CustomGithubCalendar';
 import ResumeSummary from '../../components/ResumeSummary';
 import CustomIcon from '../../components/icon/CustomIcon';
 import Skills from '../../components/skills/Skills';
 import Timeline from '../../components/timeline/Timeline';
 import {resumeProps} from '../../utils/resume-props';
+
+const CustomGithubCalendar = dynamic(
+  () => import('../../components/CustomGithubCalendar'),
+);
 
 export default function Resume({
   workExperiences,
@@ -26,20 +30,30 @@ export default function Resume({
 
       <ResumeDownloadWrapper>
         <Link href={process.env.NEXT_PUBLIC_RESUME_PDF_URL as string}>
-          <a target="_blank" title="Download PDF Version">
+          <a
+            target="_blank"
+            title="Download PDF Version"
+            arial-label="Download PDF Version"
+            rel="noopener"
+          >
             <CustomIcon
               icon={FaFilePdf}
-              size={30}
+              size={48}
               color="#F40F02"
               hoverColor="red"
             />
           </a>
         </Link>
         <Link href={process.env.NEXT_PUBLIC_RESUME_DOC_URL as string}>
-          <a target="_blank" title="Download Word Version">
+          <a
+            target="_blank"
+            title="Download Word Version"
+            aria-label="Download Word Version"
+            rel="noopener"
+          >
             <CustomIcon
               icon={FaFileWord}
-              size={30}
+              size={48}
               color="#015299"
               hoverColor="blue"
             />

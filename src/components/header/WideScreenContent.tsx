@@ -15,7 +15,10 @@ export default function WideScreenContentImpl() {
           {navigationLinks.map(link => (
             <li key={link.label}>
               <Link href={link.url}>
-                <a className={router.asPath == `${link.url}` ? 'active' : ''}>
+                <a
+                  className={router.asPath == `${link.url}` ? 'active' : ''}
+                  aria-label={link.label}
+                >
                   {link.label}
                 </a>
               </Link>
