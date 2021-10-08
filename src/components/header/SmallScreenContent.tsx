@@ -69,6 +69,7 @@ export default function SmallScreenContent() {
                   <CustomIcon
                     color="#ea4335"
                     icon={FaEnvelopeSquare}
+                    hoverColor="red"
                     size={30}
                   />
                 </a>
@@ -78,6 +79,7 @@ export default function SmallScreenContent() {
                   <CustomIcon
                     color="#3b5998"
                     icon={FaFacebookMessenger}
+                    hoverColor="blue"
                     size={30}
                   />
                 </a>
