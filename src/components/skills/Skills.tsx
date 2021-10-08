@@ -41,8 +41,8 @@ export default function Skills({skills}: {skills: CategorizedSkill[]}) {
                   >
                     <Link href={skill.url}>
                       <a
+                        data-tip={`Click to visit ${skill.name}`}
                         target="_blank"
-                        title={skill.description}
                         aria-label={skill.name}
                         rel="noopener"
                       >

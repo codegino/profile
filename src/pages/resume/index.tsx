@@ -5,21 +5,34 @@ import {InferGetStaticPropsType} from 'next';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import Link from 'next/link';
+import {useMediaQuery} from 'react-responsive';
 import ResumeSummary from '../../components/ResumeSummary';
 import CustomIcon from '../../components/icon/CustomIcon';
-import Skills from '../../components/skills/Skills';
-import Timeline from '../../components/timeline/Timeline';
 import {resumeProps} from '../../utils/resume-props';
 
 const CustomGithubCalendar = dynamic(
   () => import('../../components/CustomGithubCalendar'),
+  {ssr: false},
 );
+
+const ReactTooltip = dynamic(() => import('react-tooltip'), {ssr: false});
+
+const Timeline = dynamic(() => import('../../components/timeline/Timeline'), {
+  ssr: true,
+});
+const Skills = dynamic(() => import('../../components/skills/Skills'), {
+  ssr: true,
+});
 
 export default function Resume({
   workExperiences,
   educationExperiences,
   skills,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
+  const is500PxAndUp = useMediaQuery({
+    query: '(min-width: 500px)',
+  });
+
   return (
     <>
       <Head>
@@ -32,13 +45,13 @@ export default function Resume({
         <Link href={process.env.NEXT_PUBLIC_RESUME_PDF_URL as string}>
           <a
             target="_blank"
-            title="Download PDF Version"
+            data-tip="Download PDF Version"
             arial-label="Download PDF Version"
             rel="noopener"
           >
             <CustomIcon
               icon={FaFilePdf}
-              size={48}
+              size={is500PxAndUp ? 48 : 40}
               color="#F40F02"
               hoverColor="red"
             />
@@ -47,13 +60,13 @@ export default function Resume({
         <Link href={process.env.NEXT_PUBLIC_RESUME_DOC_URL as string}>
           <a
             target="_blank"
-            title="Download Word Version"
+            data-tip="Download Word Version"
             aria-label="Download Word Version"
             rel="noopener"
           >
             <CustomIcon
               icon={FaFileWord}
-              size={48}
+              size={is500PxAndUp ? 48 : 40}
               color="#015299"
               hoverColor="blue"
             />
@@ -66,6 +79,7 @@ export default function Resume({
         workExperiences={workExperiences}
         educationExperiences={educationExperiences}
       />
+      <ReactTooltip backgroundColor="#111111" />
       <CustomGithubCalendar />
     </>
   );

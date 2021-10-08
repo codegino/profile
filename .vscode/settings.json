@@ -10,6 +10,7 @@
     "component",
     "utils",
     "about",
-    "perf"
+    "perf",
+    "home"
   ]
 }

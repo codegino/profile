@@ -91,7 +91,12 @@ const Content: React.FC<{exp: WorkExperience}> = ({exp, children = null}) => {
           {exp.category === 'work' ? <FaBuilding /> : <FaGraduationCap />}
           &nbsp;
           <Link href={exp.url}>
-            <a target="_blank" aria-label={exp.organization} rel="noopener">
+            <a
+              target="_blank"
+              aria-label={exp.organization}
+              rel="noopener"
+              data-tip={`Click to visit ${exp.organization}`}
+            >
               {exp.organization}
             </a>
           </Link>

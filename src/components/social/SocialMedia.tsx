@@ -15,7 +15,12 @@ export default function SocialMedia() {
           {socialMedia.map(sm => (
             <li key={sm.name}>
               <Link href={sm.url}>
-                <a target="_blank" aria-label={sm.name} rel="noopener">
+                <a
+                  target="_blank"
+                  aria-label={sm.name}
+                  rel="noopener"
+                  data-tip={sm.name}
+                >
                   <CustomIcon {...sm} />
                 </a>
               </Link>

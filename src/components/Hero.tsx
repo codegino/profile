@@ -32,8 +32,24 @@ export default function Hero({
 
 const LeftMessageContainer = styled.div`
   position: absolute;
+  top: 0.25rem;
+  left: 0.5rem;
+
+  ${mediaQuery(
+    500,
+    `
+    top: 0.5rem;
+    left: 1rem;
+  `,
+  )}
+
+  ${mediaQuery(
+    700,
+    `
   top: 1rem;
   left: 1.5rem;
+  `,
+  )}
 `;
 
 const Message = styled(Fade)`
@@ -49,5 +65,11 @@ const HeroContainer = styled.div`
   overflow: hidden;
   position: relative;
 
-  ${mediaQuery(600, 'height: 100vh;')}
+  ${mediaQuery(450, 'height: 60vh;')}
+
+  ${mediaQuery(550, 'height: 70vh;')}
+
+  ${mediaQuery(700, 'height: 90vh;')}
+
+  ${mediaQuery(900, 'height: 100vh;')}
 `;

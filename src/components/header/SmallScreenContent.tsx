@@ -69,6 +69,7 @@ export default function SmallScreenContent() {
                 <a
                   target="_blank"
                   style={{cursor: 'pointer'}}
+                  data-tip="Email me"
                   aria-label="Email Me"
                 >
                   <CustomIcon
@@ -83,6 +84,7 @@ export default function SmallScreenContent() {
                 <a
                   target="_blank"
                   style={{cursor: 'pointer'}}
+                  data-tip="Send me a facebook message"
                   aria-label="Facebook Messenger"
                 >
                   <CustomIcon
