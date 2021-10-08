@@ -7,7 +7,6 @@ import {FaScroll} from '@react-icons/all-files/fa/FaScroll';
 import dompurify from 'isomorphic-dompurify';
 import Link from 'next/link';
 import {Zoom, Slide} from 'react-awesome-reveal';
-import ReactTooltip from 'react-tooltip';
 import {WorkExperience} from '../../models/resume';
 import {mediaQuery} from '../../utils/media-query';
 import {Experience} from './Experience';
@@ -21,7 +20,6 @@ export default function Timeline({
 }) {
   return (
     <Container>
-      <ReactTooltip />
       <div>
         <Slide triggerOnce={true} direction="down">
           <Experience>

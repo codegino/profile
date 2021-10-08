@@ -5,7 +5,6 @@ import {FaMapMarkerAlt} from '@react-icons/all-files/fa/FaMapMarkerAlt';
 import Image from 'next/image';
 import Link from 'next/link';
 import {useMediaQuery} from 'react-responsive';
-import ReactTooltip from 'react-tooltip';
 import {mediaQuery} from '../utils/media-query';
 
 export default function ResumeSummary() {
@@ -15,7 +14,6 @@ export default function ResumeSummary() {
 
   return (
     <Container>
-      <ReactTooltip />
       <ProfileImage
         src="/assets/profile-picture.jpeg"
         alt="My Photo"

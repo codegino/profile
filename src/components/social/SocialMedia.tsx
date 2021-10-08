@@ -5,13 +5,11 @@ import {FaGithubSquare} from '@react-icons/all-files/fa/FaGithubSquare';
 import {FaLinkedin} from '@react-icons/all-files/fa/FaLinkedin';
 import {FaTwitterSquare} from '@react-icons/all-files/fa/FaTwitterSquare';
 import Link from 'next/link';
-import ReactTooltip from 'react-tooltip';
 import CustomIcon, {SocialMediaProps} from '../icon/CustomIcon';
 
 export default function SocialMedia() {
   return (
     <Container>
-      <ReactTooltip />
       <nav>
         <ul>
           {socialMedia.map(sm => (

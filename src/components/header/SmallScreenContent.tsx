@@ -6,7 +6,6 @@ import {GrClose} from '@react-icons/all-files/gr/GrClose';
 import {TiThMenu} from '@react-icons/all-files/ti/TiThMenu';
 import Link from 'next/link';
 import {useRouter} from 'next/router';
-import ReactTooltip from 'react-tooltip';
 import {CSSTransition} from 'react-transition-group';
 import {mediaQuery} from '../../utils/media-query';
 import CustomIcon from '../icon/CustomIcon';
@@ -30,7 +29,6 @@ export default function SmallScreenContent() {
 
   return (
     <Container>
-      <ReactTooltip />
       <OpenButton size={30} onClick={sidebarOpen} />
       <CSSTransition
         in={isOpen}

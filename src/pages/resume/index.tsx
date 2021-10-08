@@ -6,16 +6,23 @@ import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import Link from 'next/link';
 import {useMediaQuery} from 'react-responsive';
-import ReactTooltip from 'react-tooltip';
 import ResumeSummary from '../../components/ResumeSummary';
 import CustomIcon from '../../components/icon/CustomIcon';
-import Skills from '../../components/skills/Skills';
-import Timeline from '../../components/timeline/Timeline';
 import {resumeProps} from '../../utils/resume-props';
 
 const CustomGithubCalendar = dynamic(
   () => import('../../components/CustomGithubCalendar'),
+  {ssr: false},
 );
+
+const ReactTooltip = dynamic(() => import('react-tooltip'), {ssr: false});
+
+const Timeline = dynamic(() => import('../../components/timeline/Timeline'), {
+  ssr: true,
+});
+const Skills = dynamic(() => import('../../components/skills/Skills'), {
+  ssr: true,
+});
 
 export default function Resume({
   workExperiences,
@@ -35,7 +42,6 @@ export default function Resume({
       </Head>
 
       <ResumeDownloadWrapper>
-        <ReactTooltip />
         <Link href={process.env.NEXT_PUBLIC_RESUME_PDF_URL as string}>
           <a
             target="_blank"
@@ -73,6 +79,7 @@ export default function Resume({
         workExperiences={workExperiences}
         educationExperiences={educationExperiences}
       />
+      <ReactTooltip backgroundColor="#111111" />
       <CustomGithubCalendar />
     </>
   );

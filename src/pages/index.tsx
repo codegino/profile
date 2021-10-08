@@ -4,14 +4,21 @@ import Head from 'next/head';
 import {getPlaiceholder} from 'plaiceholder';
 import Hero from '../components/Hero';
 import ResumeSummary from '../components/ResumeSummary';
-import Skills from '../components/skills/Skills';
-import Timeline from '../components/timeline/Timeline';
 import {resumeProps} from '../utils/resume-props';
 
 const CustomGithubCalendar = dynamic(
   () => import('../components/CustomGithubCalendar'),
   {ssr: false},
 );
+
+const ReactTooltip = dynamic(() => import('react-tooltip'), {ssr: false});
+
+const Timeline = dynamic(() => import('../components/timeline/Timeline'), {
+  ssr: true,
+});
+const Skills = dynamic(() => import('../components/skills/Skills'), {
+  ssr: true,
+});
 
 export default function Home({
   workExperiences,
@@ -35,6 +42,7 @@ export default function Home({
         workExperiences={workExperiences}
         educationExperiences={educationExperiences}
       />
+      <ReactTooltip backgroundColor="#111111" />
       <CustomGithubCalendar />
     </>
   );
