@@ -40,7 +40,12 @@ export default function Skills({skills}: {skills: CategorizedSkill[]}) {
                     direction={i % 2 === 0 ? 'left' : 'right'}
                   >
                     <Link href={skill.url}>
-                      <a target="_blank" title={skill.description}>
+                      <a
+                        target="_blank"
+                        title={skill.description}
+                        aria-label={skill.name}
+                        rel="noopener"
+                      >
                         {skill.name}
                       </a>
                     </Link>

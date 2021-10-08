@@ -22,7 +22,7 @@ export default function Header() {
       <div>
         <StyledImage className="logo">
           <Link href="/">
-            <a>
+            <a aria-label="My Logo">
               <Image
                 src="/assets/logo.svg"
                 height={26}

@@ -17,7 +17,12 @@ export default function CustomGithubCalendar() {
       <h3 style={{margin: '0'}}>
         My&nbsp;
         <Link href="https://github.com/codegino/profile">
-          <a style={{color: '#777'}} target="_blank">
+          <a
+            style={{color: '#777'}}
+            target="_blank"
+            aria-label="Github"
+            rel="noopener"
+          >
             Github
           </a>
         </Link>

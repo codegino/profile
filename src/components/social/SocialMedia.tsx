@@ -5,7 +5,6 @@ import {FaGithubSquare} from '@react-icons/all-files/fa/FaGithubSquare';
 import {FaLinkedin} from '@react-icons/all-files/fa/FaLinkedin';
 import {FaTwitterSquare} from '@react-icons/all-files/fa/FaTwitterSquare';
 import Link from 'next/link';
-import {Zoom} from 'react-awesome-reveal';
 import CustomIcon, {SocialMediaProps} from '../icon/CustomIcon';
 
 export default function SocialMedia() {
@@ -16,10 +15,8 @@ export default function SocialMedia() {
           {socialMedia.map(sm => (
             <li key={sm.name}>
               <Link href={sm.url}>
-                <a target="_blank">
-                  <Zoom duration={500} triggerOnce>
-                    <CustomIcon {...sm} />
-                  </Zoom>
+                <a target="_blank" aria-label={sm.name} rel="noopener">
+                  <CustomIcon {...sm} />
                 </a>
               </Link>
             </li>

@@ -23,7 +23,12 @@ export default function ResumeSummary() {
         </div>
         <h3>
           <Link href={`mailto:${summary.email}`}>
-            <a target="_blank" style={{cursor: 'pointer'}}>
+            <a
+              target="_blank"
+              style={{cursor: 'pointer'}}
+              aria-label="Email me"
+              rel="noopener"
+            >
               <FaEnvelopeSquare />
               &nbsp;{summary.email}
             </a>

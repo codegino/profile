@@ -1,4 +1,3 @@
-import dateFormat from 'dateformat';
 import {WorkExperience} from '../models/resume';
 import {CategorizedSkill, Skill} from '../models/skill';
 import {supabase} from '../utils/supabaseClient';
@@ -48,25 +47,9 @@ export const resumeProps = async () => {
     skills: activeSkills,
   });
 
-  const transformedWorkExperiences = workExperiences?.map(exp => {
-    return {
-      ...exp,
-      start_date: dateFormat(exp.start_date, 'dd mmmm yyyy'),
-      end_date: dateFormat(exp.end_date, 'dd mmmm yyyy'),
-    };
-  });
-
-  const transformedEducationExperiences = educationExperiences?.map(exp => {
-    return {
-      ...exp,
-      start_date: dateFormat(exp.start_date, 'dd mmmm yyyy'),
-      end_date: dateFormat(exp.end_date, 'dd mmmm yyyy'),
-    };
-  });
-
   return {
-    workExperiences: transformedWorkExperiences as WorkExperience[],
-    educationExperiences: transformedEducationExperiences as WorkExperience[],
+    workExperiences: workExperiences as WorkExperience[],
+    educationExperiences: educationExperiences as WorkExperience[],
     skills: categorizedSkills as CategorizedSkill[],
   };
 };

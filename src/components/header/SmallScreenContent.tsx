@@ -52,6 +52,7 @@ export default function SmallScreenContent() {
                         className={
                           router.asPath == `${link.url}` ? 'active' : ''
                         }
+                        aria-label={link.label}
                       >
                         {link.label}
                       </a>
@@ -65,7 +66,11 @@ export default function SmallScreenContent() {
             <h3>Contact me</h3>
             <div>
               <Link href={`mailto:${EMAIL_ADDRESS}`}>
-                <a target="_blank" style={{cursor: 'pointer'}}>
+                <a
+                  target="_blank"
+                  style={{cursor: 'pointer'}}
+                  aria-label="Email Me"
+                >
                   <CustomIcon
                     color="#ea4335"
                     icon={FaEnvelopeSquare}
@@ -75,7 +80,11 @@ export default function SmallScreenContent() {
                 </a>
               </Link>
               <Link href={`https://m.me/codegino`}>
-                <a target="_blank" style={{cursor: 'pointer'}}>
+                <a
+                  target="_blank"
+                  style={{cursor: 'pointer'}}
+                  aria-label="Facebook Messenger"
+                >
                   <CustomIcon
                     color="#3b5998"
                     icon={FaFacebookMessenger}

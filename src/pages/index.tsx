@@ -1,12 +1,16 @@
 import {InferGetStaticPropsType} from 'next';
+import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import {getPlaiceholder} from 'plaiceholder';
-import CustomGithubCalendar from '../components/CustomGithubCalendar';
 import Hero from '../components/Hero';
 import ResumeSummary from '../components/ResumeSummary';
 import Skills from '../components/skills/Skills';
 import Timeline from '../components/timeline/Timeline';
 import {resumeProps} from '../utils/resume-props';
+
+const CustomGithubCalendar = dynamic(
+  () => import('../components/CustomGithubCalendar'),
+);
 
 export default function Home({
   workExperiences,

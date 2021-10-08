@@ -599,11 +599,6 @@
     javascript-natural-sort "0.7.1"
     lodash "4.17.21"
 
-"@types/dateformat@3.0.1":
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/@types/dateformat/-/dateformat-3.0.1.tgz#98d747a2e5e9a56070c6bf14e27bff56204e34cc"
-  integrity sha512-KlPPdikagvL6ELjWsljbyDIPzNCeliYkqRpI+zea99vBBbCIA5JNshZAwQKTON139c87y9qvTFVgkFd14rtS4g==
-
 "@types/dompurify@^2.2.3":
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/@types/dompurify/-/dompurify-2.3.1.tgz#2934adcd31c4e6b02676f9c22f9756e5091c04dd"
@@ -1563,11 +1558,6 @@ date-fns@^2.23.0:
   version "2.25.0"
   resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.25.0.tgz#8c5c8f1d958be3809a9a03f4b742eba894fc5680"
   integrity sha512-ovYRFnTrbGPD4nqaEqescPEv1mNwvt+UTqI3Ay9SzNtey9NZnYu6E2qCcBBgJ6/2VF1zGGygpyTDITqpQQ5e+w==
-
-dateformat@5.0.1:
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/dateformat/-/dateformat-5.0.1.tgz#60a27a2deb339f888ba4532f533e25ac73ca3d19"
-  integrity sha512-DrcKxOW2am3mtqoJwBTK3OlWcF0QSk1p8diEWwpu3Mf//VdURD7XVaeOV738JvcaBiFfm9o2fisoMhiJH0aYxg==
 
 debug@2, debug@^2.2.0, debug@^2.6.9:
   version "2.6.9"
