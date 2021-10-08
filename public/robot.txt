@@ -1,2 +1,4 @@
 User-agent: *
-Allow: /
+Allow: /*
+
+Sitemap: https://www.carlogino.cc/sitemap.xml

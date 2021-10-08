@@ -16,6 +16,7 @@ class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
+          <meta name="google-site-verification" content="K7UvAeBEqJTv8VSbGCYaOU27ruQ_eqcSxzL9jahKbDk" />
           <meta
             name="theme-color"
             media="(prefers-color-scheme: light)"
