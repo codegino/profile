@@ -16,7 +16,8 @@ export type SkillCategory =
   | 'tools'
   | 'discipline'
   | 'hosting'
-  | 'others';
+  | 'others'
+  | 'database';
 
 export type CategorizedSkill = {
   category: SkillCategory;
