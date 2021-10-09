@@ -9,13 +9,15 @@ import {mediaQuery} from '../utils/media-query';
 export default function ResumeSummary() {
   return (
     <Container>
-      <ProfileImage
-        src="/assets/profile-picture.jpeg"
-        alt="My Photo"
-        layout="fixed"
-        height={200}
-        width={200}
-      />
+      <ImageContainer>
+        <Image
+          src="/assets/profile-picture.jpeg"
+          alt="My Photo"
+          layout="responsive"
+          height={200}
+          width={200}
+        />
+      </ImageContainer>
       <div className="summary">
         <div className="designation">
           <h2>{summary.jobTitle}</h2>
@@ -102,10 +104,29 @@ const Container = styled.div`
   }
 `;
 
-const ProfileImage = styled(Image)`
+const ImageContainer = styled.div`
   border-radius: 50%;
+  height: 150px;
+  width: 150px;
+  display: block;
+  overflow: hidden;
 
-  ${mediaQuery(900, `border-radius: 0`)}
+  ${mediaQuery(
+    600,
+    `
+    height: 175px;
+    width: 175px;
+  `,
+  )}
+
+  ${mediaQuery(
+    900,
+    `
+    border-radius: 0;
+    height: 200px;
+    width: 200px;
+  `,
+  )}
 `;
 
 const summary = {

@@ -15,9 +15,9 @@ export default function Hero({
         alt="Hero photo"
         img={img}
         svg={svg}
-        layout="fill"
-        height={undefined}
-        width={undefined}
+        layout="responsive"
+        height={400}
+        width={800}
       />
       <LeftMessageContainer>
         <Message cascade duration={1500} triggerOnce={true} delay={500}>
@@ -56,16 +56,14 @@ const Message = styled(Fade)`
   p,
   h1 {
     color: white;
-    font-size: 2em;
+    font-size: 1em;
   }
+
+  ${mediaQuery(500, 'font-size: 1.5em;')}
+  ${mediaQuery(800, 'font-size: 2em;')}
 `;
 
 const HeroContainer = styled.div`
-  height: 70vh;
   overflow: hidden;
   position: relative;
-
-  ${mediaQuery(450, 'height: 80vh;')}
-
-  ${mediaQuery(900, 'height: 100vh;')}
 `;

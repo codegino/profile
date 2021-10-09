@@ -7,7 +7,10 @@ export default function Footer() {
   return (
     <FooterContainer>
       <ContentWrapper>
-        <LegalLabel>All rights reserved</LegalLabel>
+        <LegalLabel>
+          <p>All rights reserved</p>
+          <p>© Carlo Gino Catapang 2021</p>
+        </LegalLabel>
         <SocialMedia />
       </ContentWrapper>
     </FooterContainer>
@@ -16,11 +19,13 @@ export default function Footer() {
 
 const FooterContainer = styled.footer`
   width: 100%;
-  height: 5rem;
+  height: 6rem;
   background-color: var(--color-dark);
   color: var(--color-light);
   display: flex;
   justify-content: center;
+
+  ${mediaQuery(900, `height: 5rem;`)}
 `;
 
 const ContentWrapper = styled.div`
@@ -30,6 +35,7 @@ const ContentWrapper = styled.div`
   justify-content: center;
   max-width: 50rem;
   width: 100%;
+  text-align: center;
 
   ${mediaQuery(
     900,
@@ -37,10 +43,11 @@ const ContentWrapper = styled.div`
       flex-direction: row;
       justify-content: space-around;
       align-items: center;
+      text-align: left;
   `,
   )}
 `;
 
 const LegalLabel = styled.div`
-  margin-top: var(--margin-very-small);
+  margin: var(--margin-very-small);
 `;

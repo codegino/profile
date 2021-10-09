@@ -5,14 +5,7 @@ import {Fade} from 'react-awesome-reveal';
 import {mediaQuery} from '../utils/media-query';
 import {BlurredImage} from './BlurredImage';
 
-const quote = [
-  'Everybody is a genius.',
-  'But if you judge a fish',
-  'by its ability to climb a tree,',
-  'it will live its whole life',
-  'believing that it is stupid.',
-  '-Albert Einstein',
-];
+const quote = ['With great power', 'comes great', 'responsibility', '- Batman'];
 
 export default function AboutMeHero({
   img,
@@ -24,14 +17,15 @@ export default function AboutMeHero({
         alt="Hero photo"
         img={img}
         svg={svg}
-        layout="fill"
-        height={undefined}
-        width={undefined}
+        layout="responsive"
+        height={400}
+        width={800}
+        objectPosition="center"
       />
       <MessageContainer>
         <Message cascade={true} duration={2000} triggerOnce={true}>
           {quote.map((word, i) => (
-            <p key={`${word}-${i}`}>{word}&nbsp;</p>
+            <p key={`${word}-${i}`}>{word}</p>
           ))}
         </Message>
       </MessageContainer>
@@ -40,23 +34,22 @@ export default function AboutMeHero({
 }
 
 const Container = styled.div`
-  height: 50vh;
   overflow: hidden;
   position: relative;
-
-  ${mediaQuery(600, 'height: 70vh;')}
-  ${mediaQuery(900, 'height: 80vh;')}
-  ${mediaQuery(1200, 'height: 100vh;')}
 `;
 
 const MessageContainer = styled.div`
   position: absolute;
   top: 1rem;
-  right: 1rem;
+  left: 1rem;
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
+  flex-direction: column;
   flex-wrap: wrap;
-  max-width: 30rem;
+  max-width: 40rem;
+
+  ${mediaQuery(900, 'top: 1.5rem; left: 1.5rem;')}
+  ${mediaQuery(1200, 'top: 2rem; left: 2.5rem;')}
 `;
 
 const Message = styled(Fade)`
@@ -65,6 +58,12 @@ const Message = styled(Fade)`
     margin-right: 0.5rem;
     font-size: 1.5em;
 
-    ${mediaQuery(600, 'font-size: 2em;')}
+    ${mediaQuery(500, 'font-size: 2em;')}
+
+    ${mediaQuery(600, 'font-size: 2.5em;')}
+
+    ${mediaQuery(800, 'font-size: 3em;')}
+
+    ${mediaQuery(1200, 'font-size: 4em;')}
   }
 `;

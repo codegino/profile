@@ -49,7 +49,6 @@ export const BlurredImage = ({
 };
 
 const Container = styled.div`
-  display: block;
   overflow: hidden;
   position: relative;
   height: 100%;
