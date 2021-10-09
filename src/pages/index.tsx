@@ -4,6 +4,7 @@ import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import Link from 'next/link';
 import {getPlaiceholder} from 'plaiceholder';
+import Greetings from '../components/Greetings';
 import Hero from '../components/Hero';
 import ResumeSummary from '../components/ResumeSummary';
 import WakatimeCharts from '../components/WakatimeCharts';
@@ -31,6 +32,7 @@ export default function Home({
       </Head>
 
       <Hero img={img} svg={svg} />
+      <Greetings />
       <ResumeSummary />
       <Skills skills={skills} />
       <ReactTooltip backgroundColor="#111111" />
