@@ -50,13 +50,14 @@ export default function ResumeSummary() {
 }
 
 const Container = styled.div`
-  margin: 2rem 0;
+  padding: 2rem 0;
   border-radius: 0.5rem;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  background-color: var(--color-light-light);
 
   ${mediaQuery(900, `flex-direction: row;`)}
 

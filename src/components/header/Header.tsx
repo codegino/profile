@@ -24,6 +24,7 @@ export default function Header() {
           <Link href="/">
             <a aria-label="My Logo">
               <Image
+                priority
                 src="/assets/logo.svg"
                 height={26}
                 width={26}
