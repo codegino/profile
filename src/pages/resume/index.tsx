@@ -69,11 +69,11 @@ export default function Resume({
         </Link>
       </ResumeDownloadWrapper>
       <ResumeSummary />
-      <Skills skills={skills} />
       <Timeline
         workExperiences={workExperiences}
         educationExperiences={educationExperiences}
       />
+      <Skills skills={skills} />
       <ReactTooltip backgroundColor="#111111" />
       <CustomGithubCalendar />
     </>
