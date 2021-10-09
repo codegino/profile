@@ -86,7 +86,7 @@ const Content: React.FC<{exp: WorkExperience}> = ({exp, children = null}) => {
       style={{maxWidth: '45rem'}}
     >
       <div>
-        <p className="date">{exp.end_date}</p>
+        <DateWrapper>{exp.end_date}</DateWrapper>
         <div className="name">
           {exp.category === 'work' ? <FaBuilding /> : <FaGraduationCap />}
           &nbsp;
@@ -106,13 +106,20 @@ const Content: React.FC<{exp: WorkExperience}> = ({exp, children = null}) => {
         </ContentTitle>
       </div>
       <div>{children}</div>
-      <p className="date">{exp.start_date}</p>
+      <DateWrapper>{exp.start_date}</DateWrapper>
     </Zoom>
   );
 };
 
 const CategoryTitle = styled.h2`
   margin: 0;
+`;
+
+const DateWrapper = styled.p`
+  background-color: var(--color-light);
+  color: var(--color-dark-dark);
+  justify-self: center;
+  padding: var(--padding-very-small) 0;
 `;
 
 const ContentTitle = styled.div`

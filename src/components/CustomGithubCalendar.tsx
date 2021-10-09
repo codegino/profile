@@ -55,7 +55,7 @@ const Container = styled(Zoom)`
   align-items: center;
   margin: var(--margin-medium) 0;
   padding: 0 0.5rem;
-  overflow: auto;
+  overflow: hidden;
 
   a:hover {
     text-decoration: underline;

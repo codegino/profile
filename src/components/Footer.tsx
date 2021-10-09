@@ -24,6 +24,7 @@ const FooterContainer = styled.footer`
   color: var(--color-light);
   display: flex;
   justify-content: center;
+  overflow: hidden;
 
   ${mediaQuery(900, `height: 5rem;`)}
 `;
