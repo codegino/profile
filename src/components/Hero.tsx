@@ -21,7 +21,6 @@ export default function Hero({
       />
       <LeftMessageContainer>
         <Message cascade duration={1500} triggerOnce={true} delay={500}>
-          <p>Hi!</p>
           <h1>I am Carlo Gino Catapang</h1>
           <p>Welcome to my page!</p>
         </Message>
@@ -56,7 +55,7 @@ const Message = styled(Fade)`
   p,
   h1 {
     color: white;
-    font-size: 1em;
+    font-size: 1.5em;
   }
 
   ${mediaQuery(500, 'font-size: 1.5em;')}
