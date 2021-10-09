@@ -69,6 +69,8 @@ export default function Resume({
         </Link>
       </ResumeDownloadWrapper>
       <ResumeSummary />
+      <hr />
+      <hr />
       <Timeline
         workExperiences={workExperiences}
         educationExperiences={educationExperiences}
