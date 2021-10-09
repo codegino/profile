@@ -1,22 +1,11 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
-import {useMediaQuery} from 'react-responsive';
-
-const WideScreenContent = dynamic(() => import('./WideScreenContent'), {
-  ssr: false,
-});
-const SmallScreenContent = dynamic(() => import('./SmallScreenContent'), {
-  ssr: false,
-});
+import SmallScreenContent from './SmallScreenContent';
+import WideScreenContentImpl from './WideScreenContent';
 
 export default function Header() {
-  const isMediumDevice = useMediaQuery({
-    query: '(min-width: 700px)',
-  });
-
   return (
     <Container>
       <div>
@@ -24,6 +13,7 @@ export default function Header() {
           <Link href="/">
             <a aria-label="My Logo">
               <Image
+                priority
                 src="/assets/logo.svg"
                 height={26}
                 width={26}
@@ -33,7 +23,8 @@ export default function Header() {
           </Link>
         </StyledImage>
       </div>
-      {isMediumDevice ? <WideScreenContent /> : <SmallScreenContent />}
+      <WideScreenContentImpl />
+      <SmallScreenContent />
     </Container>
   );
 }

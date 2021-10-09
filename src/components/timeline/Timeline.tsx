@@ -132,6 +132,7 @@ const Container = styled.div`
   align-items: center;
   flex-direction: column;
   overflow: hidden;
+  background-color: var(--color-light-light);
 
   padding-top: var(--padding-medium);
 `;

@@ -5,7 +5,6 @@ import {Zoom} from 'react-awesome-reveal';
 import GithubCalendar from 'react-github-calendar';
 import {useMediaQuery} from 'react-responsive';
 import ReactTooltip from 'react-tooltip';
-import {mediaQuery} from '../utils/media-query';
 
 export default function CustomGithubCalendar() {
   const is400PxAndUp = useMediaQuery({
@@ -13,28 +12,29 @@ export default function CustomGithubCalendar() {
   });
 
   return (
-    <Container>
+    <Container triggerOnce>
       <h3 style={{margin: '0'}}>
         My&nbsp;
-        <Link href="https://github.com/codegino/profile">
+        <Link href="https://github.com/codegino">
           <a
             style={{color: '#777'}}
             target="_blank"
-            aria-label="Github"
+            aria-label="Github profile"
             rel="noopener"
+            data-tip="Link to my Github profile"
           >
             Github
           </a>
         </Link>
-        &nbsp;Activity
+        &nbsp;activity
       </h3>
+
       <GithubCalendar
         username="codegino"
         hideColorLegend={!is400PxAndUp}
         blockMargin={5}
         blockRadius={7}
         blockSize={14}
-        style={{height: '100%', width: '100%'}}
         theme={{
           level0: '#F0F0F0',
           level1: '#C4EDDE',
@@ -53,9 +53,11 @@ const Container = styled(Zoom)`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: var(--margin-small);
+  margin: var(--margin-medium) 0;
   padding: 0 0.5rem;
   overflow: auto;
 
-  ${mediaQuery(450, `margin-bottom: var(--margin-medium)'`)}
+  a:hover {
+    text-decoration: underline;
+  }
 `;

@@ -2,6 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import Link from 'next/link';
 import {useRouter} from 'next/router';
+import {mediaQuery} from '../../utils/media-query';
 import SocialMedia from '../social/SocialMedia';
 import {navigationLinks} from './nav-links';
 
@@ -36,6 +37,9 @@ const WideScreenContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  display: none;
+
+  ${mediaQuery(700, 'display: flex;')}
 
   > nav {
     > ul {

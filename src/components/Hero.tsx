@@ -61,15 +61,11 @@ const Message = styled(Fade)`
 `;
 
 const HeroContainer = styled.div`
-  height: 50vh;
+  height: 70vh;
   overflow: hidden;
   position: relative;
 
-  ${mediaQuery(450, 'height: 60vh;')}
-
-  ${mediaQuery(550, 'height: 70vh;')}
-
-  ${mediaQuery(700, 'height: 90vh;')}
+  ${mediaQuery(450, 'height: 80vh;')}
 
   ${mediaQuery(900, 'height: 100vh;')}
 `;

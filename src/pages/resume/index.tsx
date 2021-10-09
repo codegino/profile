@@ -5,7 +5,6 @@ import {InferGetStaticPropsType} from 'next';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import Link from 'next/link';
-import {useMediaQuery} from 'react-responsive';
 import ResumeSummary from '../../components/ResumeSummary';
 import CustomIcon from '../../components/icon/CustomIcon';
 import {resumeProps} from '../../utils/resume-props';
@@ -29,10 +28,6 @@ export default function Resume({
   educationExperiences,
   skills,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  const is500PxAndUp = useMediaQuery({
-    query: '(min-width: 500px)',
-  });
-
   return (
     <>
       <Head>
@@ -51,7 +46,7 @@ export default function Resume({
           >
             <CustomIcon
               icon={FaFilePdf}
-              size={is500PxAndUp ? 48 : 40}
+              size={40}
               color="#F40F02"
               hoverColor="red"
             />
@@ -66,7 +61,7 @@ export default function Resume({
           >
             <CustomIcon
               icon={FaFileWord}
-              size={is500PxAndUp ? 48 : 40}
+              size={40}
               color="#015299"
               hoverColor="blue"
             />

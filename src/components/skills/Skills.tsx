@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import {FaCheckDouble} from '@react-icons/all-files/fa/FaCheckDouble';
+import {FaDatabase} from '@react-icons/all-files/fa/FaDatabase';
 import {FaDumbbell} from '@react-icons/all-files/fa/FaDumbbell';
 import {FaNodeJs} from '@react-icons/all-files/fa/FaNodeJs';
 import {FaPalette} from '@react-icons/all-files/fa/FaPalette';
@@ -93,9 +94,11 @@ function getSkillCategoryIcon(category: SkillCategory) {
     case 'others':
       return <FaRandom />;
     case 'tools':
-      <FaTools />;
+      return <FaTools />;
     case 'frontend':
       return <FaReact />;
+    case 'database':
+      return <FaDatabase />;
     case 'highlights':
       return <FaStar />;
     case 'discipline':

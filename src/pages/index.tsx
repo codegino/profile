@@ -1,9 +1,13 @@
+import styled from '@emotion/styled';
 import {InferGetStaticPropsType} from 'next';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
+import Link from 'next/link';
 import {getPlaiceholder} from 'plaiceholder';
 import Hero from '../components/Hero';
 import ResumeSummary from '../components/ResumeSummary';
+import WakatimeCharts from '../components/WakatimeCharts';
+import Skills from '../components/skills/Skills';
 import {resumeProps} from '../utils/resume-props';
 
 const CustomGithubCalendar = dynamic(
@@ -13,16 +17,7 @@ const CustomGithubCalendar = dynamic(
 
 const ReactTooltip = dynamic(() => import('react-tooltip'), {ssr: false});
 
-const Timeline = dynamic(() => import('../components/timeline/Timeline'), {
-  ssr: true,
-});
-const Skills = dynamic(() => import('../components/skills/Skills'), {
-  ssr: true,
-});
-
 export default function Home({
-  workExperiences,
-  educationExperiences,
   skills,
   img,
   svg,
@@ -38,15 +33,36 @@ export default function Home({
       <Hero img={img} svg={svg} />
       <ResumeSummary />
       <Skills skills={skills} />
-      <Timeline
-        workExperiences={workExperiences}
-        educationExperiences={educationExperiences}
-      />
       <ReactTooltip backgroundColor="#111111" />
       <CustomGithubCalendar />
+      <WakatimeCharts />
+      <CueToResume>
+        <p>
+          Visit my&nbsp;
+          <Link href="/resume">
+            <a
+              style={{color: '#777'}}
+              aria-label="resume"
+              data-tip="Link to my resume"
+            >
+              resume
+            </a>
+          </Link>
+          &nbsp;for more info
+        </p>
+      </CueToResume>
     </>
   );
 }
+
+const CueToResume = styled.div`
+  text-align: center;
+  margin-bottom: var(--margin-small);
+
+  a:hover {
+    text-decoration: underline;
+  }
+`;
 
 export const getStaticProps = async () => {
   const {img, svg} = await getPlaiceholder('/assets/hero-placeholder.jpg');

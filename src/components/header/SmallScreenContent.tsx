@@ -107,6 +107,9 @@ const Container = styled.div`
   position: relative;
   width: 100%;
   text-align: right;
+  display: block;
+
+  ${mediaQuery(700, 'display: none;')}
 `;
 
 const Sidebar = styled.div`
