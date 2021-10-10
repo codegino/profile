@@ -1,9 +1,11 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import {IGetPlaiceholderReturn} from 'plaiceholder';
-import {Fade} from 'react-awesome-reveal';
+import {Fade, Zoom} from 'react-awesome-reveal';
 import {mediaQuery} from '../utils/media-query';
+import {useScrollToView} from '../utils/scroll-to-view-hook';
 import {BlurredImage} from './BlurredImage';
+import {GuideArrow} from './GuideArrow';
 
 const quote = ['With great power', 'comes great', 'responsibility', '- Batman'];
 
@@ -11,6 +13,8 @@ export default function AboutMeHero({
   img,
   svg,
 }: Pick<IGetPlaiceholderReturn, 'svg' | 'img'>) {
+  const {scrollToContent} = useScrollToView('#about-me-details');
+
   return (
     <Container>
       <BlurredImage
@@ -25,20 +29,30 @@ export default function AboutMeHero({
         objectPosition="right"
       />
       <MessageContainer>
-        <Message cascade={true} duration={2000} triggerOnce={true}>
+        <Message cascade={true} duration={1500} triggerOnce={true}>
           {quote.map((word, i) => (
             <p key={`${word}-${i}`}>{word}</p>
           ))}
         </Message>
       </MessageContainer>
+      <GuideArrowContainer triggerOnce delay={2800}>
+        <GuideArrow onClick={scrollToContent} />
+      </GuideArrowContainer>
     </Container>
   );
 }
 
+const GuideArrowContainer = styled(Zoom)`
+  position: absolute;
+  bottom: 1rem;
+`;
+
 const Container = styled.div`
   overflow: hidden;
   position: relative;
-  height: 100vh;
+  height: 95vh;
+  display: flex;
+  justify-content: center;
 `;
 
 const MessageContainer = styled.div`

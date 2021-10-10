@@ -2,7 +2,6 @@ import React from 'react';
 import styled from '@emotion/styled';
 import {FaEnvelopeSquare} from '@react-icons/all-files/fa/FaEnvelopeSquare';
 import {FaMapMarkerAlt} from '@react-icons/all-files/fa/FaMapMarkerAlt';
-import Image from 'next/image';
 import Link from 'next/link';
 import {IGetPlaiceholderReturn} from 'plaiceholder';
 import {mediaQuery} from '../utils/media-query';
@@ -15,16 +14,6 @@ export default function ResumeSummary({
   return (
     <Container>
       <ImageContainer>
-        {/* <Image
-          src="/assets/profile-picture.jpeg"
-          alt="My Photo"
-          layout="responsive"
-          height={200}
-          width={200}
-          placeholder="blur"
-          priority
-          blurDataURL="/assets/profile-picture-low.jpg"
-        /> */}
         <BlurredImage
           img={img}
           svg={svg}
@@ -63,7 +52,6 @@ export default function ResumeSummary({
 }
 
 const Container = styled.div`
-  padding: 2rem 0;
   border-radius: 0.5rem;
   width: 100%;
   display: flex;
@@ -71,6 +59,7 @@ const Container = styled.div`
   align-items: center;
   flex-direction: column;
   background-color: var(--color-light-light);
+  margin: var(--margin-big) 0;
 
   ${mediaQuery(900, `flex-direction: row;`)}
 
