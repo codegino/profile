@@ -42,7 +42,7 @@ export default function Hero({
 
 const GuideArrowContainer = styled(Zoom)`
   position: absolute;
-  bottom: 3vh;
+  bottom: 8vh;
 `;
 
 const LeftMessageContainer = styled.div`
