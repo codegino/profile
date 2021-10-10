@@ -1,14 +1,19 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import {BsChevronDoubleDown} from '@react-icons/all-files/bs/BsChevronDoubleDown';
 import {IGetPlaiceholderReturn} from 'plaiceholder';
-import {Fade} from 'react-awesome-reveal';
+import {Fade, Zoom} from 'react-awesome-reveal';
 import {mediaQuery} from '../utils/media-query';
+import {useScrollToView} from '../utils/scroll-to-view-hook';
 import {BlurredImage} from './BlurredImage';
+import {GuideArrow} from './GuideArrow';
 
 export default function Hero({
   img,
   svg,
 }: Pick<IGetPlaiceholderReturn, 'svg' | 'img'>) {
+  const {scrollToContent} = useScrollToView('#greetings');
+
   return (
     <HeroContainer>
       <BlurredImage
@@ -23,14 +28,22 @@ export default function Hero({
         objectPosition="left"
       />
       <LeftMessageContainer>
-        <Message cascade duration={1500} triggerOnce={true} delay={500}>
+        <Message cascade duration={1500} triggerOnce={true} delay={200}>
           <h1>I am Carlo Gino Catapang</h1>
           <p>Welcome to my page!</p>
         </Message>
       </LeftMessageContainer>
+      <GuideArrowContainer triggerOnce delay={1900}>
+        <GuideArrow onClick={scrollToContent} />
+      </GuideArrowContainer>
     </HeroContainer>
   );
 }
+
+const GuideArrowContainer = styled(Zoom)`
+  position: absolute;
+  bottom: 1rem;
+`;
 
 const LeftMessageContainer = styled.div`
   position: absolute;
@@ -68,5 +81,8 @@ const Message = styled(Fade)`
 const HeroContainer = styled.div`
   overflow: hidden;
   position: relative;
-  height: 100vh;
+  height: 95vh;
+  margin: auto;
+  display: flex;
+  justify-content: center;
 `;

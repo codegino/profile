@@ -11,7 +11,7 @@ export default function Greetings() {
   const [isTyping, setIsTyping] = useState(false);
   return (
     <Zoom onVisibilityChange={e => setIsTyping(e)} triggerOnce>
-      <Container>
+      <Container id="greetings">
         <Terminal>
           <TerminalHeader>
             <div className="action action__close" />
@@ -89,15 +89,9 @@ export default function Greetings() {
 const Container = styled.div`
   display: flex;
   justify-content: center;
-  padding: var(--padding-small) 0;
+  margin-bottom: var(--margin-big);
+  padding-top: var(--padding-big);
   overflow: hidden;
-
-  ${mediaQuery(
-    600,
-    `
-  padding: var(--padding-medium) 0;
-  `,
-  )}
 `;
 
 const TerminalContent = styled.div`

@@ -21,19 +21,21 @@ export default function AboutMe({
       </Head>
 
       <AboutMeHero img={img} svg={svg} />
-      {aboutMeDetails.map(detail => {
-        return (
-          <AboutMeDetail key={detail.key}>
-            <h3>{detail.label}</h3>
-            <div
-              className="content"
-              dangerouslySetInnerHTML={{
-                __html: dompurify.sanitize(detail.content),
-              }}
-            />
-          </AboutMeDetail>
-        );
-      })}
+      <section id="about-me-details">
+        {aboutMeDetails.map(detail => {
+          return (
+            <AboutMeDetail key={detail.key}>
+              <h3>{detail.label}</h3>
+              <div
+                className="content"
+                dangerouslySetInnerHTML={{
+                  __html: dompurify.sanitize(detail.content),
+                }}
+              />
+            </AboutMeDetail>
+          );
+        })}
+      </section>
     </>
   );
 }
