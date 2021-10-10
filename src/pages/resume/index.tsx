@@ -44,7 +44,7 @@ export default function Resume({
           <a
             target="_blank"
             data-tip="Download PDF Version"
-            arial-label="Download PDF Version"
+            aria-label="Download PDF Version"
             rel="noopener"
           >
             <CustomIcon

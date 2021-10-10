@@ -44,11 +44,7 @@ export default function Home({
         <p>
           Visit my&nbsp;
           <Link href="/resume">
-            <a
-              style={{color: '#777'}}
-              aria-label="resume"
-              data-tip="Link to my resume"
-            >
+            <a aria-label="resume" data-tip="Link to my resume">
               resume
             </a>
           </Link>
@@ -63,8 +59,12 @@ const CueToResume = styled.div`
   text-align: center;
   margin-bottom: var(--margin-small);
 
-  a:hover {
-    text-decoration: underline;
+  a {
+    color: var(--color-primary-dark);
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 `;
 
