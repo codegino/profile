@@ -44,7 +44,7 @@ export default function AboutMeHero({
 
 const GuideArrowContainer = styled(Zoom)`
   position: absolute;
-  bottom: 1rem;
+  bottom: 3vh;
 `;
 
 const Container = styled.div`
