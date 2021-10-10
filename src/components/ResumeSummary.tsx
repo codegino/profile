@@ -4,13 +4,18 @@ import {FaEnvelopeSquare} from '@react-icons/all-files/fa/FaEnvelopeSquare';
 import {FaMapMarkerAlt} from '@react-icons/all-files/fa/FaMapMarkerAlt';
 import Image from 'next/image';
 import Link from 'next/link';
+import {IGetPlaiceholderReturn} from 'plaiceholder';
 import {mediaQuery} from '../utils/media-query';
+import {BlurredImage} from './BlurredImage';
 
-export default function ResumeSummary() {
+export default function ResumeSummary({
+  img,
+  svg,
+}: Pick<IGetPlaiceholderReturn, 'svg' | 'img'>) {
   return (
     <Container>
       <ImageContainer>
-        <Image
+        {/* <Image
           src="/assets/profile-picture.jpeg"
           alt="My Photo"
           layout="responsive"
@@ -19,6 +24,14 @@ export default function ResumeSummary() {
           placeholder="blur"
           priority
           blurDataURL="/assets/profile-picture-low.jpg"
+        /> */}
+        <BlurredImage
+          img={img}
+          svg={svg}
+          alt="My profile"
+          layout="responsive"
+          height={200}
+          width={200}
         />
       </ImageContainer>
       <div className="summary">

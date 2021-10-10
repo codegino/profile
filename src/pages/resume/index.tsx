@@ -5,6 +5,7 @@ import {InferGetStaticPropsType} from 'next';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import Link from 'next/link';
+import {getPlaiceholder} from 'plaiceholder';
 import ResumeSummary from '../../components/ResumeSummary';
 import CustomIcon from '../../components/icon/CustomIcon';
 import {resumeProps} from '../../utils/resume-props';
@@ -27,6 +28,8 @@ export default function Resume({
   workExperiences,
   educationExperiences,
   skills,
+  profileSvg,
+  profileImage,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <>
@@ -68,7 +71,7 @@ export default function Resume({
           </a>
         </Link>
       </ResumeDownloadWrapper>
-      <ResumeSummary />
+      <ResumeSummary img={profileImage} svg={profileSvg} />
       <hr />
       <hr />
       <Timeline
@@ -84,10 +87,13 @@ export default function Resume({
 
 export const getStaticProps = async () => {
   const props = await resumeProps();
+  const {img, svg} = await getPlaiceholder('/assets/profile-picture.jpeg');
 
   return {
     props: {
       ...props,
+      profileImage: img,
+      profileSvg: svg,
     },
   };
 };

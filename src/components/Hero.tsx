@@ -18,12 +18,10 @@ export default function Hero({
         layout="responsive"
         height={400}
         width={800}
+        blurLevel={80}
       />
       <LeftMessageContainer>
-        <Message cascade duration={1500} triggerOnce={true} delay={500}>
-          <h1>I am Carlo Gino Catapang</h1>
-          <p>Welcome to my page!</p>
-        </Message>
+        <h1>Carlo Gino Catapang</h1>
       </LeftMessageContainer>
     </HeroContainer>
   );
@@ -33,6 +31,14 @@ const LeftMessageContainer = styled.div`
   position: absolute;
   top: 0.25rem;
   left: 0.5rem;
+
+  h1 {
+    color: white;
+    font-size: 1.7em;
+
+    ${mediaQuery(500, 'font-size: 1.9em;')}
+    ${mediaQuery(800, 'font-size: 2.5em;')}
+  }
 
   ${mediaQuery(
     500,
