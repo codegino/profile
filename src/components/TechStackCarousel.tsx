@@ -31,6 +31,7 @@ export default function TechStackCarousel({techStacks}: Props) {
           showStatus={false}
           swipeable
           emulateTouch
+          showThumbs={false}
         >
           {techStacks.map(techstack => {
             return (

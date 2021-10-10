@@ -16,6 +16,9 @@ export default function ResumeSummary() {
           layout="responsive"
           height={200}
           width={200}
+          placeholder="blur"
+          priority
+          blurDataURL="/assets/profile-picture-low.jpg"
         />
       </ImageContainer>
       <div className="summary">
