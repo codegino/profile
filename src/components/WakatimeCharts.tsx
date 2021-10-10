@@ -10,7 +10,6 @@ export default function WakatimeCharts() {
         My&nbsp;
         <Link href="https://wakatime.com/@codegino">
           <a
-            style={{color: '#777'}}
             target="_blank"
             aria-label="Wakatime profile"
             rel="noopener"
@@ -44,7 +43,11 @@ const Container = styled.div`
   background-color: var(--color-light-light);
   padding: var(--padding-small) 0;
 
-  a:hover {
-    text-decoration: underline;
+  a {
+    color: var(--color-primary-dark);
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 `;

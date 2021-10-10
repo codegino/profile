@@ -17,7 +17,6 @@ export default function CustomGithubCalendar() {
         My&nbsp;
         <Link href="https://github.com/codegino">
           <a
-            style={{color: '#777'}}
             target="_blank"
             aria-label="Github profile"
             rel="noopener"
@@ -57,7 +56,11 @@ const Container = styled(Zoom)`
   padding: 0 0.5rem;
   overflow: hidden;
 
-  a:hover {
-    text-decoration: underline;
+  a {
+    color: var(--color-primary-dark);
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 `;

@@ -91,7 +91,6 @@ const Container = styled.div`
   justify-content: center;
   padding: var(--padding-small) 0;
   overflow: hidden;
-  background-color: var(--color-light-dark);
 
   ${mediaQuery(
     600,

@@ -15,9 +15,12 @@ export default function Hero({
         alt="Hero photo"
         img={img}
         svg={svg}
-        layout="responsive"
-        height={400}
-        width={800}
+        layout="fill"
+        height={undefined}
+        width={undefined}
+        blurLevel={80}
+        objectFit="cover"
+        objectPosition="left"
       />
       <LeftMessageContainer>
         <Message cascade duration={1500} triggerOnce={true} delay={500}>
@@ -65,4 +68,5 @@ const Message = styled(Fade)`
 const HeroContainer = styled.div`
   overflow: hidden;
   position: relative;
+  height: 100vh;
 `;

@@ -8,11 +8,11 @@ export const BlurredImage = ({
   img,
   alt,
   style,
+  blurLevel = 40,
   ...props
-}: {style?: Pick<React.CSSProperties, 'height' | 'width'>} & Omit<
-  ImageProps,
-  'src'
-> &
+}: {blurLevel?: number} & {
+  style?: React.CSSProperties;
+} & Omit<ImageProps, 'src'> &
   Pick<IGetPlaiceholderReturn, 'svg' | 'img'>) => {
   const [hasPlaceholder, setHasPlaceholder] = useState(true);
 
@@ -26,7 +26,7 @@ export const BlurredImage = ({
               style: {
                 ...svg[1].style,
                 transform: ['scale(1.5)', svg[1].style.transform].join(' '),
-                filter: 'blur(40px)',
+                filter: `blur(${blurLevel}px)`,
               },
             },
             svg[2].map(child =>

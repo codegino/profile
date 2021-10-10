@@ -17,10 +17,12 @@ export default function AboutMeHero({
         alt="Hero photo"
         img={img}
         svg={svg}
-        layout="responsive"
-        height={400}
-        width={800}
-        objectPosition="center"
+        layout="fill"
+        height={undefined}
+        width={undefined}
+        blurLevel={80}
+        objectFit="cover"
+        objectPosition="right"
       />
       <MessageContainer>
         <Message cascade={true} duration={2000} triggerOnce={true}>
@@ -36,20 +38,23 @@ export default function AboutMeHero({
 const Container = styled.div`
   overflow: hidden;
   position: relative;
+  height: 100vh;
 `;
 
 const MessageContainer = styled.div`
   position: absolute;
-  top: 1rem;
-  left: 1rem;
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
   flex-wrap: wrap;
   max-width: 40rem;
+  top: 1rem;
+  right: 1rem;
+  text-align: right;
 
-  ${mediaQuery(900, 'top: 1.5rem; left: 1.5rem;')}
-  ${mediaQuery(1200, 'top: 2rem; left: 2.5rem;')}
+  ${mediaQuery(550, 'top: 1.0rem; left: 1.0rem; text-align: left;')}
+  ${mediaQuery(900, 'top: 1.5rem; left: 1.5rem; font-size: 1.4em;')}
+  ${mediaQuery(1200, 'top: 2rem; left: 2.5rem; font-size: 1.3em;')}
 `;
 
 const Message = styled(Fade)`

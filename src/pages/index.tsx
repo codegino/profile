@@ -20,8 +20,10 @@ const ReactTooltip = dynamic(() => import('react-tooltip'), {ssr: false});
 
 export default function Home({
   skills,
-  img,
-  svg,
+  heroImage,
+  heroSvg,
+  profileImage,
+  profileSvg,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <>
@@ -31,9 +33,9 @@ export default function Home({
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Hero img={img} svg={svg} />
+      <Hero img={heroImage} svg={heroSvg} />
       <Greetings />
-      <ResumeSummary />
+      <ResumeSummary img={profileImage} svg={profileSvg} />
       <Skills skills={skills} />
       <ReactTooltip backgroundColor="#111111" />
       <CustomGithubCalendar />
@@ -42,11 +44,7 @@ export default function Home({
         <p>
           Visit my&nbsp;
           <Link href="/resume">
-            <a
-              style={{color: '#777'}}
-              aria-label="resume"
-              data-tip="Link to my resume"
-            >
+            <a aria-label="resume" data-tip="Link to my resume">
               resume
             </a>
           </Link>
@@ -61,21 +59,32 @@ const CueToResume = styled.div`
   text-align: center;
   margin-bottom: var(--margin-small);
 
-  a:hover {
-    text-decoration: underline;
+  a {
+    color: var(--color-primary-dark);
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 `;
 
 export const getStaticProps = async () => {
-  const {img, svg} = await getPlaiceholder('/assets/hero-placeholder.jpg');
+  const {img: heroImage, svg: heroSvg} = await getPlaiceholder(
+    '/assets/hero-placeholder.jpg',
+  );
+  const {img: profileImage, svg: profileSvg} = await getPlaiceholder(
+    '/assets/profile-picture.jpeg',
+  );
 
   const resume = await resumeProps();
 
   return {
     props: {
       ...resume,
-      svg,
-      img,
+      heroImage,
+      heroSvg,
+      profileImage,
+      profileSvg,
     },
   };
 };
