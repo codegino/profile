@@ -15,13 +15,18 @@ export default function Hero({
         alt="Hero photo"
         img={img}
         svg={svg}
-        layout="responsive"
-        height={400}
-        width={800}
+        layout="fill"
+        height={undefined}
+        width={undefined}
         blurLevel={80}
+        objectFit="cover"
+        objectPosition="left"
       />
       <LeftMessageContainer>
-        <h1>Carlo Gino Catapang</h1>
+        <Message cascade duration={1500} triggerOnce={true} delay={500}>
+          <h1>I am Carlo Gino Catapang</h1>
+          <p>Welcome to my page!</p>
+        </Message>
       </LeftMessageContainer>
     </HeroContainer>
   );
@@ -31,14 +36,6 @@ const LeftMessageContainer = styled.div`
   position: absolute;
   top: 0.25rem;
   left: 0.5rem;
-
-  h1 {
-    color: white;
-    font-size: 1.7em;
-
-    ${mediaQuery(500, 'font-size: 1.9em;')}
-    ${mediaQuery(800, 'font-size: 2.5em;')}
-  }
 
   ${mediaQuery(
     500,
@@ -71,4 +68,5 @@ const Message = styled(Fade)`
 const HeroContainer = styled.div`
   overflow: hidden;
   position: relative;
+  height: 100vh;
 `;

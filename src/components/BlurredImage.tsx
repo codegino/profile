@@ -11,7 +11,7 @@ export const BlurredImage = ({
   blurLevel = 40,
   ...props
 }: {blurLevel?: number} & {
-  style?: Pick<React.CSSProperties, 'height' | 'width'>;
+  style?: React.CSSProperties;
 } & Omit<ImageProps, 'src'> &
   Pick<IGetPlaiceholderReturn, 'svg' | 'img'>) => {
   const [hasPlaceholder, setHasPlaceholder] = useState(true);
