@@ -4,8 +4,7 @@ export const navigationLinks: NavLink[] = [
     label: 'Home',
   },
   {url: '/resume', label: 'Resume'},
-  {url: '/about-me', label: 'About Me'},
-  {url: '/about-website', label: 'About site'},
+  {url: '/about', label: 'About'},
 ];
 
 type NavLink = {

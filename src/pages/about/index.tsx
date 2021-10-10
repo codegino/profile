@@ -1,9 +1,18 @@
+import styled from '@emotion/styled';
+import dompurify from 'isomorphic-dompurify';
 import {InferGetStaticPropsType} from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
+import {getPlaiceholder} from 'plaiceholder';
+import AboutMeHero from '../../components/AboutMeHero';
 import TechStackCarousel, {TechStack} from '../../components/TechStackCarousel';
+import {StaticContent} from '../../models/static-content';
+import {supabase} from '../../utils/supabaseClient';
 
 export default function AboutMe({
+  aboutMeDetails,
+  img,
+  svg,
   techStacks,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
@@ -14,7 +23,25 @@ export default function AboutMe({
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <h1 style={{textAlign: 'center'}}>This website is powered by</h1>
+      <AboutMeHero img={img} svg={svg} />
+      <AboutMeSection id="about-me-details">
+        <h1>About Me</h1>
+        {aboutMeDetails.map(detail => {
+          return (
+            <AboutMeDetail key={detail.key}>
+              <h3>{detail.label}</h3>
+              <div
+                className="content"
+                dangerouslySetInnerHTML={{
+                  __html: dompurify.sanitize(detail.content),
+                }}
+              />
+            </AboutMeDetail>
+          );
+        })}
+      </AboutMeSection>
+
+      <h2 style={{textAlign: 'center'}}>This website is powered by</h2>
       <TechStackCarousel techStacks={techStacks} />
 
       <p
@@ -52,6 +79,13 @@ export default function AboutMe({
 }
 
 export const getStaticProps = async () => {
+  const {data: aboutMe} = await supabase
+    .from('static_content')
+    .select('key, content, label')
+    .eq('category', 'about_me');
+
+  const {img, svg} = await getPlaiceholder('/assets/superman-cover.png');
+
   const techStacks: TechStack[] = [
     {
       name: 'React ',
@@ -93,7 +127,31 @@ export const getStaticProps = async () => {
 
   return {
     props: {
+      aboutMeDetails: aboutMe as StaticContent[],
       techStacks,
+      img,
+      svg,
     },
   };
 };
+
+const AboutMeSection = styled.section`
+  margin-bottom: var(--margin-big);
+
+  h1 {
+    text-align: center;
+    font-size: 3em;
+  }
+`;
+
+const AboutMeDetail = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+
+  .content {
+    max-width: 40rem;
+    text-align: justify;
+  }
+`;
