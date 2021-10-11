@@ -86,7 +86,7 @@ async function generateSitemap() {
     .map(sitemap => {
       return `
         <url>
-          <loc>${ROOT_URL}/blog/${sitemap.slug}}</loc>
+          <loc>${ROOT_URL}/blog/${sitemap.slug}</loc>
           <lastmod>${sitemap.lastMod}</lastmod>
           <changefreq>${sitemap.changeFrequency}</changefreq>
           <priority>${sitemap.priority}</priority>
