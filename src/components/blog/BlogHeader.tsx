@@ -1,11 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
-
-type BlogMetadata = {
-  title: string;
-  author: string;
-  date: string;
-};
+import {BlogMetadata} from '../../models/blog';
 
 const BlogHeader: React.FC<BlogMetadata> = ({title, author, date}) => {
   return (
