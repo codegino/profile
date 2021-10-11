@@ -44,11 +44,7 @@ export const getStaticProps = async () => {
     .map(directory => {
       const mdxContent = require(`./${directory}/index.mdx`);
 
-      const meta: BlogMetadata = mdxContent?.meta ?? {
-        author: null,
-        date: null,
-        title: null,
-      };
+      const meta: BlogMetadata = mdxContent?.meta ?? {};
 
       return {
         ...meta,

@@ -4,4 +4,5 @@ export type BlogMetadata = {
   date: string;
   slug: string;
   order: number;
+  description: string;
 };
