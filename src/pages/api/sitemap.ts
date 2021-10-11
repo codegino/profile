@@ -1,7 +1,4 @@
-import fs from 'fs';
 import {NextApiHandler} from 'next';
-import path from 'path';
-import {BlogMetadata} from '../../models/blog';
 
 type SiteMapUrl = {
   slug: string;
@@ -44,28 +41,6 @@ const staticPages: SiteMapUrl[] = [
   },
 ];
 
-const generateBlogSiteMapData = () => {
-  const postsDirectory = path.join(process.cwd(), 'src/pages/blog');
-  const blogDirectories = fs
-    .readdirSync(postsDirectory)
-    .filter(filename => !filename.includes('index.tsx')); // exclude this file
-
-  const blogsSitemaps: SiteMapUrl[] = blogDirectories.map(directory => {
-    const mdxContent = require(`../blog/${directory}/index.mdx`);
-
-    const meta: BlogMetadata = mdxContent?.meta ?? {};
-
-    return {
-      slug: directory,
-      changeFrequency: 'monthly',
-      lastMod: meta.date,
-      priority: 1,
-    };
-  });
-
-  return blogsSitemaps;
-};
-
 const ROOT_URL = 'https://www.carlogino.cc';
 
 const sitemap: NextApiHandler = async (_, res) => {
@@ -76,18 +51,6 @@ const sitemap: NextApiHandler = async (_, res) => {
           return `
             <url>
               <loc>${ROOT_URL}${sitemap.slug}</loc>
-              <lastmod>${sitemap.lastMod}</lastmod>
-              <changefreq>${sitemap.changeFrequency}</changefreq>
-              <priority>${sitemap.priority}</priority>
-            </url>
-          `;
-        })
-        .join('')}
-      ${generateBlogSiteMapData()
-        .map(sitemap => {
-          return `
-            <url>
-              <loc>${ROOT_URL}/blog/${sitemap.slug}}</loc>
               <lastmod>${sitemap.lastMod}</lastmod>
               <changefreq>${sitemap.changeFrequency}</changefreq>
               <priority>${sitemap.priority}</priority>
