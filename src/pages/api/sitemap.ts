@@ -1,7 +1,7 @@
 import fs from 'fs';
-import {GetServerSideProps} from 'next';
+import {NextApiHandler} from 'next';
 import path from 'path';
-import {BlogMetadata} from '../models/blog';
+import {BlogMetadata} from '../../models/blog';
 
 type SiteMapUrl = {
   slug: string;
@@ -16,8 +16,6 @@ type SiteMapUrl = {
     | 'hourly'
     | 'always';
 };
-
-const Sitemap = () => {};
 
 const staticPages: SiteMapUrl[] = [
   {
@@ -53,7 +51,7 @@ const generateBlogSiteMapData = () => {
     .filter(filename => !filename.includes('index.tsx')); // exclude this file
 
   const blogsSitemaps: SiteMapUrl[] = blogDirectories.map(directory => {
-    const mdxContent = require(`./blog/${directory}/index.mdx`);
+    const mdxContent = require(`../blog/${directory}/index.mdx`);
 
     const meta: BlogMetadata = mdxContent?.meta ?? {};
 
@@ -70,7 +68,7 @@ const generateBlogSiteMapData = () => {
 
 const ROOT_URL = 'https://www.carlogino.cc';
 
-export const getServerSideProps: GetServerSideProps = async ({res}) => {
+const sitemap: NextApiHandler = async (_, res) => {
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
     <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
       ${staticPages
@@ -103,10 +101,6 @@ export const getServerSideProps: GetServerSideProps = async ({res}) => {
   res.setHeader('Content-Type', 'text/xml');
   res.write(sitemap);
   res.end();
-
-  return {
-    props: {},
-  };
 };
 
-export default Sitemap;
+export default sitemap;
