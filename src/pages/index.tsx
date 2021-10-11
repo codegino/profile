@@ -9,6 +9,7 @@ import Hero from '../components/Hero';
 import ResumeSummary from '../components/ResumeSummary';
 import WakatimeCharts from '../components/WakatimeCharts';
 import Skills from '../components/skills/Skills';
+import generateSitemap from '../lib/sitemap';
 import {resumeProps} from '../utils/resume-props';
 
 const CustomGithubCalendar = dynamic(
@@ -75,6 +76,10 @@ export const getStaticProps = async () => {
   const {img: profileImage, svg: profileSvg} = await getPlaiceholder(
     '/assets/profile-picture.jpeg',
   );
+
+  if (process.env.NODE_ENV === 'production') {
+    await generateSitemap();
+  }
 
   const resume = await resumeProps();
 
