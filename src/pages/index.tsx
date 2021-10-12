@@ -3,7 +3,6 @@ import {InferGetStaticPropsType} from 'next';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import Link from 'next/link';
-import {getPlaiceholder} from 'plaiceholder';
 import Greetings from '../components/Greetings';
 import Hero from '../components/Hero';
 import ResumeSummary from '../components/ResumeSummary';
@@ -11,6 +10,7 @@ import WakatimeCharts from '../components/WakatimeCharts';
 import Skills from '../components/skills/Skills';
 import generateSitemap from '../lib/sitemap';
 import {resumeProps} from '../utils/resume-props';
+import {getImageFromSupabase} from '../utils/supabase-image';
 
 const CustomGithubCalendar = dynamic(
   () => import('../components/CustomGithubCalendar'),
@@ -70,11 +70,11 @@ const CueToResume = styled.div`
 `;
 
 export const getStaticProps = async () => {
-  const {img: heroImage, svg: heroSvg} = await getPlaiceholder(
-    '/assets/hero-cover.jpg',
+  const {img: heroImage, svg: heroSvg} = await getImageFromSupabase(
+    'home_hero_cover',
   );
-  const {img: profileImage, svg: profileSvg} = await getPlaiceholder(
-    '/assets/profile-picture.jpeg',
+  const {img: profileImage, svg: profileSvg} = await getImageFromSupabase(
+    'profile_photo',
   );
 
   if (process.env.NODE_ENV === 'production') {
