@@ -6,91 +6,129 @@ import {Zoom} from 'react-awesome-reveal';
 import Typist from 'react-typist';
 import 'react-typist/dist/Typist.css';
 import {mediaQuery} from '../utils/media-query';
+import {useScrollToView} from '../utils/scroll-to-view-hook';
+import {GuideArrow} from './GuideArrow';
 
 export default function Greetings() {
   const [isTyping, setIsTyping] = useState(false);
+  const {scrollToContent} = useScrollToView('#resume-summary');
+  const [isGuideVisible, setIsGuideVisible] = useState(false);
+
   return (
-    <Zoom onVisibilityChange={e => setIsTyping(e)} triggerOnce>
-      <Container id="greetings">
-        <Terminal>
-          <TerminalHeader>
-            <div className="action action__close" />
-            <div className="action action__minimize" />
-            <div className="action action__maximize" />
-            <div className="terminal-title">Greetings</div>
-            <BsTerminalFill />
-          </TerminalHeader>
-          <TerminalContent>
-            {isTyping ? (
-              <Typist avgTypingDelay={50}>
-                <BsChevronRight />
-                <Typist.Delay ms={1200} />
-                Hi! How are you?
-                <br />
-                <BsChevronRight />
-                <Typist.Delay ms={500} />
-                <br />
-                <BsChevronRight />
-                <Typist.Delay ms={500} />
-                This is Carlo Gino, your
-                <Typist.Delay ms={200} /> Web
-                <Typist.Delay ms={500} /> developer
-                <Typist.Delay ms={1000} />
-                <Typist.Backspace count={14} /> Software developer
-                <Typist.Delay ms={1200} />
-                <Typist.Backspace count={9} /> ENGINEER
-                <Typist.Delay ms={200} />
-                <br />
-                <BsChevronRight />
-                who will make your software problems go away
-                <Typist.Delay ms={1500} />
-                <br />
-                <BsChevronRight />
-                <Typist.Delay ms={300} />
-                <br />
-                <BsChevronRight />
-                <Typist.Delay ms={500} />
-                Got any ideas for a personal,
-                <Typist.Delay ms={300} /> business,
-                <Typist.Delay ms={300} /> and other uses?
-                <br />
-                <BsChevronRight />
-                <Typist.Delay ms={500} />
-                Let&lsquo;s make them come to existense!
-                <br />
-                <BsChevronRight />
-                <Typist.Delay ms={500} />
-                We&lsquo;ll create something marvelous together.
-                <br />
-                <BsChevronRight />
-                <Typist.Delay ms={300} />
-                <br />
-                <BsChevronRight />
-                <Typist.Delay ms={300} />
-                <br />
-                <BsChevronRight />
-                <Typist.Delay ms={300} />
-                <br />
-                <BsChevronRight />
-                <Typist.Delay ms={300} />
-                <br />
-                <BsChevronRight />
-                <Typist.Delay ms={1000} />
-                Scroll down to know more about me
-              </Typist>
-            ) : null}
-          </TerminalContent>
-        </Terminal>
-      </Container>
-    </Zoom>
+    <Container id="greetings">
+      <Zoom onVisibilityChange={e => setIsTyping(e)} triggerOnce>
+        <Container>
+          <Terminal>
+            <TerminalHeader>
+              <div className="action action__close" />
+              <div className="action action__minimize" />
+              <div className="action action__maximize" />
+              <div className="terminal-title">Greetings.sh</div>
+              <BsTerminalFill />
+            </TerminalHeader>
+            <TerminalContent>
+              {isTyping ? (
+                <Typist
+                  avgTypingDelay={50}
+                  onTypingDone={() => setIsGuideVisible(true)}
+                >
+                  <BsChevronRight />
+                  <Typist.Delay ms={1200} />
+                  Hi! How are you?
+                  <br />
+                  <BsChevronRight />
+                  <Typist.Delay ms={500} />
+                  <br />
+                  <BsChevronRight />
+                  <Typist.Delay ms={500} />
+                  This is Carlo Gino, your Web
+                  <Typist.Delay ms={500} /> developer
+                  <Typist.Delay ms={1000} />
+                  <Typist.Backspace count={14} /> Software developer
+                  <Typist.Delay ms={1200} />
+                  <Typist.Backspace count={18} />{' '}
+                  <span style={{color: 'yellowgreen', fontWeight: 'bold'}}>
+                    SOFTWARE ENGINEER
+                  </span>
+                  <Typist.Delay ms={200} />
+                  <br />
+                  <BsChevronRight />
+                  who will make your software problems go away
+                  <Typist.Delay ms={1500} />
+                  <br />
+                  <BsChevronRight />
+                  <Typist.Delay ms={300} />
+                  <br />
+                  <BsChevronRight />
+                  <Typist.Delay ms={500} />
+                  Got any ideas for a personal,
+                  <Typist.Delay ms={300} /> business,
+                  <Typist.Delay ms={300} /> or other uses?
+                  <br />
+                  <BsChevronRight />
+                  <Typist.Delay ms={500} />
+                  Let&lsquo;s make them come to existense!
+                  <br />
+                  <BsChevronRight />
+                  <Typist.Delay ms={500} />
+                  We&lsquo;ll create something marvelous together.
+                  <br />
+                  <BsChevronRight />
+                  <Typist.Delay ms={300} />
+                  <br />
+                  <BsChevronRight />
+                  <Typist.Delay ms={300} />
+                  <br />
+                  <BsChevronRight />
+                  <Typist.Delay ms={300} />
+                  <br />
+                  <BsChevronRight />
+                  <Typist.Delay ms={300} />
+                  <br />
+                  <BsChevronRight />
+                  <Typist.Delay ms={1000} />
+                  Scroll down to know more about me...
+                </Typist>
+              ) : null}
+            </TerminalContent>
+          </Terminal>
+        </Container>
+      </Zoom>
+      <Background />
+      {isGuideVisible ? (
+        <GuideArrowContainer triggerOnce>
+          <GuideArrow onClick={scrollToContent} />
+        </GuideArrowContainer>
+      ) : null}
+    </Container>
   );
 }
+const GuideArrowContainer = styled(Zoom)`
+  position: absolute;
+  bottom: 8vh;
+`;
 
+const Background = styled.div`
+  top: 0;
+  left: 0;
+  z-index: -1;
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  background-image: linear-gradient(
+    to right,
+    var(--color-light-light),
+    var(--color-light-dark)
+  );
+`;
 const Container = styled.div`
   display: flex;
   justify-content: center;
-  margin-bottom: var(--margin-big);
-  padding-top: var(--padding-big);
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  padding-top: 5rem;
+  position: relative;
   overflow: hidden;
 `;
 
@@ -99,6 +137,7 @@ const TerminalContent = styled.div`
   height: 100%;
   padding: var(--padding-small) var(--padding-very-small);
   border: 1px solid var(--color-light);
+  font-family: monospace;
 
   color: white;
   #060202 .cursor {
@@ -122,6 +161,7 @@ const TerminalHeader = styled.div`
     width: 100%;
     justify-self: center;
     text-align: center;
+    font-family: monospace;
   }
 
   .action {
@@ -149,17 +189,19 @@ const TerminalHeader = styled.div`
 
 const Terminal = styled.div`
   box-sizing: border-box;
-  min-height: 15rem;
+  height: 16rem;
   min-width: 100%;
   border-radius: 5px;
   overflow: hidden;
   display: block;
   font-size: 0.8em;
+  position: relative;
+  top: -5rem;
 
   ${mediaQuery(
     400,
     `
-   min-height: 18rem;
+   height: 18rem;
    min-width: 100%;
    font-size: 0.8em;
   `,
@@ -168,16 +210,23 @@ const Terminal = styled.div`
   ${mediaQuery(
     600,
     `
-   min-height: 20rem;
+   height: 20rem;
    min-width: 90%;
    font-size: 1em;
   `,
   )}
 
   ${mediaQuery(
+    750,
+    `
+   min-width: 70%;
+  `,
+  )}
+
+
+  ${mediaQuery(
     900,
     `
-   min-height: 20rem;
    min-width: 35rem;
    font-size: 1em;
   `,

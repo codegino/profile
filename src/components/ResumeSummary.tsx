@@ -12,7 +12,7 @@ export default function ResumeSummary({
   svg,
 }: Pick<IGetPlaiceholderReturn, 'svg' | 'img'>) {
   return (
-    <Container>
+    <Container id="resume-summary">
       <ImageContainer>
         <BlurredImage
           img={img}
@@ -59,7 +59,7 @@ const Container = styled.div`
   align-items: center;
   flex-direction: column;
   background-color: var(--color-light-light);
-  margin: var(--margin-big) 0;
+  padding: var(--margin-big) 0;
 
   ${mediaQuery(900, `flex-direction: row;`)}
 
