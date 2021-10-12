@@ -18,7 +18,7 @@ const Container = styled.div`
   cursor: pointer;
 
   .guide-arrow {
-    fill: white;
+    fill: var(--color-light-light);
     background-color: var(--color-primary-dark);
     border-radius: 50%;
     padding: 6px;

@@ -74,7 +74,7 @@ const LeftMessageContainer = styled.div`
 const Message = styled(Fade)`
   p,
   h1 {
-    color: var(--color-light-light);
+    color: var(--color-dark-dark);
     z-index: 2;
     font-size: 1.5em;
   }
@@ -89,7 +89,8 @@ const Overlay = styled.div`
   position: absolute;
   display: block;
   z-index: 1;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: var(--color-light-light);
+  opacity: 0.5;
   top: 0;
   right: 0;
 `;
