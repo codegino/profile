@@ -84,7 +84,7 @@ export const getStaticProps = async () => {
     .select('key, content, label')
     .eq('category', 'about_me');
 
-  const {img, svg} = await getPlaiceholder('/assets/superman-cover.png');
+  const {img, svg} = await getPlaiceholder('/assets/about-me-cover.png');
 
   const techStacks: TechStack[] = [
     {

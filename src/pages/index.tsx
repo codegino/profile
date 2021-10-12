@@ -71,7 +71,7 @@ const CueToResume = styled.div`
 
 export const getStaticProps = async () => {
   const {img: heroImage, svg: heroSvg} = await getPlaiceholder(
-    '/assets/hero-placeholder.jpg',
+    '/assets/hero-cover.jpg',
   );
   const {img: profileImage, svg: profileSvg} = await getPlaiceholder(
     '/assets/profile-picture.jpeg',
