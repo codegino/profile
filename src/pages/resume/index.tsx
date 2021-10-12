@@ -78,6 +78,8 @@ export default function Resume({
         workExperiences={workExperiences}
         educationExperiences={educationExperiences}
       />
+      <hr />
+      <hr />
       <Skills skills={skills} />
       <ReactTooltip backgroundColor="#111111" />
       <CustomGithubCalendar />

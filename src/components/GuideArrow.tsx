@@ -19,7 +19,7 @@ const Container = styled.div`
 
   .guide-arrow {
     fill: white;
-    background-color: orangered;
+    background-color: var(--color-primary-dark);
     border-radius: 50%;
     padding: 6px;
     font-size: 50px;
@@ -28,7 +28,7 @@ const Container = styled.div`
     @keyframes pulse-black {
       0% {
         transform: scale(0.95);
-        box-shadow: 0 0 0 0 rgba(222, 100, 56, 0.7);
+        box-shadow: 0 0 0 0 rgba(165, 231, 89, 0.7);
       }
 
       70% {
