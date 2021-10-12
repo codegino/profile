@@ -5,10 +5,10 @@ import {InferGetStaticPropsType} from 'next';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import Link from 'next/link';
-import {getPlaiceholder} from 'plaiceholder';
 import ResumeSummary from '../../components/ResumeSummary';
 import CustomIcon from '../../components/icon/CustomIcon';
 import {resumeProps} from '../../utils/resume-props';
+import {getImageFromSupabase} from '../../utils/supabase-image';
 
 const CustomGithubCalendar = dynamic(
   () => import('../../components/CustomGithubCalendar'),
@@ -89,7 +89,7 @@ export default function Resume({
 
 export const getStaticProps = async () => {
   const props = await resumeProps();
-  const {img, svg} = await getPlaiceholder('/assets/profile-picture.jpeg');
+  const {img, svg} = await getImageFromSupabase('profile_photo');
 
   return {
     props: {

@@ -3,10 +3,10 @@ import dompurify from 'isomorphic-dompurify';
 import {InferGetStaticPropsType} from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
-import {getPlaiceholder} from 'plaiceholder';
 import AboutMeHero from '../../components/AboutMeHero';
 import TechStackCarousel, {TechStack} from '../../components/TechStackCarousel';
 import {StaticContent} from '../../models/static-content';
+import {getImageFromSupabase} from '../../utils/supabase-image';
 import {supabase} from '../../utils/supabaseClient';
 
 export default function AboutMe({
@@ -84,7 +84,7 @@ export const getStaticProps = async () => {
     .select('key, content, label')
     .eq('category', 'about_me');
 
-  const {img, svg} = await getPlaiceholder('/assets/superman-cover.png');
+  const {img, svg} = await getImageFromSupabase('about_me_hero_cover');
 
   const techStacks: TechStack[] = [
     {
