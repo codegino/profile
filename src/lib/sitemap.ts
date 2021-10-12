@@ -65,7 +65,7 @@ const generateBlogSiteMapData = (): SiteMapUrl[] => {
   return blogsSitemaps;
 };
 
-const ROOT_URL = 'https://www.carlogino.cc';
+const ROOT_URL = 'https://carlogino.cc';
 
 async function generateSitemap() {
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
