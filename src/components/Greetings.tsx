@@ -17,7 +17,7 @@ export default function Greetings() {
   return (
     <Container id="greetings">
       <Zoom onVisibilityChange={e => setIsTyping(e)} triggerOnce>
-        <Container>
+        <InnerContainer>
           <Terminal>
             <TerminalHeader>
               <div className="action action__close" />
@@ -92,7 +92,7 @@ export default function Greetings() {
               ) : null}
             </TerminalContent>
           </Terminal>
-        </Container>
+        </InnerContainer>
       </Zoom>
       <Background />
       {isGuideVisible ? (
@@ -122,6 +122,17 @@ const Background = styled.div`
   );
 `;
 const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  padding-top: 5rem;
+  position: relative;
+  overflow: hidden;
+`;
+
+const InnerContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
