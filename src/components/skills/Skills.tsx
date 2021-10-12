@@ -126,7 +126,12 @@ const SkillsContainer = styled.div`
     row-gap: 0.5rem;
   }
 
+  h2 {
+    color: var(--color-dark-dark);
+  }
+
   .label {
     text-align: center;
+    color: var(--color-dark-dark);
   }
 `;

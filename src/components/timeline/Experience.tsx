@@ -34,6 +34,7 @@ const Container = styled.div`
   flex-direction: column;
   z-index: 1;
   margin-bottom: 2rem;
+  background-color: var(--color-light-light);
 
   .content {
     padding: 0.25rem 1rem;

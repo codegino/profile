@@ -87,7 +87,7 @@ const Content: React.FC<{exp: WorkExperience}> = ({exp, children = null}) => {
     >
       <div>
         <DateWrapper>{exp.end_date}</DateWrapper>
-        <div className="name">
+        <Summary>
           {exp.category === 'work' ? <FaBuilding /> : <FaGraduationCap />}
           &nbsp;
           <Link href={exp.url}>
@@ -100,7 +100,7 @@ const Content: React.FC<{exp: WorkExperience}> = ({exp, children = null}) => {
               {exp.organization}
             </a>
           </Link>
-        </div>
+        </Summary>
         <ContentTitle>
           <div className="title">{exp.title}</div> <div>({exp.role})</div>
         </ContentTitle>
@@ -113,6 +113,7 @@ const Content: React.FC<{exp: WorkExperience}> = ({exp, children = null}) => {
 
 const CategoryTitle = styled.h2`
   margin: 0;
+  color: var(--color-dark-dark);
 `;
 
 const DateWrapper = styled.p`
@@ -126,12 +127,18 @@ const ContentTitle = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
+  color: var(--color-dark-dark);
   ${mediaQuery(900, `flex-direction: row;`)}
 `;
 
 const ContentDescription = styled.div`
   margin-top: 1rem;
   text-align: left;
+  color: var(--color-dark-dark);
+`;
+
+const Summary = styled.div`
+  color: var(--color-dark-dark);
 `;
 
 const Container = styled.div`

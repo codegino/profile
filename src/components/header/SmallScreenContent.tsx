@@ -119,7 +119,7 @@ const Sidebar = styled.div`
   top: 0;
   right: 0;
   background-color: var(--color-light-light);
-  color: black;
+  color: var(--color-dark-dark);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -144,10 +144,12 @@ const Sidebar = styled.div`
 
           &.active {
             color: var(--color-primary-dark);
+            text-decoration: underline;
           }
 
           &:hover {
-            color: var(--color-primary);
+            color: var(--color-dark);
+            text-decoration: underline;
           }
         }
 

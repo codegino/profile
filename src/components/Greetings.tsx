@@ -130,6 +130,7 @@ const Container = styled.div`
   padding-top: 5rem;
   position: relative;
   overflow: hidden;
+  z-index: 1;
 `;
 
 const InnerContainer = styled.div`
@@ -150,8 +151,9 @@ const TerminalContent = styled.div`
   border: 1px solid var(--color-light);
   font-family: monospace;
 
-  color: white;
-  #060202 .cursor {
+  background-color: var(--color-dark-dark);
+  color: var(--color-light-light);
+  .cursor {
     color: green;
     width: 10em;
     font-size: 1.1em;

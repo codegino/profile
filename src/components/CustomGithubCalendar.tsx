@@ -55,6 +55,8 @@ const Container = styled(Zoom)`
   margin: var(--margin-medium) 0;
   padding: 0 0.5rem;
   overflow: hidden;
+  background-color: var(--color-light-light);
+  color: var(--color-dark-dark);
 
   a {
     color: var(--color-primary-dark);

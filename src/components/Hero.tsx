@@ -16,6 +16,7 @@ export default function Hero({
 
   return (
     <HeroContainer>
+      <Overlay />
       <BlurredImage
         alt="Hero photo"
         img={img}
@@ -42,11 +43,14 @@ export default function Hero({
 
 const GuideArrowContainer = styled(Zoom)`
   position: absolute;
+  z-index: 2;
   bottom: 8vh;
 `;
 
 const LeftMessageContainer = styled.div`
   position: absolute;
+  display: block;
+  z-index: 2;
   top: 0.25rem;
   left: 0.5rem;
 
@@ -70,12 +74,25 @@ const LeftMessageContainer = styled.div`
 const Message = styled(Fade)`
   p,
   h1 {
-    color: white;
+    color: var(--color-dark-dark);
+    z-index: 2;
     font-size: 1.5em;
   }
 
   ${mediaQuery(500, 'font-size: 1.5em;')}
   ${mediaQuery(800, 'font-size: 2em;')}
+`;
+
+const Overlay = styled.div`
+  height: 95vh;
+  width: 100vw;
+  position: absolute;
+  display: block;
+  z-index: 1;
+  background-color: var(--color-light-light);
+  opacity: 0.5;
+  top: 0;
+  right: 0;
 `;
 
 const HeroContainer = styled.div`
@@ -85,4 +102,15 @@ const HeroContainer = styled.div`
   margin: auto;
   display: flex;
   justify-content: center;
+  background-color: var(--color-dark-dark);
+
+  :before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 1);
+  }
 `;

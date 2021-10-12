@@ -52,7 +52,6 @@ export default function ResumeSummary({
 }
 
 const Container = styled.div`
-  border-radius: 0.5rem;
   width: 100%;
   display: flex;
   justify-content: center;
