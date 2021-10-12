@@ -51,11 +51,13 @@ const WideScreenContainer = styled.div`
 
       > li {
         &:hover {
-          color: var(--color-primary-light);
+          text-decoration: underline;
+          color: var(--color-light);
         }
 
         .active {
           color: var(--color-primary);
+          text-decoration: underline;
         }
 
         :not(:last-child) {

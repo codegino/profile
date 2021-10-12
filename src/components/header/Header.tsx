@@ -9,7 +9,7 @@ export default function Header() {
   return (
     <Container>
       <div>
-        <StyledImage className="logo">
+        <MyLogo className="logo">
           <Link href="/">
             <a aria-label="My Logo">
               <Image
@@ -21,7 +21,7 @@ export default function Header() {
               />
             </a>
           </Link>
-        </StyledImage>
+        </MyLogo>
       </div>
       <WideScreenContentImpl />
       <SmallScreenContent />
@@ -41,13 +41,13 @@ const Container = styled.header`
   overflow: hidden;
 `;
 
-const StyledImage = styled.div`
+const MyLogo = styled.div`
   border-radius: 50%;
   height: 27px;
   width: 27px;
   padding: 2px;
   transition: all 0.5s;
-  background-color: var(--color-light-light);
+  background-color: white;
   border-radius: 50%;
   border: 1px solid var(--color-light);
   box-shadow: 0 0 1px 1px var(--color-dark-dark);
