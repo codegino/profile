@@ -6,7 +6,10 @@ import Link from 'next/link';
 import AboutMeHero from '../../components/AboutMeHero';
 import TechStackCarousel, {TechStack} from '../../components/TechStackCarousel';
 import {StaticContent} from '../../models/static-content';
-import {getImageFromSupabase} from '../../utils/supabase-image';
+import {
+  getImageFromSupabase,
+  getImageURLFromSupabase,
+} from '../../utils/supabase-image';
 import {supabase} from '../../utils/supabaseClient';
 
 export default function AboutMe({
@@ -81,39 +84,39 @@ export const getStaticProps = async () => {
   const techStacks: TechStack[] = [
     {
       name: 'React ',
-      url: 'https://miro.medium.com/max/1400/0*kfom-b3fk4IqgDgc.png',
+      url: await getImageURLFromSupabase('react_logo'),
     },
     {
       name: 'NextJS',
-      url: 'https://miro.medium.com/max/1000/1*htbUdWgFQ3a94PMEvBr_hQ.png',
+      url: await getImageURLFromSupabase('nextjs_logo'),
     },
     {
       name: 'Prettier',
-      url: 'https://repository-images.githubusercontent.com/75104123/f6f27280-61e5-11e9-8759-33288e842a50',
+      url: await getImageURLFromSupabase('prettier_logo'),
     },
     {
       name: 'Eslint',
-      url: 'https://blog.scottlogic.com/bquinn/assets/ESLint.png',
+      url: await getImageURLFromSupabase('eslint_logo'),
     },
     {
       name: 'Emotion',
-      url: 'https://gatsby-emotion-tailwind-starter.netlify.app/static/a988bbfd6887ce9472cbd998d301287a/6fd42/emotion.png',
+      url: await getImageURLFromSupabase('emotion_logo'),
     },
     {
       name: 'Supabase',
-      url: 'https://getlogo.net/wp-content/uploads/2020/11/supabase-logo-vector.png',
+      url: await getImageURLFromSupabase('supabase_logo'),
     },
     {
       name: 'Github',
-      url: 'https://miro.medium.com/max/1400/1*JLYlSLSK8-AZo8gt9UdYqA.jpeg',
+      url: await getImageURLFromSupabase('github_logo'),
     },
     {
       name: 'Vercel',
-      url: 'https://mms.businesswire.com/media/20210623005228/en/887051/23/vercel-logotype-dark.jpg',
+      url: await getImageURLFromSupabase('vercel_logo'),
     },
     {
       name: 'TypeScript',
-      url: 'https://cdn-ssl-devio-img.classmethod.jp/wp-content/uploads/2020/09/typescript.png',
+      url: await getImageURLFromSupabase('typescript_logo'),
     },
   ];
 
