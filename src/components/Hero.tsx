@@ -42,7 +42,7 @@ export default function Hero({
 
 const GuideArrowContainer = styled(Zoom)`
   position: absolute;
-  z-index: 2;
+  z-index: 1;
   bottom: 8vh;
 `;
 
@@ -112,15 +112,4 @@ const HeroContainer = styled.div`
   margin: auto;
   display: flex;
   justify-content: center;
-  background-color: var(--color-dark-dark);
-
-  :before {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 1);
-  }
 `;

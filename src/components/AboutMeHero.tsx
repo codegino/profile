@@ -17,6 +17,7 @@ export default function AboutMeHero({
 
   return (
     <Container>
+      <Overlay />
       <BlurredImage
         alt="Hero photo"
         img={img}
@@ -45,12 +46,14 @@ export default function AboutMeHero({
 const GuideArrowContainer = styled(Zoom)`
   position: absolute;
   bottom: 8vh;
+  z-index: 1;
 `;
 
 const Container = styled.div`
   overflow: hidden;
   position: relative;
   height: 95vh;
+  margin: auto;
   display: flex;
   justify-content: center;
 `;
@@ -72,17 +75,52 @@ const MessageContainer = styled.div`
 `;
 
 const Message = styled(Fade)`
+  z-index: 2;
   p {
-    color: white;
+    color: var(--color-light-light);
+    text-shadow: 1px 1px var(--color-dark-dark);
     margin-right: 0.5rem;
-    font-size: 1.5em;
+    font-size: 2.25em;
+    z-index: 2;
 
-    ${mediaQuery(500, 'font-size: 2em;')}
+    ${mediaQuery(500, 'font-size: 2.5em;')}
 
-    ${mediaQuery(600, 'font-size: 2.5em;')}
+    ${mediaQuery(600, 'font-size: 3em;')}
 
-    ${mediaQuery(800, 'font-size: 3em;')}
+    ${mediaQuery(800, 'font-size: 3.5em;')}
 
     ${mediaQuery(1200, 'font-size: 4em;')}
   }
+`;
+
+const Overlay = styled.div`
+  height: 95vh;
+  width: 100vw;
+  position: absolute;
+  display: block;
+  z-index: 1;
+  opacity: 0.7;
+  top: 0;
+  right: 0;
+
+  background-image: linear-gradient(
+    to right,
+    var(--color-light-light),
+    var(--color-light),
+    var(--color-dark),
+    var(--color-dark-dark)
+  );
+
+  ${mediaQuery(
+    550,
+    `
+    background-image: linear-gradient(
+      to left,
+      var(--color-light-light),
+      var(--color-light),
+      var(--color-dark),
+      var(--color-dark-dark)
+    );
+  `,
+  )}
 `;
