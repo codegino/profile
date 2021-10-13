@@ -16,7 +16,10 @@ class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
-          <meta name="google-site-verification" content="K7UvAeBEqJTv8VSbGCYaOU27ruQ_eqcSxzL9jahKbDk" />
+          <meta
+            name="google-site-verification"
+            content="K7UvAeBEqJTv8VSbGCYaOU27ruQ_eqcSxzL9jahKbDk"
+          />
           <meta
             name="theme-color"
             media="(prefers-color-scheme: light)"
@@ -26,6 +29,23 @@ class MyDocument extends Document {
             name="theme-color"
             media="(prefers-color-scheme: dark)"
             content="black"
+          />
+          {/* Global Site Tag (gtag.js) - Google Analytics */}
+          <script
+            async
+            src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
+          />
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}', {
+              page_path: window.location.pathname,
+            });
+          `,
+            }}
           />
         </Head>
         <body>

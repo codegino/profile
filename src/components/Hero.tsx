@@ -29,7 +29,7 @@ export default function Hero({
       />
       <LeftMessageContainer>
         <Message cascade duration={1500} triggerOnce={true} delay={200}>
-          <h1>I am Carlo Gino Catapang</h1>
+          <h1>I&lsquo;m Carlo Gino Catapang</h1>
           <p>Welcome to my page!</p>
         </Message>
       </LeftMessageContainer>
@@ -53,12 +53,6 @@ const LeftMessageContainer = styled.div`
   top: 0.25rem;
   left: 0.5rem;
 
-  h1 {
-    color: var(--color-dark-dark);
-    z-index: 2;
-    font-size: 5em;
-  }
-
   ${mediaQuery(
     500,
     `
@@ -77,11 +71,16 @@ const LeftMessageContainer = styled.div`
 `;
 
 const Message = styled(Fade)`
-  p,
-  h1 {
+  h1,
+  p {
     color: var(--color-dark-dark);
+    text-shadow: 1px 1px var(--color-light-light);
     z-index: 2;
-    font-size: 1.5em;
+    font-size: 2em;
+  }
+
+  p {
+    font-size: 1.75em;
   }
 
   ${mediaQuery(500, 'font-size: 1.5em;')}
@@ -98,10 +97,10 @@ const Overlay = styled.div`
     to bottom,
     var(--color-light-light),
     var(--color-light),
-    var(--color-primary),
-    var(--color-dark)
+    var(--color-dark),
+    var(--color-dark-dark)
   );
-  opacity: 0.5;
+  opacity: 0.4;
   top: 0;
   right: 0;
 `;
