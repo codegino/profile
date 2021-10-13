@@ -86,6 +86,8 @@ const Container = styled.header`
   height: 50px;
   min-height: 50px;
   width: 100%;
+  z-index: 1;
+  display: block;
   background-color: var(--color-dark);
   color: var(--color-light);
   padding: 0 var(--padding-small);
@@ -105,7 +107,7 @@ const MyLogo = styled.div`
   width: 27px;
   padding: 2px;
   transition: all 0.5s;
-  background-color: white;
+  background-color: white; // This needs to be white, not a variable
   border-radius: 50%;
   box-shadow: 0 0 1px 1px var(--color-dark-dark);
   z-index: 100;

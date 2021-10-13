@@ -28,7 +28,7 @@ const Container = styled.div`
     @keyframes pulse-black {
       0% {
         transform: scale(0.95);
-        box-shadow: 0 0 0 0 rgba(165, 231, 89, 0.7);
+        box-shadow: 0 0 0 0 var(--color-dark-dark);
       }
 
       70% {

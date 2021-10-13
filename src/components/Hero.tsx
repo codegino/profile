@@ -1,8 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import {BsChevronDoubleDown} from '@react-icons/all-files/bs/BsChevronDoubleDown';
 import {IGetPlaiceholderReturn} from 'plaiceholder';
-import {Fade, Zoom} from 'react-awesome-reveal';
+import {Zoom, Fade} from 'react-awesome-reveal';
 import {mediaQuery} from '../utils/media-query';
 import {useScrollToView} from '../utils/scroll-to-view-hook';
 import {BlurredImage} from './BlurredImage';
@@ -54,6 +53,12 @@ const LeftMessageContainer = styled.div`
   top: 0.25rem;
   left: 0.5rem;
 
+  h1 {
+    color: var(--color-dark-dark);
+    z-index: 2;
+    font-size: 5em;
+  }
+
   ${mediaQuery(
     500,
     `
@@ -89,7 +94,13 @@ const Overlay = styled.div`
   position: absolute;
   display: block;
   z-index: 1;
-  background-color: var(--color-light-light);
+  background-image: linear-gradient(
+    to bottom,
+    var(--color-light-light),
+    var(--color-light),
+    var(--color-primary),
+    var(--color-dark)
+  );
   opacity: 0.5;
   top: 0;
   right: 0;
