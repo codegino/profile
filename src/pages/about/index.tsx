@@ -44,13 +44,10 @@ export default function AboutMe({
       <h2 style={{textAlign: 'center'}}>This website is powered by</h2>
       <TechStackCarousel techStacks={techStacks} />
 
-      <p
-        style={{textAlign: 'center', marginTop: '1rem', marginBottom: '0.5rem'}}
-      >
+      <AdditionalInfo style={{marginTop: '1rem', marginBottom: '0.5rem'}}>
         This awesome carousel is easily made using&nbsp;
         <Link href="https://github.com/leandrowd/react-responsive-carousel">
           <a
-            style={{color: 'blue'}}
             target="_blank"
             aria-label="React Responsive Carousel"
             rel="noopener"
@@ -59,21 +56,16 @@ export default function AboutMe({
           </a>
         </Link>
         .
-      </p>
-      <p style={{textAlign: 'center', marginBottom: '1.5rem'}}>
+      </AdditionalInfo>
+      <AdditionalInfo style={{marginBottom: '1.5rem'}}>
         Here is the link to my&nbsp;
         <Link href="https://github.com/codegino/profile">
-          <a
-            style={{color: 'blue'}}
-            target="_blank"
-            aria-label="Github Repo"
-            rel="noopener"
-          >
+          <a target="_blank" aria-label="Github Repo" rel="noopener">
             Github Repo
           </a>
         </Link>
         .
-      </p>
+      </AdditionalInfo>
     </>
   );
 }
@@ -134,6 +126,14 @@ export const getStaticProps = async () => {
     },
   };
 };
+
+const AdditionalInfo = styled.p`
+  text-align: center;
+
+  a {
+    color: var(--color-primary-dark);
+  }
+`;
 
 const AboutMeSection = styled.section`
   margin-bottom: var(--margin-big);
