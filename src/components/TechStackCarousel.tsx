@@ -38,6 +38,7 @@ export default function TechStackCarousel({techStacks}: Props) {
               <CarouselItem key={techstack.name}>
                 {techstack.url ? (
                   <Image
+                    unoptimized
                     loader={({src}) => src}
                     src={techstack.url}
                     layout="intrinsic"
