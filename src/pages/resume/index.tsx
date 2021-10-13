@@ -36,7 +36,6 @@ export default function Resume({
       <Head>
         <title>Carlo Gino Catapang Resume</title>
         <meta name="description" content="Carlo Gino Catapang resume" />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <ResumeDownloadWrapper>

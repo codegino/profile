@@ -14,7 +14,6 @@ export default function Home({
       <Head>
         <title>Carlo Gino Catapang</title>
         <meta name="description" content="Carlo Gino Catapang" />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       <h1 style={{textAlign: 'center'}}>My blogs</h1>
       <Container>

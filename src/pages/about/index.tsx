@@ -23,7 +23,6 @@ export default function AboutMe({
       <Head>
         <title>About Carlo Gino Catapang</title>
         <meta name="description" content="Carlo Gino Catapang" />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <AboutMeHero img={img} svg={svg} />

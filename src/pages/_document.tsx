@@ -20,6 +20,16 @@ class MyDocument extends Document {
             name="google-site-verification"
             content="K7UvAeBEqJTv8VSbGCYaOU27ruQ_eqcSxzL9jahKbDk"
           />
+          <link rel="icon" href="/favicon.ico" />
+          <meta property="og:url" content="https://carlogino.cc" />
+          <meta property="og:type" content="Website" />
+          <meta property="og:title" content="Carlo Gino Catapang" />
+          <meta name="twitter:card" content="summary" />
+          <meta
+            property="og:description"
+            content="Carlo Gino Catapang Website"
+          />
+          <meta property="og:image" content="/preview.png" />
           <meta
             name="theme-color"
             media="(prefers-color-scheme: light)"
