@@ -29,7 +29,7 @@ export default function Greetings() {
             <TerminalContent>
               {isTyping ? (
                 <Typist
-                  avgTypingDelay={50}
+                  avgTypingDelay={40}
                   onTypingDone={() => setIsGuideVisible(true)}
                 >
                   <BsChevronRight />
@@ -145,7 +145,6 @@ const InnerContainer = styled.div`
 `;
 
 const TerminalContent = styled.div`
-  background-color: black;
   height: 100%;
   padding: var(--padding-small) var(--padding-very-small);
   border: 1px solid var(--color-light);
