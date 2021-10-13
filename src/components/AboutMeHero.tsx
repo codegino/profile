@@ -78,7 +78,7 @@ const Message = styled(Fade)`
   z-index: 2;
   p {
     color: var(--color-light-light);
-    text-shadow: 1px 1px var(--color-dark-dark);
+    text-shadow: 1px 1px 2px var(--color-dark-dark);
     margin-right: 0.5rem;
     font-size: 2.25em;
     z-index: 2;
