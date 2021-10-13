@@ -1,56 +1,14 @@
-import React, {useState} from 'react';
+import React from 'react';
 import styled from '@emotion/styled';
 import Image from 'next/image';
 import Link from 'next/link';
 import DarkModeToggle from 'react-dark-mode-toggle';
-import useDarkMode from 'use-dark-mode';
+import useCssVariableTheme from '../../hooks/css-varible-theme';
 import SmallScreenContent from './SmallScreenContent';
 import WideScreenContentImpl from './WideScreenContent';
 
 export default function Header() {
-  const {value, toggle} = useDarkMode(false);
-
-  React.useEffect(() => {
-    if (value) {
-      document.documentElement.style.setProperty(
-        '--color-light-light',
-        '#000000',
-      );
-      document.documentElement.style.setProperty('--color-light', '#111111');
-      document.documentElement.style.setProperty(
-        '--color-dark-dark',
-        '#FFFFFF',
-      );
-      document.documentElement.style.setProperty('--color-dark', '#EEEEEE');
-      document.documentElement.style.setProperty(
-        '--color-primary-light',
-        'green',
-      );
-      document.documentElement.style.setProperty(
-        '--color-primary-dark',
-        '#aaff00',
-      );
-    } else {
-      document.documentElement.style.setProperty(
-        '--color-light-light',
-        '#FFFFFF',
-      );
-      document.documentElement.style.setProperty('--color-light', '#EEEEEE');
-      document.documentElement.style.setProperty(
-        '--color-dark-dark',
-        '#000000',
-      );
-      document.documentElement.style.setProperty('--color-dark', '#111111');
-      document.documentElement.style.setProperty(
-        '--color-primary-dark',
-        'green',
-      );
-      document.documentElement.style.setProperty(
-        '--color-primary-light',
-        '#aaff00',
-      );
-    }
-  }, [value]);
+  const {isDarkMode, toggle} = useCssVariableTheme(false);
 
   return (
     <Container>
@@ -73,7 +31,7 @@ export default function Header() {
       <div style={{display: 'flex'}}>
         <DarkModeToggle
           onChange={toggle}
-          checked={value}
+          checked={isDarkMode}
           size={70}
           className="dark-mode-toggle"
         />
