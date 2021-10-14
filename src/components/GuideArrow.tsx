@@ -18,8 +18,8 @@ const Container = styled.div`
   cursor: pointer;
 
   .guide-arrow {
-    fill: var(--color-light-light);
-    background-color: var(--color-primary-dark);
+    fill: var(--color-dark-dark);
+    background-color: var(--color-primary-light);
     border-radius: 50%;
     padding: 6px;
     font-size: 50px;
@@ -28,7 +28,7 @@ const Container = styled.div`
     @keyframes pulse-black {
       0% {
         transform: scale(0.95);
-        box-shadow: 0 0 0 0 var(--color-dark-dark);
+        box-shadow: 0 0 0 0 var(--color-light-light);
       }
 
       70% {
