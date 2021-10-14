@@ -1,6 +1,7 @@
 import React, {ComponentType} from 'react';
 import styled from '@emotion/styled';
 import {MDXProvider} from '@mdx-js/react';
+import {MDXEmbedProvider} from 'mdx-embed';
 import dynamic from 'next/dynamic';
 import {CodeBlockProps} from './CodeBlock';
 
@@ -19,7 +20,9 @@ const Layout: React.FC = props => {
   return (
     <Container>
       <MDXProvider components={components}>
-        <main {...props}></main>
+        <MDXEmbedProvider>
+          <main {...props}></main>
+        </MDXEmbedProvider>
       </MDXProvider>
     </Container>
   );
