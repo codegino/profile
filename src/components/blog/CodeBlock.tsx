@@ -3,8 +3,6 @@ import styled from '@emotion/styled';
 import Highlight, {defaultProps, Language} from 'prism-react-renderer';
 import vsDark from 'prism-react-renderer/themes/vsDark';
 import {LiveProvider, LiveEditor, LiveError, LivePreview} from 'react-live';
-import useDarkMode from 'use-dark-mode';
-import {mediaQuery} from '../../utils/media-query';
 
 export type CodeBlockProps = {
   children: string;
@@ -13,13 +11,12 @@ export type CodeBlockProps = {
 };
 
 const CodeBlock: React.FC<CodeBlockProps> = ({children, className, live}) => {
-  const {value: isDarkMode} = useDarkMode();
   const language = className.replace(/language-/, '') as Language;
 
   if (live) {
     return (
       <>
-        <LabelContainer style={{top: '40px'}}>{language}</LabelContainer>
+        <LabelContainer style={{top: '40px'}}>.{language}</LabelContainer>
         <div style={{marginTop: '40px'}}>
           <LiveProvider code={children} theme={vsDark}>
             <LiveEditor />
@@ -33,7 +30,7 @@ const CodeBlock: React.FC<CodeBlockProps> = ({children, className, live}) => {
 
   return (
     <>
-      <LabelContainer>{language}</LabelContainer>
+      <LabelContainer>.{language}</LabelContainer>
       <Highlight
         {...defaultProps}
         code={children.trim()}
@@ -74,15 +71,13 @@ const Pre = styled.pre`
 
 const LabelContainer = styled.aside`
   text-align: left;
-  left: 0px;
+  width: 100%;
   padding-left: 7px;
   top: 13px;
   height: 20px;
   position: relative;
   color: var(--color-primary-light);
-  background-color: var(--color-dark);
-
-  ${mediaQuery(900, `left: 5px;`)}
+  background-color: var(--color-dark-dark);
 `;
 
 export default CodeBlock;
