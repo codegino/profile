@@ -40,7 +40,7 @@
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "2.0.4",
     "@types/mdx-js__react": "^1.5.4",
-    "@types/react": "17.0.29",
+    "@types/react": "17.0.30",
     "@types/react-transition-group": "4.4.3",
     "@types/react-typist": "2.0.2",
     "cross-env": "7.0.3",
