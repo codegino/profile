@@ -18,7 +18,7 @@ class MyDocument extends Document {
         <Head>
           <meta
             name="google-site-verification"
-            content="K7UvAeBEqJTv8VSbGCYaOU27ruQ_eqcSxzL9jahKbDk"
+            content={`${process.env.NEXT_PUBLIC_GOOOGLE_SITE_VERIFICATION}`}
           />
           <link rel="icon" href="/favicon.ico" />
           <meta property="og:url" content="https://carlogino.cc" />
