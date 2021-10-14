@@ -1,19 +1,45 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import Highlight, {defaultProps, Language} from 'prism-react-renderer';
+import vsDark from 'prism-react-renderer/themes/vsDark';
+import {LiveProvider, LiveEditor, LiveError, LivePreview} from 'react-live';
+import useDarkMode from 'use-dark-mode';
 import {mediaQuery} from '../../utils/media-query';
 
 export type CodeBlockProps = {
   children: string;
   className: string;
+  live: boolean;
 };
 
-const CodeBlock: React.FC<CodeBlockProps> = ({children, className}) => {
+const CodeBlock: React.FC<CodeBlockProps> = ({children, className, live}) => {
+  const {value: isDarkMode} = useDarkMode();
   const language = className.replace(/language-/, '') as Language;
+
+  if (live) {
+    return (
+      <>
+        <LabelContainer style={{top: '40px'}}>{language}</LabelContainer>
+        <div style={{marginTop: '40px'}}>
+          <LiveProvider code={children} theme={vsDark}>
+            <LiveEditor />
+            <LiveError />
+            <LivePreview />
+          </LiveProvider>
+        </div>
+      </>
+    );
+  }
 
   return (
     <>
-      <Highlight {...defaultProps} code={children.trim()} language={language}>
+      <LabelContainer>{language}</LabelContainer>
+      <Highlight
+        {...defaultProps}
+        code={children.trim()}
+        language={language}
+        theme={vsDark}
+      >
         {({className, style, tokens, getLineProps, getTokenProps}) => (
           <Pre
             className={className}
@@ -21,7 +47,6 @@ const CodeBlock: React.FC<CodeBlockProps> = ({children, className}) => {
               ...style,
             }}
           >
-            <LabelContainer>{language}</LabelContainer>
             {tokens.map((line, i) => (
               <div key={i} {...getLineProps({line, key: i})}>
                 {line.map((token, key) => (
@@ -37,30 +62,27 @@ const CodeBlock: React.FC<CodeBlockProps> = ({children, className}) => {
 };
 
 const Pre = styled.pre`
-  padding: 20px;
+  padding-top: 20px;
+  padding-bottom: 15px;
+  padding-right: 10px;
+  padding-left: 10px;
   overflow: auto;
   display: flex;
-  width: 100vw;
   position: relative;
   flex-direction: column;
-
-  ${mediaQuery(600, `width: 90vw;`)}
-
-  ${mediaQuery(900, `width: 75vw;`)}
-
-  ${mediaQuery(1200, `width: 50vw;`)}
 `;
 
 const LabelContainer = styled.aside`
-  color: white;
-  width: 100%;
-  text-align: right;
-  right: 15px;
-  top: 5px;
-  height: 0;
-  position: absolute;
+  text-align: left;
+  left: 0px;
+  padding-left: 7px;
+  top: 13px;
+  height: 20px;
+  position: relative;
+  color: var(--color-primary-light);
+  background-color: var(--color-dark);
 
-  ${mediaQuery(900, `right: 5px;`)}
+  ${mediaQuery(900, `left: 5px;`)}
 `;
 
 export default CodeBlock;

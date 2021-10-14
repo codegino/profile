@@ -1,10 +1,15 @@
-import React from 'react';
+import React, {ComponentType} from 'react';
 import styled from '@emotion/styled';
 import {MDXProvider} from '@mdx-js/react';
-import CodeBlock, {CodeBlockProps} from './CodeBlock';
+import dynamic from 'next/dynamic';
+import {CodeBlockProps} from './CodeBlock';
+
+const CodeBlock = dynamic(() => import('./CodeBlock'), {
+  ssr: false,
+});
 
 const components: {
-  [key: string]: React.FC<CodeBlockProps>;
+  [key: string]: ComponentType<CodeBlockProps>;
 } = {
   pre: props => <div {...props} />,
   code: CodeBlock,
@@ -22,9 +27,6 @@ const Layout: React.FC = props => {
 
 const Container = styled.section`
   margin: auto;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
   padding: 2rem;
   max-width: 50rem;
 `;
