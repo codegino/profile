@@ -530,7 +530,7 @@
     unist-builder "2.0.3"
     unist-util-visit "2.0.3"
 
-"@mdx-js/react@1.6.22", "@mdx-js/react@^1.6.22":
+"@mdx-js/react@1.6.22":
   version "1.6.22"
   resolved "https://registry.yarnpkg.com/@mdx-js/react/-/react-1.6.22.tgz#ae09b4744fddc74714ee9f9d6f17a66e77c43573"
   integrity sha512-TDoPum4SHdfPiGSAaRBw7ECyI8VaHpK8GJugbJIJuqyh6kzw9ZLJZW3HGL3NNrJGxcAixUvqROm+YuQOo5eXtg==
@@ -743,7 +743,7 @@
   dependencies:
     "@types/unist" "*"
 
-"@types/mdx-js__react@^1.5.4":
+"@types/mdx-js__react@1.5.4":
   version "1.5.4"
   resolved "https://registry.yarnpkg.com/@types/mdx-js__react/-/mdx-js__react-1.5.4.tgz#75ed343b5a1f56d9518e902d956e1b611da4a297"
   integrity sha512-hce+Hymj3cEMOma13eQRhpT3mhQrOkN4CAYEwKWB/qj2BiuUrrTpCkOShEERGmLVgDc3nxF4Dc0k7W999EQxnQ==
@@ -4259,7 +4259,7 @@ prettier@2.4.1:
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.4.1.tgz#671e11c89c14a4cfc876ce564106c4a6726c9f5c"
   integrity sha512-9fbDAXSBcc6Bs1mZrDYb3XKzDLm4EXXL9sC1LqKP5rZkT6KRr/rf9amVUcODVXgguK/isJz0d0hP72WeaKWsvA==
 
-prism-react-renderer@^1.2.1:
+prism-react-renderer@1.2.1, prism-react-renderer@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/prism-react-renderer/-/prism-react-renderer-1.2.1.tgz#392460acf63540960e5e3caa699d851264e99b89"
   integrity sha512-w23ch4f75V1Tnz8DajsYKvY5lF7H1+WvzvLUcF0paFxkTHSp42RS0H5CttdN2Q8RR3DRGZ9v5xD/h3n8C8kGmg==
@@ -4468,7 +4468,7 @@ react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
-react-live@^2.3.0:
+react-live@2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/react-live/-/react-live-2.3.0.tgz#09fbac361903970e7cf51cee60729eeb164a5d87"
   integrity sha512-b+Nc7x/bLu2sPX/If1uncrmUvYtXTqxY8QpzBw/X76SA3QJ1ggU0Ld6X5phLXZ469+XWO5lOU7OpAt0JoTyZPQ==
