@@ -1,8 +1,23 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import {MDXProvider} from '@mdx-js/react';
+import CodeBlock, {CodeBlockProps} from './CodeBlock';
 
-const Layout: React.FC = ({children}) => {
-  return <Container>{children}</Container>;
+const components: {
+  [key: string]: React.FC<CodeBlockProps>;
+} = {
+  pre: props => <div {...props} />,
+  code: CodeBlock,
+};
+
+const Layout: React.FC = props => {
+  return (
+    <Container>
+      <MDXProvider components={components}>
+        <main {...props}></main>
+      </MDXProvider>
+    </Container>
+  );
 };
 
 const Container = styled.section`
