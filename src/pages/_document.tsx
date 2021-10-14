@@ -6,6 +6,9 @@ import Document, {
   DocumentContext,
 } from 'next/document';
 
+const metaDescription =
+  'Hi! I am Carlo Gino Catapang, nice to meet you. I am a Software Engineer focusing on the frontend side. Check my website to know more about me.';
+
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
     const initialProps = await Document.getInitialProps(ctx);
@@ -18,17 +21,15 @@ class MyDocument extends Document {
         <Head>
           <meta
             name="google-site-verification"
-            content="K7UvAeBEqJTv8VSbGCYaOU27ruQ_eqcSxzL9jahKbDk"
+            content={`${process.env.NEXT_PUBLIC_GOOOGLE_SITE_VERIFICATION}`}
           />
           <link rel="icon" href="/favicon.ico" />
           <meta property="og:url" content="https://carlogino.cc" />
           <meta property="og:type" content="Website" />
           <meta property="og:title" content="Carlo Gino Catapang" />
           <meta name="twitter:card" content="summary" />
-          <meta
-            property="og:description"
-            content="Carlo Gino Catapang Website"
-          />
+          <meta name="description" content={metaDescription} />
+          <meta property="og:description" content={metaDescription} />
           <meta property="og:image" content="/preview.png" />
           <meta
             name="theme-color"

@@ -73,8 +73,8 @@ const LeftMessageContainer = styled.div`
 const Message = styled(Fade)`
   h1,
   p {
-    color: var(--color-dark-dark);
-    text-shadow: 1px 1px 2px var(--color-light-light);
+    color: var(--color-light-light);
+    text-shadow: 1px 1px 2px var(--color-dark-dark);
     z-index: 2;
     font-size: 2em;
   }
@@ -95,10 +95,10 @@ const Overlay = styled.div`
   z-index: 1;
   background-image: linear-gradient(
     to bottom,
-    var(--color-light-light),
-    var(--color-light),
+    var(--color-dark-dark),
     var(--color-dark),
-    var(--color-dark-dark)
+    var(--color-light),
+    var(--color-light-light)
   );
   opacity: 0.4;
   top: 0;
