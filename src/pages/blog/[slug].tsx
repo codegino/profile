@@ -31,6 +31,10 @@ export default function BlogPage({
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <BlogLayout>
+      <Head>
+        <title>{frontMatter.title}</title>
+        <meta name="description" content={frontMatter.description} />
+      </Head>
       <div className="post-header">
         <h1>{frontMatter.title}</h1>
         {frontMatter.description && (
