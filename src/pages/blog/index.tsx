@@ -1,11 +1,13 @@
 import styled from '@emotion/styled';
 import fs from 'fs';
+import matter from 'gray-matter';
 import {InferGetStaticPropsType} from 'next';
 import Head from 'next/head';
 import path from 'path';
 import {BlurredImage} from '../../components/BlurredImage';
 import BlogCard from '../../components/blog/BlogCard';
 import {BlogMetadata} from '../../models/blog';
+import {BLOGS_PATH} from '../../utils/mdxUtils';
 import {mediaQuery} from '../../utils/media-query';
 import {getImageFromSupabase} from '../../utils/supabase-image';
 
@@ -35,6 +37,9 @@ export default function Home({
             objectPosition="left"
           />
         </PlaceholderContainer>
+        {blogs.map(blog => {
+          return <BlogCard key={blog.slug} {...blog} />;
+        })}
       </Container>
     </>
   );
@@ -69,26 +74,22 @@ const PlaceholderContainer = styled.div`
 `;
 
 export const getStaticProps = async () => {
-  const postsDirectory = path.join(process.cwd(), 'src/pages/blog');
-
   const {img, svg} = await getImageFromSupabase('work_in_progress');
 
-  const blogDirectories = fs
-    .readdirSync(postsDirectory)
-    .filter(filename => !filename.includes('index.tsx')); // exclude this file
+  const blogDirectories = fs.readdirSync(BLOGS_PATH);
 
-  const blogs = blogDirectories
-    .map(directory => {
-      const mdxContent = require(`./${directory}/index.mdx`);
+  const blogs = blogDirectories.map(directory => {
+    const source = fs.readFileSync(
+      path.join(BLOGS_PATH, directory, 'index.mdx'),
+    );
 
-      const meta: BlogMetadata = mdxContent?.meta ?? {};
+    const {data} = matter(source);
 
-      return {
-        ...meta,
-        slug: directory,
-      };
-    })
-    .sort((a, b) => a.order - b.order);
+    return {
+      ...data,
+      slug: directory,
+    } as BlogMetadata;
+  });
 
   return {
     props: {blogs, img, svg},

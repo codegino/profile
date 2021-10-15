@@ -1,6 +1,8 @@
 import fs from 'fs';
+import matter from 'gray-matter';
 import path from 'path';
 import {BlogMetadata} from '../models/blog';
+import {BLOGS_PATH} from '../utils/mdxUtils';
 
 type SiteMapUrl = {
   slug: string;
@@ -44,15 +46,18 @@ const staticPages: SiteMapUrl[] = [
 ];
 
 const generateBlogSiteMapData = (): SiteMapUrl[] => {
-  const postsDirectory = path.join(process.cwd(), 'src/pages/blog');
-  const blogDirectories = fs
-    .readdirSync(postsDirectory)
-    .filter(filename => !filename.includes('index.tsx')); // exclude this file
+  const blogDirectories = path.join(BLOGS_PATH);
 
-  const blogsSitemaps: SiteMapUrl[] = blogDirectories.map(directory => {
-    const mdxContent = require(`../pages/blog/${directory}/index.mdx`);
+  const paths = fs.readdirSync(blogDirectories);
 
-    const meta: BlogMetadata = mdxContent?.meta ?? {};
+  const blogsSitemaps: SiteMapUrl[] = paths.map(directory => {
+    const postFilePath = path.join(BLOGS_PATH, `${directory}/index.mdx`);
+
+    const source = fs.readFileSync(postFilePath);
+
+    const {data} = matter(source);
+
+    const meta = data as BlogMetadata;
 
     return {
       slug: directory,
