@@ -42,7 +42,7 @@
     "@types/mdx-js__react": "1.5.4",
     "@types/react": "17.0.30",
     "@types/react-transition-group": "4.4.3",
-    "@types/react-typist": "2.0.2",
+    "@types/react-typist": "2.0.3",
     "cross-env": "7.0.3",
     "eslint": "7.32.0",
     "eslint-config-next": "11.1.2",
