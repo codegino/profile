@@ -1,19 +1,15 @@
-import React, {ComponentType} from 'react';
+import React from 'react';
 import styled from '@emotion/styled';
 import {MDXProvider} from '@mdx-js/react';
 import {MDXEmbedProvider} from 'mdx-embed';
-import dynamic from 'next/dynamic';
-import {CodeBlockProps} from './CodeBlock';
+import {CodePen, Tweet, Flickr} from 'mdx-embed';
+import CodeBlock from './CodeBlock';
 
-const CodeBlock = dynamic(() => import('./CodeBlock'), {
-  ssr: false,
-});
-
-const components: {
-  [key: string]: ComponentType<CodeBlockProps>;
-} = {
-  pre: props => <div {...props} />,
+const components = {
   code: CodeBlock,
+  CodePen,
+  Tweet,
+  Flickr,
 };
 
 const Layout: React.FC = props => {

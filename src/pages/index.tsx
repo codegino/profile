@@ -3,19 +3,28 @@ import {InferGetStaticPropsType} from 'next';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import Link from 'next/link';
-import Greetings from '../components/Greetings';
 import Hero from '../components/Hero';
 import ResumeSummary from '../components/ResumeSummary';
-import WakatimeCharts from '../components/WakatimeCharts';
-import Skills from '../components/skills/Skills';
 import generateSitemap from '../lib/sitemap';
 import {resumeProps} from '../utils/resume-props';
 import {getImageFromSupabase} from '../utils/supabase-image';
+
+const Greetings = dynamic(() => import('../components/Greetings'), {
+  ssr: false,
+});
+
+const Skills = dynamic(() => import('../components/skills/Skills'), {
+  ssr: false,
+});
 
 const CustomGithubCalendar = dynamic(
   () => import('../components/CustomGithubCalendar'),
   {ssr: false},
 );
+
+const WakatimeCharts = dynamic(() => import('../components/WakatimeCharts'), {
+  ssr: false,
+});
 
 const ReactTooltip = dynamic(() => import('react-tooltip'), {ssr: false});
 
