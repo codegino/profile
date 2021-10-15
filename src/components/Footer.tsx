@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import Link from 'next/link';
 import {mediaQuery} from '../utils/media-query';
 import SocialMedia from './social/SocialMedia';
 
@@ -8,10 +9,16 @@ export default function Footer() {
     <FooterContainer>
       <ContentWrapper>
         <LegalLabel>
+          <Link href="/sitemap.xml">
+            <a aria-label="Sitemap">Sitemap</a>
+          </Link>
           <p>All rights reserved</p>
           <p>© Carlo Gino Catapang 2021</p>
         </LegalLabel>
-        <SocialMedia />
+        <div>
+          <p>Social</p>
+          <SocialMedia />
+        </div>
       </ContentWrapper>
     </FooterContainer>
   );
@@ -19,7 +26,7 @@ export default function Footer() {
 
 const FooterContainer = styled.footer`
   width: 100%;
-  height: 6rem;
+  height: 7rem;
   background-color: var(--color-dark);
   color: var(--color-light);
   display: flex;
@@ -37,6 +44,10 @@ const ContentWrapper = styled.div`
   max-width: 50rem;
   width: 100%;
   text-align: center;
+
+  a:hover {
+    text-decoration: underline;
+  }
 
   ${mediaQuery(
     900,
