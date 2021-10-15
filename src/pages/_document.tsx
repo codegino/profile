@@ -7,7 +7,7 @@ import Document, {
 } from 'next/document';
 
 const metaDescription =
-  'Hi! I am Carlo Gino Catapang, nice to meet you. I am a Software Engineer focusing on the frontend side. Check my website to know more about me.';
+  'Carlo Gino Catapang. Web Developer, Software Developer, Software Engineer, Frontend Engineer. React, JavaScript, TypeScript expert. Husband and Father.';
 
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
@@ -31,6 +31,11 @@ class MyDocument extends Document {
           <meta name="description" content={metaDescription} />
           <meta property="og:description" content={metaDescription} />
           <meta property="og:image" content="/preview.png" />
+          <meta name="author" content="Carlo Gino Catapang" />
+          <meta
+            name="keywords"
+            content="React,React Native,Javascript,Typescript,NodeJS,HTML,CSS,ReactJS,React.js"
+          />
           <meta
             name="theme-color"
             media="(prefers-color-scheme: light)"
