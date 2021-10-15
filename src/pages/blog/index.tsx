@@ -50,6 +50,7 @@ const Container = styled.section`
   align-items: center;
   flex-direction: column;
   min-height: 80vh;
+  margin: 3rem 0;
 `;
 
 const PlaceholderContainer = styled.div`
@@ -57,7 +58,6 @@ const PlaceholderContainer = styled.div`
   position: relative;
   height: 20rem;
   width: 20rem;
-  margin: auto;
   top: -5rem;
 
   ${mediaQuery(
