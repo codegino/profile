@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {FunctionComponent} from 'react';
 import styled from '@emotion/styled';
 import Highlight, {defaultProps, Language} from 'prism-react-renderer';
 import vsDark from 'prism-react-renderer/themes/vsDark';
@@ -10,7 +10,11 @@ export type CodeBlockProps = {
   live: boolean;
 };
 
-const CodeBlock: React.FC<CodeBlockProps> = ({children, className, live}) => {
+const CodeBlock: FunctionComponent<CodeBlockProps> = ({
+  children,
+  className,
+  live,
+}) => {
   const language = className.replace(/language-/, '') as Language;
 
   if (live) {
@@ -76,8 +80,8 @@ const LabelContainer = styled.aside`
   top: 13px;
   height: 20px;
   position: relative;
-  color: var(--color-primary-light);
-  background-color: var(--color-dark-dark);
+  color: var(--color-primary-dark);
+  background-color: var(--color-light);
 `;
 
 export default CodeBlock;

@@ -20,8 +20,9 @@ const ReactTooltip = dynamic(() => import('react-tooltip'), {ssr: false});
 const Timeline = dynamic(() => import('../../components/timeline/Timeline'), {
   ssr: true,
 });
+
 const Skills = dynamic(() => import('../../components/skills/Skills'), {
-  ssr: true,
+  ssr: false,
 });
 
 export default function Resume({
