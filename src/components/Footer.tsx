@@ -15,10 +15,7 @@ export default function Footer() {
           <p>All rights reserved</p>
           <p>© Carlo Gino Catapang 2021</p>
         </LegalLabel>
-        <div>
-          <p>Social</p>
-          <SocialMedia />
-        </div>
+        <SocialMedia />
       </ContentWrapper>
     </FooterContainer>
   );
@@ -26,7 +23,7 @@ export default function Footer() {
 
 const FooterContainer = styled.footer`
   width: 100%;
-  height: 7rem;
+  height: 8rem;
   background-color: var(--color-dark);
   color: var(--color-light);
   display: flex;

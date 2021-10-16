@@ -1,33 +1,25 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import {MDXProvider} from '@mdx-js/react';
 import {MDXEmbedProvider} from 'mdx-embed';
-import {CodePen, Tweet, Flickr} from 'mdx-embed';
-import CodeBlock from './CodeBlock';
-
-const components = {
-  code: CodeBlock,
-  CodePen,
-  Tweet,
-  Flickr,
-};
+import {mediaQuery} from '../../utils/media-query';
 
 const Layout: React.FC = props => {
   return (
-    <Container>
-      <MDXProvider components={components}>
-        <MDXEmbedProvider>
-          <main {...props}></main>
-        </MDXEmbedProvider>
-      </MDXProvider>
-    </Container>
+    <MDXEmbedProvider>
+      <Container {...props}></Container>
+    </MDXEmbedProvider>
   );
 };
 
-const Container = styled.section`
+const Container = styled.main`
   margin: auto;
-  padding: 2rem;
+  padding: var(--padding-very-small);
   max-width: 50rem;
+
+  display: flex;
+  flex-direction: column;
+
+  ${mediaQuery(450, `padding: var(--padding-small);`)}
 `;
 
 export default Layout;
