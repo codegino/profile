@@ -10,7 +10,7 @@ import {serialize} from 'next-mdx-remote/serialize';
 import Head from 'next/head';
 import path from 'path';
 import {getPlaiceholder} from 'plaiceholder';
-import {BlurredImage} from '../../components/BlurredImage';
+import BlogHeader from '../../components/blog/BlogHeader';
 import BlogLayout from '../../components/blog/BlogLayout';
 import {BlogMetadata} from '../../models/blog';
 import {BLOGS_PATH} from '../../utils/mdxUtils';
@@ -31,29 +31,8 @@ export default function BlogPage({
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <BlogLayout>
-      <Head>
-        <title>{frontMatter.title}</title>
-        <meta name="description" content={frontMatter.description} />
-      </Head>
-      <div className="post-header">
-        <h1>{frontMatter.title}</h1>
-        {frontMatter.description && (
-          <h2 className="description">{frontMatter.description}</h2>
-        )}
-        {img && svg ? (
-          <BlurredImage
-            alt="Hero photo"
-            img={img}
-            svg={svg}
-            layout="responsive"
-            height={100}
-            width={150}
-            blurLevel={80}
-            objectFit="cover"
-            objectPosition="right"
-          />
-        ) : null}
-      </div>
+      <BlogHeader blogMetadata={frontMatter} img={img} svg={svg} />
+
       <main>
         <MDXRemote {...source} components={components} />
       </main>
