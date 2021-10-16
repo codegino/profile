@@ -33,6 +33,7 @@ const BlogHeader: FunctionComponent<Props> = ({blogMetadata, img, svg}) => {
             blurLevel={80}
             objectFit="cover"
             objectPosition="right"
+            style={{borderRadius: '1rem'}}
           />
         ) : null}
       </Section>
@@ -43,6 +44,11 @@ const BlogHeader: FunctionComponent<Props> = ({blogMetadata, img, svg}) => {
 const Section = styled.section`
   margin-bottom: var(--margin-medium);
   h1 {
+    margin: var(--margin-small) 0;
+    margin-bottom: var(--margin-small);
+  }
+
+  h2 {
     margin: var(--margin-small) 0;
   }
 `;

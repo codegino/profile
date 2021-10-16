@@ -5,23 +5,14 @@ import {
   GetStaticPropsContext,
   InferGetStaticPropsType,
 } from 'next';
-import {MDXRemote} from 'next-mdx-remote';
 import {serialize} from 'next-mdx-remote/serialize';
-import Head from 'next/head';
 import path from 'path';
 import {getPlaiceholder} from 'plaiceholder';
+import BlogContent from '../../components/blog/BlogContent';
 import BlogHeader from '../../components/blog/BlogHeader';
 import BlogLayout from '../../components/blog/BlogLayout';
 import {BlogMetadata} from '../../models/blog';
 import {BLOGS_PATH} from '../../utils/mdxUtils';
-
-// Custom components/renderers to pass to MDX.
-// Since the MDX files aren't loaded by webpack, they have no knowledge of how
-// to handle import statements. Instead, you must include components in scope
-// here.
-const components = {
-  Head,
-};
 
 export default function BlogPage({
   source,
@@ -32,10 +23,7 @@ export default function BlogPage({
   return (
     <BlogLayout>
       <BlogHeader blogMetadata={frontMatter} img={img} svg={svg} />
-
-      <main>
-        <MDXRemote {...source} components={components} />
-      </main>
+      <BlogContent source={source} />
     </BlogLayout>
   );
 }
