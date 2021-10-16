@@ -9,11 +9,11 @@ import {MDXRemote} from 'next-mdx-remote';
 import {serialize} from 'next-mdx-remote/serialize';
 import Head from 'next/head';
 import path from 'path';
+import {getPlaiceholder} from 'plaiceholder';
 import {BlurredImage} from '../../components/BlurredImage';
 import BlogLayout from '../../components/blog/BlogLayout';
 import {BlogMetadata} from '../../models/blog';
 import {BLOGS_PATH} from '../../utils/mdxUtils';
-import {getImageFromSupabase} from '../../utils/supabase-image';
 
 // Custom components/renderers to pass to MDX.
 // Since the MDX files aren't loaded by webpack, they have no knowledge of how
@@ -67,7 +67,9 @@ export const getStaticProps = async ({params}: GetStaticPropsContext) => {
 
   const {content, data} = matter(source);
 
-  const {img, svg} = await getImageFromSupabase('home_hero_cover');
+  const {img, svg} = await getPlaiceholder(
+    `https://i.imgur.com/${data.bannerId}`,
+  );
 
   const mdxSource = await serialize(content, {
     // Optionally pass remark/rehype plugins

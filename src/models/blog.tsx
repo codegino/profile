@@ -5,4 +5,5 @@ export type BlogMetadata = {
   slug: string;
   order: number;
   description: string;
+  bannerId: string;
 };
