@@ -1,4 +1,5 @@
 import React, {FunctionComponent} from 'react';
+import styled from '@emotion/styled';
 import Head from 'next/head';
 import {IGetPlaiceholderReturn} from 'plaiceholder';
 import {BlogMetadata} from '../../models/blog';
@@ -16,7 +17,7 @@ const BlogHeader: FunctionComponent<Props> = ({blogMetadata, img, svg}) => {
         <meta name="description" content={blogMetadata.description} />
       </Head>
 
-      <section className="blog-header">
+      <Section className="blog-header">
         <h1>{blogMetadata.title}</h1>
         {blogMetadata.description && (
           <h2 className="description">{blogMetadata.description}</h2>
@@ -34,9 +35,16 @@ const BlogHeader: FunctionComponent<Props> = ({blogMetadata, img, svg}) => {
             objectPosition="right"
           />
         ) : null}
-      </section>
+      </Section>
     </>
   );
 };
+
+const Section = styled.section`
+  margin-bottom: var(--margin-medium);
+  h1 {
+    margin: var(--margin-small) 0;
+  }
+`;
 
 export default BlogHeader;
