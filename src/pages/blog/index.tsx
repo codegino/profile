@@ -59,6 +59,7 @@ const PlaceholderContainer = styled.div`
   height: 20rem;
   width: 20rem;
   top: -5rem;
+  margin-bottom: var(--margin-medium);
 
   ${mediaQuery(
     400,
