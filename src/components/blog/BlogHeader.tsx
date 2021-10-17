@@ -33,7 +33,7 @@ const BlogHeader: FunctionComponent<Props> = ({blogMetadata, img, svg}) => {
             blurLevel={80}
             objectFit="cover"
             objectPosition="right"
-            style={{borderRadius: '1rem'}}
+            style={{borderRadius: '0.3rem'}}
           />
         ) : null}
       </Section>
