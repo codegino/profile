@@ -3,15 +3,12 @@ import {InferGetStaticPropsType} from 'next';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import Link from 'next/link';
+import Greetings from '../components/Greetings';
 import Hero from '../components/Hero';
 import ResumeSummary from '../components/ResumeSummary';
 import generateSitemap from '../lib/sitemap';
 import {resumeProps} from '../utils/resume-props';
 import {getImageFromSupabase} from '../utils/supabase-image';
-
-const Greetings = dynamic(() => import('../components/Greetings'), {
-  ssr: false,
-});
 
 const Skills = dynamic(() => import('../components/skills/Skills'), {
   ssr: false,
