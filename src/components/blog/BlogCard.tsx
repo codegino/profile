@@ -18,12 +18,21 @@ const BlogCard: React.FC<BlogMetadata> = blog => {
 };
 
 const Container = styled.article`
-  border: 1px solid var(--color-dark);
+  border: 1px solid var(--color-light);
   padding: var(--padding-small) var(--padding-medium);
   min-width: 20rem;
   max-width: 20rem;
   border-radius: 3px;
   overflow: hidden;
+
+  /* Add shadows to create the "card" effect */
+  box-shadow: 0 1px 2px 0px var(--color-dark);
+  transition: 0.3s;
+
+  /* On mouse-over, add a deeper shadow */
+  &:hover {
+    box-shadow: 0 2px 4px 0px var(--color-dark);
+  }
 
   :not(:last-child) {
     margin-bottom: var(--margin-small);
