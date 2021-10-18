@@ -14,6 +14,7 @@ const Layout: React.FC = props => {
 const Container = styled.main`
   margin: auto;
   padding: var(--padding-very-small);
+  margin-bottom: var(--margin-medium);
   max-width: 50rem;
 
   display: flex;

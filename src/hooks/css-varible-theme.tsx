@@ -24,8 +24,8 @@ const COLOR_LIGHT_GRAY_2 = '#BBBBBB';
 const COLOR_DARK_GRAY_1 = '#222222';
 const COLOR_DARK_GRAY_2 = '#777777';
 
-export default function useCssVariableTheme(value: boolean) {
-  const {value: isDarkMode, toggle, disable, enable} = useDarkMode(value);
+export default function useCssVariableTheme() {
+  const {value: isDarkMode, toggle, disable, enable} = useDarkMode();
 
   React.useEffect(() => {
     if (isDarkMode) {
