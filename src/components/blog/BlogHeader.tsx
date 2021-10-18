@@ -20,7 +20,10 @@ const BlogHeader: FunctionComponent<Props> = ({blogMetadata, img, svg}) => {
       <Section className="blog-header">
         <h1>{blogMetadata.title}</h1>
         {blogMetadata.description && (
-          <h2 className="description">{blogMetadata.description}</h2>
+          <>
+            <h2 className="description">{blogMetadata.description}</h2>
+            <h3>{blogMetadata.date}</h3>
+          </>
         )}
         {img && svg ? (
           <BlurredImage

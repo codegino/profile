@@ -10,7 +10,8 @@ const BlogCard: React.FC<BlogMetadata> = blog => {
       <Link href={`/blog/${blog.slug}`}>
         <a aria-label={blog.title}>
           <h2>{blog.title}</h2>
-          <h3>{blog.date}</h3>
+          <h3>{blog.description}</h3>
+          <h4>{blog.date}</h4>
         </a>
       </Link>
     </Container>

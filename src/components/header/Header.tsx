@@ -8,7 +8,7 @@ import SmallScreenContent from './SmallScreenContent';
 import WideScreenContentImpl from './WideScreenContent';
 
 export default function Header() {
-  const {isDarkMode, toggle} = useCssVariableTheme(false);
+  const {isDarkMode, toggle} = useCssVariableTheme();
 
   return (
     <Container>
