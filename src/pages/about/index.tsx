@@ -139,10 +139,6 @@ const AdditionalInfo = styled.p`
 
 const AboutMeSection = styled.article`
   margin-bottom: var(--margin-big);
-
-  h1 {
-    text-align: center;
-  }
 `;
 
 const AboutMeDetail = styled.section`

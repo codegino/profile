@@ -67,4 +67,11 @@ p {
 
 h1 {
   font-size: 2.5rem;
+  margin: var(--margin-small) 0;
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin: var(--margin-very-small) 0;
 }
