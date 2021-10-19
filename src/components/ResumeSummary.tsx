@@ -24,6 +24,7 @@ export default function ResumeSummary({
         />
       </ImageContainer>
       <div className="summary">
+        <h1>{summary.name}</h1>
         <div className="designation">
           <h2>{summary.jobTitle}</h2>
           <h2>&nbsp;at {summary.company}</h2>
@@ -51,7 +52,7 @@ export default function ResumeSummary({
   );
 }
 
-const Container = styled.div`
+const Container = styled.article`
   width: 100%;
   display: flex;
   justify-content: center;
@@ -83,6 +84,10 @@ const Container = styled.div`
       flex-direction: row;
     `,
     )}
+  }
+
+  h1 {
+    text-align: center;
   }
 
   h2 {
@@ -138,5 +143,5 @@ const summary = {
   company: 'NE Digital',
   email: 'carloginocatapang@gmail.com',
   address: 'Tampines, Singapore',
-  name: 'Carlo Gino Baldoz Catapang',
+  name: 'Carlo Gino Catapang',
 };

@@ -17,7 +17,7 @@ const BlogHeader: FunctionComponent<Props> = ({blogMetadata, img, svg}) => {
         <meta name="description" content={blogMetadata.description} />
       </Head>
 
-      <Section className="blog-header">
+      <Article className="blog-header">
         <h1>{blogMetadata.title}</h1>
         {blogMetadata.description && (
           <>
@@ -39,12 +39,12 @@ const BlogHeader: FunctionComponent<Props> = ({blogMetadata, img, svg}) => {
             style={{borderRadius: '0.3rem'}}
           />
         ) : null}
-      </Section>
+      </Article>
     </>
   );
 };
 
-const Section = styled.section`
+const Article = styled.article`
   margin-bottom: var(--margin-medium);
   h1 {
     margin: var(--margin-small) 0;
