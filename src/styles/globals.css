@@ -75,3 +75,7 @@ h2 {
   font-size: 1.5rem;
   margin: var(--margin-very-small) 0;
 }
+
+h3 {
+  margin: var(--margin-very-small) 0;
+}

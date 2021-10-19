@@ -24,7 +24,7 @@ export default function Skills({skills}: {skills: CategorizedSkill[]}) {
       </h2>
       {skills.map(category => {
         return (
-          <div key={category.category}>
+          <SkillCategoryContainer key={category.category}>
             <Slide direction="down" triggerOnce={true}>
               <h3 className="label">
                 {getSkillCategoryIcon(category.category)}&nbsp;
@@ -54,7 +54,7 @@ export default function Skills({skills}: {skills: CategorizedSkill[]}) {
                 );
               })}
             </div>
-          </div>
+          </SkillCategoryContainer>
         );
       })}
     </SkillsContainer>
@@ -108,6 +108,10 @@ function getSkillCategoryIcon(category: SkillCategory) {
   }
 }
 
+const SkillCategoryContainer = styled.section`
+  margin-bottom: var(--margin-small);
+`;
+
 const SkillsContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -133,5 +137,6 @@ const SkillsContainer = styled.div`
   .label {
     text-align: center;
     color: var(--color-dark-dark);
+    margin: var(--margin-small) 0;
   }
 `;

@@ -1,12 +1,14 @@
 import React, {useState, useRef} from 'react';
 import styled from '@emotion/styled';
+import {AiOutlineClose} from '@react-icons/all-files/ai/AiOutlineClose';
 import {FaEnvelopeSquare} from '@react-icons/all-files/fa/FaEnvelopeSquare';
 import {FaFacebookMessenger} from '@react-icons/all-files/fa/FaFacebookMessenger';
-import {GrClose} from '@react-icons/all-files/gr/GrClose';
 import {TiThMenu} from '@react-icons/all-files/ti/TiThMenu';
 import Link from 'next/link';
 import {useRouter} from 'next/router';
+import DarkModeToggle from 'react-dark-mode-toggle';
 import {CSSTransition} from 'react-transition-group';
+import useCssVariableTheme from '../../hooks/css-varible-theme';
 import {mediaQuery} from '../../utils/media-query';
 import CustomIcon from '../icon/CustomIcon';
 import SocialMedia from '../social/SocialMedia';
@@ -17,6 +19,7 @@ export default function SmallScreenContent() {
   const EMAIL_ADDRESS = 'carloginocatapang@gmail.com';
   const [isOpen, setIsOpen] = useState(false);
   const nodeRef = useRef(null);
+  const {isDarkMode, toggle} = useCssVariableTheme();
 
   const sidebarOpen = () => {
     setIsOpen(true);
@@ -40,9 +43,10 @@ export default function SmallScreenContent() {
         <SidebarMask onClick={sidebarClose} ref={nodeRef}>
           <Sidebar onClick={e => e.stopPropagation()}>
             <CloseButton onClick={sidebarClose}>
-              <GrClose size={30} />
+              <AiOutlineClose size={30} className="close-icon" />
             </CloseButton>
-            <h3>Links</h3>
+            <SectionLabel>Links</SectionLabel>
+
             <nav>
               <ul>
                 {navigationLinks.map(link => (
@@ -61,9 +65,9 @@ export default function SmallScreenContent() {
                 ))}
               </ul>
             </nav>
-            <h3>Social</h3>
+            <SectionLabel>Social</SectionLabel>
             <SocialMedia />
-            <h3>Contact me</h3>
+            <SectionLabel>Contact me</SectionLabel>
             <div>
               <Link href={`mailto:${EMAIL_ADDRESS}`}>
                 <a
@@ -96,12 +100,33 @@ export default function SmallScreenContent() {
                 </a>
               </Link>
             </div>
+            <ThemeSection>
+              <SectionLabel>Toggle Theme</SectionLabel>
+              <DarkModeToggle
+                onChange={toggle}
+                checked={isDarkMode}
+                size={70}
+                className="dark-mode-toggle"
+              />
+            </ThemeSection>
           </Sidebar>
         </SidebarMask>
       </CSSTransition>
     </Container>
   );
 }
+
+const SectionLabel = styled.h3`
+  margin: var(--margin-small) 0;
+`;
+
+const ThemeSection = styled.section`
+  text-align: left;
+  .dark-mode-toggle {
+    outline: 2px solid white;
+    border-radius: 1.5rem;
+  }
+`;
 
 const Container = styled.div`
   position: relative;
@@ -118,7 +143,7 @@ const Sidebar = styled.div`
   position: absolute;
   top: 0;
   right: 0;
-  background-color: var(--color-light-light);
+  background-color: var(--color-light);
   color: var(--color-dark-dark);
   display: flex;
   flex-direction: column;
@@ -200,4 +225,8 @@ const CloseButton = styled.div`
   position: absolute;
   right: 5px;
   top: 5px;
+
+  &.close-icon {
+    fill: var(--color-dark-dark);
+  }
 `;

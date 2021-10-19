@@ -2,14 +2,10 @@ import React from 'react';
 import styled from '@emotion/styled';
 import Image from 'next/image';
 import Link from 'next/link';
-import DarkModeToggle from 'react-dark-mode-toggle';
-import useCssVariableTheme from '../../hooks/css-varible-theme';
 import SmallScreenContent from './SmallScreenContent';
 import WideScreenContentImpl from './WideScreenContent';
 
 export default function Header() {
-  const {isDarkMode, toggle} = useCssVariableTheme();
-
   return (
     <Container>
       <div>
@@ -28,14 +24,6 @@ export default function Header() {
         </MyLogo>
       </div>
       <WideScreenContentImpl />
-      <div style={{display: 'flex'}}>
-        <DarkModeToggle
-          onChange={toggle}
-          checked={isDarkMode}
-          size={70}
-          className="dark-mode-toggle"
-        />
-      </div>
       <SmallScreenContent />
     </Container>
   );
@@ -52,11 +40,6 @@ const Container = styled.header`
   display: flex;
   align-items: center;
   overflow: hidden;
-
-  .dark-mode-toggle {
-    width: 20px;
-    overflow: initial;
-  }
 `;
 
 const MyLogo = styled.div`
