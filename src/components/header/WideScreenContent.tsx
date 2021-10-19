@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import Link from 'next/link';
 import {useRouter} from 'next/router';
 import DarkModeToggle from 'react-dark-mode-toggle';
+import {underlineOnHover} from '../../frontend-utils/animation-effects';
 import useCssVariableTheme from '../../hooks/css-varible-theme';
 import {mediaQuery} from '../../utils/media-query';
 import SocialMedia from '../social/SocialMedia';
@@ -65,14 +66,17 @@ const WideScreenContainer = styled.div`
       list-style: none;
 
       > li {
+        color: var(--color-light);
+
         &:hover {
-          text-decoration: underline;
-          color: var(--color-light);
+          color: var(--color-light-light);
         }
+
+        ${underlineOnHover()}
 
         .active {
           color: var(--color-primary-light);
-          text-decoration: underline;
+          border-bottom: 2px solid var(--color-primary-light);
         }
 
         :not(:last-child) {
