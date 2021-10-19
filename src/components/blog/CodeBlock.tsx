@@ -20,12 +20,18 @@ const CodeBlock: FunctionComponent<CodeBlockProps> = ({
   if (live) {
     return (
       <>
-        <LabelContainer style={{top: '40px'}}>.{language}</LabelContainer>
-        <div style={{marginTop: '40px'}}>
+        <LabelContainer style={{top: '0'}}>
+          <div>.{language}</div>
+          <div>Editable</div>
+        </LabelContainer>
+        <div style={{marginTop: '0'}}>
           <LiveProvider code={children} theme={vsDark}>
             <LiveEditor />
             <LiveError />
-            <LivePreview />
+            <PreviewContainer>
+              <p className="result-label">Result:</p>
+              <LivePreview />
+            </PreviewContainer>
           </LiveProvider>
         </div>
       </>
@@ -63,23 +69,36 @@ const CodeBlock: FunctionComponent<CodeBlockProps> = ({
 };
 
 const Pre = styled.pre`
-  padding-top: 20px;
-  padding-bottom: 15px;
-  padding-right: 10px;
-  padding-left: 10px;
+  padding: 10px;
   overflow: auto;
   display: flex;
   position: relative;
   flex-direction: column;
 `;
 
+const PreviewContainer = styled.div`
+  margin: var(--margin-very-small) 0;
+  border: 1px solid var(--color-light-dark);
+  border-radius: 2px;
+  padding: var(--padding-very-small) var(--padding-small);
+
+  .result-label {
+    margin-bottom: var(--margin-very-small);
+    position: relative;
+    left: -10px;
+  }
+`;
+
 const LabelContainer = styled.aside`
   text-align: left;
   width: 100%;
   padding-left: 7px;
+  padding-right: 5px;
   top: 13px;
   height: 20px;
   position: relative;
+  display: flex;
+  justify-content: space-between;
   color: var(--color-primary-dark);
   background-color: var(--color-light);
 `;

@@ -17,7 +17,7 @@ const BlogHeader: FunctionComponent<Props> = ({blogMetadata, img, svg}) => {
         <meta name="description" content={blogMetadata.description} />
       </Head>
 
-      <Article className="blog-header">
+      <Article>
         <h1>{blogMetadata.title}</h1>
         {blogMetadata.description && (
           <>
@@ -31,7 +31,7 @@ const BlogHeader: FunctionComponent<Props> = ({blogMetadata, img, svg}) => {
             img={img}
             svg={svg}
             layout="responsive"
-            height={100}
+            height={80}
             width={150}
             blurLevel={80}
             objectFit="cover"
@@ -46,6 +46,8 @@ const BlogHeader: FunctionComponent<Props> = ({blogMetadata, img, svg}) => {
 
 const Article = styled.article`
   margin-bottom: var(--margin-medium);
+
+  text-align: center;
 `;
 
 export default BlogHeader;
