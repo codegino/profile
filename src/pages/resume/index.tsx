@@ -7,6 +7,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import ResumeSummary from '../../components/ResumeSummary';
 import CustomIcon from '../../components/icon/CustomIcon';
+import Timeline from '../../components/timeline/Timeline';
 import {resumeProps} from '../../utils/resume-props';
 import {getImageFromSupabase} from '../../utils/supabase-image';
 
@@ -16,10 +17,6 @@ const CustomGithubCalendar = dynamic(
 );
 
 const ReactTooltip = dynamic(() => import('react-tooltip'), {ssr: false});
-
-const Timeline = dynamic(() => import('../../components/timeline/Timeline'), {
-  ssr: true,
-});
 
 const Skills = dynamic(() => import('../../components/skills/Skills'), {
   ssr: false,

@@ -8,7 +8,7 @@ import WideScreenContentImpl from './WideScreenContent';
 export default function Header() {
   return (
     <Container>
-      <div>
+      <LogoContainer>
         <MyLogo className="logo">
           <Link href="/">
             <a aria-label="My Logo">
@@ -22,12 +22,19 @@ export default function Header() {
             </a>
           </Link>
         </MyLogo>
-      </div>
+
+        <Link href="/">
+          <a aria-label="Carlo Gino">
+            <h1>Carlo Gino</h1>
+          </a>
+        </Link>
+      </LogoContainer>
       <WideScreenContentImpl />
       <SmallScreenContent />
     </Container>
   );
 }
+
 const Container = styled.header`
   height: 50px;
   min-height: 50px;
@@ -42,6 +49,17 @@ const Container = styled.header`
   overflow: hidden;
 `;
 
+const LogoContainer = styled.section`
+  display: flex;
+  align-items: center;
+  min-width: 9rem;
+
+  h1 {
+    margin-left: var(--margin-very-small);
+    font-size: 1.25rem;
+  }
+`;
+
 const MyLogo = styled.div`
   border-radius: 50%;
   height: 27px;
@@ -52,7 +70,7 @@ const MyLogo = styled.div`
   border-radius: 50%;
   box-shadow: 0 0 1px 1px var(--color-dark-dark);
   z-index: 100;
-  margin-right: var(--margin-small);
+  margin-right: var(--margin-very-small);
 
   &:hover {
     box-shadow: 0 0 10px 3px var(--color-primary-accent);

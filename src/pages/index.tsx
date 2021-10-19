@@ -63,7 +63,7 @@ export default function Home({
 
 const CueToResume = styled.div`
   text-align: center;
-  margin-bottom: var(--margin-small);
+  margin-bottom: var(--margin-medium);
 
   a {
     color: var(--color-primary-dark);
