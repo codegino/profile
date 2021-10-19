@@ -27,7 +27,7 @@ const appear = keyframes`
   100% {opacity: 1;}
 `;
 
-const Container = styled.div`
+const Container = styled.section`
   position: relative;
   display: flex;
   align-items: center;

@@ -141,7 +141,7 @@ const Summary = styled.div`
   color: var(--color-dark-dark);
 `;
 
-const Container = styled.div`
+const Container = styled.article`
   display: flex;
   align-items: center;
   flex-direction: column;

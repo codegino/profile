@@ -27,7 +27,7 @@ export default function AboutMe({
 
       <AboutMeHero img={img} svg={svg} />
       <AboutMeSection id="about-me-details">
-        <h1>About Me</h1>
+        <h1>About Carlo Gino Catapang</h1>
         {aboutMeDetails.map(detail => {
           return (
             <AboutMeDetail key={detail.key}>
@@ -137,16 +137,15 @@ const AdditionalInfo = styled.p`
   }
 `;
 
-const AboutMeSection = styled.section`
+const AboutMeSection = styled.article`
   margin-bottom: var(--margin-big);
 
   h1 {
     text-align: center;
-    font-size: 3em;
   }
 `;
 
-const AboutMeDetail = styled.div`
+const AboutMeDetail = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
