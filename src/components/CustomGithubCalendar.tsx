@@ -32,15 +32,8 @@ export default function CustomGithubCalendar() {
         username="codegino"
         hideColorLegend={!is400PxAndUp}
         blockMargin={5}
-        blockRadius={7}
-        blockSize={14}
-        theme={{
-          level0: '#F0F0F0',
-          level1: '#C4EDDE',
-          level2: '#7AC7C4',
-          level3: '#48587e',
-          level4: '#242b3c',
-        }}
+        blockRadius={3}
+        blockSize={15}
       >
         <ReactTooltip html />
       </GithubCalendar>
