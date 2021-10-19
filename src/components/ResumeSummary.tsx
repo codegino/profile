@@ -4,6 +4,7 @@ import {FaEnvelopeSquare} from '@react-icons/all-files/fa/FaEnvelopeSquare';
 import {FaMapMarkerAlt} from '@react-icons/all-files/fa/FaMapMarkerAlt';
 import Link from 'next/link';
 import {IGetPlaiceholderReturn} from 'plaiceholder';
+import {underlineOnHover} from '../frontend-utils/animation-effects';
 import {mediaQuery} from '../utils/media-query';
 import {BlurredImage} from './BlurredImage';
 
@@ -23,7 +24,7 @@ export default function ResumeSummary({
           width={200}
         />
       </ImageContainer>
-      <div className="summary">
+      <section className="summary">
         <h1>{summary.name}</h1>
         <div className="designation">
           <h2>{summary.jobTitle}</h2>
@@ -37,6 +38,7 @@ export default function ResumeSummary({
               aria-label="Email me"
               data-tip="Send me an email"
               rel="noopener"
+              className="email"
             >
               <FaEnvelopeSquare />
               &nbsp;{summary.email}
@@ -47,7 +49,7 @@ export default function ResumeSummary({
           <FaMapMarkerAlt />
           &nbsp;{summary.address}
         </h3>
-      </div>
+      </section>
     </Container>
   );
 }
@@ -71,6 +73,10 @@ const Container = styled.article`
     flex-direction: column;
     margin-left: 0;
     ${mediaQuery(900, `margin-left: 2rem;`)}
+
+    .email {
+      ${underlineOnHover('var(--color-primary-dark)')}
+    }
   }
 
   .designation {

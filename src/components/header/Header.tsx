@@ -2,6 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import Image from 'next/image';
 import Link from 'next/link';
+import {underlineOnHover} from '../../frontend-utils/animation-effects';
 import SmallScreenContent from './SmallScreenContent';
 import WideScreenContentImpl from './WideScreenContent';
 
@@ -57,6 +58,8 @@ const LogoContainer = styled.section`
   h1 {
     margin-left: var(--margin-very-small);
     font-size: 1.25rem;
+
+    ${underlineOnHover()}
   }
 `;
 
