@@ -79,18 +79,20 @@ export const getStaticProps = async () => {
 
   const blogDirectories = fs.readdirSync(BLOGS_PATH);
 
-  const blogs = blogDirectories.map(directory => {
-    const source = fs.readFileSync(
-      path.join(BLOGS_PATH, directory, 'index.mdx'),
-    );
+  const blogs = blogDirectories
+    .map(directory => {
+      const source = fs.readFileSync(
+        path.join(BLOGS_PATH, directory, 'index.mdx'),
+      );
 
-    const {data} = matter(source);
+      const {data} = matter(source);
 
-    return {
-      ...data,
-      slug: directory,
-    } as BlogMetadata;
-  });
+      return {
+        ...data,
+        slug: directory,
+      } as BlogMetadata;
+    })
+    .sort((a, b) => new Date(b.date).getDate() - new Date(a.date).getDate());
 
   return {
     props: {blogs, img, svg},
