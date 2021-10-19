@@ -29,7 +29,7 @@ export default function Hero({
       />
       <LeftMessageContainer>
         <Message cascade duration={1500} triggerOnce={true} delay={200}>
-          <h1>I&lsquo;m Carlo Gino Catapang</h1>
+          <h2>Hello World</h2>
           <p>Welcome to my page!</p>
         </Message>
       </LeftMessageContainer>
@@ -71,12 +71,13 @@ const LeftMessageContainer = styled.div`
 `;
 
 const Message = styled(Fade)`
-  h1,
+  h2,
   p {
     color: var(--color-light-light);
     text-shadow: 1px 1px 2px var(--color-dark-dark);
     z-index: 2;
     font-size: 2em;
+    text-align: left;
   }
 
   p {

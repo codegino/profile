@@ -24,6 +24,16 @@ class MyDocument extends Document {
             content={`${process.env.NEXT_PUBLIC_GOOOGLE_SITE_VERIFICATION}`}
           />
           <link rel="icon" href="/favicon.ico" />
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link
+            rel="preconnect"
+            href="https://fonts.gstatic.com"
+            crossOrigin="true"
+          />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap"
+            rel="stylesheet"
+          />
           <meta property="og:url" content="https://carlogino.cc" />
           <meta property="og:type" content="Website" />
           <meta property="og:title" content="Carlo Gino Catapang" />

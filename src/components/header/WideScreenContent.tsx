@@ -2,12 +2,15 @@ import React from 'react';
 import styled from '@emotion/styled';
 import Link from 'next/link';
 import {useRouter} from 'next/router';
+import DarkModeToggle from 'react-dark-mode-toggle';
+import useCssVariableTheme from '../../hooks/css-varible-theme';
 import {mediaQuery} from '../../utils/media-query';
 import SocialMedia from '../social/SocialMedia';
 import {navigationLinks} from './nav-links';
 
 export default function WideScreenContentImpl() {
   const router = useRouter();
+  const {isDarkMode, toggle} = useCssVariableTheme();
 
   return (
     <WideScreenContainer>
@@ -27,7 +30,15 @@ export default function WideScreenContentImpl() {
           ))}
         </ul>
       </nav>
-      <SocialMedia />
+      <div style={{display: 'flex'}}>
+        <SocialMedia />
+        <DarkModeToggle
+          onChange={toggle}
+          checked={isDarkMode}
+          size={70}
+          className="dark-mode-toggle"
+        />
+      </div>
     </WideScreenContainer>
   );
 }
@@ -40,6 +51,10 @@ const WideScreenContainer = styled.div`
   display: none;
 
   ${mediaQuery(700, 'display: flex;')}
+
+  .dark-mode-toggle {
+    margin-left: var(--margin-very-small);
+  }
 
   > nav {
     > ul {

@@ -86,13 +86,7 @@ const Container = styled.article`
     )}
   }
 
-  h1 {
-    text-align: center;
-  }
-
   h2 {
-    margin: var(--margin-very-small) 0;
-
     ${mediaQuery(
       900,
       `

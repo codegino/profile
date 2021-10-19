@@ -23,8 +23,7 @@ export default function Home({
         <meta name="description" content="Carlo Gino Catapang" />
       </Head>
       <Container>
-        <h1 style={{textAlign: 'center'}}>Carlo Gino Catapang</h1>
-        <h2 style={{textAlign: 'center'}}>Blogs</h2>
+        <h1>Carlo Gino Catapang&lsquo;s Blogs</h1>
         <PlaceholderContainer>
           <BlurredImage
             alt="Work in progress"
@@ -51,6 +50,7 @@ const Container = styled.section`
   align-items: center;
   flex-direction: column;
   min-height: 80vh;
+  padding: var(--padding-medium) 0;
 `;
 
 const PlaceholderContainer = styled.div`

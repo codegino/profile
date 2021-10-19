@@ -45,7 +45,7 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+  font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 
   background-color: var(--color-light-light);
@@ -67,4 +67,15 @@ p {
 
 h1 {
   font-size: 2.5rem;
+  margin: var(--margin-small) 0;
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin: var(--margin-very-small) 0;
+}
+
+h3 {
+  margin: var(--margin-very-small) 0;
 }

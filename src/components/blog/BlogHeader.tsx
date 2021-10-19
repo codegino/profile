@@ -46,14 +46,6 @@ const BlogHeader: FunctionComponent<Props> = ({blogMetadata, img, svg}) => {
 
 const Article = styled.article`
   margin-bottom: var(--margin-medium);
-  h1 {
-    margin: var(--margin-small) 0;
-    margin-bottom: var(--margin-small);
-  }
-
-  h2 {
-    margin: var(--margin-small) 0;
-  }
 `;
 
 export default BlogHeader;

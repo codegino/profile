@@ -29,7 +29,7 @@ export default function Greetings() {
             <TerminalContent>
               {isTyping ? (
                 <Typist
-                  avgTypingDelay={40}
+                  avgTypingDelay={35}
                   onTypingDone={() => setIsGuideVisible(true)}
                 >
                   <BsChevronRight />
@@ -47,7 +47,12 @@ export default function Greetings() {
                   <Typist.Backspace count={14} /> Software developer
                   <Typist.Delay ms={1200} />
                   <Typist.Backspace count={18} />{' '}
-                  <span style={{color: 'yellowgreen', fontWeight: 'bold'}}>
+                  <span
+                    style={{
+                      color: 'var(--color-primary-light)',
+                      fontWeight: 'bold',
+                    }}
+                  >
                     SOFTWARE ENGINEER
                   </span>
                   <Typist.Delay ms={200} />
