@@ -45,8 +45,10 @@ const staticPages: SiteMapUrl[] = [
   },
 ];
 
-const generateBlogSiteMapData = (): SiteMapUrl[] => {
-  const blogsSitemaps: SiteMapUrl[] = getAllBlogsPaths().map(directory => {
+const generateBlogSiteMapData = async (): Promise<SiteMapUrl[]> => {
+  const blogsSitemaps = await getAllBlogsPaths();
+
+  return blogsSitemaps.map(directory => {
     const postFilePath = path.join(BLOGS_PATH, `${directory}`);
 
     const source = fs.readFileSync(postFilePath);
@@ -62,8 +64,6 @@ const generateBlogSiteMapData = (): SiteMapUrl[] => {
       priority: 1,
     };
   });
-
-  return blogsSitemaps;
 };
 
 const ROOT_URL = 'https://carlogino.cc';
@@ -84,7 +84,7 @@ async function generateSitemap() {
       `;
     })
     .join('')}
-  ${generateBlogSiteMapData()
+  ${(await generateBlogSiteMapData())
     .map(sitemap => {
       return `
         <url>

@@ -77,7 +77,7 @@ const PlaceholderContainer = styled.div`
 export const getStaticProps = async () => {
   const {img, svg} = await getImageFromSupabase('work_in_progress');
 
-  const blogs = getAllBlogsPaths()
+  const blogs = (await getAllBlogsPaths())
     .map(directory => {
       const blogPath = path.join(BLOGS_PATH, `${directory}`);
       const source = fs.readFileSync(blogPath);

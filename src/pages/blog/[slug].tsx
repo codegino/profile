@@ -57,8 +57,8 @@ export const getStaticProps = async ({params}: GetStaticPropsContext) => {
   };
 };
 
-export const getStaticPaths: GetStaticPaths = () => {
-  const paths = getAllBlogsPaths().map(dir => {
+export const getStaticPaths: GetStaticPaths = async () => {
+  const paths = (await getAllBlogsPaths()).map(dir => {
     return {
       params: {
         slug: dir.replace('.mdx', ''),
@@ -68,6 +68,7 @@ export const getStaticPaths: GetStaticPaths = () => {
 
   return {
     paths,
+
     fallback: false,
   };
 };
