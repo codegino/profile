@@ -26,7 +26,7 @@ const CodeBlock: FunctionComponent<CodeBlockProps> = ({
         </LabelContainer>
         <div style={{marginTop: '0'}}>
           <LiveProvider code={children} theme={vsDark}>
-            <LiveEditor />
+            <LiveEditorContainer />
             <LiveError />
             <PreviewContainer>
               <p className="result-label">Result:</p>
@@ -68,12 +68,17 @@ const CodeBlock: FunctionComponent<CodeBlockProps> = ({
   );
 };
 
+const LiveEditorContainer = styled(LiveEditor)`
+  border-radius: 0px 0px 5px 5px;
+`;
+
 const Pre = styled.pre`
   padding: 10px;
   overflow: auto;
   display: flex;
   position: relative;
   flex-direction: column;
+  border-radius: 0px 0px 5px 5px;
 `;
 
 const PreviewContainer = styled.div`
@@ -101,6 +106,7 @@ const LabelContainer = styled.aside`
   justify-content: space-between;
   color: var(--color-primary-dark);
   background-color: var(--color-light);
+  border-radius: 5px 5px 0px 0px;
 `;
 
 export default CodeBlock;
