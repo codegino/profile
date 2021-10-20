@@ -13,7 +13,7 @@ export default function CustomGithubCalendar() {
 
   return (
     <Container triggerOnce>
-      <h3 style={{margin: '0'}}>
+      <h2 style={{margin: '0'}}>
         My&nbsp;
         <Link href="https://github.com/codegino">
           <a
@@ -26,7 +26,7 @@ export default function CustomGithubCalendar() {
           </a>
         </Link>
         &nbsp;activity
-      </h3>
+      </h2>
 
       <GithubCalendar
         username="codegino"

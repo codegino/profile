@@ -23,14 +23,14 @@ export default function Footer() {
 
 const FooterContainer = styled.footer`
   width: 100%;
-  height: 8rem;
+  height: 12rem;
   background-color: var(--color-dark);
   color: var(--color-light);
   display: flex;
   justify-content: center;
   overflow: hidden;
 
-  ${mediaQuery(900, `height: 5rem;`)}
+  ${mediaQuery(900, `height: 8rem;`)}
 `;
 
 const ContentWrapper = styled.div`
@@ -38,7 +38,7 @@ const ContentWrapper = styled.div`
   align-items: center;
   flex-direction: column-reverse;
   justify-content: center;
-  max-width: 50rem;
+  max-width: 70rem;
   width: 100%;
   text-align: center;
 

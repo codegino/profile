@@ -83,7 +83,7 @@ const Content: React.FC<{exp: WorkExperience}> = ({exp, children = null}) => {
       triggerOnce={true}
       cascade={true}
       duration={800}
-      style={{maxWidth: '45rem'}}
+      style={{maxWidth: '70rem'}}
     >
       <div>
         <DateWrapper>{exp.end_date}</DateWrapper>
@@ -102,7 +102,7 @@ const Content: React.FC<{exp: WorkExperience}> = ({exp, children = null}) => {
           </Link>
         </Summary>
         <ContentTitle>
-          <div className="title">{exp.title}</div> <div>({exp.role})</div>
+          <p className="title">{exp.title}</p> <p>({exp.role})</p>
         </ContentTitle>
       </div>
       <div>{children}</div>

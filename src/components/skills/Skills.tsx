@@ -122,7 +122,7 @@ const SkillsContainer = styled.div`
   overflow: hidden;
 
   .skills {
-    max-width: 40rem;
+    max-width: 60rem;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;

@@ -70,6 +70,8 @@ const CodeBlock: FunctionComponent<CodeBlockProps> = ({
 
 const LiveEditorContainer = styled(LiveEditor)`
   border-radius: 0px 0px 5px 5px;
+
+  font-family: Menlo, Monaco, Consolas, Courier New, monospace !important;
 `;
 
 const Pre = styled.pre`
@@ -79,6 +81,8 @@ const Pre = styled.pre`
   position: relative;
   flex-direction: column;
   border-radius: 0px 0px 5px 5px;
+  font-size: 1rem;
+  font-family: Menlo, Monaco, Consolas, Courier New, monospace !important;
 `;
 
 const PreviewContainer = styled.div`

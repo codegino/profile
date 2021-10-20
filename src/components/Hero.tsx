@@ -76,16 +76,13 @@ const Message = styled(Fade)`
     color: var(--color-light-light);
     text-shadow: 1px 1px 2px var(--color-dark-dark);
     z-index: 2;
-    font-size: 2em;
+    font-size: 5rem;
     text-align: left;
   }
 
   p {
-    font-size: 1.75em;
+    font-size: 4rem;
   }
-
-  ${mediaQuery(500, 'font-size: 1.5em;')}
-  ${mediaQuery(800, 'font-size: 2em;')}
 `;
 
 const Overlay = styled.div`

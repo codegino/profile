@@ -53,11 +53,11 @@ const Container = styled.header`
 const LogoContainer = styled.section`
   display: flex;
   align-items: center;
-  min-width: 9rem;
+  min-width: 13.5rem;
 
   h1 {
     margin-left: var(--margin-very-small);
-    font-size: 1.25rem;
+    font-size: 1.9rem;
 
     ${underlineOnHover()}
   }

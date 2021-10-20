@@ -15,7 +15,7 @@ const Container = styled.main`
   margin: auto;
   padding: var(--padding-very-small);
   margin-bottom: var(--margin-medium);
-  max-width: 50rem;
+  max-width: 70rem;
 
   display: flex;
   flex-direction: column;
@@ -24,6 +24,7 @@ const Container = styled.main`
 
   > p {
     padding: 0 var(--padding-small);
+    font-size: 1.6rem;
   }
 `;
 

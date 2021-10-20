@@ -101,5 +101,5 @@ const ResumeDownloadWrapper = styled.div`
   position: absolute;
   display: flex;
   right: 1rem;
-  top: 4rem;
+  top: 6rem;
 `;
