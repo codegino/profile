@@ -28,8 +28,8 @@ const CodeBlock: FunctionComponent<CodeBlockProps> = ({
           <LiveProvider code={children} theme={vsDark}>
             <LiveEditorContainer />
             <LiveError />
+            <p className="result-label">Result:</p>
             <PreviewContainer>
-              <p className="result-label">Result:</p>
               <LivePreview />
             </PreviewContainer>
           </LiveProvider>

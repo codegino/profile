@@ -122,7 +122,7 @@ const Background = styled.div`
   position: absolute;
   background-image: linear-gradient(
     to right,
-    var(--color-light-light),
+    var(--color-light),
     var(--color-light-dark)
   );
 `;

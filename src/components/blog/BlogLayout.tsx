@@ -21,6 +21,10 @@ const Container = styled.main`
   flex-direction: column;
 
   ${mediaQuery(450, `padding: var(--padding-small);`)}
+
+  > p {
+    padding: 0 var(--padding-small);
+  }
 `;
 
 export default Layout;

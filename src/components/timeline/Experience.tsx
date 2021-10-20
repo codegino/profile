@@ -61,6 +61,7 @@ const Container = styled.section`
         position: absolute;
         background-color: var(--color-primary);
         border-radius: 50%;
+        z-index: 1;
       }
     }
 
