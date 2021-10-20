@@ -2,7 +2,7 @@ import fs from 'fs';
 import matter from 'gray-matter';
 import path from 'path';
 import {BlogMetadata} from '../models/blog';
-import {BLOGS_PATH} from '../utils/mdxUtils';
+import {BLOGS_PATH, getAllBlogsPaths} from '../utils/mdxUtils';
 
 type SiteMapUrl = {
   slug: string;
@@ -45,13 +45,11 @@ const staticPages: SiteMapUrl[] = [
   },
 ];
 
-const generateBlogSiteMapData = (): SiteMapUrl[] => {
-  const blogDirectories = path.join(BLOGS_PATH);
+const generateBlogSiteMapData = async (): Promise<SiteMapUrl[]> => {
+  const blogsSitemaps = await getAllBlogsPaths();
 
-  const paths = fs.readdirSync(blogDirectories);
-
-  const blogsSitemaps: SiteMapUrl[] = paths.map(directory => {
-    const postFilePath = path.join(BLOGS_PATH, `${directory}/index.mdx`);
+  return blogsSitemaps.map(directory => {
+    const postFilePath = path.join(BLOGS_PATH, `${directory}`);
 
     const source = fs.readFileSync(postFilePath);
 
@@ -60,14 +58,12 @@ const generateBlogSiteMapData = (): SiteMapUrl[] => {
     const meta = data as BlogMetadata;
 
     return {
-      slug: directory,
+      slug: directory.replace('.mdx', ''),
       changeFrequency: 'monthly',
       lastMod: meta.date,
       priority: 1,
     };
   });
-
-  return blogsSitemaps;
 };
 
 const ROOT_URL = 'https://carlogino.cc';
@@ -88,7 +84,7 @@ async function generateSitemap() {
       `;
     })
     .join('')}
-  ${generateBlogSiteMapData()
+  ${(await generateBlogSiteMapData())
     .map(sitemap => {
       return `
         <url>
