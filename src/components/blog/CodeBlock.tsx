@@ -20,7 +20,7 @@ const CodeBlock: FunctionComponent<CodeBlockProps> = ({
   if (live) {
     return (
       <>
-        <LabelContainer style={{top: '0'}}>
+        <LabelContainer style={{top: '2px'}}>
           <div>.{language}</div>
           <span style={{fontSize: '1.4rem'}}>Editable</span>
         </LabelContainer>
@@ -70,9 +70,10 @@ const CodeBlock: FunctionComponent<CodeBlockProps> = ({
 
 const LiveEditorContainer = styled(LiveEditor)`
   border-radius: 0px 0px 5px 5px;
+  margin: var(--margin-very-small) 0;
 
   span {
-    font-size: 1.6rem;
+    line-height: 1;
     font-family: Menlo, Monaco, Consolas, Courier New, monospace;
   }
 `;
@@ -84,6 +85,8 @@ const Pre = styled.pre`
   position: relative;
   flex-direction: column;
   border-radius: 0px 0px 5px 5px;
+  font-size: 1.5rem;
+  margin: var(--margin-very-small) 0;
 
   span {
     font-family: Menlo, Monaco, Consolas, Courier New, monospace;
@@ -93,6 +96,7 @@ const Pre = styled.pre`
 const PreviewContainer = styled.div`
   margin: var(--margin-very-small) 0;
   border: 1px solid var(--color-light-dark);
+  background-color: var(--color-light);
   border-radius: 2px;
   padding: var(--padding-very-small) var(--padding-small);
 
@@ -108,7 +112,7 @@ const LabelContainer = styled.aside`
   width: 100%;
   padding-left: 7px;
   padding-right: 5px;
-  top: 15px;
+  top: 3px;
   height: 20px;
   position: relative;
   display: flex;
