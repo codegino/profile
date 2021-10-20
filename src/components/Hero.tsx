@@ -50,22 +50,22 @@ const LeftMessageContainer = styled.div`
   position: absolute;
   display: block;
   z-index: 2;
-  top: 0.25rem;
-  left: 0.5rem;
+  top: 1.25rem;
+  left: 1.5rem;
 
   ${mediaQuery(
     500,
     `
-    top: 0.5rem;
-    left: 1rem;
+    top: 1.5rem;
+    left: 2rem;
   `,
   )}
 
   ${mediaQuery(
     700,
     `
-  top: 1rem;
-  left: 1.5rem;
+  top: 2rem;
+  left: 2.5rem;
   `,
   )}
 `;
@@ -76,12 +76,12 @@ const Message = styled(Fade)`
     color: var(--color-light-light);
     text-shadow: 1px 1px 2px var(--color-dark-dark);
     z-index: 2;
-    font-size: 5rem;
+    font-size: 4em;
     text-align: left;
   }
 
   p {
-    font-size: 4rem;
+    font-size: 2.4em;
   }
 `;
 
