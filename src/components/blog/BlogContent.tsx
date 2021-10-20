@@ -1,6 +1,7 @@
 import React, {FunctionComponent} from 'react';
 import {MDXRemote, MDXRemoteSerializeResult} from 'next-mdx-remote';
 import Head from 'next/head';
+import BlockQuote from './BlockQuote';
 import CodeBlock from './CodeBlock';
 
 // Custom components/renderers to pass to MDX.
@@ -10,6 +11,7 @@ import CodeBlock from './CodeBlock';
 const components = {
   Head,
   code: CodeBlock,
+  blockquote: BlockQuote,
 };
 
 type Props = {
