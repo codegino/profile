@@ -12,7 +12,7 @@ import BlogContent from '../../components/blog/BlogContent';
 import BlogHeader from '../../components/blog/BlogHeader';
 import BlogLayout from '../../components/blog/BlogLayout';
 import {BlogMetadata} from '../../models/blog';
-import {BLOGS_PATH} from '../../utils/mdxUtils';
+import {BLOGS_PATH, getAllBlogsPaths} from '../../utils/mdxUtils';
 
 export default function BlogPage({
   source,
@@ -29,7 +29,7 @@ export default function BlogPage({
 }
 
 export const getStaticProps = async ({params}: GetStaticPropsContext) => {
-  const postFilePath = path.join(BLOGS_PATH, `${params?.slug}/index.mdx`);
+  const postFilePath = path.join(BLOGS_PATH, `${params?.slug}.mdx`);
   const source = fs.readFileSync(postFilePath);
 
   const {content, data} = matter(source);
@@ -58,12 +58,10 @@ export const getStaticProps = async ({params}: GetStaticPropsContext) => {
 };
 
 export const getStaticPaths: GetStaticPaths = () => {
-  const blogDirectories = path.join(BLOGS_PATH);
-
-  const paths = fs.readdirSync(blogDirectories).map(dir => {
+  const paths = getAllBlogsPaths().map(dir => {
     return {
       params: {
-        slug: dir,
+        slug: dir.replace('.mdx', ''),
       },
     };
   });

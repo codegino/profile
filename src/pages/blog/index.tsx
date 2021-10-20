@@ -7,7 +7,7 @@ import path from 'path';
 import {BlurredImage} from '../../components/BlurredImage';
 import BlogCard from '../../components/blog/BlogCard';
 import {BlogMetadata} from '../../models/blog';
-import {BLOGS_PATH} from '../../utils/mdxUtils';
+import {BLOGS_PATH, getAllBlogsPaths} from '../../utils/mdxUtils';
 import {mediaQuery} from '../../utils/media-query';
 import {getImageFromSupabase} from '../../utils/supabase-image';
 
@@ -77,19 +77,16 @@ const PlaceholderContainer = styled.div`
 export const getStaticProps = async () => {
   const {img, svg} = await getImageFromSupabase('work_in_progress');
 
-  const blogDirectories = fs.readdirSync(BLOGS_PATH);
-
-  const blogs = blogDirectories
+  const blogs = getAllBlogsPaths()
     .map(directory => {
-      const source = fs.readFileSync(
-        path.join(BLOGS_PATH, directory, 'index.mdx'),
-      );
+      const blogPath = path.join(BLOGS_PATH, `${directory}`);
+      const source = fs.readFileSync(blogPath);
 
       const {data} = matter(source);
 
       return {
         ...data,
-        slug: directory,
+        slug: directory.replace('.mdx', ''),
       } as BlogMetadata;
     })
     .sort((a, b) => new Date(b.date).getDate() - new Date(a.date).getDate());
