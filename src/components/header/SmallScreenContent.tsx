@@ -54,7 +54,7 @@ export default function SmallScreenContent() {
                     <Link href={link.url}>
                       <a
                         className={
-                          router.asPath == `${link.url}` ? 'active' : ''
+                          router.asPath.includes(link.url) ? 'active' : ''
                         }
                         aria-label={link.label}
                       >
