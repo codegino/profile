@@ -15,7 +15,7 @@ const Container = styled.main`
   margin: auto;
   padding: var(--padding-very-small);
   margin-bottom: var(--margin-medium);
-  max-width: 70rem;
+  max-width: 80rem;
 
   display: flex;
   flex-direction: column;

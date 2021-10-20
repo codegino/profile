@@ -21,7 +21,9 @@ export default function WideScreenContentImpl() {
             <li key={link.label}>
               <Link href={link.url}>
                 <a
-                  className={router.asPath == `${link.url}` ? 'active' : ''}
+                  className={
+                    router.asPath.includes(`${link.url}`) ? 'active' : ''
+                  }
                   aria-label={link.label}
                 >
                   {link.label}

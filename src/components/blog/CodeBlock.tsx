@@ -72,8 +72,8 @@ const LiveEditorContainer = styled(LiveEditor)`
   border-radius: 0px 0px 5px 5px;
 
   span {
+    font-size: 1.6rem;
     font-family: Menlo, Monaco, Consolas, Courier New, monospace;
-    font-size: 1.4rem;
   }
 `;
 
@@ -87,7 +87,6 @@ const Pre = styled.pre`
 
   span {
     font-family: Menlo, Monaco, Consolas, Courier New, monospace;
-    font-size: 1.4rem;
   }
 `;
 

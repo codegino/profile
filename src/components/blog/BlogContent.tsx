@@ -1,7 +1,8 @@
-import React, {FunctionComponent} from 'react';
+import React, {FunctionComponent, ReactPropTypes} from 'react';
 import {MDXRemote, MDXRemoteSerializeResult} from 'next-mdx-remote';
 import Head from 'next/head';
 import BlockQuote from './BlockQuote';
+import BlogAnchor from './BlogAnchor';
 import CodeBlock from './CodeBlock';
 
 // Custom components/renderers to pass to MDX.
@@ -12,6 +13,13 @@ const components = {
   Head,
   code: CodeBlock,
   blockquote: BlockQuote,
+  a: BlogAnchor,
+  p: (props: React.HTMLProps<HTMLParagraphElement>) => (
+    <p {...props} style={{fontSize: '1.8rem'}} />
+  ),
+  li: (props: React.HTMLProps<HTMLLIElement>) => (
+    <li {...props} style={{fontSize: '1.8rem'}} />
+  ),
 };
 
 type Props = {
