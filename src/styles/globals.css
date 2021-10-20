@@ -1,13 +1,17 @@
 :root {
-  --margin-big: 5rem;
-  --margin-medium: 2.5rem;
-  --margin-small: 1rem;
+  --margin-big: 6rem;
+  --margin-medium: 3rem;
+  --margin-small: 1.5rem;
   --margin-very-small: 0.25rem;
 
   --padding-big: 5rem;
   --padding-medium: 2.5rem;
   --padding-small: 1rem;
   --padding-very-small: 0.25rem;
+}
+
+html {
+  font-size: 10px;
 }
 
 html,
@@ -32,22 +36,27 @@ p {
 
 * {
   box-sizing: border-box;
+  font-size: 1.6rem;
 }
 
 h1 {
-  font-size: 2.5rem;
+  font-size: 4rem;
   margin: var(--margin-small) 0;
   text-align: center;
 }
 
 h2 {
-  font-size: 1.5rem;
+  font-size: 2.2rem;
   margin: var(--margin-very-small) 0;
 }
 
-h3,
+h3 {
+  font-size: 1.8rem;
+}
+
 h4,
 h5,
 h6 {
+  font-size: 1.7rem;
   margin: var(--margin-very-small) 0;
 }

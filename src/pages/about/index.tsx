@@ -46,7 +46,9 @@ export default function AboutMe({
       <h2 style={{textAlign: 'center'}}>This website is powered by</h2>
       <TechStackCarousel techStacks={techStacks} />
 
-      <AdditionalInfo style={{marginTop: '1rem', marginBottom: '0.5rem'}}>
+      <AdditionalInfo
+        style={{marginTop: '1rem', marginBottom: 'var(--margin-very-small'}}
+      >
         This awesome carousel is easily made using&nbsp;
         <Link href="https://github.com/leandrowd/react-responsive-carousel">
           <a
@@ -59,7 +61,7 @@ export default function AboutMe({
         </Link>
         .
       </AdditionalInfo>
-      <AdditionalInfo style={{marginBottom: '1.5rem'}}>
+      <AdditionalInfo style={{marginBottom: ' var(--margin-medium)'}}>
         Here is the link to my&nbsp;
         <Link href="https://github.com/codegino/profile">
           <a target="_blank" aria-label="Github Repo" rel="noopener">
@@ -145,10 +147,11 @@ const AboutMeDetail = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 1rem;
+  padding: var(--padding-small);
 
   .content {
-    max-width: 40rem;
+    max-width: 75rem;
     text-align: justify;
+    font-size: 1.6rem;
   }
 `;

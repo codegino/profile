@@ -13,10 +13,10 @@ const COLOR_DARK_LIGHT = '#555555';
 const COLOR_DARK_DARK = '#000000';
 const COLOR_DARK_ACCENT = 'green';
 
-const COLOR_LIGHT = '#EEEEEE';
+const COLOR_LIGHT = '#F3F3F3';
 const COLOR_LIGHT_CONTRAST = 'rgb(39, 38,38)';
 const COLOR_LIGHT_LIGHT = '#FFFFFF';
-const COLOR_LIGHT_DARK = '#AAAAAA';
+const COLOR_LIGHT_DARK = '#CFCFCF';
 const COLOR_LIGHT_ACCENT = '#EEEEEE';
 
 const COLOR_LIGHT_GRAY_1 = '#EEEEEE';
@@ -30,8 +30,16 @@ export default function useCssVariableTheme() {
   React.useEffect(() => {
     if (isDarkMode) {
       document.documentElement.style.setProperty(
+        '--color-primary',
+        COLOR_PRIMARY,
+      );
+      document.documentElement.style.setProperty(
         '--color-light-light',
         COLOR_DARK_DARK,
+      );
+      document.documentElement.style.setProperty(
+        '--color-light-dark',
+        COLOR_DARK_LIGHT,
       );
       document.documentElement.style.setProperty('--color-light', COLOR_DARK);
       document.documentElement.style.setProperty(
@@ -49,8 +57,16 @@ export default function useCssVariableTheme() {
       );
     } else {
       document.documentElement.style.setProperty(
+        '--color-primary',
+        COLOR_PRIMARY,
+      );
+      document.documentElement.style.setProperty(
         '--color-light-light',
         COLOR_LIGHT_LIGHT,
+      );
+      document.documentElement.style.setProperty(
+        '--color-light-dark',
+        COLOR_LIGHT_DARK,
       );
       document.documentElement.style.setProperty('--color-light', COLOR_LIGHT);
       document.documentElement.style.setProperty(

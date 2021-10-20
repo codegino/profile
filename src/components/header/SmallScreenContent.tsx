@@ -166,6 +166,7 @@ const Sidebar = styled.div`
       > li {
         a {
           padding: 0 0.5rem;
+          font-size: 1.2em;
 
           &.active {
             color: var(--color-primary-dark);

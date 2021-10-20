@@ -64,14 +64,14 @@ const MessageContainer = styled.div`
   justify-content: flex-start;
   flex-direction: column;
   flex-wrap: wrap;
-  max-width: 40rem;
+  max-width: 60rem;
   top: 1rem;
   right: 1rem;
   text-align: right;
 
-  ${mediaQuery(550, 'top: 1.0rem; left: 1.0rem; text-align: left;')}
-  ${mediaQuery(900, 'top: 1.5rem; left: 1.5rem; font-size: 1.4em;')}
-  ${mediaQuery(1200, 'top: 2rem; left: 2.5rem; font-size: 1.3em;')}
+  ${mediaQuery(550, 'top: 2.0rem; left: 2.0rem; text-align: left;')}
+  ${mediaQuery(900, 'top: 2.5rem; left: 2.5rem;')}
+  ${mediaQuery(1200, 'top: 3rem; left: 3rem;')}
 `;
 
 const Message = styled(Fade)`
@@ -83,13 +83,13 @@ const Message = styled(Fade)`
     font-size: 2.25em;
     z-index: 2;
 
-    ${mediaQuery(500, 'font-size: 2.5em;')}
+    ${mediaQuery(500, 'font-size: 2.5rem;')}
 
-    ${mediaQuery(600, 'font-size: 3em;')}
+    ${mediaQuery(600, 'font-size: 3rem;')}
 
-    ${mediaQuery(800, 'font-size: 3.5em;')}
+    ${mediaQuery(800, 'font-size: 4.5rem;')}
 
-    ${mediaQuery(1200, 'font-size: 4em;')}
+    ${mediaQuery(1200, 'font-size: 6rem;')}
   }
 `;
 

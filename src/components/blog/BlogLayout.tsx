@@ -15,12 +15,17 @@ const Container = styled.main`
   margin: auto;
   padding: var(--padding-very-small);
   margin-bottom: var(--margin-medium);
-  max-width: 50rem;
+  max-width: 70rem;
 
   display: flex;
   flex-direction: column;
 
   ${mediaQuery(450, `padding: var(--padding-small);`)}
+
+  > p {
+    padding: 0 var(--padding-small);
+    font-size: 1.6rem;
+  }
 `;
 
 export default Layout;

@@ -21,8 +21,8 @@ const BlogCard: React.FC<BlogMetadata> = blog => {
 const Container = styled.article`
   border: 1px solid var(--color-light);
   padding: var(--padding-small) var(--padding-medium);
-  min-width: 20rem;
-  max-width: 20rem;
+  min-width: 30rem;
+  max-width: 30rem;
   border-radius: 3px;
   overflow: hidden;
 
@@ -39,10 +39,10 @@ const Container = styled.article`
     margin-bottom: var(--margin-small);
   }
 
-  ${mediaQuery(500, `min-width: 30rem; max-width: 30rem;`)}
-  ${mediaQuery(700, `min-width: 35rem; max-width: 35rem;`)}
-  ${mediaQuery(900, `min-width: 40rem; max-width: 40rem;`)}
-  ${mediaQuery(1200, `min-width: 45rem; max-width: 45rem;`)}
+  ${mediaQuery(500, `min-width: 50rem; max-width: 50rem;`)}
+  ${mediaQuery(700, `min-width: 60rem; max-width: 60rem;`)}
+  ${mediaQuery(900, `min-width: 65rem; max-width: 65rem;`)}
+  ${mediaQuery(1200, `min-width: 70rem; max-width: 70rem;`)}
 `;
 
 export default BlogCard;

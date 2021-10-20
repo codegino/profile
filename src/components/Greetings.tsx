@@ -32,19 +32,21 @@ export default function Greetings() {
                   avgTypingDelay={35}
                   onTypingDone={() => setIsGuideVisible(true)}
                 >
-                  <BsChevronRight />
+                  <StyledBsChevronRight />
                   <Typist.Delay ms={1200} />
-                  Hi! How are you?
+                  <span>Hi! How are you?</span>
                   <br />
-                  <BsChevronRight />
+                  <StyledBsChevronRight />
                   <Typist.Delay ms={500} />
                   <br />
-                  <BsChevronRight />
+                  <StyledBsChevronRight />
                   <Typist.Delay ms={500} />
-                  This is Carlo Gino, your Web
-                  <Typist.Delay ms={500} /> developer
+                  <span>This is Carlo Gino, your Web</span>
+                  <Typist.Delay ms={500} />
+                  <span> developer</span>
                   <Typist.Delay ms={1000} />
-                  <Typist.Backspace count={14} /> Software developer
+                  <Typist.Backspace count={14} />
+                  <span> Software developer</span>
                   <Typist.Delay ms={1200} />
                   <Typist.Backspace count={18} />{' '}
                   <span
@@ -57,42 +59,44 @@ export default function Greetings() {
                   </span>
                   <Typist.Delay ms={200} />
                   <br />
-                  <BsChevronRight />
-                  who will make your software problems go away
+                  <StyledBsChevronRight />
+                  <span>who will make your software problems go away</span>
                   <Typist.Delay ms={1500} />
                   <br />
-                  <BsChevronRight />
+                  <StyledBsChevronRight />
                   <Typist.Delay ms={300} />
                   <br />
-                  <BsChevronRight />
+                  <StyledBsChevronRight />
                   <Typist.Delay ms={500} />
-                  Got any ideas for a personal,
-                  <Typist.Delay ms={300} /> business,
-                  <Typist.Delay ms={300} /> or other uses?
+                  <span>Got any ideas for a personal,</span>
+                  <Typist.Delay ms={300} />
+                  <span> business,</span>
+                  <Typist.Delay ms={300} />
+                  <span> or other uses?</span>
                   <br />
-                  <BsChevronRight />
+                  <StyledBsChevronRight />
                   <Typist.Delay ms={500} />
-                  Let&lsquo;s make them come to existense!
+                  <span>Let&lsquo;s make them come to existense!</span>
                   <br />
-                  <BsChevronRight />
+                  <StyledBsChevronRight />
                   <Typist.Delay ms={500} />
-                  We&lsquo;ll create something marvelous together.
+                  <span>We&lsquo;ll create something marvelous together.</span>
                   <br />
-                  <BsChevronRight />
+                  <StyledBsChevronRight />
                   <Typist.Delay ms={300} />
                   <br />
-                  <BsChevronRight />
+                  <StyledBsChevronRight />
                   <Typist.Delay ms={300} />
                   <br />
-                  <BsChevronRight />
+                  <StyledBsChevronRight />
                   <Typist.Delay ms={300} />
                   <br />
-                  <BsChevronRight />
+                  <StyledBsChevronRight />
                   <Typist.Delay ms={300} />
                   <br />
-                  <BsChevronRight />
+                  <StyledBsChevronRight />
                   <Typist.Delay ms={1000} />
-                  Scroll down to know more about me...
+                  <span>Scroll down to know more about me...</span>
                 </Typist>
               ) : null}
             </TerminalContent>
@@ -113,6 +117,14 @@ const GuideArrowContainer = styled(Zoom)`
   bottom: 8vh;
 `;
 
+const StyledBsChevronRight = styled(BsChevronRight)`
+  font-size: 0.8rem;
+
+  ${mediaQuery(600, `font-size: 1.1rem;`)}
+  ${mediaQuery(900, `font-size: 1.2rem;`)}
+  ${mediaQuery(900, `font-size: 1.3rem;`)}
+`;
+
 const Background = styled.div`
   top: 0;
   left: 0;
@@ -122,7 +134,7 @@ const Background = styled.div`
   position: absolute;
   background-image: linear-gradient(
     to right,
-    var(--color-light-light),
+    var(--color-light),
     var(--color-light-dark)
   );
 `;
@@ -157,10 +169,19 @@ const TerminalContent = styled.div`
 
   background-color: var(--color-dark-dark);
   color: var(--color-light-light);
+
+  span {
+    font-size: 1.2rem;
+
+    ${mediaQuery(600, `font-size: 1.5rem;`)}
+    ${mediaQuery(900, `font-size: 1.7rem;`)}
+    ${mediaQuery(900, `font-size: 1.8rem;`)}
+  }
+
   .cursor {
     color: green;
     width: 10em;
-    font-size: 1.1em;
+    font-size: 1.1rem;
     font-weight: bold;
   }
 `;
@@ -168,7 +189,7 @@ const TerminalContent = styled.div`
 const TerminalHeader = styled.div`
   background-color: var(--color-light);
   position: relative;
-  height: 2rem;
+  height: 2.5rem;
   display: flex;
   align-items: center;
   padding-left: 0.5rem;
@@ -206,36 +227,37 @@ const TerminalHeader = styled.div`
 
 const Terminal = styled.div`
   box-sizing: border-box;
-  height: 16rem;
+  height: 30rem;
   min-width: 100%;
   border-radius: 5px;
   overflow: hidden;
   display: block;
-  font-size: 0.8em;
   position: relative;
   top: -5rem;
+  line-height: 1;
 
   ${mediaQuery(
     400,
     `
-   height: 18rem;
+   height: 31rem;
    min-width: 100%;
-   font-size: 0.8em;
+  line-height: 1.2;
   `,
   )}
 
   ${mediaQuery(
     600,
     `
-   height: 20rem;
+   height: 35rem;
    min-width: 90%;
-   font-size: 1em;
+  line-height: 1.3;
   `,
   )}
 
   ${mediaQuery(
     750,
     `
+   height: 32rem;
    min-width: 70%;
   `,
   )}
@@ -244,8 +266,8 @@ const Terminal = styled.div`
   ${mediaQuery(
     900,
     `
-   min-width: 35rem;
-   font-size: 1em;
+   height: 35rem;
+   min-width: 70rem;
   `,
   )}
 `;

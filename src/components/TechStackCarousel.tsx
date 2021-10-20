@@ -23,7 +23,7 @@ export default function TechStackCarousel({techStacks}: Props) {
 
   return (
     <CarouselContainer>
-      <div style={{maxWidth: '40rem'}}>
+      <div style={{maxWidth: '60rem'}}>
         <Carousel
           infiniteLoop
           autoPlay
@@ -57,16 +57,16 @@ export default function TechStackCarousel({techStacks}: Props) {
 }
 
 const CarouselContainer = styled.div`
-  height: 25rem;
+  height: 35rem;
   text-align: center;
   display: flex;
   justify-content: center;
 
-  ${mediaQuery(900, 'height: 30rem;')}
+  ${mediaQuery(900, 'height: 48rem;')}
 `;
 
 const CarouselItem = styled.div`
-  height: 25rem;
+  height: 32rem;
   background-color: var(--color-light-light);
-  ${mediaQuery(900, 'height: 30rem;')}
+  ${mediaQuery(900, 'height: 45rem;')}
 `;

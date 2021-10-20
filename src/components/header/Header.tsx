@@ -53,11 +53,13 @@ const Container = styled.header`
 const LogoContainer = styled.section`
   display: flex;
   align-items: center;
-  min-width: 9rem;
+  min-width: 16rem;
 
   h1 {
-    margin-left: var(--margin-very-small);
-    font-size: 1.25rem;
+    margin-left: 0.7rem;
+    font-size: 2.2rem;
+    font-family: Roboto;
+    font-weight: bold;
 
     ${underlineOnHover()}
   }
@@ -76,7 +78,6 @@ const MyLogo = styled.div`
   margin-right: var(--margin-very-small);
 
   &:hover {
-    box-shadow: 0 0 10px 3px var(--color-primary-accent);
-    animation: rotateClockwise 2s infinite;
+    box-shadow: 0 0 10px 3px var(--color-primary);
   }
 `;

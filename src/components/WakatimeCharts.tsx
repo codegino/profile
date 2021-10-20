@@ -6,7 +6,7 @@ import {Zoom} from 'react-awesome-reveal';
 export default function WakatimeCharts() {
   return (
     <Container>
-      <h3 style={{margin: 0, textAlign: 'center'}}>
+      <h2 style={{margin: 0, textAlign: 'center'}}>
         My&nbsp;
         <Link href="https://wakatime.com/@codegino">
           <a
@@ -19,7 +19,7 @@ export default function WakatimeCharts() {
           </a>
         </Link>
         &nbsp;activity
-      </h3>
+      </h2>
       <Zoom triggerOnce>
         <figure>
           <embed src="https://wakatime.com/share/@codegino/aa8c74ed-2174-445a-805d-e46a869c3b8b.svg"></embed>
@@ -35,7 +35,7 @@ export default function WakatimeCharts() {
 }
 
 const Container = styled.div`
-  max-width: 40rem;
+  max-width: 60rem;
   margin: auto;
   overflow: hidden;
   display: flex;

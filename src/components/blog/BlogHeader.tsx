@@ -31,12 +31,12 @@ const BlogHeader: FunctionComponent<Props> = ({blogMetadata, img, svg}) => {
             img={img}
             svg={svg}
             layout="responsive"
-            height={80}
+            height={90}
             width={150}
             blurLevel={80}
             objectFit="cover"
             objectPosition="right"
-            style={{borderRadius: '0.3rem'}}
+            style={{borderRadius: '0.5rem', marginTop: 'var(--margin-medium)'}}
           />
         ) : null}
       </Article>
