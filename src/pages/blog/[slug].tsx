@@ -53,6 +53,7 @@ export const getStaticProps = async ({params}: GetStaticPropsContext) => {
       source: mdxSource,
       frontMatter: {
         ...data,
+        slug: params?.slug,
         date: formatDate(new Date(data.date)),
       } as BlogMetadata,
       img,

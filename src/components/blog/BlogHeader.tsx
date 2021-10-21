@@ -16,6 +16,10 @@ const BlogHeader: FunctionComponent<Props> = ({blogMetadata, img, svg}) => {
         <title>{blogMetadata.title}</title>
         <meta name="description" content={blogMetadata.description} />
         <meta property="og:type" content="blog" />
+        <meta
+          property="og:url"
+          content={`https://carlogino.cc/blog/${blogMetadata.slug}`}
+        />
         <meta property="og:title" content={blogMetadata.title} />
         <meta property="og:image" content={blogMetadata.bannerId} />
         <meta property="og:description" content={blogMetadata.description} />
