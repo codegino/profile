@@ -34,7 +34,7 @@
     "react-tooltip": "4.2.21",
     "react-transition-group": "4.4.2",
     "react-typist": "2.0.5",
-    "sharp": "0.29.1",
+    "sharp": "0.29.2",
     "use-dark-mode": "2.3.1"
   },
   "devDependencies": {
