@@ -46,6 +46,9 @@ class MyDocument extends Document {
             media="(prefers-color-scheme: dark)"
             content="black"
           />
+          {/* For PWA */}
+          <link rel="manifest" href="/manifest.json" />
+          <link rel="apple-touch-icon" href="/assets/logo.png"></link>
           {/* Global Site Tag (gtag.js) - Google Analytics */}
           <script
             async
