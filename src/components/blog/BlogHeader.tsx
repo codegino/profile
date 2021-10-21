@@ -45,11 +45,12 @@ const BlogHeader: FunctionComponent<Props> = ({blogMetadata, img, svg}) => {
             alt="Hero photo"
             img={img}
             svg={svg}
-            layout="intrinsic"
-            height={630}
+            layout="responsive"
+            height={700}
             width={1200}
             blurLevel={80}
-            objectFit="contain"
+            objectFit="cover"
+            objectPosition="center"
             style={{borderRadius: '0.5rem', marginTop: 'var(--margin-medium)'}}
           />
         ) : null}
