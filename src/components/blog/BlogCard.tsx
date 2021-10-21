@@ -11,7 +11,12 @@ const BlogCard: React.FC<BlogMetadata> = blog => {
         <a aria-label={blog.title}>
           <h2>{blog.title}</h2>
           <h3>{blog.description}</h3>
-          <h4>{blog.date}</h4>
+          <p>{blog.date}</p>
+          <TagContainer>
+            {blog.tags.map(tag => (
+              <Tag key={tag}>{tag}</Tag>
+            ))}
+          </TagContainer>
         </a>
       </Link>
     </Container>
@@ -21,8 +26,7 @@ const BlogCard: React.FC<BlogMetadata> = blog => {
 const Container = styled.article`
   border: 1px solid var(--color-light);
   padding: var(--padding-small) var(--padding-medium);
-  min-width: 30rem;
-  max-width: 30rem;
+  width: 100%;
   border-radius: 3px;
   overflow: hidden;
 
@@ -39,10 +43,26 @@ const Container = styled.article`
     margin-bottom: var(--margin-small);
   }
 
-  ${mediaQuery(500, `min-width: 50rem; max-width: 50rem;`)}
+  ${mediaQuery(500, `min-width: 50rem; max-width: 45rem;`)}
   ${mediaQuery(700, `min-width: 60rem; max-width: 60rem;`)}
   ${mediaQuery(900, `min-width: 65rem; max-width: 65rem;`)}
   ${mediaQuery(1200, `min-width: 70rem; max-width: 70rem;`)}
+`;
+
+const TagContainer = styled.section`
+  margin-top: var(--margin-small);
+`;
+
+const Tag = styled.span`
+  display: inline-block;
+  background: var(--color-light);
+  border: 1px solid var(--color-light-dark);
+  padding: var(--padding-very-small) var(--padding-small);
+  border-radius: 0.5rem;
+
+  :not(:first-of-type) {
+    margin: 0 var(--margin-very-small);
+  }
 `;
 
 export default BlogCard;
