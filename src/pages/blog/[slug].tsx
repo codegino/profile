@@ -9,6 +9,7 @@ import {serialize} from 'next-mdx-remote/serialize';
 import path from 'path';
 import {getPlaiceholder} from 'plaiceholder';
 import BlogContent from '../../components/blog/BlogContent';
+import BlogFooter from '../../components/blog/BlogFooter';
 import BlogHeader from '../../components/blog/BlogHeader';
 import BlogLayout from '../../components/blog/BlogLayout';
 import {BlogMetadata} from '../../models/blog';
@@ -24,6 +25,7 @@ export default function BlogPage({
     <BlogLayout>
       <BlogHeader blogMetadata={frontMatter} img={img} svg={svg} />
       <BlogContent source={source} />
+      <BlogFooter />
     </BlogLayout>
   );
 }
