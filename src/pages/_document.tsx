@@ -35,12 +35,13 @@ class MyDocument extends Document {
             rel="stylesheet"
           />
           <meta property="og:url" content="https://carlogino.cc" />
-          <meta property="og:type" content="Website" />
+          <meta property="og:type" content="website" />
           <meta property="og:title" content="Carlo Gino Catapang" />
           <meta name="twitter:card" content="summary" />
           <meta name="description" content={metaDescription} />
           <meta property="og:description" content={metaDescription} />
-          <meta property="og:image" content="/preview.png" />
+          <meta property="og:image" content="/assets/preview.png" />
+          <meta name="twitter:image" content="/assets/logo.png" />
           <meta name="author" content="Carlo Gino Catapang" />
           <meta
             name="keywords"

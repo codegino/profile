@@ -37,9 +37,7 @@ export const getStaticProps = async ({params}: GetStaticPropsContext) => {
 
   const {content, data} = matter(source);
 
-  const {img, svg} = await getPlaiceholder(
-    `https://i.imgur.com/${data.bannerId}`,
-  );
+  const {img, svg} = await getPlaiceholder(`${data.bannerId}`);
 
   const mdxSource = await serialize(content, {
     // Optionally pass remark/rehype plugins
