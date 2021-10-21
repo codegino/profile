@@ -7,11 +7,11 @@ bannerId: anRzle5.jpeg
 
 ## What is a React hook?
 
-> #### From the official [documentation](https://reactjs.org/docs/hooks-intro.html)
+> #### From the React's official [documentation](https://reactjs.org/docs/hooks-intro.html),
 > _Hooks are a new addition in React `16.8`. They let you use state and other_ 
 > _React features without writing a class._
 
-#### What does it means?
+#### What does it mean?
 To give you more context, prior to `React v16.8`, we can only enable a component
 to have a state and be able to manage it if a component is created using a `class`.
 
@@ -38,7 +38,7 @@ class MyClassComponent extends React.Component {
 }
 ```
 
-And `functional components` were mostly used as a dumb component, where
+A `Functional component` is mostly used as a dumb component where
 the decision on how to render it differently is derived from the `props` it will
 receive from its parent component.
 
@@ -51,9 +51,9 @@ function MyFunctionalComponent ({attribute, onChange}) {
 }
 ```
 
-If you notice, we need fewer keystrokes to create a functional component.
-But the problem is it would not be reactive to state changes.
-Let's try to mimic the all the implementation of the class component to our function component.
+If you notice, we need fewer keystrokes to create a functional component,
+but the problem is it would not be reactive to state changes.
+Let's try to mimic all the behaviors of the `class component` to our `function component`.
 
 ```jsx live
 function MyFunctionalComponent () {
@@ -70,24 +70,25 @@ function MyFunctionalComponent () {
 }
 ```
 
-You can modifly the component all day long, but it won't react to state changes.
+You can modify the component all day long, however it won't react to state changes.
 <br />
 
 What if we can have the simplicity of the `functional component` and still have
-the ability to react state changes? React hooks to the rescue.
+the ability to react to state changes?
 
-Here most common examples of react hooks
-- useState
-- useEffect
-- useRef
-- useCallback
-- useMemo
-- useContext
-- useReducer
+<br />
 
-As per the title of this blog, I will only discuss `useState`, which is the solution related to our previous problem.
+#### React hooks to the rescue!
 
-Here are some ways on how to can create a `useState` hook:
+<br />
+
+As per the title of this blog, I will only discuss `useState`
+which is the solution related to our previous problem.
+I will discuss the other types in another blog.
+
+<br />
+
+#### Here are some ways on how to can create a `useState` hook:
 
 ```jsx
 import React from 'react'
@@ -110,7 +111,7 @@ useState(() => 'value returned from a function')
 ...
 ```
 
-As per the examples above, here's what you can pass in `useState` as an argument
+As mentioned on the above examples, here's what you can pass in a `useState` as an argument:
 - nothing
 - primitive value
 - object or array
@@ -121,7 +122,7 @@ else default state will be null
 <br />
 
 When `useState` is invoked, it will return an array.
-The first element is the `state`, and the second element is the `state updater`
+The first element is the `state` and the second element is the `state updater`.
 
 ```jsx
 const stateArray = useState()
@@ -131,13 +132,13 @@ stateArray[1] // state updated
 
 A simpler and more readable way to access `state` and `state updates` is by using
 the `array destructing assignment`.
-The convention for the second element is to prepend it with `set` then make it `camelCase`.
+The convention for the second element is to prepend it with `set`, then make it `camelCase`.
 
 ```jsx
 const [state, setState] = useState()
 ```
 
-Let's replicate the behavior of the class component in a function component using `useState` hook.
+Let's replicate the behavior of the class component in a function component using a `useState` hook.
 
 ```jsx live
 function MyFunctionalComponent () {
@@ -154,7 +155,7 @@ function MyFunctionalComponent () {
 }
 ```
 
-Hooray! we just created a much simpler stateful component using `useState`.
+Hooray! We just created a much simpler stateful component using `useState`.
 Let's breakdown what happened.
 
 <br />
@@ -174,7 +175,7 @@ const handleStateChange = (e) => {
 }
 ```
 
-We display the `state` and attach `handleStateChange` to `onChange` event
+We display the `state` and attach `handleStateChange` to `onChange` event.
 ```jsx
 return <>
   <div>State: {attribute}</div>
@@ -190,15 +191,16 @@ _You can also simplify further if you want_
 <br />
 
 #### Does it mean we should not use a `class component` ever again?
-For me, I always use the `functional component` approach, but if I'm working on a very old codebase where there's no way to migrate to the newer version,
-then I will definitely use a `class component`.
+For me, I always use the `functional component` approach, but if I'm working on a very old codebase where
+there's no way to migrate to the newer version, then I will definitely use a `class component`.
 Also, it is written in the React documentation that `There are no plans to remove classes from React`.
-There are some use cases like usage of Inheritance, creating Error Boundary, explicit lifecycle methods, etc.
-that cannot be directly done using a `functional component`, although there are many workarounds to apply the expected behavior.
+There are some use cases like the when using Inheritance, creating Error Boundary, explicit lifecycle methods, and such
+that cannot be directly done using a `functional component`,
+although there are many workarounds to apply the expected behavior.
 
 <br />
 <br />
 
 ## Conclusion
-Using `useState` will simplify how we can create a component.
+`useState` will simplify how we can create a component.
 Fewer code means lesser bugs(_if used properly_) and easier to read, which results in better maintainability.
