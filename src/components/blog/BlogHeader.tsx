@@ -15,6 +15,10 @@ const BlogHeader: FunctionComponent<Props> = ({blogMetadata, img, svg}) => {
       <Head>
         <title>{blogMetadata.title}</title>
         <meta name="description" content={blogMetadata.description} />
+        <meta property="og:type" content="blog" />
+        <meta property="og:title" content={blogMetadata.title} />
+        <meta property="og:image" content={blogMetadata.bannerId} />
+        <meta property="og:description" content={blogMetadata.description} />
       </Head>
 
       <Article>
@@ -30,12 +34,11 @@ const BlogHeader: FunctionComponent<Props> = ({blogMetadata, img, svg}) => {
             alt="Hero photo"
             img={img}
             svg={svg}
-            layout="responsive"
-            height={90}
-            width={150}
+            layout="intrinsic"
+            height={630}
+            width={1200}
             blurLevel={80}
-            objectFit="cover"
-            objectPosition="right"
+            objectFit="contain"
             style={{borderRadius: '0.5rem', marginTop: 'var(--margin-medium)'}}
           />
         ) : null}
