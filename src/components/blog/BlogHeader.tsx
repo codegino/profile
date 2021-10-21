@@ -27,7 +27,7 @@ const BlogHeader: FunctionComponent<Props> = ({blogMetadata, img, svg}) => {
 
         <meta name="twitter:image" content="/assets/logo.png" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:image" content="/assets/logo.png" />
+        <meta name="twitter:image" content={blogMetadata.bannerId} />
         <meta name="twitter:description" content={blogMetadata.description} />
         <meta name="twitter:title" content="Carlo Gino Catapang" />
       </Head>
