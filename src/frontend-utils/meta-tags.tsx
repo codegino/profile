@@ -4,7 +4,10 @@ const metaDescription =
 export const commonMetaTags = (slug = '') => (
   <>
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image" content="/assets/preview.png" />
+    <meta
+      name="twitter:image"
+      content="https://carlogino.cc/assets/preview.png"
+    />
     <meta name="twitter:description" content={metaDescription} />
     <meta name="twitter:title" content="Carlo Gino Catapang" />
     <meta property="og:url" content={`https://carlogino.cc${slug}`} />
