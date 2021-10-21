@@ -13,6 +13,7 @@ import BlogFooter from '../../components/blog/BlogFooter';
 import BlogHeader from '../../components/blog/BlogHeader';
 import BlogLayout from '../../components/blog/BlogLayout';
 import {BlogMetadata} from '../../models/blog';
+import {formatDate} from '../../utils/date-formatter';
 import {BLOGS_PATH, getAllBlogsPaths} from '../../utils/mdxUtils';
 
 export default function BlogPage({
@@ -52,7 +53,10 @@ export const getStaticProps = async ({params}: GetStaticPropsContext) => {
   return {
     props: {
       source: mdxSource,
-      frontMatter: data as BlogMetadata,
+      frontMatter: {
+        ...data,
+        date: formatDate(new Date(data.date)),
+      } as BlogMetadata,
       img,
       svg,
     },

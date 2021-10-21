@@ -7,6 +7,7 @@ import path from 'path';
 import {BlurredImage} from '../../components/BlurredImage';
 import BlogCard from '../../components/blog/BlogCard';
 import {BlogMetadata} from '../../models/blog';
+import {formatDate} from '../../utils/date-formatter';
 import {BLOGS_PATH, getAllBlogsPaths} from '../../utils/mdxUtils';
 import {mediaQuery} from '../../utils/media-query';
 import {getImageFromSupabase} from '../../utils/supabase-image';
@@ -88,7 +89,11 @@ export const getStaticProps = async () => {
         slug: directory.replace('.mdx', ''),
       } as BlogMetadata;
     })
-    .sort((a, b) => new Date(b.date).getDate() - new Date(a.date).getDate());
+    .sort((a, b) => new Date(b.date).getDate() - new Date(a.date).getDate())
+    .map(blog => ({
+      ...blog,
+      date: formatDate(new Date(blog.date)),
+    }));
 
   return {
     props: {blogs, img, svg},

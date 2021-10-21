@@ -22,7 +22,7 @@ const BlogHeader: FunctionComponent<Props> = ({blogMetadata, img, svg}) => {
         {blogMetadata.description && (
           <>
             <h2 className="description">{blogMetadata.description}</h2>
-            <h3>{blogMetadata.date}</h3>
+            <p>{blogMetadata.date}</p>
           </>
         )}
         {img && svg ? (

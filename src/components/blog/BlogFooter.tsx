@@ -11,6 +11,7 @@ const BlogFooter = () => {
 };
 
 const Footer = styled.footer`
+  margin: auto;
   padding-top: var(--padding-big);
 `;
 
