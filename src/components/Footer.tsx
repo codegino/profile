@@ -13,7 +13,7 @@ export default function Footer() {
             <a aria-label="Sitemap">Sitemap</a>
           </Link>
           <p>All rights reserved</p>
-          <p>© Carlo Gino Catapang 2021</p>
+          <p>© Anne Mariel Recio 2021</p>
         </LegalLabel>
         <SocialMedia />
       </ContentWrapper>

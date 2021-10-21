@@ -25,8 +25,8 @@ export default function Header() {
         </MyLogo>
 
         <Link href="/">
-          <a aria-label="Carlo Gino">
-            <h1>Carlo Gino</h1>
+          <a aria-label="Anne Mariel">
+            <h1>Anne Mariel</h1>
           </a>
         </Link>
       </LogoContainer>
@@ -53,7 +53,7 @@ const Container = styled.header`
 const LogoContainer = styled.section`
   display: flex;
   align-items: center;
-  min-width: 16rem;
+  min-width: 17rem;
 
   h1 {
     margin-left: 0.7rem;

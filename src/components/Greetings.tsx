@@ -41,7 +41,7 @@ export default function Greetings() {
                   <br />
                   <StyledBsChevronRight />
                   <Typist.Delay ms={500} />
-                  <span>This is Carlo Gino, your Web</span>
+                  <span>This is Anne Mariel, your Web</span>
                   <Typist.Delay ms={500} />
                   <span> developer</span>
                   <Typist.Delay ms={1000} />

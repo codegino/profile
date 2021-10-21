@@ -20,11 +20,11 @@ export default function Home({
   return (
     <>
       <Head>
-        <title>Carlo Gino Catapang Blogs</title>
-        <meta name="description" content="Carlo Gino Catapang" />
+        <title>Anne Mariel Recio Blogs</title>
+        <meta name="description" content="Anne Mariel Recio" />
       </Head>
       <Container>
-        <h1>Carlo Gino Catapang&lsquo;s Blogs</h1>
+        <h1>Anne Mariel Recio&lsquo;s Blogs</h1>
         <PlaceholderContainer>
           <BlurredImage
             alt="Work in progress"
@@ -75,7 +75,7 @@ const PlaceholderContainer = styled.div`
 `;
 
 export const getStaticProps = async () => {
-  const {img, svg} = await getImageFromSupabase('work_in_progress');
+  const {img, svg} = await getImageFromSupabase('profile_photo');
 
   const blogs = (await getAllBlogsPaths())
     .map(directory => {

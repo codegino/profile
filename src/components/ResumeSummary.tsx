@@ -143,5 +143,5 @@ const summary = {
   company: 'NE Digital',
   email: 'carloginocatapang@gmail.com',
   address: 'Tampines, Singapore',
-  name: 'Carlo Gino Catapang',
+  name: 'Anne Mariel Recio',
 };

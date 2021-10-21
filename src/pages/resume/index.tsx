@@ -32,8 +32,8 @@ export default function Resume({
   return (
     <>
       <Head>
-        <title>Carlo Gino Catapang Resume</title>
-        <meta name="description" content="Carlo Gino Catapang resume" />
+        <title>Anne Mariel Recio Resume</title>
+        <meta name="description" content="Anne Mariel Recio resume" />
       </Head>
 
       <ResumeDownloadWrapper>

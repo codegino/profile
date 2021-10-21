@@ -35,28 +35,12 @@ export default function Home({
   return (
     <>
       <Head>
-        <title>Carlo Gino Catapang</title>
-        <meta name="description" content="Carlo Gino Catapang" />
+        <title>Anne Mariel Recio</title>
+        <meta name="description" content="Anne Mariel Recio" />
       </Head>
 
       <Hero img={heroImage} svg={heroSvg} />
       <Greetings />
-      <ResumeSummary img={profileImage} svg={profileSvg} />
-      <Skills skills={skills} />
-      <ReactTooltip backgroundColor="#111111" />
-      <CustomGithubCalendar />
-      <WakatimeCharts />
-      <CueToResume>
-        <p>
-          Visit my&nbsp;
-          <Link href="/resume">
-            <a aria-label="resume" data-tip="Link to my resume">
-              resume
-            </a>
-          </Link>
-          &nbsp;for more info
-        </p>
-      </CueToResume>
     </>
   );
 }
