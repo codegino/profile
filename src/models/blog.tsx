@@ -6,4 +6,5 @@ export type BlogMetadata = {
   order: number;
   description: string;
   bannerId: string;
+  tags: string[];
 };
