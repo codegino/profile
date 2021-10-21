@@ -6,9 +6,6 @@ import Document, {
   DocumentContext,
 } from 'next/document';
 
-const metaDescription =
-  'Carlo Gino Catapang. Web Developer, Software Developer, Software Engineer, Frontend Engineer. React, JavaScript, TypeScript expert. Husband and Father.';
-
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
     const initialProps = await Document.getInitialProps(ctx);
@@ -34,13 +31,7 @@ class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap"
             rel="stylesheet"
           />
-          <meta property="og:url" content="https://carlogino.cc" />
-          <meta property="og:type" content="website" />
-          <meta property="og:title" content="Carlo Gino Catapang" />
           <meta name="twitter:card" content="summary" />
-          <meta name="description" content={metaDescription} />
-          <meta property="og:description" content={metaDescription} />
-          <meta property="og:image" content="/assets/preview.png" />
           <meta name="twitter:image" content="/assets/logo.png" />
           <meta name="author" content="Carlo Gino Catapang" />
           <meta

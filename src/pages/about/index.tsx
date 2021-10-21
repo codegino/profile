@@ -5,6 +5,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import AboutMeHero from '../../components/AboutMeHero';
 import TechStackCarousel, {TechStack} from '../../components/TechStackCarousel';
+import {commonMetaTags} from '../../frontend-utils/meta-tags';
 import {StaticContent} from '../../models/static-content';
 import {
   getImageFromSupabase,
@@ -22,7 +23,8 @@ export default function AboutMe({
     <>
       <Head>
         <title>About Carlo Gino Catapang</title>
-        <meta name="description" content="Carlo Gino Catapang" />
+        <meta name="description" content="Carlo Gino Catapang" />$
+        {commonMetaTags('/about')}
       </Head>
 
       <AboutMeHero img={img} svg={svg} />
