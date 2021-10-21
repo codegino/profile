@@ -6,6 +6,7 @@ import Link from 'next/link';
 import Greetings from '../components/Greetings';
 import Hero from '../components/Hero';
 import ResumeSummary from '../components/ResumeSummary';
+import {commonMetaTags} from '../frontend-utils/meta-tags';
 import generateSitemap from '../lib/sitemap';
 import {resumeProps} from '../utils/resume-props';
 import {getImageFromSupabase} from '../utils/supabase-image';
@@ -37,6 +38,7 @@ export default function Home({
       <Head>
         <title>Carlo Gino Catapang</title>
         <meta name="description" content="Carlo Gino Catapang" />
+        {commonMetaTags()}
       </Head>
 
       <Hero img={heroImage} svg={heroSvg} />

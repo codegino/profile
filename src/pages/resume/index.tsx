@@ -8,6 +8,7 @@ import Link from 'next/link';
 import ResumeSummary from '../../components/ResumeSummary';
 import CustomIcon from '../../components/icon/CustomIcon';
 import Timeline from '../../components/timeline/Timeline';
+import {commonMetaTags} from '../../frontend-utils/meta-tags';
 import {resumeProps} from '../../utils/resume-props';
 import {getImageFromSupabase} from '../../utils/supabase-image';
 
@@ -33,7 +34,8 @@ export default function Resume({
     <>
       <Head>
         <title>Carlo Gino Catapang Resume</title>
-        <meta name="description" content="Carlo Gino Catapang resume" />
+        <meta name="description" content="Carlo Gino Catapang resume" />$
+        {commonMetaTags('/resume')}
       </Head>
 
       <ResumeDownloadWrapper>

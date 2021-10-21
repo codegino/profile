@@ -6,6 +6,7 @@ import Head from 'next/head';
 import path from 'path';
 import {BlurredImage} from '../../components/BlurredImage';
 import BlogCard from '../../components/blog/BlogCard';
+import {commonMetaTags} from '../../frontend-utils/meta-tags';
 import {BlogMetadata} from '../../models/blog';
 import {formatDate} from '../../utils/date-formatter';
 import {BLOGS_PATH, getAllBlogsPaths} from '../../utils/mdxUtils';
@@ -21,7 +22,8 @@ export default function Home({
     <>
       <Head>
         <title>Carlo Gino Catapang Blogs</title>
-        <meta name="description" content="Carlo Gino Catapang" />
+        <meta name="description" content="Carlo Gino Catapang Blogs" />$
+        {commonMetaTags('/blog')}
       </Head>
       <Container>
         <h1>Carlo Gino Catapang&lsquo;s Blogs</h1>
