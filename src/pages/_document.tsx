@@ -31,8 +31,6 @@ class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap"
             rel="stylesheet"
           />
-          <meta name="twitter:card" content="summary" />
-          <meta name="twitter:image" content="/assets/logo.png" />
           <meta name="author" content="Carlo Gino Catapang" />
           <meta
             name="keywords"

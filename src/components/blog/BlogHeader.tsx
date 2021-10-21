@@ -20,9 +20,16 @@ const BlogHeader: FunctionComponent<Props> = ({blogMetadata, img, svg}) => {
         />
         <meta property="og:type" content="blog" />
         <meta property="og:title" content={blogMetadata.title} />
-        <meta name="description" content={blogMetadata.description} />
         <meta property="og:description" content={blogMetadata.description} />
         <meta property="og:image" content={blogMetadata.bannerId} />
+
+        <meta name="description" content={blogMetadata.description} />
+
+        <meta name="twitter:image" content="/assets/logo.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content="/assets/logo.png" />
+        <meta name="twitter:description" content={blogMetadata.description} />
+        <meta name="twitter:title" content="Carlo Gino Catapang" />
       </Head>
 
       <Article>
