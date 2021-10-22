@@ -14,7 +14,7 @@ import BlogHeader from '../../components/blog/BlogHeader';
 import BlogLayout from '../../components/blog/BlogLayout';
 import {BlogMetadata} from '../../models/blog';
 import {formatDate} from '../../utils/date-formatter';
-import {BLOGS_PATH, getAllBlogsPaths} from '../../utils/mdxUtils';
+import {BLOGS_PATH, getBlogsMetadata} from '../../utils/mdxUtils';
 
 export default function BlogPage({
   source,
@@ -63,23 +63,13 @@ export const getStaticProps = async ({params}: GetStaticPropsContext) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = (await getAllBlogsPaths())
-    .map((directory): {params: {slug: string}} => {
-      const postFilePath = path.join(BLOGS_PATH, `${directory}`);
-
-      const source = fs.readFileSync(postFilePath);
-
-      const {data} = matter(source);
-
-      const meta = data as BlogMetadata;
-
-      return {
-        params: {
-          slug: meta.published ? directory.replace('.mdx', '') : '',
-        },
-      };
-    })
-    .filter(sitemap => Boolean(sitemap?.params?.slug));
+  const paths = (await getBlogsMetadata()).map(meta => {
+    return {
+      params: {
+        slug: meta.slug,
+      },
+    };
+  });
 
   return {
     paths,

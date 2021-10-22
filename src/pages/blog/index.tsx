@@ -1,15 +1,11 @@
 import styled from '@emotion/styled';
-import fs from 'fs';
-import matter from 'gray-matter';
 import {InferGetStaticPropsType} from 'next';
 import Head from 'next/head';
-import path from 'path';
 import {BlurredImage} from '../../components/BlurredImage';
 import BlogCard from '../../components/blog/BlogCard';
 import {commonMetaTags} from '../../frontend-utils/meta-tags';
-import {BlogMetadata} from '../../models/blog';
 import {formatDate} from '../../utils/date-formatter';
-import {BLOGS_PATH, getAllBlogsPaths} from '../../utils/mdxUtils';
+import {getBlogsMetadata} from '../../utils/mdxUtils';
 import {mediaQuery} from '../../utils/media-query';
 import {getImageFromSupabase} from '../../utils/supabase-image';
 
@@ -79,19 +75,7 @@ const PlaceholderContainer = styled.div`
 export const getStaticProps = async () => {
   const {img, svg} = await getImageFromSupabase('work_in_progress');
 
-  const blogs = (await getAllBlogsPaths())
-    .map(directory => {
-      const blogPath = path.join(BLOGS_PATH, `${directory}`);
-      const source = fs.readFileSync(blogPath);
-
-      const {data} = matter(source);
-
-      return {
-        ...data,
-        slug: directory.replace('.mdx', ''),
-      } as BlogMetadata;
-    })
-    .filter(blog => blog.published)
+  const blogs = (await getBlogsMetadata())
     .sort((a, b) => new Date(b.date).getDate() - new Date(a.date).getDate())
     .map(blog => ({
       ...blog,
