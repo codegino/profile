@@ -8,20 +8,28 @@ export type CodeBlockProps = {
   children: string;
   className: string;
   live: boolean;
+  noLine: boolean;
 };
+
+const executableExtensions = ['js', 'jsx', 'ts', 'tsx', 'html', 'css'];
 
 const CodeBlock: FunctionComponent<CodeBlockProps> = ({
   children,
   className,
   live,
+  noLine = false,
 }) => {
   const language = className.replace(/language-/, '') as Language;
+
+  const languageLabel = executableExtensions.some(ext => ext === language)
+    ? `.${language}`
+    : language;
 
   if (live) {
     return (
       <>
         <LabelContainer style={{top: '2px'}}>
-          <div>.{language}</div>
+          <div>{languageLabel}</div>
           <span style={{fontSize: '1.4rem'}}>Editable</span>
         </LabelContainer>
         <div style={{marginTop: '0'}}>
@@ -40,26 +48,24 @@ const CodeBlock: FunctionComponent<CodeBlockProps> = ({
 
   return (
     <>
-      <LabelContainer>.{language}</LabelContainer>
+      <LabelContainer>{languageLabel}</LabelContainer>
       <Highlight
         {...defaultProps}
+        theme={vsDark}
         code={children.trim()}
         language={language}
-        theme={vsDark}
       >
         {({className, style, tokens, getLineProps, getTokenProps}) => (
-          <Pre
-            className={className}
-            style={{
-              ...style,
-            }}
-          >
+          <Pre className={className} style={style}>
             {tokens.map((line, i) => (
-              <div key={i} {...getLineProps({line, key: i})}>
-                {line.map((token, key) => (
-                  <span key={key} {...getTokenProps({token, key})} />
-                ))}
-              </div>
+              <Line key={i} {...getLineProps({line, key: i})}>
+                {!noLine ? <LineNo>{i + 1}</LineNo> : null}
+                <LineContent>
+                  {line.map((token, key) => (
+                    <span key={key} {...getTokenProps({token, key})} />
+                  ))}
+                </LineContent>
+              </Line>
             ))}
           </Pre>
         )}
@@ -120,6 +126,24 @@ const LabelContainer = styled.aside`
   color: var(--color-primary-dark);
   background-color: var(--color-light);
   border-radius: 5px 5px 0px 0px;
+`;
+
+const Line = styled.div`
+  display: table-row;
+`;
+
+const LineNo = styled.span`
+  display: table-cell;
+  text-align: right;
+  padding-right: 1em;
+  user-select: none;
+  opacity: 0.5;
+  min-width: 3rem;
+  max-width: 3rem;
+`;
+
+const LineContent = styled.span`
+  display: table-cell;
 `;
 
 export default CodeBlock;

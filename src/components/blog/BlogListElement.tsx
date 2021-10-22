@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-const BlogParagraph = (props: React.HTMLAttributes<HTMLParagraphElement>) => (
-  <Paragraph {...props} />
+const BlogListElement = (props: React.HTMLAttributes<HTMLLIElement>) => (
+  <List {...props} />
 );
 
-const Paragraph = styled.p`
+const List = styled.li`
   line-height: 1.5;
 
   > code {
@@ -17,4 +17,4 @@ const Paragraph = styled.p`
   }
 `;
 
-export default BlogParagraph;
+export default BlogListElement;

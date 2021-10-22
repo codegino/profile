@@ -3,6 +3,7 @@ import {MDXRemote, MDXRemoteSerializeResult} from 'next-mdx-remote';
 import Head from 'next/head';
 import BlockQuote from './BlockQuote';
 import BlogAnchor from './BlogAnchor';
+import BlogListElement from './BlogListElement';
 import BlogParagraph from './BlogParagraph';
 import CodeBlock from './CodeBlock';
 
@@ -16,9 +17,7 @@ const components = {
   blockquote: BlockQuote,
   a: BlogAnchor,
   p: BlogParagraph,
-  li: (props: React.HTMLProps<HTMLLIElement>) => (
-    <li {...props} style={{fontSize: '1.8rem'}} />
-  ),
+  li: BlogListElement,
 };
 
 type Props = {
