@@ -10,6 +10,8 @@ export type CodeBlockProps = {
   live: boolean;
 };
 
+const executableExtensions = ['js', 'jsx', 'ts', 'tsx', 'html', 'css'];
+
 const CodeBlock: FunctionComponent<CodeBlockProps> = ({
   children,
   className,
@@ -17,11 +19,15 @@ const CodeBlock: FunctionComponent<CodeBlockProps> = ({
 }) => {
   const language = className.replace(/language-/, '') as Language;
 
+  const languageLabel = executableExtensions.some(ext => ext === language)
+    ? `.${language}`
+    : language;
+
   if (live) {
     return (
       <>
         <LabelContainer style={{top: '2px'}}>
-          <div>.{language}</div>
+          <div>{languageLabel}</div>
           <span style={{fontSize: '1.4rem'}}>Editable</span>
         </LabelContainer>
         <div style={{marginTop: '0'}}>
@@ -40,7 +46,7 @@ const CodeBlock: FunctionComponent<CodeBlockProps> = ({
 
   return (
     <>
-      <LabelContainer>.{language}</LabelContainer>
+      <LabelContainer>{languageLabel}</LabelContainer>
       <Highlight
         {...defaultProps}
         code={children.trim()}
