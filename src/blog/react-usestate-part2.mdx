@@ -19,16 +19,45 @@ In this blog we will talk about what will happen if we do these:
 2. Pass a function to the `setState` function 
 
 ### Why do we need to pass a `callback function` to the `useState` function
-state the problem
+
+#### Problem
 
 ```jsx live
 function SetStateDemo() {
-  const [state, ] = React.useState(() => {
-    console.log('TEST')
-    return true
-  })
+  const complexFunction = () => {
+    // Something computationally expensive
+    // Try uncommenting the line below
+    // console.log('Finding the meaning of life')
+    return 'result of a heavy task'
+  }
 
-  return <p>{state}</p>
+  const [,setState] = React.useState(complexFunction())
+
+  return <button onClick={() => setState(Date.now())} >Click Me</button>
+}
+```
+
+
+#### Solution
+
+```jsx
+const [,setState] = React.useState(() => complexFunction())
+OR
+const [,setState] = React.useState(complexFunction)
+```
+
+```jsx live
+function SetStateDemo() {
+  const complexFunction = () => {
+    // Something computationally expensive
+    // Try uncommenting the line below
+    // console.log('Finding the meaning of life')
+    return 'result of a heavy task'
+  }
+
+  const [,setState] = React.useState(complexFunction)
+
+  return <button onClick={() => setState(Date.now())} >Click Me</button>
 }
 ```
 
@@ -73,6 +102,12 @@ function SetStateDemoWithCallback() {
   </>
 }
 ```
+
+```jsx
+// 
+
+```
+
 
 example here
 

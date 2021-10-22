@@ -91,6 +91,7 @@ export const getStaticProps = async () => {
         slug: directory.replace('.mdx', ''),
       } as BlogMetadata;
     })
+    .filter(blog => blog.published)
     .sort((a, b) => new Date(b.date).getDate() - new Date(a.date).getDate())
     .map(blog => ({
       ...blog,

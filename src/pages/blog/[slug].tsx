@@ -63,13 +63,23 @@ export const getStaticProps = async ({params}: GetStaticPropsContext) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = (await getAllBlogsPaths()).map(dir => {
-    return {
-      params: {
-        slug: dir.replace('.mdx', ''),
-      },
-    };
-  });
+  const paths = (await getAllBlogsPaths())
+    .map((directory): {params: {slug: string}} => {
+      const postFilePath = path.join(BLOGS_PATH, `${directory}`);
+
+      const source = fs.readFileSync(postFilePath);
+
+      const {data} = matter(source);
+
+      const meta = data as BlogMetadata;
+
+      return {
+        params: {
+          slug: meta.published ? directory.replace('.mdx', '') : '',
+        },
+      };
+    })
+    .filter(sitemap => Boolean(sitemap?.params?.slug));
 
   return {
     paths,

@@ -7,4 +7,5 @@ export type BlogMetadata = {
   description: string;
   bannerId: string;
   tags: string[];
+  published: boolean;
 };

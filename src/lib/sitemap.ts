@@ -48,22 +48,24 @@ const staticPages: SiteMapUrl[] = [
 const generateBlogSiteMapData = async (): Promise<SiteMapUrl[]> => {
   const blogsSitemaps = await getAllBlogsPaths();
 
-  return blogsSitemaps.map(directory => {
-    const postFilePath = path.join(BLOGS_PATH, `${directory}`);
+  return blogsSitemaps
+    .map((directory): SiteMapUrl => {
+      const postFilePath = path.join(BLOGS_PATH, `${directory}`);
 
-    const source = fs.readFileSync(postFilePath);
+      const source = fs.readFileSync(postFilePath);
 
-    const {data} = matter(source);
+      const {data} = matter(source);
 
-    const meta = data as BlogMetadata;
+      const meta = data as BlogMetadata;
 
-    return {
-      slug: directory.replace('.mdx', ''),
-      changeFrequency: 'monthly',
-      lastMod: meta.date,
-      priority: 1,
-    };
-  });
+      return {
+        slug: meta.published ? directory.replace('.mdx', '') : '',
+        changeFrequency: 'monthly',
+        lastMod: meta.date,
+        priority: 1,
+      };
+    })
+    .filter(sitemap => Boolean(sitemap.slug));
 };
 
 const ROOT_URL = 'https://carlogino.cc';
