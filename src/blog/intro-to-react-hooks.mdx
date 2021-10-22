@@ -10,11 +10,13 @@ tags:
 
 ## What is a React hook?
 
-> #### From the React's official [documentation](https://reactjs.org/docs/hooks-intro.html),
+<br />
+
+> ### From the React's official [documentation](https://reactjs.org/docs/hooks-intro.html),
 > _Hooks are a new addition in React `16.8`. They let you use state and other_ 
 > _React features without writing a class._
 
-#### What does it mean?
+### What does it mean?
 To give you more context, prior to `React v16.8`, we can only enable a component
 to have a state and be able to manage it if a component is created using a `class`.
 
@@ -40,6 +42,8 @@ class MyClassComponent extends React.Component {
   }
 }
 ```
+
+<br />
 
 A `Functional component` is mostly used as a dumb component where
 the decision on how to render it differently is derived from the `props` it will
@@ -81,7 +85,7 @@ the ability to react to state changes?
 
 <br />
 
-#### React hooks to the rescue!
+### React hooks to the rescue!
 
 <br />
 
@@ -91,7 +95,7 @@ I will discuss the other types in another blog.
 
 <br />
 
-#### Here are some ways on how to can create a `useState` hook:
+### Here are some ways on how to can create a `useState` hook:
 
 ```jsx
 import React from 'react'
@@ -194,7 +198,7 @@ _You can also simplify further if you want_
 
 <br />
 
-#### Does it mean we should not use a `class component` ever again?
+### Does it mean we should not use a `class component` ever again?
 For me, I always use the `functional component` approach, but if I'm working on a very old codebase where
 there's no way to migrate to the newer version, then I will definitely use a `class component`.
 Also, it is written in the React documentation that `There are no plans to remove classes from React`.

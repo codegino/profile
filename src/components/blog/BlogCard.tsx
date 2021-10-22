@@ -12,11 +12,13 @@ const BlogCard: React.FC<BlogMetadata> = blog => {
           <h2>{blog.title}</h2>
           <h3>{blog.description}</h3>
           <p>{blog.date}</p>
-          <TagContainer>
-            {blog.tags.map(tag => (
-              <Tag key={tag}>{tag}</Tag>
-            ))}
-          </TagContainer>
+          {blog.tags && blog.tags.length ? (
+            <TagContainer>
+              {blog.tags.map(tag => (
+                <Tag key={tag}>{tag}</Tag>
+              ))}
+            </TagContainer>
+          ) : null}
         </a>
       </Link>
     </Container>
