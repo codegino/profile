@@ -1,0 +1,78 @@
+---
+title: React useState Hook Part 2
+description: Callback functions in React useState
+date: '2021-10-22'
+bannerId: https://i.imgur.com/E2O6Tzi.jpeg
+tags:
+  - react
+  - tech
+---
+
+## How to use a callback function functions in React.useState?
+
+<br />
+
+From my previous [blog](https://carlogino.cc/blog/intro-to-react-hooks),
+I discussed basic ways to use a `useState`.
+In this blog we will talk about what will happen if we do these:
+1. Pass a function to the `useState` function
+2. Pass a function to the `setState` function 
+
+### Why do we need to pass a `callback function` to the `useState` function
+state the problem
+
+```jsx live
+function SetStateDemo() {
+  const [state, ] = React.useState(() => {
+    console.log('TEST')
+    return true
+  })
+
+  return <p>{state}</p>
+}
+```
+
+example here
+
+### Why do we need to pass a `callback function` to the `setState` function
+state the problem
+
+example here
+
+```jsx live
+function SetStateDemo() {
+  const [state, setState] = React.useState('')
+
+  const handleClick = () => {
+    setState(state + 'a')
+    setState(state + 'b')
+    setState(state + 'c')
+  }
+
+  return <>
+    <p>State: {state}</p>
+    <button onClick={handleClick}>Click Me</button>
+  </>
+}
+```
+
+
+```jsx live
+function SetStateDemoWithCallback() {
+  const [state, setState] = React.useState('')
+
+  const handleClick = () => {
+    setState(prev => prev + 'a')
+    setState(prev => prev + 'b')
+    setState(prev => prev + 'c')
+  }
+
+  return <>
+    <p>State: {state}</p>
+    <button onClick={handleClick}>Click Me</button>
+  </>
+}
+```
+
+example here
+
