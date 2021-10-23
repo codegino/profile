@@ -24,8 +24,9 @@ export default function Footer() {
 const FooterContainer = styled.footer`
   width: 100%;
   height: 12rem;
-  background-color: var(--color-dark);
-  color: var(--color-light);
+  border-top: 1px solid var(--color-dark-dark);
+  background-color: #000000;
+  color: #ffffff;
   display: flex;
   justify-content: center;
   overflow: hidden;
