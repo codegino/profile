@@ -6,15 +6,20 @@ import {
   InferGetStaticPropsType,
 } from 'next';
 import {serialize} from 'next-mdx-remote/serialize';
+import dynamic from 'next/dynamic';
 import path from 'path';
 import {getPlaiceholder} from 'plaiceholder';
 import BlogContent from '../../components/blog/BlogContent';
-import BlogFooter from '../../components/blog/BlogFooter';
 import BlogHeader from '../../components/blog/BlogHeader';
 import BlogLayout from '../../components/blog/BlogLayout';
 import {BlogMetadata} from '../../models/blog';
 import {formatDate} from '../../utils/date-formatter';
-import {BLOGS_PATH, getBlogsMetadata} from '../../utils/mdxUtils';
+import {getBlogsMetadata} from '../../utils/mdxUtils';
+import {BLOGS_PATH} from '../../utils/mdxUtils';
+
+const BlogFooter = dynamic(() => import('../../components/blog/BlogFooter'), {
+  ssr: false,
+});
 
 export default function BlogPage({
   source,
@@ -24,9 +29,9 @@ export default function BlogPage({
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <BlogLayout>
-      <BlogHeader blogMetadata={frontMatter} img={img} svg={svg} />
+      <BlogHeader blog={frontMatter} img={img} svg={svg} />
       <BlogContent source={source} />
-      <BlogFooter />
+      <BlogFooter blog={frontMatter} />
     </BlogLayout>
   );
 }

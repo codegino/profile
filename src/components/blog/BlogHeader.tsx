@@ -6,38 +6,38 @@ import {BlogMetadata} from '../../models/blog';
 import {BlurredImage} from '../BlurredImage';
 
 type Props = {
-  blogMetadata: BlogMetadata;
+  blog: BlogMetadata;
 } & Pick<IGetPlaiceholderReturn, 'svg' | 'img'>;
 
-const BlogHeader: FunctionComponent<Props> = ({blogMetadata, img, svg}) => {
+const BlogHeader: FunctionComponent<Props> = ({blog, img, svg}) => {
   return (
     <>
       <Head>
-        <title>{blogMetadata.title}</title>
+        <title>{blog.title}</title>
         <meta
           property="og:url"
-          content={`https://carlogino.cc/blog/${blogMetadata.slug}`}
+          content={`https://carlogino.cc/blog/${blog.slug}`}
         />
         <meta property="og:type" content="blog" />
-        <meta property="og:title" content={blogMetadata.title} />
-        <meta property="og:description" content={blogMetadata.description} />
-        <meta property="og:image" content={blogMetadata.bannerId} />
+        <meta property="og:title" content={blog.title} />
+        <meta property="og:description" content={blog.description} />
+        <meta property="og:image" content={blog.bannerId} />
 
-        <meta name="description" content={blogMetadata.description} />
+        <meta name="description" content={blog.description} />
 
         <meta name="twitter:image" content="/assets/logo.png" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:image" content={blogMetadata.bannerId} />
-        <meta name="twitter:description" content={blogMetadata.description} />
+        <meta name="twitter:image" content={blog.bannerId} />
+        <meta name="twitter:description" content={blog.description} />
         <meta name="twitter:title" content="Carlo Gino Catapang" />
       </Head>
 
       <Article>
-        <h1>{blogMetadata.title}</h1>
-        {blogMetadata.description && (
+        <h1>{blog.title}</h1>
+        {blog.description && (
           <>
-            <h2 className="description">{blogMetadata.description}</h2>
-            <p>{blogMetadata.date}</p>
+            <h2 className="description">{blog.description}</h2>
+            <p>{blog.date}</p>
           </>
         )}
         {img && svg ? (
@@ -54,9 +54,9 @@ const BlogHeader: FunctionComponent<Props> = ({blogMetadata, img, svg}) => {
             style={{borderRadius: '0.5rem', marginTop: 'var(--margin-medium)'}}
           />
         ) : null}
-        {blogMetadata.bannerDescription ? (
+        {blog.bannerDescription ? (
           <aside style={{marginTop: 'var(--margin-very-small)'}}>
-            <i style={{fontSize: '0.85em'}}>{blogMetadata.bannerDescription}</i>
+            <i style={{fontSize: '0.85em'}}>{blog.bannerDescription}</i>
           </aside>
         ) : null}
       </Article>
