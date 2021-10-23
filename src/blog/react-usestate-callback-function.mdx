@@ -2,7 +2,8 @@
 title: React useState callback function
 description: What is the callback function in a useState for?
 date: '2021-10-22'
-bannerId: https://i.imgur.com/E2O6Tzi.jpeg
+bannerId: https://i.imgur.com/yqrEMgg.jpeg
+bannerDescription: A lazy sloth
 tags:
   - react
   - tech
@@ -12,7 +13,8 @@ published: true
 ## Why do we need to pass a _callback function_ to the _useState_ function
 
 >### TLDR version
-> To optimize the setting of default value by resolving the source only once.
+> To use lazy initialization, which will resolve the source of the state only once,
+in order to avoid unnecessary computation during re-render.
 
 
 ### Longer version
