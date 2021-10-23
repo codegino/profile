@@ -1,0 +1,82 @@
+---
+title: React setState callback function
+description: Callback functions in React useState
+date: '2021-10-22'
+bannerId: https://i.imgur.com/E2O6Tzi.jpeg
+tags:
+  - react
+  - tech
+published: false 
+---
+
+### Why do we need to pass a `callback function` to the `setState` function
+
+#### TLDR version
+
+> To allow the `setState` function to refer to the actual `previous value` of the state.
+
+#### What if we call the `setState` function simultaneously?
+
+From the example below, at first glance, we might say the state will be `abc` after clicking the button.
+
+```jsx live
+function SetStateDemo() {
+  const [state, setState] = React.useState('')
+
+  const handleClick = () => {
+    setState(state + 'a')
+    setState(state + 'b')
+    setState(state + 'c')
+  }
+
+  return <>
+    <p>State: {state}</p>
+    <button onClick={handleClick}>Click Me</button>
+  </>
+}
+```
+
+
+```jsx live
+function SetStateDemoWithCallback() {
+  const [state, setState] = React.useState('')
+
+  const handleClick = () => {
+    setState(prev => prev + 'a')
+    setState(prev => prev + 'b')
+    setState(prev => prev + 'c')
+  }
+
+  return <>
+    <p>State: {state}</p>
+    <button onClick={handleClick}>Click Me</button>
+  </>
+}
+```
+
+```jsx noInline live 
+const Wrapper = ({ children }) => (
+  <div style={{
+    background: 'papayawhip',
+    width: '100%',
+    padding: '2rem'
+  }}>
+    {children}
+  </div>
+)
+
+const Title = ({title}) => (
+  <h3 style={{ color: 'palevioletred' }}>
+    {title}
+  </h3>
+)
+
+render(
+  <Wrapper>
+    <Title title="CARLOGINO" />
+  </Wrapper>
+)
+```
+
+
+

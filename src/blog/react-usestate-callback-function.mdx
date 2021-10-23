@@ -1,0 +1,107 @@
+---
+title: React useState callback function
+description: What is the callback function in a useState for?
+date: '2021-10-22'
+bannerId: https://i.imgur.com/E2O6Tzi.jpeg
+tags:
+  - react
+  - tech
+published: true
+---
+
+## Why do we need to pass a _callback function_ to the _useState_ function
+
+>### TLDR version
+> To optimize the setting of default value by resolving the source only once.
+
+
+### Longer version
+
+When we develop real production application, it's not always that we derive our state from simple primitive values.
+
+```jsx
+const [state1, setState1] = useState(prop1 === prop2 && prop2 !== prop3 && prop1 < prop3)
+const [state2, setState2] = useState(prop4 === prop5 && prop5 !== prop6 && prop4 < prop6)
+```
+
+You might notice the logics to get the default value are very identical so as a good programmer,
+we can extract the logic to a new function to avoid duplication.
+```jsx
+function reusableFunctionToGetState(first, second, third)  {
+  return first === second && second !== third && first < third
+}
+
+// We call the function with the appropriate arguments. 
+const [state1, setState1] = useState(reusableFunctionToGetState(prop1, prop2, prop3));
+const [state2, setState2] = useState(reusableFunctionToGetState(prop4, prop5, prop6));
+```
+
+The problem occurs when the source of our state is computationally expensive.
+Everytime we re-render our component we need to re-evaluate our default state.
+Try to see the problem by playing with the code below.
+
+```jsx live
+function UseStateDemo() {
+  const complexFunction = () => {
+    // Something computationally expensive
+    // Try uncommenting any of the lines below
+    // console.log('Finding the meaning of life')
+    // alert('Finding the meaning of life')
+    return 'result of a heavy task'
+  }
+
+  const [,setState] = React.useState(complexFunction())
+
+  return <button onClick={() => setState(Date.now())} >Click Me</button>
+}
+```
+
+Each time we click the button the `complexFunction` will always being called(_verify by uncommenting console.log or alert_).
+If that `complexFunction` is really computationally expensive then expect our component will render slower.
+
+<br />
+### Solution: perform a lazy initialization
+
+For a such big word like `lazy initialization` it actually is very simple. Simply pass a function instead of a value.
+```jsx
+const [,setState] = React.useState(() => complexFunction())
+// OR
+const [,setState] = React.useState(complexFunction)
+```
+
+<br />
+
+Try to play with the code below and see the difference
+```jsx live
+function SetStateDemo() {
+  const complexFunction = () => {
+    // Something computationally expensive
+    // Try uncommenting any of the lines below
+    // console.log('Finding the meaning of life')
+    // alert('Finding the meaning of life')
+    return 'result of a heavy task'
+  }
+
+  const [,setState] = React.useState(() => complexFunction)
+  // const [,setState] = React.useState(complexFunction) // Alternatively
+
+  return <button onClick={() => setState(Date.now())} >Click Me</button>
+}
+```
+
+The `complexFunction` will be evaluated only once if we pass it as a function
+and not invoking it immediately, thus giving us a performance boost.
+
+<br />
+
+### Do we need to always lazy initializate our state?
+Definitely not. It's not magic that allows lazy initialization to do the above optimization.
+There's an overhead to it which means if we use everywhere it,
+it could make our application "slower" in contrast to our goal to make it faster.
+
+<br />
+<br />
+
+## Conclusion
+Use `lazy initialization` when your state dependends on something that is computationally heavy.
+`lazy initialization` has a small overhead, so use it wisely.
