@@ -42,8 +42,9 @@ const Container = styled.header`
   width: 100%;
   z-index: 1;
   display: block;
-  background-color: var(--color-dark);
-  color: var(--color-light);
+  border-bottom: 1px solid var(--color-dark);
+  background-color: #000000;
+  color: #ffffff;
   padding: 0 var(--padding-small);
   display: flex;
   align-items: center;

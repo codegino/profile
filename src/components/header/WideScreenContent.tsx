@@ -68,10 +68,10 @@ const WideScreenContainer = styled.div`
       list-style: none;
 
       > li {
-        color: var(--color-light);
+        color: #dddddd;
 
         &:hover {
-          color: var(--color-light-light);
+          color: #ffffff;
         }
 
         ${underlineOnHover()}
