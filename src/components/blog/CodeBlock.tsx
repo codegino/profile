@@ -18,7 +18,7 @@ const CodeBlock: FunctionComponent<CodeBlockProps> = ({
   children,
   className,
   live,
-  noLine = false,
+  noLine = true,
   noInline = false,
 }) => {
   const language = className.replace(/language-/, '') as Language;

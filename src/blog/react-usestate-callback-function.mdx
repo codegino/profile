@@ -13,13 +13,14 @@ published: true
 ## Why do we need to pass a _callback function_ to the _useState_ function
 
 >### TLDR version
-> To use lazy initialization, which will resolve the source of the state only once,
-in order to avoid unnecessary computation during re-render.
+> We can pass a callback function when calling `useState` to take advantage of lazy initialization.
+> This will resolve the source of the state only once, thus avoiding unnecessary computation during re-renders.
 
 
 ### Longer version
 
 When we develop real production application, it's not always that we derive our state from simple primitive values.
+Sometimes we need to calculate them based on other values as shown below.
 
 ```jsx
 const [state1, setState1] = useState(prop1 === prop2 && prop2 !== prop3 && prop1 < prop3)
@@ -58,10 +59,11 @@ function UseStateDemo() {
 }
 ```
 
-Each time we click the button the `complexFunction` will always being called(_verify by uncommenting console.log or alert_).
+Each time we click the button, the `complexFunction` will always be called(_verify by uncommenting console.log or alert_).
 If that `complexFunction` is really computationally expensive then expect our component will render slower.
 
 <br />
+
 ### Solution: perform a lazy initialization
 
 For a such big word like `lazy initialization` it actually is very simple. Simply pass a function instead of a value.
@@ -99,11 +101,11 @@ and not invoking it immediately, thus giving us a performance boost.
 ### Do we need to always lazy initializate our state?
 Definitely not. It's not magic that allows lazy initialization to do the above optimization.
 There's an overhead to it which means if we use everywhere it,
-it could make our application "slower" in contrast to our goal to make it faster.
+it could make our component "slower" in contrast to our goal to make it faster.
 
 <br />
 <br />
 
 ## Conclusion
 Use `lazy initialization` when your state dependends on something that is computationally heavy.
-`lazy initialization` has a small overhead, so use it wisely.
+Avoid unnecessary "optimization"; `lazy initialization` has a small overhead, so use it wisely.
