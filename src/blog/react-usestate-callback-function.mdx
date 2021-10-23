@@ -66,7 +66,8 @@ If that `complexFunction` is really computationally expensive then expect our co
 
 ### Solution: perform a lazy initialization
 
-For a such big word like `lazy initialization` it actually is very simple. Simply pass a function instead of a value.
+For a such big word like `lazy initialization` it actually is very simple.
+We simply need pass a function instead of a value as shown below.
 ```jsx
 const [,setState] = React.useState(() => complexFunction())
 // OR
@@ -107,5 +108,5 @@ it could make our component "slower" in contrast to our goal to make it faster.
 <br />
 
 ## Conclusion
-Use `lazy initialization` when your state dependends on something that is computationally heavy.
-Avoid unnecessary "optimization"; `lazy initialization` has a small overhead, so use it wisely.
+Use lazy initialization when your state dependends on something that is computationally heavy.
+Avoid unnecessary "_optimization_"; lazy initialization has a small overhead, so use it wisely.
