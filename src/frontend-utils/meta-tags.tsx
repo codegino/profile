@@ -15,5 +15,7 @@ export const commonMetaTags = (slug = '') => (
     <meta property="og:title" content="Carlo Gino Catapang" />
     <meta property="og:description" content={metaDescription} />
     <meta property="og:image" content="/assets/preview.png" />
+
+    <meta name="description" content={metaDescription} />
   </>
 );

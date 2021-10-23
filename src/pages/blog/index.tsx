@@ -18,7 +18,6 @@ export default function Home({
     <>
       <Head>
         <title>Carlo Gino Catapang Blogs</title>
-        <meta name="description" content="Carlo Gino Catapang Blogs" />$
         {commonMetaTags('/blog')}
       </Head>
       <Container>

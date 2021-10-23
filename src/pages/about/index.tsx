@@ -23,7 +23,6 @@ export default function AboutMe({
     <>
       <Head>
         <title>About Carlo Gino Catapang</title>
-        <meta name="description" content="Carlo Gino Catapang" />$
         {commonMetaTags('/about')}
       </Head>
 
