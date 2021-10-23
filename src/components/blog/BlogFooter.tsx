@@ -10,6 +10,7 @@ type Props = {
 const BlogFooter = ({blog}: Props) => {
   return (
     <Footer>
+      <Separation />
       <DiscussionEmbed
         shortname="carlogino"
         config={{
@@ -23,10 +24,14 @@ const BlogFooter = ({blog}: Props) => {
   );
 };
 
+const Separation = styled.hr`
+  width: 100%;
+  margin-top: var(--margin-medium);
+`;
+
 const Footer = styled.footer`
   margin: auto;
   width: 100%;
-  padding-top: var(--padding-big);
 `;
 
 export default BlogFooter;
