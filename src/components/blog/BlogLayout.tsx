@@ -26,6 +26,25 @@ const Container = styled.main`
     padding: 0 var(--padding-small);
     font-size: 1.6rem;
   }
+
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    code {
+      font-size: 1em;
+      background-color: var(--color-light);
+      padding: 0 var(--padding-very-small);
+      border: 1px solid var(--color-light-dark);
+      border-radius: 2px;
+      font-family: monospace;
+    }
+
+    em {
+      font-size: 1em;
+    }
+  }
 `;
 
 export default Layout;
