@@ -54,6 +54,11 @@ const BlogHeader: FunctionComponent<Props> = ({blogMetadata, img, svg}) => {
             style={{borderRadius: '0.5rem', marginTop: 'var(--margin-medium)'}}
           />
         ) : null}
+        {blogMetadata.bannerDescription ? (
+          <aside style={{marginTop: 'var(--margin-very-small)'}}>
+            <i style={{fontSize: '0.85em'}}>{blogMetadata.bannerDescription}</i>
+          </aside>
+        ) : null}
       </Article>
     </>
   );

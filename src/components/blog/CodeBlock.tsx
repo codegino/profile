@@ -9,6 +9,7 @@ export type CodeBlockProps = {
   className: string;
   live: boolean;
   noLine: boolean;
+  noInline: boolean;
 };
 
 const executableExtensions = ['js', 'jsx', 'ts', 'tsx', 'html', 'css'];
@@ -17,7 +18,8 @@ const CodeBlock: FunctionComponent<CodeBlockProps> = ({
   children,
   className,
   live,
-  noLine = false,
+  noLine = true,
+  noInline = false,
 }) => {
   const language = className.replace(/language-/, '') as Language;
 
@@ -33,7 +35,7 @@ const CodeBlock: FunctionComponent<CodeBlockProps> = ({
           <span style={{fontSize: '1.4rem'}}>Editable</span>
         </LabelContainer>
         <div style={{marginTop: '0'}}>
-          <LiveProvider code={children} theme={vsDark}>
+          <LiveProvider code={children} theme={vsDark} noInline={noInline}>
             <LiveEditorContainer />
             <LiveError />
             <p className="result-label">Result:</p>
