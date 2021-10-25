@@ -1,23 +1,26 @@
 ---
 title: React setState callback function
-description: Callback functions in React useState
-date: '2021-10-22'
-bannerId: https://i.imgur.com/E2O6Tzi.jpeg
+description: What is the callback function in a setState for?
+date: '2021-10-25'
+bannerId: https://i.imgur.com/KRfczbZ.jpeg
+bannerDescription: how?
 tags:
   - react
   - tech
-published: false 
+published: true 
 ---
 
-### Why do we need to pass a `callback function` to the `setState` function
+### Why do we need to pass a `callback function` to the `setState` function?
 
-#### TLDR version
+> ### TLDR version
+> To allow the `setState` function to use the actual `previous value` of the state.
 
-> To allow the `setState` function to refer to the actual `previous value` of the state.
+### Longer version
 
 #### What if we call the `setState` function simultaneously?
 
 From the example below, at first glance, we might say the state will be `abc` after clicking the button.
+_Try to play with the code below_
 
 ```jsx live
 function SetStateDemo() {
@@ -35,6 +38,49 @@ function SetStateDemo() {
   </>
 }
 ```
+
+If you predicted that the new state will not be `abc` then kudos to you.
+If not then let's discuss what actually happened.
+
+```jsx
+...
+const handleClick = () => {
+  // value of state is ''
+  setState(state + 'a') // '' + 'a' = 'a'
+  // value of state is STILL ''
+  setState(state + 'b') // '' + 'b' = 'b'
+  // value of state is STILL ''
+  setState(state + 'c') // '' + 'c' = 'c'
+  // final of state is 'c'
+}
+...
+```
+
+It is true that we called `setState` 3 times,
+but that does not mean the value of the `state`
+variable is already updated after calling `setState`.
+
+<br />
+<br />
+
+#### Solution: pass a function to `setState`
+
+```jsx
+// BEFORE
+setState(state + 'a')
+
+// AFTER
+setState((previousState) => {
+  return previousState + 'a'
+})
+// OR
+setState(prev => prev + 'a')
+```
+
+<br />
+
+Passing a function to `setState` will allow us get the previous state value
+from the first argument of the function. Now check the result of our updated code.
 
 
 ```jsx live
@@ -54,29 +100,29 @@ function SetStateDemoWithCallback() {
 }
 ```
 
-```jsx noInline live 
-const Wrapper = ({ children }) => (
-  <div style={{
-    background: 'papayawhip',
-    width: '100%',
-    padding: '2rem'
-  }}>
-    {children}
-  </div>
-)
+<br />
 
-const Title = ({title}) => (
-  <h3 style={{ color: 'palevioletred' }}>
-    {title}
-  </h3>
-)
+#### How did it work?
 
-render(
-  <Wrapper>
-    <Title title="CARLOGINO" />
-  </Wrapper>
-)
+Each callback function would have a reference to the recent state change(if there is any)
+as shown in the commented code below.
+
+```jsx
+...
+const handleClick = () => {
+  // value of state is ''
+  setState(prev => prev + 'a') // '' + 'a' = 'a'
+  // value of prev is 'a'
+  setState(prev + prev + 'b') // 'a' + 'b' = 'b'
+  // value of prev is 'ab'
+  setState(prev => prev + 'c') // 'ab' + 'c' = 'c'
+  // final state is 'abc'
+}
+...
 ```
 
+<br />
 
-
+## Conclusion
+Pass a callback function to `setState` if it might be called multiple times
+and the new state needs to be calculated based from the previous state.
