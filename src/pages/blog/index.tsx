@@ -36,7 +36,7 @@ export default function Home({
           />
         </PlaceholderContainer>
         {blogs.map(blog => {
-          return <BlogCard key={blog.slug} {...blog} />;
+          return <BlogCard key={blog.slug} blog={blog} />;
         })}
       </Container>
     </>
