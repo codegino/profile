@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import Link from 'next/link';
-import {BlogMetadata} from '../../models/blog';
+import {IBlogMetadata} from '../../models/blog';
 import {mediaQuery} from '../../utils/media-query';
 
-const BlogCard: React.FC<BlogMetadata> = blog => {
+const BlogCard: React.FC<IBlogMetadata> = blog => {
   return (
     <Container>
       <Link href={`/blog/${blog.slug}`}>

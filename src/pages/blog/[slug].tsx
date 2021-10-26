@@ -12,7 +12,7 @@ import {getPlaiceholder} from 'plaiceholder';
 import BlogContent from '../../components/blog/BlogContent';
 import BlogHeader from '../../components/blog/BlogHeader';
 import BlogLayout from '../../components/blog/BlogLayout';
-import {BlogMetadata} from '../../models/blog';
+import {IBlogMetadata} from '../../models/blog';
 import {formatDate} from '../../utils/date-formatter';
 import {getBlogsMetadata} from '../../utils/mdxUtils';
 import {BLOGS_PATH} from '../../utils/mdxUtils';
@@ -60,7 +60,7 @@ export const getStaticProps = async ({params}: GetStaticPropsContext) => {
         ...data,
         slug: params?.slug,
         date: formatDate(new Date(data.date)),
-      } as BlogMetadata,
+      } as IBlogMetadata,
       img,
       svg,
     },

@@ -2,7 +2,7 @@ import fs from 'fs';
 import globby from 'globby';
 import matter from 'gray-matter';
 import path from 'path';
-import {BlogMetadata} from '../models/blog';
+import {IBlogMetadata} from '../models/blog';
 
 // BLOGS_PATH is useful when you want to get the path to a specific file
 export const BLOGS_PATH = path.join(process.cwd(), 'src/blog');
@@ -15,7 +15,7 @@ export const getAllBlogsPaths = async () => {
 
 export const getBlogsMetadata = async () => {
   const blogs = (await getAllBlogsPaths())
-    .map((directory): BlogMetadata => {
+    .map((directory): IBlogMetadata => {
       const postFilePath = path.join(BLOGS_PATH, `${directory}`);
 
       const source = fs.readFileSync(postFilePath);
@@ -23,7 +23,7 @@ export const getBlogsMetadata = async () => {
       const {data} = matter(source);
 
       return {
-        ...(data as BlogMetadata),
+        ...(data as IBlogMetadata),
         slug: data.published ? directory.replace('.mdx', '') : '',
       };
     })

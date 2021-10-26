@@ -2,11 +2,11 @@ import React, {FunctionComponent} from 'react';
 import styled from '@emotion/styled';
 import Head from 'next/head';
 import {IGetPlaiceholderReturn} from 'plaiceholder';
-import {BlogMetadata} from '../../models/blog';
+import {IBlogMetadata} from '../../models/blog';
 import {BlurredImage} from '../BlurredImage';
 
 type Props = {
-  blog: BlogMetadata;
+  blog: IBlogMetadata;
 } & Pick<IGetPlaiceholderReturn, 'svg' | 'img'>;
 
 const BlogHeader: FunctionComponent<Props> = ({blog, img, svg}) => {

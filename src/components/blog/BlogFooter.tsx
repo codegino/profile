@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import {DiscussionEmbed} from 'disqus-react';
-import {BlogMetadata} from '../../models/blog';
+import {IBlogMetadata} from '../../models/blog';
 
 type Props = {
-  blog: BlogMetadata;
+  blog: IBlogMetadata;
 };
 
 const BlogFooter = ({blog}: Props) => {
