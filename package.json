@@ -16,7 +16,7 @@
     "@supabase/supabase-js": "1.25.1",
     "disqus-react": "1.1.2",
     "gray-matter": "4.0.3",
-    "isomorphic-dompurify": "0.15.0",
+    "isomorphic-dompurify": "0.16.0",
     "mdx-embed": "0.0.22",
     "next": "11.1.2",
     "next-mdx-remote": "3.0.6",
