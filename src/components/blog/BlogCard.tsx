@@ -1,10 +1,15 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import Image from 'next/image';
 import Link from 'next/link';
-import {BlogMetadata} from '../../models/blog';
+import {IBlogMetadata} from '../../models/blog';
 import {mediaQuery} from '../../utils/media-query';
 
-const BlogCard: React.FC<BlogMetadata> = blog => {
+type Props = {
+  blog: IBlogMetadata;
+};
+
+const BlogCard: React.FC<Props> = ({blog}) => {
   return (
     <Container>
       <Link href={`/blog/${blog.slug}`}>
@@ -21,9 +26,57 @@ const BlogCard: React.FC<BlogMetadata> = blog => {
           ) : null}
         </a>
       </Link>
+      <ImageContainer>
+        <Image
+          src={blog.bannerId}
+          alt={blog.description}
+          layout="fill"
+          objectFit="cover"
+          placeholder="blur"
+          blurDataURL="/assets/blog-placeholder.jpeg"
+        />
+      </ImageContainer>
     </Container>
   );
 };
+
+const ImageContainer = styled.div`
+  position: relative;
+  max-height: 22rem;
+  min-height: 22rem;
+  max-width: 10rem;
+  min-width: 10rem;
+  border-radius: 1rem;
+  overflow: hidden;
+
+  ${mediaQuery(
+    350,
+    `
+    max-height: 18rem;
+    min-height: 18rem;
+    max-width: 10rem;
+    min-width: 10rem;
+  `,
+  )}
+
+  ${mediaQuery(
+    400,
+    `
+    max-width: 14rem;
+    min-width: 14rem;
+  `,
+  )}
+
+  ${mediaQuery(
+    500,
+    `
+    max-height: 17rem;
+    max-width: 24rem;
+    min-width: 24rem;
+    min-height: 17rem;
+  `,
+  )}
+`;
 
 const Container = styled.article`
   border: 1px solid var(--color-light);
@@ -31,6 +84,9 @@ const Container = styled.article`
   width: 100%;
   border-radius: 3px;
   overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
   /* Add shadows to create the "card" effect */
   box-shadow: 0 1px 2px 0px var(--color-dark);
