@@ -6,8 +6,11 @@ import Link from 'next/link';
 import Greetings from '../components/Greetings';
 import Hero from '../components/Hero';
 import ResumeSummary from '../components/ResumeSummary';
+import BlogSuggestionsList from '../components/blog/BlogSuggestionsList';
 import {commonMetaTags} from '../frontend-utils/meta-tags';
 import generateSitemap from '../lib/sitemap';
+import {formatDate} from '../utils/date-formatter';
+import {getBlogsMetadata} from '../utils/mdxUtils';
 import {resumeProps} from '../utils/resume-props';
 import {getImageFromSupabase} from '../utils/supabase-image';
 
@@ -32,6 +35,7 @@ export default function Home({
   heroSvg,
   profileImage,
   profileSvg,
+  blogs,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <>
@@ -42,6 +46,10 @@ export default function Home({
 
       <Hero img={heroImage} svg={heroSvg} />
       <Greetings />
+
+      <BlogSuggestionsList blogs={blogs} />
+      <hr />
+      <hr />
       <ResumeSummary img={profileImage} svg={profileSvg} />
       <Skills skills={skills} />
       <ReactTooltip backgroundColor="#111111" />
@@ -79,9 +87,18 @@ export const getStaticProps = async () => {
   const {img: heroImage, svg: heroSvg} = await getImageFromSupabase(
     'home_hero_cover',
   );
+
   const {img: profileImage, svg: profileSvg} = await getImageFromSupabase(
     'profile_photo',
   );
+
+  const blogs = (await getBlogsMetadata())
+    .sort((a, b) => new Date(b.date).getDate() - new Date(a.date).getDate())
+    .map(blog => ({
+      ...blog,
+      date: formatDate(new Date(blog.date)),
+    }))
+    .slice(0, 4);
 
   if (process.env.NODE_ENV === 'production') {
     await generateSitemap();
@@ -92,6 +109,7 @@ export const getStaticProps = async () => {
   return {
     props: {
       ...resume,
+      blogs,
       heroImage,
       heroSvg,
       profileImage,
