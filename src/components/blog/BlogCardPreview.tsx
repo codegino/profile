@@ -1,0 +1,56 @@
+import React from 'react';
+import styled from '@emotion/styled';
+import Image from 'next/image';
+import Link from 'next/link';
+import {IBlogMetadata} from '../../models/blog';
+import {mediaQuery} from '../../utils/media-query';
+
+type Props = {
+  blog: IBlogMetadata;
+};
+
+export const BlogCardPreview = ({blog}: Props) => {
+  return (
+    <Container>
+      <Link href={`/blog/${blog.slug}`}>
+        <a>
+          <CardContent>
+            <Image
+              src={blog.bannerId}
+              alt={blog.description}
+              layout="responsive"
+              height={670}
+              width={1200}
+              objectFit="cover"
+              placeholder="blur"
+              blurDataURL="/assets/blog-placeholder.jpeg"
+            />
+            <h2>{blog.title}</h2>
+            <h4>{blog.description}</h4>
+            <p>{blog.date}</p>
+          </CardContent>
+        </a>
+      </Link>
+    </Container>
+  );
+};
+
+const CardContent = styled.article`
+  text-align: center;
+`;
+
+const Container = styled.section`
+  width: 100%;
+  overflow: hidden;
+  border-radius: 1rem;
+  background-color: var(--color-light);
+  padding-bottom: var(--padding-small);
+  border: 1px solid var(--color-light-dark);
+
+  ${mediaQuery(
+    600,
+    `
+  max-width: 50rem;
+  `,
+  )};
+`;
