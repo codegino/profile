@@ -103,8 +103,8 @@ const Container = styled.article`
 
   ${mediaQuery(500, `min-width: 50rem; max-width: 45rem;`)}
   ${mediaQuery(700, `min-width: 60rem; max-width: 60rem;`)}
-  ${mediaQuery(900, `min-width: 65rem; max-width: 65rem;`)}
-  ${mediaQuery(1200, `min-width: 70rem; max-width: 70rem;`)}
+  ${mediaQuery(900, `min-width: 65rem; max-width: 75rem;`)}
+  ${mediaQuery(1200, `min-width: 70rem; max-width: 80rem;`)}
 `;
 
 const TagContainer = styled.section`

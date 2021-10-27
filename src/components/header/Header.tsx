@@ -2,11 +2,14 @@ import React from 'react';
 import styled from '@emotion/styled';
 import Image from 'next/image';
 import Link from 'next/link';
+import {useRouter} from 'next/router';
 import {underlineOnHover} from '../../frontend-utils/animation-effects';
 import SmallScreenContent from './SmallScreenContent';
 import WideScreenContentImpl from './WideScreenContent';
 
 export default function Header() {
+  const router = useRouter();
+
   return (
     <Container>
       <LogoContainer>
@@ -26,7 +29,9 @@ export default function Header() {
 
         <Link href="/">
           <a aria-label="Carlo Gino">
-            <h1>Carlo Gino</h1>
+            <h1 className={router.asPath === '/' ? 'active' : ''}>
+              Carlo Gino
+            </h1>
           </a>
         </Link>
       </LogoContainer>
@@ -63,6 +68,10 @@ const LogoContainer = styled.section`
     font-weight: bold;
 
     ${underlineOnHover()}
+
+    &.active {
+      border-bottom: 2px solid var(--color-primary-light);
+    }
   }
 `;
 
