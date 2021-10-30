@@ -14,20 +14,22 @@ export const getAllBlogsPaths = async () => {
 };
 
 export const getBlogsMetadata = async () => {
-  const blogs = (await getAllBlogsPaths())
-    .map((directory): IBlogMetadata => {
-      const postFilePath = path.join(BLOGS_PATH, `${directory}`);
+  const blogs = (await getAllBlogsPaths()).map((directory): IBlogMetadata => {
+    const postFilePath = path.join(BLOGS_PATH, `${directory}`);
 
-      const source = fs.readFileSync(postFilePath);
+    const source = fs.readFileSync(postFilePath);
 
-      const {data} = matter(source);
+    const {data} = matter(source);
 
-      return {
-        ...(data as IBlogMetadata),
-        slug: data.published ? directory.replace('.mdx', '') : '',
-      };
-    })
-    .filter(meta => meta.published);
+    return {
+      ...(data as IBlogMetadata),
+      slug: data.published ? directory.replace('.mdx', '') : '',
+    };
+  });
+
+  if (process.env.NODE_ENV === 'production') {
+    return blogs.filter(meta => meta.published);
+  }
 
   return blogs;
 };

@@ -26,8 +26,10 @@ export const BlogCardPreview = ({blog}: Props) => {
               blurDataURL="/assets/blog-placeholder.jpeg"
             />
             <h2>{blog.title}</h2>
-            <h4>{blog.description}</h4>
-            <p>{blog.date}</p>
+            <p>{blog.description}</p>
+            <p>
+              <i>{blog.date}</i>
+            </p>
           </CardContent>
         </a>
       </Link>

@@ -51,19 +51,17 @@ const Container = styled.section`
 
 const BlogsContainer = styled.section`
   display: grid;
-  width: 100vw;
   overflow-x: auto;
-  padding: 0 var(--padding-very-small);
+  padding: 0 var(--padding-small);
   grid-template-columns: 1fr;
-  max-width: 100rem;
-  column-gap: 2rem;
-  row-gap: 1.5rem;
+  max-width: 80rem;
+  column-gap: var(--margin-medium);
+  row-gap: var(--margin-medium);
 
   ${mediaQuery(
     600,
     `
       grid-template-columns: 1fr 1fr;
-
     `,
   )}
 `;
