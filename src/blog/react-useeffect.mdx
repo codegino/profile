@@ -1,0 +1,62 @@
+---
+title: React useEffect Hook 
+description: An introduction on how to use useEffect Hook in your React application
+date: '2021-10-29'
+bannerId: https://i.imgur.com/SaIYEzo.png
+bannerDescription: ripple effect
+tags:
+  - react
+  - tech
+published: true
+---
+
+## What is a React hook?
+
+<br />
+
+> ### From the React's official [documentation](https://reactjs.org/docs/hooks-intro.html),
+> _Hooks are a new addition in React `16.8`. They let you use state and other_ 
+> _React features without writing a class._
+
+### What does it mean?
+To give you more context, prior to `React v16.8`, we can only enable a component
+to react to state changes using [lifecycle methods](https://reactjs.org/docs/state-and-lifecycle.html#adding-lifecycle-methods-to-a-class).
+
+
+```jsx
+class MyClassComponent extends Component {
+  // happens as soon as your component is mounted
+  componentDidMount() {}
+
+  // happens as soon as the updating begin
+  componentDidUpdate(prevProps, prevState, snapshot) {}
+
+  // for certain performance optimizations
+  shouldComponentUpdate(nextProps, nextState) {}
+
+  // happens just before the component unmounts
+  componentWillUnmount() {}
+
+  // used when the state of a component
+  // depends on changes of props
+  static getDerivedStateFromProps(props, state) {}
+
+  // gets called before the most recent render output
+  getSnapshotBeforeUpdate(prevProps, prevState) {}
+}
+```
+
+The main benefit of these lifecycle hooks is that
+each method will have a specific
+
+
+```jsx
+React.useEffect(() => {
+  // effect
+  return () => {
+    // cleanup
+  }
+}, [input])
+```
+
+<!-- to have a state and be able to manage it if a component is created using a `class`. -->
