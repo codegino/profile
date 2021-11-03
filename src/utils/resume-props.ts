@@ -15,7 +15,10 @@ export const resumeProps = async () => {
     .eq('category', 'education')
     .order('id', {ascending: true});
 
-  let {data: skills} = await supabase.from<Skill>('skill').select('*');
+  let {data: skills} = await supabase
+    .from<Skill>('skill')
+    .select('*')
+    .order('level', {ascending: false});
 
   const categorizedSkills: CategorizedSkill[] =
     skills?.reduce(

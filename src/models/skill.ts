@@ -5,6 +5,7 @@ export type Skill = {
   url: string;
   category: SkillCategory;
   is_highlight: string;
+  level: number;
 };
 
 export type SkillCategory =
