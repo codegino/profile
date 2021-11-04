@@ -26,6 +26,7 @@ export default function Hero({
         blurLevel={80}
         objectFit="cover"
         objectPosition="left"
+        priority={true}
       />
       <LeftMessageContainer>
         <Message cascade duration={1500} triggerOnce={true} delay={200}>

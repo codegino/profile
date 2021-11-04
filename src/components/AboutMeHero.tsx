@@ -28,6 +28,7 @@ export default function AboutMeHero({
         blurLevel={80}
         objectFit="cover"
         objectPosition="right"
+        priority={true}
       />
       <MessageContainer>
         <Message cascade={true} duration={1500} triggerOnce={true}>
