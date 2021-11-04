@@ -1,13 +1,14 @@
 import {WorkExperience} from '../models/resume';
 import {CategorizedSkill, Skill} from '../models/skill';
 import {supabase} from '../utils/supabaseClient';
+import {formatDate} from './date-formatter';
 
 export const resumeProps = async () => {
   let {data: workExperiences} = await supabase
     .from<WorkExperience>('experience')
     .select('*')
     .eq('category', 'work')
-    .order('id', {ascending: true});
+    .order('start_date', {ascending: false});
 
   let {data: educationExperiences} = await supabase
     .from<WorkExperience>('experience')
@@ -51,8 +52,18 @@ export const resumeProps = async () => {
   });
 
   return {
-    workExperiences: workExperiences as WorkExperience[],
-    educationExperiences: educationExperiences as WorkExperience[],
+    workExperiences:
+      workExperiences?.map(exp => ({
+        ...exp,
+        end_date: formatDate(new Date(exp.end_date)),
+        start_date: formatDate(new Date(exp.start_date)),
+      })) ?? [],
+    educationExperiences:
+      educationExperiences?.map(exp => ({
+        ...exp,
+        end_date: formatDate(new Date(exp.end_date)),
+        start_date: formatDate(new Date(exp.start_date)),
+      })) ?? [],
     skills: categorizedSkills as CategorizedSkill[],
   };
 };

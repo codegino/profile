@@ -7,6 +7,7 @@ import {FaScroll} from '@react-icons/all-files/fa/FaScroll';
 import dompurify from 'isomorphic-dompurify';
 import Link from 'next/link';
 import {Zoom, Slide} from 'react-awesome-reveal';
+import {underlineOnHover} from '../../frontend-utils/animation-effects';
 import {WorkExperience} from '../../models/resume';
 import {mediaQuery} from '../../utils/media-query';
 import {Experience} from './Experience';
@@ -86,7 +87,9 @@ const Content: React.FC<{exp: WorkExperience}> = ({exp, children = null}) => {
       style={{maxWidth: '70rem'}}
     >
       <div>
-        <DateWrapper>{exp.end_date}</DateWrapper>
+        <DateWrapper>
+          {exp.end_date === exp.start_date ? 'Present' : exp.end_date}
+        </DateWrapper>
         <Summary>
           {exp.category === 'work' ? <FaBuilding /> : <FaGraduationCap />}
           &nbsp;
@@ -95,6 +98,7 @@ const Content: React.FC<{exp: WorkExperience}> = ({exp, children = null}) => {
               target="_blank"
               aria-label={exp.organization}
               rel="noopener"
+              className="underline-on-hover"
               data-tip={`Click to visit ${exp.organization}`}
             >
               {exp.organization}
@@ -102,7 +106,7 @@ const Content: React.FC<{exp: WorkExperience}> = ({exp, children = null}) => {
           </Link>
         </Summary>
         <ContentTitle>
-          <p className="title">{exp.title}</p> <p>({exp.role})</p>
+          <p className="title">{exp.title}</p> <p>&nbsp;({exp.role})</p>
         </ContentTitle>
       </div>
       <div>{children}</div>
@@ -118,7 +122,7 @@ const CategoryTitle = styled.h2`
 
 const DateWrapper = styled.p`
   background-color: var(--color-light);
-  color: var(--color-dark-dark);
+  color: var(--color--dark);
   justify-self: center;
   padding: var(--padding-very-small) 0;
 `;
@@ -128,6 +132,10 @@ const ContentTitle = styled.div`
   justify-content: center;
   flex-direction: column;
   color: var(--color-dark-dark);
+
+  > .title {
+    color: var(--color-primary-dark);
+  }
   ${mediaQuery(900, `flex-direction: row;`)}
 `;
 
@@ -138,7 +146,14 @@ const ContentDescription = styled.div`
 `;
 
 const Summary = styled.div`
-  color: var(--color-dark-dark);
+  > a {
+    color: var(--color-primary-dark);
+    font-weight: bolder;
+  }
+
+  .underline-on-hover {
+    ${underlineOnHover('var(--color-primary-dark)')}
+  }
 `;
 
 const Container = styled.article`
