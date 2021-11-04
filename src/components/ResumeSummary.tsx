@@ -28,7 +28,17 @@ export default function ResumeSummary({
         <h1>{summary.name}</h1>
         <div className="designation">
           <h2>{summary.jobTitle}</h2>
-          <h2>&nbsp;at {summary.company}</h2>
+          <Link href={summary.companyWebsite}>
+            <a
+              target="_blank"
+              style={{cursor: 'pointer'}}
+              aria-label="Company Website"
+              rel="noopener"
+              className="underline-on-hover"
+            >
+              <h2>&nbsp;at {summary.company}</h2>
+            </a>
+          </Link>
         </div>
         <h3>
           <Link href={`mailto:${summary.email}`}>
@@ -38,7 +48,7 @@ export default function ResumeSummary({
               aria-label="Email me"
               data-tip="Send me an email"
               rel="noopener"
-              className="email"
+              className="underline-on-hover"
             >
               <FaEnvelopeSquare />
               &nbsp;{summary.email}
@@ -74,7 +84,7 @@ const Container = styled.article`
     margin-left: 0;
     ${mediaQuery(900, `margin-left: 2rem;`)}
 
-    .email {
+    .underline-on-hover {
       ${underlineOnHover('var(--color-primary-dark)')}
     }
   }
@@ -144,4 +154,5 @@ const summary = {
   email: 'carloginocatapang@gmail.com',
   address: 'Tampines, Singapore',
   name: 'Carlo Gino Catapang',
+  companyWebsite: 'https://www.nedigital.sg',
 };
