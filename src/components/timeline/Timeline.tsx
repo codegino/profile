@@ -134,7 +134,7 @@ const ContentTitle = styled.div`
   color: var(--color-dark-dark);
 
   > .title {
-    color: var(--color-primary-dark);
+    font-weight: bolder;
   }
   ${mediaQuery(900, `flex-direction: row;`)}
 `;

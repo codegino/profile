@@ -77,7 +77,7 @@ const WideScreenContainer = styled.div`
         ${underlineOnHover()}
 
         .active {
-          color: var(--color-primary);
+          color: var(--color-primary-light);
           border-bottom: 2px solid var(--color-primary-light);
         }
 
