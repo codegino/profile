@@ -45,6 +45,7 @@ const Container = styled.div`
 
   a {
     color: var(--color-primary-dark);
+    font-size: 1em;
 
     &:hover {
       text-decoration: underline;

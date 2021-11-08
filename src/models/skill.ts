@@ -4,7 +4,7 @@ export type Skill = {
   description: string;
   url: string;
   category: SkillCategory;
-  is_highlight: string;
+  is_highlight: boolean;
   level: number;
 };
 
