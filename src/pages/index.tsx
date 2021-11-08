@@ -11,7 +11,7 @@ import {commonMetaTags} from '../frontend-utils/meta-tags';
 import generateSitemap from '../lib/sitemap';
 import {formatDate} from '../utils/date-formatter';
 import {getBlogsMetadata} from '../utils/mdxUtils';
-import {resumeProps} from '../utils/resume-props';
+import {fetchSkills} from '../utils/resume-props';
 import {getImageFromSupabase} from '../utils/supabase-image';
 
 const Skills = dynamic(() => import('../components/skills/Skills'), {
@@ -104,11 +104,11 @@ export const getStaticProps = async () => {
     await generateSitemap();
   }
 
-  const resume = await resumeProps();
+  const skills = await fetchSkills(true);
 
   return {
     props: {
-      ...resume,
+      skills,
       blogs,
       heroImage,
       heroSvg,
