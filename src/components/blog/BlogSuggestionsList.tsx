@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import Link from 'next/link';
+import {underlineOnHover} from '../../frontend-utils/animation-effects';
 import {IBlogMetadata} from '../../models/blog';
 import {mediaQuery} from '../../utils/media-query';
 import {BlogCardPreview} from './BlogCardPreview';
@@ -45,6 +46,8 @@ const Container = styled.section`
     > a {
       color: var(--color-primary-dark);
       font-size: 1em;
+
+      ${underlineOnHover('var(--color-primary-dark)')}
     }
   }
 `;

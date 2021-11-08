@@ -53,6 +53,7 @@ const Container = styled(Zoom)`
 
   a {
     color: var(--color-primary-dark);
+    font-size: 1em;
 
     &:hover {
       text-decoration: underline;

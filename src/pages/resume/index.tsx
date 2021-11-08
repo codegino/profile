@@ -78,7 +78,9 @@ export default function Resume({
       />
       <hr />
       <hr />
-      <Skills skills={skills} />
+      <section id="skills">
+        <Skills skills={skills} />
+      </section>
       <ReactTooltip backgroundColor="#111111" />
       <CustomGithubCalendar />
     </>
