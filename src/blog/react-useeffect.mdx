@@ -7,10 +7,19 @@ bannerDescription: ripple effect
 tags:
   - react
   - tech
-published: true
+published: false 
 ---
 
-## What is a React hook?
+## What is a `useEffect` Hook?
+
+
+> ### TLDR
+> React `useEffect` is an alternative to the "old" `class` lifecycle methods/hooks.
+> It can be used to manage side effects, such as network requests, or to run a piece of code when the component is mounted, updated, or unmounted.
+
+### Longer version
+
+What is a React hook?
 
 <br />
 
@@ -37,26 +46,104 @@ class MyClassComponent extends Component {
   // happens just before the component unmounts
   componentWillUnmount() {}
 
-  // used when the state of a component
-  // depends on changes of props
-  static getDerivedStateFromProps(props, state) {}
-
-  // gets called before the most recent render output
-  getSnapshotBeforeUpdate(prevProps, prevState) {}
+  // ...and other lifecycle methods
 }
 ```
 
-The main benefit of these lifecycle hooks is that
-each method will have a specific
-
+### What about hooks?
+First, we identify what are the parts of a React hook?
 
 ```jsx
-React.useEffect(() => {
-  // effect
+useEffect(() => { //(1) declaration
+  // (2)effect
   return () => {
-    // cleanup
+    // (3)cleanup 
   }
-}, [input])
+}, /* (4)dependency array */)
 ```
 
-<!-- to have a state and be able to manage it if a component is created using a `class`. -->
+#### Here's a quick explanation of the above code:
+
+1. We can declare an effect by calling either `React.useEffect` or `useEffect`
+2. `effect` is the function that will be called when the component is mounted
+OR when the dependency array changes.
+3. `cleanup` is the function that will be called when the effect "unmounted".
+4. `dependency array` is the array of values that will be passed to the `effect` function.
+    - If there is no dependency array, the effect will be called every time the component is mounted.
+    - If the array is empty, the effect will be called only once when the component is mounted.
+    - If the array is not empty, the effect will be called every time the component is mounted and the dependency array changes.
+
+
+### How to map lifecycle hooks to useEffect?
+
+#### componentDidMount
+
+Create an empty dependency array and pass it to the `useEffect` hook.
+
+```jsx
+useEffect(() => {
+  // code to run when the component is mounted 
+}, [])
+```
+
+#### shouldComponentUpdate
+
+Add the dependency array and pass it to the `useEffect` hook.
+
+```jsx
+// props: {name}
+// state: {visible}
+
+useEffect(() => {
+  // ... code to run
+
+  // the dependency array below is "equivalent" to:
+  // the effect will trigger if
+  // props.name !== nextProps.name || state.enabled !== nextState.enabled
+}, [name, visible]) 
+```
+
+
+#### componentWillUnmount
+```jsx
+useEffect(() => {
+  return () => {
+    // code to run when the component is unmounted
+  }
+}, /* with or without dependency array */)
+```
+
+#### componentDidUpdate
+
+This is a tricky one because it's up to the developer to decide how `componentDidUpdate` should behave.
+It could be a combination of `componentDidMount` and `shouldComponentUpdate` mapping with the addition
+of a reference variable to check if the component has been mounted.
+
+```jsx
+const hasMount = useRef(false)
+
+useEffect(() => {
+  if (hasMount.current) {
+    // code to run when the component is updated
+  } else {
+    hasMount.current = true
+  }
+}, /* dependencies */)`
+```
+
+The examples above are simply the "simplest" implementations to map a `class lifecycle hooks` component to a `React hooks`,
+and there are many other ways to do it. The good news is that you don't need to map lifecycle hooks to useEffect since React hooks introduced a
+different paradigm on how we can create a React component and how we can mange side-effects.
+If possible, forget about the class lifecycle hooks and use the new paradigm.
+
+
+### Additional Note
+- You can only define one of each lifecycle method in a `class` component.
+When using hooks you can define as many `useEffect` as you want.
+- Keep in mind that the order of the `useEffect` is important.
+
+
+## Conclusion
+React hooks provide a new and "easier" way to manage side-effects in your React application.
+
+
