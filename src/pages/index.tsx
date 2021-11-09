@@ -7,11 +7,12 @@ import Greetings from '../components/Greetings';
 import Hero from '../components/Hero';
 import ResumeSummary from '../components/ResumeSummary';
 import BlogSuggestionsList from '../components/blog/BlogSuggestionsList';
+import {underlineOnHover} from '../frontend-utils/animation-effects';
 import {commonMetaTags} from '../frontend-utils/meta-tags';
 import generateSitemap from '../lib/sitemap';
 import {formatDate} from '../utils/date-formatter';
 import {getBlogsMetadata} from '../utils/mdxUtils';
-import {resumeProps} from '../utils/resume-props';
+import {fetchSkills} from '../utils/resume-props';
 import {getImageFromSupabase} from '../utils/supabase-image';
 
 const Skills = dynamic(() => import('../components/skills/Skills'), {
@@ -52,6 +53,15 @@ export default function Home({
       <hr />
       <ResumeSummary img={profileImage} svg={profileSvg} />
       <Skills skills={skills} />
+      <CueToResume>
+        <p>
+          Check&nbsp;
+          <Link href="/resume#skills">
+            <a aria-label="full skills list">full list</a>
+          </Link>
+          &nbsp;of skills
+        </p>
+      </CueToResume>
       <ReactTooltip backgroundColor="#111111" />
       <CustomGithubCalendar />
       <WakatimeCharts />
@@ -70,16 +80,14 @@ export default function Home({
   );
 }
 
-const CueToResume = styled.div`
+const CueToResume = styled.section`
   text-align: center;
-  margin-bottom: var(--margin-medium);
+  margin-bottom: var(--margin-big);
 
   a {
     color: var(--color-primary-dark);
 
-    &:hover {
-      text-decoration: underline;
-    }
+    ${underlineOnHover('var(--color-primary-dark)')}
   }
 `;
 
@@ -104,11 +112,11 @@ export const getStaticProps = async () => {
     await generateSitemap();
   }
 
-  const resume = await resumeProps();
+  const skills = await fetchSkills(true);
 
   return {
     props: {
-      ...resume,
+      skills,
       blogs,
       heroImage,
       heroSvg,
