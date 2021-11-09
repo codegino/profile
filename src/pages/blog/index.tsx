@@ -75,7 +75,7 @@ export const getStaticProps = async () => {
   const {img, svg} = await getImageFromSupabase('work_in_progress');
 
   const blogs = (await getBlogsMetadata())
-    .sort((a, b) => new Date(b.date).getDate() - new Date(a.date).getDate())
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
     .map(blog => ({
       ...blog,
       date: formatDate(new Date(blog.date)),
