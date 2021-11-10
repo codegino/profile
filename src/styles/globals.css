@@ -55,9 +55,15 @@ h3 {
   margin: var(--margin-very-small) 0;
 }
 
-h4,
+h4 {
+  font-size: 1.6rem;
+  margin: var(--margin-very-small) 0;
+  padding-left: var(--padding-very-small);
+}
+
 h5,
 h6 {
-  font-size: 1.7rem;
+  font-size: 1.6rem;
   margin: var(--margin-very-small) 0;
+  padding-left: var(--padding-small);
 }

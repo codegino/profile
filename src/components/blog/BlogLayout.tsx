@@ -20,9 +20,13 @@ const Container = styled.main`
   display: flex;
   flex-direction: column;
 
+  > pre {
+    margin: var(--margin-small) 0;
+  }
+
   ${mediaQuery(450, `padding: var(--padding-small);`)}
 
-  > ul {
+  > ul, ol {
     margin: 0;
   }
 
