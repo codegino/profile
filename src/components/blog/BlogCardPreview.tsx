@@ -27,7 +27,7 @@ export const BlogCardPreview = ({blog}: Props) => {
             />
             <h2>{blog.title}</h2>
             <p>{blog.description}</p>
-            <p>
+            <p className="blog-date">
               <i>{blog.date}</i>
             </p>
           </CardContent>
@@ -39,6 +39,16 @@ export const BlogCardPreview = ({blog}: Props) => {
 
 const CardContent = styled.article`
   text-align: center;
+
+  .blog-date {
+    margin-top: var(--margin-small);
+    color: var(--color-dark);
+  }
+
+  h2,
+  p {
+    padding: 0 var(--margin-very-small);
+  }
 `;
 
 const Container = styled.section`

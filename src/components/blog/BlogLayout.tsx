@@ -22,6 +22,10 @@ const Container = styled.main`
 
   ${mediaQuery(450, `padding: var(--padding-small);`)}
 
+  > ul {
+    margin: 0;
+  }
+
   > p {
     padding: 0 var(--padding-small);
     font-size: 1.6rem;
