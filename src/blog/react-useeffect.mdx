@@ -1,17 +1,16 @@
 ---
 title: React useEffect Hook 
 description: An introduction on how to use useEffect Hook in your React application
-date: '2021-10-29'
+date: '2021-11-10'
 bannerId: https://i.imgur.com/SaIYEzo.png
 bannerDescription: ripple effect
 tags:
   - react
   - tech
-published: false 
+published: true 
 ---
 
 ## What is a `useEffect` Hook?
-
 
 > ### TLDR
 > React `useEffect` is an alternative to the "old" `class` lifecycle methods/hooks.
@@ -19,39 +18,10 @@ published: false
 
 ### Longer version
 
-What is a React hook?
+> Prior to `React v16.8`, we can only enable a component
+> to react to state changes using [lifecycle methods](https://reactjs.org/docs/state-and-lifecycle.html#adding-lifecycle-methods-to-a-class).
 
-<br />
-
-> ### From the React's official [documentation](https://reactjs.org/docs/hooks-intro.html),
-> _Hooks are a new addition in React `16.8`. They let you use state and other_ 
-> _React features without writing a class._
-
-### What does it mean?
-To give you more context, prior to `React v16.8`, we can only enable a component
-to react to state changes using [lifecycle methods](https://reactjs.org/docs/state-and-lifecycle.html#adding-lifecycle-methods-to-a-class).
-
-
-```jsx
-class MyClassComponent extends Component {
-  // happens as soon as your component is mounted
-  componentDidMount() {}
-
-  // happens as soon as the updating begin
-  componentDidUpdate(prevProps, prevState, snapshot) {}
-
-  // for certain performance optimizations
-  shouldComponentUpdate(nextProps, nextState) {}
-
-  // happens just before the component unmounts
-  componentWillUnmount() {}
-
-  // ...and other lifecycle methods
-}
-```
-
-### What about hooks?
-First, we identify what are the parts of a React hook?
+#### How to define a `useEffect`
 
 ```jsx
 useEffect(() => { //(1) declaration
@@ -73,77 +43,82 @@ OR when the dependency array changes.
     - If the array is empty, the effect will be called only once when the component is mounted.
     - If the array is not empty, the effect will be called every time the component is mounted and the dependency array changes.
 
+<br />
 
-### How to map lifecycle hooks to useEffect?
+### Examples
 
-#### componentDidMount
+<br />
 
-Create an empty dependency array and pass it to the `useEffect` hook.
+#### Increment a counter every second until it reaches 10
+```jsx codePenID=JjyBPeO
+function App() {
+  const [count, setCount] = useState(0)
 
-```jsx
-useEffect(() => {
-  // code to run when the component is mounted 
-}, [])
+  useEffect(() => {
+    if (count < 10) {
+      const interval = setInterval(() => {
+        setCount(prev => prev + 1)
+      }, 1000)
+
+      // cleanup function
+      return () => clearInterval(interval)
+    }
+  }, [count])
+
+  // Render the component
+}
 ```
 
-#### shouldComponentUpdate
+<br />
 
-Add the dependency array and pass it to the `useEffect` hook.
+#### Fetch data from an API
+```jsx codePenID=qBXKBeB
+function App() {
+  const [data, setData] = useState([])
 
-```jsx
-// props: {name}
-// state: {visible}
+  useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then(res => res.json())
+      .then(data => setData(data))
+  }, [])
 
-useEffect(() => {
-  // ... code to run
-
-  // the dependency array below is "equivalent" to:
-  // the effect will trigger if
-  // props.name !== nextProps.name || state.enabled !== nextState.enabled
-}, [name, visible]) 
+  // Render the component
+}
 ```
 
+<br />
 
-#### componentWillUnmount
-```jsx
-useEffect(() => {
-  return () => {
-    // code to run when the component is unmounted
-  }
-}, /* with or without dependency array */)
+#### Store a value in localStorage everytime the key or value changes
+```jsx codePenID=vYJaBPV
+function App({ name }) {
+  const [value, setValue] = useState(() => localStorage.getItem(name))
+
+  useEffect(() => {
+    localStorage.setItem(name, value)
+  }, [name, value])
+  // Ignore old keys for now
+
+  // Render the component
+}
 ```
 
-#### componentDidUpdate
+<br />
 
-This is a tricky one because it's up to the developer to decide how `componentDidUpdate` should behave.
-It could be a combination of `componentDidMount` and `shouldComponentUpdate` mapping with the addition
-of a reference variable to check if the component has been mounted.
+#### Run code during mounted, updated, or unmounted phase
 
-```jsx
-const hasMount = useRef(false)
+Check this [blog](https://carlogino.cc/blog/react-usestate-callback-function) on how to
+convert a class lifecycle methods to `useEffect` hooks
 
-useEffect(() => {
-  if (hasMount.current) {
-    // code to run when the component is updated
-  } else {
-    hasMount.current = true
-  }
-}, /* dependencies */)`
-```
-
-The examples above are simply the "simplest" implementations to map a `class lifecycle hooks` component to a `React hooks`,
-and there are many other ways to do it. The good news is that you don't need to map lifecycle hooks to useEffect since React hooks introduced a
-different paradigm on how we can create a React component and how we can mange side-effects.
-If possible, forget about the class lifecycle hooks and use the new paradigm.
-
+<br />
 
 ### Additional Note
-- You can only define one of each lifecycle method in a `class` component.
-When using hooks you can define as many `useEffect` as you want.
-- Keep in mind that the order of the `useEffect` is important.
+- `useEffect` can only be used in functional components
+- The order of `useEffect` declarations are important.
+- `useEffect` in a custom hook is a great way to promote side effect reusability. I will discuss this in another blog.
 
+<br />
 
 ## Conclusion
-React hooks provide a new and "easier" way to manage side-effects in your React application.
-
+Compared to the old lifecycle methods, `useEffect` is much more powerful and flexible which makes
+it an ideal choice when managing a side-effect.
 

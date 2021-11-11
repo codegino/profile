@@ -33,24 +33,27 @@ componentWillUnmount() {}
 
 Here are basic templates to convert a class lifecycle method to a useEffect hook:
 
+<br />
+
 ### componentDidMount
 
 Create an empty dependency array and pass it to the `useEffect` hook.
 
-```jsx
+```jsx codePenID=qBXKWxx
 useEffect(() => {
   // code to run when the component is mounted 
 
   // Make sure this is empty to ensure hook will only run once
 }, [])
 ```
-Check this [codepen](https://codepen.io/codegino/pen/qBXKWxx)
+
+<br />
 
 ### shouldComponentUpdate
 
 Add the dependency array and pass it to the `useEffect` hook.
 
-```jsx
+```jsx codePenID=gOxKObO
 // props: {name}
 // state: {visible}
 
@@ -62,7 +65,6 @@ useEffect(() => {
   // props.name !== nextProps.name || state.enabled !== nextState.enabled
 }, [name, visible]) 
 ```
-Check this [codepen](https://codepen.io/codegino/pen/gOxKObO)
 
 <br />
 
@@ -70,14 +72,13 @@ Check this [codepen](https://codepen.io/codegino/pen/gOxKObO)
 
 A `useEffect` can return a function which its body will be executed when the component is unmounted.
 
-```jsx
+```jsx codePenID=vYJrBKr
 useEffect(() => {
   return () => {
     // code to run when the component is unmounted
   }
 }, /* with or without dependency array */)
 ```
-Check this [codepen](https://codepen.io/codegino/pen/vYJrBKr)
 
 <br />
 
@@ -87,7 +88,7 @@ This is a bit subjective because it's up to the developer to decide how `compone
 It could also be a combination of `componentDidMount` and `shouldComponentUpdate` mapping with the addition
 of a reference variable to check if the component has been mounted as shown below:
 
-```jsx
+```jsx codePenID=qBXKBeB
 const hasMount = useRef(false)
 
 useEffect(() => {
@@ -98,7 +99,6 @@ useEffect(() => {
   }
 }, /* dependencies */)`
 ```
-Check this [codepen](https://codepen.io/codegino/pen/qBXKBeB)
 
 <br />
 
