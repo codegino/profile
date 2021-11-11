@@ -1,8 +1,10 @@
 import React, {FunctionComponent} from 'react';
 import styled from '@emotion/styled';
+import Link from 'next/link';
 import Highlight, {defaultProps, Language} from 'prism-react-renderer';
 import vsDark from 'prism-react-renderer/themes/vsDark';
 import {LiveProvider, LiveEditor, LiveError, LivePreview} from 'react-live';
+import {underlineOnHover} from '../../frontend-utils/animation-effects';
 
 export type CodeBlockProps = {
   children: string;
@@ -10,6 +12,7 @@ export type CodeBlockProps = {
   live: boolean;
   noLine: boolean;
   noInline: boolean;
+  codePenID: string;
 };
 
 const executableExtensions = ['js', 'jsx', 'ts', 'tsx', 'html', 'css'];
@@ -20,6 +23,7 @@ const CodeBlock: FunctionComponent<CodeBlockProps> = ({
   live,
   noLine = true,
   noInline = false,
+  codePenID,
 }) => {
   const language = className.replace(/language-/, '') as Language;
 
@@ -72,9 +76,22 @@ const CodeBlock: FunctionComponent<CodeBlockProps> = ({
           </Pre>
         )}
       </Highlight>
+      {codePenID && (
+        <LinkToCodePen>
+          <Link href={`https://codepen.io/codegino/pen/${codePenID}`}>
+            <a target="_blank">Link to Codepen</a>
+          </Link>
+        </LinkToCodePen>
+      )}
     </>
   );
 };
+
+const LinkToCodePen = styled.div`
+  > a {
+    ${underlineOnHover('var(--color-primary-dark)')}
+  }
+`;
 
 const LiveEditorContainer = styled(LiveEditor)`
   border-radius: 0px 0px 5px 5px;
