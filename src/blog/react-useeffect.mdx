@@ -112,13 +112,13 @@ convert a class lifecycle methods to `useEffect` hooks
 <br />
 
 ### Additional Note
-- You can only define one of each lifecycle method in a `class` component.
-When using hooks you can define as many `useEffect` as you want.
-- Keep in mind that the order of the `useEffect` is important.
-- The full power of a useEffect could be seen when using a custom hook. I will discuss in another blog.
+- `useEffect` can only be used in functional components
+- The order of `useEffect` declarations are important.
+- `useEffect` in a custom hook is a great way to promote side effect reusability. I will discuss this in another blog.
 
 <br />
 
 ## Conclusion
-React hooks provide a new and "easier" way to manage side-effects in a React application.
+Compared to the old lifecycle methods, `useEffect` is much more powerful and flexible which makes
+it an ideal choice when managing a side-effect.
 
