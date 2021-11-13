@@ -46,36 +46,38 @@ export default function Home({
       </Head>
 
       <Hero img={heroImage} svg={heroSvg} />
-      <Greetings />
+      <main>
+        <Greetings />
 
-      <BlogSuggestionsList blogs={blogs} />
-      <hr />
-      <hr />
-      <ResumeSummary img={profileImage} svg={profileSvg} />
-      <Skills skills={skills} />
-      <CueToResume>
-        <p>
-          Check&nbsp;
-          <Link href="/resume#skills">
-            <a aria-label="full skills list">full list</a>
-          </Link>
-          &nbsp;of skills
-        </p>
-      </CueToResume>
-      <ReactTooltip backgroundColor="#111111" />
-      <CustomGithubCalendar />
-      <WakatimeCharts />
-      <CueToResume>
-        <p>
-          Visit my&nbsp;
-          <Link href="/resume">
-            <a aria-label="resume" data-tip="Link to my resume">
-              resume
-            </a>
-          </Link>
-          &nbsp;for more info
-        </p>
-      </CueToResume>
+        <BlogSuggestionsList blogs={blogs} />
+        <hr />
+        <hr />
+        <ResumeSummary img={profileImage} svg={profileSvg} />
+        <Skills skills={skills} />
+        <CueToResume>
+          <p>
+            Check&nbsp;
+            <Link href="/resume#skills">
+              <a aria-label="full skills list">full list</a>
+            </Link>
+            &nbsp;of skills
+          </p>
+        </CueToResume>
+        <ReactTooltip backgroundColor="#111111" />
+        <CustomGithubCalendar />
+        <WakatimeCharts />
+        <CueToResume>
+          <p>
+            Visit my&nbsp;
+            <Link href="/resume">
+              <a aria-label="resume" data-tip="Link to my resume">
+                resume
+              </a>
+            </Link>
+            &nbsp;for more info
+          </p>
+        </CueToResume>
+      </main>
     </>
   );
 }

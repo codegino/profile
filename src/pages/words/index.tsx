@@ -81,8 +81,8 @@ export default function WordsPage({
         <title>Carlo Gino Catapang Words</title>
         {commonMetaTags('/words')}
       </Head>
-      <h1>English words I learned</h1>
       <Container>
+        <h1>English words I learned</h1>
         {words.map(word => (
           <Word key={word.id} word={word} />
         ))}

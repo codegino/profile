@@ -43,7 +43,7 @@ export default function Home({
   );
 }
 
-const Container = styled.section`
+const Container = styled.main`
   display: flex;
   align-items: center;
   flex-direction: column;

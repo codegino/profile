@@ -74,20 +74,22 @@ export default function Resume({
           </a>
         </Link>
       </ResumeDownloadWrapper>
-      <ResumeSummary img={profileImage} svg={profileSvg} />
-      <hr />
-      <hr />
-      <Timeline
-        workExperiences={workExperiences}
-        educationExperiences={educationExperiences}
-      />
-      <hr />
-      <hr />
-      <section id="skills">
-        <Skills skills={skills} />
-      </section>
-      <ReactTooltip backgroundColor="#111111" />
-      <CustomGithubCalendar />
+      <main>
+        <ResumeSummary img={profileImage} svg={profileSvg} />
+        <hr />
+        <hr />
+        <Timeline
+          workExperiences={workExperiences}
+          educationExperiences={educationExperiences}
+        />
+        <hr />
+        <hr />
+        <section id="skills">
+          <Skills skills={skills} />
+        </section>
+        <ReactTooltip backgroundColor="#111111" />
+        <CustomGithubCalendar />
+      </main>
     </>
   );
 }

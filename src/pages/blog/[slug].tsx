@@ -30,7 +30,9 @@ export default function BlogPage({
   return (
     <BlogLayout>
       <BlogHeader blog={frontMatter} img={img} svg={svg} />
-      <BlogContent source={source} />
+      <main>
+        <BlogContent source={source} />
+      </main>
       <BlogFooter blog={frontMatter} />
     </BlogLayout>
   );
