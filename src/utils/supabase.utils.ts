@@ -11,7 +11,7 @@ export async function getImageFromSupabase(key: string) {
   return await getPlaiceholder(imgSrc.content);
 }
 
-export async function getImageURLFromSupabase(key: string) {
+export async function getUrlFromSupabase(key: string) {
   let {data: imgSrc} = await supabase
     .from('static_content')
     .select('content')

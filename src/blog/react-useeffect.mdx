@@ -71,7 +71,7 @@ function App() {
 
 <br />
 
-#### Fetch data from an API
+#### Basic fetch from an API
 ```jsx codePenID=qBXKBeB
 function App() {
   const [data, setData] = useState([])
@@ -80,6 +80,65 @@ function App() {
     fetch('https://jsonplaceholder.typicode.com/users')
       .then(res => res.json())
       .then(data => setData(data))
+  }, [])
+
+  // Render the component
+}
+```
+
+<br />
+
+#### Fetching with loading indicator + error handling - `then/catch/finally`
+```jsx codePenID=WNEgqBw
+function App() {
+  const [data, setData] = React.useState()
+  const [error, setError] = React.useState()
+  const [isLoading, setIsLoading] = React.useState(false)
+
+  React.useEffect(() => {
+    setIsLoading(true)
+
+    fetchData()
+      .then(data => {
+        setError(null)
+        setData(data)
+      })
+      .catch(data => {
+        // handle error case anyway you want
+        setError(data)
+        setData(null)
+      })
+      .finally(() => setIsLoading(false))
+  }, [])
+
+  // Render the component
+}
+```
+
+<br />
+
+#### Fetching with loading indicator + error handling - `async/await`
+```jsx codePenID=jOLvgqB
+function App() {
+  const [data, setData] = React.useState()
+  const [error, setError] = React.useState()
+  const [isLoading, setIsLoading] = React.useState(false)
+
+  React.useEffect(() => {
+    // yeah, this is weird
+    (async () => {
+      try {
+        setIsLoading(true)
+        const data = await fetchData()
+        setError(null)
+        setData(data)
+      } catch(e) {
+        // handle error case anyway you want
+        setError(e)
+        setData(null)
+      }
+      setIsLoading(false)
+    })()
   }, [])
 
   // Render the component
@@ -104,9 +163,9 @@ function App({ name }) {
 
 <br />
 
-#### Run code during mounted, updated, or unmounted phase
+#### OR just mimic a class lifecycle method
 
-Check this [blog](https://carlogino.cc/blog/react-usestate-callback-function) on how to
+> Check this [blog](https://carlogino.cc/blog/react-usestate-callback-function) on how to
 convert a class lifecycle methods to `useEffect` hooks
 
 <br />

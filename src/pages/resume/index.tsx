@@ -10,7 +10,10 @@ import CustomIcon from '../../components/icon/CustomIcon';
 import Timeline from '../../components/timeline/Timeline';
 import {commonMetaTags} from '../../frontend-utils/meta-tags';
 import {fectchExperiences, fetchSkills} from '../../utils/resume-props';
-import {getImageFromSupabase} from '../../utils/supabase-image';
+import {
+  getImageFromSupabase,
+  getUrlFromSupabase,
+} from '../../utils/supabase.utils';
 
 const CustomGithubCalendar = dynamic(
   () => import('../../components/CustomGithubCalendar'),
@@ -29,6 +32,8 @@ export default function Resume({
   skills,
   profileSvg,
   profileImage,
+  resumePdfUrl,
+  resumeWordUrl,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <>
@@ -38,7 +43,7 @@ export default function Resume({
       </Head>
 
       <ResumeDownloadWrapper>
-        <Link href={process.env.NEXT_PUBLIC_RESUME_PDF_URL as string}>
+        <Link href={resumePdfUrl}>
           <a
             target="_blank"
             data-tip="Download PDF Version"
@@ -53,7 +58,7 @@ export default function Resume({
             />
           </a>
         </Link>
-        <Link href={process.env.NEXT_PUBLIC_RESUME_DOC_URL as string}>
+        <Link href={resumeWordUrl}>
           <a
             target="_blank"
             data-tip="Download Word Version"
@@ -69,20 +74,22 @@ export default function Resume({
           </a>
         </Link>
       </ResumeDownloadWrapper>
-      <ResumeSummary img={profileImage} svg={profileSvg} />
-      <hr />
-      <hr />
-      <Timeline
-        workExperiences={workExperiences}
-        educationExperiences={educationExperiences}
-      />
-      <hr />
-      <hr />
-      <section id="skills">
-        <Skills skills={skills} />
-      </section>
-      <ReactTooltip backgroundColor="#111111" />
-      <CustomGithubCalendar />
+      <main>
+        <ResumeSummary img={profileImage} svg={profileSvg} />
+        <hr />
+        <hr />
+        <Timeline
+          workExperiences={workExperiences}
+          educationExperiences={educationExperiences}
+        />
+        <hr />
+        <hr />
+        <section id="skills">
+          <Skills skills={skills} />
+        </section>
+        <ReactTooltip backgroundColor="#111111" />
+        <CustomGithubCalendar />
+      </main>
     </>
   );
 }
@@ -96,6 +103,8 @@ export const getStaticProps = async () => {
     props: {
       ...experiences,
       skills,
+      resumePdfUrl: await getUrlFromSupabase('resume_pdf_url'),
+      resumeWordUrl: await getUrlFromSupabase('resume_word_url'),
       profileImage: img,
       profileSvg: svg,
     },

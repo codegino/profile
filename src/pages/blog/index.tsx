@@ -7,7 +7,7 @@ import {commonMetaTags} from '../../frontend-utils/meta-tags';
 import {formatDate} from '../../utils/date-formatter';
 import {getBlogsMetadata} from '../../utils/mdxUtils';
 import {mediaQuery} from '../../utils/media-query';
-import {getImageFromSupabase} from '../../utils/supabase-image';
+import {getImageFromSupabase} from '../../utils/supabase.utils';
 
 export default function Home({
   blogs,
@@ -43,7 +43,7 @@ export default function Home({
   );
 }
 
-const Container = styled.section`
+const Container = styled.main`
   display: flex;
   align-items: center;
   flex-direction: column;

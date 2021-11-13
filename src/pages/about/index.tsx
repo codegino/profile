@@ -9,8 +9,8 @@ import {commonMetaTags} from '../../frontend-utils/meta-tags';
 import {StaticContent} from '../../models/static-content';
 import {
   getImageFromSupabase,
-  getImageURLFromSupabase,
-} from '../../utils/supabase-image';
+  getUrlFromSupabase,
+} from '../../utils/supabase.utils';
 import {supabase} from '../../utils/supabaseClient';
 
 export default function AboutMe({
@@ -86,39 +86,39 @@ export const getStaticProps = async () => {
   const techStacks: TechStack[] = [
     {
       name: 'React ',
-      url: await getImageURLFromSupabase('react_logo'),
+      url: await getUrlFromSupabase('react_logo'),
     },
     {
       name: 'NextJS',
-      url: await getImageURLFromSupabase('nextjs_logo'),
+      url: await getUrlFromSupabase('nextjs_logo'),
     },
     {
       name: 'Prettier',
-      url: await getImageURLFromSupabase('prettier_logo'),
+      url: await getUrlFromSupabase('prettier_logo'),
     },
     {
       name: 'Eslint',
-      url: await getImageURLFromSupabase('eslint_logo'),
+      url: await getUrlFromSupabase('eslint_logo'),
     },
     {
       name: 'Emotion',
-      url: await getImageURLFromSupabase('emotion_logo'),
+      url: await getUrlFromSupabase('emotion_logo'),
     },
     {
       name: 'Supabase',
-      url: await getImageURLFromSupabase('supabase_logo'),
+      url: await getUrlFromSupabase('supabase_logo'),
     },
     {
       name: 'Github',
-      url: await getImageURLFromSupabase('github_logo'),
+      url: await getUrlFromSupabase('github_logo'),
     },
     {
       name: 'Vercel',
-      url: await getImageURLFromSupabase('vercel_logo'),
+      url: await getUrlFromSupabase('vercel_logo'),
     },
     {
       name: 'TypeScript',
-      url: await getImageURLFromSupabase('typescript_logo'),
+      url: await getUrlFromSupabase('typescript_logo'),
     },
   ];
 
