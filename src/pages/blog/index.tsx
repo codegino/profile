@@ -7,7 +7,7 @@ import {commonMetaTags} from '../../frontend-utils/meta-tags';
 import {formatDate} from '../../utils/date-formatter';
 import {getBlogsMetadata} from '../../utils/mdxUtils';
 import {mediaQuery} from '../../utils/media-query';
-import {getImageFromSupabase} from '../../utils/supabase-image';
+import {getImageFromSupabase} from '../../utils/supabase.utils';
 
 export default function Home({
   blogs,

@@ -13,7 +13,7 @@ import generateSitemap from '../lib/sitemap';
 import {formatDate} from '../utils/date-formatter';
 import {getBlogsMetadata} from '../utils/mdxUtils';
 import {fetchSkills} from '../utils/resume-props';
-import {getImageFromSupabase} from '../utils/supabase-image';
+import {getImageFromSupabase} from '../utils/supabase.utils';
 
 const Skills = dynamic(() => import('../components/skills/Skills'), {
   ssr: false,
