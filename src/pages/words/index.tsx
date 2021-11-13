@@ -109,13 +109,13 @@ const Word = ({word}: {word: WordFromBackend}) => {
 
   return (
     <WordContainer>
-      <h3>
+      <h2>
         {word.word} | <span className="type">({word.type})</span>
-      </h3>
+      </h2>
       <p className="date">{word.date}</p>
 
       <section>
-        <h4>Sentences</h4>
+        <h3>Sentences</h3>
         <ul>
           {word.sentences.map((sentence, index) => (
             <li key={index}>{sentence}</li>
@@ -129,7 +129,7 @@ const Word = ({word}: {word: WordFromBackend}) => {
 
       {showDefinition && (
         <section className="definition">
-          <h4>Definition</h4>
+          <h3>Definition</h3>
           <ul>
             {definitions.map((definition, index) => (
               <li key={index}>
@@ -143,7 +143,7 @@ const Word = ({word}: {word: WordFromBackend}) => {
   );
 };
 
-const WordContainer = styled.section`
+const WordContainer = styled.article`
   width: 100%;
   min-width: 30rem;
   display: flex;
@@ -186,7 +186,7 @@ const WordContainer = styled.section`
   }
 `;
 
-const Container = styled.article`
+const Container = styled.main`
   display: flex;
   align-items: center;
   flex-direction: column;
