@@ -133,11 +133,11 @@ const Container = styled.article`
 `;
 
 async function fetchDefinition(word: string, type: WordType) {
-  const definitions: DictionaryApiResponse[] = await fetch(
-    `https://dictionaryapi.com/api/v3/references/collegiate/json/${word}?key=${process.env.NEXT_PUBLIC_DICTIONARY_API_KEY}`,
+  const definition: DictionaryApiResponse = await fetch(
+    `${window.location.origin}/api/define?word=${word}&type=${type}`,
   ).then(res => res.json());
 
-  return definitions.find(definition => definition.fl === type);
+  return definition;
 }
 
 export const getServerSideProps = async () => {
