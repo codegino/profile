@@ -10,11 +10,71 @@ import {
 } from '../../models/Vocabulary';
 import {formatDate} from '../../utils/date-formatter';
 import {mediaQuery} from '../../utils/media-query';
-import {supabase} from '../../utils/supabaseClient';
+import {fetchWords} from '../api/words';
+
+const WORDS_PAGE_SIZE = 10;
+
+type PaginationProps<T> = {
+  currentPage?: number;
+  pageSize?: number;
+  defaultValues?: T[];
+};
+
+function usePagination<T>({
+  currentPage = 0,
+  pageSize = WORDS_PAGE_SIZE,
+  defaultValues = [],
+}: PaginationProps<T>) {
+  const [data, setData] = useState<T[]>(defaultValues);
+  const [page, setPage] = useState(currentPage);
+  const [isDone, setIsDone] = useState(false);
+
+  const fetchMoreData = (
+    fetchFunction: (
+      _currentPage: number,
+      _pageSize: number,
+    ) => Promise<Response>,
+  ) => {
+    fetchFunction(page, pageSize)
+      .then(res => res.json())
+      .then(res => {
+        if (res.count > 0) {
+          setData(prev => [...prev, ...res.data]);
+          setPage(prev => prev + 1);
+        }
+
+        if (res.count < pageSize) {
+          setIsDone(true);
+        }
+      });
+  };
+
+  return {
+    fetchMoreData,
+    page,
+    data,
+    isDone,
+  };
+}
 
 export default function WordsPage({
-  words,
+  words: defaultWords,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+  const {
+    data: words,
+    fetchMoreData,
+    isDone,
+  } = usePagination({
+    currentPage: 1,
+    defaultValues: defaultWords,
+  });
+
+  const handleFetchMoreWords = () => {
+    fetchMoreData(page =>
+      fetch(`${window.location.origin}/api/words?page=${page}`),
+    );
+  };
+
   return (
     <>
       <Head>
@@ -26,6 +86,8 @@ export default function WordsPage({
         {words.map(word => (
           <Word key={word.id} word={word} />
         ))}
+
+        {!isDone && <button onClick={handleFetchMoreWords}>Fetch More</button>}
       </Container>
     </>
   );
@@ -133,20 +195,15 @@ const Container = styled.article`
 `;
 
 async function fetchDefinition(word: string, type: WordType) {
-  const definitions: DictionaryApiResponse[] = await fetch(
-    `https://dictionaryapi.com/api/v3/references/collegiate/json/${word}?key=${process.env.NEXT_PUBLIC_DICTIONARY_API_KEY}`,
+  const definition: DictionaryApiResponse = await fetch(
+    `${window.location.origin}/api/define?word=${word}&type=${type}`,
   ).then(res => res.json());
 
-  return definitions.find(definition => definition.fl === type);
+  return definition;
 }
 
 export const getServerSideProps = async () => {
-  let result = await supabase
-    .from<WordFromBackend>('words')
-    .select('*')
-    .order('date', {ascending: false});
-
-  const words = result.data ?? [];
+  const {data: words} = await fetchWords(0, WORDS_PAGE_SIZE);
 
   return {
     props: {
