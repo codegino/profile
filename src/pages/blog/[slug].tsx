@@ -8,12 +8,12 @@ import {
 import {serialize} from 'next-mdx-remote/serialize';
 import dynamic from 'next/dynamic';
 import path from 'path';
-import {getPlaiceholder} from 'plaiceholder';
 import BlogContent from '../../components/blog/BlogContent';
 import BlogHeader from '../../components/blog/BlogHeader';
 import BlogLayout from '../../components/blog/BlogLayout';
 import {IBlogMetadata} from '../../models/blog';
 import {formatDate} from '../../utils/date-formatter';
+import {blurImage} from '../../utils/image-blur.utils';
 import {getBlogsMetadata} from '../../utils/mdxUtils';
 import {BLOGS_PATH} from '../../utils/mdxUtils';
 
@@ -44,7 +44,7 @@ export const getStaticProps = async ({params}: GetStaticPropsContext) => {
 
   const {content, data} = matter(source);
 
-  const {img, svg} = await getPlaiceholder(`${data.bannerId}`);
+  const {img, svg} = await blurImage(`${data.bannerId}`);
 
   const mdxSource = await serialize(content, {
     // Optionally pass remark/rehype plugins

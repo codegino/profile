@@ -6,7 +6,7 @@ import Link from 'next/link';
 import {IGetPlaiceholderReturn} from 'plaiceholder';
 import {underlineOnHover} from '../frontend-utils/animation-effects';
 import {mediaQuery} from '../utils/media-query';
-import {BlurredImage} from './BlurredImage';
+import {BlurredImage} from './BlurringImage';
 
 export default function ResumeSummary({
   img,

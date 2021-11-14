@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import Head from 'next/head';
 import {IGetPlaiceholderReturn} from 'plaiceholder';
 import {IBlogMetadata} from '../../models/blog';
-import {BlurredImage} from '../BlurredImage';
+import {BlurredImage} from '../BlurringImage';
 
 type Props = {
   blog: IBlogMetadata;
@@ -48,7 +48,6 @@ const BlogHeader: FunctionComponent<Props> = ({blog, img, svg}) => {
             layout="responsive"
             height={700}
             width={1200}
-            blurLevel={80}
             objectFit="cover"
             objectPosition="center"
             style={{borderRadius: '0.5rem', marginTop: 'var(--margin-medium)'}}

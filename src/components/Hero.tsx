@@ -4,7 +4,7 @@ import {IGetPlaiceholderReturn} from 'plaiceholder';
 import {Zoom, Fade} from 'react-awesome-reveal';
 import {mediaQuery} from '../utils/media-query';
 import {useScrollToView} from '../utils/scroll-to-view-hook';
-import {BlurredImage} from './BlurredImage';
+import {BlurredImage} from './BlurringImage';
 import {GuideArrow} from './GuideArrow';
 
 export default function Hero({
@@ -21,9 +21,6 @@ export default function Hero({
         img={img}
         svg={svg}
         layout="fill"
-        height={undefined}
-        width={undefined}
-        blurLevel={80}
         objectFit="cover"
         objectPosition="left"
         priority={true}
