@@ -1,4 +1,4 @@
-import {getPlaiceholder} from 'plaiceholder';
+import {blurImage} from './image-blur.utils';
 import {supabase} from './supabaseClient';
 
 export async function getImageFromSupabase(key: string) {
@@ -8,7 +8,7 @@ export async function getImageFromSupabase(key: string) {
     .eq('key', key)
     .single();
 
-  return await getPlaiceholder(imgSrc.content);
+  return blurImage(imgSrc.content);
 }
 
 export async function getUrlFromSupabase(key: string) {

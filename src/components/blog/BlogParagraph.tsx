@@ -7,6 +7,7 @@ const BlogParagraph = (props: React.HTMLAttributes<HTMLParagraphElement>) => (
 
 const Paragraph = styled.p`
   line-height: 1.5;
+  margin-left: var(--margin-small);
 
   > code {
     background-color: var(--color-light);

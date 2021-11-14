@@ -35,6 +35,7 @@ const Container = styled.section`
   z-index: 1;
   margin-bottom: 2rem;
   background-color: var(--color-light-light);
+  text-align: center;
 
   .content {
     padding: 0.25rem 1rem;
@@ -68,13 +69,6 @@ const Container = styled.section`
     &--hidden {
       display: none;
     }
-  }
-
-  text-align: center;
-
-  .date {
-    font-weight: 0.8em;
-    font-style: italic;
   }
 
   .name {

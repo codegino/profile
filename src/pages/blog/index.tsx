@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import {InferGetStaticPropsType} from 'next';
 import Head from 'next/head';
-import {BlurredImage} from '../../components/BlurredImage';
+import {BlurringImage} from '../../components/BlurringImage';
 import BlogCard from '../../components/blog/BlogCard';
 import {commonMetaTags} from '../../frontend-utils/meta-tags';
 import {formatDate} from '../../utils/date-formatter';
@@ -9,7 +9,7 @@ import {getBlogsMetadata} from '../../utils/mdxUtils';
 import {mediaQuery} from '../../utils/media-query';
 import {getImageFromSupabase} from '../../utils/supabase.utils';
 
-export default function Home({
+export default function Blog({
   blogs,
   img,
   svg,
@@ -23,13 +23,11 @@ export default function Home({
       <Container>
         <h1>Carlo Gino Catapang&lsquo;s Blogs</h1>
         <PlaceholderContainer>
-          <BlurredImage
+          <BlurringImage
             alt="Work in progress"
             img={img}
             svg={svg}
             layout="fill"
-            height={undefined}
-            width={undefined}
             blurLevel={80}
             objectFit="cover"
             objectPosition="left"

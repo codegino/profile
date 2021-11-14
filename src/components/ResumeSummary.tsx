@@ -6,7 +6,7 @@ import Link from 'next/link';
 import {IGetPlaiceholderReturn} from 'plaiceholder';
 import {underlineOnHover} from '../frontend-utils/animation-effects';
 import {mediaQuery} from '../utils/media-query';
-import {BlurredImage} from './BlurredImage';
+import {BlurringImage} from './BlurringImage';
 
 export default function ResumeSummary({
   img,
@@ -15,7 +15,7 @@ export default function ResumeSummary({
   return (
     <Container id="resume-summary">
       <ImageContainer>
-        <BlurredImage
+        <BlurringImage
           img={img}
           svg={svg}
           alt="My profile"
