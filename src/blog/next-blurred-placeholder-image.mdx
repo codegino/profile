@@ -1,6 +1,6 @@
 ---
-title: Dynamic placeholder image in Next.js
-description: A guide on how to create a dynamic placeholder image in Next.js
+title: Dynamic image placeholder in Next.js
+description: A guide on how to create a dynamic image placeholder in Next.js
 date: '2021-11-14'
 bannerId: https://i.imgur.com/suMfWOE.jpeg
 bannerDescription: blurred
@@ -11,7 +11,7 @@ tags:
 published: true 
 ---
 
-## How to create a dynamic placeholder image
+## How to create a dynamic image placeholder?
 
 > ### TLDR
 > Check the full code [here](https://gist.github.com/codegino/7464b6e6b699cbd485ec930cf836160d)
@@ -38,7 +38,7 @@ It gives the impression that something is wrong with our app
 > but for some cases like a cover images, we might need something that resembles the actual image.
 >
 >
-> *I will discuss in another blog when to prefer the default placeholder image over the dynamic one.*
+> *I will discuss in another blog when to prefer the default placeholder image over this dynamic one.*
 
 <Gif
  height={696}
@@ -50,11 +50,11 @@ It gives the impression that something is wrong with our app
 
 Better but not enough. The placeholder did not load quickly enough to address the first issue.
 Also, The sudden change in colors makes it feel unnatural to the eye.
-*Although, we can create a custom placeholder for each image, but do we really need to?*
+*However, we can create a custom placeholder for each image, but do we really need to?*
 
 <br />
 
-In this blog post, we will show how to create a dynamic placeholder image in Next.js.
+In this blog post, I will show how to create a dynamic placeholder image in Next.js.
 
 <br />
 
@@ -330,6 +330,7 @@ Here's the final result:
 The web page seems to be loading faster even on a slow internet connection, and the transition of image seems to be more natural.
 
 <br />
+
 
 ## Conclusion
 By adding a dynamic placehoder image, the users' experience will improve due to an immediate feedback which
