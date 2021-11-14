@@ -3,6 +3,7 @@ import {MDXRemote, MDXRemoteSerializeResult} from 'next-mdx-remote';
 import Head from 'next/head';
 import BlockQuote from './BlockQuote';
 import BlogAnchor from './BlogAnchor';
+import BlogGif from './BlogGif';
 import BlogListElement from './BlogListElement';
 import BlogParagraph from './BlogParagraph';
 import CodeBlock from './CodeBlock';
@@ -18,6 +19,7 @@ const components = {
   a: BlogAnchor,
   p: BlogParagraph,
   li: BlogListElement,
+  Gif: BlogGif,
 };
 
 type Props = {
