@@ -1,0 +1,218 @@
+---
+title: Create a blurred placeholder image in Next.js
+description: How to create a blurred placeholder image in Next.js
+date: '2021-11-14'
+bannerId: https://i.imgur.com/suMfWOE.jpeg
+bannerDescription: blur
+tags:
+  - react
+  - tech
+  - nextjs
+published: true 
+---
+
+## Heading 2
+
+> ### TLDR
+> Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+> Visit the full code [here](https://gist.github.com/codegino/7464b6e6b699cbd485ec930cf836160d)
+
+
+> ### Longer version
+1. Create a placeholder metadata based on the image
+2. Render the svg
+3. Create a container for the image and placeholder 
+4. Add the actual image to display
+5. Hide the placeholder image after image completed loading
+6. Clean up the code
+
+
+### 1. Create a placeholder metadata based on the image
+
+An easy way is to use [plaiceholder](https://github.com/joe-bell/plaiceholder)
+
+```js
+import {getPlaiceholder} from 'plaiceholder';
+
+// size is a value from 4 to 64
+const placeholder = await getPlaiceholder(uri, { size: 64 });
+
+// OR
+
+// size by default is 4
+const placeholder = await getPlaiceholder(uri);
+```
+
+`getPlaiceholder` returns a `promise` of object with the following properties:
+  - `base64`
+  - `blurhash`
+  - `css`
+  - `img`
+  - `svg`
+
+For our purposes, we only need the `img` and `svg` property.
+
+
+### 2. Create the svg component
+
+The way to create the svg component will depend on how you created the placeholder metadata
+Full [version](https://github.com/joe-bell/plaiceholder/blob/main/packages/plaiceholder/src/get-image.ts)
+
+
+
+#### Create the `svg` container
+```jsx
+function BlurredImage({ svg }){
+  const Svg = svg[0]
+  const svgProps = svg[1]
+  
+  return <Svg {...svgProps}>
+    {/* TODO */}
+  </Svg>
+}
+```
+
+#### Add the `rects` as `svg` children
+```jsx
+function BlurredImage({ svg }){
+  // ...
+  const rectangles = svg[2]
+  
+  return <Svg {...}>
+    {rectangles.map((rect) => {
+      const Rect = rect[0]
+      const rectProps = rect[1]
+
+      <Rect {...rectProps} key={`${rectProps.x}${rectProps.y}`} />
+    )}}
+  </Svg>
+}
+```
+
+Result of code above
+
+#### Blur the svg
+```jsx
+function BlurredImage({ svg }){
+  const Svg = svg[0]
+  const svgProps = svg[1]
+  
+  return <Svg
+    style={{
+      ...svgProps.style,
+      filter: `blur(5px)`,
+    }}
+  >
+  {...}
+  </Svg>;
+}
+```
+
+Result of code above
+
+Note for svg with fewer `rect`
+
+Image of note
+
+
+### 3. Create a container; then, add the svg and image to display
+```jsx
+import Image from 'next/image'
+
+function BlurredImage({ img }){
+  return <Container>
+    <Svg {...}>
+    <Image {...img} />
+  </Container>
+
+  // Create the Container anyway you want
+}
+```
+
+### 4. Hide the placeholder image after image completed loading
+
+```jsx
+function BlurredImage({...}){
+  const [hasPlaceholder, setHasPlaceholder] = useState(true)
+
+  return <Container>
+    {hasPlaceholder && <Svg {...} />}
+    <Image {...} onLoadingComplete={() => setHasPlaceholder(false)} />
+  </Container>
+}
+```
+
+### 5. Clean up the code
+```jsx
+import React, {useState} from 'react'
+import styled from '@emotion/styled'
+import Image from 'next/image'
+
+export function BlurredImage({
+  svg: [Svg, svgProps, rectangles],
+  img,
+  alt,
+  style,
+  blurLevel = 5,
+  height = undefined,
+  width = undefined,
+  ...props
+}) {
+  const [hasPlaceholder, setHasPlaceholder] = useState(true)
+
+  return (
+    <Container style={style}>
+      {hasPlaceholder && (
+        <Svg
+          {...svgProps}
+          style={{
+            ...svgProps.style,
+            filter: `blur(${blurLevel}px)`,
+          }}
+        >
+          {rectangles.map(([Rect, rectProps]) => (
+            <Rect {...rectProps} key={`${rectProps.x}${rectProps.y}`} />
+          ))}
+        </Svg>
+      )}
+
+      <Image
+        {...img}
+        {...props}
+        height={height}
+        width={width}
+        alt={alt}
+        onLoadingComplete={() => setHasPlaceholder(false)}
+      />
+    </Container>
+  )
+}
+
+const Container = styled.div`
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+`;
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<Gif src="https://media2.giphy.com/media/2yEUKHkToWL598TJPY/giphy.gif" />

@@ -4,7 +4,7 @@ import {IGetPlaiceholderReturn} from 'plaiceholder';
 import {Zoom, Fade} from 'react-awesome-reveal';
 import {mediaQuery} from '../utils/media-query';
 import {useScrollToView} from '../utils/scroll-to-view-hook';
-import {BlurredImage} from './BlurringImage';
+import {BlurringImage} from './BlurringImage';
 import {GuideArrow} from './GuideArrow';
 
 export default function Hero({
@@ -16,7 +16,7 @@ export default function Hero({
   return (
     <HeroContainer>
       <Overlay />
-      <BlurredImage
+      <BlurringImage
         alt="Hero photo"
         img={img}
         svg={svg}

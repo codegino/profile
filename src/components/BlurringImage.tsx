@@ -3,21 +3,24 @@ import styled from '@emotion/styled';
 import Image, {ImageProps} from 'next/image';
 import {IGetPlaiceholderReturn} from 'plaiceholder';
 
-type Props = {blurLevel?: number} & {
+type BlurringImageProps = {blurLevel?: number; transformScaleLevel?: number};
+
+type Props = BlurringImageProps & {
   style?: React.CSSProperties;
 } & Omit<ImageProps, 'src'> &
   Pick<IGetPlaiceholderReturn, 'svg' | 'img'>;
 
-export const BlurredImage = ({
+export function BlurringImage({
   svg: [Svg, svgProps, rectangles],
   img,
   alt,
   style,
   blurLevel = 40,
+  transformScaleLevel = 1.4,
   height = undefined,
   width = undefined,
   ...props
-}: Props) => {
+}: Props) {
   const [hasPlaceholder, setHasPlaceholder] = useState(true);
 
   return (
@@ -27,12 +30,12 @@ export const BlurredImage = ({
           {...svgProps}
           style={{
             ...svgProps.style,
-            transform: `scale(1.4) ${svgProps.style.transform}`,
+            transform: `scale(${transformScaleLevel}) ${svgProps.style.transform}`,
             filter: `blur(${blurLevel}px)`,
           }}
         >
           {rectangles.map(([Rect, rectProps]) => (
-            <Rect {...rectProps} key={`${rectProps.x}${rectProps.y}`} />
+            <Rect {...rectProps} key={`${rectProps.x} ${rectProps.y}`} />
           ))}
         </Svg>
       )}
@@ -47,7 +50,7 @@ export const BlurredImage = ({
       />
     </Container>
   );
-};
+}
 
 const Container = styled.div`
   position: relative;

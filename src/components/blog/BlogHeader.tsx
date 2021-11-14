@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import Head from 'next/head';
 import {IGetPlaiceholderReturn} from 'plaiceholder';
 import {IBlogMetadata} from '../../models/blog';
-import {BlurredImage} from '../BlurringImage';
+import {BlurringImage} from '../BlurringImage';
 
 type Props = {
   blog: IBlogMetadata;
@@ -41,7 +41,7 @@ const BlogHeader: FunctionComponent<Props> = ({blog, img, svg}) => {
           </>
         )}
         {img && svg ? (
-          <BlurredImage
+          <BlurringImage
             alt="Hero photo"
             img={img}
             svg={svg}

@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import {InferGetStaticPropsType} from 'next';
 import Head from 'next/head';
-import {BlurredImage} from '../../components/BlurringImage';
+import {BlurringImage} from '../../components/BlurringImage';
 import BlogCard from '../../components/blog/BlogCard';
 import {commonMetaTags} from '../../frontend-utils/meta-tags';
 import {formatDate} from '../../utils/date-formatter';
@@ -23,7 +23,7 @@ export default function Blog({
       <Container>
         <h1>Carlo Gino Catapang&lsquo;s Blogs</h1>
         <PlaceholderContainer>
-          <BlurredImage
+          <BlurringImage
             alt="Work in progress"
             img={img}
             svg={svg}
