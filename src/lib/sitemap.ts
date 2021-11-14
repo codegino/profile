@@ -18,25 +18,31 @@ type SiteMapUrl = {
 const staticPages: SiteMapUrl[] = [
   {
     slug: '',
-    lastMod: '2021-10-14',
+    lastMod: '2021-11-14',
     priority: 1.0,
     changeFrequency: 'monthly',
   },
   {
     slug: '/about',
-    lastMod: '2021-10-14',
+    lastMod: '2021-11-14',
     priority: 1.0,
     changeFrequency: 'monthly',
   },
   {
     slug: '/resume',
-    lastMod: '2021-10-14',
+    lastMod: '2021-11-14',
     priority: 1.0,
     changeFrequency: 'monthly',
   },
   {
     slug: '/blog',
-    lastMod: '2021-10-14',
+    lastMod: '2021-11-14',
+    priority: 1.0,
+    changeFrequency: 'monthly',
+  },
+  {
+    slug: '/words',
+    lastMod: '2021-11-14',
     priority: 1.0,
     changeFrequency: 'monthly',
   },
