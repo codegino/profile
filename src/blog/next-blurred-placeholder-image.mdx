@@ -25,11 +25,7 @@ either in a fast connection or in a slow connection.
 
 The GIF below shows what a user will see for an image loaded using a slow internet connection.
 
-<Gif
- height={696}
- width={872}
- src="https://media2.giphy.com/media/clOpPdrsNgRFo0ztEQ/giphy.gif"
-/>
+<Gif height={696} width={872} src="https://media2.giphy.com/media/clOpPdrsNgRFo0ztEQ/giphy.gif"/>
 
 It gives the impression that something is wrong with our app
 
@@ -40,11 +36,7 @@ It gives the impression that something is wrong with our app
 >
 > *I will discuss in another blog when to prefer the default placeholder image over this dynamic one.*
 
-<Gif
- height={696}
- width={872}
- src="https://media2.giphy.com/media/zXPRVwOJycoyFbeEJ6/giphy.gif"
-/>
+<Gif height={696} width={872} src="https://media2.giphy.com/media/zXPRVwOJycoyFbeEJ6/giphy.gif"/>
 
 <br />
 
@@ -285,12 +277,12 @@ Time to integrate our custom component in a NextJs application
 
 ```jsx
 import {getPlaiceholder} from 'plaiceholder';
-import {BlurringImage} from '../components/BlurringImage';
+import {BlurredImage} from '../components/BlurredImage';
 
 export default function IndexPage({img, svg}) {
   return (
     {/* <SomeHeaderComponent /> */}
-    <BlurringImage
+    <BlurredImage
       img={img}
       svg={svg}
       layout="responsive"
@@ -319,11 +311,7 @@ export async function getStaticProps() {
 
 Here's the final result:
 
-<Gif
- height={696}
- width={872}
- src="https://media2.giphy.com/media/zFXCVRyaQKfmmJYhFh/giphy.gif"
-/>
+<Gif height={696} width={872} src="https://media2.giphy.com/media/zFXCVRyaQKfmmJYhFh/giphy.gif"/>
 
 <br />
 
