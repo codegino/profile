@@ -111,7 +111,7 @@ The first element in the svg metadata is the `svg` element.
 The second element in the svg metadata are the svg properties.
 
 ```jsx
-function BlurredImage({ svg }){
+function BlurringImage({ svg }){
   const Svg = svg[0]
   const svgProps = svg[1]
   
@@ -128,7 +128,7 @@ function BlurredImage({ svg }){
 The third element in the svg metadata is the list of `rect`s, which will be rendered as `svg` children.
 
 ```jsx
-function BlurredImage({ svg }){
+function BlurringImage({ svg }){
   // ...
   const rectangles = svg[2]
   
@@ -153,8 +153,8 @@ By doing step `2.a` and `2.b`, we can create a svg component that looks like thi
 The svg can be blurred to remove the pixelated look.
 
 ```jsx
-function BlurredImage({ svg }){
-  const Svg = svg[0]
+function BlurringImage({ svg }){
+  // ...
   const svgProps = svg[1]
   
   return <Svg
@@ -188,7 +188,8 @@ Spread the `img` props in the next `Image` component.
 ```jsx
 import Image from 'next/image'
 
-function BlurredImage({ img }){
+function BlurringImage({ img }){
+  // ...
   return <Container>
     <Svg {...}>
     <Image {...img} />
@@ -204,7 +205,8 @@ Since the Image is already loaded, the placeholder component can be unmounted.
 This can simply be achieved by using a `useState` and the `Image`'s' `onLoadingComplete` callback method.
 
 ```jsx
-function BlurredImage({...}){
+function BlurringImage({...}){
+  // ...
   const [hasPlaceholder, setHasPlaceholder] = useState(true)
 
   return <Container>
@@ -223,7 +225,7 @@ import React, {useState} from 'react'
 import styled from '@emotion/styled'
 import Image from 'next/image'
 
-export function BlurredImage({
+export function BlurringImage({
   svg: [Svg, svgProps, rectangles],
   img,
   alt,
@@ -277,12 +279,12 @@ Time to integrate our custom component in a NextJs application
 
 ```jsx
 import {getPlaiceholder} from 'plaiceholder';
-import {BlurredImage} from '../components/BlurredImage';
+import {BlurringImage} from '../components/BlurringImage';
 
 export default function IndexPage({img, svg}) {
   return (
     {/* <SomeHeaderComponent /> */}
-    <BlurredImage
+    <BlurringImage
       img={img}
       svg={svg}
       layout="responsive"
