@@ -34,11 +34,11 @@ export default function SocialMedia() {
 
 const socialMedia: SocialMediaProps[] = [
   {
-    url: 'https://www.facebook.com/codegino',
-    icon: FaFacebookSquare,
-    name: 'facebook',
+    url: 'https://dev.to/codegino',
+    icon: FaDev,
+    name: 'dev',
     color: '',
-    hoverColor: '#1877f2',
+    hoverColor: '#cccccc',
   },
   {
     url: 'https://github.com/codegino',
@@ -46,6 +46,13 @@ const socialMedia: SocialMediaProps[] = [
     name: 'github',
     color: '',
     hoverColor: '#cccccc',
+  },
+  {
+    url: 'https://www.facebook.com/codegino',
+    icon: FaFacebookSquare,
+    name: 'facebook',
+    color: '',
+    hoverColor: '#1877f2',
   },
   {
     url: 'https://www.linkedin.com/in/carlogino/',
