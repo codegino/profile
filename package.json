@@ -10,7 +10,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "@emotion/react": "11.5.0",
+    "@emotion/react": "11.6.0",
     "@emotion/styled": "11.3.0",
     "@react-icons/all-files": "4.1.0",
     "@supabase/supabase-js": "1.28.0",
