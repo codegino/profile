@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import {FaFacebookSquare} from '@react-icons/all-files/fa/FaFacebookSquare';
+import {FaDev} from '@react-icons/all-files/fa/FaDev';
 import {FaGithubSquare} from '@react-icons/all-files/fa/FaGithubSquare';
 import {FaLinkedin} from '@react-icons/all-files/fa/FaLinkedin';
 import {FaTwitterSquare} from '@react-icons/all-files/fa/FaTwitterSquare';
