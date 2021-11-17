@@ -1,0 +1,144 @@
+---
+title: Built-in Next.js features to handle image loading and error state
+description: A guide on how to use placeholder and onError props in Next.js
+date: '2021-11-16'
+bannerId: https://i.imgur.com/uHuOZNX.png
+bannerDescription: loading 
+tags:
+  - react
+  - tech
+  - nextjs
+published: true 
+---
+
+### How to create a loading and error state placeholder for images?
+
+> ### TL;DR
+>
+> Check the full code [here](https://gist.github.com/codegino/b9ed69fec8495c5024ef925c432bf1f2)
+
+
+### Long version
+<br />
+
+
+#### Creating a basic image
+
+`next/image` provides an easy way to create an image.
+
+```jsx
+import Image from 'next/image'
+
+<Image src="https://i.imgur.com/gf3TZMr.jpeg" alt="Some alt text" />
+```
+
+However, we still need to configure some properties to cater to our specific needs such as:
+- A placeholder when loading
+- An error placeholder when the image fails to load
+
+<br />
+
+The GIF below shows what a user will see for an image loaded using a slow internet connection.
+
+<Gif height={688} width={792} src="https://media2.giphy.com/media/mgOpxkjm3zjT2Utg5Q/giphy.gif"/>
+
+It gives the impression that something is wrong with our app
+
+<br />
+
+#### How to handle the loading state?
+
+Simply adding the `placeholder` and `blurDataURL` will do the trick.
+
+```jsx
+<Image
+  src="https://i.imgur.com/gf3TZMr.jpeg"
+  placeholder="blur"
+  blurDataURL="/assets/image-placeholder.png"
+/>
+```
+
+The code will yield the following result:
+
+<Gif height={688} width={792} src="https://media2.giphy.com/media/nNsPF6B8EjQODCbqNM/giphy.gif"/>
+
+There's a brief delay before the placeholder is loaded
+because even the placeholder image is needed to be fetch from the server.
+
+> If we need to make sure that there's an immediate placeholder to the image,
+> please refer to this guide on [how to create a dynamic image placeholder](https://carlogino.cc/blog/next-dynamic-image-placeholder)
+
+The good thing is once the placeholder image is loaded, all other images that uses the same asset
+will display the placeholder immediately.
+
+<Gif height={688} width={792} src="https://media2.giphy.com/media/p1yrnptxP3GEXKV02B/giphy.gif"/>
+
+<br />
+
+### What happens if there's an error when loading the image
+
+One possibility is that the user will stare at the placeholder for eternity
+
+<Img height={612} width={788} src="https://i.imgur.com/0RJSScx.png" />
+
+<br />
+
+Or this sadder version which shows the `alt` and a lot of empty space.
+
+<Img height={612} width={788} src="https://i.imgur.com/WHIrNTn.png" />
+
+
+*It is not fun to see too much unnecessary empty space, is it?*
+
+<br />
+<br />
+
+#### How to display another image during an error state?
+
+We can simply replace the value of `src` with the path to `error image` in the `onError` callback when an error happens.
+
+```jsx
+const [src, setSrc] = React.useState('https://i.imgur.com/gf3TZMr.jpeg');
+
+<Image
+  {...props}
+  src={src}
+  placeholder="blur"
+  blurDataURL="/assets/image-placeholder.png"
+  onError={() => setSrc('/assets/image-error.png')}
+/>
+```
+
+<Gif height={688} width={792} src="https://media2.giphy.com/media/GEtkLddj2L7lk6tqhU/giphy.gif"/>
+
+*I believe it's much better.*
+
+<br />
+
+### Putting all the code together
+
+To make the behavior easy to replicate, we can create a custom image component.
+
+```jsx
+function CustomImage({alt, ...props}) {
+  const [src, setSrc] = React.useState(props.src);
+
+  return (
+    <Image
+      {...props}
+      src={src}
+      alt={alt} // To fix lint warning 
+      onError={() => setSrc('/assets/image-error.png')}
+      placeholder="blur"
+      blurDataURL="/assets/image-placeholder.png"
+    />
+  );
+}
+```
+
+<br />
+
+### Conclusion
+When your web application displays a lot of images,
+it is a good idea to give an immediate feedback to the user of what is happening.
+One way to adress this is to use an alternate image to show the current state of an image.
