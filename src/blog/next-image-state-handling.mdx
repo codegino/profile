@@ -1,7 +1,7 @@
 ---
-title: Built-in Next.js features to handle image loading and error state
+title: Handling image loading and error state in Next.js
 description: A guide on how to use placeholder and onError props in Next.js
-date: '2021-11-16'
+date: '2021-11-17'
 bannerId: https://i.imgur.com/uHuOZNX.png
 bannerDescription: loading 
 tags:
@@ -66,7 +66,7 @@ There's a brief delay before the placeholder is loaded
 because even the placeholder image is needed to be fetch from the server.
 
 > If we need to make sure that there's an immediate placeholder to the image,
-> please refer to this guide on [how to create a dynamic image placeholder](https://carlogino.cc/blog/next-dynamic-image-placeholder)
+> refer to this guide on [how to create a dynamic image placeholder](https://carlogino.cc/blog/next-dynamic-image-placeholder)
 
 The good thing is once the placeholder image is loaded, all other images that uses the same asset
 will display the placeholder immediately.
@@ -139,6 +139,6 @@ function CustomImage({alt, ...props}) {
 <br />
 
 ### Conclusion
-When your web application displays a lot of images,
+When a web application displays a lot of images,
 it is a good idea to give an immediate feedback to the user of what is happening.
-One way to adress this is to use an alternate image to show the current state of an image.
+One way to address this is to use an alternate image to show the current state of an image.
