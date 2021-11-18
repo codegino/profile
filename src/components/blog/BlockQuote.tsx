@@ -11,9 +11,10 @@ const Container = styled.blockquote`
   padding: var(--padding-small);
   margin: var(--margin-small) 0;
   font-family: Georgia, 'Times New Roman';
-  border-radius: 4px;
   font-size: 1rem;
-  box-shadow: 1px 1px 1px var(--color-light-dark);
+  border-left: 5px solid var(--color-primary-light);
+  border-bottom: 0.5px solid var(--color-primary-light);
+  box-sizing: border-box;
 `;
 
 export default BlockQuote;

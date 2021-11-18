@@ -12,8 +12,10 @@ published: true
 
 ## Why do we need to pass a _callback function_ to the _useState_ function
 
->### TLDR version
+> ### TL;DR version
+>
 > We can pass a callback function when calling `useState` to take advantage of lazy initialization.
+>
 > This will resolve the source of the state only once, thus avoiding unnecessary computation during re-renders.
 
 
