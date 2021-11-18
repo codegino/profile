@@ -114,15 +114,27 @@ export default function WordsPage({}) {
 
 const WordContentLoader = () => (
   <WordContainer>
-    <ContentLoader viewBox="1 1 200 100">
-      <rect x="0" y="15" rx="3" ry="3" width="80" height="15" />
-      <rect x="0" y="35" rx="3" ry="3" width="100" height="12" />
-      <rect x="0" y="55" rx="3" ry="3" width="90" height="14" />
-      <rect x="10" y="72" rx="3" ry="3" width="250" height="12" />
-      <rect x="10" y="88" rx="3" ry="3" width="250" height="12" />
-    </ContentLoader>
+    <StyledContentLoader viewBox="1 1 175 95">
+      <rect x="0" y="10" rx="3" ry="3" width="80" height="12" />
+      <rect x="0" y="30" rx="3" ry="3" width="100" height="9" />
+      <rect x="0" y="48" rx="3" ry="3" width="90" height="12" />
+      <rect className="sentence" x="10" y="65" rx="3" ry="3" height="10" />
+      <rect x="0" y="80" rx="3" ry="3" width="60" height="13" />
+    </StyledContentLoader>
   </WordContainer>
 );
+
+const StyledContentLoader = styled(ContentLoader)`
+  height: 175px;
+
+  ${mediaQuery(600, `height: 150px`)}
+
+  .sentence {
+    width: 150px;
+
+    ${mediaQuery(600, `width: 2500px`)}
+  }
+`;
 
 const Word = ({word}: {word: WordFromBackend}) => {
   const [showDefinition, setShowDefinition] = useState(false);
