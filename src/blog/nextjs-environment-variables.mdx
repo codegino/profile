@@ -1,0 +1,52 @@
+---
+title: Next.js environment variables
+description: A guide on how to use environment variables in Next.js
+date: '2021-11-20'
+bannerId: https://i.imgur.com/MwODJui.png
+hideBanner: false
+tags:
+  - react
+  - tech
+  - nextjs
+published: true 
+---
+
+## Two types of environment variables
+
+- Server-side expose variables
+- Browser exposed variables
+
+### Server-side expose variables
+
+This is the default
+
+```.env
+SOME_API_KEY=12345
+SOME_SECRET=456
+```
+
+#### Usage
+
+```jsx
+export function getStaticProps() {
+  console.log(process.env.SOME_API_KEY)
+  console.log(process.env.SOME_SECRET)
+  // ...
+}
+```
+
+### Browser exposed variables
+
+```.env
+NEXT_PUBLIC_GOOGLE_ANALYTICS=abcde12345
+```
+
+```jsx
+// _document.tsx
+<Head>
+ <script
+  async
+  src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
+ />
+</Head>
+```
