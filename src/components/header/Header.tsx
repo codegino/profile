@@ -77,13 +77,15 @@ const LogoContainer = styled.section`
 
 const MyLogo = styled.div`
   border-radius: 50%;
-  height: 27px;
-  width: 27px;
+  max-width: 27px;
+  min-width: 27px;
+  max-height: 27px;
+  min-height: 27px;
   padding: 2px;
   transition: all 0.5s;
-  background-color: white; // This needs to be white, not a variable
+  background-color: #ffffff; // This needs to be white, not a variable
   border-radius: 50%;
-  box-shadow: 0 0 1px 1px var(--color-dark-dark);
+  box-shadow: 0 0 1px 1px #ffffff;
   z-index: 100;
   margin-right: var(--margin-very-small);
 
