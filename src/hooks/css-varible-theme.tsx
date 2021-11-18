@@ -3,7 +3,7 @@ import useDarkMode from 'use-dark-mode';
 
 const COLOR_PRIMARY = '#55c57a';
 const COLOR_PRIMARY_CONTRAST = '#55c57a';
-const COLOR_PRIMARY_LIGHT = '#aaff00';
+const COLOR_PRIMARY_LIGHT = '#99d326';
 const COLOR_PRIMARY_DARK = 'green';
 const COLOR_PRIMARY_ACCENT = '#3ff000';
 
