@@ -1,18 +1,16 @@
 import React, {useEffect, useState} from 'react';
 import styled from '@emotion/styled';
-import {InferGetServerSidePropsType} from 'next';
 import Head from 'next/head';
+import ContentLoader from 'react-content-loader';
 import {commonMetaTags} from '../../frontend-utils/meta-tags';
 import {
   DictionaryApiResponse,
   WordFromBackend,
   WordType,
 } from '../../models/Vocabulary';
-import {formatDate} from '../../utils/date-formatter';
 import {mediaQuery} from '../../utils/media-query';
-import {fetchWords} from '../api/words';
 
-const WORDS_PAGE_SIZE = 10;
+const WORDS_PAGE_SIZE = 5;
 
 type PaginationProps<T> = {
   currentPage?: number;
@@ -28,52 +26,64 @@ function usePagination<T>({
   const [data, setData] = useState<T[]>(defaultValues);
   const [page, setPage] = useState(currentPage);
   const [isDone, setIsDone] = useState(false);
+  const [isFetching, setIsFetching] = useState(false);
 
-  const fetchMoreData = (
-    fetchFunction: (
-      _currentPage: number,
-      _pageSize: number,
-    ) => Promise<Response>,
-  ) => {
-    fetchFunction(page, pageSize)
-      .then(res => res.json())
-      .then(res => {
-        if (res.count > 0) {
-          setData(prev => [...prev, ...res.data]);
-          setPage(prev => prev + 1);
-        }
+  const fetchMoreData = React.useCallback(
+    (
+      fetchFunction: (
+        _currentPage: number,
+        _pageSize: number,
+      ) => Promise<Response>,
+    ) => {
+      setIsFetching(true);
+      fetchFunction(page, pageSize)
+        .then(res => res.json())
+        .then(res => {
+          if (res.count > 0) {
+            setData(prev => [...prev, ...res.data]);
+            setPage(prev => prev + 1);
+          }
 
-        if (res.count < pageSize) {
-          setIsDone(true);
-        }
-      });
-  };
+          if (res.count < pageSize) {
+            setIsDone(true);
+          }
+        })
+        .finally(() => setIsFetching(false));
+    },
+    [page, pageSize],
+  );
 
   return {
     fetchMoreData,
     page,
     data,
+    isFetching,
     isDone,
   };
 }
 
-export default function WordsPage({
-  words: defaultWords,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) {
+export default function WordsPage({}) {
   const {
     data: words,
     fetchMoreData,
     isDone,
-  } = usePagination({
-    currentPage: 1,
-    defaultValues: defaultWords,
+    page,
+    isFetching,
+  } = usePagination<WordFromBackend>({
+    currentPage: 0,
   });
 
-  const handleFetchMoreWords = () => {
+  const handleFetchMoreWords = React.useCallback(() => {
     fetchMoreData(page =>
       fetch(`${window.location.origin}/api/words?page=${page}`),
     );
-  };
+  }, [fetchMoreData]);
+
+  useEffect(() => {
+    if (page === 0) {
+      handleFetchMoreWords();
+    }
+  }, [handleFetchMoreWords, page]);
 
   return (
     <>
@@ -83,15 +93,36 @@ export default function WordsPage({
       </Head>
       <Container>
         <h1>English words I learned</h1>
+
+        {words.length === 0 && isFetching && (
+          <>
+            <WordContentLoader />
+            <WordContentLoader />
+            <WordContentLoader />
+            <WordContentLoader />
+            <WordContentLoader />
+          </>
+        )}
         {words.map(word => (
           <Word key={word.id} word={word} />
         ))}
-
         {!isDone && <button onClick={handleFetchMoreWords}>Fetch More</button>}
       </Container>
     </>
   );
 }
+
+const WordContentLoader = () => (
+  <WordContainer>
+    <ContentLoader viewBox="1 1 200 100">
+      <rect x="0" y="15" rx="3" ry="3" width="80" height="15" />
+      <rect x="0" y="35" rx="3" ry="3" width="100" height="12" />
+      <rect x="0" y="55" rx="3" ry="3" width="90" height="14" />
+      <rect x="10" y="72" rx="3" ry="3" width="250" height="12" />
+      <rect x="10" y="88" rx="3" ry="3" width="250" height="12" />
+    </ContentLoader>
+  </WordContainer>
+);
 
 const Word = ({word}: {word: WordFromBackend}) => {
   const [showDefinition, setShowDefinition] = useState(false);
@@ -192,6 +223,7 @@ const Container = styled.main`
   flex-direction: column;
   overflow: hidden;
   min-height: 80vh;
+  padding-bottom: var(--padding-small);
 `;
 
 async function fetchDefinition(word: string, type: WordType) {
@@ -201,16 +233,3 @@ async function fetchDefinition(word: string, type: WordType) {
 
   return definition;
 }
-
-export const getServerSideProps = async () => {
-  const {data: words} = await fetchWords(0, WORDS_PAGE_SIZE);
-
-  return {
-    props: {
-      words: words.map(word => ({
-        ...word,
-        date: formatDate(new Date(word.date)),
-      })),
-    },
-  };
-};
