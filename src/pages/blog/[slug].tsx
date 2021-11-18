@@ -44,7 +44,7 @@ export const getStaticProps = async ({params}: GetStaticPropsContext) => {
 
   const {content, data} = matter(source);
 
-  const {img, svg} = await blurImage(`${data.bannerId}`);
+  const {img, svg} = await blurImage(data.bannerId);
 
   const mdxSource = await serialize(content, {
     // Optionally pass remark/rehype plugins
