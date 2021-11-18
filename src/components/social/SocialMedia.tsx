@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import {FaFacebookSquare} from '@react-icons/all-files/fa/FaFacebookSquare';
+import {FaDev} from '@react-icons/all-files/fa/FaDev';
 import {FaGithubSquare} from '@react-icons/all-files/fa/FaGithubSquare';
 import {FaLinkedin} from '@react-icons/all-files/fa/FaLinkedin';
 import {FaTwitterSquare} from '@react-icons/all-files/fa/FaTwitterSquare';
@@ -34,11 +35,11 @@ export default function SocialMedia() {
 
 const socialMedia: SocialMediaProps[] = [
   {
-    url: 'https://www.facebook.com/codegino',
-    icon: FaFacebookSquare,
-    name: 'facebook',
+    url: 'https://dev.to/codegino',
+    icon: FaDev,
+    name: 'dev',
     color: '',
-    hoverColor: '#1877f2',
+    hoverColor: '#cccccc',
   },
   {
     url: 'https://github.com/codegino',
@@ -46,6 +47,13 @@ const socialMedia: SocialMediaProps[] = [
     name: 'github',
     color: '',
     hoverColor: '#cccccc',
+  },
+  {
+    url: 'https://www.facebook.com/codegino',
+    icon: FaFacebookSquare,
+    name: 'facebook',
+    color: '',
+    hoverColor: '#1877f2',
   },
   {
     url: 'https://www.linkedin.com/in/carlogino/',
