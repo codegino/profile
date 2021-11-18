@@ -6,6 +6,7 @@ export type IBlogMetadata = {
   order: number;
   description: string;
   bannerId: string;
+  hideBanner: boolean;
   bannerDescription: string;
   tags: string[];
   published: boolean;

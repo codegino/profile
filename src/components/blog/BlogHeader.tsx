@@ -40,7 +40,7 @@ const BlogHeader: FunctionComponent<Props> = ({blog, img, svg}) => {
             <p>{blog.date}</p>
           </>
         )}
-        {img && svg ? (
+        {img && svg && !blog.hideBanner ? (
           <BlurringImage
             alt="Hero photo"
             img={img}
