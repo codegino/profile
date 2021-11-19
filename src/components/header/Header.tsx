@@ -29,9 +29,7 @@ export default function Header() {
 
         <Link href="/">
           <a aria-label="Carlo Gino">
-            <h1 className={router.asPath === '/' ? 'active' : ''}>
-              Carlo Gino
-            </h1>
+            <h1 className={router.asPath === '/' ? 'active' : ''}>Code Gino</h1>
           </a>
         </Link>
       </LogoContainer>
@@ -59,7 +57,7 @@ const Container = styled.header`
 const LogoContainer = styled.section`
   display: flex;
   align-items: center;
-  min-width: 16rem;
+  min-width: 15rem;
 
   h1 {
     margin-left: 0.7rem;
