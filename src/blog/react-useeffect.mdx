@@ -15,11 +15,11 @@ published: true
 > ### TL;DR
 >
 > React `useEffect` is an alternative to the "old" `class` lifecycle methods/hooks.
-> It can be used to manage side effects, such as network requests, or to run a piece of code when the component is mounted, updated, or unmounted.
+> It is used to manage side effects, such as network requests or run a piece of code when the component is mounted, updated, or unmounted.
 
 ### Longer version
 
-> Prior to `React v16.8`, we can only enable a component
+> Before `React v16.8`, we can only enable a component
 > to react to state changes using [lifecycle methods](https://reactjs.org/docs/state-and-lifecycle.html#adding-lifecycle-methods-to-a-class).
 
 #### How to define a `useEffect`
@@ -35,11 +35,11 @@ useEffect(() => { //(1) declaration
 
 #### Here's a quick explanation of the above code:
 
-1. We can declare an effect by calling either `React.useEffect` or `useEffect`
-2. `effect` is the function that will be called when the component is mounted
+1. We can declare an effect by calling either `React.useEffect` or `useEffect`.
+2. `effect` is the function that will be called when the component is mounted.
 OR when the dependency array changes.
-3. `cleanup` is the function that will be called when the effect "unmounted".
-4. `dependency array` is the array of values that will be passed to the `effect` function.
+3. `cleanup` is the function called when the effect is "unmounted".
+4. `dependency array` is the array of values passed as a second argument to the `effect` function.
     - If there is no dependency array, the effect will be called every time the component is mounted.
     - If the array is empty, the effect will be called only once when the component is mounted.
     - If the array is not empty, the effect will be called every time the component is mounted and the dependency array changes.
@@ -164,7 +164,7 @@ function App({ name }) {
 
 <br />
 
-#### OR just mimic a class lifecycle method
+#### OR mimic a class lifecycle method
 
 > Check this [blog](https://carlogino.cc/blog/react-usestate-callback-function) on how to
 convert a class lifecycle methods to `useEffect` hooks
@@ -173,12 +173,10 @@ convert a class lifecycle methods to `useEffect` hooks
 
 ### Additional Note
 - `useEffect` can only be used in functional components
-- The order of `useEffect` declarations are important.
+- The order of `useEffect` declarations is important.
 - `useEffect` in a custom hook is a great way to promote side effect reusability. I will discuss this in another blog.
 
 <br />
 
 ## Conclusion
-Compared to the old lifecycle methods, `useEffect` is much more powerful and flexible which makes
-it an ideal choice when managing a side-effect.
-
+Compared to the old lifecycle methods, `useEffect` is much more powerful and flexible, making it an ideal choice when managing a side-effect.
