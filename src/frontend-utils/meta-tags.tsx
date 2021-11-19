@@ -1,5 +1,5 @@
 const metaDescription =
-  'Carlo Gino Catapang. Web Developer, Software Developer, Software Engineer, Frontend Engineer. React, JavaScript, TypeScript expert. Husband and Father.';
+  "Carlo Gino Catapang's website|Code Gino, Web Developer, Software Developer, Software Engineer, Frontend Engineer. React, JavaScript, TypeScript expert. Husband and Father.";
 
 export const commonMetaTags = (slug = '') => (
   <>
