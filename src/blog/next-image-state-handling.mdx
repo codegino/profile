@@ -32,7 +32,7 @@ import Image from 'next/image'
 <Image src="https://i.imgur.com/gf3TZMr.jpeg" alt="Some alt text" />
 ```
 
-However, we still need to configure some properties to cater to our specific needs such as:
+However, we still need to configure some properties to cater to our specific needs, such as:
 - A placeholder when loading
 - An error placeholder when the image fails to load
 
@@ -42,7 +42,7 @@ The GIF below shows what a user will see for an image loaded using a slow intern
 
 <Gif height={688} width={792} src="https://media2.giphy.com/media/mgOpxkjm3zjT2Utg5Q/giphy.gif"/>
 
-It gives the impression that something is wrong with our app
+It gives the impression that something is wrong with our app.
 
 <br />
 
@@ -63,12 +63,12 @@ The code will yield the following result:
 <Gif height={688} width={792} src="https://media2.giphy.com/media/nNsPF6B8EjQODCbqNM/giphy.gif"/>
 
 There's a brief delay before the placeholder is loaded
-because even the placeholder image is needed to be fetch from the server.
+because even the placeholder image is needed to be fetched from the server.
 
 > If we need to make sure that there's an immediate placeholder to the image,
 > refer to this guide on [how to create a dynamic image placeholder](https://carlogino.cc/blog/next-dynamic-image-placeholder)
 
-The good thing is once the placeholder image is loaded, all other images that uses the same asset
+The good thing is that once the placeholder image is loaded, all other images that use the same asset
 will display the placeholder immediately.
 
 <Gif height={688} width={792} src="https://media2.giphy.com/media/p1yrnptxP3GEXKV02B/giphy.gif"/>
@@ -77,25 +77,25 @@ will display the placeholder immediately.
 
 ### What happens if there's an error when loading the image
 
-One possibility is that the user will stare at the placeholder for eternity
+One possibility is that the user will stare at the placeholder for eternity.
 
 <Img height={612} width={788} src="https://i.imgur.com/0RJSScx.png" />
 
 <br />
 
-Or this sadder version which shows the `alt` and a lot of empty space.
+Or this sadder version which shows the `alt` and much space.
 
 <Img height={612} width={788} src="https://i.imgur.com/WHIrNTn.png" />
 
 
-*It is not fun to see too much unnecessary empty space, is it?*
+*It is not fun to see too much unnecessary space, is it?*
 
 <br />
 <br />
 
 #### How to display another image during an error state?
 
-We can simply replace the value of `src` with the path to `error image` in the `onError` callback when an error happens.
+We can replace the value of `src` with the path to `error image` in the `onError` callback when an error happens.
 
 ```jsx
 const [src, setSrc] = React.useState('https://i.imgur.com/gf3TZMr.jpeg');
@@ -139,6 +139,6 @@ function CustomImage({alt, ...props}) {
 <br />
 
 ### Conclusion
-When a web application displays a lot of images,
-it is a good idea to give an immediate feedback to the user of what is happening.
+When a web application displays many images,
+it is a good idea to give immediate feedback to the user of what is happening.
 One way to address this is to use an alternate image to show the current state of an image.

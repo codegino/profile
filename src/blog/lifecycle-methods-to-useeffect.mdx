@@ -43,7 +43,7 @@ Create an empty dependency array and pass it to the `useEffect` hook.
 useEffect(() => {
   // code to run when the component is mounted 
 
-  // Make sure this is empty to ensure hook will only run once
+  // Make sure this is empty to ensure the hook will only run once
 }, [])
 ```
 
@@ -70,7 +70,7 @@ useEffect(() => {
 
 ### componentWillUnmount
 
-A `useEffect` can return a function which its body will be executed when the component is unmounted.
+A `useEffect` can return a function whose body will be executed when the component is unmounted.
 
 ```jsx codePenID=vYJrBKr
 useEffect(() => {
@@ -85,8 +85,7 @@ useEffect(() => {
 ### componentDidUpdate
 
 This is a bit subjective because it's up to the developer to decide how `componentDidUpdate` should behave (the simplest is the same as `componentDidMount` mapping).
-It could also be a combination of `componentDidMount` and `shouldComponentUpdate` mapping with the addition
-of a reference variable to check if the component has been mounted as shown below:
+It could also be a combination of `componentDidMount` and `shouldComponentUpdate` mapping with the addition of a reference variable to check if the component has been mounted as shown below:
 
 ```jsx codePenID=qBXKBeB
 const hasMount = useRef(false)
@@ -104,15 +103,10 @@ useEffect(() => {
 
 ## Additional Note
 - You can only define one of each lifecycle method in a `class` component.
-When using hooks you can define as many `useEffect` as you want.
+When using hooks, you can define as many `useEffect` as you want.
 - You can only use `useEffect` in a `function` component
 
 <br />
 
 ## Conclusion
-The examples above are simple ways to map a `class lifecycle hooks`
-component to a `React hooks`, and there are many other ways to do it.
-The good news is that you don't need to think of mapping lifecycle hooks to useEffect since React hooks introduced a
-different paradigm on how we can create a React component and how we can mange side-effects.
-This mapping is only useful when I'm refactoring a `class` component to be a `function` component.
-For newer projects, I ought to think that class component does not exists.
+The examples above are simple ways to map a `class lifecycle hooks` component to a `React hooks`, and there are many other ways to do it. The good news is that you don't need to think of mapping lifecycle hooks to useEffect since React hooks introduced a different paradigm on how we can create a React component and how we can manage side-effects. This mapping is only useful when I'm refactoring a `class` component to be a `function` component. For newer projects, I ought to think that the class component does not exist.
