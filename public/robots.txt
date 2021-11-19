@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://carlogino.cc/sitemap.xml
+Sitemap: https://codegino.com/sitemap.xml

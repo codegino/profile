@@ -14,7 +14,7 @@ const BlogFooter = ({blog}: Props) => {
       <DiscussionEmbed
         shortname="carlogino"
         config={{
-          url: `https://carlogino.cc/blog/${blog.slug}`,
+          url: `https://codegino.com/blog/${blog.slug}`,
           identifier: blog.slug,
           title: blog.title,
           language: 'en_US',

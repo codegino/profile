@@ -6,11 +6,11 @@ export const commonMetaTags = (slug = '') => (
     <meta name="twitter:card" content="summary_large_image" />
     <meta
       name="twitter:image"
-      content="https://carlogino.cc/assets/preview.png"
+      content="https://codegino.com/assets/preview.png"
     />
     <meta name="twitter:description" content={metaDescription} />
     <meta name="twitter:title" content="Carlo Gino Catapang" />
-    <meta property="og:url" content={`https://carlogino.cc${slug}`} />
+    <meta property="og:url" content={`https://codegino.com${slug}`} />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Carlo Gino Catapang" />
     <meta property="og:description" content={metaDescription} />
