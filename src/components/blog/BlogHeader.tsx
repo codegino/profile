@@ -16,7 +16,7 @@ const BlogHeader: FunctionComponent<Props> = ({blog, img, svg}) => {
         <title>{blog.title}</title>
         <meta
           property="og:url"
-          content={`https://carlogino.cc/blog/${blog.slug}`}
+          content={`https://codegino.com/blog/${blog.slug}`}
         />
         <meta property="og:type" content="blog" />
         <meta property="og:title" content={blog.title} />
