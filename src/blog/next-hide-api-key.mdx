@@ -1,0 +1,58 @@
+---
+title: Hide API Key in Client side of NextJS
+description: A guide on how to prevent browser access to a private API key.
+date: '2021-11-20'
+bannerId: https://i.imgur.com/MwODJui.png
+hideBanner: true 
+tags:
+  - react
+  - tech
+  - nextjs
+published: true
+---
+
+###
+
+```jsx
+const API_KEY = 'some-secret-api';
+
+useEffect(() => {
+  fetch(`https://www.test.com/api/dummy.json?apiKey=${API_KEY}`)
+  // ...
+}, [])
+```
+
+Of course we don't want it to be hardcoded.
+
+```jsx
+const API_KEY = proccess.env.NEXT_PUBLIC_API_KEY;
+
+useEffect(() => {
+  fetch(`https://www.test.com/api/dummy.json?apiKey=${API_KEY}`)
+  // ...
+}, [])
+```
+
+// Image showing API key visible in the browser
+
+
+// Backend code here
+
+```js
+export default async function handler(req, res) {
+  const data = await fetch(
+    `https://www.test.com/api/dummy.json?apiKey=${process.env.API_KEY}`,
+  ).then(response => response.json());
+
+  res.json(data);
+}
+```
+
+```jsx
+useEffect(() => {
+  fetch(`${window.location.oridin}/api/dummy`)
+  // ...
+}, [])
+```
+
+
