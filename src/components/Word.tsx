@@ -7,17 +7,21 @@ const Word = ({word}: {word: WordFromBackend}) => {
   const [showDefinition, setShowDefinition] = useState(false);
   const [definitions, setDefinitions] = useState<string[]>([]);
   const [isFetching, setIsFetching] = useState(false);
+  const [pronunciation, setPronunciation] =
+    useState<{hw: string; pr: string}>();
 
   useEffect(() => {
     if (showDefinition) {
       setIsFetching(true);
-      fetch(
-        `${window.location.origin}/api/define?word=${word.word}&type=${word.type}`,
-      )
+      fetch(`api/define?word=${word.word}&type=${word.type}`)
         .then(res => res.json())
         .then((res: DictionaryApiResponse) => {
           if (res) {
             setDefinitions(res?.shortdef);
+            setPronunciation({
+              pr: res?.hwi.prs[0].mw,
+              hw: res?.hwi.hw,
+            });
           }
         })
         .finally(() => setIsFetching(false));
@@ -29,8 +33,12 @@ const Word = ({word}: {word: WordFromBackend}) => {
       <h2>
         {word.word} | <span className="type">({word.type})</span>
       </h2>
+      {pronunciation && (
+        <p>
+          {pronunciation.hw} <b>|</b> \ {pronunciation.pr} \
+        </p>
+      )}
       <p className="date">{word.date}</p>
-
       <section>
         <h3>Sentences</h3>
         <ul>
@@ -39,11 +47,9 @@ const Word = ({word}: {word: WordFromBackend}) => {
           ))}
         </ul>
       </section>
-
       {!showDefinition && (
         <button onClick={() => setShowDefinition(true)}>Define</button>
       )}
-
       {showDefinition && (
         <section className="definition">
           <h3>Definition</h3>
@@ -56,7 +62,6 @@ const Word = ({word}: {word: WordFromBackend}) => {
           </ul>
         </section>
       )}
-
       {isFetching && <p>Fetching...</p>}
     </WordContainer>
   );
@@ -85,8 +90,13 @@ export const WordContainer = styled.article`
   .date {
     color: var(--color-dark);
     font-size: 0.85em !important;
+    margin-top: var(--margin-small);
     margin-bottom: var(--margin-small);
     font-style: italic;
+  }
+
+  h2 {
+    margin-bottom: 0;
   }
 
   h3 {

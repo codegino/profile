@@ -10,6 +10,12 @@ export type DictionaryApiResponse = {
     stems: string[];
     offensive: boolean;
   };
+  hwi: {
+    hw: string;
+    prs: {
+      mw: string;
+    }[];
+  };
   hom: number;
   fl: WordType;
   date: string;

@@ -76,11 +76,8 @@ export default async function handler(req, res) {
   res.json(data); // Send the response
 }
 ```
-The handler above is accessible via `localhost:3000/api/hello` in a local environment or `https://www.ourhost.com/api/hello` in production.
 
-<br />
-
-But since we are pointing to the same host, we use `window.location.origin` to avoid hardcoding the path or creating unnecessary environment variables.
+The handler above is accessible via `localhost:3000/api/hello` in a local environment or `https://www.ourhost.com/api/hello` in production. OR simply via `/api/hello`.
 
 ```jsx
 useEffect(() => {
