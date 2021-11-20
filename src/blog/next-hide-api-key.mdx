@@ -1,58 +1,98 @@
 ---
-title: Hide API Key in Client side of NextJS
-description: A guide on how to prevent browser access to a private API key.
+title: Handling sensitive client-side API keys in Next
+description: How to protect your API keys from being leaked to the client-side
 date: '2021-11-20'
 bannerId: https://i.imgur.com/MwODJui.png
-hideBanner: true 
 tags:
   - react
   - tech
-  - nextjs
+  - next.js
 published: true
 ---
 
-###
+## How can we avoid exposing API keys to the browser
+
+> ### TL;DR
+> Create an [API handler](https://nextjs.org/docs/api-routes/introduction) which will call the external API with the sensitive API key, then call that handler from the client-side.
+
+### The problem
+
+Here's an example of how to call an API with a required API key.
 
 ```jsx
-const API_KEY = 'some-secret-api';
+const API_URL= 'https://www.test.com/api'
+const API_KEY = 'some-secret-key'
 
 useEffect(() => {
-  fetch(`https://www.test.com/api/dummy.json?apiKey=${API_KEY}`)
+  fetch(`${API_URL}/hello?apiKey=${API_KEY}`)
   // ...
 }, [])
 ```
 
-Of course we don't want it to be hardcoded.
+Of course, we don't want it to be hardcoded or committed to the repo; As a workaround, we can create an environment variable.
 
 ```jsx
+const API_URL = proccess.env.NEXT_PUBLIC_EXTERNAL_API_HOST
 const API_KEY = proccess.env.NEXT_PUBLIC_API_KEY;
 
 useEffect(() => {
-  fetch(`https://www.test.com/api/dummy.json?apiKey=${API_KEY}`)
+  fetch(`${API_URL}/hello?apiKey=${API_KEY}`)
   // ...
 }, [])
 ```
 
-// Image showing API key visible in the browser
+> If you're wondering why variables start with `NEXT_PUBLIC_` you can refer to this [blog](https://codegino.com/blog/next-js-environment-variables)
 
+Using the above example will surely help us not leak the API key in our codebase; however, it is still accessible to the client-side.
 
-// Backend code here
+<br />
+
+Go to the Network tab in the browser, and you'll see the API key in the request headers.
+
+<Img src="https://i.imgur.com/6ISSNTj.png" height={354} width={1220} />
+
+> Keep in mind that client-side code needs to be treated as publicly accessible by anyone.
+
+### Solution
+
+As mentioned in the `TL;DR` section, we can prevent the exposure of API keys if the code is running on the server.
+
+The good thing is that Next.js is not only a client-side framework but is also used to run server-side code.
+
+> Check this documentation to learn about creating an [API in Next.js](https://nextjs.org/docs/api-routes/introduction).
+
+#### Here's the general steps
+
+1. Remove the `NEXT_PUBLIC` in the variable name(e.g. `NEXT_PUBLIC_API_KEY` to `API_KEY`)
+2. Create a handler named `hello.js` under `pages/api`.
+3. Move the API call to the handler with the updated environment variable.
 
 ```js
 export default async function handler(req, res) {
   const data = await fetch(
-    `https://www.test.com/api/dummy.json?apiKey=${process.env.API_KEY}`,
+    `https://www.test.com/api/hello?apiKey=${process.env.API_KEY}`,
   ).then(response => response.json());
 
-  res.json(data);
+  res.json(data); // Send the response
 }
 ```
+The handler above is accessible via `localhost:3000/api/hello` in a local environment or `https://www.ourhost.com/api/hello` in production.
+
+<br />
+
+But since we are pointing to the same host, we use `window.location.origin` to avoid hardcoding the path or creating unnecessary environment variables.
 
 ```jsx
 useEffect(() => {
-  fetch(`${window.location.oridin}/api/dummy`)
+  fetch(`${window.location.origin}/api/hello`)
   // ...
 }, [])
 ```
 
+The API key should not be visible in the browser as the external API call executes from the server.
 
+<Img src="https://i.imgur.com/HDqx4oz.png" height={282} width={1136} />
+
+## Conclusion
+This article might be anti-climactic as the solution is very similar to all other solutions we've seen so far.
+However, it is worth mentioning that in Next.js, forwarding an API call to the server is straightforward since Next.js can be both a client and a server.
