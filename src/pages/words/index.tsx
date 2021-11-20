@@ -71,9 +71,7 @@ export default function WordsPage({}) {
   });
 
   const handleFetchMoreWords = React.useCallback(() => {
-    fetchMoreData(page =>
-      fetch(`${window.location.origin}/api/words?page=${page}`),
-    );
+    fetchMoreData(page => fetch(`/api/words?page=${page}`));
   }, [fetchMoreData]);
 
   useEffect(() => {
