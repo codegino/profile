@@ -7,7 +7,7 @@ bannerDescription: blurred
 tags:
   - react
   - tech
-  - nextjs
+  - next.js
 published: true 
 ---
 
@@ -54,11 +54,11 @@ In this blog post, I will show how to create a dynamic placeholder image in Next
 #### Here's the general steps on how to solve the issue
 
 1. Create placeholder metadata based on the image
-2. Create an svg component from the placeholder metadata
+2. Create an SVG component from the placeholder metadata
 3. Create a container for the image and placeholder
 4. Unmount the placeholder image after the actual image is completed loading
 5. Putting all the components together
-6. End to end integration in a Nextjs page
+6. End to end integration in a Next.js page
 
 <br />
 
@@ -203,7 +203,7 @@ function BlurringImage({ img }){
 #### 4. Unmount the placeholder image after the actual image is completed loading
 
 Since the image is already loaded, the placeholder component can be unmounted.
-Unmounting can be achieved using a `useState` and the `Image`'s' `onLoadingComplete` callback method.
+Unmounting can be achieved using a `useState` and the `Image`'s `onLoadingComplete` callback method.
 
 ```jsx
 function BlurringImage({...}){

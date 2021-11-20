@@ -3,11 +3,10 @@ title: Next.js environment variables
 description: A guide on how to use Next.js environment variables
 date: '2021-11-19'
 bannerId: https://i.imgur.com/MwODJui.png
-hideBanner: true 
 tags:
   - react
   - tech
-  - nextjs
+  - next.js
 published: true
 ---
 
@@ -77,12 +76,12 @@ NEXT_PUBLIC_GOOGLE_ANALYTICS=abcde12345
 NEXT_PUBLIC_NOT_SO_SECRET_URL=https://example.com
 ```
 
-Even though there will be more keystrokes, I personally like this convention as it gives a clear distinction of what variables are available to the client side.
+Even though there will be more keystrokes, I like this convention as it clearly distinguishes what variables are available to the client-side.
 It is less likely that I will expose any sensitive information to the user.
 
 <br />
 
-As per the variables above, it can be used anywhere in React land. For example, setting the Google analytics key.
+As per the variables above, it can be used anywhere in React land. For example, when setting the Google analytics key.
 
 ```jsx
 // _document.tsx
