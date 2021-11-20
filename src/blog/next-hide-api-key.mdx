@@ -10,7 +10,7 @@ tags:
 published: true
 ---
 
-## How can we avoid exposing API keys to the browser
+## How to avoid exposing API keys to the browser
 
 > ### TL;DR
 > Create an [API handler](https://nextjs.org/docs/api-routes/introduction) which will call the external API with the sensitive API key, then call that handler from the client-side.
@@ -57,7 +57,7 @@ Go to the Network tab in the browser, and you'll see the API key in the request 
 
 As mentioned in the `TL;DR` section, we can prevent the exposure of API keys if the code is running on the server.
 
-The good thing is that Next.js is not only a client-side framework but is also used to run server-side code.
+The good thing is that Next.js is not only a client-side framework but is also used to run server-side code, which means no need to create a new backend service for this use case.
 
 > Check this documentation to learn about creating an [API in Next.js](https://nextjs.org/docs/api-routes/introduction).
 
@@ -95,4 +95,4 @@ The API key should not be visible in the browser as the external API call execut
 
 ## Conclusion
 This article might be anti-climactic as the solution is very similar to all other solutions we've seen so far.
-However, it is worth mentioning that in Next.js, forwarding an API call to the server is straightforward since Next.js can be both a client and a server.
+However, it is worth mentioning that in Next.js, forwarding an API call to the server is straightforward since Next.js can be both used in the frontend and backend.
