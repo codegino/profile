@@ -15,5 +15,22 @@
     "blog",
     "seo",
     "vocab"
+  ],
+  "grammarly.overrides": [
+    {
+      "config": {
+        "audience": "knowledgeable",
+        "dialect": "canadian",
+        "domain": "technical",
+        "emotions": [
+          "confident",
+          "joyful",
+          "optimistic",
+          "respectful",
+          "friendly"
+        ],
+        "goals": ["inform", "describe"]
+      }
+    }
   ]
 }
