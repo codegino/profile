@@ -13,7 +13,7 @@ const Word = ({word}: {word: WordFromBackend}) => {
   useEffect(() => {
     if (showDefinition) {
       setIsFetching(true);
-      fetch(`api/define?word=${word.word}&type=${word.type}`)
+      fetch(`/api/define?word=${word.word}&type=${word.type}`)
         .then(res => res.json())
         .then((res: DictionaryApiResponse) => {
           if (res) {
