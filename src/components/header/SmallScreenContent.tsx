@@ -4,15 +4,19 @@ import {AiOutlineClose} from '@react-icons/all-files/ai/AiOutlineClose';
 import {FaEnvelopeSquare} from '@react-icons/all-files/fa/FaEnvelopeSquare';
 import {FaFacebookMessenger} from '@react-icons/all-files/fa/FaFacebookMessenger';
 import {TiThMenu} from '@react-icons/all-files/ti/TiThMenu';
+import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import {useRouter} from 'next/router';
-import DarkModeToggle from 'react-dark-mode-toggle';
 import {CSSTransition} from 'react-transition-group';
 import useCssVariableTheme from '../../hooks/css-varible-theme';
 import {mediaQuery} from '../../utils/media-query';
 import CustomIcon from '../icon/CustomIcon';
 import SocialMedia from '../social/SocialMedia';
 import {navigationLinks} from './nav-links';
+
+const DarkModeToggle = dynamic(() => import('react-dark-mode-toggle'), {
+  ssr: false,
+});
 
 export default function SmallScreenContent() {
   const router = useRouter();
