@@ -40,8 +40,8 @@ const CodeBlock: FunctionComponent<CodeBlockProps> = ({
         {({className, style, tokens, getLineProps, getTokenProps}) => (
           <>
             <LineNumberContainer>
-              {tokens.map((line, i) => {
-                return !noLine ? <LineNo>{i + 1}</LineNo> : null;
+              {tokens.map((_, i) => {
+                return !noLine ? <LineNo key={i}>{i + 1}</LineNo> : null;
               })}
             </LineNumberContainer>
             <Pre className={className} style={style}>
