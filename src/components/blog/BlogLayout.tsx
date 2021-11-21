@@ -1,14 +1,9 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import {MDXEmbedProvider} from 'mdx-embed';
 import {mediaQuery} from '../../utils/media-query';
 
 const Layout: React.FC = props => {
-  return (
-    <MDXEmbedProvider>
-      <Container {...props}></Container>
-    </MDXEmbedProvider>
-  );
+  return <Container {...props}></Container>;
 };
 
 const Container = styled.main`
