@@ -7,6 +7,7 @@ import {
 } from 'next';
 import {serialize} from 'next-mdx-remote/serialize';
 import dynamic from 'next/dynamic';
+import Head from 'next/head';
 import path from 'path';
 import BlogContent from '../../components/blog/BlogContent';
 import BlogHeader from '../../components/blog/BlogHeader';
@@ -23,18 +24,40 @@ const BlogFooter = dynamic(() => import('../../components/blog/BlogFooter'), {
 
 export default function BlogPage({
   source,
-  frontMatter,
+  frontMatter: blog,
   img,
   svg,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
-    <BlogLayout>
-      <BlogHeader blog={frontMatter} img={img} svg={svg} />
-      <main>
-        <BlogContent source={source} />
-      </main>
-      <BlogFooter blog={frontMatter} />
-    </BlogLayout>
+    <>
+      <Head>
+        <title>{blog.title}</title>
+        <meta
+          property="og:url"
+          content={`https://codegino.com/blog/${blog.slug}`}
+        />
+        <meta property="og:type" content="blog" />
+        <meta property="og:title" content={blog.title} />
+        <meta property="og:description" content={blog.description} />
+        <meta property="og:image" content={blog.bannerId} />
+
+        <meta name="description" content={blog.description} />
+
+        <meta name="twitter:image" content="/assets/logo.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content={blog.bannerId} />
+        <meta name="twitter:description" content={blog.description} />
+        <meta name="twitter:title" content="Carlo Gino Catapang" />
+      </Head>
+
+      <BlogLayout>
+        <BlogHeader blog={blog} img={img} svg={svg} />
+        <main>
+          <BlogContent source={source} />
+        </main>
+        <BlogFooter blog={blog} />
+      </BlogLayout>
+    </>
   );
 }
 
