@@ -20,10 +20,10 @@ published: true
 > _React features without writing a class._
 
 ### What does it mean?
-To give you more context, prior to `React v16.8`, we can only enable a component
-to have a state and be able to manage it if a component is created using a `class`.
+To give you more context, before `React v16.8`, we can only enable a component
+to have a state and manage it if a component is created using a `class`.
 
-```jsx live
+```jsx codePenID=porBgXJ
 class MyClassComponent extends React.Component {
   constructor(props) {
     super(props)
@@ -48,9 +48,7 @@ class MyClassComponent extends React.Component {
 
 <br />
 
-A `Functional component` is mostly used as a dumb component where
-the decision on how to render it differently is derived from the `props` it will
-receive from its parent component.
+A `Functional component` is mainly used as a dumb component where the decision on how to render it differently is derived from the `props` it will receive from its parent component.
 
 ```jsx
 function MyFunctionalComponent ({attribute, onChange}) {
@@ -63,9 +61,9 @@ function MyFunctionalComponent ({attribute, onChange}) {
 
 If you notice, we need fewer keystrokes to create a functional component,
 but the problem is it would not be reactive to state changes.
-Let's try to mimic all the behaviors of the `class component` to our `function component`.
+Let's try to mimic all the `class component` behaviors to our `function component`.
 
-```jsx live
+```jsx codePenID=BadEjgb
 function MyFunctionalComponent () {
   let state = {attribute: 'some value'}
 
@@ -80,7 +78,7 @@ function MyFunctionalComponent () {
 }
 ```
 
-You can modify the component all day long, however it won't react to state changes.
+You can modify the component all day long; however, it won't react to state changes.
 <br />
 
 What if we can have the simplicity of the `functional component` and still have
@@ -121,13 +119,13 @@ useState(() => 'value returned from a function')
 ...
 ```
 
-As mentioned on the above examples, here's what you can pass in a `useState` as an argument:
+As mentioned in the above examples, here's what you can pass in a `useState` as an argument:
 - nothing
 - primitive value
 - object or array
 - function(discussed in this [blog](https://codegino.com/blog/react-usestate-callback-function))
 
-If you passed one, it will serve as the default state for that instance,
+If you passed one, it would serve as the default state for that instance,
 else default state will be null
 
 <br />
@@ -151,7 +149,7 @@ const [state, setState] = useState()
 
 Let's replicate the behavior of the class component in a function component using a `useState` hook.
 
-```jsx live
+```jsx codePenID=QWMPNLL
 function MyFunctionalComponent () {
   const [attribute, setAttribute] = React.useState('some value')
 
@@ -167,7 +165,7 @@ function MyFunctionalComponent () {
 ```
 
 Hooray! We just created a much simpler stateful component using `useState`.
-Let's breakdown what happened.
+Let's break down what happened.
 
 <br />
 
@@ -202,16 +200,13 @@ _You can also simplify further if you want_
 <br />
 
 ### Does it mean we should not use a `class component` ever again?
-For me, I always use the `functional component` approach, but if I'm working on a very old codebase where
-there's no way to migrate to the newer version, then I will definitely use a `class component`.
+I always use the `functional component` approach, but if I'm working on a very old codebase where there's no way to migrate to the newer version, I will use a `class component`.
 Also, it is written in the React documentation that `There are no plans to remove classes from React`.
-There are some use cases like the when using Inheritance, creating Error Boundary, explicit lifecycle methods, and such
-that cannot be directly done using a `functional component`,
-although there are many workarounds to apply the expected behavior.
+However, there are some use cases like when using Inheritance, creating Error Boundary, explicit lifecycle methods, and such that cannot be directly done using a `functional component`, although there are many workarounds to apply the expected behavior.
 
 <br />
 <br />
 
 ## Conclusion
 `useState` will simplify how we can create a component.
-Fewer code means lesser bugs(_if used properly_) and easier to read, which results in better maintainability.
+Less code means fewer bugs(_if used properly_) and is easier to read, resulting in better maintainability.

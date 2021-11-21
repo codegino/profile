@@ -23,7 +23,7 @@ published: true
 From the example below, at first glance, we might say the state will be `abc` after clicking the button.
 _Try to play with the code below_
 
-```jsx live
+```jsx codePenID=wvqZMRN
 function SetStateDemo() {
   const [state, setState] = React.useState('')
 
@@ -40,8 +40,8 @@ function SetStateDemo() {
 }
 ```
 
-If you predicted that the new state will not be `abc` then kudos to you.
-If not then let's discuss what actually happened.
+If you predicted that the new state would not be `abc`, then kudos to you.
+If not, then let's discuss what happened.
 
 ```jsx
 ...
@@ -57,9 +57,7 @@ const handleClick = () => {
 ...
 ```
 
-It is true that we called `setState` 3 times,
-but that does not mean the value of the `state`
-variable is already updated after calling `setState`.
+We indeed called `setState` 3 times, but that does not mean the value of the `state` variable will update after calling `setState`.
 
 <br />
 <br />
@@ -80,11 +78,11 @@ setState(prev => prev + 'a')
 
 <br />
 
-Passing a function to `setState` will allow us get the previous state value
-from the first argument of the function. Now check the result of our updated code.
+Passing a function to `setState` will allow us to get the previous state value from the function's first argument.
+Now check the result of our updated code.
 
 
-```jsx live
+```jsx codePenID=jOLvgqB
 function SetStateDemoWithCallback() {
   const [state, setState] = React.useState('')
 
@@ -126,4 +124,4 @@ const handleClick = () => {
 
 ## Conclusion
 Pass a callback function to `setState` if it might be called multiple times
-and the new state needs to be calculated based from the previous state.
+and the new state needs to be calculated based on the previous state.

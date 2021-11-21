@@ -21,8 +21,8 @@ published: true
 
 ### Longer version
 
-When we develop real production application, it's not always that we derive our state from simple primitive values.
-Sometimes we need to calculate them based on other values as shown below.
+When we develop real production applications, we do not always derive our state from simple primitive values.
+Sometimes we need to calculate them based on other values, as shown below.
 
 ```jsx
 const [state1, setState1] = useState(prop1 === prop2 && prop2 !== prop3 && prop1 < prop3)
@@ -42,16 +42,13 @@ const [state2, setState2] = useState(reusableFunctionToGetState(prop4, prop5, pr
 ```
 
 The problem occurs when the source of our state is computationally expensive.
-Everytime we re-render our component we need to re-evaluate our default state.
+Every time we re-render our component, we need to re-evaluate our default state.
 Try to see the problem by playing with the code below.
 
-```jsx live
+```jsx codePenID=RwZOrdJ
 function UseStateDemo() {
   const complexFunction = () => {
     // Something computationally expensive
-    // Try uncommenting any of the lines below
-    // console.log('Finding the meaning of life')
-    // alert('Finding the meaning of life')
     return 'result of a heavy task'
   }
 
@@ -62,7 +59,7 @@ function UseStateDemo() {
 ```
 
 Each time we click the button, the `complexFunction` will always be called(_verify by uncommenting console.log or alert_).
-If that `complexFunction` is really computationally expensive then expect our component will render slower.
+If that `complexFunction` is computationally expensive, then expect our component will render slower.
 
 <br />
 
@@ -79,13 +76,10 @@ const [,setState] = React.useState(complexFunction)
 <br />
 
 Try to play with the code below and see the difference
-```jsx live
+```jsx codePenID=zYdXrXo
 function SetStateDemo() {
   const complexFunction = () => {
     // Something computationally expensive
-    // Try uncommenting any of the lines below
-    // console.log('Finding the meaning of life')
-    // alert('Finding the meaning of life')
     return 'result of a heavy task'
   }
 
@@ -96,19 +90,19 @@ function SetStateDemo() {
 }
 ```
 
-The `complexFunction` will be evaluated only once if we pass it as a function
+The `complexFunction` will evaluate only once if we pass it as a function
 and not invoking it immediately, thus giving us a performance boost.
 
 <br />
 
-### Do we need to always lazy initializate our state?
-Definitely not. It's not magic that allows lazy initialization to do the above optimization.
-There's an overhead to it which means if we use everywhere it,
+### Do we need to always lazy initialize our state?
+No. It's not magic that allows lazy initialization to do the above optimization.
+There's an overhead to it which means if we use it everywhere,
 it could make our component "slower" in contrast to our goal to make it faster.
 
 <br />
 <br />
 
 ## Conclusion
-Use lazy initialization when your state dependends on something that is computationally heavy.
+Use lazy initialization when your state depends on something that is computationally heavy.
 Avoid unnecessary "_optimization_"; lazy initialization has a small overhead, so use it wisely.

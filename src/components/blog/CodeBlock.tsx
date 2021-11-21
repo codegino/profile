@@ -3,7 +3,6 @@ import styled from '@emotion/styled';
 import Link from 'next/link';
 import Highlight, {defaultProps, Language} from 'prism-react-renderer';
 import vsDark from 'prism-react-renderer/themes/vsDark';
-import {LiveProvider, LiveEditor, LiveError, LivePreview} from 'react-live';
 import {underlineOnHover} from '../../frontend-utils/animation-effects';
 
 export type CodeBlockProps = {
@@ -20,9 +19,7 @@ const executableExtensions = ['js', 'jsx', 'ts', 'tsx', 'html', 'css'];
 const CodeBlock: FunctionComponent<CodeBlockProps> = ({
   children,
   className,
-  live,
   noLine = true,
-  noInline = false,
   codePenID,
 }) => {
   const language = className.replace(/language-/, '') as Language;
@@ -30,27 +27,6 @@ const CodeBlock: FunctionComponent<CodeBlockProps> = ({
   const languageLabel = executableExtensions.some(ext => ext === language)
     ? `.${language}`
     : language;
-
-  if (live) {
-    return (
-      <>
-        <LabelContainer style={{top: '2px'}}>
-          <div>{languageLabel}</div>
-          <span style={{fontSize: '1.4rem'}}>Editable</span>
-        </LabelContainer>
-        <div style={{marginTop: '0'}}>
-          <LiveProvider code={children} theme={vsDark} noInline={noInline}>
-            <LiveEditorContainer />
-            <LiveError />
-            <p className="result-label">Result:</p>
-            <PreviewContainer>
-              <LivePreview />
-            </PreviewContainer>
-          </LiveProvider>
-        </div>
-      </>
-    );
-  }
 
   return (
     <>
@@ -90,16 +66,6 @@ const CodeBlock: FunctionComponent<CodeBlockProps> = ({
 const LinkToCodePen = styled.div`
   > a {
     ${underlineOnHover('var(--color-primary-dark)')}
-  }
-`;
-
-const LiveEditorContainer = styled(LiveEditor)`
-  border-radius: 0px 0px 5px 5px;
-  margin: var(--margin-very-small) 0;
-
-  span {
-    line-height: 1;
-    font-family: Menlo, Monaco, Consolas, Courier New, monospace;
   }
 `;
 
