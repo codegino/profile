@@ -55,7 +55,9 @@ const CodeBlock: FunctionComponent<CodeBlockProps> = ({
       {codePenID && (
         <LinkToCodePen>
           <Link href={`https://codepen.io/codegino/pen/${codePenID}`}>
-            <a target="_blank">Link to Codepen</a>
+            <a target="_blank" rel="noopener">
+              Link to Codepen
+            </a>
           </Link>
         </LinkToCodePen>
       )}
