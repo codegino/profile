@@ -1,5 +1,5 @@
 import type {NextApiRequest, NextApiResponse} from 'next';
-import {WordFromBackend} from '../../models/Vocabulary';
+import type {WordFromBackend} from '../../models/Vocabulary';
 import {formatDate} from '../../utils/date-formatter';
 import {supabase} from '../../utils/supabaseClient';
 

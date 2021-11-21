@@ -1,17 +1,23 @@
 import styled from '@emotion/styled';
 import dompurify from 'isomorphic-dompurify';
-import {InferGetStaticPropsType} from 'next';
+import type {InferGetStaticPropsType} from 'next';
+import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import Link from 'next/link';
 import AboutMeHero from '../../components/AboutMeHero';
-import TechStackCarousel, {TechStack} from '../../components/TechStackCarousel';
+import type {TechStack} from '../../components/TechStackCarousel';
 import {commonMetaTags} from '../../frontend-utils/meta-tags';
-import {StaticContent} from '../../models/static-content';
+import type {StaticContent} from '../../models/static-content';
 import {
   getImageFromSupabase,
   getUrlFromSupabase,
 } from '../../utils/supabase.utils';
 import {supabase} from '../../utils/supabaseClient';
+
+const TechStackCarousel = dynamic(
+  () => import('../../components/TechStackCarousel'),
+  {ssr: false},
+);
 
 export default function AboutMe({
   aboutMeDetails,

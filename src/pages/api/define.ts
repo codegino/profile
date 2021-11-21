@@ -1,5 +1,5 @@
 import type {NextApiRequest, NextApiResponse} from 'next';
-import {DictionaryApiResponse} from '../../models/Vocabulary';
+import type {DictionaryApiResponse} from '../../models/Vocabulary';
 
 export default async function handler(
   req: NextApiRequest,

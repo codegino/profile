@@ -1,7 +1,7 @@
 import React, {FunctionComponent} from 'react';
 import styled from '@emotion/styled';
 import {IGetPlaiceholderReturn} from 'plaiceholder';
-import {IBlogMetadata} from '../../models/blog';
+import type {IBlogMetadata} from '../../models/blog';
 import {BlurringImage} from '../BlurringImage';
 
 type Props = {

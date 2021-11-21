@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import {InferGetStaticPropsType} from 'next';
+import type {InferGetStaticPropsType} from 'next';
 import Head from 'next/head';
 import {BlurringImage} from '../../components/BlurringImage';
 import BlogCard from '../../components/blog/BlogCard';

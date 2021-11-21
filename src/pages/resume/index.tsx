@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import {FaFilePdf} from '@react-icons/all-files/fa/FaFilePdf';
 import {FaFileWord} from '@react-icons/all-files/fa/FaFileWord';
-import {InferGetStaticPropsType} from 'next';
+import type {InferGetStaticPropsType} from 'next';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import Link from 'next/link';

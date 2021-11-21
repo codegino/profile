@@ -12,7 +12,7 @@ import path from 'path';
 import BlogContent from '../../components/blog/BlogContent';
 import BlogHeader from '../../components/blog/BlogHeader';
 import BlogLayout from '../../components/blog/BlogLayout';
-import {IBlogMetadata} from '../../models/blog';
+import type {IBlogMetadata} from '../../models/blog';
 import {formatDate} from '../../utils/date-formatter';
 import {blurImage} from '../../utils/image-blur.utils';
 import {getBlogsMetadata} from '../../utils/mdxUtils';

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import {DiscussionEmbed} from 'disqus-react';
-import {IBlogMetadata} from '../../models/blog';
+import type {IBlogMetadata} from '../../models/blog';
 
 type Props = {
   blog: IBlogMetadata;

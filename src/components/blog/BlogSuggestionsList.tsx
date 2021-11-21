@@ -2,7 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import Link from 'next/link';
 import {underlineOnHover} from '../../frontend-utils/animation-effects';
-import {IBlogMetadata} from '../../models/blog';
+import type {IBlogMetadata} from '../../models/blog';
 import {mediaQuery} from '../../utils/media-query';
 import {BlogCardPreview} from './BlogCardPreview';
 

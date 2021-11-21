@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import {InferGetStaticPropsType} from 'next';
+import type {InferGetStaticPropsType} from 'next';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import Link from 'next/link';

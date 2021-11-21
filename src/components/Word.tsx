@@ -1,6 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import styled from '@emotion/styled';
-import {DictionaryApiResponse, WordFromBackend} from '../models/Vocabulary';
+import type {
+  DictionaryApiResponse,
+  WordFromBackend,
+} from '../models/Vocabulary';
 import {mediaQuery} from '../utils/media-query';
 
 const Word = ({word}: {word: WordFromBackend}) => {

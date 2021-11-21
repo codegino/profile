@@ -1,5 +1,5 @@
-import {WorkExperience} from '../models/resume';
-import {CategorizedSkill, Skill} from '../models/skill';
+import type {WorkExperience} from '../models/resume';
+import type {CategorizedSkill, Skill} from '../models/skill';
 import {supabase} from '../utils/supabaseClient';
 import {formatDate} from './date-formatter';
 

@@ -4,7 +4,7 @@ import Head from 'next/head';
 import ContentLoader from 'react-content-loader';
 import Word, {WordContainer} from '../../components/Word';
 import {commonMetaTags} from '../../frontend-utils/meta-tags';
-import {WordFromBackend} from '../../models/Vocabulary';
+import type {WordFromBackend} from '../../models/Vocabulary';
 import {mediaQuery} from '../../utils/media-query';
 
 const WORDS_PAGE_SIZE = 5;

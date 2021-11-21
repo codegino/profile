@@ -2,7 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import Image from 'next/image';
 import Link from 'next/link';
-import {IBlogMetadata} from '../../models/blog';
+import type {IBlogMetadata} from '../../models/blog';
 import {mediaQuery} from '../../utils/media-query';
 
 type Props = {

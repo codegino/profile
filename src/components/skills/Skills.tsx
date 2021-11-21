@@ -13,7 +13,7 @@ import {FaThumbsUp} from '@react-icons/all-files/fa/FaThumbsUp';
 import {FaTools} from '@react-icons/all-files/fa/FaTools';
 import Link from 'next/link';
 import {Zoom, Slide} from 'react-awesome-reveal';
-import {CategorizedSkill, SkillCategory} from '../../models/skill';
+import type {CategorizedSkill, SkillCategory} from '../../models/skill';
 
 export default function Skills({skills}: {skills: CategorizedSkill[]}) {
   return (

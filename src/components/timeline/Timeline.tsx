@@ -8,7 +8,7 @@ import dompurify from 'isomorphic-dompurify';
 import Link from 'next/link';
 import {Zoom, Slide} from 'react-awesome-reveal';
 import {underlineOnHover} from '../../frontend-utils/animation-effects';
-import {WorkExperience} from '../../models/resume';
+import type {WorkExperience} from '../../models/resume';
 import {mediaQuery} from '../../utils/media-query';
 import {Experience} from './Experience';
 
