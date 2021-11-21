@@ -19,7 +19,7 @@ const executableExtensions = ['js', 'jsx', 'ts', 'tsx', 'html', 'css'];
 const CodeBlock: FunctionComponent<CodeBlockProps> = ({
   children,
   className,
-  noLine = true,
+  noLine = false,
   codePenID,
 }) => {
   const language = className.replace(/language-/, '') as Language;
@@ -29,7 +29,7 @@ const CodeBlock: FunctionComponent<CodeBlockProps> = ({
     : language;
 
   return (
-    <>
+    <Container>
       <LabelContainer>{languageLabel}</LabelContainer>
       <Highlight
         {...defaultProps}
@@ -38,18 +38,24 @@ const CodeBlock: FunctionComponent<CodeBlockProps> = ({
         language={language}
       >
         {({className, style, tokens, getLineProps, getTokenProps}) => (
-          <Pre className={className} style={style}>
-            {tokens.map((line, i) => (
-              <Line key={i} {...getLineProps({line, key: i})}>
-                {!noLine ? <LineNo>{i + 1}</LineNo> : null}
-                <LineContent>
-                  {line.map((token, key) => (
-                    <span key={key} {...getTokenProps({token, key})} />
-                  ))}
-                </LineContent>
-              </Line>
-            ))}
-          </Pre>
+          <>
+            <LineNumberContainer>
+              {tokens.map((line, i) => {
+                return !noLine ? <LineNo>{i + 1}</LineNo> : null;
+              })}
+            </LineNumberContainer>
+            <Pre className={className} style={style}>
+              {tokens.map((line, i) => (
+                <Line key={i} {...getLineProps({line, key: i})}>
+                  <LineContent>
+                    {line.map((token, key) => (
+                      <span key={key} {...getTokenProps({token, key})} />
+                    ))}
+                  </LineContent>
+                </Line>
+              ))}
+            </Pre>
+          </>
         )}
       </Highlight>
       {codePenID && (
@@ -61,9 +67,13 @@ const CodeBlock: FunctionComponent<CodeBlockProps> = ({
           </Link>
         </LinkToCodePen>
       )}
-    </>
+    </Container>
   );
 };
+
+const Container = styled.div`
+  position: relative;
+`;
 
 const LinkToCodePen = styled.div`
   > a {
@@ -86,20 +96,6 @@ const Pre = styled.pre`
   }
 `;
 
-const PreviewContainer = styled.div`
-  margin: var(--margin-very-small) 0;
-  border: 1px solid var(--color-light-dark);
-  background-color: var(--color-light);
-  border-radius: 2px;
-  padding: var(--padding-very-small) var(--padding-small);
-
-  .result-label {
-    margin-bottom: var(--margin-very-small);
-    position: relative;
-    left: -10px;
-  }
-`;
-
 const LabelContainer = styled.aside`
   text-align: left;
   width: 100%;
@@ -117,16 +113,30 @@ const LabelContainer = styled.aside`
 
 const Line = styled.div`
   display: table-row;
+  position: relative;
+  margin-left: 2.5rem;
+`;
+
+const LineNumberContainer = styled.div`
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  left: 0;
+  top: 3.259rem;
+  bottom: 0;
 `;
 
 const LineNo = styled.span`
-  display: table-cell;
+  background-color: #1e1e1e;
+  padding-left: 2px;
+  color: #e1e1e1;
   text-align: right;
   padding-right: 1em;
   user-select: none;
-  opacity: 0.5;
-  min-width: 3rem;
-  max-width: 3rem;
+  min-width: 3.5rem;
+  max-width: 3.5rem;
+  line-height: 1.188;
 `;
 
 const LineContent = styled.span`
