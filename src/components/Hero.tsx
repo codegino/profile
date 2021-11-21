@@ -15,22 +15,21 @@ export default function Hero({
 
   return (
     <HeroContainer>
-      <Overlay />
       <BlurringImage
         alt="Hero photo"
         img={img}
         svg={svg}
         layout="fill"
         objectFit="cover"
-        objectPosition="left"
+        objectPosition="center"
         priority={true}
       />
-      <LeftMessageContainer>
+      <MessageContainer>
         <Message cascade duration={1500} triggerOnce={true} delay={200}>
           <h2>Hello World</h2>
           <p>Welcome to my page!</p>
         </Message>
-      </LeftMessageContainer>
+      </MessageContainer>
       <GuideArrowContainer triggerOnce delay={1900}>
         <GuideArrow onClick={scrollToContent} />
       </GuideArrowContainer>
@@ -44,68 +43,40 @@ const GuideArrowContainer = styled(Zoom)`
   bottom: 8vh;
 `;
 
-const LeftMessageContainer = styled.div`
-  position: absolute;
+const MessageContainer = styled.div`
   display: block;
-  z-index: 2;
-  top: 1.25rem;
-  left: 1.5rem;
+  position: absolute;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  top: -2rem;
 
-  ${mediaQuery(
-    500,
-    `
-    top: 1.5rem;
-    left: 2rem;
-  `,
-  )}
-
-  ${mediaQuery(
-    700,
-    `
-  top: 2rem;
-  left: 2.5rem;
-  `,
-  )}
+  ${mediaQuery(1200, 'margin-left: 2%; top: -2.5%;')}
 `;
 
 const Message = styled(Fade)`
   h2,
   p {
-    color: var(--color-light-light);
-    text-shadow: 1px 1px 2px var(--color-dark-dark);
-    z-index: 2;
+    color: #ffffff;
+    text-shadow: 5px 5px 2px rgba(0, 0, 0, 0.5);
     font-size: 4em;
-    text-align: left;
+    text-align: center;
   }
 
   p {
-    font-size: 2.4em;
+    font-size: 2em;
   }
-`;
-
-const Overlay = styled.div`
-  height: 95vh;
-  width: 100vw;
-  position: absolute;
-  display: block;
-  z-index: 1;
-  background-image: linear-gradient(
-    to bottom,
-    var(--color-dark-dark),
-    var(--color-dark),
-    var(--color-light),
-    var(--color-light-light)
-  );
-  opacity: 0.4;
-  top: 0;
-  right: 0;
 `;
 
 const HeroContainer = styled.div`
   overflow: hidden;
   position: relative;
   height: 95vh;
-  margin: auto;
+  width: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
 `;
