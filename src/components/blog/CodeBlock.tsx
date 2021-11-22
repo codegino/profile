@@ -46,7 +46,13 @@ const CodeBlock: FunctionComponent<CodeBlockProps> = ({
             </LineNumberContainer>
             <Pre className={className} style={style}>
               {tokens.map((line, i) => (
-                <Line key={i} {...getLineProps({line, key: i})}>
+                <Line
+                  key={i}
+                  {...getLineProps({line, key: i})}
+                  style={{
+                    marginLeft: noLine ? '0' : '2.5rem',
+                  }}
+                >
                   <LineContent>
                     {line.map((token, key) => (
                       <span key={key} {...getTokenProps({token, key})} />
@@ -114,7 +120,6 @@ const LabelContainer = styled.aside`
 const Line = styled.div`
   display: table-row;
   position: relative;
-  margin-left: 2.5rem;
 `;
 
 const LineNumberContainer = styled.div`
@@ -125,6 +130,7 @@ const LineNumberContainer = styled.div`
   left: 0;
   top: 3.259rem;
   bottom: 0;
+  line-height: 1.188;
 `;
 
 const LineNo = styled.span`
@@ -132,6 +138,7 @@ const LineNo = styled.span`
   padding-left: 2px;
   color: #e1e1e1;
   text-align: right;
+  font-family: monospace;
   padding-right: 1em;
   user-select: none;
   min-width: 3.5rem;
