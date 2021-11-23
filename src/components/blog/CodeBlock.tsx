@@ -12,6 +12,7 @@ export type CodeBlockProps = {
   noLine: boolean;
   noInline: boolean;
   codePenID: string;
+  fileName: string;
 };
 
 const executableExtensions = ['js', 'jsx', 'ts', 'tsx', 'html', 'css'];
@@ -21,6 +22,7 @@ const CodeBlock: FunctionComponent<CodeBlockProps> = ({
   className,
   noLine = false,
   codePenID,
+  fileName,
 }) => {
   const language = className.replace(/language-/, '') as Language;
 
@@ -30,7 +32,10 @@ const CodeBlock: FunctionComponent<CodeBlockProps> = ({
 
   return (
     <Container>
-      <LabelContainer>{languageLabel}</LabelContainer>
+      <LabelContainer>
+        {fileName ? fileName : ''}
+        {languageLabel}
+      </LabelContainer>
       <Highlight
         {...defaultProps}
         theme={vsDark}
