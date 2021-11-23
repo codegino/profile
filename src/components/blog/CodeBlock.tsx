@@ -101,6 +101,7 @@ const Pre = styled.pre`
   border-radius: 0px 0px 5px 5px;
   font-size: 1.5rem;
   margin: var(--margin-very-small) 0;
+  line-height: 1.188;
 
   span {
     font-family: Menlo, Monaco, Consolas, Courier New, monospace;
@@ -135,7 +136,6 @@ const LineNumberContainer = styled.div`
   left: 0;
   top: 3.259rem;
   bottom: 0;
-  line-height: 1.188;
 `;
 
 const LineNo = styled.span`
