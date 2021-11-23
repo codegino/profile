@@ -86,7 +86,34 @@ rm app/routes/index.tsx app/root.tsx
 
 #### Create a file named `root.tsx` file under `app` folder.
 
-This file will serve as the global container for the app.
+Let's proceed with the mandatory `hello world` example.
+
+```tsx fileName=app/root
+import { LiveReload } from "remix";
+
+export default function App() {
+  return (
+    <html lang="en">
+      <head>
+        <meta charSet="utf-8" />
+      </head>
+      <body>
+        <h2>Hello World</h2>
+        {process.env.NODE_ENV === "development" ? (
+          <LiveReload />
+        ) : null}
+      </body>
+    </html>
+  );
+}
+```
+
+Hello World, indeed.
+<Img height={201} width={694} src="https://i.imgur.com/vYEYl7x.png" />
+
+<br />
+
+Since this file will serve as the global container for the app, let's refactor it to make this more generic.
 
 ```tsx fileName=app/root
 import {Links,LiveReload,Meta,Outlet,Scripts,ScrollRestoration} from "remix";
@@ -138,7 +165,7 @@ function Layout({ children }: React.PropsWithChildren<{}>) {
 
 #### Create the index route file `index.tsx` under `app/routes` folder.
 
-Let's proceed with the mandatory `hello world` example.
+Now, We extract the content of our page
 
 ```tsx fileName=app/routes/index
 export default function Index() {
@@ -148,9 +175,9 @@ export default function Index() {
 }
 ```
 
-Adding the two files above will yield the following result:
+The two changes above will still yield the same result:
 
-<Img height={344} width={694} src="https://i.imgur.com/kSS5vUz.png" />
+<Img height={201} width={694} src="https://i.imgur.com/vYEYl7x.png" />
 
 
 ### Create a link
