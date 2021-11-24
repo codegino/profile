@@ -1,6 +1,6 @@
 ---
 title: Getting started with Remix
-description: How to create a hello world Remix application
+description: How to start working on a Remix project
 date: '2021-11-23'
 bannerId: https://i.imgur.com/pR1OVnW.jpg
 bannerDescription: DJ mixer
@@ -225,7 +225,7 @@ It is expected since we have not created a route handler for the `/pokemons` pag
 
 <br />
 
-Before creating that route, let us use `CatchBoundary` to create a custom `404` error message as a fallback for all Not Found routes.
+Before creating that route, let us use `CatchBoundary` and `useCatch` to create a custom `404` error message as a fallback for all Not Found routes.
 
 ```tsx fileName=app/root
 import { useCatch /*other imports*/ } from "remix";
@@ -258,7 +258,15 @@ export function CatchBoundary() {
 ```
 
 Here is the customized `404` error page: 
-<Img height={344} width={694} src="https://i.imgur.com/tw8NqI4.png" />
+<Img height={244} width={694} src="https://i.imgur.com/UmnL0QG.png" />
+
+<br />
+
+> This is one of Remix's magics; by simply following a convention, we can simplify common use cases.
+> In the above case, we exported a function named `CatchBoundary` where we used `useCatch` inside to get a context about the error.
+> Remix will do the heavy lifting; we simply need to adhere to, let's call it, a "contract function".
+
+<br />
 
 To fix this `404` error, let's create the `/pokemons` route
 
@@ -282,6 +290,7 @@ Meta tags are used here to update the title and description of the page. To lear
 
 We should see an updated `head`
 ```tsx fileName=app/routes/pokemons
+// This is another "contract function"
 export function meta() {
   return {
     title: 'Pokemons',
@@ -306,6 +315,7 @@ Unlike the vanilla React where usually fetch the data from the client-side, in R
 // previous imports
 import type { LoaderFunction } from "remix"
 
+// This is another "contract function"
 export const loader: LoaderFunction = () => {
   return fetch("https://pokeapi.co/api/v2/pokemon")
 }
