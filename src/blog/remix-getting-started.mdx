@@ -288,7 +288,6 @@ Meta tags are used here to update the title and description of the page. To lear
 
 <br />
 
-We should see an updated `head`
 ```tsx fileName=app/routes/pokemons
 // This is another "contract function"
 export function meta() {
@@ -301,6 +300,7 @@ export function meta() {
 // export default function Pokemons...
 ```
 
+We should see an updated `head`
 <Img height={344} width={694} src="https://i.imgur.com/FAVI0hK.png" />
 
 ### Fetching Data
@@ -327,7 +327,7 @@ If you are wondering where is the `.then(res => res.json())` part, you are not a
 
 _I'm still cheking how they allow this magic to happen._
 
-> NOTE: At the time of this writing, I don't know why there will be an error going back and forth to the `pokemons` listing page. 
+> NOTE: At the time of this writing, I don't know why there will be an error going back and forth on the `pokemons` listing page. 
 > As per reason, I will still append the `.then(res => res.json())` to the `loader` function.
 
 <br />
@@ -441,6 +441,7 @@ Before wrapping this up, let's update the meta of the Pokemon details page.
 ```tsx fileName=app/routes/pokemons/$pokemonName
 import type { MetaFunction } from "remix"
 
+// You can access the `loader` data here
 export const meta: MetaFunction = ({ data }) => {
   return {
     title: `#${data.id} ${data.name}`,
