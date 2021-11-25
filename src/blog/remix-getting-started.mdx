@@ -166,7 +166,7 @@ function Document({
 
 // Layout is a wrapper component that provides a consistent layout for all pages.
 function Layout({ children }: React.PropsWithChildren<{}>) {
-  return <div>{children}</div>;
+  return <main>{children}</main>;
 }
 ```
 
@@ -192,10 +192,11 @@ The two changes above will still yield the same result:
 We'll add the links inside `Layout` since it will be reusable across all pages.
 
 ```tsx fileName=app/root
+import {Link /*other import*/} from "remix";
 // ...
 function Layout({ children }: React.PropsWithChildren<{}>) {
   return (
-    <div>
+    <main>
       <header>
         <ul>
           <li>
@@ -205,7 +206,7 @@ function Layout({ children }: React.PropsWithChildren<{}>) {
       </header>
 
       {children}
-    </div>
+    </main>
   );
 }
 // ...
