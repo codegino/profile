@@ -14,7 +14,7 @@ published: true
 
 ## Preface
 
-This post will be the first part of the series on how I will create the entire application. So I will start with a boring introduction to the motivation of this series.
+This post will be the first part of the series on how I will create the entire application. So I will start with a boring introduction about the motivation for this series.
 
 <br />
 
@@ -618,6 +618,7 @@ export default function AddWord() {
 }
 ```
 
+
 The image below shows the form we created after clicking on the `Add new word` button.
 <Img height={238} width={480} src="https://media2.giphy.com/media/AwKs6oyTQvg568x2bd/giphy.gif"/>
 
@@ -651,6 +652,11 @@ export const action: ActionFunction = async ({ request }) => {
 After clicking on the `Submit` button, the word will be added to the database, and the page will redirect to the `/words/$id` page.
 <Img height={238} width={480} src="https://media2.giphy.com/media/dYuz36okSZXIFjTFVs/giphy.gif"/>
 
+<br />
+
+> I'm not sure if you noticed, but we did not use any JavaScript code on the Frontend, yet it could complete the intended task.
+> We only used an HTML form as it was initially used to handle validations and perform the submission.
+> This is what I like about Remix; we can focus on the web fundamentals to become a better Web developer. 
 
 <br />
 
