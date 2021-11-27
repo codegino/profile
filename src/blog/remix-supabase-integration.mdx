@@ -12,6 +12,21 @@ tags:
 published: true 
 ---
 
+## Table Of Contents
+  * <a href="#prerequisites" target="_self">Prerequisites</a>
+  * <a href="#app-overview" target="_self">App Overview</a>
+  * <a href="#supabase-setup" target="_self">Supabase Setup</a>
+  * <a href="#create-remix-project" target="_self">Create remix project</a>
+  * <a href="#integration-prerequisites" target="_self">Integration Prerequisites</a>
+  * <a href="#optional-chores" target="_self">Optional Chores</a>
+  * <a href="#fetch-all" target="_self">Fetch All Words</a>
+  * <a href="#fetch-one" target="_self">Fetch Word Details</a>
+  * <a href="#create-one" target="_self">Add a Word</a>
+  * <a href="#edit-one" target="_self">Update Word Details</a>
+  * <a href="#state-transition" target="_self">useTransition Hook</a>
+  * <a href="#tldr" target="_self">Link to source code</a>
+  
+
 ## Preface
 
 This post will be the first part of the series on how I will create the entire application. So I will start with a boring introduction about the motivation for this series.
@@ -23,7 +38,7 @@ With regards to why I have chosen Supabase to store my data, it is because it al
 
 <br />
 
-### Prerequisites if you want to follow along
+### Prerequisites if you want to follow along <a name="prerequisites"></a>
 
 - Make sure you have [node](https://nodejs.org/en/) installed
 - Basic understanding of [React](https://reactjs.org/)
@@ -32,7 +47,21 @@ With regards to why I have chosen Supabase to store my data, it is because it al
 
 > If you are not yet familiar with Remix, I suggest checking first my previous [blog post](https://codegino.com/blog/remix-getting-started) about it.
 
-### Create a Supabase project
+<br />
+
+### Basic overview of the app <a name="app-overview"></a>
+
+The Vocabulary section will consist of lists of words that are publicly available and a protected admin route to perform a CRUD operation.
+
+Here are the properties we need for each `word`:
+- name: the word itself
+- type: the type of the word (noun, verb, adjective, etc.)
+- definitions: an array of definitions
+- sentences: an array of how I would use the word in a sentence
+
+<br />
+
+### Create a Supabase project <a name="supabase-setup"></a>
 
 Refer to their official [documentation](https://supabase.com/docs/guides/with-react#create-a-project) on how to create a Supabase project.
 
@@ -101,7 +130,7 @@ Lastly, in `Authentication/Policies` tab, should be seeing this.
 <br />
 <br />
 
-### Create a Remix project
+### Create a Remix project <a name="create-remix-project"></a>
 
 <br />
 
@@ -215,7 +244,7 @@ The mandatory `hello world` page is now ready.
 <br />
 <br />
 
-### Integration Prerequisites
+### Integration Prerequisites <a name="integration-prerequisites"></a>
 Install Supabase javascript library
 
 <br />
@@ -258,11 +287,13 @@ export const supabase = createClient(supabaseUrl, supabaseKey);
 
 <br />
 
-### Chores before integration
+### Chores before integration <a name="optional-chores"></a>
 
 <br />
 
 #### (OPTIONAL)Create type definition
+
+To take advantage of strong typing, I will create a type definition.
 
 > If you prefer not to use TypeScript, remove the declarations and usages of types, and change the file extensions from `.tsx` to `.jsx`.
 
@@ -305,7 +336,7 @@ export function loader() {
 
 ## Integrating Supabase with Remix
 
-### Create the words listing page
+### Create the words listing page <a name="fetch-all"></a>
 
 <br />
 
@@ -363,7 +394,7 @@ The code above will fetch the data from Supabase and display it in a list.
 
 <br />
 
-### Create the word details page
+### Create the word details page <a name="fetch-one"></a>
 
 <br />
 
@@ -465,7 +496,7 @@ After clicking on a word, `$id.tsx route` will render on where we put the `Outle
 
 <br />
 
-### Delete a word entry
+### Delete a word entry <a name="delete-one"></a>
 
 Since we're already on the `/words/$id` page, let's proceed with deletion first
 
@@ -539,7 +570,7 @@ This means our app is interactive even before we load the JavaScript from the se
  
 <br />
 
-### Create a new word entry
+### Create a new word entry <a name="create-one"></a>
 Now we don't have anything on the list; let's create the route to handle creation.
 
 <br />
@@ -660,7 +691,7 @@ After clicking on the `Submit` button, the word will be added to the database, a
 
 <br />
 
-### Edit a word entry
+### Edit a word entry <a name="edit-one"></a>
 
 Now, to handle the missing operation in our CRUD app, let's add the ability to modify an existing entry.
 
@@ -866,7 +897,7 @@ After modifying some fields and clicking the submit button, the page will redire
 
 <br/>
 
-### Add indicator for state transition
+### Add indicator for state transition <a name="state-transition"></a>
 
 By utilizing the `useTransition` hook, we can add or change something on the screen depending on the route's state.
 
@@ -884,7 +915,7 @@ We can replace the text states below with global loading indicator, local compon
 
 <Img height={328} width={480} src="https://media2.giphy.com/media/LLxoIxfuoudslYRGxM/giphy.gif"/>
 
-## Putting all the codes together
+## Putting all the codes together <a name="tldr"></a>
 
 Link to the [source](https://github.com/codegino/playground/tree/part1/remix-supabase-crud)
 Here's a [demo](https://codegino.vercel.app/words)

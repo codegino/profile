@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import {underlineOnHover} from '../../frontend-utils/animation-effects';
 
 const BlogAnchor: FunctionComponent = props => {
-  return <Container {...props} target="_blank" rel="noopener" />;
+  return <Container target="_blank" {...props} rel="noopener" />;
 };
 
 const Container = styled.a`
