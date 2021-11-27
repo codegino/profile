@@ -1,6 +1,6 @@
 ---
 title: Remix and Supabase integration
-description: How to start working on a Remix project
+description: How to use Remix and Supabase for CRUD operations
 date: '2021-11-27'
 bannerId: https://i.imgur.com/HcLHCJR.jpg
 bannerDescription: integration
@@ -8,19 +8,40 @@ tags:
   - react
   - tech
   - remix
+  - supabase
 published: true 
 ---
 
-### Prerequisites
+## Preface
+
+This post will be the first part of the series on how I will create the entire application. So I will start with a boring introduction to the motivation of this series.
+
+Because I recently scored very low on my [IELTS](https://www.ielts.org/) exam, I plan to create an application to help me to expand my English Vocabulary while learning Remix.
+
+With regards to why I have chosen Supabase to store my data, it is because it will allow me to focus on the frontend part due to Supabase's easy-to-use API.
+
+<br />
+
+### Prerequisites if you want to follow along
 
 - Make sure you have [node](https://nodejs.org/en/) installed
 - Basic understanding of [React](https://reactjs.org/)
 - Basic `cli` knowledge
-- Supabase account
+- [Supabase](https://supabase.com/) account
+
+> If you are not yet familiar with Remix, I suggest checking first my previous [blog post](https://codegino.com/blog/remix-getting-started) about it.
 
 ### Create a Supabase project
 
 Refer to their official [documentation](https://supabase.com/docs/guides/with-react#create-a-project) on how to create a Supabase project.
+
+<br />
+
+After creating your account, go to SQL Editor tab and execute the queries below:
+
+<Img src="https://i.imgur.com/ROXHoHe.png" height={446} width={769}/>
+
+<br />
 
 #### Create words table
 ```sql noLine
@@ -33,6 +54,8 @@ CREATE TABLE words (
 );
 ```
 
+<br />
+
 #### Add a new word
 ```sql noLine
 INSERT INTO words
@@ -41,6 +64,12 @@ VALUES
   ('hello', 'noun', ARRAY['used as a greeting'], ARRAY['Hello world.']);
 ```
 
+<br />
+
+In the Table Editor tab, you should see the new entry.
+<Img src="https://i.imgur.com/hfVMubg.png" height={395} width={1395}/>
+
+<br />
 
 #### Add anonymous access
 
@@ -64,9 +93,16 @@ CREATE POLICY "anon_delete" ON public.words FOR DELETE USING (
 );
 ```
 
+Lastly, in `Authentication/Policies` tab, should be seeing this.
+
+<Img src="https://i.imgur.com/bzbYep0.png" height={621} width={1109}/>
+
+<br />
+<br />
+
 ### Create a Remix project
 
-#### Refer to this [blog](https://codegino.com/blog/remix-getting-started)
+<br />
 
 #### Installation
 
@@ -170,9 +206,16 @@ export default function Index() {
 }
 ```
 
+The mandatory `hello world` page is now ready.
 <Img src="https://i.imgur.com/xVlFv2Q.jpg" height={308}/>
 
+<br />
+<br />
+
 ### Integration Prerequisites
+Install Supabase javascript library
+
+<br />
 
 #### Install Supabase
 ```sh noLine
@@ -183,16 +226,21 @@ npm install @supabase/supabase-js
 yarn add @supabase/supabase-js
 ```
 
-### Create a Supabase client utility
+<br />
 
-#### Create an `.env` file to hold your Supabase credentials.
+### Create a Supabase client utility
+The next step will allow us to create a Supabase client utility that we can use across the whole application.
+
+<br />
+
+#### Create a `.env` file to hold your Supabase credentials.
 
 ```.env
 SUPABASE_ANON_KEY=YOUR_SUPABASE_ANON_KEY
 SUPABASE_URL=YOUR_SUPABASE_URL
 ```
 
-> Make sure you add `.env` in your `.gitignore` file.
+> Make sure to add `.env` in the `.gitignore` file.
 
 #### Create a Supabase client utility for reusability
 
@@ -205,9 +253,16 @@ const supabaseKey = process.env.SUPABASE_ANON_KEY as string;
 export const supabase = createClient(supabaseUrl, supabaseKey);
 ```
 
+<br />
+
 ### Chores before integration
 
+<br />
+
 #### (OPTIONAL)Create type definition
+
+> If you prefer not to use TypeScript, remove the declarations and usages of types, and change the file extensions from `.tsx` to `.jsx`.
+
 ```ts fileName=app/models/word
 export enum WordType {
   NOUN = "noun",
@@ -224,12 +279,13 @@ export type Word = {
 };
 ```
 
-> If you prefer not to use TypeScript, remove the usage of types and change the file extensions from `.tsx` to `.jsx`.
+<br />
+
 
 #### (OPTIONAL) Redirect `/` to `/words`
 
-Since I'm planning to create multiple mini-apps in this project, I'll redirect `/` to `/words`, for now.
-This will ensure we don't need to manually navigate to `/words` every time we open the root page.
+As I plan to create multiple mini-apps in this project, I'll redirect `/` to `/words`, for now.
+The code below will ensure we don't need to manually navigate to `/words` every time we open the root page.
 
 ```tsx fileName=app/routes/index
 import { redirect } from "remix";
@@ -241,10 +297,14 @@ export function loader() {
 
 <Img height={179} width={480} src="https://media2.giphy.com/media/FUsn85EFKPI1H8Jd1y/giphy.gif"/>
 
+<br />
+<br />
 
 ## Integrating Supabase with Remix
 
 ### Create the words listing page
+
+<br />
 
 #### fetch data from Supabase using Remix's `loader`
 
@@ -263,6 +323,8 @@ export const loader: LoaderFunction = async () => {
   return words;
 };
 ```
+
+<br />
 
 #### Create a React component to display the list of words 
 
@@ -293,12 +355,18 @@ export default function Index() {
 }
 ```
 
+The code above will fetch the data from Supabase and display it in a list.
 <Img src="https://i.imgur.com/rgrhQCu.jpg" height={426}/>
 
+<br />
 
 ### Create the word details page
 
-#### Create file `$id.tsx` under `app/routes/words` folder.
+<br />
+
+#### Create a file named `$id.tsx` under `app/routes/words` folder.
+
+<br />
 
 ##### Create the loader function
 
@@ -317,6 +385,8 @@ export const loader: LoaderFunction = async ({ params }) => {
   return data;
 };
 ```
+
+<br />
 
 ##### Create the component
 
@@ -347,10 +417,16 @@ export default function Word() {
 }
 ```
 
+The image below shows that it still won't show even after creating the `/words/[id]` route.
 <Img height={159} width={480} src="https://media2.giphy.com/media/tEykbQ44acZ7mzzJHz/giphy.gif"/>
 
+<br />
 
 ##### Adding a router `Outlet`
+
+<br />
+
+We need to add an `Outlet` inside our Words Index component to fix the above issue.
 
 ```tsx fileName=app/routes/words
 import {/*other imports*/, Outlet} from "remix";
@@ -381,11 +457,16 @@ export default function Index() {
 }
 ```
 
+After clicking on a word, `$id.tsx route` will render on where we put the `Outlet`.
 <Img height={238} width={480} src="https://media2.giphy.com/media/VkczpdMwHjywdt7gg3/giphy.gif"/>
+
+<br />
 
 ### Delete a word entry
 
 Since we're already on the `/words/$id` page, let's proceed with deletion first
+
+<br />
 
 #### Add a button to delete the word
 
@@ -409,8 +490,10 @@ export default function Index() {
 }
 ```
 
+The image shows a message that we did not define any action to handle the submit event.
 <Img src="https://i.imgur.com/8IqhBuG.jpg" height={904} width={1389}/>
 
+<br />
 
 #### Delete the word in the database using Remix's `action`
 
@@ -434,25 +517,31 @@ export const action: ActionFunction = async ({ request, params }) => {
 // ...rest of the code
 ```
 
+After we click on the delete button, the word `hello` will be deleted from the database, and the page will redirect to the `/words` page.
+
 <Img height={238} width={480} src="https://media2.giphy.com/media/5R5wyoHvJbeR88VoGY/giphy.gif"/>
 
+<br />
 
 ##### Explanation:
-- Create a form with a hidden input field named `_method` with value `delete`.
+- We created a form with a hidden input field named `_method` with value `delete`.
 - When the submit button is clicked, the `action` handler will trigger in the server.
 - Inside the `action` handler, we check if the `_method` is `delete`.
 - If it is, we delete the word from the database.
 
 ##### Why go through all this trouble?
 
-It just happens that this approach does not need any JavaScript to run.
-As a matter of fact, the previous GIF demo had the JavaScript disabled.
+It just happens that this approach does not need any JavaScript to run(try it on your browser).
 This means our app is interactive even before we load the JavaScript from the server.
  
+<br />
 
 ### Create a new word entry
+Now we don't have anything on the list; let's create the route to handle creation.
 
-#### Create a button in the `/words` page to create a new word
+<br />
+
+#### Create a button in the `/words` route that will navigate to `/words/add`
 
 ```tsx fileName=app/routes/words
 import { /*other imports*/ useNavigate } from "remix";
@@ -477,11 +566,13 @@ export default function Index() {
 
 #### Create the add new word route
 
-To avoid a `404` page, let's create a `/add` route.
+To avoid a `404` page, let's create the `/add` route.
+
+<br />
 
 ##### Create the component
 
-```tsx fileName=app/root/add
+```tsx fileName=app/routes/words/add
 import {Form} from "remix";
 import { WordType } from "~/models/word";
 
@@ -524,13 +615,16 @@ export default function AddWord() {
 }
 ```
 
+The image below shows the form we created after clicking on the `Add new word` button.
 <Img height={238} width={480} src="https://media2.giphy.com/media/AwKs6oyTQvg568x2bd/giphy.gif"/>
+
+<br />
 
 ##### Add an action
 
-To avoid getting the missing action error
+To avoid the missing action error after clicking on the `Submit` button, let's add an action on the `words/add` route.
 
-```tsx
+```tsx fileName=app/routes/words/add
 import { /*other imports*/, redirect } from "remix";
 import type { ActionFunction } from "remix";
 import { supabase } from "~/libs/supabase-client";
@@ -551,19 +645,31 @@ export const action: ActionFunction = async ({ request }) => {
 };
 ```
 
+After clicking on the `Submit` button, the word will be added to the database, and the page will redirect to the `/words/$id` page.
 <Img height={238} width={480} src="https://media2.giphy.com/media/dYuz36okSZXIFjTFVs/giphy.gif"/>
 
 
+<br />
+
 ### Edit a word entry
+
+Now, to handle the missing operation in our CRUD app, let's add the ability to modify an existing entry.
+
+<br />
 
 #### Create a file named `edit.$id.tsx` under `app/routes/words`
 
-When we add a `.` between words, it will tranform to `/`.
-The above example will result to `words/edit/[id]`.
+When we add a `.` between words, it will transform to `/` in the URL.
+The above example will result in `words/edit/[id]`.
+
+<br />
 
 ##### Create a form for editing the word
 
-Since the edit form is very similar to the add form, we can reuse the same Form with additional checks to determine if we are adding or editing.
+<br />
+
+###### Refactoring
+Since the edit form is very similar to the add form, we can reuse the same form with additional checks to determine if we are adding or editing.
 
 ```tsx fileName=app/components/WordForm
 import { Form } from "remix";
@@ -640,7 +746,7 @@ const DefinitionField = ({ index, definition }) => (
 
 <br />
 
-That's a lot of code; however, we can reap the benefits since we can simplify the usage in `add.tsx` and `edit.$id.tsx`.
+That's a lot of code; however, we can reap the benefits of simplifying the code in `add.tsx` and `edit.$id.tsx`.
 
 ##### Update `routes/words/add.tsx`
 
@@ -666,7 +772,7 @@ export default function EditWord() {
 }
 ```
 
-Now, we have a reusable form. If we have a style update, we can update the `WordForm` component.
+Now, we have a reusable form. If we have to make a style change, we can update the `WordForm` component, reflecting the change on both routes. 
 
 > NOTE: I'm extracting everything to `WordForm.tsx` since it is applicable in my use case.
 
@@ -713,11 +819,14 @@ export default function Word() {
 }
 ```
 
+The image below shows the pre-filled form depending on the content of `id` in the URL.
 <Img height={289} width={480} src="https://media2.giphy.com/media/VWgIpSiHRlNmg2p4VT/giphy.gif"/>
 
-
+<br />
 
 ##### Add an action handler
+
+To handle the form submission, we need to add an action handler.
 
 ```tsx fileName=app/routes/words/edit.$id
 import {/*other imports*/, redirect} from "remix";
@@ -743,14 +852,46 @@ export const action: ActionFunction = async ({ request, params }) => {
 // export const EditWord...
 ```
 
+After modifying some fields and clicking the submit button, the page will redirect to the `/words/$id` page with the updated data.
 <Img height={289} width={480} src="https://media2.giphy.com/media/b2kgQRnUtoyU2ZGvRB/giphy.gif"/>
 
 <br/>
 
 ### Add indicator for state transition
 
+By utilizing the `useTransition` hook, we can add or change something on the screen depending on the route's state.
+
+```tsx
+import { useTransition } from "remix";
+
+
+// Somewhere in the route's compnent
+let transition = useTransition();
+
+<div>... State: {transition.state}</div>
+```
+
+We can replace the text states below with global loading indicator, local component spinner, disabling elements, etc.
 
 <Img height={328} width={480} src="https://media2.giphy.com/media/LLxoIxfuoudslYRGxM/giphy.gif"/>
 
 
-## Conlusion
+## Conclusion
+So far, I'm having a positive experience with the framework. Of course, I'm still learning, but I'm enjoying the process.
+I'm starting to agree with the Remix team said that if we become better with Remix, we become better with the Web.
+Working with Remix allows me to refresh my HTML skills that are almost diminishing due to too much dependency on JavaScript.
+I'm looking forward to using more of their features in the next iteration of this app.
+
+## What's next?
+
+- Error handling
+- Styling 
+- Authentication
+- Pagination
+- Deeply nested routes
+- SEO
+
+
+## Link to the [repo](https://github.com/codegino/playground/tree/part1/remix-supabase-crud)
+
+### _Leave your thoughts in the comments section_
