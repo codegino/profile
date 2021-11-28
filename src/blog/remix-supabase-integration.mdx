@@ -13,6 +13,8 @@ published: true
 ---
 
 ## Table Of Contents
+  * <a href="#tldr" target="_self">TL;DR Source and Demo</a>
+  * <a href="#preface" target="_self">Preface</a>
   * <a href="#app-overview" target="_self">App Overview</a>
   * <a href="#prerequisites" target="_self">Prerequisites</a>
   * <a href="#supabase-setup" target="_self">Supabase Setup</a>
@@ -21,15 +23,21 @@ published: true
   * <a href="#optional-chores" target="_self">Optional Chores</a>
   * <a href="#fetch-all" target="_self">Fetch All Words</a>
   * <a href="#fetch-one" target="_self">Fetch Word Details</a>
+  * <a href="#delete-one" target="_self">Delete a Word</a>
   * <a href="#create-one" target="_self">Add a Word</a>
   * <a href="#edit-one" target="_self">Update Word Details</a>
   * <a href="#state-transition" target="_self">useTransition Hook</a>
   * <a href="#extra-demo" target="_self">CRUD operations without JavaScript</a>
-  * <a href="#tldr" target="_self">Link to source code</a>
   * <a href="#conclusion" target="_self">Conclusion</a>
-  
 
-## Preface
+
+> ## TL;DR <a name="tldr"></a>
+> Link to the [source code](https://github.com/codegino/playground/tree/part1/remix-supabase-crud)
+> 
+> Here's a live [demo](https://playground-4jgaymeeo-codegino.vercel.app/words)
+
+
+## Preface <a name="tldr"></a>
 
 This post will be the first part of the series on how I will create the entire application. So I will start with a boring introduction about the motivation for this series.
 
@@ -37,11 +45,11 @@ This post will be the first part of the series on how I will create the entire a
 
 Because I recently scored very low on my [IELTS](https://www.ielts.org/) exam, I plan to create an application to help me to expand my English Vocabulary while learning Remix.
 
-I have chosen Supabase to store my data as it allows me to focus on the frontend part due to Supabase's easy-to-use API. You can use any provider of your choice, or you can even create your custom backend.
+I have chosen [Supabase](https://supabase.com/) to store my data as it allows me to focus on the Frontend part due to Supabase's easy-to-use API. You can use any provider of your choice, or you can even create your custom backend.
 
 This part of the series will focus on how to use Remix for CRUD operations.
 
-<br />
+<br />  
 
 ### Basic overview of the app <a name="app-overview"></a>
 
@@ -507,7 +515,7 @@ After clicking on a word, `$id.tsx route` will render on where we put the `Outle
 
 <br />
 
-### Delete a word entry <a name="delete-one"></a>
+### Delete a word<a name="delete-one"></a>
 
 Since we're already on the `/words/$id` page, let's proceed with deletion first
 
@@ -573,6 +581,7 @@ After we click on the delete button, the word `hello` will be deleted from the d
 - When the submit button is clicked, the `action` handler will trigger in the server.
 - Inside the `action` handler, we check if the `_method` is `delete`.
 - If it is, we delete the word from the database.
+- Redirect to `/words` route.
 
 ##### Why go through all this trouble?
 
@@ -926,7 +935,7 @@ We can replace the text states below with global loading indicator, local compon
 
 <br />
 
-### Extra Demo <a name="extra-demo"></a>
+### Extra Demo: CRUD operations without JavaScript <a name="extra-demo"></a>
 Here's proof that we can perform the CRUD operations without using any JavaScript on the client-side(_as indicated by errors in the network tab_).
 Take note that I also simulated a slower network connection, yet the performance is not that terrible.
 
@@ -936,11 +945,6 @@ Take note that I also simulated a slower network connection, yet the performance
 > For instance, you might notice that the states were stuck in `idle`.
 
 
-## Putting all the codes together <a name="tldr"></a>
-
-Link to the [source](https://github.com/codegino/playground/tree/part1/remix-supabase-crud)
-
-Here's a live [demo](https://playground-4jgaymeeo-codegino.vercel.app/words)
 
 ## Conclusion <a name="conclusion"></a>
 So far, I'm having a positive experience with the framework. Of course, I'm still learning, but I'm enjoying the process.
