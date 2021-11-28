@@ -24,7 +24,9 @@ published: true
   * <a href="#create-one" target="_self">Add a Word</a>
   * <a href="#edit-one" target="_self">Update Word Details</a>
   * <a href="#state-transition" target="_self">useTransition Hook</a>
+  * <a href="#extra-demo" target="_self">CRUD operations without JavaScript</a>
   * <a href="#tldr" target="_self">Link to source code</a>
+  * <a href="#conclusion" target="_self">Conclusion</a>
   
 
 ## Preface
@@ -577,21 +579,22 @@ Now we don't have anything on the list; let's create the route to handle creatio
 
 #### Create a button in the `/words` route that will navigate to `/words/add`
 
+We can use the `useNavigate` hook here, But for this blog, I'll show you how we can perform the entire CRUD operations without using any JavaScript on the client-side.
+
 ```tsx fileName=app/routes/words
-import { /*other imports*/ useNavigate } from "remix";
+import { /*other imports*/ Form } from "remix";
 
 // export const loader ...
 
 export default function Index() {
   // const words ...
-  const navigate = useNavigate();
 
   return (
     <div>
       <h1>English words I learned</h1>
-      <button type="button" onClick={() => navigate("/words/add")}>
-        Add new word
-      </button>
+      <Form method="get" action={"/words/add"}>
+        <button type="submit">Add new word</button>
+      </Form>
       {/* previous contents */}
     </div>
   );
@@ -600,7 +603,7 @@ export default function Index() {
 
 #### Create the add new word route
 
-To avoid a `404` page, let's create the `/add` route.
+To avoid a `404` page, let's create the `/words/add` route.
 
 <br />
 
@@ -685,9 +688,9 @@ After clicking on the `Submit` button, the word will be added to the database, a
 
 <br />
 
-> I'm not sure if you noticed, but we did not use any JavaScript code on the Frontend, yet it could complete the intended task.
+> I'm not sure if you noticed, but we haven't used any JavaScript code on the Frontend, yet it could complete the intended task.
 > We only used an HTML form as it was initially used to handle validations and perform the submission.
-> This is what I like about Remix; we can focus on the web fundamentals to become a better Web developer. 
+> This is what I like about Remix; we can focus on the web fundamentals to become a better Web developer instead of making some workarounds. 
 
 <br />
 
@@ -840,20 +843,17 @@ export const loader: LoaderFunction = async ({ params }) => {
 #### Create a button in the `/words/$id` page to edit a word
 
 ```tsx fileName=app/routes/words/$id
-import { /*other imports*/, useNavigate } from "remix";
-
-// export const loader...
+// ...
 
 export default function Word() {
   // const word ...
-  const navigate = useNavigate();
 
   return (
     <div>
       {/* other code... */}
-      <button type="button" onClick={() => navigate(`/words/edit/${word.id}`)}>
-        Edit
-      </button>
+      <Form method="get" action={`/words/edit/${word.id}`}>
+        <button type="submit">Edit</button>
+      </Form>
     </div>
   );
 }
@@ -904,7 +904,6 @@ By utilizing the `useTransition` hook, we can add or change something on the scr
 ```tsx
 import { useTransition } from "remix";
 
-
 // Somewhere in the route's compnent
 let transition = useTransition();
 
@@ -913,14 +912,28 @@ let transition = useTransition();
 
 We can replace the text states below with global loading indicator, local component spinner, disabling elements, etc.
 
+
 <Img height={328} width={480} src="https://media2.giphy.com/media/LLxoIxfuoudslYRGxM/giphy.gif"/>
+
+<br />
+
+### Extra Demo <a name="extra-demo"></a>
+Here's proof that we can perform the CRUD operations without using any JavaScript on the client-side(_as indicated by errors in the network tab_).
+Take note that I also simulated a slower network connection, yet the performance is not that terrible.
+
+<Img height={273} width={480} src="https://media2.giphy.com/media/m6aKzheArUJCZYmbae/giphy.gif"/>
+
+> I'm not saying we should not use JavaScript on the client-side, as JavaScript can do some cool stuff to help with user experience.
+> For instance, you might notice that the states were stuck in `idle`.
+
 
 ## Putting all the codes together <a name="tldr"></a>
 
 Link to the [source](https://github.com/codegino/playground/tree/part1/remix-supabase-crud)
-Here's a [demo](https://codegino.vercel.app/words)
 
-## Conclusion
+Here's a live [demo](https://codegino.vercel.app/words)
+
+## Conclusion <a name="conclusion"></a>
 So far, I'm having a positive experience with the framework. Of course, I'm still learning, but I'm enjoying the process.
 I'm starting to agree with the Remix team said that if we become better with Remix, we become better with the Web.
 Working with Remix allows me to refresh my HTML skills that are almost diminishing due to too much dependency on JavaScript.
