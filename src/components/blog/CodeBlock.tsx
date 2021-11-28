@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Highlight, {defaultProps, Language} from 'prism-react-renderer';
 import vsDark from 'prism-react-renderer/themes/vsDark';
 import {underlineOnHover} from '../../frontend-utils/animation-effects';
+import {ClipboardCopyButton} from '../ClipboardCopyButton';
 
 export type CodeBlockProps = {
   children: string;
@@ -33,8 +34,11 @@ const CodeBlock: FunctionComponent<CodeBlockProps> = ({
   return (
     <Container>
       <LabelContainer>
-        {fileName ? fileName : ''}
-        {languageLabel}
+        <FileNameWrapper>
+          {fileName ? fileName : ''}
+          {languageLabel}
+        </FileNameWrapper>
+        <ClipboardCopyButton value={children} />
       </LabelContainer>
       <Highlight
         {...defaultProps}
@@ -90,6 +94,14 @@ const LinkToCodePen = styled.div`
   > a {
     ${underlineOnHover('var(--color-primary-dark)')}
   }
+`;
+
+const FileNameWrapper = styled.span`
+  display: inline-block;
+  max-width: 40rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 `;
 
 const Pre = styled.pre`

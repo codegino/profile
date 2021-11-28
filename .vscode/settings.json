@@ -19,8 +19,8 @@
   "grammarly.overrides": [
     {
       "config": {
-        "audience": "knowledgeable",
-        "dialect": "canadian",
+        "audience": "general",
+        "dialect": "american",
         "domain": "technical",
         "emotions": [
           "confident",
