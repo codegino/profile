@@ -1,5 +1,5 @@
 ---
-title: Remix and Supabase integration
+title: Remix with Database integration
 description: How to use Remix and Supabase for CRUD operations
 date: '2021-11-27'
 bannerId: https://i.imgur.com/HcLHCJR.jpg
@@ -13,8 +13,8 @@ published: true
 ---
 
 ## Table Of Contents
-  * <a href="#prerequisites" target="_self">Prerequisites</a>
   * <a href="#app-overview" target="_self">App Overview</a>
+  * <a href="#prerequisites" target="_self">Prerequisites</a>
   * <a href="#supabase-setup" target="_self">Supabase Setup</a>
   * <a href="#create-remix-project" target="_self">Create remix project</a>
   * <a href="#integration-prerequisites" target="_self">Integration Prerequisites</a>
@@ -36,18 +36,10 @@ This post will be the first part of the series on how I will create the entire a
 <br />
 
 Because I recently scored very low on my [IELTS](https://www.ielts.org/) exam, I plan to create an application to help me to expand my English Vocabulary while learning Remix.
-With regards to why I have chosen Supabase to store my data, it is because it allows me to focus on the frontend part due to Supabase's easy-to-use API.
 
-<br />
+I have chosen Supabase to store my data as it allows me to focus on the frontend part due to Supabase's easy-to-use API. You can use any provider of your choice, or you can even create your custom backend.
 
-### Prerequisites if you want to follow along <a name="prerequisites"></a>
-
-- Make sure you have [node](https://nodejs.org/en/) installed
-- Basic understanding of [React](https://reactjs.org/)
-- Basic `cli` knowledge
-- [Supabase](https://supabase.com/) account
-
-> If you are not yet familiar with Remix, I suggest checking first my previous [blog post](https://codegino.com/blog/remix-getting-started) about it, or refer to their [documentation](https://remix.run/docs/en/v1).
+This part of the series will focus on how to use Remix for CRUD operations.
 
 <br />
 
@@ -63,7 +55,20 @@ Here are the properties we need for each `word`:
 
 <br />
 
+### Prerequisites if you want to follow along <a name="prerequisites"></a>
+
+- Make sure you have [node](https://nodejs.org/en/) installed
+- Basic understanding of [React](https://reactjs.org/)
+- Basic `cli` knowledge
+- [Supabase](https://supabase.com/) account
+
+> If you are not yet familiar with Remix, I suggest checking first my previous [blog post](https://codegino.com/blog/remix-getting-started) about it, or refer to their [documentation](https://remix.run/docs/en/v1).
+
+<br />
+
 ### Create a Supabase project <a name="supabase-setup"></a>
+
+> If you want to use another provider, you can skip to this part <a href="#create-remix-project" target="_self">Create the Remix project</a>
 
 Refer to their official [documentation](https://supabase.com/docs/guides/with-react#create-a-project) on how to create a Supabase project.
 
@@ -249,6 +254,8 @@ The mandatory `hello world` page is now ready.
 ### Integration Prerequisites <a name="integration-prerequisites"></a>
 Install Supabase javascript library
 
+> Not using Supabase? Skip to <a href="#fetch-all" target="_self">Fetch All Words</a>
+
 <br />
 
 #### Install Supabase
@@ -340,9 +347,11 @@ export function loader() {
 
 ### Create the words listing page <a name="fetch-all"></a>
 
-<br />
+> If you are not using Supabase, replace the Supabase API calls with your choice.
 
-#### fetch data from Supabase using Remix's `loader`
+#### fetch list of words using Remix's `loader`
+
+<br />
 
 ```tsx fileName=app/routes/words
 import type { LoaderFunction } from "remix";
