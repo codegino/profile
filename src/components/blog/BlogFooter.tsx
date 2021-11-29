@@ -12,8 +12,8 @@ type Props = {
 const BlogFooter = ({blog}: Props) => {
   return (
     <Footer>
-      <p style={{marginBottom: '1rem'}}>
-        If you find this useful and you want to support me
+      <p style={{margin: '2rem 0'}}>
+        <i>If you find this useful and you want to support me</i>
       </p>
       <Coffee />
       <Link href="https://twitter.com/code_gino">
