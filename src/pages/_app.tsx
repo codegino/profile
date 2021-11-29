@@ -1,6 +1,7 @@
 import {useEffect} from 'react';
 import type {AppProps} from 'next/app';
 import {useRouter} from 'next/router';
+import useDarkMode from 'use-dark-mode';
 import Footer from '../components/Footer';
 import Header from '../components/header/Header';
 import * as ga from '../lib/ga';
@@ -9,6 +10,16 @@ import '../styles/globals.css';
 
 function MyApp({Component, pageProps}: AppProps) {
   const router = useRouter();
+
+  const {value: isDarkMode} = useDarkMode();
+
+  useEffect(() => {
+    if (isDarkMode) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+      document.documentElement.setAttribute('data-theme', 'light');
+    }
+  }, [isDarkMode]);
 
   useEffect(() => {
     if (process.env.NODE_ENV === 'production') {

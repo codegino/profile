@@ -8,7 +8,7 @@ import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import {useRouter} from 'next/router';
 import {CSSTransition} from 'react-transition-group';
-import useCssVariableTheme from '../../hooks/css-varible-theme';
+import useDarkMode from 'use-dark-mode';
 import {mediaQuery} from '../../utils/media-query';
 import CustomIcon from '../icon/CustomIcon';
 import SocialMedia from '../social/SocialMedia';
@@ -23,7 +23,7 @@ export default function SmallScreenContent() {
   const EMAIL_ADDRESS = 'carloginocatapang@gmail.com';
   const [isOpen, setIsOpen] = useState(false);
   const nodeRef = useRef(null);
-  const {isDarkMode, toggle} = useCssVariableTheme();
+  const {value: isDarkMode, toggle} = useDarkMode();
 
   const sidebarOpen = () => {
     setIsOpen(true);

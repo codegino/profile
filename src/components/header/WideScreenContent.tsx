@@ -3,8 +3,8 @@ import styled from '@emotion/styled';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import {useRouter} from 'next/router';
+import useDarkMode from 'use-dark-mode';
 import {underlineOnHover} from '../../frontend-utils/animation-effects';
-import useCssVariableTheme from '../../hooks/css-varible-theme';
 import {mediaQuery} from '../../utils/media-query';
 import SocialMedia from '../social/SocialMedia';
 import {navigationLinks} from './nav-links';
@@ -15,7 +15,7 @@ const DarkModeToggle = dynamic(() => import('react-dark-mode-toggle'), {
 
 export default function WideScreenContentImpl() {
   const router = useRouter();
-  const {isDarkMode, toggle} = useCssVariableTheme();
+  const {value: isDarkMode, toggle} = useDarkMode();
 
   return (
     <WideScreenContainer>
