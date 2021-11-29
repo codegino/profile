@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import {DiscussionEmbed} from 'disqus-react';
+import Link from 'next/link';
 import type {IBlogMetadata} from '../../models/blog';
+import Coffee from '../Coffee';
 
 type Props = {
   blog: IBlogMetadata;
@@ -10,6 +12,16 @@ type Props = {
 const BlogFooter = ({blog}: Props) => {
   return (
     <Footer>
+      <p style={{marginBottom: '1rem'}}>
+        If you find this useful and you want to support me
+      </p>
+      <Coffee />
+      <Link href="https://twitter.com/code_gino">
+        <a aria-label="Follow me on Twitter" target="_blank">
+          <FollowButton>Follow @code_gino</FollowButton>
+        </a>
+      </Link>
+
       <Separation />
       <DiscussionEmbed
         shortname="carlogino"
@@ -24,12 +36,31 @@ const BlogFooter = ({blog}: Props) => {
   );
 };
 
+const FollowButton = styled.span`
+  position: relative;
+  height: 2.5rem;
+  box-sizing: border-box;
+  padding: var(--padding-very-small) var(--padding-small);
+  background-color: #1d9bf0;
+  color: #fff;
+  border-radius: 9999px;
+  font-weight: 500;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #0c7abf;
+  }
+`;
+
 const Separation = styled.hr`
   width: 100%;
   margin-top: var(--margin-medium);
 `;
 
 const Footer = styled.footer`
+  text-align: center;
+  display: flex;
+  flex-direction: column;
   margin: auto;
   width: 100%;
 `;
