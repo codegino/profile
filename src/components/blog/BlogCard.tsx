@@ -109,6 +109,9 @@ const Container = styled.article`
 
 const TagContainer = styled.section`
   margin-top: var(--margin-small);
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
 `;
 
 const Tag = styled.span`
@@ -117,10 +120,6 @@ const Tag = styled.span`
   border: 1px solid var(--color-light-dark);
   padding: var(--padding-very-small) var(--padding-small);
   border-radius: 0.5rem;
-
-  :not(:first-of-type) {
-    margin: 0 var(--margin-very-small);
-  }
 `;
 
 export default BlogCard;
