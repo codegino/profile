@@ -2,21 +2,138 @@
 title: Remix Styling
 description: How to style a Remix app
 date: '2021-11-29'
-bannerId: https://i.imgur.com/HcLHCJR.jpg
+bannerId: https://i.imgur.com/zzgY083.jpg
 bannerDescription: style 
 tags:
   - react
   - tech
   - remix
-published: true 
+published: false
 ---
 
 
 Table of Contents
-- [Introduction](#introduction)
-- Cleaning up boilerplate styles
-- Basic Styling
-	- Optimize demo
+  - Introduction
+  - Cleaning up boilerplate styles
+  - Basic Styling
+  - Optimize demo
+  - Sharing Styles
+  - Dark Mode
+  - Media queries
+
+### Cleaning up boilerplate styles
+
+```bash
+# Remove all files under `app/styles`
+rm -r app/styles/*
+```
+
+### Basic Styling
+
+#### Recreate the `app/styles/global.css` file
+
+Some CSS defaults I copied from the official documentation with some adjustments.
+
+```css fileName=app/styles/global
+:root {
+  --color-dark: hsl(0, 0%, 0%);
+  --color-light: hsl(0, 0%, 100%);
+  --color-primary: hsl(230, 100%, 50%);
+  --color-primary-light: hsl(230, 100%, 60%);
+  --color-primary-dark: hsl(230, 100%, 40%);
+  --color-border: hsl(0, 0%, 80%);
+  --font-body: -apple-system, "Segoe UI", Helvetica Neue, Helvetica, Roboto,
+    Arial, sans-serif, system-ui, "Apple Color Emoji", "Segoe UI Emoji";
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  background-color: var(--color-light);
+  color: var(--color-dark);
+}
+
+body {
+  font-family: var(--font-body);
+  line-height: 1.5;
+}
+
+a {
+  color: var(--color-primary-light);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--color-primary-dark);
+  text-decoration: underline;
+}
+```
+
+```tsx fileName=app/root
+import type { LinksFunction } from "remix";
+import styles from "~/styles/global.css";
+
+export const links: LinksFunction = () => {
+  return [
+    {
+      rel: "stylesheet",
+      href: styles,
+    },
+  ];
+};
+```
+
+
+```tsx fileName=app/root
+import type {LinksFunction} from "remix";
+
+export const links: LinksFunction = () => {
+  return [
+    {
+      rel: "stylesheet",
+      href: styles,
+    },
+  ];
+};
+```
+
+# Screenshot of missing styles in `head`
+
+#### Add `Links` to `head`
+
+```tsx fileName=app/root
+import {/*other imports*/, Links} from "remix";
+
+// The function containing the HTML declaration
+function Document({/*props*/}) {
+  return (
+    <html lang="en">
+      <head>
+        {/* This is the magic piece */}
+        <Links />
+        {/*...*/}
+      </head>
+      {/*body content*/}
+    </html>
+  );
+}
+```
+
+# Demo of working styles
+
+> We can technically put `<Links/ >` anywhere inside the `html` tag; however, here's a [reason why you should not do it](https://stackoverflow.com/a/1642259).
+
 - Sharing Styles
 - Dark Mode
 - Media queries 
