@@ -1765,7 +1765,7 @@ data-urls@^3.0.1:
     whatwg-mimetype "^3.0.0"
     whatwg-url "^10.0.0"
 
-date-fns@^2.25.0:
+date-fns@^2.26.0:
   version "2.26.0"
   resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.26.0.tgz#fa45305543c392c4f914e50775fd2a4461e60fbd"
   integrity sha512-VQI812dRi3cusdY/fhoBKvc6l2W8BPWU1FNVnFH9Nttjx4AFBRzfSVb/Eyc7jBT6e9sg1XtAGsYpBQ6c/jygbg==
@@ -4240,12 +4240,12 @@ rc@^1.2.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-activity-calendar@^1.4.1:
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/react-activity-calendar/-/react-activity-calendar-1.4.1.tgz#b8fd42e1ec85bb6bdccb32ff47496e573b69441e"
-  integrity sha512-jNsK7ajSU0OJx09Ns3ClpWxbZy2OCB6fwOsbb4Jfn6tY+MAGdbz+Ac3yC/swm3eIVbx6AsEdMJ+DPZlqF4fY1w==
+react-activity-calendar@^1.4.3:
+  version "1.4.3"
+  resolved "https://registry.yarnpkg.com/react-activity-calendar/-/react-activity-calendar-1.4.3.tgz#ad7f959f9989fce30e3bdee87c5b4b6de756512b"
+  integrity sha512-Kr0XbpoeBEzEjhd4QxJr5O9dwMoifxPAbGSK1tWwflF0XdEfZCu7hy8tbmBWG2e459ZlcgThEtXMeb2TfoHX4w==
   dependencies:
-    date-fns "^2.25.0"
+    date-fns "^2.26.0"
     tinycolor2 "^1.4.0"
 
 react-awesome-reveal@3.8.1:
@@ -4286,12 +4286,12 @@ react-easy-swipe@^0.0.21:
   dependencies:
     prop-types "^15.5.8"
 
-react-github-calendar@3.2.0:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/react-github-calendar/-/react-github-calendar-3.2.0.tgz#3d0c91a64f93e1aa28c3696ec15b7c8a301e5099"
-  integrity sha512-rq3vr6EHUTwhnZzlZyoRukqP+lKDphAFIXZwcz3DGo4mMBK/VfhYODf5s1MQgZgOhvPXAgNGhEv8XCDvDsWSqg==
+react-github-calendar@3.2.1:
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/react-github-calendar/-/react-github-calendar-3.2.1.tgz#8d17d2ff7bc2df84a92e656a716126a8a15297ce"
+  integrity sha512-9FvYLDnv4qMf0ziGe6u+TeG0Lw0rboXzyPs87WBXQs3UzLvLOCM3Cgs3Njaei64avo4yMEaprzoHLtVAZR336Q==
   dependencies:
-    react-activity-calendar "^1.4.1"
+    react-activity-calendar "^1.4.3"
 
 react-intersection-observer@^8.32.0:
   version "8.32.3"
