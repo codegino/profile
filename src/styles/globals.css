@@ -9,50 +9,50 @@
   --padding-small: 1rem;
   --padding-very-small: 0.25rem;
 
-  --light-gray-1: #eee;
-  --light-gray-2: #bbb;
-  --dark-gray-1: #222;
-  --dark-gray-2: #777;
+  --light-gray-1: hsl(0, 0%, 93%);
+  --light-gray-2: hsl(0, 0%, 73%);
+  --dark-gray-1: hsl(0, 0%, 13%);
+  --dark-gray-2: hsl(0, 0%, 47%);
 }
 
 [data-theme='light'] {
-  --color-primary: #55c57a;
-  --color-primary-contrast: #fff;
-  --color-primary-light: #99d326;
-  --color-primary-dark: green;
-  --color-primary-accent: #3ff000;
+  --color-primary: hsl(140, 49%, 55%);
+  --color-primary-contrast: hsl(0, 0%, 100%);
+  --color-primary-light: hsl(80, 69%, 49%);
+  --color-primary-dark: hsl(120, 100%, 25%);
+  --color-primary-accent: hsl(104, 100%, 47%);
 
-  --color-dark: #222222;
-  --color-dark-contrast: #fff;
-  --color-dark-light: #555;
-  --color-dark-dark: #000;
-  --color-dark-accent: green;
+  --color-dark: hsl(0, 0%, 13%);
+  --color-dark-contrast: hsl(0, 0%, 100%);
+  --color-dark-light: hsl(0, 0%, 33%);
+  --color-dark-dark: hsl(0, 0%, 0%);
+  --color-dark-accent: hsl(120, 100%, 25%);
 
-  --color-light: #f3f3f3;
-  --color-light-contrast: rgb(39, 38, 38);
-  --color-light-light: #ffffff;
-  --color-light-dark: #cfcfcf;
-  --color-light-accent: #eeeeee;
+  --color-light: hsl(0, 0%, 95%);
+  --color-light-contrast: hsl(0, 1%, 15%);
+  --color-light-light: hsl(0, 0%, 100%);
+  --color-light-dark: hsl(0, 0%, 81%);
+  --color-light-accent: hsl(0, 0%, 93%);
 }
 
 [data-theme='dark'] {
-  --color-primary: #55c57a;
-  --color-primary-contrast: #fff;
-  --color-primary-dark: #99d326;
-  --color-primary-light: green;
-  --color-primary-accent: #3ff000;
+  --color-primary: hsl(140, 49%, 55%);
+  --color-primary-contrast: hsl(0, 0%, 100%);
+  --color-primary-dark: hsl(80, 69%, 49%);
+  --color-primary-light: hsl(120, 100%, 25%);
+  --color-primary-accent: hsl(104, 100%, 47%);
 
-  --color-light: #222222;
-  --color-light-contrast: #fff;
-  --color-light-light: #000;
-  --color-light-dark: #555;
-  --color-light-accent: green;
+  --color-light: hsl(0, 0%, 13%);
+  --color-light-contrast: hsl(0, 0%, 100%);
+  --color-light-light: hsl(0, 0%, 0%);
+  --color-light-dark: hsl(0, 0%, 33%);
+  --color-light-accent: hsl(120, 100%, 25%);
 
-  --color-dark: #f3f3f3;
+  --color-dark: hsl(0, 0%, 95%);
   --color-dark-contrast: rgb(39, 38, 38);
-  --color-dark-dark: #ffffff;
-  --color-dark-light: #cfcfcf;
-  --color-dark-accent: #eeeeee;
+  --color-dark-dark: hsl(0, 0%, 100%);
+  --color-dark-light: hsl(0, 0%, 81%);
+  --color-dark-accent: hsl(0, 0%, 93%);
 }
 
 html {
