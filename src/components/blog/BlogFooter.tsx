@@ -40,9 +40,9 @@ const FollowButton = styled.span`
   position: relative;
   height: 2.5rem;
   box-sizing: border-box;
-  padding: var(--padding-very-small) var(--padding-small);
+  padding: var(--spacing-very-small) var(--spacing-small);
   background-color: #1d9bf0;
-  color: #fff;
+  color: #ffffff;
   border-radius: 9999px;
   font-weight: 500;
   cursor: pointer;
@@ -54,7 +54,7 @@ const FollowButton = styled.span`
 
 const Separation = styled.hr`
   width: 100%;
-  margin-top: var(--margin-medium);
+  margin-top: var(--spacing-medium);
 `;
 
 const Footer = styled.footer`

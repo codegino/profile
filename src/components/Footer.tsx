@@ -25,8 +25,8 @@ const FooterContainer = styled.footer`
   width: 100%;
   height: 12rem;
   border-top: 1px solid var(--color-dark-dark);
-  background-color: #000000;
-  color: #ffffff;
+  background-color: var(--color-constant-dark);
+  color: var(--color-constant-light);
   display: flex;
   justify-content: center;
   overflow: hidden;
@@ -59,5 +59,5 @@ const ContentWrapper = styled.div`
 `;
 
 const LegalLabel = styled.div`
-  margin: var(--margin-very-small);
+  margin: var(--spacing-very-small);
 `;

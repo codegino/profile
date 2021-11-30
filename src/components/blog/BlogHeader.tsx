@@ -28,11 +28,11 @@ const BlogHeader: FunctionComponent<Props> = ({blog, img, svg}) => {
           width={1200}
           objectFit="cover"
           objectPosition="center"
-          style={{borderRadius: '0.5rem', marginTop: 'var(--margin-medium)'}}
+          style={{borderRadius: '0.5rem', marginTop: 'var(--spacing-medium)'}}
         />
       ) : null}
       {blog.bannerDescription ? (
-        <aside style={{marginTop: 'var(--margin-very-small)'}}>
+        <aside style={{marginTop: 'var(--spacing-very-small)'}}>
           <i style={{fontSize: '0.85em'}}>{blog.bannerDescription}</i>
         </aside>
       ) : null}
@@ -41,7 +41,7 @@ const BlogHeader: FunctionComponent<Props> = ({blog, img, svg}) => {
 };
 
 const Article = styled.article`
-  margin-bottom: var(--margin-medium);
+  margin-bottom: var(--spacing-medium);
 
   text-align: center;
 `;

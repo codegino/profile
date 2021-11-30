@@ -80,7 +80,7 @@ const ImageContainer = styled.div`
 
 const Container = styled.article`
   border: 1px solid var(--color-light);
-  padding: var(--padding-small) var(--padding-medium);
+  padding: var(--spacing-small) var(--spacing-medium);
   width: 100%;
   border-radius: 3px;
   overflow: hidden;
@@ -98,7 +98,7 @@ const Container = styled.article`
   }
 
   :not(:last-child) {
-    margin-bottom: var(--margin-small);
+    margin-bottom: var(--spacing-small);
   }
 
   ${mediaQuery(500, `min-width: 50rem; max-width: 45rem;`)}
@@ -108,7 +108,7 @@ const Container = styled.article`
 `;
 
 const TagContainer = styled.section`
-  margin-top: var(--margin-small);
+  margin-top: var(--spacing-small);
   display: flex;
   gap: 0.5rem;
   flex-wrap: wrap;
@@ -118,7 +118,7 @@ const Tag = styled.span`
   display: inline-block;
   background: var(--color-light);
   border: 1px solid var(--color-light-dark);
-  padding: var(--padding-very-small) var(--padding-small);
+  padding: var(--spacing-very-small) var(--spacing-small);
   border-radius: 0.5rem;
 `;
 

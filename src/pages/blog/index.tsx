@@ -46,7 +46,7 @@ const Container = styled.main`
   align-items: center;
   flex-direction: column;
   min-height: 80vh;
-  padding: var(--padding-medium) 0;
+  padding: var(--spacing-medium) 0;
 `;
 
 const PlaceholderContainer = styled.div`
@@ -54,7 +54,7 @@ const PlaceholderContainer = styled.div`
   position: relative;
   height: 20rem;
   width: 20rem;
-  margin-bottom: var(--margin-medium);
+  margin-bottom: var(--spacing-medium);
 
   ${mediaQuery(
     400,

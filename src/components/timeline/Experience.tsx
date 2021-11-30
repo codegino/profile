@@ -34,7 +34,6 @@ const Container = styled.section`
   flex-direction: column;
   z-index: 1;
   margin-bottom: 2rem;
-  background-color: var(--color-light-light);
   text-align: center;
 
   .content {
@@ -48,7 +47,7 @@ const Container = styled.section`
       display: flex;
       align-items: center;
       justify-content: center;
-      background-color: var(--color-dark);
+      background-color: var(--color-background);
       width: 0.25rem;
       height: 2.5rem;
       position: absolute;

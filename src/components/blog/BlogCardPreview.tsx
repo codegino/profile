@@ -41,13 +41,13 @@ const CardContent = styled.article`
   text-align: center;
 
   .blog-date {
-    margin-top: var(--margin-small);
+    margin-top: var(--spacing-small);
     color: var(--color-dark);
   }
 
   h2,
   p {
-    padding: 0 var(--margin-very-small);
+    padding: 0 var(--spacing-very-small);
   }
 `;
 
@@ -56,7 +56,7 @@ const Container = styled.section`
   overflow: hidden;
   border-radius: 1rem;
   background-color: var(--color-light);
-  padding-bottom: var(--padding-small);
+  padding-bottom: var(--spacing-small);
   border: 1px solid var(--color-light-dark);
 
   ${mediaQuery(

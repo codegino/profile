@@ -8,25 +8,25 @@ const Layout: React.FC = props => {
 
 const Container = styled.main`
   margin: auto;
-  padding: var(--padding-very-small);
-  margin-bottom: var(--margin-medium);
+  padding: var(--spacing-very-small);
+  margin-bottom: var(--spacing-medium);
   max-width: 80rem;
 
   display: flex;
   flex-direction: column;
 
   > pre {
-    margin: var(--margin-small) 0;
+    margin: var(--spacing-small) 0;
   }
 
-  ${mediaQuery(450, `padding: var(--padding-small);`)}
+  ${mediaQuery(450, `padding: var(--spacing-small);`)}
 
   > ul, ol {
     margin: 0;
   }
 
   > p {
-    padding: 0 var(--padding-small);
+    padding: 0 var(--spacing-small);
     font-size: 1.6rem;
   }
 
@@ -38,7 +38,7 @@ const Container = styled.main`
     code {
       font-size: 1em;
       background-color: var(--color-light);
-      padding: 0 var(--padding-very-small);
+      padding: 0 var(--spacing-very-small);
       border: 1px solid var(--color-light-dark);
       border-radius: 2px;
       font-family: monospace;

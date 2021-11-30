@@ -81,8 +81,8 @@ export const WordContainer = styled.article`
   border: 1px solid var(--color-dark);
   box-shadow: 1px 1px 2px 0px var(--color-dark);
   border-radius: 0.5rem;
-  padding: var(--padding-small);
-  margin-bottom: var(--margin-small);
+  padding: var(--spacing-small);
+  margin-bottom: var(--spacing-small);
 
   ${mediaQuery(350, 'width: 35rem;')}
 
@@ -91,10 +91,10 @@ export const WordContainer = styled.article`
   ${mediaQuery(650, 'width: 50rem;')}
 
   .date {
-    color: var(--color-dark);
+    color: var(--color-foreground);
     font-size: 0.85em !important;
-    margin-top: var(--margin-small);
-    margin-bottom: var(--margin-small);
+    margin-top: var(--spacing-small);
+    margin-bottom: var(--spacing-small);
     font-style: italic;
   }
 
@@ -110,11 +110,11 @@ export const WordContainer = styled.article`
   }
 
   > section > ul {
-    margin: var(--margin-very-small) 0;
+    margin: var(--spacing-very-small) 0;
   }
 
   > .definition {
-    margin-top: var(--margin-very-small);
+    margin-top: var(--spacing-very-small);
   }
 `;
 

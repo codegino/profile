@@ -137,5 +137,5 @@ const Container = styled.main`
   flex-direction: column;
   overflow: hidden;
   min-height: 80vh;
-  padding-bottom: var(--padding-small);
+  padding-bottom: var(--spacing-small);
 `;
