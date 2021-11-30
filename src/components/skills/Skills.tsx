@@ -63,7 +63,7 @@ export default function Skills({skills}: {skills: CategorizedSkill[]}) {
 
 const SkillContainer = styled(Zoom)`
   border: 1px solid black;
-  padding: var(--padding-very-small) var(--padding-small);
+  padding: var(--spacing-very-small) var(--spacing-small);
   border-radius: 0.5rem;
   width: fit-content;
   background-color: var(--color-dark);
@@ -72,7 +72,7 @@ const SkillContainer = styled(Zoom)`
   cursor: pointer;
 
   :not(:last-child) {
-    margin-right: var(--margin-very-small);
+    margin-right: var(--spacing-very-small);
   }
 
   :hover {
@@ -109,7 +109,7 @@ function getSkillCategoryIcon(category: SkillCategory) {
 }
 
 const SkillCategoryContainer = styled.section`
-  margin-bottom: var(--margin-small);
+  margin-bottom: var(--spacing-small);
 `;
 
 const SkillsContainer = styled.div`
@@ -117,7 +117,7 @@ const SkillsContainer = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding-bottom: var(--padding-small);
+  padding-bottom: var(--spacing-small);
   overflow: hidden;
 
   .skills {
@@ -136,6 +136,6 @@ const SkillsContainer = styled.div`
   .label {
     text-align: center;
     color: var(--color-dark-dark);
-    margin: var(--margin-small) 0;
+    margin: var(--spacing-small) 0;
   }
 `;

@@ -112,7 +112,7 @@ const Pre = styled.pre`
   flex-direction: column;
   border-radius: 0px 0px 5px 5px;
   font-size: 1.5rem;
-  margin: var(--margin-very-small) 0;
+  margin: var(--spacing-very-small) 0;
   line-height: 1.188;
 
   span {

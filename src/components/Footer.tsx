@@ -59,5 +59,5 @@ const ContentWrapper = styled.div`
 `;
 
 const LegalLabel = styled.div`
-  margin: var(--margin-very-small);
+  margin: var(--spacing-very-small);
 `;

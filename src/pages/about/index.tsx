@@ -68,7 +68,7 @@ export default function AboutMe({
         </Link>
         .
       </AdditionalInfo>
-      <AdditionalInfo style={{marginBottom: ' var(--margin-medium)'}}>
+      <AdditionalInfo style={{marginBottom: ' var(--spacing-medium)'}}>
         Here is the link to my&nbsp;
         <Link href="https://github.com/codegino/profile">
           <a target="_blank" aria-label="Github Repo" rel="noopener">
@@ -147,14 +147,14 @@ const AdditionalInfo = styled.p`
 `;
 
 const AboutMeSection = styled.article`
-  margin-bottom: var(--margin-big);
+  margin-bottom: var(--spacing-big);
 `;
 
 const AboutMeDetail = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: var(--padding-small);
+  padding: var(--spacing-small);
 
   .content {
     max-width: 75rem;

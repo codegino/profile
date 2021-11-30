@@ -84,7 +84,7 @@ export default function Home({
 
 const CueToResume = styled.section`
   text-align: center;
-  margin-bottom: var(--margin-big);
+  margin-bottom: var(--spacing-big);
 
   a {
     color: var(--color-primary-dark);

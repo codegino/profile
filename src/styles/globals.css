@@ -1,13 +1,8 @@
 :root {
-  --margin-big: 6rem;
-  --margin-medium: 3rem;
-  --margin-small: 1.5rem;
-  --margin-very-small: 0.25rem;
-
-  --padding-big: 5rem;
-  --padding-medium: 2.5rem;
-  --padding-small: 1rem;
-  --padding-very-small: 0.25rem;
+  --spacing-big: 5rem;
+  --spacing-medium: 2.5rem;
+  --spacing-small: 1rem;
+  --spacing-very-small: 0.25rem;
 
   --light-gray-1: hsl(0, 0%, 93%);
   --light-gray-2: hsl(0, 0%, 73%);
@@ -96,29 +91,29 @@ p {
 
 h1 {
   font-size: 4rem;
-  margin: var(--margin-medium) 0;
+  margin: var(--spacing-medium) 0;
   text-align: center;
 }
 
 h2 {
   font-size: 2.2rem;
-  margin: var(--margin-small) 0;
+  margin: var(--spacing-small) 0;
 }
 
 h3 {
   font-size: 1.8rem;
-  margin: var(--margin-very-small) 0;
+  margin: var(--spacing-very-small) 0;
 }
 
 h4 {
   font-size: 1.6rem;
-  margin: var(--margin-very-small) 0;
-  padding-left: var(--padding-very-small);
+  margin: var(--spacing-very-small) 0;
+  padding-left: var(--spacing-very-small);
 }
 
 h5,
 h6 {
   font-size: 1.6rem;
-  margin: var(--margin-very-small) 0;
-  padding-left: var(--padding-small);
+  margin: var(--spacing-very-small) 0;
+  padding-left: var(--spacing-small);
 }

@@ -61,7 +61,7 @@ const WideScreenContainer = styled.div`
     max-width: 7rem;
     max-height: 3.1rem;
     min-height: 3.1rem;
-    margin-left: var(--margin-very-small);
+    margin-left: var(--spacing-very-small);
   }
 
   > nav {

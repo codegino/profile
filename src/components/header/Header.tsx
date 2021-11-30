@@ -48,7 +48,7 @@ const Container = styled.header`
   border-bottom: 1px solid var(--color-dark);
   background-color: var(--color-constant-dark);
   color: var(--color-constant-light);
-  padding: 0 var(--padding-small);
+  padding: 0 var(--spacing-small);
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -85,7 +85,7 @@ const MyLogo = styled.div`
   border-radius: 50%;
   box-shadow: 0 0 1px 1px #ffffff;
   z-index: 100;
-  margin-right: var(--margin-very-small);
+  margin-right: var(--spacing-very-small);
 
   &:hover {
     box-shadow: 0 0 10px 3px var(--color-primary);

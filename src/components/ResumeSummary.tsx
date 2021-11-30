@@ -70,7 +70,7 @@ const Container = styled.article`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding: var(--padding-big) 0;
+  padding: var(--spacing-big) 0;
 
   ${mediaQuery(900, `flex-direction: row;`)}
 
@@ -111,12 +111,12 @@ const Container = styled.article`
   }
 
   h3 {
-    margin: var(--margin-very-small);
+    margin: var(--spacing-very-small);
 
     ${mediaQuery(
       900,
       `
-        margin-top: var(--margin-small);
+        margin-top: var(--spacing-small);
       `,
     )}
   }

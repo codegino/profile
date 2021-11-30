@@ -35,10 +35,10 @@ const Container = styled.section`
   align-items: center;
   min-height: 100vh;
   overflow: hidden;
-  padding: var(--padding-big) 0;
+  padding: var(--spacing-big) 0;
 
   .blogs-list__label {
-    margin-bottom: var(--margin-medium);
+    margin-bottom: var(--spacing-medium);
     position: relative;
     top: -2rem;
     font-size: 4rem;
@@ -55,11 +55,11 @@ const Container = styled.section`
 const BlogsContainer = styled.section`
   display: grid;
   overflow-x: auto;
-  padding: 0 var(--padding-small);
+  padding: 0 var(--spacing-small);
   grid-template-columns: 1fr;
   max-width: 80rem;
-  column-gap: var(--margin-medium);
-  row-gap: var(--margin-medium);
+  column-gap: var(--spacing-medium);
+  row-gap: var(--spacing-medium);
 
   ${mediaQuery(
     600,

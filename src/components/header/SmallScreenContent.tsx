@@ -121,7 +121,7 @@ export default function SmallScreenContent() {
 }
 
 const SectionLabel = styled.h3`
-  margin: var(--margin-small) 0;
+  margin: var(--spacing-small) 0;
 `;
 
 const ThemeSection = styled.section`
@@ -152,7 +152,7 @@ const Sidebar = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: var(--padding-small);
+  padding: var(--spacing-small);
   font-size: 1.3em;
 
   ${mediaQuery(400, `width: 45vw`)}

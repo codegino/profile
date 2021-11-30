@@ -45,7 +45,7 @@ const Container = styled(Zoom)`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: var(--margin-medium) 0;
+  margin: var(--spacing-medium) 0;
   padding: 0 0.5rem;
   overflow: hidden;
 

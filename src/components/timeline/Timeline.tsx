@@ -124,7 +124,7 @@ const DateWrapper = styled.p`
   background-color: var(--color-light);
   color: var(--color--dark);
   justify-self: center;
-  padding: var(--padding-very-small) 0;
+  padding: var(--spacing-very-small) 0;
 `;
 
 const ContentTitle = styled.div`
@@ -163,5 +163,5 @@ const Container = styled.article`
   overflow: hidden;
   min-height: 15rem;
 
-  padding-top: var(--padding-medium);
+  padding-top: var(--spacing-medium);
 `;

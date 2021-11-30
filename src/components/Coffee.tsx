@@ -45,7 +45,7 @@ const Container = styled.div`
   text-align: center;
   display: flex;
   justify-content: center;
-  margin-bottom: var(--margin-small);
+  margin-bottom: var(--spacing-small);
 `;
 
 function Coffee() {

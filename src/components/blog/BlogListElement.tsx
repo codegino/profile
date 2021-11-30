@@ -10,7 +10,7 @@ const List = styled.li`
 
   > code {
     background-color: var(--color-light);
-    padding: 0 var(--padding-very-small);
+    padding: 0 var(--spacing-very-small);
     border: 1px solid var(--color-light-dark);
     border-radius: 2px;
     font-family: monospace;

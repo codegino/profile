@@ -163,7 +163,7 @@ const InnerContainer = styled.div`
 
 const TerminalContent = styled.div`
   height: 100%;
-  padding: var(--padding-small) var(--padding-very-small);
+  padding: var(--spacing-small) var(--spacing-very-small);
   border: 1px solid var(--color-light);
   font-family: monospace;
 
