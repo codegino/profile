@@ -70,7 +70,6 @@ const Container = styled.article`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background-color: var(--color-light-light);
   padding: var(--padding-big) 0;
 
   ${mediaQuery(900, `flex-direction: row;`)}

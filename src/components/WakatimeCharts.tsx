@@ -40,7 +40,6 @@ const Container = styled.div`
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  background-color: var(--color-light-light);
   padding: var(--padding-small) 0;
 
   a {

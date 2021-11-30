@@ -117,7 +117,6 @@ const SkillsContainer = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background-color: var(--color-light-light);
   padding-bottom: var(--padding-small);
   overflow: hidden;
 

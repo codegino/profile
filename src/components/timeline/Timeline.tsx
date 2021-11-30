@@ -161,7 +161,6 @@ const Container = styled.article`
   align-items: center;
   flex-direction: column;
   overflow: hidden;
-  background-color: var(--color-light-light);
   min-height: 15rem;
 
   padding-top: var(--padding-medium);

@@ -42,7 +42,7 @@ const FollowButton = styled.span`
   box-sizing: border-box;
   padding: var(--padding-very-small) var(--padding-small);
   background-color: #1d9bf0;
-  color: #fff;
+  color: #ffffff;
   border-radius: 9999px;
   font-weight: 500;
   cursor: pointer;

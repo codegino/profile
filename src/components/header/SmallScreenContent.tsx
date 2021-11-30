@@ -147,8 +147,8 @@ const Sidebar = styled.div`
   position: absolute;
   top: 0;
   right: 0;
-  background-color: var(--color-light);
-  color: var(--color-dark-dark);
+  background-color: var(--color-background);
+  color: var(--color-foreground);
   display: flex;
   flex-direction: column;
   align-items: flex-start;

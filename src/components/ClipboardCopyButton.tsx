@@ -75,7 +75,7 @@ const CopyButton = styled.button`
   display: flex;
   align-items: center;
   background-color: transparent;
-  color: var(--color-dark);
+  color: var(--color-font);
 `;
 
 const LabelText = styled.span`

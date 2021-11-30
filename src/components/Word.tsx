@@ -91,7 +91,7 @@ export const WordContainer = styled.article`
   ${mediaQuery(650, 'width: 50rem;')}
 
   .date {
-    color: var(--color-dark);
+    color: var(--color-foreground);
     font-size: 0.85em !important;
     margin-top: var(--margin-small);
     margin-bottom: var(--margin-small);
