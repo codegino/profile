@@ -169,7 +169,7 @@ rm app/routes/index.tsx app/root.tsx
 #### Re-create file `root.tsx` file under `app` folder.
 
 ```tsx fileName=app/root
-import {Links,LiveReload,Meta,Outlet,Scripts,ScrollRestoration,useCatch} from "remix";
+import {LiveReload,Meta,Outlet,Scripts,ScrollRestoration,useCatch} from "remix";
 
 export default function App() {
   return (
@@ -195,7 +195,6 @@ function Document({
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         {title ? <title>{title}</title> : null}
         <Meta />
-        <Links />
       </head>
       <body>
         {children}

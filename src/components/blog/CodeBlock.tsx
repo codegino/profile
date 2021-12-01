@@ -98,7 +98,6 @@ const LinkToCodePen = styled.div`
 
 const FileNameWrapper = styled.span`
   display: inline-block;
-  max-width: 40rem;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
