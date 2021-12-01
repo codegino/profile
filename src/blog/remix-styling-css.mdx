@@ -1,6 +1,6 @@
 ---
 title: Remix Styling using Vanilla CSS
-description: How to style a Remix app
+description: How to style a Remix app using Plain CSS
 date: '2021-12-01'
 bannerId: https://i.imgur.com/zzgY083.jpg
 bannerDescription: style 
@@ -23,7 +23,7 @@ Table of Contents
   * <a href="#reusable-component-style" target="_self">Styling Reusable Component</a>
   * <a href="#basic-html-style" target="_self">Styling Basic HTML element</a>
   * <a href="#dark-mode" target="_self"> Dark Mode</a>
-  * <a href="#media-query" target="_self">Media queries</a>
+  * <a href="#responsive" target="_self">Responsive Layout</a>
 
 > ### TL;DR: Source and Demo<a name="tldr"></a>
 > Link to the [source code](https://github.com/codegino/playground/tree/part2/styling)
@@ -137,14 +137,14 @@ export const links: LinksFunction = () => {
 // ...
 ```
 
-After Adding the links function, nothing changes in the app. There is no link tag inside the `<head>` tag.
+After Adding the links function, nothing changes in the app. If we check the elements inspector, there is no link tag inside the `<head>` tag.
 <Img src="https://i.imgur.com/lES2wax.png" width={1185} height={407} />
 
 <br />
 
 #### Add `Links` to `head`
 
-
+Since Remix will only do what we tell it to do, we need to inform it to render the links we exported in our pages using the `Links` compnent.
 
 ```tsx fileName=app/root
 import {/*other imports*/, Links} from "remix";
@@ -164,21 +164,21 @@ function Document({/*props*/}) {
 }
 ```
 
-> The [changes](https://github.com/codegino/playground/commit/b8846e32cfd3a97ac4a2ae3b75f307d6cd86998e) above will yield to:
+The [changes](https://github.com/codegino/playground/commit/b8846e32cfd3a97ac4a2ae3b75f307d6cd86998e) above will yield to:
 <Img src="https://i.imgur.com/TXb6jSn.png" width={1185} height={436} />
-
-
 
 
 <br />
 
-> We can technically put `<Links/ >` anywhere inside the `html` tag; however, here's a [reason why you should not do it](https://stackoverflow.com/a/1642259).
+> TRIVIA: We can technically put `<Links/ >` anywhere inside the `html` tag; however, here's a [reason why you should not do it](https://stackoverflow.com/a/1642259).
 
 <br />
 
 ### Styling a Route <a name="route-style"></a>
 
-#### Create the words page styles
+> For now, we're not aiming to get the best design award; we'll just apply some styles for the sake of making it look different.
+
+#### Create the `/words` route styles
 
 ```css fileName=app/styles/words
 .words__page {
@@ -235,18 +235,19 @@ export const links: LinksFunction = () => {
 // ...
 ```
 
-> The [changes](https://github.com/codegino/playground/commit/5f078e6ec14ece3d1243ae1f753a7f30ef40e495) above will yield to:
+The [changes](https://github.com/codegino/playground/commit/5f078e6ec14ece3d1243ae1f753a7f30ef40e495) above will yield to:
 <Img height={220} width={480} src="https://media2.giphy.com/media/wyhurq5jLbhOYge40I/giphy.gif"/>
 
 
-> NOTE: every sub-route will inherit the styles exported in `app/routes/words.tsx`
+> NOTE: every child route of `/words` will inherit the styles exported in `app/routes/words.tsx`
 
 <br />
 
 ### Styling a child Route <a name="route-child-style"></a>
 
 Since both our `/add` and `/edit/$id` routes use a form, let's create a shared css file.
-For demo purposes, let's just add a border.
+
+> I'm too lazy to think of a great design. Let's simply add a border.
 
 ```css fileName=app/styles/words/shared
 form {
@@ -256,6 +257,9 @@ form {
 }
 ```
 
+<br />
+
+Now, let's expose the style by exporting it in our `links` function.
 ```tsx fileName=app/routes/words/add
 // ...
 import sharedStyles from "~/styles/words/shared.css";
@@ -270,12 +274,15 @@ export const links: LinksFunction = () => [
 // ...
 ```
 
+Here's the result:
 <Img height={242} width={480} src="https://media2.giphy.com/media/xLnnCCXJXEyvzjqGrV/giphy.gif"/>
 
-After clicking the `Add new word` button, the word form will be styled as expected.
-However, since the `Add new word` is inside a form as well, that form will also be styled.
+After clicking the `Add new word` button, the `word form` will be styled as expected.
+However, since the `Add new word` is inside a form as well, that form will also have a border.
 
-A straightfoward way to fix this is to improve the [specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity) of the word form.
+<br />
+
+A straightforward way to fix this is to improve the [specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity) of the word form by adding a class name.
 
 ```css fileName=app/styles/words/shared.css
 form.word-form {
@@ -297,13 +304,14 @@ export function WordForm({ word }: { word?: Word }) {
 }
 ```
 
+After adding the class name, our `word form` styles won't leak to other form elements.
 <Img src="https://i.imgur.com/DAWKmVg.png" width={1185} height={614} />
 
 <br />
 
 ### Sibling Routes Styling <a name="route-sibling-style"></a>
 
-I'm adding a temporary background color to demonstrate ...
+_I'm adding a temporary background color to demonstrate how sibling routes styling behave._
 
 ```css fileName=app/styles/words/shared.css
 form.word-form {
@@ -319,11 +327,13 @@ form.word-form {
 <Img height={242} width={480} src="https://media2.giphy.com/media/HPrsNSdsodJmux5ola/giphy.gif"/>
 
 
-After navigating from `/add` to `/edit/$id`, the word form styling is removed in the `head` was not applied to the `/edit/$id` form.
+After navigating from `/add` to `/edit/$id`, the `word form` styling is removed in the `head`; The reason why styles were not applied to the `/edit/$id` form.
 
-The reason is simple, sibling routes do not share styles with other sibling routes.
+The reason is simple; sibling routes do not share styles with other sibling routes. 
 
-Apply similar change to `app/routes/words/edit.$id.tsx`
+<br />
+
+To fix the issue, we need to apply similar change to `app/routes/words/edit.$id.tsx`
 
 ```tsx fileName=app/routes/words/edit.$id
 // ...
@@ -339,21 +349,26 @@ export const links: LinksFunction = () => [
 // ...
 ```
 
-The [changes](https://github.com/codegino/playground/commit/95e2c3df95ecb9eb030594824c65aac4327e9f21) above will yield to:
+Now it's working as expected. There's no magic or whatever, just pure JavaScript doing its thing.
 <Img height={242} width={480} src="https://media2.giphy.com/media/JRaCZXkbchvIdNgnwV/giphy.gif"/>
 
+<br />
 
 ### Styling a reusable component <a name="reusable-component-style"></a>
 
-#### Revert changes in `app/styles/words/shared.css`, `app/routes/words/add.tsx`, and , `app/routes/words/edit.$id.tsx`
+> Revert changes in `app/styles/words/shared.css`, `app/routes/words/add.tsx`, and , `app/routes/words/edit.$id.tsx`
 
-The change we made was specific to a form and not a page, so we'll do some changes in the word form component.
+We were able to share styles between sibling routes. However, this is not the right approach for this app.
+
+The change we made was specific to a form and not a page, so we'll make the changes in the word form component.
+
+<br />
 
 #### Create a new folder `word-form` under `app/components`
 
 ##### Create the word form styles
 
-```css fileName=app/components/word-form/styles.css
+```css fileName=app/components/word-form/styles
 .word-form label {
   font-size: 0.8em;
 }
@@ -370,7 +385,7 @@ The change we made was specific to a form and not a page, so we'll do some chang
 
 #### Rename `WordForm.tsx` to `index.tsx` and move it to `app/components/word-form`
 
-#### Add the export declaration of our `links` magic function
+#### Export the declaration of our `links` magic function
 
 ```tsx fileName=app/components/word-form/index
 import type { LinksFunction } from "remix";
@@ -393,10 +408,10 @@ export function WordForm({ word }: { word?: Word }) {
 
 ```
 
+Uh oh! The styles are not applied to the `word form` component. Now, we only have 2 `link` tag in the `head`
 <Img src="https://i.imgur.com/oAlYoQ7.png" width={1185} height={430} />
 
-
-It seems the magical behavior is only applied in `routes`
+It seems the magical behavior of `export const links` only applied to `routes`
 
 To fix the issue, we need to propagate the styles to a route
 
@@ -412,16 +427,16 @@ export const links: LinksFunction = () => [...formStyles()];
 
 > Apply the same thing in `app/routes/words/edit.$id.tsx`
 
-
-
-
+The [changes](https://github.com/codegino/playground/commit/5a2170f3b59c1762e991d9e16144bd5ba914786c) above will yield to:
 <Img src="https://i.imgur.com/nIVB8vo.png" width={1185} height={646} />
 
-
-> The [changes](https://github.com/codegino/playground/commit/5a2170f3b59c1762e991d9e16144bd5ba914786c) above will yield to:
-
+<br />
 
 ### Styling custom basic HTML Element <a name="basic-html-elements"></a>
+
+> **Q**: So how do we style a custom basic HTML element using CSS?
+> 
+> **A**: The same as for `word form`. Although, we need to propagate more until the reference reaches a `route`.
 
 #### Custom Button
 
@@ -465,6 +480,7 @@ button[custom-button="primary"] {
 #### Other custom elements
 There is nothing fancy for other elements, so you can view the [sources here](https://github.com/codegino/playground/commit/bc0efd132cb32da6d6b4b3ad0941243c2886b7a9) for `input`, `select`, and `textarea`.
 
+<br />
 
 #### Here is how we can propagate the components used in the word form to the `routes`
 
@@ -596,9 +612,14 @@ The [changes](https://github.com/codegino/playground/commit/159a0d4f272b7865ea58
 
 ### Dark Mode <a name="dark-mode"></a>
 
+There are many ways to implement dark mode.
+This example will use `prefers-color-scheme` to update the CSS variables when a media query is satisfied.
+
+<br />
+
 #### Create `app/styles/dark.css` file with the following content:
 
-```css fileName=app/styles/dark.css
+```css fileName=app/styles/dark
 :root {
   --color-foreground: hsl(0, 0%, 100%);
   --color-background: hsl(0, 0%, 7%);
@@ -607,9 +628,9 @@ The [changes](https://github.com/codegino/playground/commit/159a0d4f272b7865ea58
 }
 ```
 
-#### Udpate `app/root.tsx` file with the following content:
+#### Update `app/root.tsx` file with the following content:
 
-```tsx fileName=app/root.tsx
+```tsx fileName=app/root
 // ...
 import styles from "~/styles/global.css";
 import darkStyles from "~/styles/dark.css";
@@ -631,11 +652,16 @@ export const links: LinksFunction = () => {
 
 
 The [changes](https://github.com/codegino/playground/commit/55e1aa57d668538988fbe47b14912cee65163d5d) above will yield to:
-<Img height={242} width={480} src="https://media2.giphy.com/media/2UiODQD1eXy4Hv1N3n/giphy.gif"/>
+<Img height={276} width={480} src="https://media2.giphy.com/media/2UiODQD1eXy4Hv1N3n/giphy.gif"/>
 
 <br />
+<br />
 
-### Media queries <a name="media-query"></a>
+### Responsive Layout<a name="responsive"></a>
+
+We'll use the same approach in the dark mode example to change the layout depending on the result of a media query.
+
+<br />
 
 #### Create `sm-words.css`
 
@@ -673,8 +699,9 @@ export const links: LinksFunction = () => [
 ```
 
 The [changes](https://github.com/codegino/playground/commit/5ab6fc7303d43e3bc4e3a72c1184136feea5edfa) above will yield to:
-<Img height={242} width={480} src="https://media2.giphy.com/media/jm5PbsI2yLMHrREtMP/giphy.gif"/>
+<Img height={313} width={480} src="https://media2.giphy.com/media/jm5PbsI2yLMHrREtMP/giphy.gif"/>
 
+<br />
 
 ## Conclusion
 Styling Remix using Vanilla CSS is a fun exercise for me.
@@ -683,3 +710,11 @@ I have fine-grain control over the styling of my routes and components, and I kn
 Less code to transmit to the Network means faster load times.
 However, I'm not a fan of working in vanilla CSS, which is why in this project's next iteration, I will be integrating either `Tailwind` or `Emotion`.
 
+## What's next?
+
+- Styling using `Tailwind` or `Emotion`
+- Error handling
+- Authentication
+- Pagination
+- Deeply nested routes
+- SEO
