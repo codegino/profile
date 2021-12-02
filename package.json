@@ -32,7 +32,7 @@
   "devDependencies": {
     "@emotion/react": "11.7.0",
     "@emotion/styled": "11.6.0",
-    "@supabase/supabase-js": "1.28.3",
+    "@supabase/supabase-js": "1.28.4",
     "@trivago/prettier-plugin-sort-imports": "3.1.1",
     "@types/react": "17.0.37",
     "@types/react-transition-group": "4.4.4",
