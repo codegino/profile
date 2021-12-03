@@ -9,6 +9,7 @@ import ResumeSummary from '../components/ResumeSummary';
 import BlogSuggestionsList from '../components/blog/BlogSuggestionsList';
 import {underlineOnHover} from '../frontend-utils/animation-effects';
 import {commonMetaTags} from '../frontend-utils/meta-tags';
+import {generateRssFeed} from '../lib/rss';
 import generateSitemap from '../lib/sitemap';
 import {formatDate} from '../utils/date-formatter';
 import {getBlogsMetadata} from '../utils/mdxUtils';
@@ -112,6 +113,7 @@ export const getStaticProps = async () => {
 
   if (process.env.NODE_ENV === 'production') {
     await generateSitemap();
+    await generateRssFeed();
   }
 
   const skills = await fetchSkills(true);
