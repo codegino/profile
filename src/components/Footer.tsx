@@ -10,7 +10,12 @@ export default function Footer() {
       <ContentWrapper>
         <LegalLabel>
           <Link href="/sitemap.xml">
-            <a aria-label="Sitemap">Sitemap</a>
+            <a aria-label="Sitemap" style={{marginRight: '1rem'}}>
+              Sitemap
+            </a>
+          </Link>
+          <Link href="/rss.xml">
+            <a aria-label="Rss Feed">RSS Feed</a>
           </Link>
           <p>All rights reserved</p>
           <p>© Carlo Gino Catapang 2021</p>
