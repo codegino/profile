@@ -24,25 +24,9 @@ const BlogSuggestionsList = ({blogs}: Props) => {
           <BlogCardPreview blog={blog} key={blog.slug} />
         ))}
       </BlogsContainer>
-
-      <form action="https://sendfox.com/codegino">
-        <SubscribeButton>Subscribe to my Newsletter</SubscribeButton>
-      </form>
     </Container>
   );
 };
-
-const SubscribeButton = styled.button`
-  cursor: pointer;
-  border-radius: 10px;
-  margin-top: var(--spacing-medium);
-  padding: 2rem;
-  background-color: var(--color-primary-dark);
-  outline: none;
-  border: 1px solid var(--color-primary-light);
-  color: var(--color-light);
-  font-weight: bold;
-`;
 
 const Container = styled.section`
   display: flex;

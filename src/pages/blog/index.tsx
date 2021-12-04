@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import type {InferGetStaticPropsType} from 'next';
 import Head from 'next/head';
 import {BlurringImage} from '../../components/BlurringImage';
+import SubscribeSection from '../../components/SubscribeSection';
 import BlogCard from '../../components/blog/BlogCard';
 import {commonMetaTags} from '../../frontend-utils/meta-tags';
 import {formatDate} from '../../utils/date-formatter';
@@ -36,6 +37,7 @@ export default function Blog({
         {blogs.map(blog => {
           return <BlogCard key={blog.slug} blog={blog} />;
         })}
+        <SubscribeSection />
       </Container>
     </>
   );

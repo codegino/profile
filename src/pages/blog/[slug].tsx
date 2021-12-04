@@ -55,7 +55,8 @@ export default function BlogPage({
         <main>
           <BlogContent source={source} />
         </main>
-        <BlogFooter blog={blog} />
+        <hr />
+        <BlogFooter />
       </BlogLayout>
     </>
   );

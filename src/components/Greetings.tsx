@@ -11,7 +11,7 @@ import {GuideArrow} from './GuideArrow';
 
 export default function Greetings() {
   const [isTyping, setIsTyping] = useState(false);
-  const {scrollToContent} = useScrollToView('#blogs-list');
+  const {scrollToContent} = useScrollToView('#resume-summary');
   const [isGuideVisible, setIsGuideVisible] = useState(false);
 
   return (

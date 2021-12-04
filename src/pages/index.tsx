@@ -6,6 +6,7 @@ import Link from 'next/link';
 import Greetings from '../components/Greetings';
 import Hero from '../components/Hero';
 import ResumeSummary from '../components/ResumeSummary';
+import SubscribeSection from '../components/SubscribeSection';
 import BlogSuggestionsList from '../components/blog/BlogSuggestionsList';
 import {underlineOnHover} from '../frontend-utils/animation-effects';
 import {commonMetaTags} from '../frontend-utils/meta-tags';
@@ -50,7 +51,6 @@ export default function Home({
       <main>
         <Greetings />
 
-        <BlogSuggestionsList blogs={blogs} />
         <hr />
         <hr />
         <ResumeSummary img={profileImage} svg={profileSvg} />
@@ -78,6 +78,8 @@ export default function Home({
             &nbsp;for more info
           </p>
         </CueToResume>
+        <BlogSuggestionsList blogs={blogs} />
+        <SubscribeSection />
       </main>
     </>
   );
