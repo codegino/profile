@@ -81,6 +81,8 @@ const Form = styled.form`
   background-color: var(--color-light-light);
   width: 100%;
   max-width: 45rem;
+  min-width: 30rem;
+  min-height: 19rem;
   margin-bottom: var(--spacing-big);
 `;
 
@@ -98,13 +100,13 @@ const FormContent = styled.div`
 const FormHeader = styled.div`
   text-align: center;
   position: relative;
-  background-color: var(--color-primary);
+  background-color: var(--color-primary-dark);
   height: 4rem;
   padding-top: var(--spacing-small);
   border-bottom: 1px solid var(--color-primary-dark);
 
   > p {
-    color: var(--color-constant-light);
+    color: var(--color-light-light);
   }
 `;
 
