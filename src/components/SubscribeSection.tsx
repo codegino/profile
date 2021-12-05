@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import {BiCool} from '@react-icons/all-files/bi/BiCool';
 import {RiSpamLine} from '@react-icons/all-files/ri/RiSpamLine';
+import Script from 'next/script';
 import SubscribeButton from './SubscribeButton';
 
 const SubscribeSection = () => {
@@ -19,8 +20,41 @@ const SubscribeSection = () => {
         </h4>
       </MessageContainer>
 
-      <form action="https://sendfox.com/codegino" style={{marginTop: '5rem'}}>
+      {/* <form action="https://sendfox.com/codegino" style={{marginTop: '5rem'}}>
         <SubscribeButton>Subscribe to my Newsletter</SubscribeButton>
+      </form> */}
+      <Script src="https://sendfox.com/js/form.js"></Script>
+      <form
+        method="post"
+        action="https://sendfox.com/form/m2xeq6/1j27oq"
+        className="sendfox-form"
+        id="1j27oq"
+        data-async="true"
+        data-recaptcha="true"
+      >
+        <p>
+          <input
+            type="text"
+            placeholder="First Name"
+            name="first_name"
+            required
+          />
+        </p>
+        <p>
+          <input type="email" placeholder="Email" name="email" required />
+        </p>
+        <div style={{position: 'absolute', left: '-5000px'}} aria-hidden="true">
+          <input
+            type="text"
+            name="a_password"
+            tabIndex={-1}
+            defaultValue=""
+            autoComplete="off"
+          />
+        </div>
+        <p>
+          <SubscribeButton type="submit">Sign up</SubscribeButton>
+        </p>
       </form>
     </Container>
   );
