@@ -47,6 +47,7 @@ export default function Home({
         {commonMetaTags()}
       </Head>
 
+      <SubscribeSection />
       <Hero img={heroImage} svg={heroSvg} />
       <main>
         <Greetings />
@@ -64,6 +65,7 @@ export default function Home({
             &nbsp;of skills
           </p>
         </CueToResume>
+        <BlogSuggestionsList blogs={blogs} />
         <ReactTooltip backgroundColor="#111111" />
         <CustomGithubCalendar />
         <WakatimeCharts />
@@ -78,8 +80,6 @@ export default function Home({
             &nbsp;for more info
           </p>
         </CueToResume>
-        <BlogSuggestionsList blogs={blogs} />
-        <SubscribeSection />
       </main>
     </>
   );
