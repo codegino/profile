@@ -45,7 +45,6 @@ const Container = styled.header`
   width: 100%;
   z-index: 1;
   display: block;
-  border-bottom: 1px solid var(--color-dark);
   background-color: var(--color-constant-dark);
   color: var(--color-constant-light);
   padding: 0 var(--spacing-small);

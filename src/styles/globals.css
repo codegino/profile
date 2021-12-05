@@ -15,7 +15,7 @@
 }
 
 [data-theme='light'] {
-  --color-primary: hsl(140, 49%, 55%);
+  --color-primary: hsl(140, 100%, 30%);
   --color-primary-contrast: hsl(0, 0%, 100%);
   --color-primary-light: hsl(80, 69%, 49%);
   --color-primary-dark: hsl(var(--color-primary-h), 100%, 25%);
@@ -40,8 +40,7 @@
 [data-theme='dark'] {
   --color-foreground: hsl(0, 0%, 100%);
   --color-background: var(--color-constant-dark);
-
-  --color-primary: hsl(140, 49%, 55%);
+  --color-primary: hsl(140, 100%, 30%);
   --color-primary-contrast: hsl(0, 0%, 100%);
   --color-primary-dark: hsl(80, 69%, 49%);
   --color-primary-light: hsl(var(--color-primary-h), 100%, 25%);

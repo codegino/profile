@@ -7,13 +7,13 @@ const SubscribeButton = styled.button`
   padding: var(--spacing-small);
   background-color: var(--color-primary-dark);
   outline: none;
-  border: 1px solid var(--color-primary-light);
+  border: 1px solid var(--color-primary-dark);
   color: var(--color-light);
   font-weight: bold;
 
   :hover {
-    background-color: var(--color-primary-light);
-    color: var(--color-dark);
+    background-color: var(--color-primary-dark);
+    color: var(--color-light);
   }
 
   transition: all 0.3s;
