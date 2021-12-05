@@ -30,7 +30,7 @@ const Container = styled.main`
   display: flex;
   align-items: center;
   flex-direction: column;
-  min-height: 80vh;
+  min-height: 90vh;
   padding: var(--spacing-medium) 0;
 `;
 

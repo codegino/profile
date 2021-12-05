@@ -10,7 +10,7 @@ const SubscribeSection = () => {
         <h2>Stay up to date🚀</h2>
         <h3>
           Subscribe to my newsletter, and you&lsquo;ll be the first to know my
-          latest contents📰.
+          latest content📰.
         </h3>
         <h4>
           No spam
