@@ -12,11 +12,9 @@ const SubscribeButton = styled.button`
   font-weight: bold;
 
   :hover {
-    background-color: var(--color-primary-dark);
-    color: var(--color-light);
+    background-color: var(--color-primary);
+    color: #ffffff;
   }
-
-  transition: all 0.3s;
 `;
 
 export default SubscribeButton;
