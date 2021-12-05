@@ -1,11 +1,10 @@
-import React from 'react';
 import styled from '@emotion/styled';
 
 const SubscribeButton = styled.button`
   cursor: pointer;
-  border-radius: 10px;
+  border-radius: 1rem;
 
-  padding: 2rem;
+  padding: var(--spacing-small);
   background-color: var(--color-primary-dark);
   outline: none;
   border: 1px solid var(--color-primary-light);

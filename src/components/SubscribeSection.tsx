@@ -1,10 +1,56 @@
+import React from 'react';
 import styled from '@emotion/styled';
 import {BiCool} from '@react-icons/all-files/bi/BiCool';
 import {RiSpamLine} from '@react-icons/all-files/ri/RiSpamLine';
-import Script from 'next/script';
-import SubscribeButton from './SubscribeButton';
+import {useRouter} from 'next/router';
+import Button from './basic/Button';
+import Input from './basic/Input';
+
+interface FormElements extends HTMLFormControlsCollection {
+  firstName: HTMLInputElement;
+  lastName: HTMLInputElement;
+  email: HTMLInputElement;
+}
+
+interface SubscribeFormElement extends HTMLFormElement {
+  readonly elements: FormElements;
+}
 
 const SubscribeSection = () => {
+  const router = useRouter();
+
+  const handleSubmit = (e: React.FormEvent<SubscribeFormElement>) => {
+    e.preventDefault();
+
+    const {firstName, email, lastName} = e.currentTarget.elements;
+
+    const body = {
+      firstName: firstName?.value ?? undefined,
+      lastName: lastName?.value ?? undefined,
+      email: email?.value ?? undefined,
+    };
+
+    fetch('/api/newsletter/subscribe', {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      method: 'POST',
+      body: JSON.stringify(body),
+    })
+      .then(res => res.json())
+      .then(res => {
+        if (res.id && res.email && res.first_name) {
+          router.push('/signup-success');
+        } else {
+          alert(res.message);
+        }
+      })
+      .catch(() => {
+        alert('Error!');
+      });
+  };
+
   return (
     <Container>
       <MessageContainer>
@@ -19,46 +65,34 @@ const SubscribeSection = () => {
           <BiCool size={25} />
         </h4>
       </MessageContainer>
-
-      {/* <form action="https://sendfox.com/codegino" style={{marginTop: '5rem'}}>
-        <SubscribeButton>Subscribe to my Newsletter</SubscribeButton>
-      </form> */}
-      <Script src="https://sendfox.com/js/form.js"></Script>
-      <form
-        method="post"
-        action="https://sendfox.com/form/m2xeq6/1j27oq"
-        className="sendfox-form"
-        id="1j27oq"
-        data-async="true"
-        data-recaptcha="true"
-      >
-        <p>
-          <input
-            type="text"
-            placeholder="First Name"
-            name="first_name"
-            required
-          />
-        </p>
-        <p>
-          <input type="email" placeholder="Email" name="email" required />
-        </p>
-        <div style={{position: 'absolute', left: '-5000px'}} aria-hidden="true">
-          <input
-            type="text"
-            name="a_password"
-            tabIndex={-1}
-            defaultValue=""
-            autoComplete="off"
-          />
-        </div>
-        <p>
-          <SubscribeButton type="submit">Sign up</SubscribeButton>
-        </p>
-      </form>
+      <Form onSubmit={handleSubmit}>
+        <Input
+          name="firstName"
+          type="text"
+          placeholder="Enter your first name"
+          required
+          minLength={2}
+        />
+        <Input
+          name="email"
+          type="email"
+          placeholder="Enter your email"
+          autoComplete="email"
+          required
+        />
+        <Button style={{marginTop: 'var(--spacing-small)'}} type="submit">
+          Sign up
+        </Button>
+      </Form>
     </Container>
   );
 };
+
+const Form = styled.form`
+  margin-top: var(--spacing-medium);
+  display: flex;
+  flex-direction: column;
+`;
 
 const MessageContainer = styled.div`
   text-align: center;

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import Link from 'next/link';
 import Coffee from '../Coffee';
-import SubscribeButton from '../SubscribeButton';
+import SubscribeButton from '../basic/Button';
 
 const BlogFooter = () => {
   return (
