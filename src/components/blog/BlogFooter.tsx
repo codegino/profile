@@ -1,10 +1,12 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import {DiscussionEmbed} from 'disqus-react';
 import Link from 'next/link';
+import {IBlogMetadata} from '../../models/blog';
 import Coffee from '../Coffee';
 import SubscribeButton from '../basic/Button';
 
-const BlogFooter = () => {
+const BlogFooter = ({blog}: {blog: IBlogMetadata}) => {
   return (
     <Footer>
       <p style={{margin: '2rem 0'}}>
@@ -31,6 +33,15 @@ const BlogFooter = () => {
           <FollowButton>Follow @code_gino</FollowButton>
         </a>
       </Link>
+      <DiscussionEmbed
+        shortname="carlogino"
+        config={{
+          url: `https://codegino.com/blog/${blog.slug}`,
+          identifier: blog.slug,
+          title: blog.title,
+          language: 'en_US',
+        }}
+      />
     </Footer>
   );
 };

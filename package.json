@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@react-icons/all-files": "4.1.0",
+    "disqus-react": "1.1.2",
     "isomorphic-dompurify": "0.16.0",
     "next": "12.0.4",
     "next-mdx-remote": "3.0.8",
