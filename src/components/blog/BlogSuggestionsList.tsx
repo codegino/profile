@@ -36,6 +36,7 @@ const Container = styled.section`
   min-height: 100vh;
   overflow: hidden;
   padding: var(--spacing-big) 0;
+  background-color: var(--color-light);
 
   .blogs-list__label {
     margin-bottom: var(--spacing-medium);

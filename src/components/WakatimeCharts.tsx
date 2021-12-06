@@ -36,6 +36,7 @@ export default function WakatimeCharts() {
 
 const Container = styled.div`
   max-width: 60rem;
+  width: 100%;
   margin: auto;
   overflow: hidden;
   display: flex;

@@ -3,6 +3,7 @@ import type {InferGetStaticPropsType} from 'next';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import Link from 'next/link';
+import {FullScreenWrapper} from '../components/FullScreenWrapper';
 import Greetings from '../components/Greetings';
 import Hero from '../components/Hero';
 import ResumeSummary from '../components/ResumeSummary';
@@ -47,40 +48,42 @@ export default function Home({
         {commonMetaTags()}
       </Head>
 
-      <SubscribeSection />
       <Hero img={heroImage} svg={heroSvg} />
       <main>
         <Greetings />
 
-        <hr />
-        <hr />
-        <ResumeSummary img={profileImage} svg={profileSvg} />
-        <Skills skills={skills} />
-        <CueToResume>
-          <p>
-            Check&nbsp;
-            <Link href="/resume#skills">
-              <a aria-label="full skills list">full list</a>
-            </Link>
-            &nbsp;of skills
-          </p>
-        </CueToResume>
+        <FullScreenWrapper>
+          <ResumeSummary img={profileImage} svg={profileSvg} />
+          <Skills skills={skills} />
+          <CueToResume>
+            <p>
+              Check&nbsp;
+              <Link href="/resume#skills">
+                <a aria-label="full skills list">full list</a>
+              </Link>
+              &nbsp;of skills
+            </p>
+          </CueToResume>
+        </FullScreenWrapper>
         <BlogSuggestionsList blogs={blogs} />
         <ReactTooltip backgroundColor="#111111" />
-        <CustomGithubCalendar />
-        <WakatimeCharts />
-        <CueToResume>
-          <p>
-            Visit my&nbsp;
-            <Link href="/resume">
-              <a aria-label="resume" data-tip="Link to my resume">
-                resume
-              </a>
-            </Link>
-            &nbsp;for more info
-          </p>
-        </CueToResume>
+        <FullScreenWrapper>
+          <CustomGithubCalendar />
+          <WakatimeCharts />
+          <CueToResume>
+            <p>
+              Visit my&nbsp;
+              <Link href="/resume">
+                <a aria-label="resume" data-tip="Link to my resume">
+                  resume
+                </a>
+              </Link>
+              &nbsp;for more info
+            </p>
+          </CueToResume>
+        </FullScreenWrapper>
       </main>
+      <SubscribeSection />
     </>
   );
 }

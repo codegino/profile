@@ -9,6 +9,11 @@ import Input from './basic/Input';
 const SubscribeForm = () => {
   return (
     <>
+      <style jsx global>{`
+        .grecaptcha-badge {
+          visibility: hidden;
+        }
+      `}</style>
       <MessageContainer>
         <h2>Stay up to date🚀</h2>
         <h3>
@@ -41,7 +46,7 @@ const SubscribeForm = () => {
             type="text"
             placeholder="First Name"
             name="first_name"
-            style={{marginBottom: 'var(--spacing-very-small)'}}
+            style={{marginBottom: 'var(--spacing-small)'}}
             required
           />
           <Input
@@ -49,7 +54,7 @@ const SubscribeForm = () => {
             placeholder="Email"
             name="email"
             required
-            style={{marginBottom: 'var(--spacing-small)'}}
+            style={{marginBottom: 'var(--spacing-medium)'}}
           />
           <div
             style={{position: 'absolute', left: '-5000px'}}
@@ -93,17 +98,22 @@ const FormContent = styled.div`
   background-color: var(--color-light);
 
   > button {
-    font-size: 1.5em;
+    font-size: 1.25em;
   }
 `;
 
 const FormHeader = styled.div`
   text-align: center;
   position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
   background-color: var(--color-primary-dark);
   height: 4rem;
   padding-top: var(--spacing-small);
   border-bottom: 1px solid var(--color-primary-dark);
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
 
   > p {
     color: var(--color-light-light);
