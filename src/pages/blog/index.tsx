@@ -1,15 +1,11 @@
 import styled from '@emotion/styled';
 import type {InferGetStaticPropsType} from 'next';
 import Head from 'next/head';
-import {BlurringImage} from '../../components/BlurringImage';
 import SubscribeForm from '../../components/SubscribeForm';
-import SubscribeSection from '../../components/SubscribeSection';
 import BlogCard from '../../components/blog/BlogCard';
 import {commonMetaTags} from '../../frontend-utils/meta-tags';
 import {formatDate} from '../../utils/date-formatter';
 import {getBlogsMetadata} from '../../utils/mdxUtils';
-import {mediaQuery} from '../../utils/media-query';
-import {getImageFromSupabase} from '../../utils/supabase.utils';
 
 export default function Blog({
   blogs,

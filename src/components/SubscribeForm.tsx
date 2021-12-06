@@ -14,69 +14,79 @@ const SubscribeForm = () => {
           visibility: hidden;
         }
       `}</style>
-      <MessageContainer>
-        <h2>Stay up to date🚀</h2>
-        <h3>
-          Subscribe to my newsletter, and you&lsquo;ll be the first to know my
-          latest content📰.
-        </h3>
-        <h4>
-          No spam
-          <RiSpamLine size={25} />. Unsubscribe anytime.
-          <BiCool size={25} />
-        </h4>
-      </MessageContainer>
-      <Script
-        strategy="beforeInteractive"
-        src="https://sendfox.com/js/form.js"
-      ></Script>
-      <Form
-        method="post"
-        action="https://sendfox.com/form/m2xeq6/1j27oq"
-        className="sendfox-form"
-        id="1j27oq"
-        data-async="true"
-        data-recaptcha="true"
-      >
-        <FormHeader>
-          <p>Get started</p>
-        </FormHeader>
-        <FormContent>
-          <Input
-            type="text"
-            placeholder="First Name"
-            name="first_name"
-            style={{marginBottom: 'var(--spacing-small)'}}
-            required
-          />
-          <Input
-            type="email"
-            placeholder="Email"
-            name="email"
-            required
-            style={{marginBottom: 'var(--spacing-medium)'}}
-          />
-          <div
-            style={{position: 'absolute', left: '-5000px'}}
-            aria-hidden="true"
-          >
-            <input
+      <Container>
+        <MessageContainer>
+          <h2>Stay up to date🚀</h2>
+          <h3>
+            Subscribe to my newsletter, and you&lsquo;ll be the first to know my
+            latest content📰.
+          </h3>
+          <h4>
+            No spam
+            <RiSpamLine size={25} />. Unsubscribe anytime.
+            <BiCool size={25} />
+          </h4>
+        </MessageContainer>
+        <Script
+          strategy="beforeInteractive"
+          src="https://sendfox.com/js/form.js"
+        ></Script>
+        <Form
+          method="post"
+          action="https://sendfox.com/form/m2xeq6/1j27oq"
+          className="sendfox-form"
+          id="1j27oq"
+          data-async="true"
+          data-recaptcha="true"
+        >
+          <FormHeader>
+            <p>Get started</p>
+          </FormHeader>
+          <FormContent>
+            <Input
               type="text"
-              name="a_password"
-              tabIndex={-1}
-              defaultValue=""
-              autoComplete="off"
+              placeholder="First Name"
+              name="first_name"
+              style={{marginBottom: 'var(--spacing-small)'}}
+              required
             />
-          </div>
-          <Button type="submit">Sign up</Button>
-        </FormContent>
-      </Form>
+            <Input
+              type="email"
+              placeholder="Email"
+              name="email"
+              required
+              style={{marginBottom: 'var(--spacing-medium)'}}
+            />
+            <div
+              style={{position: 'absolute', left: '-5000px'}}
+              aria-hidden="true"
+            >
+              <input
+                type="text"
+                name="a_password"
+                tabIndex={-1}
+                defaultValue=""
+                autoComplete="off"
+              />
+            </div>
+            <Button type="submit">Sign up</Button>
+          </FormContent>
+        </Form>
+      </Container>
     </>
   );
 };
 
+const Container = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
 const Form = styled.form`
   box-sizing: border-box;
+  position: relative;
   margin-top: var(--spacing-medium);
   border: 1px solid var(--color-light);
   border-radius: 1rem;

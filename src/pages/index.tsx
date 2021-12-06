@@ -7,7 +7,7 @@ import {FullScreenWrapper} from '../components/FullScreenWrapper';
 import Greetings from '../components/Greetings';
 import Hero from '../components/Hero';
 import ResumeSummary from '../components/ResumeSummary';
-import SubscribeSection from '../components/SubscribeSection';
+import SubscribeForm from '../components/SubscribeForm';
 import BlogSuggestionsList from '../components/blog/BlogSuggestionsList';
 import {underlineOnHover} from '../frontend-utils/animation-effects';
 import {commonMetaTags} from '../frontend-utils/meta-tags';
@@ -50,9 +50,11 @@ export default function Home({
 
       <Hero img={heroImage} svg={heroSvg} />
       <main>
-        <Greetings />
+        <FullScreenWrapper tl br>
+          <Greetings />
+        </FullScreenWrapper>
 
-        <FullScreenWrapper>
+        <FullScreenWrapper tr bl>
           <ResumeSummary img={profileImage} svg={profileSvg} />
           <Skills skills={skills} />
           <CueToResume>
@@ -65,9 +67,11 @@ export default function Home({
             </p>
           </CueToResume>
         </FullScreenWrapper>
-        <BlogSuggestionsList blogs={blogs} />
+        <FullScreenWrapper tl br>
+          <BlogSuggestionsList blogs={blogs} />
+        </FullScreenWrapper>
         <ReactTooltip backgroundColor="#111111" />
-        <FullScreenWrapper>
+        <FullScreenWrapper tr bl>
           <CustomGithubCalendar />
           <WakatimeCharts />
           <CueToResume>
@@ -83,10 +87,16 @@ export default function Home({
           </CueToResume>
         </FullScreenWrapper>
       </main>
-      <SubscribeSection />
+      <SubscribeSectionWrapper tl br>
+        <SubscribeForm />
+      </SubscribeSectionWrapper>
     </>
   );
 }
+
+const SubscribeSectionWrapper = styled(FullScreenWrapper)`
+  background-color: var(--color-light);
+`;
 
 const CueToResume = styled.section`
   text-align: center;

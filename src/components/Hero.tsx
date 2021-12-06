@@ -6,6 +6,10 @@ import {mediaQuery} from '../utils/media-query';
 import {useScrollToView} from '../utils/scroll-to-view-hook';
 import {BlurringImage} from './BlurringImage';
 import {GuideArrow} from './GuideArrow';
+import {BottomLeftShape} from './extras/BottomLeftShape';
+import {BottomRightShape} from './extras/BottomRightShape';
+import {TopLeftShape} from './extras/TopLeftShape';
+import {TopRightShape} from './extras/TopRightShape';
 
 export default function Hero({
   img,
@@ -33,6 +37,8 @@ export default function Hero({
       <GuideArrowContainer triggerOnce delay={1900}>
         <GuideArrow onClick={scrollToContent} />
       </GuideArrowContainer>
+      <BottomLeftShape />
+      <TopRightShape />
     </HeroContainer>
   );
 }
@@ -75,7 +81,7 @@ const HeroContainer = styled.div`
   overflow: hidden;
   position: relative;
   height: 95vh;
-  width: 100%;
+  width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
