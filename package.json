@@ -12,7 +12,7 @@
   "dependencies": {
     "@react-icons/all-files": "4.1.0",
     "isomorphic-dompurify": "0.16.0",
-    "next": "12.0.4",
+    "next": "12.0.7",
     "next-mdx-remote": "3.0.8",
     "prism-react-renderer": "1.2.1",
     "react": "17.0.2",
