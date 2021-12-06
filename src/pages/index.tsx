@@ -87,7 +87,7 @@ export default function Home({
           </CueToResume>
         </FullScreenWrapper>
       </main>
-      <SubscribeSectionWrapper tl br>
+      <SubscribeSectionWrapper tl>
         <SubscribeForm />
       </SubscribeSectionWrapper>
     </>

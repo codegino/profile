@@ -7,7 +7,7 @@ export const fetchSkills = async (onlyHightlights = false) => {
   let {data: skills} = onlyHightlights
     ? await supabase
         .from<Skill>('skill')
-        .select('*')
+        .select('id,name,description,url,category,is_highlight,level')
         .eq('is_highlight', onlyHightlights)
         .order('level', {ascending: false})
     : await supabase
