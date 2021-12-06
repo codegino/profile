@@ -48,6 +48,23 @@ export default function BlogPage({
         <meta name="twitter:image" content={blog.bannerId} />
         <meta name="twitter:description" content={blog.description} />
         <meta name="twitter:title" content="Carlo Gino Catapang" />
+
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: `{
+              "@context": "http://schema.org/",
+              "@type": "Article",
+              "headline": "${blog.description}",
+              "author": {
+                "@type": "Person",
+                "name": "Carlo Gino Catapang"
+              },
+              "datePublished": "${blog.date}",
+              "image": "${blog.bannerId}"
+            }`,
+          }}
+        ></script>
       </Head>
 
       <BlogLayout>

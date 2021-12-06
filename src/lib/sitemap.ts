@@ -55,7 +55,7 @@ const generateBlogSiteMapData = async (): Promise<SiteMapUrl[]> => {
     return {
       slug: meta.slug,
       changeFrequency: 'monthly',
-      lastMod: meta.date,
+      lastMod: meta.dateUpdated,
       priority: 1,
     };
   });
@@ -85,6 +85,7 @@ async function generateSitemap() {
         <url>
           <loc>${ROOT_URL}/blog/${sitemap.slug}</loc>
           <priority>${sitemap.priority}</priority>
+          <lastmod>${sitemap.lastMod}</lastmod>
         </url>
       `;
     })

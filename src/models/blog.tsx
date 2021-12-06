@@ -2,6 +2,7 @@ export type IBlogMetadata = {
   title: string;
   author: string;
   date: string;
+  dateUpdated: string;
   slug: string;
   order: number;
   description: string;
