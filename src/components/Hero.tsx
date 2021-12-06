@@ -7,7 +7,6 @@ import {useScrollToView} from '../utils/scroll-to-view-hook';
 import {BlurringImage} from './BlurringImage';
 import {GuideArrow} from './GuideArrow';
 import {BottomLeftShape} from './extras/BottomLeftShape';
-import {BottomRightShape} from './extras/BottomRightShape';
 import {TopLeftShape} from './extras/TopLeftShape';
 import {TopRightShape} from './extras/TopRightShape';
 
@@ -81,7 +80,7 @@ const HeroContainer = styled.div`
   overflow: hidden;
   position: relative;
   height: 95vh;
-  width: 100vw;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -25,7 +25,7 @@ export const FullScreenWrapper: React.FC<{
 
 const FullScreenContainer = styled.section`
   min-height: 100vh;
-  min-width: 100vw;
+  min-width: 100%;
   display: flex;
   position: relative;
   overflow: hidden;
