@@ -15,17 +15,6 @@ class MyDocument extends Document {
             name="google-site-verification"
             content={`${process.env.NEXT_PUBLIC_GOOOGLE_SITE_VERIFICATION}`}
           />
-          <link rel="icon" href="/favicon.ico" />
-          <link rel="preconnect" href="https://fonts.googleapis.com" />
-          <link
-            rel="preconnect"
-            href="https://fonts.gstatic.com"
-            crossOrigin="true"
-          />
-          <link
-            href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
-            rel="stylesheet"
-          />
           <meta name="twitter:site" content="@code_gino" />
           <meta name="author" content="Carlo Gino Catapang" />
           <meta
@@ -42,30 +31,15 @@ class MyDocument extends Document {
             media="(prefers-color-scheme: dark)"
             content="black"
           />
-          {/* For PWA */}
-          <link rel="manifest" href="/manifest.json" />
-          <link rel="apple-touch-icon" href="/assets/logo.png"></link>
-
-          {/* ABtesting.ai Code */}
-          <link rel="preconnect" href="https://external.abtesting.ai" />
-          <script async src="https://js.abtesting.ai/ab.js?userid=5393" />
-
-          {/* Global Site Tag (gtag.js) - Google Analytics */}
-          <script
-            async
-            src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link
+            rel="preconnect"
+            href="https://fonts.gstatic.com"
+            crossOrigin="true"
           />
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}', {
-              page_path: window.location.pathname,
-            });
-          `,
-            }}
+          <link
+            href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+            rel="stylesheet"
           />
         </Head>
         <body>

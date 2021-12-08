@@ -17,24 +17,26 @@ import type {CategorizedSkill, SkillCategory} from '../../models/skill';
 
 export default function Skills({skills}: {skills: CategorizedSkill[]}) {
   return (
-    <SkillsContainer>
+    <div className="flex justify-center items-center flex-col pb-2 overflow-hidden">
       <h2>
         <FaDumbbell />
         &nbsp; Skills
       </h2>
       {skills.map(category => {
         return (
-          <SkillCategoryContainer key={category.category}>
+          <section className="mb-4" key={category.category}>
             <Slide direction="down" triggerOnce={true}>
-              <h3 className="label">
+              <h3 className="text-center my-2">
                 {getSkillCategoryIcon(category.category)}&nbsp;
                 {category.category.toUpperCase()}
               </h3>
             </Slide>
-            <div className="skills">
+            <div className="max-w-5xl flex flex-wrap justify-center gap-y-2">
               {category.skills.map((skill, i) => {
                 return (
-                  <SkillContainer
+                  <Zoom
+                    className="py-1 px-3 bg-dark text-light border-dark rounded-lg border mr-2
+                    hover:bg-light hover:text-dark shadow-sm"
                     key={skill.id}
                     triggerOnce={true}
                     delay={i * 100}
@@ -50,36 +52,16 @@ export default function Skills({skills}: {skills: CategorizedSkill[]}) {
                         {skill.name}
                       </a>
                     </Link>
-                  </SkillContainer>
+                  </Zoom>
                 );
               })}
             </div>
-          </SkillCategoryContainer>
+          </section>
         );
       })}
-    </SkillsContainer>
+    </div>
   );
 }
-
-const SkillContainer = styled(Zoom)`
-  border: 1px solid black;
-  padding: var(--spacing-very-small) var(--spacing-small);
-  border-radius: 0.5rem;
-  width: fit-content;
-  background-color: var(--color-dark);
-  color: var(--color-light);
-  transition: all 0.5s;
-  cursor: pointer;
-
-  :not(:last-child) {
-    margin-right: var(--spacing-very-small);
-  }
-
-  :hover {
-    color: var(--color-dark);
-    background-color: var(--color-light);
-  }
-`;
 
 function getSkillCategoryIcon(category: SkillCategory) {
   switch (category) {
@@ -107,35 +89,3 @@ function getSkillCategoryIcon(category: SkillCategory) {
       return null;
   }
 }
-
-const SkillCategoryContainer = styled.section`
-  margin-bottom: var(--spacing-small);
-`;
-
-const SkillsContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  padding-bottom: var(--spacing-small);
-  overflow: hidden;
-
-  .skills {
-    max-width: 60rem;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    row-gap: 0.5rem;
-  }
-
-  h2 {
-    color: var(--color-dark-dark);
-  }
-
-  .label {
-    text-align: center;
-    color: var(--color-dark-dark);
-    margin: var(--spacing-small) 0;
-  }
-`;

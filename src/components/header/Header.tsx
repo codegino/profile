@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import {useRouter} from 'next/router';
 import {underlineOnHover} from '../../frontend-utils/animation-effects';
+import {TopLeftShape} from '../extras/TopLeftShape';
 import SmallScreenContent from './SmallScreenContent';
 import WideScreenContentImpl from './WideScreenContent';
 
@@ -11,9 +12,10 @@ export default function Header() {
   const router = useRouter();
 
   return (
-    <Container>
-      <LogoContainer>
-        <MyLogo className="logo">
+    <header className="h-20 relative bg-black flex items-center overflow-hidden py-0 px-2 text-white">
+      <TopLeftShape />
+      <section className="flex items-center min-w-max mr-6">
+        <MyLogo className="w-12 h-12 rounded-full bg-white p-0.5 mr-0 text-center">
           <Link href="/">
             <a aria-label="My Logo">
               <Image
@@ -28,64 +30,33 @@ export default function Header() {
         </MyLogo>
 
         <Link href="/">
-          <a aria-label="Carlo Gino">
-            <h1 className={router.asPath === '/' ? 'active' : ''}>Code Gino</h1>
+          <a aria-label="Code Gino">
+            <H1
+              className={
+                'ml-4 text-4xl font-bold' +
+                (router.asPath === '/' ? ' active' : '')
+              }
+            >
+              Code Gino
+            </H1>
           </a>
         </Link>
-      </LogoContainer>
+      </section>
       <WideScreenContentImpl />
       <SmallScreenContent />
-    </Container>
+    </header>
   );
 }
 
-const Container = styled.header`
-  height: 50px;
-  min-height: 50px;
-  width: 100%;
-  z-index: 1;
-  display: block;
-  background-color: var(--color-constant-dark);
-  color: var(--color-constant-light);
-  padding: 0 var(--spacing-small);
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-`;
+const H1 = styled.h1`
+  ${underlineOnHover()}
 
-const LogoContainer = styled.section`
-  display: flex;
-  align-items: center;
-  min-width: 15rem;
-
-  h1 {
-    margin-left: 0.7rem;
-    font-size: 2.2rem;
-    font-family: Roboto;
-    font-weight: bold;
-
-    ${underlineOnHover()}
-
-    &.active {
-      border-bottom: 2px solid var(--color-primary-light);
-    }
+  &.active {
+    border-bottom: 2px solid var(--color-primary-light);
   }
 `;
 
 const MyLogo = styled.div`
-  border-radius: 50%;
-  max-width: 27px;
-  min-width: 27px;
-  max-height: 27px;
-  min-height: 27px;
-  padding: 2px;
-  transition: all 0.5s;
-  background-color: var(--color-constant-light);
-  border-radius: 50%;
-  box-shadow: 0 0 1px 1px #ffffff;
-  z-index: 100;
-  margin-right: var(--spacing-very-small);
-
   &:hover {
     box-shadow: 0 0 10px 3px var(--color-primary);
   }

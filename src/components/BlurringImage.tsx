@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import styled from '@emotion/styled';
 import Image, {ImageProps} from 'next/image';
 import {IGetPlaiceholderReturn} from 'plaiceholder';
 
@@ -23,7 +22,7 @@ export function BlurringImage({
   const [hasPlaceholder, setHasPlaceholder] = useState(true);
 
   return (
-    <Container>
+    <div className="relative overflow-hidden h-full w-full">
       {hasPlaceholder && (
         <Svg
           {...svgProps}
@@ -47,13 +46,6 @@ export function BlurringImage({
         alt={alt}
         onLoadingComplete={() => setHasPlaceholder(false)}
       />
-    </Container>
+    </div>
   );
 }
-
-const Container = styled.div`
-  position: relative;
-  overflow: hidden;
-  height: 100%;
-  width: 100%;
-`;

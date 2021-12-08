@@ -7,6 +7,8 @@ import {useScrollToView} from '../utils/scroll-to-view-hook';
 import {BlurringImage} from './BlurringImage';
 import {GuideArrow} from './GuideArrow';
 import {BottomLeftShape} from './extras/BottomLeftShape';
+import {BottomRightShape} from './extras/BottomRightShape';
+import {TopLeftShape} from './extras/TopLeftShape';
 
 export default function Hero({
   img,
@@ -34,7 +36,7 @@ export default function Hero({
       <GuideArrowContainer triggerOnce delay={1900}>
         <GuideArrow onClick={scrollToContent} />
       </GuideArrowContainer>
-      <BottomLeftShape />
+      <BottomRightShape />
     </HeroContainer>
   );
 }

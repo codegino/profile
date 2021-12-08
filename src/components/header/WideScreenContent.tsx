@@ -39,7 +39,14 @@ export default function WideScreenContentImpl() {
       </nav>
       <div className="actions-wrapper">
         <SocialMedia />
-        <div className="dark-mode-toggle">
+        <div className="h-14 max-h-14 ml-1">
+          {/* .dark-mode-toggle {
+    min-width: 7rem;
+    max-width: 7rem;
+    max-height: 3.3rem;
+    min-height: 3.3rem;
+    margin-left: var(--spacing-very-small);
+  } */}
           <DarkModeToggle onChange={toggle} checked={isDarkMode} size={70} />
         </div>
       </div>
@@ -59,14 +66,6 @@ const WideScreenContainer = styled.div`
   }
 
   ${mediaQuery(700, 'display: flex;')}
-
-  .dark-mode-toggle {
-    min-width: 7rem;
-    max-width: 7rem;
-    max-height: 3.1rem;
-    min-height: 3.1rem;
-    margin-left: var(--spacing-very-small);
-  }
 
   > nav {
     > ul {

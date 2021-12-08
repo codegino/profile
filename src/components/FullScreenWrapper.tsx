@@ -11,24 +11,21 @@ export const FullScreenWrapper: React.FC<{
   br?: boolean;
   id?: string;
   children: any;
-}> = ({children, tr, bl, br, tl, ...props}) => {
+  className?: string;
+}> = ({children, tr, bl, br, tl, className, ...props}) => {
+  let classNames =
+    'min-h-screen min-w-full flex flex-col justify-center relative overflow-hidden';
+
+  if (className) {
+    classNames += ` ${className}`;
+  }
   return (
-    <FullScreenContainer {...props}>
+    <section className={classNames} {...props}>
       {tr && <TopRightShape />}
       {bl && <BottomLeftShape />}
       {tl && <TopLeftShape />}
       {br && <BottomRightShape />}
       {children}
-    </FullScreenContainer>
+    </section>
   );
 };
-
-const FullScreenContainer = styled.section`
-  min-height: 100vh;
-  min-width: 100%;
-  display: flex;
-  position: relative;
-  overflow: hidden;
-  flex-direction: column;
-  justify-content: center;
-`;
