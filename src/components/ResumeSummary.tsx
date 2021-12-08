@@ -5,7 +5,6 @@ import {FaMapMarkerAlt} from '@react-icons/all-files/fa/FaMapMarkerAlt';
 import Link from 'next/link';
 import {IGetPlaiceholderReturn} from 'plaiceholder';
 import {underlineOnHover} from '../frontend-utils/animation-effects';
-import {mediaQuery} from '../utils/media-query';
 import {BlurringImage} from './BlurringImage';
 
 export default function ResumeSummary({
@@ -13,8 +12,11 @@ export default function ResumeSummary({
   svg,
 }: Pick<IGetPlaiceholderReturn, 'svg' | 'img'>) {
   return (
-    <Container id="resume-summary">
-      <ImageContainer>
+    <article
+      className="w-full flex justify-center items-center flex-col py-20 md:flex-row"
+      id="resume-summary"
+    >
+      <div className="overflow-hidden rounded-full h-60 w-60  md:rounded-none md:h-80 md:w-80 xl:h-96 xl:w-96">
         <BlurringImage
           img={img}
           svg={svg}
@@ -23,11 +25,11 @@ export default function ResumeSummary({
           height={200}
           width={200}
         />
-      </ImageContainer>
-      <section className="summary">
-        <h1>{summary.name}</h1>
-        <div className="designation">
-          <h2>{summary.jobTitle}</h2>
+      </div>
+      <section className="flex flex-col items-center justify-start ml-0 md:ml-8">
+        <h1 className="m-0">{summary.name}</h1>
+        <div className="flex flex-col items-center md:flex-row">
+          <h2 className="lg:mt-0">{summary.jobTitle}</h2>
           <Link href={summary.companyWebsite}>
             <a
               target="_blank"
@@ -39,7 +41,7 @@ export default function ResumeSummary({
             </a>
           </Link>
         </div>
-        <h3>
+        <H3WithUnderline>
           <Link href={`mailto:${summary.email}`}>
             <a
               target="_blank"
@@ -52,97 +54,20 @@ export default function ResumeSummary({
               &nbsp;{summary.email}
             </a>
           </Link>
-        </h3>
-        <h3>
+        </H3WithUnderline>
+        <h3 className="m-2 lg:mt-4">
           <FaMapMarkerAlt />
           &nbsp;{summary.address}
         </h3>
       </section>
-    </Container>
+    </article>
   );
 }
 
-const Container = styled.article`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  padding: var(--spacing-big) 0;
-
-  ${mediaQuery(900, `flex-direction: row;`)}
-
-  .summary {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    flex-direction: column;
-    margin-left: 0;
-    ${mediaQuery(900, `margin-left: 2rem;`)}
-
-    .underline-on-hover {
-      ${underlineOnHover('var(--color-primary-dark)')}
-    }
+const H3WithUnderline = styled.a`
+  .underline-on-hover {
+    ${underlineOnHover('var(--color-primary-dark)')}
   }
-
-  .designation {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    ${mediaQuery(
-      900,
-      `
-      flex-direction: row;
-    `,
-    )}
-  }
-
-  h2 {
-    ${mediaQuery(
-      900,
-      `
-      margin-top: 0;
-    `,
-    )}
-  }
-
-  h3 {
-    margin: var(--spacing-very-small);
-
-    ${mediaQuery(
-      900,
-      `
-        margin-top: var(--spacing-small);
-      `,
-    )}
-  }
-`;
-
-const ImageContainer = styled.div`
-  border-radius: 50%;
-  height: 150px;
-  width: 150px;
-  display: block;
-  overflow: hidden;
-
-  ${mediaQuery(
-    600,
-    `
-    height: 175px;
-    width: 175px;
-  `,
-  )}
-
-  ${mediaQuery(
-    900,
-    `
-    border-radius: 0;
-    height: 200px;
-    width: 200px;
-  `,
-  )}
 `;
 
 const summary = {

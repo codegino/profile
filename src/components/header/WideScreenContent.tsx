@@ -63,8 +63,8 @@ const WideScreenContainer = styled.div`
   .dark-mode-toggle {
     min-width: 7rem;
     max-width: 7rem;
-    max-height: 3.1rem;
-    min-height: 3.1rem;
+    max-height: 3.3rem;
+    min-height: 3.3rem;
     margin-left: var(--spacing-very-small);
   }
 
