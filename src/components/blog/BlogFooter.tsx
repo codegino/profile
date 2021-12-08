@@ -8,29 +8,32 @@ import SubscribeButton from '../basic/Button';
 
 const BlogFooter = ({blog}: {blog: IBlogMetadata}) => {
   return (
-    <Footer>
-      <p className="margin-md">
+    <footer className="flex w-full m-auto flex-col text-center">
+      <p className="m-6">
         <i>Get latest updates directly into your mailbox.</i>
       </p>
       <form action="https://sendfox.com/codegino">
         <SubscribeButton>Subscribe to my Newsletter</SubscribeButton>
       </form>
 
-      <p className="margin-md">
+      <p className="my-4">
         <i>If you find this useful and you want to support me</i>
       </p>
       <Coffee />
 
-      <p className="margin-sm">
+      <p className="my-2">
         <i>Connect with me</i>
       </p>
       <Link href="https://twitter.com/code_gino">
         <a
           aria-label="Follow me on Twitter"
           target="_blank"
-          className="margin-sm"
+          className="mt-2"
+          rel="noopener nofollow"
         >
-          <FollowButton>Follow @code_gino</FollowButton>
+          <span className="relative h-10  bg-blue-500 text-white py-2 px-6 rounded-3xl hover:bg-blue-600">
+            Follow @code_gino
+          </span>
         </a>
       </Link>
       <DiscussionEmbed
@@ -42,40 +45,8 @@ const BlogFooter = ({blog}: {blog: IBlogMetadata}) => {
           language: 'en_US',
         }}
       />
-    </Footer>
+    </footer>
   );
 };
-
-const FollowButton = styled.span`
-  position: relative;
-  height: 2.5rem;
-  box-sizing: border-box;
-  padding: var(--spacing-very-small) var(--spacing-small);
-  background-color: #1d9bf0;
-  color: #ffffff;
-  border-radius: 9999px;
-  font-weight: 500;
-  cursor: pointer;
-
-  &:hover {
-    background-color: #0c7abf;
-  }
-`;
-
-const Footer = styled.footer`
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  margin: auto;
-  width: 100%;
-
-  .margin-md {
-    margin: 2rem 0;
-  }
-
-  .margin-sm {
-    margin: 2rem 0;
-  }
-`;
 
 export default BlogFooter;

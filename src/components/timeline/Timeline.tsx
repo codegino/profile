@@ -7,7 +7,6 @@ import {FaScroll} from '@react-icons/all-files/fa/FaScroll';
 import dompurify from 'isomorphic-dompurify';
 import Link from 'next/link';
 import {Zoom, Slide} from 'react-awesome-reveal';
-import {underlineOnHover} from '../../frontend-utils/animation-effects';
 import type {WorkExperience} from '../../models/resume';
 import {mediaQuery} from '../../utils/media-query';
 import {Experience} from './Experience';
@@ -85,21 +84,21 @@ const Content: React.FC<{exp: WorkExperience}> = ({exp, children = null}) => {
         <DateWrapper>
           {exp.end_date === exp.start_date ? 'Present' : exp.end_date}
         </DateWrapper>
-        <Summary>
+        <div>
           {exp.category === 'work' ? <FaBuilding /> : <FaGraduationCap />}
           &nbsp;
           <Link href={exp.url}>
             <a
               target="_blank"
               aria-label={exp.organization}
-              rel="noopener"
-              className="underline-on-hover"
+              rel="noopener nofollow"
+              className="text-primary-dark font-bold underline-on-hover underline--dark"
               data-tip={`Click to visit ${exp.organization}`}
             >
               {exp.organization}
             </a>
           </Link>
-        </Summary>
+        </div>
         <ContentTitle>
           <p className="title">{exp.title}</p> <p>&nbsp;({exp.role})</p>
         </ContentTitle>
@@ -138,17 +137,6 @@ const ContentDescription = styled.div`
   margin-top: 1rem;
   text-align: left;
   color: var(--color-dark-dark);
-`;
-
-const Summary = styled.div`
-  > a {
-    color: var(--color-primary-dark);
-    font-weight: bolder;
-  }
-
-  .underline-on-hover {
-    ${underlineOnHover('var(--color-primary-dark)')}
-  }
 `;
 
 const Container = styled.article`

@@ -19,7 +19,7 @@ export default function CustomGithubCalendar() {
           <a
             target="_blank"
             aria-label="Github profile"
-            rel="noopener"
+            rel="noopener nofollow"
             data-tip="Link to my Github profile"
           >
             Github

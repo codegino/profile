@@ -74,7 +74,12 @@ export default function SmallScreenContent() {
             <SectionLabel>Contact me</SectionLabel>
             <div>
               <Link href={`mailto:${EMAIL_ADDRESS}`}>
-                <a target="_blank" data-tip="Email me" aria-label="Email Me">
+                <a
+                  target="_blank"
+                  data-tip="Email me"
+                  aria-label="Email Me"
+                  rel="noopener nofollow"
+                >
                   <CustomIcon
                     color="#ea4335"
                     icon={FaEnvelopeSquare}

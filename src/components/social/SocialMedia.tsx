@@ -19,7 +19,7 @@ export default function SocialMedia() {
                 <a
                   target="_blank"
                   aria-label={sm.name}
-                  rel="noopener"
+                  rel="noopener nofollow"
                   data-tip={sm.name}
                 >
                   <CustomIcon {...sm} />

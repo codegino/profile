@@ -1,4 +1,3 @@
-import styled from '@emotion/styled';
 import type {InferGetStaticPropsType} from 'next';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
@@ -9,7 +8,6 @@ import Hero from '../components/Hero';
 import ResumeSummary from '../components/ResumeSummary';
 import SubscribeForm from '../components/SubscribeForm';
 import BlogSuggestionsList from '../components/blog/BlogSuggestionsList';
-import {underlineOnHover} from '../frontend-utils/animation-effects';
 import {commonMetaTags} from '../frontend-utils/meta-tags';
 import {generateRssFeed} from '../lib/rss';
 import generateSitemap from '../lib/sitemap';
@@ -57,15 +55,20 @@ export default function Home({
         <FullScreenWrapper tl br>
           <ResumeSummary img={profileImage} svg={profileSvg} />
           <Skills skills={skills} />
-          <CueToResume>
+          <section className="text-center mb-20">
             <p>
               Check&nbsp;
               <Link href="/resume#skills">
-                <a aria-label="full skills list">full list</a>
+                <a
+                  aria-label="full skills list"
+                  className="text-primary-dark underline-on-hover"
+                >
+                  full list
+                </a>
               </Link>
               &nbsp;of skills
             </p>
-          </CueToResume>
+          </section>
         </FullScreenWrapper>
         <FullScreenWrapper tr bl>
           <BlogSuggestionsList blogs={blogs} />
@@ -74,40 +77,29 @@ export default function Home({
         <FullScreenWrapper tl br>
           <CustomGithubCalendar />
           <WakatimeCharts />
-          <CueToResume>
+          <section className="text-center mb-20">
             <p>
               Visit my&nbsp;
               <Link href="/resume">
-                <a aria-label="resume" data-tip="Link to my resume">
+                <a
+                  aria-label="resume"
+                  data-tip="Link to my resume"
+                  className="text-primary-dark underline-on-hover"
+                >
                   resume
                 </a>
               </Link>
               &nbsp;for more info
             </p>
-          </CueToResume>
+          </section>
         </FullScreenWrapper>
       </main>
-      <SubscribeSectionWrapper tr bl>
+      <FullScreenWrapper className="bg-light" tr bl>
         <SubscribeForm />
-      </SubscribeSectionWrapper>
+      </FullScreenWrapper>
     </>
   );
 }
-
-const SubscribeSectionWrapper = styled(FullScreenWrapper)`
-  background-color: var(--color-light);
-`;
-
-const CueToResume = styled.section`
-  text-align: center;
-  margin-bottom: var(--spacing-big);
-
-  a {
-    color: var(--color-primary-dark);
-
-    ${underlineOnHover('var(--color-primary-dark)')}
-  }
-`;
 
 export const getStaticProps = async () => {
   const {img: heroImage, svg: heroSvg} = await getImageFromSupabase(

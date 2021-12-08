@@ -67,7 +67,7 @@ export default function AboutMe({
             <a
               target="_blank"
               aria-label="React Responsive Carousel"
-              rel="noopener"
+              rel="noopener nofollow"
             >
               React Responsive Carousel
             </a>
@@ -79,7 +79,7 @@ export default function AboutMe({
         <AdditionalInfo>
           Here is the link to my&nbsp;
           <Link href="https://github.com/codegino/profile">
-            <a target="_blank" aria-label="Github Repo" rel="noopener">
+            <a target="_blank" aria-label="Github Repo" rel="noopener nofollow">
               Github Repo
             </a>
           </Link>

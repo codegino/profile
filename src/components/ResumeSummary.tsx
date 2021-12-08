@@ -1,10 +1,8 @@
 import React from 'react';
-import styled from '@emotion/styled';
 import {FaEnvelopeSquare} from '@react-icons/all-files/fa/FaEnvelopeSquare';
 import {FaMapMarkerAlt} from '@react-icons/all-files/fa/FaMapMarkerAlt';
 import Link from 'next/link';
 import {IGetPlaiceholderReturn} from 'plaiceholder';
-import {underlineOnHover} from '../frontend-utils/animation-effects';
 import {BlurringImage} from './BlurringImage';
 
 export default function ResumeSummary({
@@ -34,27 +32,27 @@ export default function ResumeSummary({
             <a
               target="_blank"
               aria-label="Company Website"
-              rel="noopener"
+              rel="noopener nofollow"
               className="underline-on-hover"
             >
               <h2>&nbsp;at {summary.company}</h2>
             </a>
           </Link>
         </div>
-        <H3WithUnderline>
+        <h3>
           <Link href={`mailto:${summary.email}`}>
             <a
               target="_blank"
               aria-label="Email me"
               data-tip="Send me an email"
-              rel="noopener"
-              className="underline-on-hover"
+              rel="noopener nofollow"
+              className="underline-on-hover underline-on-hover--dark"
             >
               <FaEnvelopeSquare />
               &nbsp;{summary.email}
             </a>
           </Link>
-        </H3WithUnderline>
+        </h3>
         <h3 className="m-2 lg:mt-4">
           <FaMapMarkerAlt />
           &nbsp;{summary.address}
@@ -63,12 +61,6 @@ export default function ResumeSummary({
     </article>
   );
 }
-
-const H3WithUnderline = styled.h3`
-  .underline-on-hover {
-    ${underlineOnHover('var(--color-primary-dark)')}
-  }
-`;
 
 const summary = {
   jobTitle: 'Senior Software Engineer',

@@ -20,7 +20,9 @@ export default function Footer() {
             </a>
           </Link>
           <Link href="/rss.xml">
-            <a aria-label="Rss Feed">RSS Feed</a>
+            <a aria-label="Rss Feed" rel="noopener nofollow">
+              RSS Feed
+            </a>
           </Link>
           <p>All rights reserved</p>
           <p>© Carlo Gino Catapang 2021</p>

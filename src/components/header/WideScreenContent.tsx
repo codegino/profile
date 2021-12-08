@@ -4,7 +4,6 @@ import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import {useRouter} from 'next/router';
 import useDarkMode from 'use-dark-mode';
-import {underlineOnHover} from '../../frontend-utils/animation-effects';
 import {mediaQuery} from '../../utils/media-query';
 import SocialMedia from '../social/SocialMedia';
 import {navigationLinks} from './nav-links';
@@ -22,7 +21,7 @@ export default function WideScreenContentImpl() {
       <nav>
         <ul>
           {navigationLinks.map(link => (
-            <li key={link.label}>
+            <li key={link.label} className="underline-on-hover">
               <Link href={link.url}>
                 <a
                   className={
@@ -40,13 +39,6 @@ export default function WideScreenContentImpl() {
       <div className="actions-wrapper">
         <SocialMedia />
         <div className="h-14 max-h-14 ml-1">
-          {/* .dark-mode-toggle {
-    min-width: 7rem;
-    max-width: 7rem;
-    max-height: 3.3rem;
-    min-height: 3.3rem;
-    margin-left: var(--spacing-very-small);
-  } */}
           <DarkModeToggle onChange={toggle} checked={isDarkMode} size={70} />
         </div>
       </div>
@@ -81,8 +73,6 @@ const WideScreenContainer = styled.div`
         &:hover {
           color: #ffffff;
         }
-
-        ${underlineOnHover()}
 
         .active {
           color: var(--color-primary-light);

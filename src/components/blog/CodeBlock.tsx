@@ -3,7 +3,6 @@ import styled from '@emotion/styled';
 import Link from 'next/link';
 import Highlight, {defaultProps, Language} from 'prism-react-renderer';
 import vsDark from 'prism-react-renderer/themes/vsDark';
-import {underlineOnHover} from '../../frontend-utils/animation-effects';
 import {ClipboardCopyButton} from '../ClipboardCopyButton';
 
 export type CodeBlockProps = {
@@ -74,13 +73,17 @@ const CodeBlock: FunctionComponent<CodeBlockProps> = ({
         )}
       </Highlight>
       {codePenID && (
-        <LinkToCodePen>
+        <div>
           <Link href={`https://codepen.io/codegino/pen/${codePenID}`}>
-            <a target="_blank" rel="noopener">
+            <a
+              target="_blank"
+              rel="noopener"
+              className="underline-on-hover underline-dark"
+            >
               Link to Codepen
             </a>
           </Link>
-        </LinkToCodePen>
+        </div>
       )}
     </Container>
   );
@@ -88,12 +91,6 @@ const CodeBlock: FunctionComponent<CodeBlockProps> = ({
 
 const Container = styled.div`
   position: relative;
-`;
-
-const LinkToCodePen = styled.div`
-  > a {
-    ${underlineOnHover('var(--color-primary-dark)')}
-  }
 `;
 
 const FileNameWrapper = styled.span`
