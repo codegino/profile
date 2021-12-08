@@ -39,10 +39,10 @@ export default function AboutMeHero({
             <p
               key={`${word}-${i}`}
               className="text-light
-            text-3xl
-            sm:text-5xl
-            md:text-6xl
-            lg:text-7xl
+            text-5xl
+            sm:text-6xl
+            md:text-7xl
+            lg:text-8xl
             "
             >
               {word}
@@ -50,7 +50,6 @@ export default function AboutMeHero({
                 {`
                   p {
                     text-shadow: 1px 1px 2px var(--color-dark-dark);
-                    text-shadow: 1px 10px 20px red;
                   }
                 `}
               </style>

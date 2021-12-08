@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import {mediaQuery} from '../../utils/media-query';
 
 export const CornerShape: React.FC = props => {
   return <Container {...props} />;
