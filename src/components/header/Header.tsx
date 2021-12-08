@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import {useRouter} from 'next/router';
 import {underlineOnHover} from '../../frontend-utils/animation-effects';
+import {TopLeftShape} from '../extras/TopLeftShape';
 import SmallScreenContent from './SmallScreenContent';
 import WideScreenContentImpl from './WideScreenContent';
 
@@ -11,7 +12,8 @@ export default function Header() {
   const router = useRouter();
 
   return (
-    <header className="h-20 bg-black flex items-center overflow-hidden py-0 px-2 text-white">
+    <header className="h-20 relative bg-black flex items-center overflow-hidden py-0 px-2 text-white">
+      <TopLeftShape />
       <section className="flex items-center min-w-max mr-6">
         <MyLogo className="w-12 h-12 rounded-full bg-white p-0.5 mr-0 text-center">
           <Link href="/">

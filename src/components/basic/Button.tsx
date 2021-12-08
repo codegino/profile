@@ -1,20 +1,19 @@
-import styled from '@emotion/styled';
+import React from 'react';
 
-const SubscribeButton = styled.button`
-  cursor: pointer;
-  border-radius: 1rem;
+const Button = React.forwardRef<
+  HTMLButtonElement,
+  JSX.IntrinsicElements['button']
+>(({className = '', ...props}, ref) => {
+  let classNames =
+    'py-3 px-2 border rounded-xl bg-primary-dark hover:bg-primary-800 text-light';
 
-  padding: var(--spacing-small);
-  background-color: var(--color-primary-dark);
-  outline: none;
-  border: 1px solid var(--color-primary-dark);
-  color: var(--color-light);
-  font-weight: bold;
-
-  :hover {
-    background-color: var(--color-primary);
-    color: #ffffff;
+  if (className) {
+    classNames += ` ${className}`;
   }
-`;
 
-export default SubscribeButton;
+  return <button {...props} ref={ref} className={classNames} />;
+});
+
+Button.displayName = 'Button';
+
+export default Button;

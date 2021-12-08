@@ -11,10 +11,10 @@ type Props = {
 
 export const BlogCardPreview = ({blog}: Props) => {
   return (
-    <Container>
+    <section className="w-full overflow-hidden shadow-md rounded-2xl bg-light pb-1 md:max-w-6xl">
       <Link href={`/blog/${blog.slug}`}>
         <a>
-          <CardContent>
+          <article className="text-center">
             <Image
               src={blog.bannerId}
               alt={blog.description}
@@ -27,42 +27,12 @@ export const BlogCardPreview = ({blog}: Props) => {
             />
             <h2>{blog.title}</h2>
             <p>{blog.description}</p>
-            <p className="blog-date">
+            <p className="mt-2 text-dark">
               <i>{blog.date}</i>
             </p>
-          </CardContent>
+          </article>
         </a>
       </Link>
-    </Container>
+    </section>
   );
 };
-
-const CardContent = styled.article`
-  text-align: center;
-
-  .blog-date {
-    margin-top: var(--spacing-small);
-    color: var(--color-dark);
-  }
-
-  h2,
-  p {
-    padding: 0 var(--spacing-very-small);
-  }
-`;
-
-const Container = styled.section`
-  width: 100%;
-  overflow: hidden;
-  border-radius: 1rem;
-  background-color: var(--color-light);
-  padding-bottom: var(--spacing-small);
-  border: 1px solid var(--color-light-dark);
-
-  ${mediaQuery(
-    600,
-    `
-  max-width: 50rem;
-  `,
-  )};
-`;

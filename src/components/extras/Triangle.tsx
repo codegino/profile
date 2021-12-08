@@ -1,14 +1,12 @@
-import styled from '@emotion/styled';
+export const CornerShape: React.FC<{className?: any}> = ({
+  className,
+  ...props
+}) => {
+  let classNames = 'absolute h-8 w-8 z-10';
 
-export const CornerShape: React.FC = props => {
-  return <Container {...props} />;
+  if (className) {
+    classNames += ` ${className}`;
+  }
+
+  return <div {...props} className={classNames} />;
 };
-
-const Container = styled.div`
-  position: absolute;
-
-  height: 2rem;
-  width: 2rem;
-
-  z-index: 2;
-`;

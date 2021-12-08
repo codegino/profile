@@ -12,62 +12,26 @@ type Props = {
 
 const BlogSuggestionsList = ({blogs}: Props) => {
   return (
-    <Container id="blogs-list">
-      <h2 className="blogs-list__label">
+    <section
+      id="blogs-list"
+      className="flex flex-col justify-center items-center min-h-screen overflow-hidden
+        py-16 bg-light"
+    >
+      <h2 className="mb-16 text-6xl relative">
         Recent&nbsp;
         <Link href="/blog">
-          <a aria-label="Blogs List">Blogs</a>
+          <a aria-label="Blogs List" className="text-6xl text-primary-dark">
+            Blogs
+          </a>
         </Link>
       </h2>
-      <BlogsContainer>
+      <section className="grid-cols-1 w-screen px-6 mb-0 grid md:grid-cols-2 md:max-w-7xl gap-8 ">
         {blogs.map(blog => (
           <BlogCardPreview blog={blog} key={blog.slug} />
         ))}
-      </BlogsContainer>
-    </Container>
+      </section>
+    </section>
   );
 };
-
-const Container = styled.section`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  overflow: hidden;
-  padding: var(--spacing-big) 0;
-  background-color: var(--color-light);
-
-  .blogs-list__label {
-    margin-bottom: var(--spacing-medium);
-    position: relative;
-    top: -2rem;
-    font-size: 4rem;
-
-    > a {
-      color: var(--color-primary-dark);
-      font-size: 1em;
-
-      ${underlineOnHover('var(--color-primary-dark)')}
-    }
-  }
-`;
-
-const BlogsContainer = styled.section`
-  display: grid;
-  overflow-x: auto;
-  padding: 0 var(--spacing-small);
-  grid-template-columns: 1fr;
-  max-width: 80rem;
-  column-gap: var(--spacing-medium);
-  row-gap: var(--spacing-medium);
-
-  ${mediaQuery(
-    600,
-    `
-      grid-template-columns: 1fr 1fr;
-    `,
-  )}
-`;
 
 export default BlogSuggestionsList;

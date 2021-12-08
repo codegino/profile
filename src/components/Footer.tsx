@@ -1,16 +1,21 @@
 import React from 'react';
-import styled from '@emotion/styled';
 import Link from 'next/link';
-import {mediaQuery} from '../utils/media-query';
+import {BottomRightShape} from './extras/BottomRightShape';
+import {TopLeftShape} from './extras/TopLeftShape';
 import SocialMedia from './social/SocialMedia';
 
 export default function Footer() {
   return (
-    <FooterContainer>
-      <ContentWrapper>
-        <LegalLabel>
+    <footer className="w-full relative h-48 bg-black text-white flex justify-center overflow-hidden md:h-32">
+      <TopLeftShape />
+      <BottomRightShape />
+      <div
+        className="flex items-center flex-col-reverse justify-center max-w-6xl w-full text-center
+      md:flex-row md:justify-around md:text-right"
+      >
+        <div className="m-1">
           <Link href="/sitemap.xml">
-            <a aria-label="Sitemap" className="site-map-link">
+            <a aria-label="Sitemap" className="mr-4">
               Sitemap
             </a>
           </Link>
@@ -19,53 +24,9 @@ export default function Footer() {
           </Link>
           <p>All rights reserved</p>
           <p>© Carlo Gino Catapang 2021</p>
-        </LegalLabel>
+        </div>
         <SocialMedia />
-      </ContentWrapper>
-    </FooterContainer>
+      </div>
+    </footer>
   );
 }
-
-const FooterContainer = styled.footer`
-  width: 100%;
-  height: 12rem;
-  background-color: var(--color-constant-dark);
-  color: var(--color-constant-light);
-  display: flex;
-  justify-content: center;
-  overflow: hidden;
-
-  ${mediaQuery(900, `height: 8rem;`)}
-`;
-
-const ContentWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  flex-direction: column-reverse;
-  justify-content: center;
-  max-width: 70rem;
-  width: 100%;
-  text-align: center;
-
-  a:hover {
-    text-decoration: underline;
-  }
-
-  ${mediaQuery(
-    900,
-    `
-      flex-direction: row;
-      justify-content: space-around;
-      align-items: center;
-      text-align: left;
-  `,
-  )}
-
-  .site-map-link {
-    margin-right: 1rem;
-  }
-`;
-
-const LegalLabel = styled.div`
-  margin: var(--spacing-very-small);
-`;

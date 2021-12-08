@@ -13,7 +13,7 @@ export default function ResumeSummary({
 }: Pick<IGetPlaiceholderReturn, 'svg' | 'img'>) {
   return (
     <article
-      className="w-full flex justify-center items-center flex-col py-20 md:flex-row"
+      className="w-full flex justify-center items-center flex-col py-20 md:flex-row  min-w-max"
       id="resume-summary"
     >
       <div className="overflow-hidden rounded-full h-60 w-60  md:rounded-none md:h-80 md:w-80 xl:h-96 xl:w-96">

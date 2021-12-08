@@ -50,11 +50,11 @@ export default function Home({
 
       <Hero img={heroImage} svg={heroSvg} />
       <main>
-        <FullScreenWrapper tl br>
+        <FullScreenWrapper tr bl>
           <Greetings />
         </FullScreenWrapper>
 
-        <FullScreenWrapper tr bl>
+        <FullScreenWrapper tl br>
           <ResumeSummary img={profileImage} svg={profileSvg} />
           <Skills skills={skills} />
           <CueToResume>
@@ -67,11 +67,11 @@ export default function Home({
             </p>
           </CueToResume>
         </FullScreenWrapper>
-        <FullScreenWrapper tl br>
+        <FullScreenWrapper tr bl>
           <BlogSuggestionsList blogs={blogs} />
         </FullScreenWrapper>
         <ReactTooltip backgroundColor="#111111" />
-        <FullScreenWrapper tr bl>
+        <FullScreenWrapper tl br>
           <CustomGithubCalendar />
           <WakatimeCharts />
           <CueToResume>
@@ -87,7 +87,7 @@ export default function Home({
           </CueToResume>
         </FullScreenWrapper>
       </main>
-      <SubscribeSectionWrapper tl>
+      <SubscribeSectionWrapper tr bl>
         <SubscribeForm />
       </SubscribeSectionWrapper>
     </>
