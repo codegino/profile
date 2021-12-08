@@ -17,12 +17,13 @@ export function BlurringImage({
   transformScaleLevel = 1.4,
   height = undefined,
   width = undefined,
+  style,
   ...props
 }: Props) {
   const [hasPlaceholder, setHasPlaceholder] = useState(true);
 
   return (
-    <div className="relative overflow-hidden h-full w-full">
+    <div className="relative overflow-hidden h-full w-full" style={style}>
       {hasPlaceholder && (
         <Svg
           {...svgProps}

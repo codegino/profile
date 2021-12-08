@@ -64,7 +64,7 @@ export default function ResumeSummary({
   );
 }
 
-const H3WithUnderline = styled.a`
+const H3WithUnderline = styled.h3`
   .underline-on-hover {
     ${underlineOnHover('var(--color-primary-dark)')}
   }
