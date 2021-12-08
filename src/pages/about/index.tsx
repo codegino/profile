@@ -29,7 +29,7 @@ export default function AboutMe({
     <>
       <Head>
         <title>About Carlo Gino Catapang</title>
-        {commonMetaTags('/about')}
+        {commonMetaTags('About Page', '/about')}
       </Head>
 
       <AboutMeHero img={img} svg={svg} />

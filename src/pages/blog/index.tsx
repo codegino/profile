@@ -13,8 +13,8 @@ export default function Blog({
   return (
     <>
       <Head>
-        <title>Carlo Gino Catapang Blogs</title>
-        {commonMetaTags('/blog')}
+        <title>My Blogs Listing Page | Code Gino | Carlo Gino Catapang</title>
+        {commonMetaTags('Blogs Page', '/blog')}
       </Head>
       <Container>
         <h1>My Blogs</h1>

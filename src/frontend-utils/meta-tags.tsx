@@ -1,22 +1,22 @@
-const metaDescription =
-  "Carlo Gino Catapang's website | Code Gino, Web Developer, Software Developer, Software Engineer, Frontend Engineer. React, JavaScript, TypeScript expert. Husband and Father.";
+const metaDescription = (pageName: string) =>
+  `Carlo Gino Catapang|Code Gino|${pageName}, Web Developer, Software Engineer, Frontend Engineer. React, JavaScript, TypeScript expert. Husband and Father`;
 
-export const commonMetaTags = (slug = '') => (
+export const commonMetaTags = (pageName: string, slug = '') => (
   <>
     <meta name="twitter:card" content="summary_large_image" />
     <meta
       name="twitter:image"
       content="https://codegino.com/assets/preview.png"
     />
-    <meta name="twitter:description" content={metaDescription} />
+    <meta name="twitter:description" content={metaDescription(pageName)} />
     <meta name="twitter:title" content="Carlo Gino Catapang" />
     <meta property="og:url" content={`https://codegino.com${slug}`} />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Carlo Gino Catapang" />
-    <meta property="og:description" content={metaDescription} />
+    <meta property="og:description" content={metaDescription(pageName)} />
     <meta property="og:image" content="/assets/preview.png" />
 
-    <meta name="description" content={metaDescription} />
+    <meta name="description" content={metaDescription(pageName)} />
 
     <link rel="icon" href="/favicon.ico" />
 

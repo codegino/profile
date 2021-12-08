@@ -5,7 +5,9 @@ export default function Blog() {
   return (
     <>
       <Head>
-        <title>Thank you for signing up</title>
+        <title>
+          Thank you for signing up | Code Gino | Carlo Gino Catapang
+        </title>
       </Head>
       <Container>
         <Content>

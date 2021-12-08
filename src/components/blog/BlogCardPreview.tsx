@@ -13,7 +13,7 @@ export const BlogCardPreview = ({blog}: Props) => {
   return (
     <section className="w-full overflow-hidden shadow-md rounded-2xl bg-light pb-1 md:max-w-6xl">
       <Link href={`/blog/${blog.slug}`}>
-        <a>
+        <a aria-label={blog.title}>
           <article className="text-center">
             <Image
               src={blog.bannerId}

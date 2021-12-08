@@ -19,7 +19,7 @@ class MyDocument extends Document {
           <meta name="author" content="Carlo Gino Catapang" />
           <meta
             name="keywords"
-            content="React,React Native,Javascript,Typescript,NodeJS,HTML,CSS,ReactJS,React.js"
+            content="React,React Native,Javascript,Typescript,Remix,NodeJS,HTML,CSS"
           />
           <meta
             name="theme-color"

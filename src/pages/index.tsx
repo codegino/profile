@@ -42,8 +42,8 @@ export default function Home({
   return (
     <>
       <Head>
-        <title>Code Gino</title>
-        {commonMetaTags()}
+        <title>Welcome to my Website | Code Gino | Carlo Gino Catapang</title>
+        {commonMetaTags('Home Page')}
       </Head>
 
       <Hero img={heroImage} svg={heroSvg} />
