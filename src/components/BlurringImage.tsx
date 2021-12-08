@@ -14,7 +14,6 @@ export function BlurringImage({
   svg: [Svg, svgProps, rectangles],
   img,
   alt,
-  style,
   blurLevel = 40,
   transformScaleLevel = 1.4,
   height = undefined,
@@ -24,7 +23,7 @@ export function BlurringImage({
   const [hasPlaceholder, setHasPlaceholder] = useState(true);
 
   return (
-    <Container style={style}>
+    <Container>
       {hasPlaceholder && (
         <Svg
           {...svgProps}

@@ -80,12 +80,7 @@ export default function Timeline({
 
 const Content: React.FC<{exp: WorkExperience}> = ({exp, children = null}) => {
   return (
-    <Zoom
-      triggerOnce={true}
-      cascade={true}
-      duration={800}
-      style={{maxWidth: '70rem'}}
-    >
+    <Zoom triggerOnce={true} cascade={true} duration={800}>
       <div>
         <DateWrapper>
           {exp.end_date === exp.start_date ? 'Present' : exp.end_date}

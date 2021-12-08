@@ -23,7 +23,7 @@ export default function TechStackCarousel({techStacks}: Props) {
 
   return (
     <CarouselContainer>
-      <div style={{maxWidth: '60rem'}}>
+      <div>
         <Carousel
           infiniteLoop
           autoPlay
@@ -63,6 +63,10 @@ const CarouselContainer = styled.div`
   justify-content: center;
 
   ${mediaQuery(900, 'height: 48rem;')}
+
+  > div {
+    max-width: 60rem;
+  }
 `;
 
 const CarouselItem = styled.div`

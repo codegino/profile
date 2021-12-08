@@ -13,7 +13,7 @@ export default function CustomGithubCalendar() {
 
   return (
     <Container triggerOnce>
-      <h2 style={{margin: '0'}}>
+      <h2>
         My&nbsp;
         <Link href="https://github.com/codegino">
           <a
@@ -48,6 +48,10 @@ const Container = styled(Zoom)`
   margin: var(--spacing-medium) 0;
   padding: 0 0.5rem;
   overflow: hidden;
+
+  h2 {
+    margin: 0;
+  }
 
   a {
     color: var(--color-primary-dark);

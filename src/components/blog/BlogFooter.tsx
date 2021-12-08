@@ -9,26 +9,26 @@ import SubscribeButton from '../basic/Button';
 const BlogFooter = ({blog}: {blog: IBlogMetadata}) => {
   return (
     <Footer>
-      <p style={{margin: '2rem 0'}}>
+      <p className="margin-md">
         <i>Get latest updates directly into your mailbox.</i>
       </p>
       <form action="https://sendfox.com/codegino">
         <SubscribeButton>Subscribe to my Newsletter</SubscribeButton>
       </form>
 
-      <p style={{margin: '2rem 0'}}>
+      <p className="margin-md">
         <i>If you find this useful and you want to support me</i>
       </p>
       <Coffee />
 
-      <p style={{margin: '1rem 0'}}>
+      <p className="margin-sm">
         <i>Connect with me</i>
       </p>
       <Link href="https://twitter.com/code_gino">
         <a
           aria-label="Follow me on Twitter"
           target="_blank"
-          style={{marginTop: '1rem'}}
+          className="margin-sm"
         >
           <FollowButton>Follow @code_gino</FollowButton>
         </a>
@@ -68,6 +68,14 @@ const Footer = styled.footer`
   flex-direction: column;
   margin: auto;
   width: 100%;
+
+  .margin-md {
+    margin: 2rem 0;
+  }
+
+  .margin-sm {
+    margin: 2rem 0;
+  }
 `;
 
 export default BlogFooter;

@@ -31,7 +31,6 @@ export default function ResumeSummary({
           <Link href={summary.companyWebsite}>
             <a
               target="_blank"
-              style={{cursor: 'pointer'}}
               aria-label="Company Website"
               rel="noopener"
               className="underline-on-hover"
@@ -44,7 +43,6 @@ export default function ResumeSummary({
           <Link href={`mailto:${summary.email}`}>
             <a
               target="_blank"
-              style={{cursor: 'pointer'}}
               aria-label="Email me"
               data-tip="Send me an email"
               rel="noopener"

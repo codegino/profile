@@ -49,14 +49,7 @@ export default function Greetings() {
                   <span> Software developer</span>
                   <Typist.Delay ms={1200} />
                   <Typist.Backspace count={18} />{' '}
-                  <span
-                    style={{
-                      color: 'var(--color-primary-light)',
-                      fontWeight: 'bold',
-                    }}
-                  >
-                    SOFTWARE ENGINEER
-                  </span>
+                  <span className="text-highlight">SOFTWARE ENGINEER</span>
                   <Typist.Delay ms={200} />
                   <br />
                   <StyledBsChevronRight />
@@ -169,6 +162,11 @@ const TerminalContent = styled.div`
 
   background-color: var(--color-dark-dark);
   color: var(--color-light-light);
+
+  .text-highlight {
+    color: var(--color-primary-light);
+    font-weight: bold;
+  }
 
   span {
     font-size: 1.2rem;

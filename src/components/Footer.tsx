@@ -10,7 +10,7 @@ export default function Footer() {
       <ContentWrapper>
         <LegalLabel>
           <Link href="/sitemap.xml">
-            <a aria-label="Sitemap" style={{marginRight: '1rem'}}>
+            <a aria-label="Sitemap" className="site-map-link">
               Sitemap
             </a>
           </Link>
@@ -60,6 +60,10 @@ const ContentWrapper = styled.div`
       text-align: left;
   `,
   )}
+
+  .site-map-link {
+    margin-right: 1rem;
+  }
 `;
 
 const LegalLabel = styled.div`

@@ -74,12 +74,7 @@ export default function SmallScreenContent() {
             <SectionLabel>Contact me</SectionLabel>
             <div>
               <Link href={`mailto:${EMAIL_ADDRESS}`}>
-                <a
-                  target="_blank"
-                  style={{cursor: 'pointer'}}
-                  data-tip="Email me"
-                  aria-label="Email Me"
-                >
+                <a target="_blank" data-tip="Email me" aria-label="Email Me">
                   <CustomIcon
                     color="#ea4335"
                     icon={FaEnvelopeSquare}
@@ -91,7 +86,6 @@ export default function SmallScreenContent() {
               <Link href={`https://m.me/codegino`}>
                 <a
                   target="_blank"
-                  style={{cursor: 'pointer'}}
                   data-tip="Send me a facebook message"
                   aria-label="Facebook Messenger"
                 >

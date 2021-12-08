@@ -47,7 +47,7 @@ const SubscribeForm = () => {
               type="text"
               placeholder="First Name"
               name="first_name"
-              style={{marginBottom: 'var(--spacing-small)'}}
+              className="first-name"
               required
             />
             <Input
@@ -55,12 +55,9 @@ const SubscribeForm = () => {
               placeholder="Email"
               name="email"
               required
-              style={{marginBottom: 'var(--spacing-medium)'}}
+              className="email"
             />
-            <div
-              style={{position: 'absolute', left: '-5000px'}}
-              aria-hidden="true"
-            >
+            <div aria-hidden="true" className="sendfox-recaptcha">
               <input
                 type="text"
                 name="a_password"
@@ -109,6 +106,19 @@ const FormContent = styled.div`
 
   > button {
     font-size: 1.25em;
+  }
+
+  .first-name {
+    margin-bottom: var(--spacing-small);
+  }
+
+  .email {
+    margin-bottom: var(--spacing-medium);
+  }
+
+  .sendfox-recaptcha {
+    position: absolute;
+    left: -5000px;
   }
 `;
 

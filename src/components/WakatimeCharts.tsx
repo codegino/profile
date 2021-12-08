@@ -6,7 +6,7 @@ import {Zoom} from 'react-awesome-reveal';
 export default function WakatimeCharts() {
   return (
     <Container>
-      <h2 style={{margin: 0, textAlign: 'center'}}>
+      <h2>
         My&nbsp;
         <Link href="https://wakatime.com/@codegino">
           <a
@@ -42,6 +42,11 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   padding: var(--spacing-small) 0;
+
+  > h2 {
+    margin: 0;
+    text-align: center;
+  }
 
   a {
     color: var(--color-primary-dark);

@@ -37,7 +37,7 @@ export default function WideScreenContentImpl() {
           ))}
         </ul>
       </nav>
-      <div style={{display: 'flex'}}>
+      <div className="actions-wrapper">
         <SocialMedia />
         <div className="dark-mode-toggle">
           <DarkModeToggle onChange={toggle} checked={isDarkMode} size={70} />
@@ -53,6 +53,10 @@ const WideScreenContainer = styled.div`
   justify-content: space-between;
   width: 100%;
   display: none;
+
+  > .actions-wrapper {
+    display: flex;
+  }
 
   ${mediaQuery(700, 'display: flex;')}
 

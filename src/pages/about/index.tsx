@@ -50,33 +50,42 @@ export default function AboutMe({
         })}
       </AboutMeSection>
 
-      <h2 style={{textAlign: 'center'}}>This website is powered by</h2>
+      <h2 className="tech-stack-label">
+        This website is powered by
+        <style jsx>{`
+          .tech-stack-label {
+            text-align: center;
+          }
+        `}</style>
+      </h2>
       <TechStackCarousel techStacks={techStacks} />
 
-      <AdditionalInfo
-        style={{marginTop: '1rem', marginBottom: 'var(--margin-very-small'}}
-      >
-        This awesome carousel is easily made using&nbsp;
-        <Link href="https://github.com/leandrowd/react-responsive-carousel">
-          <a
-            target="_blank"
-            aria-label="React Responsive Carousel"
-            rel="noopener"
-          >
-            React Responsive Carousel
-          </a>
-        </Link>
-        .
-      </AdditionalInfo>
-      <AdditionalInfo style={{marginBottom: ' var(--spacing-medium)'}}>
-        Here is the link to my&nbsp;
-        <Link href="https://github.com/codegino/profile">
-          <a target="_blank" aria-label="Github Repo" rel="noopener">
-            Github Repo
-          </a>
-        </Link>
-        .
-      </AdditionalInfo>
+      <section className="mt-4 mb-2">
+        <AdditionalInfo>
+          This awesome carousel is easily made using&nbsp;
+          <Link href="https://github.com/leandrowd/react-responsive-carousel">
+            <a
+              target="_blank"
+              aria-label="React Responsive Carousel"
+              rel="noopener"
+            >
+              React Responsive Carousel
+            </a>
+          </Link>
+          .
+        </AdditionalInfo>
+      </section>
+      <section className="mb-8">
+        <AdditionalInfo>
+          Here is the link to my&nbsp;
+          <Link href="https://github.com/codegino/profile">
+            <a target="_blank" aria-label="Github Repo" rel="noopener">
+              Github Repo
+            </a>
+          </Link>
+          .
+        </AdditionalInfo>
+      </section>
     </>
   );
 }

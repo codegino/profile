@@ -19,21 +19,28 @@ const BlogHeader: FunctionComponent<Props> = ({blog, img, svg}) => {
         </>
       )}
       {img && svg && !blog.hideBanner ? (
-        <BlurringImage
-          alt="Hero photo"
-          img={img}
-          svg={svg}
-          layout="responsive"
-          height={700}
-          width={1200}
-          objectFit="cover"
-          objectPosition="center"
-          style={{borderRadius: '0.5rem', marginTop: 'var(--spacing-medium)'}}
-        />
+        <div className="cover-image">
+          <BlurringImage
+            alt="Hero photo"
+            img={img}
+            svg={svg}
+            layout="responsive"
+            height={700}
+            width={1200}
+            objectFit="cover"
+            objectPosition="center"
+          />
+          <style jsx>{`
+            .cover-image {
+              border-radius: 0.5rem;
+              margin-top: var(--spacing-medium);
+            }
+          `}</style>
+        </div>
       ) : null}
       {blog.bannerDescription ? (
-        <aside style={{marginTop: 'var(--spacing-very-small)'}}>
-          <i style={{fontSize: '0.85em'}}>{blog.bannerDescription}</i>
+        <aside>
+          <i>{blog.bannerDescription}</i>
         </aside>
       ) : null}
     </Article>
@@ -44,6 +51,14 @@ const Article = styled.article`
   margin-bottom: var(--spacing-medium);
 
   text-align: center;
+
+  aside {
+    margin-top: var(--spacing-very-small);
+  }
+
+  i {
+    font-size: 0.85em;
+  }
 `;
 
 export default BlogHeader;
