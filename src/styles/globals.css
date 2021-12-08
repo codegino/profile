@@ -14,6 +14,20 @@
   --color-constant-light: hsl(0, 0%, 100%);
 }
 
+:root {
+  --color-primary-light: hsl(210, 100%, 98%);
+  --color-primary-100: hsl(210, 100%, 95%);
+  --color-primary-200: hsl(210, 100%, 85%);
+  --color-primary-300: hsl(210, 100%, 80%);
+  --color-primary-400: hsl(210, 100%, 75%);
+  --color-primary-500: hsl(210, 100%, 60%);
+  --color-primary-600: hsl(210, 100%, 50%);
+  --color-primary-700: hsl(210, 100%, 40%);
+  --color-primary-800: hsl(210, 100%, 30%);
+  --color-primary-900: hsl(210, 100%, 20%);
+  --color-primary-dark: hsl(210, 100%, 2%);
+}
+
 [data-theme='light'] {
   --color-primary: hsl(140, 100%, 30%);
   --color-primary-contrast: hsl(0, 0%, 100%);
@@ -60,7 +74,7 @@
 }
 
 html {
-  font-size: 10px;
+  font-size: 16px;
 }
 
 html,
@@ -82,6 +96,7 @@ a {
 
 p {
   margin: 0;
+  color: ;
 }
 
 * {
@@ -118,14 +133,6 @@ h6 {
   padding-left: var(--spacing-small);
 }
 
-.mt-4 {
-  margin-top: var(--spacing-small);
-}
-
-.mb-2 {
-  margin-bottom: var(--spacing-very-small);
-}
-
-.mb-8 {
-  margin-bottom: var(--spacing-medium);
+svg {
+  @apply inline-block;
 }

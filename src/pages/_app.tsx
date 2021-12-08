@@ -2,6 +2,7 @@ import {useEffect} from 'react';
 import type {AppProps} from 'next/app';
 import {useRouter} from 'next/router';
 import useDarkMode from 'use-dark-mode';
+import '../../styles/tailwind.css';
 import Footer from '../components/Footer';
 import Header from '../components/header/Header';
 import * as ga from '../lib/ga';

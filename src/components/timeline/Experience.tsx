@@ -35,6 +35,7 @@ const Container = styled.section`
   z-index: 1;
   margin-bottom: 2rem;
   text-align: center;
+  max-width: 70rem;
 
   .content {
     padding: 0.25rem 1rem;

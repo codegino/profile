@@ -8,6 +8,9 @@ module.exports = {
   darkMode: 'media', // or 'media' or 'class'
   theme: {
     extend: {
+      height: {
+        '95vh': '95vh',
+      },
       colors: {
         // color scheme is defined in /app.css
         // To enable text-primary-xxx, bg-primary-xxx, or border-primary-xxx
@@ -24,6 +27,8 @@ module.exports = {
           900: 'var(--color-primary-900)',
           dark: 'var(--color-primary-dark)',
         },
+        light: 'var(--color-light-light)',
+        dark: 'var(--color-dark-dark)',
       },
     },
   },
