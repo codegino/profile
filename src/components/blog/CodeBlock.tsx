@@ -77,7 +77,7 @@ const CodeBlock: FunctionComponent<CodeBlockProps> = ({
           <Link href={`https://codepen.io/codegino/pen/${codePenID}`}>
             <a
               target="_blank"
-              rel="noopener"
+              rel="noopener nofollow"
               className="underline-on-hover underline-dark"
             >
               Link to Codepen
