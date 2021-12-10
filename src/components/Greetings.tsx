@@ -18,7 +18,7 @@ export default function Greetings() {
 
   return (
     <div
-      className="flex justify-center items-center h-screen w-full pt-20 relative overflow-hidden z-10"
+      className="flex justify-center items-center h-screen w-full pt-20 relative overflow-hidden z-1"
       id="greetings"
     >
       <Zoom onVisibilityChange={e => setIsTyping(e)} triggerOnce>

@@ -1,4 +1,3 @@
-import styled from '@emotion/styled';
 import {FaFilePdf} from '@react-icons/all-files/fa/FaFilePdf';
 import {FaFileWord} from '@react-icons/all-files/fa/FaFileWord';
 import type {InferGetStaticPropsType} from 'next';
@@ -42,7 +41,7 @@ export default function Resume({
         {commonMetaTags('Resume Page', '/resume')}
       </Head>
 
-      <ResumeDownloadWrapper>
+      <div className="absolute flex right-5 top-24">
         <Link href={resumePdfUrl}>
           <a
             target="_blank"
@@ -73,7 +72,7 @@ export default function Resume({
             />
           </a>
         </Link>
-      </ResumeDownloadWrapper>
+      </div>
       <main>
         <ResumeSummary img={profileImage} svg={profileSvg} />
         <hr />
@@ -109,10 +108,3 @@ export const getStaticProps = async () => {
     },
   };
 };
-
-const ResumeDownloadWrapper = styled.div`
-  position: absolute;
-  display: flex;
-  right: 1rem;
-  top: 6rem;
-`;

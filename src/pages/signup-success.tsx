@@ -1,4 +1,3 @@
-import styled from '@emotion/styled';
 import Head from 'next/head';
 
 export default function Blog() {
@@ -9,8 +8,9 @@ export default function Blog() {
           Thank you for signing up | Code Gino | Carlo Gino Catapang
         </title>
       </Head>
-      <Container>
-        <Content>
+
+      <main className="flex items-center flex-col py-12 mb-64">
+        <article className="text-center max-w-3xl">
           <h1>Success🥳</h1>
           <h1>Welcome aboard to my newsletter! 📬</h1>
           <h2>
@@ -22,21 +22,8 @@ export default function Blog() {
           <br />
           <p>Thank you for signing up.🙏</p>
           <p>We&lsquo;ll be in touch soon!👋</p>
-        </Content>
-      </Container>
+        </article>
+      </main>
     </>
   );
 }
-
-const Container = styled.main`
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  min-height: 90vh;
-  padding: var(--spacing-medium) 0;
-`;
-
-const Content = styled.article`
-  text-align: center;
-  max-width: 50rem;
-`;

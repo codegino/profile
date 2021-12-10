@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from '@emotion/styled';
 import {FaDev} from '@react-icons/all-files/fa/FaDev';
 import {FaFacebookSquare} from '@react-icons/all-files/fa/FaFacebookSquare';
 import {FaGithubSquare} from '@react-icons/all-files/fa/FaGithubSquare';
@@ -10,11 +9,11 @@ import CustomIcon, {SocialMediaProps} from '../icon/CustomIcon';
 
 export default function SocialMedia() {
   return (
-    <Container>
+    <div>
       <nav>
-        <ul>
+        <ul className="flex">
           {socialMedia.map(sm => (
-            <li key={sm.name}>
+            <li key={sm.name} className="mr-1">
               <Link href={sm.url}>
                 <a
                   target="_blank"
@@ -29,7 +28,7 @@ export default function SocialMedia() {
           ))}
         </ul>
       </nav>
-    </Container>
+    </div>
   );
 }
 
@@ -70,20 +69,3 @@ const socialMedia: SocialMediaProps[] = [
     hoverColor: '#1da1f2',
   },
 ];
-
-const Container = styled.div`
-  > nav {
-    > ul {
-      display: flex;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-
-      > li {
-        :not(:last-child) {
-          margin-right: var(--spacing-very-small);
-        }
-      }
-    }
-  }
-`;

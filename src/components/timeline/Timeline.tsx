@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from '@emotion/styled';
 import {FaBriefcase} from '@react-icons/all-files/fa/FaBriefcase';
 import {FaBuilding} from '@react-icons/all-files/fa/FaBuilding';
 import {FaGraduationCap} from '@react-icons/all-files/fa/FaGraduationCap';
@@ -8,7 +7,6 @@ import dompurify from 'isomorphic-dompurify';
 import Link from 'next/link';
 import {Zoom, Slide} from 'react-awesome-reveal';
 import type {WorkExperience} from '../../models/resume';
-import {mediaQuery} from '../../utils/media-query';
 import {Experience} from './Experience';
 
 export default function Timeline({
@@ -19,14 +17,14 @@ export default function Timeline({
   educationExperiences: WorkExperience[];
 }) {
   return (
-    <Container>
+    <article className="flex items-center flex-col overflow-hidden min-h-min pt-12">
       <div>
         <Slide triggerOnce={true} direction="down">
           <Experience>
-            <CategoryTitle>
+            <h2 className="m-0 text-dark">
               <FaBriefcase />
               &nbsp; Work Experiences
-            </CategoryTitle>
+            </h2>
           </Experience>
         </Slide>
         {workExperiences.map((exp, i) => {
@@ -38,7 +36,8 @@ export default function Timeline({
             >
               <Experience key={exp.id} hasConnector>
                 <Content exp={exp}>
-                  <ContentDescription
+                  <div
+                    className="mt-4 text-left text-dark"
                     dangerouslySetInnerHTML={{
                       __html: dompurify.sanitize(exp.content),
                     }}
@@ -48,13 +47,12 @@ export default function Timeline({
             </Slide>
           );
         })}
-
         <Slide triggerOnce={true} direction="down">
           <Experience hasConnector>
-            <CategoryTitle>
+            <h2 className="m-0 text-dark">
               <FaScroll />
               &nbsp;Education
-            </CategoryTitle>
+            </h2>
           </Experience>
         </Slide>
         {educationExperiences.map((exp, i) => {
@@ -73,7 +71,7 @@ export default function Timeline({
           );
         })}
       </div>
-    </Container>
+    </article>
   );
 }
 
@@ -81,9 +79,9 @@ const Content: React.FC<{exp: WorkExperience}> = ({exp, children = null}) => {
   return (
     <Zoom triggerOnce={true} cascade={true} duration={800}>
       <div>
-        <DateWrapper>
+        <p className="bg-light text-dark justify-self-center py-1">
           {exp.end_date === exp.start_date ? 'Present' : exp.end_date}
-        </DateWrapper>
+        </p>
         <div>
           {exp.category === 'work' ? <FaBuilding /> : <FaGraduationCap />}
           &nbsp;
@@ -99,52 +97,14 @@ const Content: React.FC<{exp: WorkExperience}> = ({exp, children = null}) => {
             </a>
           </Link>
         </div>
-        <ContentTitle>
-          <p className="title">{exp.title}</p> <p>&nbsp;({exp.role})</p>
-        </ContentTitle>
+        <div className="flex justify-center flex-col text-dark md:flex-row">
+          <p className="font-bold">{exp.title}</p> <p>&nbsp;({exp.role})</p>
+        </div>
       </div>
       <div>{children}</div>
-      <DateWrapper>{exp.start_date}</DateWrapper>
+      <p className="bg-light text-dark justify-self-center py-1">
+        {exp.start_date}
+      </p>
     </Zoom>
   );
 };
-
-const CategoryTitle = styled.h2`
-  margin: 0;
-  color: var(--color-dark-dark);
-`;
-
-const DateWrapper = styled.p`
-  background-color: var(--color-light);
-  color: var(--color--dark);
-  justify-self: center;
-  padding: var(--spacing-very-small) 0;
-`;
-
-const ContentTitle = styled.div`
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  color: var(--color-dark-dark);
-
-  > .title {
-    font-weight: bolder;
-  }
-  ${mediaQuery(900, `flex-direction: row;`)}
-`;
-
-const ContentDescription = styled.div`
-  margin-top: 1rem;
-  text-align: left;
-  color: var(--color-dark-dark);
-`;
-
-const Container = styled.article`
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  overflow: hidden;
-  min-height: 15rem;
-
-  padding-top: var(--spacing-medium);
-`;

@@ -18,7 +18,11 @@ module.exports = {
         '8vh': '8vh',
         '25p': '25%',
       },
+      lineHeight: {
+        code: '1.188',
+      },
       zIndex: {
+        1: '1',
         negative: '-1',
       },
       height: {
@@ -30,6 +34,14 @@ module.exports = {
         'terminal-sm': '90%',
         'terminal-md': '70%',
         'terminal-lg': '70rem',
+        'half-screen': '50vw',
+        'line-number': '3.5rem',
+      },
+      maxWidth: {
+        'line-number': '3.5rem',
+      },
+      minWidth: {
+        'line-number': '3.5rem',
       },
       colors: {
         // color scheme is defined in /app.css
@@ -49,6 +61,7 @@ module.exports = {
         },
         light: 'var(--color-light)',
         dark: 'var(--color-dark)',
+        code: '#1e1e1e',
       },
     },
   },

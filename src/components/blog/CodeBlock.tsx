@@ -1,5 +1,4 @@
 import React, {FunctionComponent} from 'react';
-import styled from '@emotion/styled';
 import Link from 'next/link';
 import Highlight, {defaultProps, Language} from 'prism-react-renderer';
 import vsDark from 'prism-react-renderer/themes/vsDark';
@@ -31,14 +30,19 @@ const CodeBlock: FunctionComponent<CodeBlockProps> = ({
     : language;
 
   return (
-    <Container>
-      <LabelContainer>
-        <FileNameWrapper>
+    <div className="relative">
+      <aside
+        className="
+        text-right w-full pl-2 pr-1 top-1 h-9 relative flex justify-between text-primary-dark
+        bg-light rounded-tr-lg rounded-tl-lg
+        "
+      >
+        <span className="inline-block text-ellipsis whitespace-nowrap overflow-hidden">
           {fileName ? fileName : ''}
           {languageLabel}
-        </FileNameWrapper>
+        </span>
         <ClipboardCopyButton value={children} />
-      </LabelContainer>
+      </aside>
       <Highlight
         {...defaultProps}
         theme={vsDark}
@@ -47,28 +51,46 @@ const CodeBlock: FunctionComponent<CodeBlockProps> = ({
       >
         {({className, style, tokens, getLineProps, getTokenProps}) => (
           <>
-            <LineNumberContainer>
+            <div className="absolute z-10 flex flex-col left-0 top-14 bottom-0">
               {tokens.map((_, i) => {
-                return !noLine ? <LineNo key={i}>{i + 1}</LineNo> : null;
+                return !noLine ? (
+                  <span
+                    className="bg-code pl-2 pr-4 text-white text-right leading-code
+                    max-w-line-number mi-w-line-number select-none
+                    "
+                    key={i}
+                  >
+                    {i + 1}
+                  </span>
+                ) : null;
               })}
-            </LineNumberContainer>
-            <Pre className={className} style={style}>
+            </div>
+            <pre
+              className={
+                'p-3 overflow-auto flex relative flex-col leading-code my-1 text-2xl ' +
+                ' rounded-bl-md rounded-br-md' +
+                className
+              }
+              style={style}
+            >
               {tokens.map((line, i) => (
-                <Line
+                <div
                   key={i}
                   {...getLineProps({line, key: i})}
                   style={{
+                    display: 'table-row',
+                    position: 'relative',
                     marginLeft: noLine ? '0' : '2.5rem',
                   }}
                 >
-                  <LineContent>
+                  <span className="table-cell">
                     {line.map((token, key) => (
                       <span key={key} {...getTokenProps({token, key})} />
                     ))}
-                  </LineContent>
-                </Line>
+                  </span>
+                </div>
               ))}
-            </Pre>
+            </pre>
           </>
         )}
       </Highlight>
@@ -85,82 +107,8 @@ const CodeBlock: FunctionComponent<CodeBlockProps> = ({
           </Link>
         </div>
       )}
-    </Container>
+    </div>
   );
 };
-
-const Container = styled.div`
-  position: relative;
-`;
-
-const FileNameWrapper = styled.span`
-  display: inline-block;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-`;
-
-const Pre = styled.pre`
-  padding: 10px;
-  overflow: auto;
-  display: flex;
-  position: relative;
-  flex-direction: column;
-  border-radius: 0px 0px 5px 5px;
-  font-size: 1.5rem;
-  margin: var(--spacing-very-small) 0;
-  line-height: 1.188;
-
-  span {
-    font-family: Menlo, Monaco, Consolas, Courier New, monospace;
-  }
-`;
-
-const LabelContainer = styled.aside`
-  text-align: left;
-  width: 100%;
-  padding-left: 7px;
-  padding-right: 5px;
-  top: 3px;
-  height: 20px;
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  color: var(--color-primary-dark);
-  background-color: var(--color-light);
-  border-radius: 5px 5px 0px 0px;
-`;
-
-const Line = styled.div`
-  display: table-row;
-  position: relative;
-`;
-
-const LineNumberContainer = styled.div`
-  position: absolute;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  left: 0;
-  top: 3.259rem;
-  bottom: 0;
-`;
-
-const LineNo = styled.span`
-  background-color: #1e1e1e;
-  padding-left: 2px;
-  color: #e1e1e1;
-  text-align: right;
-  font-family: monospace;
-  padding-right: 1em;
-  user-select: none;
-  min-width: 3.5rem;
-  max-width: 3.5rem;
-  line-height: 1.188;
-`;
-
-const LineContent = styled.span`
-  display: table-cell;
-`;
 
 export default CodeBlock;

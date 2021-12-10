@@ -1,0 +1,31 @@
+.top-left-shape {
+  top: 0;
+  left: 0;
+  transform: skew(135deg) translateX(-60%);
+  background-color: var(--color-primary-dark);
+  border-right: 1rem solid var(--color-primary-light);
+}
+
+.top-right-shape {
+  top: 0;
+  right: 0;
+  transform: skew(45deg) translateX(50%);
+  background-color: var(--color-primary-dark);
+  border-left: 1rem solid var(--color-primary-light);
+}
+
+.bottom-left-shape {
+  bottom: 0;
+  left: 0;
+  transform: skew(225deg) translateX(-60%);
+  background-color: var(--color-primary-light);
+  border-right: 1rem solid var(--color-primary-dark);
+}
+
+.bottom-right-shape {
+  bottom: 0;
+  right: 0;
+  transform: skew(315deg) translateX(50%);
+  background-color: var(--color-primary-light);
+  border-left: 1rem solid var(--color-primary-dark);
+}

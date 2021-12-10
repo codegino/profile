@@ -1,4 +1,3 @@
-import styled from '@emotion/styled';
 import type {InferGetStaticPropsType} from 'next';
 import Head from 'next/head';
 import SubscribeForm from '../../components/SubscribeForm';
@@ -16,7 +15,8 @@ export default function Blog({
         <title>My Blogs Listing Page | Code Gino | Carlo Gino Catapang</title>
         {commonMetaTags('Blogs Page', '/blog')}
       </Head>
-      <Container>
+
+      <main className="flex items-center flex-col min-h-screen py-12">
         <h1>My Blogs</h1>
         {blogs.map(blog => {
           return <BlogCard key={blog.slug} blog={blog} />;
@@ -25,18 +25,10 @@ export default function Blog({
         <hr />
         <br />
         <SubscribeForm />
-      </Container>
+      </main>
     </>
   );
 }
-
-const Container = styled.main`
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  min-height: 80vh;
-  padding: var(--spacing-medium) 0;
-`;
 
 export const getStaticProps = async () => {
   const blogs = (await getBlogsMetadata())

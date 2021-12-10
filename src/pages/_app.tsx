@@ -7,6 +7,7 @@ import Footer from '../components/Footer';
 import Header from '../components/header/Header';
 import * as ga from '../lib/ga';
 import '../styles/animations.css';
+import '../styles/custom.css';
 import '../styles/globals.css';
 
 function MyApp({Component, pageProps}: AppProps) {
