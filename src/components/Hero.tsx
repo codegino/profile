@@ -1,14 +1,10 @@
 import React from 'react';
-import styled from '@emotion/styled';
 import {IGetPlaiceholderReturn} from 'plaiceholder';
 import {Zoom, Fade} from 'react-awesome-reveal';
-import {mediaQuery} from '../utils/media-query';
 import {useScrollToView} from '../utils/scroll-to-view-hook';
 import {BlurringImage} from './BlurringImage';
 import {GuideArrow} from './GuideArrow';
-import {BottomLeftShape} from './extras/BottomLeftShape';
 import {BottomRightShape} from './extras/BottomRightShape';
-import {TopLeftShape} from './extras/TopLeftShape';
 
 export default function Hero({
   img,
@@ -17,7 +13,7 @@ export default function Hero({
   const {scrollToContent} = useScrollToView('#greetings');
 
   return (
-    <HeroContainer>
+    <div className="overflow-hidden relative h-95vh w-full flex justify-center items-center">
       <BlurringImage
         alt="Hero photo"
         img={img}
@@ -27,60 +23,24 @@ export default function Hero({
         objectPosition="center"
         priority={true}
       />
-      <MessageContainer>
-        <Message cascade duration={1500} triggerOnce={true} delay={200}>
-          <h2>Hello World</h2>
-          <p>Welcome to my page!</p>
-        </Message>
-      </MessageContainer>
-      <GuideArrowContainer triggerOnce delay={1900}>
+      <div className="absolute flex flex-col items-center">
+        <Fade cascade duration={1500} triggerOnce={true} delay={200}>
+          <h2 className="text-white text-8xl xl:text-9xl text-center">
+            Hello World
+          </h2>
+          <p className="text-5xl text-white">Welcome to my page!</p>
+          <style jsx>{`
+            h2,
+            p {
+              text-shadow: 5px 5px 2px rgba(0, 0, 0, 0.5);
+            }
+          `}</style>
+        </Fade>
+      </div>
+      <Zoom className="absolute z-10 bottom-8vh" triggerOnce delay={1900}>
         <GuideArrow onClick={scrollToContent} />
-      </GuideArrowContainer>
+      </Zoom>
       <BottomRightShape />
-    </HeroContainer>
+    </div>
   );
 }
-
-const GuideArrowContainer = styled(Zoom)`
-  position: absolute;
-  z-index: 1;
-  bottom: 8vh;
-`;
-
-const MessageContainer = styled.div`
-  display: block;
-  position: absolute;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: auto;
-  top: -2rem;
-
-  ${mediaQuery(1200, 'margin-left: 2%; top: -2.5%;')}
-`;
-
-const Message = styled(Fade)`
-  h2,
-  p {
-    color: #ffffff;
-    text-shadow: 5px 5px 2px rgba(0, 0, 0, 0.5);
-    font-size: 4em;
-    text-align: center;
-  }
-
-  p {
-    font-size: 2em;
-  }
-`;
-
-const HeroContainer = styled.div`
-  overflow: hidden;
-  position: relative;
-  height: 95vh;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;

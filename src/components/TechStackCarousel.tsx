@@ -1,10 +1,8 @@
 import React from 'react';
-import styled from '@emotion/styled';
 import Image from 'next/image';
 import {useMediaQuery} from 'react-responsive';
 import {Carousel} from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import {mediaQuery} from '../utils/media-query';
 
 export type TechStack = {
   name: string;
@@ -22,7 +20,7 @@ export default function TechStackCarousel({techStacks}: Props) {
   });
 
   return (
-    <CarouselContainer>
+    <div className="text-center flex justify-center">
       <div>
         <Carousel
           infiniteLoop
@@ -35,7 +33,7 @@ export default function TechStackCarousel({techStacks}: Props) {
         >
           {techStacks.map(techstack => {
             return (
-              <CarouselItem key={techstack.name}>
+              <div className="bg-light py-10" key={techstack.name}>
                 {techstack.url ? (
                   <Image
                     unoptimized
@@ -47,30 +45,11 @@ export default function TechStackCarousel({techStacks}: Props) {
                     alt={`${techstack.name} logo`}
                   />
                 ) : null}
-              </CarouselItem>
+              </div>
             );
           })}
         </Carousel>
       </div>
-    </CarouselContainer>
+    </div>
   );
 }
-
-const CarouselContainer = styled.div`
-  height: 35rem;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-
-  ${mediaQuery(900, 'height: 48rem;')}
-
-  > div {
-    max-width: 60rem;
-  }
-`;
-
-const CarouselItem = styled.div`
-  height: 32rem;
-  background-color: var(--color-light-light);
-  ${mediaQuery(900, 'height: 45rem;')}
-`;

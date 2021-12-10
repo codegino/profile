@@ -8,8 +8,28 @@ module.exports = {
   darkMode: 'media', // or 'media' or 'class'
   theme: {
     extend: {
+      fontFamily: {
+        'block-quote': ['Georgia', 'Times New Roman'],
+      },
+      fontSize: {
+        inherit: 'inherit',
+      },
+      spacing: {
+        '8vh': '8vh',
+        '25p': '25%',
+      },
+      zIndex: {
+        negative: '-1',
+      },
       height: {
         '95vh': '95vh',
+        'terminal-xs': '46rem',
+        'terminal-sm': '36rem',
+      },
+      width: {
+        'terminal-sm': '90%',
+        'terminal-md': '70%',
+        'terminal-lg': '70rem',
       },
       colors: {
         // color scheme is defined in /app.css

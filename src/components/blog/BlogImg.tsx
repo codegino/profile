@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from '@emotion/styled';
 import Image, {ImageProps} from 'next/image';
 
 const BlogImg = ({
@@ -9,7 +8,7 @@ const BlogImg = ({
   layout = 'responsive',
   ...props
 }: ImageProps) => (
-  <Container>
+  <div className="w-full h-full px-8">
     <Image
       {...props}
       layout={layout}
@@ -21,13 +20,7 @@ const BlogImg = ({
       objectFit={objectFit}
       blurDataURL="/assets/blog-placeholder.jpeg"
     />
-  </Container>
+  </div>
 );
-
-const Container = styled.div`
-  width: 100%;
-  height: 100%;
-  padding: 0 var(--spacing-medium);
-`;
 
 export default BlogImg;

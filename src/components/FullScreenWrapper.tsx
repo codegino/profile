@@ -1,4 +1,3 @@
-import styled from '@emotion/styled';
 import {BottomLeftShape} from './extras/BottomLeftShape';
 import {BottomRightShape} from './extras/BottomRightShape';
 import {TopLeftShape} from './extras/TopLeftShape';

@@ -1,5 +1,4 @@
 import React, {FunctionComponent} from 'react';
-import styled from '@emotion/styled';
 import {IGetPlaiceholderReturn} from 'plaiceholder';
 import type {IBlogMetadata} from '../../models/blog';
 import {BlurringImage} from '../BlurringImage';
@@ -10,7 +9,7 @@ type Props = {
 
 const BlogHeader: FunctionComponent<Props> = ({blog, img, svg}) => {
   return (
-    <Article>
+    <article className="mb-8 text-center">
       <h1>{blog.title}</h1>
       {blog.description && (
         <>
@@ -39,26 +38,12 @@ const BlogHeader: FunctionComponent<Props> = ({blog, img, svg}) => {
         </div>
       ) : null}
       {blog.bannerDescription ? (
-        <aside>
-          <i>{blog.bannerDescription}</i>
+        <aside className="mt-1">
+          <i className="text-2xl">{blog.bannerDescription}</i>
         </aside>
       ) : null}
-    </Article>
+    </article>
   );
 };
-
-const Article = styled.article`
-  margin-bottom: var(--spacing-medium);
-
-  text-align: center;
-
-  aside {
-    margin-top: var(--spacing-very-small);
-  }
-
-  i {
-    font-size: 0.85em;
-  }
-`;
 
 export default BlogHeader;

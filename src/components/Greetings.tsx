@@ -1,13 +1,15 @@
 import React, {useState} from 'react';
-import styled from '@emotion/styled';
 import {BsChevronRight} from '@react-icons/all-files/bs/BsChevronRight';
 import {BsTerminalFill} from '@react-icons/all-files/bs/BsTerminalFill';
 import {Zoom} from 'react-awesome-reveal';
 import Typist from 'react-typist';
 import 'react-typist/dist/Typist.css';
-import {mediaQuery} from '../utils/media-query';
 import {useScrollToView} from '../utils/scroll-to-view-hook';
 import {GuideArrow} from './GuideArrow';
+
+const StyledBsChevronRight = () => {
+  return <BsChevronRight className="text-xl md:text-2xl" />;
+};
 
 export default function Greetings() {
   const [isTyping, setIsTyping] = useState(false);
@@ -15,21 +17,32 @@ export default function Greetings() {
   const [isGuideVisible, setIsGuideVisible] = useState(false);
 
   return (
-    <Container id="greetings">
+    <div
+      className="flex justify-center items-center h-screen w-full pt-20 relative overflow-hidden z-10"
+      id="greetings"
+    >
       <Zoom onVisibilityChange={e => setIsTyping(e)} triggerOnce>
-        <InnerContainer>
-          <Terminal>
-            <TerminalHeader>
-              <div className="action action__close" />
-              <div className="action action__minimize" />
-              <div className="action action__maximize" />
-              <div className="terminal-title">Greetings.sh</div>
+        <div className="flex justify-center items-center h-screen w-screen pt-20 relative overflow-hidden">
+          <div
+            className="
+            w-full m-2 sm:m-0 sm:w-terminal-sm md:w-terminal-md lg:w-terminal-lg
+            rounded-lg overflow-hidden h-terminal-xs sm:h-terminal-sm
+            text-xl leading-8 sm:text-4xl
+          "
+          >
+            <div className="bg-light relative h-10 flex items-center pl-2">
+              <div className="h-5 w-5 rounded-full mr-2 bg-red-500" />
+              <div className="h-5 w-5 rounded-full mr-2 bg-yellow-300" />
+              <div className="h-5 w-5 rounded-full mr-3 bg-green-600" />
+              <div className="absolute w-full justify-self-center text-center font-mono text-xl sm:text-2xl">
+                Greetings.sh
+              </div>
               <BsTerminalFill />
-            </TerminalHeader>
-            <TerminalContent>
+            </div>
+            <div className="h-full py-2 px-1 font-mono bg-dark text-light">
               {isTyping ? (
                 <Typist
-                  avgTypingDelay={35}
+                  avgTypingDelay={0}
                   onTypingDone={() => setIsGuideVisible(true)}
                 >
                   <StyledBsChevronRight />
@@ -49,7 +62,9 @@ export default function Greetings() {
                   <span> Software developer</span>
                   <Typist.Delay ms={1200} />
                   <Typist.Backspace count={18} />{' '}
-                  <span className="text-highlight">SOFTWARE ENGINEER</span>
+                  <span className="font-bold text-primary-light">
+                    SOFTWARE ENGINEER
+                  </span>
                   <Typist.Delay ms={200} />
                   <br />
                   <StyledBsChevronRight />
@@ -92,180 +107,16 @@ export default function Greetings() {
                   <span>Scroll down to know more about me...</span>
                 </Typist>
               ) : null}
-            </TerminalContent>
-          </Terminal>
-        </InnerContainer>
+            </div>
+          </div>
+        </div>
       </Zoom>
-      <Background />
+      <div className="top-0 left-0 z-negative h-screen w-screen absolute bg-gradient-to-r from-light to-dark" />
       {isGuideVisible ? (
-        <GuideArrowContainer triggerOnce>
+        <Zoom className="absolute bottom-8vh" triggerOnce>
           <GuideArrow onClick={scrollToContent} />
-        </GuideArrowContainer>
+        </Zoom>
       ) : null}
-    </Container>
+    </div>
   );
 }
-const GuideArrowContainer = styled(Zoom)`
-  position: absolute;
-  bottom: 8vh;
-`;
-
-const StyledBsChevronRight = styled(BsChevronRight)`
-  font-size: 0.8rem;
-
-  ${mediaQuery(600, `font-size: 1.1rem;`)}
-  ${mediaQuery(900, `font-size: 1.2rem;`)}
-  ${mediaQuery(900, `font-size: 1.3rem;`)}
-`;
-
-const Background = styled.div`
-  top: 0;
-  left: 0;
-  z-index: -1;
-  height: 100vh;
-  width: 100vw;
-  position: absolute;
-  background-image: linear-gradient(
-    to right,
-    var(--color-light),
-    var(--color-light-dark)
-  );
-`;
-const Container = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  width: 100%;
-  padding-top: 5rem;
-  position: relative;
-  overflow: hidden;
-  z-index: 1;
-`;
-
-const InnerContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  width: 100vw;
-  padding-top: 5rem;
-  position: relative;
-  overflow: hidden;
-`;
-
-const TerminalContent = styled.div`
-  height: 100%;
-  padding: var(--spacing-small) var(--spacing-very-small);
-  border: 1px solid var(--color-light);
-  font-family: monospace;
-
-  background-color: var(--color-dark-dark);
-  color: var(--color-light-light);
-
-  .text-highlight {
-    color: var(--color-primary-light);
-    font-weight: bold;
-  }
-
-  span {
-    font-size: 1.2rem;
-
-    ${mediaQuery(600, `font-size: 1.5rem;`)}
-    ${mediaQuery(900, `font-size: 1.7rem;`)}
-    ${mediaQuery(900, `font-size: 1.8rem;`)}
-  }
-
-  .cursor {
-    color: green;
-    width: 10em;
-    font-size: 1.1rem;
-    font-weight: bold;
-  }
-`;
-
-const TerminalHeader = styled.div`
-  background-color: var(--color-light);
-  position: relative;
-  height: 2.5rem;
-  display: flex;
-  align-items: center;
-  padding-left: 0.5rem;
-
-  .terminal-title {
-    position: absolute;
-    width: 100%;
-    justify-self: center;
-    text-align: center;
-    font-family: monospace;
-  }
-
-  .action {
-    height: 12px;
-    width: 12px;
-    border-radius: 50%;
-
-    &__close {
-      background-color: red;
-    }
-
-    &__minimize {
-      background-color: #b9c127;
-    }
-
-    &__maximize {
-      background-color: #0aa10a;
-    }
-
-    &:not(:last-child) {
-      margin-right: 6px;
-    }
-  }
-`;
-
-const Terminal = styled.div`
-  box-sizing: border-box;
-  height: 30rem;
-  min-width: 100%;
-  border-radius: 5px;
-  overflow: hidden;
-  display: block;
-  position: relative;
-  top: -5rem;
-  line-height: 1;
-
-  ${mediaQuery(
-    400,
-    `
-   height: 31rem;
-   min-width: 100%;
-  line-height: 1.2;
-  `,
-  )}
-
-  ${mediaQuery(
-    600,
-    `
-   height: 35rem;
-   min-width: 90%;
-  line-height: 1.3;
-  `,
-  )}
-
-  ${mediaQuery(
-    750,
-    `
-   height: 32rem;
-   min-width: 70%;
-  `,
-  )}
-
-
-  ${mediaQuery(
-    900,
-    `
-   height: 35rem;
-   min-width: 70rem;
-  `,
-  )}
-`;

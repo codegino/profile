@@ -1,5 +1,4 @@
 import {MouseEventHandler} from 'react';
-import styled from '@emotion/styled';
 import {BsChevronDoubleDown} from '@react-icons/all-files/bs/BsChevronDoubleDown';
 
 type Props = {
@@ -8,38 +7,12 @@ type Props = {
 
 export const GuideArrow = ({onClick}: Props) => {
   return (
-    <Container>
-      <BsChevronDoubleDown className="guide-arrow" onClick={onClick} />
-    </Container>
+    <div className="pulsing cursor-pointer bg-primary-light rounded-full py-4 px-7 text-5xl">
+      <BsChevronDoubleDown
+        size={17}
+        className="guide-arrow"
+        onClick={onClick}
+      />
+    </div>
   );
 };
-
-const Container = styled.div`
-  cursor: pointer;
-
-  .guide-arrow {
-    fill: var(--color-dark-dark);
-    background-color: var(--color-primary-light);
-    border-radius: 50%;
-    padding: 6px;
-    font-size: 50px;
-    animation: pulse-black 2s infinite;
-
-    @keyframes pulse-black {
-      0% {
-        transform: scale(0.95);
-        box-shadow: 0 0 0 0 var(--color-light-light);
-      }
-
-      70% {
-        transform: scale(1);
-        box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
-      }
-
-      100% {
-        transform: scale(0.95);
-        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
-      }
-    }
-  }
-`;

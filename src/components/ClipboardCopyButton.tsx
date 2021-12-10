@@ -1,5 +1,4 @@
 import * as React from 'react';
-import styled from '@emotion/styled';
 import {FaCheck as CheckIcon} from '@react-icons/all-files/fa/FaCheck';
 import {FaCopy as CopyIcon} from '@react-icons/all-files/fa/FaCopy';
 
@@ -58,30 +57,20 @@ function ClipboardCopyButton({value}: ClipboardCopyButtonProps) {
   }, [state, value]);
 
   return (
-    <CopyButton onClick={() => setState(State.Copy)}>
-      <LabelText>{state === State.Copied ? 'Copied' : 'Copy'}</LabelText>
+    <button
+      className="border-none flex items-center bg-transparent text-dark"
+      onClick={() => setState(State.Copy)}
+    >
+      <span className="inline-block mr-2 text-xl">
+        {state === State.Copied ? 'Copied' : 'Copy'}
+      </span>
       {state === State.Copied ? (
         <CheckIcon fill="var(--color-primary)" />
       ) : (
         <CopyIcon fill="var(--color-primary)" />
       )}
-    </CopyButton>
+    </button>
   );
 }
-
-const CopyButton = styled.button`
-  border: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  background-color: transparent;
-  color: var(--color-font);
-`;
-
-const LabelText = styled.span`
-  display: inline-block;
-  margin-right: 0.5rem;
-  font-size: 0.9em;
-`;
 
 export {ClipboardCopyButton};

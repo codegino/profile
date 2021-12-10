@@ -1,12 +1,11 @@
 import React from 'react';
-import styled from '@emotion/styled';
 import Link from 'next/link';
 import {Zoom} from 'react-awesome-reveal';
 
 export default function WakatimeCharts() {
   return (
-    <Container>
-      <h2>
+    <div className="max-w-6xlxl overflow-hidden flex flex-col py-2 sm:px-24 md:px-25p">
+      <h2 className="m-0 text-center">
         My&nbsp;
         <Link href="https://wakatime.com/@codegino">
           <a
@@ -14,6 +13,7 @@ export default function WakatimeCharts() {
             aria-label="Wakatime profile"
             rel="noopener nofollow"
             data-tip="Link to my Wakatime profile"
+            className="text-primary-dark text-inherit underline-on-hover underline--dark"
           >
             Wakatime
           </a>
@@ -30,30 +30,6 @@ export default function WakatimeCharts() {
           <embed src="https://wakatime.com/share/@codegino/e7ca5c4c-67a6-47fc-a3c6-e020cb97b66b.svg"></embed>
         </figure>
       </Zoom>
-    </Container>
+    </div>
   );
 }
-
-const Container = styled.div`
-  max-width: 60rem;
-  width: 100%;
-  margin: auto;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  padding: var(--spacing-small) 0;
-
-  > h2 {
-    margin: 0;
-    text-align: center;
-  }
-
-  a {
-    color: var(--color-primary-dark);
-    font-size: 1em;
-
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-`;

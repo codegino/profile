@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from '@emotion/styled';
 import {DiscussionEmbed} from 'disqus-react';
 import Link from 'next/link';
 import {IBlogMetadata} from '../../models/blog';

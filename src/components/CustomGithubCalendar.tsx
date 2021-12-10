@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from '@emotion/styled';
 import Link from 'next/link';
 import {Zoom} from 'react-awesome-reveal';
 import GithubCalendar from 'react-github-calendar';
@@ -12,8 +11,11 @@ export default function CustomGithubCalendar() {
   });
 
   return (
-    <Container triggerOnce>
-      <h2>
+    <Zoom
+      className="flex flex-col items-center my-10 overflow-hidden px-2"
+      triggerOnce
+    >
+      <h2 className="m-0">
         My&nbsp;
         <Link href="https://github.com/codegino">
           <a
@@ -21,6 +23,7 @@ export default function CustomGithubCalendar() {
             aria-label="Github profile"
             rel="noopener nofollow"
             data-tip="Link to my Github profile"
+            className="text-primary-dark text-inherit underline-on-hover underline--dark"
           >
             Github
           </a>
@@ -37,28 +40,6 @@ export default function CustomGithubCalendar() {
       >
         <ReactTooltip html />
       </GithubCalendar>
-    </Container>
+    </Zoom>
   );
 }
-
-const Container = styled(Zoom)`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: var(--spacing-medium) 0;
-  padding: 0 0.5rem;
-  overflow: hidden;
-
-  h2 {
-    margin: 0;
-  }
-
-  a {
-    color: var(--color-primary-dark);
-    font-size: 1em;
-
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-`;
