@@ -44,40 +44,6 @@ export default function SmallScreenContent() {
         nodeRef={nodeRef}
       >
         <div className="sidebar" onClick={sidebarClose} ref={nodeRef}>
-          <style jsx>
-            {`
-              .sidebar {
-                position: fixed;
-                top: 0;
-                right: 0;
-                z-index: 10;
-                height: 100vh;
-                width: 200vw;
-                transition: transform 0.5s;
-              }
-
-              // enter from
-              .sidebar.fade-enter {
-                transform: translateX(100%);
-              }
-
-              // enter to
-              .sidebar.fade-enter-active {
-                transform: translateX(0%);
-              }
-
-              // exit from
-              .sidebar.fade-exit {
-                transform: translateX(0%);
-              }
-
-              // exit to
-              .sidebar.fade-exit-active {
-                transform: translateX(100%);
-              }
-            `}
-          </style>
-
           <div
             onClick={e => e.stopPropagation()}
             className="

@@ -108,22 +108,26 @@ h1 {
   font-size: 4rem;
   margin: var(--spacing-medium) 0;
   text-align: center;
+  @apply font-black;
 }
 
 h2 {
   font-size: 2.2rem;
   margin: var(--spacing-small) 0;
+  @apply font-extrabold;
 }
 
 h3 {
   font-size: 1.8rem;
   margin: var(--spacing-very-small) 0;
+  @apply font-bold;
 }
 
 h4 {
   font-size: 1.6rem;
   margin: var(--spacing-very-small) 0;
   padding-left: var(--spacing-very-small);
+  @apply font-semibold;
 }
 
 h5,
@@ -131,6 +135,7 @@ h6 {
   font-size: 1.6rem;
   margin: var(--spacing-very-small) 0;
   padding-left: var(--spacing-small);
+  @apply font-semibold;
 }
 
 svg {

@@ -8,11 +8,6 @@ import Input from './basic/Input';
 const SubscribeForm = () => {
   return (
     <>
-      <style jsx global>{`
-        .grecaptcha-badge {
-          visibility: hidden;
-        }
-      `}</style>
       <div className="h-screen w-full flex flex-col items-center justify-center">
         <div className="text-center max-w-3xl ">
           <h2 className="my-8 text-6xl">Stay up to date🚀</h2>
@@ -33,8 +28,8 @@ const SubscribeForm = () => {
         <form
           method="post"
           action="https://sendfox.com/form/m2xeq6/1j27oq"
-          className="sendfox-form relative mt-8 shadow-lg overflow-hidden bg-light w-full
-          max-w-3xl min-w-3xl mb-24 rounded-2xl border-primary-dark border"
+          className="sendfox-form relative mt-8 shadow-sm shadow-dark overflow-hidden bg-light w-full
+          max-w-3xl min-w-3xl mb-24 rounded-2xl"
           id="1j27oq"
           data-async="true"
           data-recaptcha="true"

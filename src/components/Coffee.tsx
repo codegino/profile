@@ -11,7 +11,7 @@ function Coffee() {
             className="leading-3 flex h-16 w-96
             items-center justify-center p-9
             bg-red-500 text-white  relative
-            rounded-2xl hover:shadow-md
+            rounded-2xl hover:shadow-md hover:shadow-dark
           "
           >
             <Image

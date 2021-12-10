@@ -35,7 +35,7 @@ export default function Skills({skills}: {skills: CategorizedSkill[]}) {
                 return (
                   <Zoom
                     className="py-1 px-3 bg-dark text-light border-dark rounded-lg border mr-2
-                    hover:bg-light hover:text-dark shadow-sm"
+                    hover:bg-light hover:text-dark shadow-sm shadow-dark"
                     key={skill.id}
                     triggerOnce={true}
                     delay={i * 100}

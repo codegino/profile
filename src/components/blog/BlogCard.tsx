@@ -11,8 +11,8 @@ const BlogCard: React.FC<Props> = ({blog}) => {
   return (
     <article
       className="
-      border border-light w-full py-4 px-8 flex items-center justify-between
-      shadow-sm hover:shadow-md mb-5 last:mb-0 max-w-blog-card-sm md:max-w-blog-card-md
+      rounded-xl w-full py-4 px-8 flex items-center justify-between
+      shadow-sm hover:shadow-md hover:shadow-dark shadow-dark mb-5 last:mb-0 max-w-blog-card-sm md:max-w-blog-card-md
       lg:max-w-blog-card-lg xl:max-w-blog-card-xl
     "
     >

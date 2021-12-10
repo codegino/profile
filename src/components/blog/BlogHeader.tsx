@@ -29,12 +29,6 @@ const BlogHeader: FunctionComponent<Props> = ({blog, img, svg}) => {
             objectFit="cover"
             objectPosition="center"
           />
-          <style jsx>{`
-            .cover-image {
-              border-radius: 0.5rem;
-              margin-top: var(--spacing-medium);
-            }
-          `}</style>
         </div>
       ) : null}
       {blog.bannerDescription ? (

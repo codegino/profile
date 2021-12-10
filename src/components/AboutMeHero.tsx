@@ -27,7 +27,7 @@ export default function AboutMeHero({
       <div
         className="absolute flex flex-col justify-start flex-wrap max-w-4xl
           right-1 top-1 text-right md:top-1 md:left-2 md:text-left
-          lg:top-3 lg:left-3 xl:top-4 xl:left-4"
+          lg:top-6 lg:left-6 xl:top-8 xl:left-8"
       >
         <Fade
           cascade={true}
@@ -38,21 +38,9 @@ export default function AboutMeHero({
           {quote.map((word, i) => (
             <p
               key={`${word}-${i}`}
-              className="text-light
-            text-5xl
-            sm:text-6xl
-            md:text-7xl
-            lg:text-8xl
-            "
+              className="text-white text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-shadow"
             >
               {word}
-              <style jsx>
-                {`
-                  p {
-                    text-shadow: 1px 1px 2px var(--color-dark-dark);
-                  }
-                `}
-              </style>
             </p>
           ))}
         </Fade>

@@ -7,7 +7,7 @@ const Input = React.forwardRef<
   <input
     {...props}
     ref={ref}
-    className={`text-black p-4 w-full rounded-xl shadow-sm${
+    className={`text-black p-4 w-full rounded-xl shadow-sm shadow-dark ${
       className ? ` ${className}` : ''
     }`}
   />

@@ -51,14 +51,7 @@ export default function AboutMe({
         })}
       </article>
 
-      <h2 className="tech-stack-label">
-        This website is powered by
-        <style jsx>{`
-          .tech-stack-label {
-            text-align: center;
-          }
-        `}</style>
-      </h2>
+      <h2 className="text-center">This website is powered by</h2>
       <TechStackCarousel techStacks={techStacks} />
 
       <section className="mt-4 mb-2">

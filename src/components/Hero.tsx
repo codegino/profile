@@ -25,16 +25,10 @@ export default function Hero({
       />
       <div className="absolute flex flex-col items-center">
         <Fade cascade duration={1500} triggerOnce={true} delay={200}>
-          <h2 className="text-white text-8xl xl:text-9xl text-center">
+          <h2 className="text-white text-8xl xl:text-9xl text-center text-shadow">
             Hello World
           </h2>
-          <p className="text-5xl text-white">Welcome to my page!</p>
-          <style jsx>{`
-            h2,
-            p {
-              text-shadow: 5px 5px 2px rgba(0, 0, 0, 0.5);
-            }
-          `}</style>
+          <p className="text-5xl text-white text-shadow">Welcome to my page!</p>
         </Fade>
       </div>
       <Zoom className="absolute z-10 bottom-8vh" triggerOnce delay={1900}>
