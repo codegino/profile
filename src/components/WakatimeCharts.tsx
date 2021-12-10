@@ -12,7 +12,7 @@ export default function WakatimeCharts() {
             target="_blank"
             aria-label="Wakatime profile"
             rel="noopener nofollow"
-            data-tip="Link to my Wakatime profile"
+            title="Link to my Wakatime profile"
             className="text-primary-dark text-inherit underline-on-hover underline--dark"
           >
             Wakatime

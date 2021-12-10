@@ -20,8 +20,6 @@ const CustomGithubCalendar = dynamic(
   {ssr: false},
 );
 
-const ReactTooltip = dynamic(() => import('react-tooltip'), {ssr: false});
-
 const Skills = dynamic(() => import('../../components/skills/Skills'), {
   ssr: false,
 });
@@ -48,7 +46,7 @@ export default function Resume({
         <Link href={resumePdfUrl}>
           <a
             target="_blank"
-            data-tip="Download PDF Version"
+            title="Download PDF Version"
             aria-label="Download PDF Version"
             rel="noopener nofollow"
           >
@@ -63,7 +61,7 @@ export default function Resume({
         <Link href={resumeWordUrl}>
           <a
             target="_blank"
-            data-tip="Download Word Version"
+            title="Download Word Version"
             aria-label="Download Word Version"
             rel="noopener nofollow"
           >
@@ -89,7 +87,6 @@ export default function Resume({
         <section id="skills">
           <Skills skills={skills} />
         </section>
-        <ReactTooltip backgroundColor="#111111" />
         <CustomGithubCalendar />
       </main>
     </>

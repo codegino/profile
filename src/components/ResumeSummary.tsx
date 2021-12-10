@@ -44,7 +44,7 @@ export default function ResumeSummary({
             <a
               target="_blank"
               aria-label="Email me"
-              data-tip="Send me an email"
+              title="Send me an email"
               rel="noopener nofollow"
               className="underline-on-hover underline-on-hover--dark"
             >

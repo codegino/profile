@@ -3,7 +3,6 @@ import Link from 'next/link';
 import {Zoom} from 'react-awesome-reveal';
 import GithubCalendar from 'react-github-calendar';
 import {useMediaQuery} from 'react-responsive';
-import ReactTooltip from 'react-tooltip';
 
 export default function CustomGithubCalendar() {
   const is400PxAndUp = useMediaQuery({
@@ -22,7 +21,7 @@ export default function CustomGithubCalendar() {
             target="_blank"
             aria-label="Github profile"
             rel="noopener nofollow"
-            data-tip="Link to my Github profile"
+            title="Link to my Github profile"
             className="text-primary-dark text-inherit underline-on-hover underline--dark"
           >
             Github
@@ -37,9 +36,7 @@ export default function CustomGithubCalendar() {
         blockMargin={5}
         blockRadius={3}
         blockSize={15}
-      >
-        <ReactTooltip html />
-      </GithubCalendar>
+      />
     </Zoom>
   );
 }

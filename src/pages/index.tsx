@@ -29,8 +29,6 @@ const WakatimeCharts = dynamic(() => import('../components/WakatimeCharts'), {
   ssr: false,
 });
 
-const ReactTooltip = dynamic(() => import('react-tooltip'), {ssr: false});
-
 export default function Home({
   skills,
   heroImage,
@@ -73,7 +71,6 @@ export default function Home({
         <FullScreenWrapper tr bl>
           <BlogSuggestionsList blogs={blogs} />
         </FullScreenWrapper>
-        <ReactTooltip backgroundColor="#111111" />
         <FullScreenWrapper tl br>
           <CustomGithubCalendar />
           <WakatimeCharts />
@@ -83,7 +80,7 @@ export default function Home({
               <Link href="/resume">
                 <a
                   aria-label="resume"
-                  data-tip="Link to my resume"
+                  title="Link to my resume"
                   className="text-primary-dark underline-on-hover"
                 >
                   resume

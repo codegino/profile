@@ -20,7 +20,7 @@ export default function SocialMedia() {
                   target="_blank"
                   aria-label={sm.name}
                   rel="noopener nofollow"
-                  data-tip={sm.name}
+                  title={sm.name}
                 >
                   <CustomIcon {...sm} />
                 </a>

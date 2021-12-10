@@ -1,4 +1,3 @@
-import styled from '@emotion/styled';
 import dompurify from 'isomorphic-dompurify';
 import type {InferGetStaticPropsType} from 'next';
 import dynamic from 'next/dynamic';
@@ -31,24 +30,26 @@ export default function AboutMe({
         <title>About Page | Code Gino | Carlo Gino Catapang</title>
         {commonMetaTags('About Page', '/about')}
       </Head>
-
       <AboutMeHero img={img} svg={svg} />
-      <AboutMeSection id="about-me-details">
+      <article className="mb-20" id="about-me-details">
         <h1>About Carlo Gino Catapang</h1>
         {aboutMeDetails.map(detail => {
           return (
-            <AboutMeDetail key={detail.key}>
-              <h3>{detail.label}</h3>
+            <section
+              className="flex flex-col items-center p-2"
+              key={detail.key}
+            >
+              <h3 className="mb-10 text-4xl">{detail.label}</h3>
               <div
-                className="content"
+                className="text-justify max-w-screen-md"
                 dangerouslySetInnerHTML={{
                   __html: dompurify.sanitize(detail.content),
                 }}
               />
-            </AboutMeDetail>
+            </section>
           );
         })}
-      </AboutMeSection>
+      </article>
 
       <h2 className="tech-stack-label">
         This website is powered by
@@ -61,30 +62,36 @@ export default function AboutMe({
       <TechStackCarousel techStacks={techStacks} />
 
       <section className="mt-4 mb-2">
-        <AdditionalInfo>
+        <p className="text-center">
           This awesome carousel is easily made using&nbsp;
           <Link href="https://github.com/leandrowd/react-responsive-carousel">
             <a
               target="_blank"
               aria-label="React Responsive Carousel"
               rel="noopener nofollow"
+              className="text-primary-dark"
             >
               React Responsive Carousel
             </a>
           </Link>
           .
-        </AdditionalInfo>
+        </p>
       </section>
       <section className="mb-8">
-        <AdditionalInfo>
+        <p className="text-center">
           Here is the link to my&nbsp;
           <Link href="https://github.com/codegino/profile">
-            <a target="_blank" aria-label="Github Repo" rel="noopener nofollow">
+            <a
+              target="_blank"
+              aria-label="Github Repo"
+              rel="noopener nofollow"
+              className="text-primary-dark"
+            >
               Github Repo
             </a>
           </Link>
           .
-        </AdditionalInfo>
+        </p>
       </section>
     </>
   );
@@ -146,28 +153,3 @@ export const getStaticProps = async () => {
     },
   };
 };
-
-const AdditionalInfo = styled.p`
-  text-align: center;
-
-  a {
-    color: var(--color-primary-dark);
-  }
-`;
-
-const AboutMeSection = styled.article`
-  margin-bottom: var(--spacing-big);
-`;
-
-const AboutMeDetail = styled.section`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: var(--spacing-small);
-
-  .content {
-    max-width: 75rem;
-    text-align: justify;
-    font-size: 1.6rem;
-  }
-`;

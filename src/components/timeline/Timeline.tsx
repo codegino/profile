@@ -93,7 +93,7 @@ const Content: React.FC<{exp: WorkExperience}> = ({exp, children = null}) => {
               aria-label={exp.organization}
               rel="noopener nofollow"
               className="text-primary-dark font-bold underline-on-hover underline--dark"
-              data-tip={`Click to visit ${exp.organization}`}
+              title={`Click to visit ${exp.organization}`}
             >
               {exp.organization}
             </a>

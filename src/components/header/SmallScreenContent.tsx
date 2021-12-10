@@ -76,7 +76,7 @@ export default function SmallScreenContent() {
               <Link href={`mailto:${EMAIL_ADDRESS}`}>
                 <a
                   target="_blank"
-                  data-tip="Email me"
+                  title="Email me"
                   aria-label="Email Me"
                   rel="noopener nofollow"
                 >
@@ -91,7 +91,7 @@ export default function SmallScreenContent() {
               <Link href={`https://m.me/codegino`}>
                 <a
                   target="_blank"
-                  data-tip="Send me a facebook message"
+                  title="Send me a facebook message"
                   aria-label="Facebook Messenger"
                 >
                   <CustomIcon
