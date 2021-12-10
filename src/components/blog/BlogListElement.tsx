@@ -1,20 +1,19 @@
 import React from 'react';
-import styled from '@emotion/styled';
 
-const BlogListElement = (props: React.HTMLAttributes<HTMLLIElement>) => (
-  <List {...props} />
+const BlogListElement = ({
+  children,
+  ...props
+}: React.HTMLAttributes<HTMLLIElement>) => (
+  <li {...props}>
+    {children}
+    <style jsx>{`
+      li {
+        line-height: 1.5;
+        list-style: disc;
+        margin-left: 4rem;
+      }
+    `}</style>
+  </li>
 );
-
-const List = styled.li`
-  line-height: 1.5;
-
-  > code {
-    background-color: var(--color-light);
-    padding: 0 var(--spacing-very-small);
-    border: 1px solid var(--color-light-dark);
-    border-radius: 2px;
-    font-family: monospace;
-  }
-`;
 
 export default BlogListElement;

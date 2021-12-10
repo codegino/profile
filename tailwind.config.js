@@ -30,6 +30,9 @@ module.exports = {
         'terminal-xs': '46rem',
         'terminal-sm': '36rem',
       },
+      minHeight: {
+        '95vh': '95vh',
+      },
       width: {
         'terminal-sm': '90%',
         'terminal-md': '70%',

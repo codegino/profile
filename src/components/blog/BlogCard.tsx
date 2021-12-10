@@ -18,11 +18,16 @@ const BlogCard: React.FC<Props> = ({blog}) => {
           <h3>{blog.description}</h3>
           <p>{blog.date}</p>
           {blog.tags && blog.tags.length ? (
-            <TagContainer>
+            <section className="mt-4 flex gap-2 flex-wrap">
               {blog.tags.map(tag => (
-                <Tag key={tag}>{tag}</Tag>
+                <span
+                  className="inline-block bg-light border-light py-2 px-4 rounded-xl"
+                  key={tag}
+                >
+                  {tag}
+                </span>
               ))}
-            </TagContainer>
+            </section>
           ) : null}
         </a>
       </Link>
@@ -105,21 +110,6 @@ const Container = styled.article`
   ${mediaQuery(700, `min-width: 60rem; max-width: 60rem;`)}
   ${mediaQuery(900, `min-width: 65rem; max-width: 75rem;`)}
   ${mediaQuery(1200, `min-width: 70rem; max-width: 80rem;`)}
-`;
-
-const TagContainer = styled.section`
-  margin-top: var(--spacing-small);
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-`;
-
-const Tag = styled.span`
-  display: inline-block;
-  background: var(--color-light);
-  border: 1px solid var(--color-light-dark);
-  padding: var(--spacing-very-small) var(--spacing-small);
-  border-radius: 0.5rem;
 `;
 
 export default BlogCard;

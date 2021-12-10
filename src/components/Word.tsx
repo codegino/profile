@@ -32,19 +32,19 @@ const Word = ({word}: {word: WordFromBackend}) => {
   }, [showDefinition, word.word, word.type]);
 
   return (
-    <WordContainer>
-      <h2>
-        {word.word} | <span className="type">({word.type})</span>
+    <article className="w-full min-w-min shadow-md">
+      <h2 className="mb-0">
+        {word.word} | <span className="font-normal text-xl">({word.type})</span>
       </h2>
       {pronunciation && (
         <p>
           {pronunciation.hw} <b>|</b> \ {pronunciation.pr} \
         </p>
       )}
-      <p className="date">{word.date}</p>
+      <p className="text-dark text-xl my-4 italic">{word.date}</p>
       <section>
         <h3>Sentences</h3>
-        <ul>
+        <ul className="my-2">
           {word.sentences.map((sentence, index) => (
             <li key={index}>{sentence}</li>
           ))}
@@ -54,9 +54,9 @@ const Word = ({word}: {word: WordFromBackend}) => {
         <button onClick={() => setShowDefinition(true)}>Define</button>
       )}
       {showDefinition && (
-        <section className="definition">
+        <section className="mt-2">
           <h3>Definition</h3>
-          <ul>
+          <ul className="my-2">
             {definitions.map((definition, index) => (
               <li key={index}>
                 <i>{definition}</i>
@@ -66,56 +66,8 @@ const Word = ({word}: {word: WordFromBackend}) => {
         </section>
       )}
       {isFetching && <p>Fetching...</p>}
-    </WordContainer>
+    </article>
   );
 };
-
-export const WordContainer = styled.article`
-  width: 100%;
-  min-width: 30rem;
-  display: flex;
-  overflow: auto;
-  flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
-  border: 1px solid var(--color-dark);
-  box-shadow: 1px 1px 2px 0px var(--color-dark);
-  border-radius: 0.5rem;
-  padding: var(--spacing-small);
-  margin-bottom: var(--spacing-small);
-
-  ${mediaQuery(350, 'width: 35rem;')}
-
-  ${mediaQuery(450, 'width: 40rem;')}
-
-  ${mediaQuery(650, 'width: 50rem;')}
-
-  .date {
-    color: var(--color-foreground);
-    font-size: 0.85em !important;
-    margin-top: var(--spacing-small);
-    margin-bottom: var(--spacing-small);
-    font-style: italic;
-  }
-
-  h2 {
-    margin-bottom: 0;
-  }
-
-  h3 {
-    .type {
-      font-weight: normal;
-      font-size: 0.8em;
-    }
-  }
-
-  > section > ul {
-    margin: var(--spacing-very-small) 0;
-  }
-
-  > .definition {
-    margin-top: var(--spacing-very-small);
-  }
-`;
 
 export default Word;
