@@ -1,5 +1,4 @@
 import React from 'react';
-import {keyframes} from '@emotion/react';
 
 export const Experience: React.FC<{hasConnector?: boolean}> = ({
   children,
@@ -23,7 +22,7 @@ export const Experience: React.FC<{hasConnector?: boolean}> = ({
             height: 2.5rem;
             position: absolute;
             top: -2.25rem;
-            animation: ${appear} 1s;
+            animation: appear 1s;
           }
 
           ::before {
@@ -45,10 +44,3 @@ export const Experience: React.FC<{hasConnector?: boolean}> = ({
     </section>
   );
 };
-
-const appear = keyframes`
-  0% {opacity: 0;}
-  70%  {opacity: 0;}
-  90%  {opacity: 0.1;}
-  100% {opacity: 1;}
-`;

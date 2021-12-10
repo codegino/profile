@@ -1,10 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import styled from '@emotion/styled';
 import type {
   DictionaryApiResponse,
   WordFromBackend,
 } from '../models/Vocabulary';
-import {mediaQuery} from '../utils/media-query';
 
 const Word = ({word}: {word: WordFromBackend}) => {
   const [showDefinition, setShowDefinition] = useState(false);

@@ -42,8 +42,14 @@ module.exports = {
       },
       maxWidth: {
         'line-number': '3.5rem',
+        'blog-card-sm': '45rem',
+        'blog-card-md': '60rem',
+        'blog-card-lg': '75rem',
+        'blog-card-xl': '80rem',
       },
       minWidth: {
+        'blog-image-sm': '14rem',
+        'blog-image-md': '24rem',
         'line-number': '3.5rem',
       },
       colors: {
