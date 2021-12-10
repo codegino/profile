@@ -28,7 +28,7 @@ export default function AboutMe({
   return (
     <>
       <Head>
-        <title>About Carlo Gino Catapang</title>
+        <title>About Page | Code Gino | Carlo Gino Catapang</title>
         {commonMetaTags('About Page', '/about')}
       </Head>
 

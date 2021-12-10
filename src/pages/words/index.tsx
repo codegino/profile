@@ -83,9 +83,7 @@ export default function WordsPage({}) {
   return (
     <>
       <Head>
-        <title>
-          New English words I learned | Carlo Gino Catapang | Code Gino
-        </title>
+        <title>Vocabulary Page | Code Gino | Carlo Gino Catapang</title>
         {commonMetaTags('Words Page', '/words')}
       </Head>
       <Container>
