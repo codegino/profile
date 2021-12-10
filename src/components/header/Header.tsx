@@ -1,7 +1,9 @@
 import React from 'react';
+import styled from '@emotion/styled';
 import Image from 'next/image';
 import Link from 'next/link';
 import {useRouter} from 'next/router';
+import tw from 'twin.macro';
 import {TopLeftShape} from '../extras/TopLeftShape';
 import SmallScreenContent from './SmallScreenContent';
 import WideScreenContentImpl from './WideScreenContent';
@@ -10,10 +12,10 @@ export default function Header() {
   const router = useRouter();
 
   return (
-    <header className="h-20 relative bg-black flex items-center overflow-hidden py-0 px-2 text-white">
+    <Container>
       <TopLeftShape />
-      <section className="flex items-center min-w-max mr-6">
-        <div className="w-12 h-12 rounded-full bg-white p-0.5 mr-0 text-center">
+      <Content>
+        <LogoContainer>
           <Link href="/">
             <a aria-label="My Logo">
               <Image
@@ -25,25 +27,32 @@ export default function Header() {
               />
             </a>
           </Link>
-        </div>
+        </LogoContainer>
 
         <Link href="/">
           <a aria-label="Code Gino">
-            <span
-              className={
-                'underline-on-hover ml-4 text-4xl font-bold' +
-                (router.asPath === '/'
-                  ? ' border-b-2 border-primary-light'
-                  : '')
-              }
+            <BrandName
+              className="underline-on-hover"
+              active={router.asPath === '/'}
             >
               Code Gino
-            </span>
+            </BrandName>
           </a>
         </Link>
-      </section>
+      </Content>
       <WideScreenContentImpl />
       <SmallScreenContent />
-    </header>
+    </Container>
   );
 }
+
+const Container = tw.header`h-20 relative bg-gray-900 flex items-center overflow-hidden py-0 px-2`;
+
+const Content = tw.section`flex items-center min-w-max mr-6`;
+
+const BrandName = styled.span<{active: boolean}>(({active}) => [
+  tw`ml-4 text-4xl font-bold`,
+  active && tw`border-b-2 border-primary-light`,
+]);
+
+const LogoContainer = tw.div`w-12 h-12 rounded-full bg-white p-0.5 mr-0 text-center`;
