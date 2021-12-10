@@ -49,7 +49,12 @@ const Word = ({word}: {word: WordFromBackend}) => {
         </ul>
       </section>
       {!showDefinition && (
-        <button onClick={() => setShowDefinition(true)}>Define</button>
+        <button
+          onClick={() => setShowDefinition(true)}
+          className="underline text-dark font-semibold underline-on-hover"
+        >
+          Define
+        </button>
       )}
       {showDefinition && (
         <section className="mt-2">

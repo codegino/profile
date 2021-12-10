@@ -106,7 +106,7 @@ export default function WordsPage({}) {
 }
 
 const WordContentLoader = () => (
-  <article className="w-full min-w-min shadow-md shadow-dark">
+  <article className="w-4/5 sm:w-3/5 max-w-6xl p-4 rounded-2xl min-w-min shadow-sm shadow-dark mb-10">
     <ContentLoader viewBox="1 1 175 95" className="h-64">
       <rect x="0" y="10" rx="3" ry="3" width="80" height="12" />
       <rect x="0" y="30" rx="3" ry="3" width="100" height="9" />
