@@ -11,12 +11,8 @@ const BlogHeader: FunctionComponent<Props> = ({blog, img, svg}) => {
   return (
     <article className="mb-8 text-center">
       <h1>{blog.title}</h1>
-      {blog.description && (
-        <>
-          <h2 className="description">{blog.description}</h2>
-          <p>{blog.date}</p>
-        </>
-      )}
+      {blog.description && <h2 className="description">{blog.description}</h2>}
+      <p className="mb-4">{blog.date}</p>
       {img && svg && !blog.hideBanner ? (
         <div className="cover-image">
           <BlurringImage
@@ -28,6 +24,7 @@ const BlogHeader: FunctionComponent<Props> = ({blog, img, svg}) => {
             width={1200}
             objectFit="cover"
             objectPosition="center"
+            className="rounded-xl"
           />
         </div>
       ) : null}

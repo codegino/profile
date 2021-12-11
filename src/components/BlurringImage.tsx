@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import clsx from 'clsx';
 import Image, {ImageProps} from 'next/image';
 import {IGetPlaiceholderReturn} from 'plaiceholder';
 
@@ -18,12 +19,16 @@ export function BlurringImage({
   height = undefined,
   width = undefined,
   style,
+  className = '',
   ...props
 }: Props) {
   const [hasPlaceholder, setHasPlaceholder] = useState(true);
 
   return (
-    <div className="relative overflow-hidden h-full w-full" style={style}>
+    <div
+      className={clsx('relative overflow-hidden h-full w-full', className)}
+      style={style}
+    >
       {hasPlaceholder && (
         <Svg
           {...svgProps}
@@ -45,6 +50,7 @@ export function BlurringImage({
         height={height}
         width={width}
         alt={alt}
+        className={className}
         onLoadingComplete={() => setHasPlaceholder(false)}
       />
     </div>
