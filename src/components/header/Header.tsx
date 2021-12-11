@@ -1,4 +1,5 @@
 import React from 'react';
+import clsx from 'clsx';
 import Image from 'next/image';
 import Link from 'next/link';
 import {useRouter} from 'next/router';
@@ -30,12 +31,9 @@ export default function Header() {
         <Link href="/">
           <a aria-label="Code Gino">
             <span
-              className={
-                'underline-on-hover ml-4 text-4xl font-bold' +
-                (router.asPath === '/'
-                  ? ' border-b-2 border-primary-light'
-                  : '')
-              }
+              className={clsx('underline-on-hover ml-4 text-4xl font-bold', {
+                'border-b-2 border-primary-light': router.asPath === '/',
+              })}
             >
               Code Gino
             </span>

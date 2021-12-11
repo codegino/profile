@@ -3,6 +3,7 @@ import {AiOutlineClose} from '@react-icons/all-files/ai/AiOutlineClose';
 import {FaEnvelopeSquare} from '@react-icons/all-files/fa/FaEnvelopeSquare';
 import {FaFacebookMessenger} from '@react-icons/all-files/fa/FaFacebookMessenger';
 import {TiThMenu} from '@react-icons/all-files/ti/TiThMenu';
+import clsx from 'clsx';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import {useRouter} from 'next/router';
@@ -65,12 +66,13 @@ export default function SmallScreenContent() {
                   <li key={link.label} onClick={sidebarClose}>
                     <Link href={link.url}>
                       <a
-                        className={
-                          'px-2 text-3xl hover:text-dark hover:underline' +
-                          (router.asPath.includes(link.url)
-                            ? ' text-primary-dark underline'
-                            : '')
-                        }
+                        className={clsx(
+                          'px-2 text-3xl hover:text-dark hover:underline',
+                          {
+                            'text-primary-dark underline':
+                              router.asPath.includes(link.url),
+                          },
+                        )}
                         aria-label={link.label}
                       >
                         {link.label}
@@ -125,6 +127,28 @@ export default function SmallScreenContent() {
               />
             </section>
           </div>
+          <style jsx>{`
+            // enter from
+            .sidebar.fade-enter {
+              transform: translateX(100%);
+            }
+
+            // enter to
+            .sidebar.fade-enter-active {
+              transform: translateX(0%);
+            }
+
+            // exit from
+            .sidebar.fade-exit {
+              transform: translateX(0%);
+            }
+
+            // exit to
+            .sidebar.fade-exit-active {
+              transform: translateX(100%);
+            }
+          `}</style>
+          `
         </div>
       </CSSTransition>
     </div>

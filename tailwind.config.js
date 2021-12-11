@@ -5,7 +5,6 @@ module.exports = {
     './src/blog/pages/*.mdx',
     './src/components/**/*.{js,ts,jsx,tsx}',
   ],
-  darkMode: 'media', // or 'media' or 'class'
   theme: {
     extend: {
       fontFamily: {
