@@ -10,5 +10,6 @@ export type IBlogMetadata = {
   hideBanner: boolean;
   bannerDescription: string;
   tags: string[];
+  keywords: string[];
   published: boolean;
 };

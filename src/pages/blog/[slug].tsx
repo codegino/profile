@@ -32,6 +32,7 @@ export default function BlogPage({
     <>
       <Head>
         <title>{blog.title}</title>
+        <meta name="keywords" content={blog.keywords?.join(',')} />
         <meta
           property="og:url"
           content={`https://codegino.com/blog/${blog.slug}`}
