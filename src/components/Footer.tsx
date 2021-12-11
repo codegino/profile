@@ -6,7 +6,7 @@ import SocialMedia from './social/SocialMedia';
 
 export default function Footer() {
   return (
-    <footer className="w-full relative h-48 bg-gray-900 text-white flex justify-center overflow-hidden md:h-32">
+    <footer className="w-full relative h-48 bg-black text-white flex justify-center overflow-hidden md:h-32">
       <TopLeftShape />
       <BottomRightShape />
       <div
