@@ -72,7 +72,7 @@ export default function BlogPage({
         <main>
           <BlogContent source={source} />
         </main>
-        <hr />
+        <br />
         <BlogFooter blog={blog} />
       </BlogLayout>
     </>
