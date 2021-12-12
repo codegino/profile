@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import {Zoom} from 'react-awesome-reveal';
+import Zoom from 'react-reveal/Zoom';
 
 export default function WakatimeCharts() {
   return (
@@ -20,12 +20,12 @@ export default function WakatimeCharts() {
         </Link>
         &nbsp;activity
       </h2>
-      <Zoom triggerOnce>
+      <Zoom>
         <figure>
           <embed src="https://wakatime.com/share/@codegino/aa8c74ed-2174-445a-805d-e46a869c3b8b.svg"></embed>
         </figure>
       </Zoom>
-      <Zoom triggerOnce>
+      <Zoom>
         <figure>
           <embed src="https://wakatime.com/share/@codegino/e7ca5c4c-67a6-47fc-a3c6-e020cb97b66b.svg"></embed>
         </figure>

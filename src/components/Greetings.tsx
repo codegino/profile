@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {BsChevronRight} from '@react-icons/all-files/bs/BsChevronRight';
 import {BsTerminalFill} from '@react-icons/all-files/bs/BsTerminalFill';
-import {Zoom} from 'react-awesome-reveal';
+import Zoom from 'react-reveal/Zoom';
 import Typist from 'react-typist';
 import 'react-typist/dist/Typist.css';
 import {useScrollToView} from '../utils/scroll-to-view-hook';
@@ -21,7 +21,7 @@ export default function Greetings() {
       className="flex justify-center items-center h-screen w-full pt-20 relative overflow-hidden z-1"
       id="greetings"
     >
-      <Zoom onVisibilityChange={e => setIsTyping(e)} triggerOnce>
+      <Zoom onReveal={() => setIsTyping(true)}>
         <div className="flex justify-center items-center h-screen w-screen pt-20 relative overflow-hidden">
           <div
             className="
@@ -42,7 +42,7 @@ export default function Greetings() {
             <div className="h-full py-2 px-1 font-mono bg-dark text-light">
               {isTyping ? (
                 <Typist
-                  avgTypingDelay={0}
+                  avgTypingDelay={25}
                   onTypingDone={() => setIsGuideVisible(true)}
                 >
                   <StyledBsChevronRight />
@@ -113,8 +113,10 @@ export default function Greetings() {
       </Zoom>
       <div className="top-0 left-0 z-negative h-screen w-screen absolute bg-gradient-to-r from-light to-dark" />
       {isGuideVisible ? (
-        <Zoom className="absolute bottom-8vh" triggerOnce>
-          <GuideArrow onClick={scrollToContent} />
+        <Zoom>
+          <div className="absolute bottom-8vh">
+            <GuideArrow onClick={scrollToContent} />
+          </div>
         </Zoom>
       ) : null}
     </div>

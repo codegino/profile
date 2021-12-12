@@ -11,7 +11,8 @@ import {FaStar} from '@react-icons/all-files/fa/FaStar';
 import {FaThumbsUp} from '@react-icons/all-files/fa/FaThumbsUp';
 import {FaTools} from '@react-icons/all-files/fa/FaTools';
 import Link from 'next/link';
-import {Zoom, Slide} from 'react-awesome-reveal';
+import Slide from 'react-reveal/Slide';
+import Zoom from 'react-reveal/Zoom';
 import type {CategorizedSkill, SkillCategory} from '../../models/skill';
 
 export default function Skills({skills}: {skills: CategorizedSkill[]}) {
@@ -24,7 +25,7 @@ export default function Skills({skills}: {skills: CategorizedSkill[]}) {
       {skills.map(category => {
         return (
           <section className="mb-4" key={category.category}>
-            <Slide direction="down" triggerOnce={true}>
+            <Slide bottom>
               <h3 className="text-center my-2">
                 {getSkillCategoryIcon(category.category)}&nbsp;
                 {category.category.toUpperCase()}
@@ -34,15 +35,15 @@ export default function Skills({skills}: {skills: CategorizedSkill[]}) {
               {category.skills.map((skill, i) => {
                 return (
                   <Zoom
-                    className="py-1 px-3 bg-dark text-light border-dark rounded-lg border mr-2
-                    hover:bg-light hover:text-dark shadow-sm shadow-dark"
                     key={skill.id}
-                    triggerOnce={true}
-                    delay={i * 100}
-                    direction={i % 2 === 0 ? 'left' : 'right'}
+                    delay={i * 110}
+                    right={i % 2 === 0}
+                    left={i % 2 !== 0}
                   >
                     <Link href={skill.url}>
                       <a
+                        className="py-1 px-3 bg-dark text-light border-dark rounded-lg border mr-2
+                    hover:bg-light hover:text-dark shadow-sm shadow-dark"
                         title={`Click to visit ${skill.name}`}
                         target="_blank"
                         aria-label={skill.name}

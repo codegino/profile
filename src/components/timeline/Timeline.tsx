@@ -5,7 +5,8 @@ import {FaGraduationCap} from '@react-icons/all-files/fa/FaGraduationCap';
 import {FaScroll} from '@react-icons/all-files/fa/FaScroll';
 import dompurify from 'isomorphic-dompurify';
 import Link from 'next/link';
-import {Zoom, Slide} from 'react-awesome-reveal';
+import Slide from 'react-reveal/Slide';
+import Zoom from 'react-reveal/Zoom';
 import type {WorkExperience} from '../../models/resume';
 import {Experience} from './Experience';
 
@@ -19,7 +20,7 @@ export default function Timeline({
   return (
     <article className="flex items-center flex-col overflow-hidden min-h-min pt-12">
       <div>
-        <Slide triggerOnce={true} direction="down">
+        <Slide bottom>
           <Experience>
             <h2 className="m-0 text-dark">
               <FaBriefcase />
@@ -29,11 +30,7 @@ export default function Timeline({
         </Slide>
         {workExperiences.map((exp, i) => {
           return (
-            <Slide
-              key={exp.id}
-              direction={i % 2 ? 'left' : 'right'}
-              triggerOnce={true}
-            >
+            <Slide key={exp.id} right={i % 2 === 0} left={i % 2 !== 0}>
               <Experience key={exp.id} hasConnector>
                 <Content exp={exp}>
                   <div
@@ -47,7 +44,7 @@ export default function Timeline({
             </Slide>
           );
         })}
-        <Slide triggerOnce={true} direction="down">
+        <Slide bottom>
           <Experience hasConnector>
             <h2 className="m-0 text-dark">
               <FaScroll />
@@ -57,11 +54,7 @@ export default function Timeline({
         </Slide>
         {educationExperiences.map((exp, i) => {
           return (
-            <Slide
-              key={exp.id}
-              direction={i % 2 ? 'left' : 'right'}
-              triggerOnce={true}
-            >
+            <Slide key={exp.id} right={i % 2 === 0} left={i % 2 !== 0}>
               <Experience key={exp.id} hasConnector={true}>
                 <Content exp={exp}>
                   <span />
@@ -77,7 +70,7 @@ export default function Timeline({
 
 const Content: React.FC<{exp: WorkExperience}> = ({exp, children = null}) => {
   return (
-    <Zoom triggerOnce={true} cascade={true} duration={800}>
+    <Zoom cascade={true} duration={800}>
       <div>
         <p className="bg-light text-dark justify-self-center py-1">
           {exp.end_date === exp.start_date ? 'Present' : exp.end_date}

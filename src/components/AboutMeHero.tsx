@@ -1,6 +1,6 @@
 import React from 'react';
 import {IGetPlaiceholderReturn} from 'plaiceholder';
-import {Fade, Zoom} from 'react-awesome-reveal';
+import Zoom from 'react-reveal/Zoom';
 import {useScrollToView} from '../utils/scroll-to-view-hook';
 import {BlurringImage} from './BlurringImage';
 import {GuideArrow} from './GuideArrow';
@@ -26,27 +26,21 @@ export default function AboutMeHero({
       />
       <div
         className="absolute flex flex-col justify-start flex-wrap max-w-4xl
-          right-1 top-1 text-right md:top-1 md:left-2 md:text-left
-          lg:top-6 lg:left-6 xl:top-8 xl:left-8"
+          right-4 top-4 text-right md:top-4 md:left-8 md:text-left
+          lg:top-10 lg:left-10"
       >
-        <Fade
-          cascade={true}
-          duration={1500}
-          triggerOnce={true}
-          className="z-10"
-        >
-          {quote.map((word, i) => (
-            <p
-              key={`${word}-${i}`}
-              className="text-white text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-shadow"
-            >
+        {quote.map((word, i) => (
+          <Zoom delay={i * 700 + i * i * 150} key={`${word}-${i}`}>
+            <p className="text-white text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-shadow">
               {word}
             </p>
-          ))}
-        </Fade>
+          </Zoom>
+        ))}
       </div>
-      <Zoom triggerOnce delay={2800} className="absolute bottom-8 z-10">
-        <GuideArrow onClick={scrollToContent} />
+      <Zoom delay={4000}>
+        <div className="absolute bottom-8 z-10">
+          <GuideArrow onClick={scrollToContent} />
+        </div>
       </Zoom>
     </div>
   );
