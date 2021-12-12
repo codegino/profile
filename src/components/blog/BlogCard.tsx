@@ -43,6 +43,7 @@ const BlogCard: React.FC<Props> = ({blog}) => {
         <Image
           src={blog.bannerId}
           alt={blog.bannerDescription}
+          title={blog.bannerDescription}
           layout="fill"
           objectFit="cover"
           placeholder="blur"

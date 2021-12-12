@@ -42,7 +42,8 @@ export default function TechStackCarousel({techStacks}: Props) {
                     layout="intrinsic"
                     height={isMediumDevice ? 500 : 350}
                     width={isMediumDevice ? 600 : 300}
-                    alt={`${techstack.name} logo`}
+                    alt={techstack.name}
+                    title={techstack.name}
                   />
                 ) : null}
               </div>

@@ -23,6 +23,7 @@ export default function Header() {
                 height={26}
                 width={26}
                 alt="CG"
+                title="CG"
               />
             </a>
           </Link>

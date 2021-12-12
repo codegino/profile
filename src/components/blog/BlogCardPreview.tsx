@@ -16,6 +16,7 @@ export const BlogCardPreview = ({blog}: Props) => {
             <Image
               src={blog.bannerId}
               alt={blog.bannerDescription}
+              title={blog.bannerDescription}
               layout="responsive"
               height={670}
               width={1200}

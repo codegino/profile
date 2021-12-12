@@ -17,6 +17,7 @@ function Coffee() {
             <Image
               src="/assets/bmc-btn-logo.svg"
               alt="Buy me a coffee"
+              title="Buy me a coffee"
               height={34}
               width={35}
               layout="fixed"

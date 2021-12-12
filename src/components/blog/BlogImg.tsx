@@ -15,6 +15,7 @@ const BlogImg = ({
       width={width}
       height={height}
       alt="GIF"
+      title="GIF"
       placeholder="blur"
       objectPosition="center"
       objectFit={objectFit}
