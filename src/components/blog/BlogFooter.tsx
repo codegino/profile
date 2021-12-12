@@ -1,9 +1,9 @@
 import React from 'react';
 import {DiscussionEmbed} from 'disqus-react';
-import Link from 'next/link';
 import {IBlogMetadata} from '../../models/blog';
 import Coffee from '../Coffee';
 import SubscribeButton from '../basic/Button';
+import NextLink from '../basic/NextLink';
 
 const BlogFooter = ({blog}: {blog: IBlogMetadata}) => {
   return (
@@ -23,18 +23,17 @@ const BlogFooter = ({blog}: {blog: IBlogMetadata}) => {
       <p className="my-2">
         <i>Connect with me</i>
       </p>
-      <Link href="https://twitter.com/code_gino">
-        <a
-          aria-label="Follow me on Twitter"
-          target="_blank"
-          className="mt-2"
-          rel="noopener nofollow"
-        >
-          <span className="relative h-10  bg-blue-500 text-white py-2 px-6 rounded-3xl hover:bg-blue-600">
-            Follow @code_gino
-          </span>
-        </a>
-      </Link>
+      <NextLink
+        href="https://twitter.com/code_gino"
+        aria-label="Follow me on Twitter"
+        target="_blank"
+        className="mt-2"
+        rel="noopener nofollow"
+      >
+        <span className="relative h-10  bg-blue-500 text-white py-2 px-6 rounded-3xl hover:bg-blue-600">
+          Follow @code_gino
+        </span>
+      </NextLink>
       <DiscussionEmbed
         shortname="carlogino"
         config={{

@@ -4,7 +4,7 @@ import {FaFacebookSquare} from '@react-icons/all-files/fa/FaFacebookSquare';
 import {FaGithubSquare} from '@react-icons/all-files/fa/FaGithubSquare';
 import {FaLinkedin} from '@react-icons/all-files/fa/FaLinkedin';
 import {FaTwitterSquare} from '@react-icons/all-files/fa/FaTwitterSquare';
-import Link from 'next/link';
+import NextLink from '../basic/NextLink';
 import CustomIcon, {SocialMediaProps} from '../icon/CustomIcon';
 
 export default function SocialMedia() {
@@ -14,15 +14,14 @@ export default function SocialMedia() {
         <ul className="flex">
           {socialMedia.map(sm => (
             <li key={sm.title} className="mr-1">
-              <Link href={sm.url}>
-                <a
-                  target="_blank"
-                  aria-label={sm.title}
-                  rel="noopener nofollow"
-                >
-                  <CustomIcon {...sm} />
-                </a>
-              </Link>
+              <NextLink
+                href={sm.url}
+                target="_blank"
+                aria-label={sm.title}
+                rel="noopener nofollow"
+              >
+                <CustomIcon {...sm} />
+              </NextLink>
             </li>
           ))}
         </ul>

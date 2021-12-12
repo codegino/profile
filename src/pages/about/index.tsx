@@ -2,9 +2,9 @@ import dompurify from 'isomorphic-dompurify';
 import type {InferGetStaticPropsType} from 'next';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
-import Link from 'next/link';
 import AboutMeHero from '../../components/AboutMeHero';
 import type {TechStack} from '../../components/TechStackCarousel';
+import NextLink from '../../components/basic/NextLink';
 import {commonMetaTags} from '../../frontend-utils/meta-tags';
 import type {StaticContent} from '../../models/static-content';
 import {
@@ -57,31 +57,29 @@ export default function AboutMe({
       <section className="mt-4 mb-2">
         <h4 className="text-center">
           This awesome carousel is easily made using&nbsp;
-          <Link href="https://github.com/leandrowd/react-responsive-carousel">
-            <a
-              target="_blank"
-              aria-label="React Responsive Carousel"
-              rel="noopener nofollow"
-              className="text-primary-dark"
-            >
-              React Responsive Carousel
-            </a>
-          </Link>
+          <NextLink
+            href="https://github.com/leandrowd/react-responsive-carousel"
+            target="_blank"
+            aria-label="React Responsive Carousel"
+            rel="noopener nofollow"
+            className="text-primary-dark"
+          >
+            React Responsive Carousel
+          </NextLink>
           .
         </h4>
       </section>
       <section className="mb-8">
         <h4 className="text-center">
           Here is the link to my&nbsp;
-          <Link href="https://github.com/codegino/profile">
-            <a
-              target="_blank"
-              aria-label="Github Repo"
-              className="text-primary-dark"
-            >
-              Github Repo
-            </a>
-          </Link>
+          <NextLink
+            href="https://github.com/codegino/profile"
+            target="_blank"
+            aria-label="Github Repo"
+            className="text-primary-dark"
+          >
+            Github Repo
+          </NextLink>
           .
         </h4>
       </section>

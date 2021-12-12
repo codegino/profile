@@ -1,6 +1,9 @@
 {
-  "extends": ["next", "next/core-web-vitals", "prettier"],
-  "rules": {
-    "no-console": "error"
-  }
+  "extends": [
+    "next",
+    "next/core-web-vitals",
+    "prettier",
+    "plugin:jsx-a11y/recommended"
+  ],
+  "plugins": ["jsx-a11y"]
 }

@@ -1,23 +1,22 @@
 import React from 'react';
-import Link from 'next/link';
 import Zoom from 'react-reveal/Zoom';
+import NextLink from './basic/NextLink';
 
 export default function WakatimeCharts() {
   return (
     <div className="max-w-6xlxl overflow-hidden flex flex-col py-2 sm:px-24 md:px-25p">
       <h2 className="m-0 text-center">
         My&nbsp;
-        <Link href="https://wakatime.com/@codegino">
-          <a
-            target="_blank"
-            aria-label="Wakatime profile"
-            rel="noopener nofollow"
-            title="Link to my Wakatime profile"
-            className="text-primary-dark text-inherit underline-on-hover underline--dark"
-          >
-            Wakatime
-          </a>
-        </Link>
+        <NextLink
+          href="https://wakatime.com/@codegino"
+          target="_blank"
+          aria-label="Wakatime profile"
+          rel="noopener nofollow"
+          title="Link to my Wakatime profile"
+          className="text-primary-dark text-inherit underline-on-hover underline--dark"
+        >
+          Wakatime
+        </NextLink>
         &nbsp;activity
       </h2>
       <Zoom>

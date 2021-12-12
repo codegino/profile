@@ -1,8 +1,8 @@
 import React, {FunctionComponent} from 'react';
-import Link from 'next/link';
 import Highlight, {defaultProps, Language} from 'prism-react-renderer';
 import vsDark from 'prism-react-renderer/themes/vsDark';
 import {ClipboardCopyButton} from '../ClipboardCopyButton';
+import NextLink from '../basic/NextLink';
 
 export type CodeBlockProps = {
   children: string;
@@ -96,15 +96,14 @@ const CodeBlock: FunctionComponent<CodeBlockProps> = ({
       </Highlight>
       {codePenID && (
         <samp>
-          <Link href={`https://codepen.io/codegino/pen/${codePenID}`}>
-            <a
-              target="_blank"
-              rel="noopener nofollow"
-              className="underline-on-hover underline-dark"
-            >
-              Link to Codepen
-            </a>
-          </Link>
+          <NextLink
+            href={`https://codepen.io/codegino/pen/${codePenID}`}
+            target="_blank"
+            rel="noopener nofollow"
+            className="underline-on-hover underline-dark"
+          >
+            Link to Codepen
+          </NextLink>
         </samp>
       )}
     </code>

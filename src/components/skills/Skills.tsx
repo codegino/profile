@@ -10,10 +10,10 @@ import {FaServer} from '@react-icons/all-files/fa/FaServer';
 import {FaStar} from '@react-icons/all-files/fa/FaStar';
 import {FaThumbsUp} from '@react-icons/all-files/fa/FaThumbsUp';
 import {FaTools} from '@react-icons/all-files/fa/FaTools';
-import Link from 'next/link';
 import Slide from 'react-reveal/Slide';
 import Zoom from 'react-reveal/Zoom';
 import type {CategorizedSkill, SkillCategory} from '../../models/skill';
+import NextLink from '../basic/NextLink';
 
 export default function Skills({skills}: {skills: CategorizedSkill[]}) {
   return (
@@ -40,18 +40,17 @@ export default function Skills({skills}: {skills: CategorizedSkill[]}) {
                     right={i % 2 === 0}
                     left={i % 2 !== 0}
                   >
-                    <Link href={skill.url}>
-                      <a
-                        className="py-1 px-3 bg-dark text-light border-dark rounded-lg border mr-2
+                    <NextLink
+                      href={skill.url}
+                      className="py-1 px-3 bg-dark text-light border-dark rounded-lg border mr-2
                     hover:bg-light hover:text-dark shadow-sm shadow-dark"
-                        title={`Click to visit ${skill.name}`}
-                        target="_blank"
-                        aria-label={skill.name}
-                        rel="noopener nofollow"
-                      >
-                        {skill.name}
-                      </a>
-                    </Link>
+                      title={`Click to visit ${skill.name}`}
+                      target="_blank"
+                      aria-label={skill.name}
+                      rel="noopener nofollow"
+                    >
+                      {skill.name}
+                    </NextLink>
                   </Zoom>
                 );
               })}

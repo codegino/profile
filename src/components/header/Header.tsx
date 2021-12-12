@@ -1,8 +1,8 @@
 import React from 'react';
 import clsx from 'clsx';
 import Image from 'next/image';
-import Link from 'next/link';
 import {useRouter} from 'next/router';
+import NextLink from '../basic/NextLink';
 import {TopLeftShape} from '../extras/TopLeftShape';
 import SmallScreenContent from './SmallScreenContent';
 import WideScreenContentImpl from './WideScreenContent';
@@ -15,31 +15,27 @@ export default function Header() {
       <TopLeftShape />
       <div className="flex items-center min-w-max mr-6">
         <div className="w-12 h-12 rounded-full bg-white p-0.5 mr-0 text-center">
-          <Link href="/">
-            <a aria-label="My Logo">
-              <Image
-                priority
-                src="/assets/logo.svg"
-                height={26}
-                width={26}
-                alt="CG"
-                title="CG"
-              />
-            </a>
-          </Link>
+          <NextLink href="/" aria-label="My Logo">
+            <Image
+              priority
+              src="/assets/logo.svg"
+              height={26}
+              width={26}
+              alt="CG"
+              title="CG"
+            />
+          </NextLink>
         </div>
 
-        <Link href="/">
-          <a aria-label="Code Gino">
-            <span
-              className={clsx('underline-on-hover ml-4 text-4xl font-bold', {
-                'border-b-2 border-primary-light': router.asPath === '/',
-              })}
-            >
-              Code Gino
-            </span>
-          </a>
-        </Link>
+        <NextLink href="/" aria-label="Code Gino">
+          <span
+            className={clsx('underline-on-hover ml-4 text-4xl font-bold', {
+              'border-b-2 border-primary-light': router.asPath === '/',
+            })}
+          >
+            Code Gino
+          </span>
+        </NextLink>
       </div>
       <WideScreenContentImpl />
       <SmallScreenContent />

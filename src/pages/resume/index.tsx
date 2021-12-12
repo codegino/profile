@@ -3,8 +3,8 @@ import {FaFileWord} from '@react-icons/all-files/fa/FaFileWord';
 import type {InferGetStaticPropsType} from 'next';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
-import Link from 'next/link';
 import ResumeSummary from '../../components/ResumeSummary';
+import NextLink from '../../components/basic/NextLink';
 import CustomIcon from '../../components/icon/CustomIcon';
 import Timeline from '../../components/timeline/Timeline';
 import {commonMetaTags} from '../../frontend-utils/meta-tags';
@@ -42,38 +42,36 @@ export default function Resume({
       </Head>
 
       <div className="absolute flex right-5 top-24">
-        <Link href={resumePdfUrl}>
-          <a
-            target="_blank"
+        <NextLink
+          href={resumePdfUrl}
+          target="_blank"
+          title="Download PDF Version"
+          aria-label="Download PDF Version"
+          rel="noopener nofollow"
+        >
+          <CustomIcon
+            icon={FaFilePdf}
+            size={40}
+            color="#F40F02"
             title="Download PDF Version"
-            aria-label="Download PDF Version"
-            rel="noopener nofollow"
-          >
-            <CustomIcon
-              icon={FaFilePdf}
-              size={40}
-              color="#F40F02"
-              title="Download PDF Version"
-              hoverColor="red"
-            />
-          </a>
-        </Link>
-        <Link href={resumeWordUrl}>
-          <a
-            target="_blank"
+            hoverColor="red"
+          />
+        </NextLink>
+        <NextLink
+          href={resumeWordUrl}
+          target="_blank"
+          title="Download Word Version"
+          aria-label="Download Word Version"
+          rel="noopener nofollow"
+        >
+          <CustomIcon
+            icon={FaFileWord}
+            size={40}
+            color="#015299"
             title="Download Word Version"
-            aria-label="Download Word Version"
-            rel="noopener nofollow"
-          >
-            <CustomIcon
-              icon={FaFileWord}
-              size={40}
-              color="#015299"
-              title="Download Word Version"
-              hoverColor="blue"
-            />
-          </a>
-        </Link>
+            hoverColor="blue"
+          />
+        </NextLink>
       </div>
       <main>
         <ResumeSummary img={profileImage} svg={profileSvg} />

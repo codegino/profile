@@ -1,9 +1,9 @@
 import React from 'react';
 import {FaEnvelopeSquare} from '@react-icons/all-files/fa/FaEnvelopeSquare';
 import {FaMapMarkerAlt} from '@react-icons/all-files/fa/FaMapMarkerAlt';
-import Link from 'next/link';
 import {IGetPlaiceholderReturn} from 'plaiceholder';
 import {BlurringImage} from './BlurringImage';
+import NextLink from './basic/NextLink';
 
 export default function ResumeSummary({
   img,
@@ -28,30 +28,28 @@ export default function ResumeSummary({
         <h1 className="m-0">{summary.name}</h1>
         <div className="flex flex-col items-center md:flex-row">
           <h2 className="lg:mt-0">{summary.jobTitle}</h2>
-          <Link href={summary.companyWebsite}>
-            <a
-              target="_blank"
-              aria-label="Company Website"
-              rel="noopener nofollow"
-              className="underline-on-hover"
-            >
-              <h2>&nbsp;at {summary.company}</h2>
-            </a>
-          </Link>
+          <NextLink
+            href={summary.companyWebsite}
+            target="_blank"
+            aria-label="Company Website"
+            rel="noopener nofollow"
+            className="underline-on-hover"
+          >
+            <h2>&nbsp;at {summary.company}</h2>
+          </NextLink>
         </div>
         <h3>
-          <Link href={`mailto:${summary.email}`}>
-            <a
-              target="_blank"
-              aria-label="Email me"
-              title="Send me an email"
-              rel="noopener nofollow"
-              className="underline-on-hover underline-on-hover--dark"
-            >
-              <FaEnvelopeSquare />
-              &nbsp;{summary.email}
-            </a>
-          </Link>
+          <NextLink
+            href={`mailto:${summary.email}`}
+            target="_blank"
+            aria-label="Email me"
+            title="Send me an email"
+            rel="noopener nofollow"
+            className="underline-on-hover underline-on-hover--dark"
+          >
+            <FaEnvelopeSquare />
+            &nbsp;{summary.email}
+          </NextLink>
         </h3>
         <h3 className="m-2 lg:mt-4">
           <FaMapMarkerAlt />

@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from 'next/link';
+import NextLink from './basic/NextLink';
 import {BottomRightShape} from './extras/BottomRightShape';
 import {TopLeftShape} from './extras/TopLeftShape';
 import SocialMedia from './social/SocialMedia';
@@ -14,16 +14,16 @@ export default function Footer() {
       md:flex-row md:justify-around md:text-right"
       >
         <div className="m-1">
-          <Link href="/sitemap.xml">
-            <a aria-label="Sitemap" className="mr-4">
-              Sitemap
-            </a>
-          </Link>
-          <Link href="/rss.xml">
-            <a aria-label="Rss Feed" rel="noopener nofollow">
-              RSS Feed
-            </a>
-          </Link>
+          <NextLink href="/sitemap.xml" aria-label="Sitemap" className="mr-4">
+            Sitemap
+          </NextLink>
+          <NextLink
+            href="/rss.xml"
+            aria-label="Rss Feed"
+            rel="noopener nofollow"
+          >
+            RSS Feed
+          </NextLink>
           <p>All rights reserved</p>
           <p>© Carlo Gino Catapang 2021</p>
         </div>

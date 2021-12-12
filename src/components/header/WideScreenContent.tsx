@@ -1,8 +1,8 @@
 import React from 'react';
 import dynamic from 'next/dynamic';
-import Link from 'next/link';
 import {useRouter} from 'next/router';
 import useDarkMode from 'use-dark-mode';
+import NextLink from '../basic/NextLink';
 import SocialMedia from '../social/SocialMedia';
 import {navigationLinks} from './nav-links';
 
@@ -23,18 +23,17 @@ export default function WideScreenContentImpl() {
               key={link.label}
               className="underline-on-hover text-white mr-4 last:mr-0 hover:text-primary-light"
             >
-              <Link href={link.url}>
-                <a
-                  className={
-                    router.asPath.includes(`${link.url}`)
-                      ? 'text-primary-light border-b-2 border-b-primary-light'
-                      : ''
-                  }
-                  aria-label={link.label}
-                >
-                  {link.label}
-                </a>
-              </Link>
+              <NextLink
+                href={link.url}
+                className={
+                  router.asPath.includes(`${link.url}`)
+                    ? 'text-primary-light border-b-2 border-b-primary-light'
+                    : ''
+                }
+                aria-label={link.label}
+              >
+                {link.label}
+              </NextLink>
             </li>
           ))}
         </ul>

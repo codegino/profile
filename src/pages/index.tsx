@@ -1,12 +1,12 @@
 import type {InferGetStaticPropsType} from 'next';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
-import Link from 'next/link';
 import {FullScreenWrapper} from '../components/FullScreenWrapper';
 import Greetings from '../components/Greetings';
 import Hero from '../components/Hero';
 import ResumeSummary from '../components/ResumeSummary';
 import SubscribeForm from '../components/SubscribeForm';
+import NextLink from '../components/basic/NextLink';
 import BlogSuggestionsList from '../components/blog/BlogSuggestionsList';
 import {commonMetaTags} from '../frontend-utils/meta-tags';
 import {generateRssFeed} from '../lib/rss';
@@ -55,14 +55,13 @@ export default function Home({
           <div className="text-center mb-20">
             <p>
               Check&nbsp;
-              <Link href="/resume#skills">
-                <a
-                  aria-label="full skills list"
-                  className="text-primary-dark underline-on-hover"
-                >
-                  full list
-                </a>
-              </Link>
+              <NextLink
+                href="/resume#skills"
+                aria-label="full skills list"
+                className="text-primary-dark underline-on-hover"
+              >
+                full list
+              </NextLink>
               &nbsp;of skills
             </p>
           </div>
@@ -76,15 +75,14 @@ export default function Home({
           <div className="text-center mb-20">
             <p>
               Visit my&nbsp;
-              <Link href="/resume">
-                <a
-                  aria-label="resume"
-                  title="Link to my resume"
-                  className="text-primary-dark underline-on-hover"
-                >
-                  resume
-                </a>
-              </Link>
+              <NextLink
+                href="/resume"
+                aria-label="resume"
+                title="Link to my resume"
+                className="text-primary-dark underline-on-hover"
+              >
+                resume
+              </NextLink>
               &nbsp;for more info
             </p>
           </div>

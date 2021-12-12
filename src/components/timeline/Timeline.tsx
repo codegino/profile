@@ -4,10 +4,10 @@ import {FaBuilding} from '@react-icons/all-files/fa/FaBuilding';
 import {FaGraduationCap} from '@react-icons/all-files/fa/FaGraduationCap';
 import {FaScroll} from '@react-icons/all-files/fa/FaScroll';
 import dompurify from 'isomorphic-dompurify';
-import Link from 'next/link';
 import Slide from 'react-reveal/Slide';
 import Zoom from 'react-reveal/Zoom';
 import type {WorkExperience} from '../../models/resume';
+import NextLink from '../basic/NextLink';
 import {Experience} from './Experience';
 
 export default function Timeline({
@@ -78,17 +78,16 @@ const Content: React.FC<{exp: WorkExperience}> = ({exp, children = null}) => {
         <div>
           {exp.category === 'work' ? <FaBuilding /> : <FaGraduationCap />}
           &nbsp;
-          <Link href={exp.url}>
-            <a
-              target="_blank"
-              aria-label={exp.organization}
-              rel="noopener nofollow"
-              className="text-primary-dark font-bold underline-on-hover underline--dark"
-              title={`Click to visit ${exp.organization}`}
-            >
-              {exp.organization}
-            </a>
-          </Link>
+          <NextLink
+            href={exp.url}
+            target="_blank"
+            aria-label={exp.organization}
+            rel="noopener nofollow"
+            className="text-primary-dark font-bold underline-on-hover underline--dark"
+            title={`Click to visit ${exp.organization}`}
+          >
+            {exp.organization}
+          </NextLink>
         </div>
         <div className="flex justify-center flex-col text-dark md:flex-row">
           <p className="font-bold">{exp.title}</p> <p>&nbsp;({exp.role})</p>
