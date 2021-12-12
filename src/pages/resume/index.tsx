@@ -83,9 +83,9 @@ export default function Resume({
         />
         <hr />
         <hr />
-        <section id="skills">
+        <div id="skills">
           <Skills skills={skills} />
-        </section>
+        </div>
         <CustomGithubCalendar />
       </main>
     </>

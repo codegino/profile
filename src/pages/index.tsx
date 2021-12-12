@@ -45,15 +45,14 @@ export default function Home({
       </Head>
 
       <Hero img={heroImage} svg={heroSvg} />
+      <FullScreenWrapper tr bl>
+        <Greetings />
+      </FullScreenWrapper>
       <main>
-        <FullScreenWrapper tr bl>
-          <Greetings />
-        </FullScreenWrapper>
-
         <FullScreenWrapper tl br>
           <ResumeSummary img={profileImage} svg={profileSvg} />
           <Skills skills={skills} />
-          <section className="text-center mb-20">
+          <div className="text-center mb-20">
             <p>
               Check&nbsp;
               <Link href="/resume#skills">
@@ -66,7 +65,7 @@ export default function Home({
               </Link>
               &nbsp;of skills
             </p>
-          </section>
+          </div>
         </FullScreenWrapper>
         <FullScreenWrapper tr bl>
           <BlogSuggestionsList blogs={blogs} />
@@ -74,7 +73,7 @@ export default function Home({
         <FullScreenWrapper tl br>
           <CustomGithubCalendar />
           <WakatimeCharts />
-          <section className="text-center mb-20">
+          <div className="text-center mb-20">
             <p>
               Visit my&nbsp;
               <Link href="/resume">
@@ -88,7 +87,7 @@ export default function Home({
               </Link>
               &nbsp;for more info
             </p>
-          </section>
+          </div>
         </FullScreenWrapper>
       </main>
       <FullScreenWrapper className="bg-light" tr bl>

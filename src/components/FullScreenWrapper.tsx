@@ -19,12 +19,12 @@ export const FullScreenWrapper: React.FC<{
     classNames += ` ${className}`;
   }
   return (
-    <section className={classNames} {...props}>
+    <div className={classNames} {...props}>
       {tr && <TopRightShape />}
       {bl && <BottomLeftShape />}
       {tl && <TopLeftShape />}
       {br && <BottomRightShape />}
       {children}
-    </section>
+    </div>
   );
 };

@@ -10,7 +10,7 @@ export default function ResumeSummary({
   svg,
 }: Pick<IGetPlaiceholderReturn, 'svg' | 'img'>) {
   return (
-    <article
+    <div
       className="w-full flex justify-center items-center flex-col py-20 md:flex-row  min-w-max"
       id="resume-summary"
     >
@@ -58,7 +58,7 @@ export default function ResumeSummary({
           &nbsp;{summary.address}
         </h3>
       </section>
-    </article>
+    </div>
   );
 }
 

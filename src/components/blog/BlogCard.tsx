@@ -22,7 +22,7 @@ const BlogCard: React.FC<Props> = ({blog}) => {
           <h3>{blog.description}</h3>
           <p>{blog.date}</p>
           {blog.tags && blog.tags.length ? (
-            <section className="mt-4 flex gap-2 flex-wrap">
+            <div className="mt-4 flex gap-2 flex-wrap">
               {blog.tags.map(tag => (
                 <span
                   className="inline-block bg-light border-light py-2 px-4 rounded-xl"
@@ -31,7 +31,7 @@ const BlogCard: React.FC<Props> = ({blog}) => {
                   {tag}
                 </span>
               ))}
-            </section>
+            </div>
           ) : null}
         </a>
       </Link>

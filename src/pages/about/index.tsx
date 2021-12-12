@@ -55,7 +55,7 @@ export default function AboutMe({
       <TechStackCarousel techStacks={techStacks} />
 
       <section className="mt-4 mb-2">
-        <p className="text-center">
+        <h4 className="text-center">
           This awesome carousel is easily made using&nbsp;
           <Link href="https://github.com/leandrowd/react-responsive-carousel">
             <a
@@ -68,23 +68,22 @@ export default function AboutMe({
             </a>
           </Link>
           .
-        </p>
+        </h4>
       </section>
       <section className="mb-8">
-        <p className="text-center">
+        <h4 className="text-center">
           Here is the link to my&nbsp;
           <Link href="https://github.com/codegino/profile">
             <a
               target="_blank"
               aria-label="Github Repo"
-              rel="noopener nofollow"
               className="text-primary-dark"
             >
               Github Repo
             </a>
           </Link>
           .
-        </p>
+        </h4>
       </section>
     </>
   );
