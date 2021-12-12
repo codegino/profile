@@ -70,9 +70,7 @@ export default function BlogPage({
 
       <BlogLayout>
         <BlogHeader blog={blog} img={img} svg={svg} />
-        <main>
-          <BlogContent source={source} />
-        </main>
+        <BlogContent source={source} />
         <br />
         <BlogFooter blog={blog} />
       </BlogLayout>

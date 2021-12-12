@@ -6,7 +6,7 @@ dateUpdated: '2021-12-09'
 bannerId: https://i.imgur.com/HcLHCJR.jpg
 bannerDescription: integration
 tags: ['react', 'tech', 'remix', 'supabase']
-keywords: ['react', 'tech', 'remix', 'supabase', 'remix supabase integration']
+keywords: ['remix supabase', 'remix supabase integration']
 published: true 
 ---
 
@@ -29,7 +29,7 @@ published: true
   * <a href="#conclusion" target="_self">Conclusion</a>
 
 
-> ## TL;DR <a name="tldr"></a>
+> ## TL;DR <a href="#" id="tldr"></a>
 > Link to the [source code](https://github.com/codegino/playground/tree/part1/remix-supabase-crud)
 > 
 > Here's a live [demo](https://playground-4jgaymeeo-codegino.vercel.app/words)
@@ -39,7 +39,7 @@ published: true
 > Here's the [demo with authentication](https://playground-iirrt7a6j-codegino.vercel.app)
 
 
-## Preface <a name="tldr"></a>
+## Preface <a href="#" id="preface"></a>
 
 This post will be the first part of the series on how I will create the entire application. So I will start with a boring introduction about the motivation for this series.
 
@@ -53,7 +53,7 @@ This part of the series will focus on how to use Remix for CRUD operations.
 
 <br />  
 
-### Basic overview of the app <a name="app-overview"></a>
+### Basic overview of the app <a href="#" id="app-overview"></a>
 
 The Vocabulary section will consist of lists of words that are publicly available and a protected admin route to perform a CRUD operation.
 
@@ -65,7 +65,7 @@ Here are the properties we need for each `word`:
 
 <br />
 
-### Prerequisites if you want to follow along <a name="prerequisites"></a>
+### Prerequisites if you want to follow along <a href="#" id="prerequisites"></a>
 
 - Make sure you have [node](https://nodejs.org/en/) installed
 - Basic understanding of [React](https://reactjs.org/)
@@ -76,7 +76,7 @@ Here are the properties we need for each `word`:
 
 <br />
 
-### Create a Supabase project <a name="supabase-setup"></a>
+### Create a Supabase project <a href="#" id="supabase-setup"></a>
 
 > If you want to use another provider, you can skip to this part <a href="#create-remix-project" target="_self">Create the Remix project</a>
 
@@ -147,7 +147,7 @@ Lastly, in `Authentication/Policies` tab, should be seeing this.
 <br />
 <br />
 
-### Create a Remix project <a name="create-remix-project"></a>
+### Create a Remix project <a href="#" id="create-remix-project"></a>
 
 <br />
 
@@ -210,7 +210,7 @@ function Document({
 
 function Layout({children}: React.PropsWithChildren<{}>) {
   return (
-    <main>{children}</main>
+    <article>{children}</article>
   );
 }
 
@@ -260,7 +260,7 @@ The mandatory `hello world` page is now ready.
 <br />
 <br />
 
-### Integration Prerequisites <a name="integration-prerequisites"></a>
+### Integration Prerequisites <a href="#" id="integration-prerequisites"></a>
 Install Supabase javascript library
 
 > Not using Supabase? Skip to <a href="#fetch-all" target="_self">Fetch All Words</a>
@@ -305,7 +305,7 @@ export const supabase = createClient(supabaseUrl, supabaseKey);
 
 <br />
 
-### Chores before integration <a name="optional-chores"></a>
+### Chores before integration <a href="#" id="optional-chores"></a>
 
 <br />
 
@@ -354,7 +354,7 @@ export function loader() {
 
 ## Integrating Supabase with Remix
 
-### Create the words listing page <a name="fetch-all"></a>
+### Create the words listing page <a href="#" id="fetch-all"></a>
 
 > If you are not using Supabase, replace the Supabase API calls with your choice.
 
@@ -414,7 +414,7 @@ The code above will fetch the data from Supabase and display it in a list.
 
 <br />
 
-### Create the word details page <a name="fetch-one"></a>
+### Create the word details page <a href="#" id="fetch-one"></a>
 
 <br />
 
@@ -516,7 +516,7 @@ After clicking on a word, `$id.tsx route` will render on where we put the `Outle
 
 <br />
 
-### Delete a word<a name="delete-one"></a>
+### Delete a word<a href="#" id="delete-one"></a>
 
 Since we're already on the `/words/$id` page, let's proceed with deletion first
 
@@ -591,7 +591,7 @@ This means our app is interactive even before we load the JavaScript from the se
  
 <br />
 
-### Create a new word entry <a name="create-one"></a>
+### Create a new word entry <a href="#" id="create-one"></a>
 Now we don't have anything on the list; let's create the route to handle creation.
 
 <br />
@@ -713,7 +713,7 @@ After clicking on the `Submit` button, the word will be added to the database, a
 
 <br />
 
-### Edit a word entry <a name="edit-one"></a>
+### Edit a word entry <a href="#" id="edit-one"></a>
 
 Now, to handle the missing operation in our CRUD app, let's add the ability to modify an existing entry.
 
@@ -916,7 +916,7 @@ After modifying some fields and clicking the submit button, the page will redire
 
 <br/>
 
-### Add indicator for state transition <a name="state-transition"></a>
+### Add indicator for state transition <a href="#" id="state-transition"></a>
 
 By utilizing the `useTransition` hook, we can add or change something on the screen depending on the route's state.
 
@@ -936,7 +936,7 @@ We can replace the text states below with global loading indicator, local compon
 
 <br />
 
-### Extra Demo: CRUD operations without JavaScript <a name="extra-demo"></a>
+### Extra Demo: CRUD operations without JavaScript <a href="#" id="extra-demo"></a>
 Here's proof that we can perform the CRUD operations without using any JavaScript on the client-side(_as indicated by errors in the network tab_).
 Take note that I also simulated a slower network connection, yet the performance is not that terrible.
 
@@ -947,7 +947,7 @@ Take note that I also simulated a slower network connection, yet the performance
 
 
 
-## Conclusion <a name="conclusion"></a>
+## Conclusion <a href="#" id="conclusion"></a>
 So far, I'm having a positive experience with the framework. Of course, I'm still learning, but I'm enjoying the process.
 I'm starting to agree with the Remix team said that if we become better with Remix, we become better with the Web.
 Working with Remix allows me to refresh my HTML skills that are almost diminishing due to too much dependency on JavaScript.

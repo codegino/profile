@@ -30,8 +30,8 @@ const CodeBlock: FunctionComponent<CodeBlockProps> = ({
     : language;
 
   return (
-    <span className="relative my-4">
-      <aside
+    <code className="relative my-4">
+      <span
         className="
         text-right w-full pl-2 pr-1 top-1 h-9 relative flex justify-between text-primary-dark
         bg-light rounded-tr-lg rounded-tl-lg
@@ -42,7 +42,7 @@ const CodeBlock: FunctionComponent<CodeBlockProps> = ({
           {languageLabel}
         </span>
         <ClipboardCopyButton value={children} />
-      </aside>
+      </span>
       <Highlight
         {...defaultProps}
         theme={vsDark}
@@ -51,7 +51,7 @@ const CodeBlock: FunctionComponent<CodeBlockProps> = ({
       >
         {({className, style, tokens, getLineProps, getTokenProps}) => (
           <>
-            <div className="absolute z-10 flex flex-col left-0 top-14 bottom-0">
+            <span className="absolute z-10 flex flex-col left-0 top-14 bottom-0">
               {tokens.map((_, i) => {
                 return !noLine ? (
                   <span
@@ -64,8 +64,8 @@ const CodeBlock: FunctionComponent<CodeBlockProps> = ({
                   </span>
                 ) : null;
               })}
-            </div>
-            <pre
+            </span>
+            <span
               className={
                 'p-3 overflow-auto flex relative flex-col leading-code my-1 text-2xl ' +
                 ' rounded-bl-md rounded-br-md' +
@@ -90,12 +90,12 @@ const CodeBlock: FunctionComponent<CodeBlockProps> = ({
                   </span>
                 </span>
               ))}
-            </pre>
+            </span>
           </>
         )}
       </Highlight>
       {codePenID && (
-        <div>
+        <samp>
           <Link href={`https://codepen.io/codegino/pen/${codePenID}`}>
             <a
               target="_blank"
@@ -105,9 +105,9 @@ const CodeBlock: FunctionComponent<CodeBlockProps> = ({
               Link to Codepen
             </a>
           </Link>
-        </div>
+        </samp>
       )}
-    </span>
+    </code>
   );
 };
 

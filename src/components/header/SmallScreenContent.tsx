@@ -1,15 +1,14 @@
 import React, {useState, useRef} from 'react';
 import {AiOutlineClose} from '@react-icons/all-files/ai/AiOutlineClose';
+import {AiOutlineMenu} from '@react-icons/all-files/ai/AiOutlineMenu';
 import {FaEnvelopeSquare} from '@react-icons/all-files/fa/FaEnvelopeSquare';
 import {FaFacebookMessenger} from '@react-icons/all-files/fa/FaFacebookMessenger';
-import {TiThMenu} from '@react-icons/all-files/ti/TiThMenu';
 import clsx from 'clsx';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import {useRouter} from 'next/router';
 import {CSSTransition} from 'react-transition-group';
 import useDarkMode from 'use-dark-mode';
-import {mediaQuery} from '../../utils/media-query';
 import CustomIcon from '../icon/CustomIcon';
 import SocialMedia from '../social/SocialMedia';
 import {navigationLinks} from './nav-links';
@@ -36,7 +35,11 @@ export default function SmallScreenContent() {
 
   return (
     <div className="relative w-full text-right block md:hidden z-20">
-      <TiThMenu size={30} onClick={sidebarOpen} className="cursor-pointer" />
+      <AiOutlineMenu
+        size={30}
+        onClick={sidebarOpen}
+        className="cursor-pointer"
+      />
       <CSSTransition
         in={isOpen}
         timeout={100}

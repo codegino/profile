@@ -23,7 +23,6 @@ export function BlurringImage({
   ...props
 }: Props) {
   const [hasPlaceholder, setHasPlaceholder] = useState(true);
-
   return (
     <div
       className={clsx('relative overflow-hidden h-full w-full', className)}

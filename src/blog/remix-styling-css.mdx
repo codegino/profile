@@ -25,13 +25,13 @@ Table of Contents
   * <a href="#responsive" target="_self">Responsive Layout</a>
   * <a href="#conclusion" target="_self">Conclusion</a>
 
-> ### TL;DR: Source and Demo<a name="tldr"></a>
+> ### TL;DR: Source and Demo<a href="#" id="tldr"></a>
 > Link to the [source code](https://github.com/codegino/playground/tree/part2/styling)
 >
 > Here's a live [demo](https://playground-irds16t7i-codegino.vercel.app/words)
 
 
-### Introduction <a name="intro"></a>
+### Introduction <a href="#" id="intro"></a>
 
 In my last [blog post](https://codegino.com/blog/remix-supabase-integration), I discussed how to perform a CRUD operation in a Remix app.
 In this blog post, I will discuss how to style a Remix app using only plain CSS.
@@ -53,7 +53,7 @@ According to the [official documentation](https://remix.run/docs/en/v1/guides/st
 
 <br />
 
-### Cleaning up styles from boilerplate <a name="clean-up"></a>
+### Cleaning up styles from boilerplate <a href="#" id="clean-up"></a>
 
 ```bash
 # Remove all files under `app/styles`
@@ -62,7 +62,7 @@ rm -r app/styles/*
 
 <br />
 
-### Global Styling <a name="global-style"></a>
+### Global Styling <a href="#" id="global-style"></a>
 
 <br />
 
@@ -174,7 +174,7 @@ The [changes](https://github.com/codegino/playground/commit/b8846e32cfd3a97ac4a2
 
 <br />
 
-### Styling a Route <a name="route-style"></a>
+### Styling a Route <a href="#" id="route-style"></a>
 
 > For now, we're not aiming to get the best design award; we'll just apply some styles for the sake of making it look different.
 
@@ -243,7 +243,7 @@ The [changes](https://github.com/codegino/playground/commit/5f078e6ec14ece3d1243
 
 <br />
 
-### Styling a child Route <a name="route-child-style"></a>
+### Styling a child Route <a href="#" id="route-child-style"></a>
 
 Since both our `/add` and `/edit/$id` routes use a form, let's create a shared css file.
 
@@ -309,7 +309,7 @@ After adding the class name, our `word form` styles won't leak to other form ele
 
 <br />
 
-### Sibling Routes Styling <a name="route-sibling-style"></a>
+### Sibling Routes Styling <a href="#" id="route-sibling-style"></a>
 
 _I'm adding a temporary background color to demonstrate how sibling routes styling behave._
 
@@ -354,7 +354,7 @@ Now it's working as expected. There's no magic or whatever, just pure JavaScript
 
 <br />
 
-### Styling a reusable component <a name="reusable-component-style"></a>
+### Styling a reusable component <a href="#" id="reusable-component-style"></a>
 
 > Revert changes in `app/styles/words/shared.css`, `app/routes/words/add.tsx`, and , `app/routes/words/edit.$id.tsx`
 
@@ -432,7 +432,7 @@ The [changes](https://github.com/codegino/playground/commit/5a2170f3b59c1762e991
 
 <br />
 
-### Styling custom basic HTML Element <a name="basic-html-element"></a>
+### Styling custom basic HTML Element <a href="#" id="basic-html-element"></a>
 
 > **Q**: So how do we style a custom basic HTML element using CSS?
 > 
@@ -610,7 +610,7 @@ The [changes](https://github.com/codegino/playground/commit/159a0d4f272b7865ea58
 
 <br />
 
-### Dark Mode <a name="dark-mode"></a>
+### Dark Mode <a href="#" id="dark-mode"></a>
 
 There are many ways to implement dark mode.
 This example will use `prefers-color-scheme` to update the CSS variables when a media query is satisfied.
@@ -657,7 +657,7 @@ The [changes](https://github.com/codegino/playground/commit/55e1aa57d668538988fb
 <br />
 <br />
 
-### Responsive Layout<a name="responsive"></a>
+### Responsive Layout<a href="#" id="responsive"></a>
 
 We'll use the same approach in the dark mode example to change the layout depending on the result of a media query.
 
@@ -703,7 +703,7 @@ The [changes](https://github.com/codegino/playground/commit/5ab6fc7303d43e3bc4e3
 
 <br />
 
-## Conclusion <a name="basic-html-element"></a>
+## Conclusion <a href="#" id="basic-html-element"></a>
 Styling Remix using Vanilla CSS is a fun exercise for me.
 I was able to review concepts that I almost forgot due to the convenience of using third-party libraries.
 I have fine-grain control over the styling of my routes and components, and I know that I only ship styles that will be used.

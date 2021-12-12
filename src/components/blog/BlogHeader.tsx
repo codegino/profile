@@ -16,7 +16,7 @@ const BlogHeader: FunctionComponent<Props> = ({blog, img, svg}) => {
       {img && svg && !blog.hideBanner ? (
         <div className="cover-image">
           <BlurringImage
-            alt="Hero photo"
+            alt={blog.bannerDescription}
             img={img}
             svg={svg}
             layout="responsive"
