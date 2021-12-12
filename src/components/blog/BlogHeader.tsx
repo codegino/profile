@@ -17,6 +17,7 @@ const BlogHeader: FunctionComponent<Props> = ({blog, img, svg}) => {
         <div className="cover-image">
           <BlurringImage
             alt={blog.bannerDescription}
+            title={blog.bannerDescription}
             img={img}
             svg={svg}
             layout="responsive"

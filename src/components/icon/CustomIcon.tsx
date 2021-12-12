@@ -10,6 +10,7 @@ export default function CustomIcon(sm: IconProps) {
       className="icon"
       style={{fill: hover ? sm.hoverColor : sm.color}}
       title={sm.title}
+      aria-label={sm.title}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
     />

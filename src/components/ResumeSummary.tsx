@@ -19,6 +19,7 @@ export default function ResumeSummary({
           img={img}
           svg={svg}
           alt="Carlo Gino"
+          title="Carlo Gino"
           layout="responsive"
           height={200}
           width={200}
