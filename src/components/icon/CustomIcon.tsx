@@ -9,6 +9,7 @@ export default function CustomIcon(sm: IconProps) {
       size={sm.size || 28}
       className="icon"
       style={{fill: hover ? sm.hoverColor : sm.color}}
+      title={sm.title}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
     />
@@ -17,12 +18,12 @@ export default function CustomIcon(sm: IconProps) {
 
 export type SocialMediaProps = IconProps & {
   url: string;
-  name: string;
 };
 
 export type IconProps = {
   size?: number;
   icon: IconType;
+  title: string;
   color: string;
   hoverColor: string;
 };

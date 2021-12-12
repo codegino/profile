@@ -13,13 +13,12 @@ export default function SocialMedia() {
       <nav>
         <ul className="flex">
           {socialMedia.map(sm => (
-            <li key={sm.name} className="mr-1">
+            <li key={sm.title} className="mr-1">
               <Link href={sm.url}>
                 <a
                   target="_blank"
-                  aria-label={sm.name}
+                  aria-label={sm.title}
                   rel="noopener nofollow"
-                  title={sm.name}
                 >
                   <CustomIcon {...sm} />
                 </a>
@@ -36,35 +35,35 @@ const socialMedia: SocialMediaProps[] = [
   {
     url: 'https://dev.to/codegino',
     icon: FaDev,
-    name: 'dev',
+    title: 'dev',
     color: '',
     hoverColor: '#cccccc',
   },
   {
     url: 'https://github.com/codegino',
     icon: FaGithubSquare,
-    name: 'github',
+    title: 'github',
     color: '',
     hoverColor: '#cccccc',
   },
   {
     url: 'https://www.facebook.com/codegino',
     icon: FaFacebookSquare,
-    name: 'facebook',
+    title: 'facebook',
     color: '',
     hoverColor: '#1877f2',
   },
   {
     url: 'https://www.linkedin.com/in/carlogino/',
     icon: FaLinkedin,
-    name: 'linkedin',
+    title: 'linkedin',
     color: '',
     hoverColor: '#0a66c2',
   },
   {
     url: 'https://twitter.com/code_gino',
     icon: FaTwitterSquare,
-    name: 'twitter',
+    title: 'twitter',
     color: '',
     hoverColor: '#1da1f2',
   },

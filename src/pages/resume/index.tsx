@@ -53,6 +53,7 @@ export default function Resume({
               icon={FaFilePdf}
               size={40}
               color="#F40F02"
+              title="Download PDF Version"
               hoverColor="red"
             />
           </a>
@@ -68,6 +69,7 @@ export default function Resume({
               icon={FaFileWord}
               size={40}
               color="#015299"
+              title="Download Word Version"
               hoverColor="blue"
             />
           </a>
