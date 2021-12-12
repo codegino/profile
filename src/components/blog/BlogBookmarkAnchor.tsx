@@ -2,7 +2,7 @@ import React, {FunctionComponent} from 'react';
 
 const BlogBookMark: FunctionComponent = ({...props}) => {
   return (
-    <div
+    <span
       aria-hidden="true"
       tabIndex={-1}
       aria-label={props.children as string}
