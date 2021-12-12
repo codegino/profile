@@ -30,7 +30,7 @@ const CodeBlock: FunctionComponent<CodeBlockProps> = ({
     : language;
 
   return (
-    <div className="relative my-4">
+    <code className="relative my-4">
       <aside
         className="
         text-right w-full pl-2 pr-1 top-1 h-9 relative flex justify-between text-primary-dark
@@ -74,7 +74,7 @@ const CodeBlock: FunctionComponent<CodeBlockProps> = ({
               style={style}
             >
               {tokens.map((line, i) => (
-                <div
+                <code
                   key={i}
                   {...getLineProps({line, key: i})}
                   style={{
@@ -88,7 +88,7 @@ const CodeBlock: FunctionComponent<CodeBlockProps> = ({
                       <span key={key} {...getTokenProps({token, key})} />
                     ))}
                   </span>
-                </div>
+                </code>
               ))}
             </pre>
           </>
@@ -107,7 +107,7 @@ const CodeBlock: FunctionComponent<CodeBlockProps> = ({
           </Link>
         </div>
       )}
-    </div>
+    </code>
   );
 };
 
