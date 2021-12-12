@@ -18,7 +18,7 @@ export default function ResumeSummary({
         <BlurringImage
           img={img}
           svg={svg}
-          alt="My profile"
+          alt="Carlo Gino"
           layout="responsive"
           height={200}
           width={200}

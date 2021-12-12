@@ -22,7 +22,7 @@ export default function Header() {
                 src="/assets/logo.svg"
                 height={26}
                 width={26}
-                alt="My logo"
+                alt="CG"
               />
             </a>
           </Link>

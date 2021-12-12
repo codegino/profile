@@ -16,7 +16,7 @@ export default function AboutMeHero({
   return (
     <div className="overflow-hidden relative h-95vh m-auto flex justify-center">
       <BlurringImage
-        alt="Hero photo"
+        alt="black hole"
         img={img}
         svg={svg}
         layout="fill"

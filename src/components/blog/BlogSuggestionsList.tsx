@@ -22,11 +22,11 @@ const BlogSuggestionsList = ({blogs}: Props) => {
           </a>
         </Link>
       </h2>
-      <section className="grid-cols-1 w-screen px-6 mb-0 grid md:grid-cols-2 md:max-w-7xl gap-8 ">
+      <div className="grid-cols-1 w-screen px-6 mb-0 grid md:grid-cols-2 md:max-w-7xl gap-8 ">
         {blogs.map(blog => (
           <BlogCardPreview blog={blog} key={blog.slug} />
         ))}
-      </section>
+      </div>
     </section>
   );
 };
