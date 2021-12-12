@@ -28,7 +28,7 @@ published: true
 <br />
 
 
-> ### TL;DR: Source and Demo <a href="#" id="tldr"></a>
+> ### TL;DR: Source and Demo <Bookmark id="tldr"/>
 > Here's a live [demo](https://playground-iirrt7a6j-codegino.vercel.app)
 >
 > Link to the [source code](https://github.com/codegino/playground/tree/part4/authentication)
@@ -37,13 +37,13 @@ published: true
 
 <br />
 
-### Introduction <a href="#" id="introduction"></a>
+### Introduction <Bookmark id="introduction"/>
 This blog will focus on securing our Remix application with Supabase's [Row Level Security (RLS) feature](https://supabase.com/docs/guides/auth/row-level-security).
 If you want to know the context of what application I'm talking about, you can refer to my [another blog](https://codegino.com/blog/remix-supabase-integration).
 
 <br />
 
-### Setting up Supabase <a href="#" id="supabase-setup"></a>
+### Setting up Supabase <Bookmark id="supabase-setup"/>
 
 > Instead of updating my database from the previous blog, I'm just going to re-create it.
 
@@ -94,7 +94,7 @@ CREATE POLICY "user_based_delete" ON public.words FOR DELETE USING (
 
 <br />
 
-### Implement server-side utilities to manage Supabase session <a href="#" id="server-side-utils"></a>
+### Implement server-side utilities to manage Supabase session <Bookmark id="server-side-utils"/>
 
 #### Create server instance of Supabase client
 
@@ -157,7 +157,7 @@ export const setAuthToken = async (request: Request) => {
 
 ## Setting up authentication in the Remix side 
 
-### Create client-side utilities for managing Supabase session <a href="#" id="client-side-utils"></a>
+### Create client-side utilities for managing Supabase session <Bookmark id="client-side-utils"/>
 
 #### Create Supabase Provider and a custom hook which returns the Supabase instance
 
@@ -223,7 +223,7 @@ export default function App() {
 
 <br />
 
-### Create the `/auth` route <a href="#" id="sign-in"></a>
+### Create the `/auth` route <Bookmark id="sign-in"/>
 
 > Since I'm too lazy to implement a login page, I'll just use the UI provided by Supabase.
 
@@ -333,7 +333,7 @@ After logging in, the user will be redirected to the `/words` route.
 
 <br />
 
-### Signing out <a href="#" id="sign-out"></a>
+### Signing out <Bookmark id="sign-out"/>
 
 #### Create a logout button in the header
 
@@ -397,7 +397,7 @@ export const loader = () => {
 <br />
 
 
-### TL;DR version of using our setup <a href="#" id="tldr-examples"></a>
+### TL;DR version of using our setup <Bookmark id="tldr-examples"/>
 
 #### Using in a `loader` or `action`
 ```tsx
@@ -437,7 +437,7 @@ export default function Index() {
 ## Using in CRUD Operations
 The examples below are a longer version of using our setup for CRUD operations.
 
-### Fetching All operation <a href="#" id="fetch-all"></a>
+### Fetching All operation <Bookmark id="fetch-all"/>
 
 ```tsx fileName=app/routes/words
 import { Form, useTransition } from "remix";
@@ -508,7 +508,7 @@ export default function Index() {
 
 <br />
 
-### Retrieve one and Delete one operation <a href="#" id="get-delete-one"></a>
+### Retrieve one and Delete one operation <Bookmark id="get-delete-one"/>
 
 ```tsx fileName=app/routes/words/$id
 import { Form, useLoaderData, redirect, useTransition } from "remix";
@@ -592,7 +592,7 @@ export default function Word() {
 
 <br />
 
-### Create operation <a href="#" id="create-one"></a>
+### Create operation <Bookmark id="create-one"/>
 
 ```tsx fileName=app/routes/words/add
 import { redirect } from "remix";
@@ -633,7 +633,7 @@ export default function AddWord() {
 
 <br />
 
-### Update operation <a href="#" id="update-one"></a>
+### Update operation <Bookmark id="update-one"/>
 
 ```tsx fileName=app/routes/words/edit/$id
 import { useLoaderData, redirect } from "remix";
@@ -679,6 +679,6 @@ export default function EditWord() {
 
 <br />
 
-## Conclusion <a href="#" id="conclusion"></a>
+## Conclusion <Bookmark id="conclusion"/>
 We can still use Supabase only on the client-side as we use it on a typical React application.
 However, putting the data fetching on the server-side will allow us to benefit from a typical [SSR application](https://medium.com/walmartglobaltech/the-benefits-of-server-side-rendering-over-client-side-rendering-5d07ff2cefe8).

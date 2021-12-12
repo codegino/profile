@@ -23,7 +23,7 @@ Table of Contents
   * <a href="#vscode-plugins" target="_self">VSCode Plugins</a>
   * <a href="#conclusion" target="_self">Conclusion</a>
 
-> ### TL;DR: Source and Demo<a aria-hidden="true" tabIndex="-1" href="#" id="tldr"></a>
+> ### TL;DR: Source and Demo<Bookmark id="tldr"/>
 > Here's a live [demo](https://playground-jb6w7fn95-codegino.vercel.app)
 >
 > Link to the [source code](https://github.com/codegino/playground/tree/part3/styling-tailwind)
@@ -32,13 +32,13 @@ Table of Contents
 
 <br />
 
-### Introduction <a aria-hidden="true" tabIndex="-1" href="#" id="introduction"></a>
+### Introduction <Bookmark id="introduction"/>
 
 In my last [blog post](https://codegino.com/blog/remix-styling-css), I discussed how to style a Remix app using Vanilla CSS. This blog will show how to integrate Tailwind and PostCSS into our Remix app.
 
 <br />
 
-### Dependencies <a aria-hidden="true" tabIndex="-1" href="#" id="dependencies"></a>
+### Dependencies <Bookmark id="dependencies"/>
 
 - [`autoprefixer`](https://github.com/postcss/autoprefixer)
 - [`postcss`](https://github.com/postcss/postcss)
@@ -60,7 +60,7 @@ OR if you prefer `yarn`
 yarn add -D autoprefixer postcss postcss-cli postcss-import tailwindcss cssnano
 ```
 
-### Add scripts to `package.json` <a aria-hidden="true" tabIndex="-1" href="#" id="update-scripts"></a>
+### Add scripts to `package.json` <Bookmark id="update-scripts"/>
 
 <br />
 
@@ -134,7 +134,7 @@ If you are not a fan of multiple terminals, use `concurrently` to run `css:watch
 
 <br />
 
-### Tailwind and App styles presets <a aria-hidden="true" tabIndex="-1" href="#" id="styles-presets"></a>
+### Tailwind and App styles presets <Bookmark id="styles-presets"/>
 
 <br />
 
@@ -183,7 +183,7 @@ textarea {
 
 <br/>
 
-### PostCSS and Tailwind configuration <a aria-hidden="true" tabIndex="-1" href="#" id="styles-config"></a>
+### PostCSS and Tailwind configuration <Bookmark id="styles-config"/>
 
 <br/>
 
@@ -241,7 +241,7 @@ module.exports = {
 
 <br />
 
-### Integrating styles in Remix Code <a aria-hidden="true" tabIndex="-1" href="#" id="remix-integration"></a>
+### Integrating styles in Remix Code <Bookmark id="remix-integration"/>
 
 Add a reference of the generated CSS files using `links` in `app/root.tsx`
 
@@ -265,7 +265,7 @@ export let links: LinksFunction = () => {
 
 <br />
 
-### Styling a component <a aria-hidden="true" tabIndex="-1" href="#" id="sample-usage"></a>
+### Styling a component <Bookmark id="sample-usage"/>
 
 Use Tailwind, as usual; add Tailwind's class names added inside the `className` prop.
 
@@ -330,7 +330,7 @@ export function WordForm({ word }: { word?: Word }) {
 
 <br />
 
-### VSCode Plugins <a aria-hidden="true" tabIndex="-1" href="#" id="vscode-plugins"></a>
+### VSCode Plugins <Bookmark id="vscode-plugins"/>
 Here are some plugins that you can use to get a better experience using Tailwind and PostCSS in VSCode.
 
 - [PostCSS Language Support](https://marketplace.visualstudio.com/items?itemName=csstools.postcss)
@@ -338,6 +338,6 @@ Here are some plugins that you can use to get a better experience using Tailwind
 
 <br />
 
-## Conclusion <a aria-hidden="true" tabIndex="-1" href="#" id="conclusion"></a>
+## Conclusion <Bookmark id="conclusion"/>
 Integrating Tailwind and PostCSS in Remix is straightforward as we don't need to hack into the framework to make them work.
 We quickly achieved an extendable and customizable CSS generation boilerplate by adding a few configurations.
