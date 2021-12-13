@@ -15,16 +15,14 @@ export default function Header() {
       <TopLeftShape />
       <div className="flex items-center min-w-max mr-6">
         <div className="w-12 h-12 rounded-full bg-white p-0.5 mr-0 text-center">
-          <NextLink href="/" aria-label="My Logo">
-            <Image
-              priority
-              src="/assets/logo.svg"
-              height={26}
-              width={26}
-              alt="CG"
-              title="CG"
-            />
-          </NextLink>
+          <Image
+            priority
+            src="/assets/logo.svg"
+            height={26}
+            width={26}
+            alt="CG"
+            title="CG"
+          />
         </div>
 
         <NextLink href="/" aria-label="Code Gino">

@@ -56,6 +56,9 @@ export default function Resume({
             title="Download PDF Version"
             hoverColor="red"
           />
+          <span aria-hidden className="hidden">
+            Download PDF Version
+          </span>
         </NextLink>
         <NextLink
           href={resumeWordUrl}
@@ -71,6 +74,9 @@ export default function Resume({
             title="Download Word Version"
             hoverColor="blue"
           />
+          <span aria-hidden className="hidden">
+            Download Word Version
+          </span>
         </NextLink>
       </div>
       <main>
