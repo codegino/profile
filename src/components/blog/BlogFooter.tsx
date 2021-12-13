@@ -11,7 +11,7 @@ const BlogFooter = ({blog}: {blog: IBlogMetadata}) => {
       <p className="m-6">
         <i>Get latest updates directly into your mailbox.</i>
       </p>
-      <form action="https://sendfox.com/codegino">
+      <form action="https://mailchi.mp/5d28d757da7a/codegino-newsletter">
         <SubscribeButton>Subscribe to my Newsletter</SubscribeButton>
       </form>
 

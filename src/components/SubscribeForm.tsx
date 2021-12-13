@@ -1,6 +1,7 @@
 import React from 'react';
 import {BiCool} from '@react-icons/all-files/bi/BiCool';
 import {RiSpamLine} from '@react-icons/all-files/ri/RiSpamLine';
+import Link from 'next/link';
 import Script from 'next/script';
 import Button from './basic/Button';
 import Input from './basic/Input';
@@ -21,14 +22,11 @@ const SubscribeForm = () => {
             <BiCool size={25} />
           </h4>
         </div>
-        <Script
-          strategy="beforeInteractive"
-          src="https://sendfox.com/js/form.js"
-        ></Script>
+
         <form
           method="post"
-          action="https://sendfox.com/form/m2xeq6/1j27oq"
-          className="sendfox-form relative mt-8 shadow-sm shadow-dark overflow-hidden bg-light w-full
+          action="https://codegino.us20.list-manage.com/subscribe/post?u=9821406d00b8039df9f681e58&amp;id=76050ac432"
+          className="relative mt-8 shadow-sm shadow-dark overflow-hidden bg-light w-full
           max-w-3xl min-w-3xl mb-24 rounded-2xl"
           id="1j27oq"
           data-async="true"
@@ -44,18 +42,18 @@ const SubscribeForm = () => {
             <Input
               type="text"
               placeholder="First Name"
-              name="first_name"
+              name="FNAME"
               className="mb-4"
               required
             />
             <Input
               type="email"
               placeholder="Email"
-              name="email"
+              name="EMAIL"
               required
               className="mb-8"
             />
-            <div aria-hidden="true" className="sendfox-recaptcha">
+            <div aria-hidden="true">
               <input
                 type="text"
                 name="a_password"
