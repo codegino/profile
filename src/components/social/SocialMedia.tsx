@@ -21,6 +21,9 @@ export default function SocialMedia() {
                 rel="noopener nofollow"
               >
                 <CustomIcon {...sm} />
+                <span aria-hidden className="hidden">
+                  {sm.title}
+                </span>
               </NextLink>
             </li>
           ))}
