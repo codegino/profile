@@ -14,16 +14,20 @@ export default function Header() {
     <header className="h-20 relative bg-black flex items-center overflow-hidden py-0 px-2 text-white">
       <TopLeftShape />
       <div className="flex items-center min-w-max mr-6">
-        <div className="w-12 h-12 rounded-full bg-white p-0.5 mr-0 text-center">
-          <Image
-            priority
-            src="/assets/logo.svg"
-            height={26}
-            width={26}
-            alt="CG"
-            title="CG"
-          />
-        </div>
+        <NextLink href="/" aria-label="My Logo">
+          <div className="w-12 h-12 rounded-full bg-white p-0.5 mr-0 text-center">
+            <Image
+              priority
+              src="/assets/logo.svg"
+              height={26}
+              width={26}
+              alt="CG"
+              title="CG"
+              aria-label="CG Logo"
+              layout="fixed"
+            />
+          </div>
+        </NextLink>
 
         <NextLink href="/" aria-label="Code Gino">
           <span
