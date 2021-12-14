@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@react-icons/all-files": "4.1.0",
-    "clsx": "^1.1.1",
+    "clsx": "1.1.1",
     "disqus-react": "1.1.2",
     "isomorphic-dompurify": "0.17.0",
     "next": "12.0.7",
@@ -24,7 +24,7 @@
     "react-github-calendar": "3.2.2",
     "react-responsive": "9.0.0-beta.5",
     "react-responsive-carousel": "3.2.22",
-    "react-reveal": "^1.2.2",
+    "react-reveal": "1.2.2",
     "react-transition-group": "4.4.2",
     "react-typist": "2.0.5",
     "use-dark-mode": "2.3.1"
@@ -41,7 +41,7 @@
     "eslint": "7.32.0",
     "eslint-config-next": "12.0.7",
     "eslint-config-prettier": "8.3.0",
-    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-jsx-a11y": "6.5.1",
     "gray-matter": "4.0.3",
     "husky": "7.0.4",
     "lint-staged": "12.1.2",
