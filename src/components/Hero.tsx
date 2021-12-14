@@ -14,7 +14,7 @@ export default function Hero({
   const {scrollToContent} = useScrollToView('#greetings');
 
   return (
-    <div className="overflow-hidden relative h-95vh w-full flex justify-center items-center">
+    <div className="overflow-hidden relative h-[95vh] w-full flex justify-center items-center">
       <BlurringImage
         alt="black hole"
         title="black hole"
@@ -34,7 +34,7 @@ export default function Hero({
         </div>
       </Fade>
       <Zoom delay={1900}>
-        <div className="absolute z-10 bottom-8vh">
+        <div className="absolute z-10 bottom-[8vh]">
           <GuideArrow onClick={scrollToContent} />
         </div>
       </Zoom>

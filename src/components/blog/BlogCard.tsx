@@ -12,8 +12,8 @@ const BlogCard: React.FC<Props> = ({blog}) => {
     <article
       className="
       rounded-xl w-full py-4 px-8 flex items-center justify-between
-      shadow-sm hover:shadow-md hover:shadow-dark shadow-dark mb-5 last:mb-0 max-w-blog-card-sm md:max-w-blog-card-md
-      lg:max-w-blog-card-lg xl:max-w-blog-card-xl
+      shadow-sm hover:shadow-md hover:shadow-dark shadow-dark mb-5 last:mb-0 max-w-[45rem] md:max-w-[60rem]
+      lg:max-w-[75rem] xl:max-w-[80rem]
     "
     >
       <NextLink href={`/blog/${blog.slug}`} aria-label={blog.title}>

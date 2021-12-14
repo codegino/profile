@@ -14,7 +14,7 @@ export default function AboutMeHero({
   const {scrollToContent} = useScrollToView('#about-me-details');
 
   return (
-    <div className="overflow-hidden relative h-95vh m-auto flex justify-center">
+    <div className="overflow-hidden relative h-[95vh] m-auto flex justify-center">
       <BlurringImage
         alt="weird quote"
         title="weird quote"

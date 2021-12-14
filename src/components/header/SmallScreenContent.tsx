@@ -57,7 +57,7 @@ export default function SmallScreenContent() {
             onClick={e => e.stopPropagation()}
             role="presentation"
             className="
-              w-half-screen h-screen absolute bg-light top-0 right-0 text-dark flex flex-col
+              w-[50vw] h-screen absolute bg-light top-0 right-0 text-dark flex flex-col
               items-start p-4 text-2xl leading-10 z-20
             "
           >

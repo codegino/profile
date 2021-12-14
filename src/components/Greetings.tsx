@@ -25,8 +25,8 @@ export default function Greetings() {
         <div className="flex justify-center items-center h-screen w-screen pt-20 relative overflow-hidden">
           <div
             className="
-            w-full m-2 sm:m-0 sm:w-terminal-sm md:w-terminal-md lg:w-terminal-lg
-            rounded-lg overflow-hidden h-terminal-xs sm:h-terminal-sm
+            w-full m-2 sm:m-0 sm:w-[90%] md:w-[70%] lg:w-[70rem]
+            rounded-lg overflow-hidden h-[46rem] sm:h-[36rem]
             text-xl leading-8 sm:text-4xl
           "
           >
@@ -111,10 +111,10 @@ export default function Greetings() {
           </div>
         </div>
       </Zoom>
-      <div className="top-0 left-0 z-negative h-screen w-screen absolute bg-gradient-to-r from-light to-dark" />
+      <div className="top-0 left-0 z-[-1] h-screen w-screen absolute bg-gradient-to-r from-light to-dark" />
       {isGuideVisible ? (
         <Zoom>
-          <div className="absolute bottom-8vh">
+          <div className="absolute bottom-[8vh]">
             <GuideArrow onClick={scrollToContent} />
           </div>
         </Zoom>

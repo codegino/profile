@@ -55,8 +55,8 @@ const CodeBlock: FunctionComponent<CodeBlockProps> = ({
               {tokens.map((_, i) => {
                 return !noLine ? (
                   <span
-                    className="bg-code pl-2 pr-4 text-white text-right leading-code
-                    max-w-line-number mi-w-line-number select-none
+                    className="bg-[#1e1e1e] pl-2 pr-4 text-white text-right leading-[1.188]
+                    max-w-[3.5rem] min-w-[3.5rem] select-none
                     "
                     key={i}
                   >
@@ -67,7 +67,7 @@ const CodeBlock: FunctionComponent<CodeBlockProps> = ({
             </span>
             <span
               className={
-                'p-3 overflow-auto flex relative flex-col leading-code my-1 text-2xl ' +
+                'p-3 overflow-auto flex relative flex-col leading-[1.188] my-1 text-2xl ' +
                 ' rounded-bl-md rounded-br-md' +
                 className
               }

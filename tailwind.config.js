@@ -13,43 +13,8 @@ module.exports = {
       fontSize: {
         inherit: 'inherit',
       },
-      spacing: {
-        '8vh': '8vh',
-        '25p': '25%',
-      },
-      lineHeight: {
-        code: '1.188',
-      },
       zIndex: {
         1: '1',
-        negative: '-1',
-      },
-      height: {
-        '95vh': '95vh',
-        'terminal-xs': '46rem',
-        'terminal-sm': '36rem',
-      },
-      minHeight: {
-        '95vh': '95vh',
-      },
-      width: {
-        'terminal-sm': '90%',
-        'terminal-md': '70%',
-        'terminal-lg': '70rem',
-        'half-screen': '50vw',
-        'line-number': '3.5rem',
-      },
-      maxWidth: {
-        'line-number': '3.5rem',
-        'blog-card-sm': '45rem',
-        'blog-card-md': '60rem',
-        'blog-card-lg': '75rem',
-        'blog-card-xl': '80rem',
-      },
-      minWidth: {
-        'blog-image-sm': '14rem',
-        'blog-image-md': '24rem',
-        'line-number': '3.5rem',
       },
       colors: {
         // color scheme is defined in /app.css
@@ -69,7 +34,6 @@ module.exports = {
         },
         light: 'var(--color-light)',
         dark: 'var(--color-dark)',
-        code: '#1e1e1e',
       },
     },
   },
