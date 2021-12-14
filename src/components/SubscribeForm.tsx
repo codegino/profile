@@ -1,8 +1,6 @@
 import React from 'react';
 import {BiCool} from '@react-icons/all-files/bi/BiCool';
 import {RiSpamLine} from '@react-icons/all-files/ri/RiSpamLine';
-import Link from 'next/link';
-import Script from 'next/script';
 import Button from './basic/Button';
 import Input from './basic/Input';
 

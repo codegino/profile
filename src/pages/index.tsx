@@ -5,7 +5,6 @@ import {FullScreenWrapper} from '../components/FullScreenWrapper';
 import Greetings from '../components/Greetings';
 import Hero from '../components/Hero';
 import ResumeSummary from '../components/ResumeSummary';
-import SubscribeForm from '../components/SubscribeForm';
 import NextLink from '../components/basic/NextLink';
 import BlogSuggestionsList from '../components/blog/BlogSuggestionsList';
 import {commonMetaTags} from '../frontend-utils/meta-tags';
@@ -17,6 +16,10 @@ import {fetchSkills} from '../utils/resume-props';
 import {getImageFromSupabase} from '../utils/supabase.utils';
 
 const Skills = dynamic(() => import('../components/skills/Skills'), {
+  ssr: false,
+});
+
+const SubscribeForm = dynamic(() => import('../components/SubscribeForm'), {
   ssr: false,
 });
 
