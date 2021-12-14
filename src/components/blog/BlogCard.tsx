@@ -35,7 +35,7 @@ const BlogCard: React.FC<Props> = ({blog}) => {
       </NextLink>
       <div
         className="relative rounded-2xl overflow-hidden
-        h-80 w-60 min-w-blog-image-sm md:min-w-blog-image-md
+        h-80 w-60 min-w-[14rem] md:min-w-[24rem]
       "
       >
         <Image
