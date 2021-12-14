@@ -7,9 +7,9 @@ type Props = {
 
 export const GuideArrow = ({onClick}: Props) => {
   return (
-    <div className="pulsing cursor-pointer bg-primary-light rounded-full py-4 px-7 text-5xl">
+    <div className="pulsing cursor-pointer bg-primary-light rounded-full flex justify-center items-center h-11 w-11 text-3xl">
       <BsChevronDoubleDown
-        size={17}
+        size={37}
         className="guide-arrow"
         onClick={onClick}
       />

@@ -27,10 +27,12 @@ export default function Hero({
       />
       <Fade cascade duration={1500} delay={200}>
         <div className="absolute flex flex-col items-center">
-          <h2 className="text-white text-8xl xl:text-9xl text-center text-shadow">
+          <h2 className="text-white text-5xl xl:text-6xl text-center text-shadow">
             Hello World
           </h2>
-          <p className="text-5xl text-white text-shadow">Welcome to my page!</p>
+          <p className="text-3xl text-center text-white text-shadow">
+            Welcome to my page!
+          </p>
         </div>
       </Fade>
       <Zoom delay={1900}>

@@ -1,4 +1,5 @@
 import React, {FunctionComponent} from 'react';
+import clsx from 'clsx';
 import Highlight, {defaultProps, Language} from 'prism-react-renderer';
 import vsDark from 'prism-react-renderer/themes/vsDark';
 import {ClipboardCopyButton} from '../ClipboardCopyButton';
@@ -33,7 +34,7 @@ const CodeBlock: FunctionComponent<CodeBlockProps> = ({
     <code className="relative my-4">
       <span
         className="
-        text-right w-full pl-2 pr-1 top-1 h-9 relative flex justify-between text-primary-dark
+        text-right w-full pl-2 pr-1 top-1 h-5 relative flex justify-between text-primary-dark
         bg-light rounded-tr-lg rounded-tl-lg
         "
       >
@@ -51,12 +52,12 @@ const CodeBlock: FunctionComponent<CodeBlockProps> = ({
       >
         {({className, style, tokens, getLineProps, getTokenProps}) => (
           <>
-            <span className="absolute z-10 flex flex-col left-0 top-14 bottom-0">
+            <span className="absolute z-10 flex flex-col left-0 top-8 bottom-0">
               {tokens.map((_, i) => {
                 return !noLine ? (
                   <span
-                    className="bg-[#1e1e1e] pl-2 pr-4 text-white text-right leading-[1.188]
-                    max-w-[3.5rem] min-w-[3.5rem] select-none
+                    className="bg-[#1e1e1e] pl-2 pr-3 text-white text-right leading-[1.188]
+                    max-w-[2rem] min-w-[2rem] select-none
                     "
                     key={i}
                   >
@@ -66,22 +67,20 @@ const CodeBlock: FunctionComponent<CodeBlockProps> = ({
               })}
             </span>
             <span
-              className={
-                'p-3 overflow-auto flex relative flex-col leading-[1.188] my-1 text-2xl ' +
-                ' rounded-bl-md rounded-br-md' +
-                className
-              }
+              className={clsx(
+                'p-2 pl-2 overflow-auto flex relative flex-col leading-[1.188] my-1 text-lg',
+                'rounded-bl-md rounded-br-md',
+                className,
+              )}
               style={style}
             >
               {tokens.map((line, i) => (
                 <span
                   key={i}
                   {...getLineProps({line, key: i})}
-                  style={{
-                    display: 'table-row',
-                    position: 'relative',
-                    marginLeft: noLine ? '0' : '2.5rem',
-                  }}
+                  className={clsx('table-row relative ml-0', {
+                    'ml-8': !noLine,
+                  })}
                 >
                   <span className="table-cell">
                     {line.map((token, key) => (

@@ -16,6 +16,9 @@ module.exports = {
       zIndex: {
         1: '1',
       },
+      screens: {
+        xs: '400px',
+      },
       colors: {
         // color scheme is defined in /app.css
         // To enable text-primary-xxx, bg-primary-xxx, or border-primary-xxx

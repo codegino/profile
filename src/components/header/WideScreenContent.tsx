@@ -15,13 +15,13 @@ export default function WideScreenContentImpl() {
   const {value: isDarkMode, toggle} = useDarkMode();
 
   return (
-    <div className="hidden items-center justify-between w-full md:flex">
+    <div className="hidden items-center justify-between w-full lg:flex">
       <nav>
         <ul className="flex items-center p-0 m-0">
           {navigationLinks.map(link => (
             <li
               key={link.label}
-              className="underline-on-hover text-white mr-4 last:mr-0 hover:text-primary-light"
+              className="underline-on-hover text-white mr-2 last:mr-0 hover:text-primary-light"
             >
               <NextLink
                 href={link.url}
@@ -38,10 +38,10 @@ export default function WideScreenContentImpl() {
           ))}
         </ul>
       </nav>
-      <div className="flex">
+      <div className="flex items-center">
         <SocialMedia />
-        <div className="h-14 max-h-14 ml-1">
-          <DarkModeToggle onChange={toggle} checked={isDarkMode} size={70} />
+        <div className="h-full ml-1">
+          <DarkModeToggle onChange={toggle} checked={isDarkMode} size={69} />
         </div>
       </div>
     </div>

@@ -4,8 +4,8 @@ import NextLink from './basic/NextLink';
 
 export default function WakatimeCharts() {
   return (
-    <div className="max-w-6xlxl overflow-hidden flex flex-col py-2 sm:px-24 md:px-[25%]">
-      <h2 className="m-0 text-center">
+    <div className="max-w-6xlxl overflow-hidden flex flex-col py-4 sm:px-24 md:px-[25%]">
+      <h2 className="mb-4 text-center">
         My&nbsp;
         <NextLink
           href="https://wakatime.com/@codegino"

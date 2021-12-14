@@ -21,9 +21,8 @@ const Layout: React.FC = ({children, ...props}) => {
         }
 
         .blog-layout li {
-          line-height: 1.5;
           list-style: disc;
-          margin-left: 4rem;
+          margin-left: 2rem;
         }
 
         .blog-layout > ol {
@@ -32,8 +31,6 @@ const Layout: React.FC = ({children, ...props}) => {
 
         .blog-layout > p {
           padding: 0 var(--spacing-small);
-          font-size: 1.6rem;
-          line-height: 1.5;
           margin-left: var(--spacing-small);
         }
 
@@ -56,7 +53,7 @@ const Layout: React.FC = ({children, ...props}) => {
         .blog-layout h4 em,
         .blog-layout h5 em,
         .blog-layout h6 em {
-          font-size: 1em;
+          font-size: 0.75rem;
         }
       `}</style>
       `

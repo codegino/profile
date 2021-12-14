@@ -1,8 +1,8 @@
 :root {
-  --spacing-big: 5rem;
-  --spacing-medium: 2.5rem;
-  --spacing-small: 1rem;
-  --spacing-very-small: 0.25rem;
+  --spacing-big: 3.125rem;
+  --spacing-medium: 1.5625rem;
+  --spacing-small: 0.625rem;
+  --spacing-very-small: 0.15625rem;
 
   --light-gray-1: hsl(0, 0%, 93%);
   --light-gray-2: hsl(0, 0%, 73%);
@@ -73,10 +73,6 @@
   --color-dark-accent: hsl(0, 0%, 93%);
 }
 
-html {
-  font-size: 10px;
-}
-
 html,
 body {
   padding: 0;
@@ -88,51 +84,62 @@ body {
   color: var(--color-foreground);
 }
 
+li {
+  @apply leading-none;
+}
+
 a {
   color: inherit;
   text-decoration: none;
   cursor: pointer;
+  @apply text-base;
 }
 
 p {
   margin: 0;
-  color: ;
+  @apply text-base;
+  @apply leading-normal;
 }
 
 * {
   box-sizing: border-box;
-  font-size: 1.6rem;
+  font-size: 1rem;
 }
 
 h1 {
-  font-size: 4rem;
   margin: var(--spacing-medium) 0;
   text-align: center;
   @apply font-black;
+  @apply text-2xl;
+  @apply sm:text-4xl;
 }
 
 h2 {
-  font-size: 2.2rem;
   margin: var(--spacing-small) 0;
   @apply font-extrabold;
+  @apply text-xl;
+  @apply sm:text-2xl;
 }
 
 h3 {
   font-size: 1.8rem;
   margin: var(--spacing-very-small) 0;
   @apply font-bold;
+  @apply text-lg;
+  @apply sm:text-xl;
 }
 
 h4 {
-  font-size: 1.6rem;
   margin: var(--spacing-very-small) 0;
   padding-left: var(--spacing-very-small);
   @apply font-semibold;
+  @apply text-lg;
+  @apply sm:text-base;
 }
 
 h5,
 h6 {
-  font-size: 1.6rem;
+  @apply text-base;
   margin: var(--spacing-very-small) 0;
   padding-left: var(--spacing-small);
   @apply font-semibold;

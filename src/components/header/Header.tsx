@@ -11,16 +11,16 @@ export default function Header() {
   const router = useRouter();
 
   return (
-    <header className="h-20 relative bg-black flex items-center overflow-hidden py-0 px-2 text-white">
+    <header className="h-12 relative bg-black flex items-center overflow-hidden py-0 px-2 text-white">
       <TopLeftShape />
-      <div className="flex items-center min-w-max mr-6">
+      <div className="flex items-center min-w-max ml-2 mr-6">
         <NextLink href="/" aria-label="My Logo">
-          <div className="w-12 h-12 rounded-full bg-white p-0.5 mr-0 text-center">
+          <div className="w-8 h-8 rounded-full bg-white p-0.5 mr-0 text-center">
             <Image
               priority
               src="/assets/logo.svg"
-              height={26}
-              width={26}
+              height={27}
+              width={27}
               alt="CG"
               title="CG"
               aria-label="CG Logo"
@@ -31,7 +31,7 @@ export default function Header() {
 
         <NextLink href="/" aria-label="Code Gino">
           <span
-            className={clsx('underline-on-hover ml-4 text-4xl font-bold', {
+            className={clsx('underline-on-hover ml-2 text-2xl font-bold', {
               'border-b-2 border-primary-light': router.asPath === '/',
             })}
           >

@@ -14,7 +14,7 @@ export default function ResumeSummary({
       className="w-full flex justify-center items-center flex-col py-20 md:flex-row  min-w-max"
       id="resume-summary"
     >
-      <div className="overflow-hidden rounded-full h-60 w-60  md:rounded-none md:h-80 md:w-80 xl:h-96 xl:w-96">
+      <div className="overflow-hidden rounded-full h-32 w-32  md:rounded-none md:h-40 md:w-40 xl:h-48 xl:w-48">
         <BlurringImage
           img={img}
           svg={svg}
@@ -28,7 +28,7 @@ export default function ResumeSummary({
       <section className="flex flex-col items-center justify-start ml-0 md:ml-8">
         <h1 className="m-0">{summary.name}</h1>
         <div className="flex flex-col items-center md:flex-row">
-          <h2 className="lg:mt-0">{summary.jobTitle}</h2>
+          <h2 className="m-0 lg:my-2">{summary.jobTitle}</h2>
           <NextLink
             href={summary.companyWebsite}
             target="_blank"
@@ -36,7 +36,7 @@ export default function ResumeSummary({
             rel="noopener nofollow"
             className="underline-on-hover"
           >
-            <h2>&nbsp;at {summary.company}</h2>
+            <h2 className="m-0 lg:my-2">&nbsp;at {summary.company}</h2>
           </NextLink>
         </div>
         <h3>

@@ -6,7 +6,7 @@ export default function CustomIcon(sm: IconProps) {
 
   return (
     <sm.icon
-      size={sm.size || 28}
+      size={sm.size || 32}
       className="icon"
       style={{fill: hover ? sm.hoverColor : sm.color}}
       title={sm.title}

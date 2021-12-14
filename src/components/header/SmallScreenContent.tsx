@@ -34,7 +34,7 @@ export default function SmallScreenContent() {
   };
 
   return (
-    <div className="relative w-full text-right block md:hidden z-20">
+    <div className="relative w-full text-right block lg:hidden z-20">
       <AiOutlineMenu
         size={30}
         onClick={sidebarOpen}

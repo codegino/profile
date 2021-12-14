@@ -1,18 +1,13 @@
 import React from 'react';
 import GithubCalendar from 'react-github-calendar';
-import {useMediaQuery} from 'react-responsive';
 import Zoom from 'react-reveal/Zoom';
 import NextLink from './basic/NextLink';
 
 export default function CustomGithubCalendar() {
-  const is400PxAndUp = useMediaQuery({
-    query: '(min-width: 400px)',
-  });
-
   return (
     <Zoom>
-      <div className="flex flex-col items-center my-10 overflow-hidden px-2">
-        <h2 className="m-0">
+      <div className="flex flex-col items-center my-10 overflow-hidden px-5">
+        <h2 className="mb-5">
           My&nbsp;
           <NextLink
             href="https://github.com/codegino"
@@ -29,10 +24,11 @@ export default function CustomGithubCalendar() {
 
         <GithubCalendar
           username="codegino"
-          hideColorLegend={!is400PxAndUp}
-          blockMargin={5}
-          blockRadius={3}
-          blockSize={15}
+          hideColorLegend={true}
+          blockMargin={10}
+          blockRadius={6}
+          blockSize={25}
+          fontSize={25}
         />
       </div>
     </Zoom>

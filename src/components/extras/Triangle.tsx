@@ -2,7 +2,7 @@ export const CornerShape: React.FC<{className?: any}> = ({
   className,
   ...props
 }) => {
-  let classNames = 'absolute h-8 w-8 z-10';
+  let classNames = 'absolute h-5 w-5 z-10';
 
   if (className) {
     classNames += ` ${className}`;
