@@ -30,16 +30,16 @@ const Word = ({word}: {word: WordFromBackend}) => {
   }, [showDefinition, word.word, word.type]);
 
   return (
-    <article className="w-4/5 sm:w-3/5 max-w-6xl p-4 rounded-2xl min-w-min shadow-sm shadow-dark mb-10">
+    <article className="w-4/5 min-w-[20rem] max-w-3xl p-4 rounded-xl shadow-sm shadow-dark mb-10">
       <h2 className="mb-0">
-        {word.word} | <span className="font-normal text-xl">({word.type})</span>
+        {word.word} | <span className="font-normal text-lg">({word.type})</span>
       </h2>
       {pronunciation && (
         <p>
           {pronunciation.hw} <b>|</b> \ {pronunciation.pr} \
         </p>
       )}
-      <p className="text-dark text-xl my-4 italic">{word.date}</p>
+      <p className="text-dark text-xl my-2 italic">{word.date}</p>
       <section>
         <h3>Sentences</h3>
         <ul className="my-2">

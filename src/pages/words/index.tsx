@@ -99,17 +99,24 @@ export default function WordsPage({}) {
         {words.map(word => (
           <Word key={word.id} word={word} />
         ))}
-        {!isDone && <button onClick={handleFetchMoreWords}>Fetch More</button>}
+        {!isDone && (
+          <button
+            onClick={handleFetchMoreWords}
+            className="underline text-dark font-semibold underline-on-hover"
+          >
+            Fetch More
+          </button>
+        )}
       </main>
     </>
   );
 }
 
 const WordContentLoader = () => (
-  <article className="w-4/5 sm:w-3/5 max-w-6xl p-4 rounded-2xl min-w-min shadow-sm shadow-dark mb-10">
-    <ContentLoader viewBox="1 1 175 95" className="h-64">
+  <article className="w-4/5 sm:w-3/5 max-w-3xl p-4 rounded-2xl min-w-min shadow-sm shadow-dark mb-10">
+    <ContentLoader viewBox="1 1 175 95" className="h-[10rem]">
       <rect x="0" y="10" rx="3" ry="3" width="80" height="12" />
-      <rect x="0" y="30" rx="3" ry="3" width="100" height="9" />
+      <rect x="0" y="30" rx="3" ry="3" width="100" height="10" />
       <rect x="0" y="48" rx="3" ry="3" width="90" height="12" />
       <rect className="w-36" x="10" y="65" rx="3" ry="3" height="10" />
       <rect x="0" y="80" rx="3" ry="3" width="60" height="13" />

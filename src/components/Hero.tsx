@@ -26,7 +26,7 @@ export default function Hero({
         priority={true}
       />
       <Fade cascade duration={1500} delay={200}>
-        <div className="absolute flex flex-col items-center">
+        <div className="absolute flex flex-col items-center sm:ml-[2rem] xl:ml-[2rem] 2xl:ml-[3rem]">
           <h2 className="text-white text-5xl xl:text-6xl text-center text-shadow">
             Hello World
           </h2>

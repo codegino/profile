@@ -12,10 +12,10 @@ function Coffee() {
         rel="noopener nofollow"
       >
         <span
-          className="leading-3 flex h-16 w-96
-            items-center justify-center p-9
+          className="leading-3 flex h-16 w-[17rem]
+            items-center justify-center p-4
             bg-red-500 text-white  relative
-            rounded-2xl hover:shadow-md hover:shadow-dark
+            rounded-xl hover:shadow-md hover:shadow-dark
           "
         >
           <Image
@@ -26,7 +26,7 @@ function Coffee() {
             width={35}
             layout="fixed"
           />
-          <p className="text-3xl ml-4">Buy me a coffee</p>
+          <p className="text-xl ml-3">Buy me a coffee</p>
         </span>
       </Link>
     </div>

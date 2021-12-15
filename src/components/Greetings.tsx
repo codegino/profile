@@ -10,7 +10,7 @@ import {GuideArrow} from './GuideArrow';
 
 const StyledBsChevronRight = () => {
   return (
-    <BsChevronRight className="text-[0.8rem] xs:text-xs sm:text-sm md:text-base" />
+    <BsChevronRight className="text-[0.8rem] xs:text-xs sm:text-sm md:text-base text-primary-light" />
   );
 };
 
@@ -19,7 +19,7 @@ const Span: React.FC<{className?: string}> = props => {
     <span
       {...props}
       className={clsx(
-        'text-[0.8rem] xs:text-xs sm:text-sm  md:text-base',
+        'text-[0.9rem] xs:text-sm sm:text-sm  md:text-base',
         props.className,
       )}
     />
@@ -33,7 +33,7 @@ export default function Greetings() {
 
   return (
     <div
-      className="flex justify-center flex-col items-center py-36 min-h-screen w-full relative overflow-hidden z-1"
+      className="flex justify-center flex-col items-center min-h-screen w-full relative overflow-hidden z-1"
       id="greetings"
     >
       <Zoom onReveal={() => setIsTyping(true)}>
@@ -48,14 +48,14 @@ export default function Greetings() {
               <div className="min-h-[0.75rem] min-w-[0.75rem] rounded-full mr-2 bg-red-500" />
               <div className="min-h-[0.75rem] min-w-[0.75rem] rounded-full mr-2 bg-yellow-300" />
               <div className="min-h-[0.75rem] min-w-[0.75rem] rounded-full mr-3 bg-green-600" />
-              <BsTerminalFill size={30} />
+              <BsTerminalFill size={18} />
               <div className="relative md:absolute w-full justify-self-center text-center text-base font-mono">
                 Greetings.sh
               </div>
             </div>
             <div
-              className="h-[25rem] xs:h-[25rem] sm:max-h-[18rem]
-            py-1 px-1 font-mono bg-dark text-light text-[8px] leading-[0.7]"
+              className="h-[25rem] xs:h-[20rem] sm:max-h-[18rem]
+            py-1 px-1 font-mono bg-dark text-light text-[8px] leading-[1.2]"
             >
               {isTyping ? (
                 <Typist

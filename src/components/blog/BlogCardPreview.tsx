@@ -9,7 +9,7 @@ type Props = {
 
 export const BlogCardPreview = ({blog}: Props) => {
   return (
-    <div className="w-full overflow-hidden shadow-sm hover:shadow-md hover:shadow-dark shadow-dark rounded-2xl bg-light pb-1 md:max-w-6xl">
+    <div className="w-full overflow-hidden shadow-sm hover:shadow-md hover:shadow-dark shadow-dark rounded-2xl bg-light pb-1 md:max-w-4xl">
       <NextLink href={`/blog/${blog.slug}`} aria-label={blog.title}>
         <article className="text-center">
           <Image

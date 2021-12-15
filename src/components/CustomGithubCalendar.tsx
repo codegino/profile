@@ -15,7 +15,7 @@ export default function CustomGithubCalendar() {
             aria-label="Github profile"
             rel="noopener nofollow"
             title="Link to my Github profile"
-            className="text-primary-dark text-inherit underline-on-hover underline--dark"
+            className="text-primary-dark text-2xl underline-on-hover underline--dark"
           >
             Github
           </NextLink>

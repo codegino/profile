@@ -1,4 +1,5 @@
 import React from 'react';
+import clsx from 'clsx';
 import Image from 'next/image';
 import type {IBlogMetadata} from '../../models/blog';
 import NextLink from '../basic/NextLink';
@@ -10,33 +11,18 @@ type Props = {
 const BlogCard: React.FC<Props> = ({blog}) => {
   return (
     <article
-      className="
-      rounded-xl w-full py-4 px-8 flex items-center justify-between
-      shadow-sm hover:shadow-md hover:shadow-dark shadow-dark mb-5 last:mb-0 max-w-[45rem] md:max-w-[60rem]
-      lg:max-w-[75rem] xl:max-w-[80rem]
-    "
+      className={clsx(
+        ' flex items-center justify-between flex-col sm:flex-row-reverse',
+        'rounded-xl w-full py-4 px-8',
+        'shadow-sm hover:shadow-md hover:shadow-dark shadow-dark mb-5 last:mb-0 max-w-[45rem] sm:max-w-[55rem]',
+      )}
     >
-      <NextLink href={`/blog/${blog.slug}`} aria-label={blog.title}>
-        <h2>{blog.title}</h2>
-        <h3>{blog.description}</h3>
-        <p>{blog.date}</p>
-        {blog.tags && blog.tags.length ? (
-          <div className="mt-4 flex gap-2 flex-wrap">
-            {blog.tags.map(tag => (
-              <span
-                className="inline-block bg-light border-light py-2 px-4 rounded-xl"
-                key={tag}
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-        ) : null}
-      </NextLink>
       <div
-        className="relative rounded-2xl overflow-hidden
-        h-80 w-60 min-w-[14rem] md:min-w-[24rem]
-      "
+        className={clsx(
+          'relative rounded-2xl overflow-hidden',
+          'mt-4',
+          'h-[7.5rem] sm:h-[15rem] w-full sm:w-[10rem] min-w-[7.5rem] sm:min-w-[20rem]',
+        )}
       >
         <Image
           src={blog.bannerId}
@@ -48,6 +34,24 @@ const BlogCard: React.FC<Props> = ({blog}) => {
           blurDataURL="/assets/blog-placeholder.jpeg"
         />
       </div>
+      <NextLink href={`/blog/${blog.slug}`} aria-label={blog.title}>
+        <h2>{blog.title}</h2>
+        <h3>{blog.description}</h3>
+        <p className="mt-3">{blog.date}</p>
+
+        {blog.tags && blog.tags.length ? (
+          <div className="mt-4 sm:mt-8 flex gap-2 flex-wrap">
+            {blog.tags.map(tag => (
+              <span
+                className="inline-block bg-light border-light py-2 px-4 rounded-xl"
+                key={tag}
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+        ) : null}
+      </NextLink>
     </article>
   );
 };

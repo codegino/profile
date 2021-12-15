@@ -73,8 +73,16 @@ export default function Home({
           <BlogSuggestionsList blogs={blogs} />
         </FullScreenWrapper>
         <FullScreenWrapper tl br>
-          <CustomGithubCalendar />
-          <WakatimeCharts />
+          <div className="w-full flex justify-center">
+            <div className="max-w-6xl">
+              <CustomGithubCalendar />
+            </div>
+          </div>
+          <div className="w-full flex justify-center">
+            <div className="w-full max-w-4xl">
+              <WakatimeCharts />
+            </div>
+          </div>
           <div className="text-center mb-20">
             <p>
               Visit my&nbsp;

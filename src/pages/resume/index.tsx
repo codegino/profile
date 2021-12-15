@@ -51,7 +51,7 @@ export default function Resume({
         >
           <CustomIcon
             icon={FaFilePdf}
-            size={40}
+            size={44}
             color="#F40F02"
             title="Download PDF Version"
             hoverColor="red"
@@ -69,7 +69,7 @@ export default function Resume({
         >
           <CustomIcon
             icon={FaFileWord}
-            size={40}
+            size={44}
             color="#015299"
             title="Download Word Version"
             hoverColor="blue"

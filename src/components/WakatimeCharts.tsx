@@ -4,7 +4,7 @@ import NextLink from './basic/NextLink';
 
 export default function WakatimeCharts() {
   return (
-    <div className="max-w-6xlxl overflow-hidden flex flex-col py-4 sm:px-24 md:px-[25%]">
+    <div className="overflow-hidden flex flex-col py-4 sm:px-24 w-full">
       <h2 className="mb-4 text-center">
         My&nbsp;
         <NextLink
@@ -13,7 +13,7 @@ export default function WakatimeCharts() {
           aria-label="Wakatime profile"
           rel="noopener nofollow"
           title="Link to my Wakatime profile"
-          className="text-primary-dark text-inherit underline-on-hover underline--dark"
+          className="text-primary-dark text-2xl underline-on-hover underline--dark"
         >
           Wakatime
         </NextLink>
