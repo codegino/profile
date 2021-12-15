@@ -1,0 +1,182 @@
+---
+title: React useEffect Hook 
+description: An introduction on how to use useEffect Hook in your React application
+date: '2021-11-10'
+dateUpdated: '2021-12-06'
+bannerId: https://i.imgur.com/kAF1c2T.jpg
+bannerDescription: ripple effect
+tags: ['react', 'tech']
+keywords: ['react useEffect', 'useEffect hook', 'react hooks']
+published: true 
+---
+
+## What is a `useEffect` Hook?
+
+> ### TL;DR
+>
+> React `useEffect` is an alternative to the "old" `class` lifecycle methods/hooks.
+> It is used to manage side effects, such as network requests or run a piece of code when the component is mounted, updated, or unmounted.
+
+### Longer version
+
+> Before `React v16.8`, we can only enable a component
+> to react to state changes using [lifecycle methods](https://reactjs.org/docs/state-and-lifecycle.html#adding-lifecycle-methods-to-a-class).
+
+#### How to define a `useEffect`
+
+```jsx
+useEffect(() => { //(1) declaration
+  // (2)effect
+  return () => {
+    // (3)cleanup 
+  }
+}, /* (4)dependency array */)
+```
+
+#### Here's a quick explanation of the above code:
+
+1. We can declare an effect by calling either `React.useEffect` or `useEffect`.
+2. `effect` is the function that will be called when the component is mounted.
+OR when the dependency array changes.
+3. `cleanup` is the function called when the effect is "unmounted".
+4. `dependency array` is the array of values passed as a second argument to the `effect` function.
+    - If there is no dependency array, the effect will be called every time the component is mounted.
+    - If the array is empty, the effect will be called only once when the component is mounted.
+    - If the array is not empty, the effect will be called every time the component is mounted and the dependency array changes.
+
+<br />
+
+### Examples
+
+<br />
+
+#### Increment a counter every second until it reaches 10
+```jsx codePenID=JjyBPeO
+function App() {
+  const [count, setCount] = useState(0)
+
+  useEffect(() => {
+    if (count < 10) {
+      const interval = setInterval(() => {
+        setCount(prev => prev + 1)
+      }, 1000)
+
+      // cleanup function
+      return () => clearInterval(interval)
+    }
+  }, [count])
+
+  // Render the component
+}
+```
+
+<br />
+
+#### Basic fetch from an API
+```jsx codePenID=qBXKBeB
+function App() {
+  const [data, setData] = useState([])
+
+  useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then(res => res.json())
+      .then(data => setData(data))
+  }, [])
+
+  // Render the component
+}
+```
+
+<br />
+
+#### Fetching with loading indicator + error handling - `then/catch/finally`
+```jsx codePenID=WNEgqBw
+function App() {
+  const [data, setData] = React.useState()
+  const [error, setError] = React.useState()
+  const [isLoading, setIsLoading] = React.useState(false)
+
+  React.useEffect(() => {
+    setIsLoading(true)
+
+    fetchData()
+      .then(data => {
+        setError(null)
+        setData(data)
+      })
+      .catch(data => {
+        // handle error case anyway you want
+        setError(data)
+        setData(null)
+      })
+      .finally(() => setIsLoading(false))
+  }, [])
+
+  // Render the component
+}
+```
+
+<br />
+
+#### Fetching with loading indicator + error handling - `async/await`
+```jsx codePenID=jOLvgqB
+function App() {
+  const [data, setData] = React.useState()
+  const [error, setError] = React.useState()
+  const [isLoading, setIsLoading] = React.useState(false)
+
+  React.useEffect(() => {
+    // yeah, this is weird
+    (async () => {
+      try {
+        setIsLoading(true)
+        const data = await fetchData()
+        setError(null)
+        setData(data)
+      } catch(e) {
+        // handle error case anyway you want
+        setError(e)
+        setData(null)
+      }
+      setIsLoading(false)
+    })()
+  }, [])
+
+  // Render the component
+}
+```
+
+<br />
+
+#### Store a value in localStorage everytime the key or value changes
+```jsx codePenID=vYJaBPV
+function App({ name }) {
+  const [value, setValue] = useState(() => localStorage.getItem(name))
+
+  useEffect(() => {
+    localStorage.setItem(name, value)
+  }, [name, value])
+  // Ignore old keys for now
+
+  // Render the component
+}
+```
+
+<br />
+
+#### OR mimic a class lifecycle method
+
+> Check this [blog](https://codegino.com/blog/react-usestate-callback-function) on how to
+convert a class lifecycle methods to `useEffect` hooks
+
+<br />
+
+### Additional Note
+- `useEffect` can only be used in functional components
+- The order of `useEffect` declarations is important.
+- `useEffect` in a custom hook is a great way to promote side effect reusability. I will discuss this in another blog.
+
+<br />
+
+## Conclusion
+Compared to the old lifecycle methods, `useEffect` is much more powerful and flexible, making it an ideal choice when managing a side-effect.

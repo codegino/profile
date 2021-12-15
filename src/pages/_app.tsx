@@ -3,9 +3,12 @@ import type {AppProps} from 'next/app';
 import {useRouter} from 'next/router';
 import useDarkMode from 'use-dark-mode';
 import '../../styles/tailwind.css';
+import Footer from '../components/Footer';
+import Header from '../components/header/Header';
 import * as ga from '../lib/ga';
 import '../styles/_globals.css';
 import '../styles/animations.css';
+import '../styles/custom.css';
 
 function MyApp({Component, pageProps}: AppProps) {
   const router = useRouter();
@@ -39,7 +42,9 @@ function MyApp({Component, pageProps}: AppProps) {
 
   return (
     <>
+      <Header />
       <Component {...pageProps} />
+      <Footer />
     </>
   );
 }

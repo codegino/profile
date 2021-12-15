@@ -1,0 +1,336 @@
+---
+title: Dynamic image placeholder in Next.js
+description: A guide on how to create a dynamic image placeholder in Next.js
+date: '2021-11-14'
+dateUpdated: '2021-12-06'
+bannerId: https://i.imgur.com/3B4ly7J.jpg
+bannerDescription: blurred
+tags: ['react', 'tech', 'next.js']
+keywords: ['nextjs dynamic image', 'nextjs image placeholder', 'nextjs blurred image']
+published: true 
+---
+
+## How to create a dynamic image placeholder?
+
+> ### TL;DR
+>
+> Check the full code [here](https://gist.github.com/codegino/7464b6e6b699cbd485ec930cf836160d)
+
+
+### Long version
+
+Being able to see something on the screen immediately makes the app feel faster,
+either in a fast connection or a slow connection.
+
+<br />
+
+The GIF below shows what a user will see for an image loaded using a slow internet connection.
+
+<Gif height={696} width={872} src="https://media2.giphy.com/media/clOpPdrsNgRFo0ztEQ/giphy.gif"/>
+
+It gives the impression that something is wrong with our app.
+
+> #### Alternative
+> We can use the built-in placeholder image in Next.js,
+> but for some cases like cover images, we might need something that resembles the actual image.  
+>  &nbsp;
+>
+> Check this [blog](https://codegino.com/blog/next-image-state-handling) for more info
+
+<Gif height={696} width={872} src="https://media2.giphy.com/media/zXPRVwOJycoyFbeEJ6/giphy.gif"/>
+
+<br />
+
+Better but not enough. The placeholder did not load quickly enough to address the first issue.
+Also, The sudden change in colors makes it feel unnatural to the eye.
+*However, we can create a custom placeholder for each image, but do we really need to?*
+
+<br />
+
+In this blog post, I will show how to create a dynamic placeholder image in Next.js.
+
+<br />
+
+#### Here's the general steps on how to solve the issue
+
+1. Create placeholder metadata based on the image
+2. Create an SVG component from the placeholder metadata
+3. Create a container for the image and placeholder
+4. Unmount the placeholder image after the actual image is completed loading
+5. Putting all the components together
+6. End to end integration in a Next.js page
+
+<br />
+
+
+#### 1. Create placeholder metadata based on the image
+
+An easy way is to use [plaiceholder](https://github.com/joe-bell/plaiceholder)
+
+```js
+import {getPlaiceholder} from 'plaiceholder'
+
+const placeholder = await getPlaiceholder(uri, { size: 64 })
+
+// OR
+
+const placeholder = await getPlaiceholder(uri)
+
+// `size` decides how many blocks there will be
+// ranges from 4 to 64
+// default is 4
+```
+
+`getPlaiceholder` returns a `promise` of object with the following properties:
+  - `base64`
+  - `blurhash`
+  - `css`
+  - `img`
+  - `svg`
+
+For our purposes, we only need the `img` and `svg` property.
+
+
+<br />
+
+#### 2. Create the svg component
+
+The way to create the SVG component will depend on how placeholder metadata is created.
+Here's a reference to [`plaiceholder`](https://github.com/joe-bell/plaiceholder/blob/main/packages/plaiceholder/src/get-image.ts)'s version. 
+
+<br />
+
+To better visualize how to create the SVG component, here is a sample SVG metadata
+
+<Img src="https://i.imgur.com/TS6i6Fz.png" />
+
+<br />
+
+##### 2.a. Create the `svg` container
+
+The first element in the SVG metadata is the `svg` element.
+The second element in the SVG metadata is the SVG properties.
+
+```jsx
+function BlurringImage({ svg }){
+  const Svg = svg[0]
+  const svgProps = svg[1]
+  
+  return <Svg {...svgProps}>
+    {/* TODO */}
+  </Svg>
+}
+```
+
+<br />
+
+##### 2.b. Add the list of `rect`s as `svg` children
+
+The third element in the SVG metadata is the list of `rect`s, which will be rendered as `svg` children.
+
+```jsx
+function BlurringImage({ svg }){
+  // ...
+  const rectangles = svg[2]
+  
+  return <Svg {...}>
+    {rectangles.map((rect) => {
+      const Rect = rect[0]
+      const rectProps = rect[1]
+
+      <Rect {...rectProps} key={`${rectProps.x}${rectProps.y}`} />
+    )}}
+  </Svg>
+}
+```
+
+By doing step `2.a` and `2.b`, we can create a svg component that looks like this:
+<Img src="https://i.imgur.com/AqXaRb8.png" />
+
+<br />
+
+##### 2.c. Blur the svg
+
+The SVG can be blurred to remove the pixelated look.
+
+```jsx
+function BlurringImage({ svg }){
+  // ...
+  const svgProps = svg[1]
+  
+  return <Svg
+    style={{
+      ...svgProps.style,
+      filter: `blur(5px)`,
+    }}
+  >
+  {...}
+  </Svg>
+}
+```
+
+Applying step `2.c` will make the svg looks like this:
+<Img src="https://i.imgur.com/W4wTCCZ.png" />
+
+> **NOTE:** Make sure to apply an appropriate filter value
+> 
+> For `svg metadata` with fewer `rect`s, the result might looks like this: 
+
+<Img src="https://i.imgur.com/Hovh5CF.png" />
+
+
+<br />
+
+#### 3. Create a container; then, add the SVG and image to display
+
+The `svg` and `Image` can be **optionally** wrapped in a another component(*for styling*).
+Spread the `img` props in the next `Image` component.
+
+```jsx
+import Image from 'next/image'
+
+function BlurringImage({ img }){
+  // ...
+  return <Container>
+    <Svg {...}>
+    <Image {...img} />
+  </Container>
+
+  // Create the Container anyway you want
+}
+```
+
+#### 4. Unmount the placeholder image after the actual image is completed loading
+
+Since the image is already loaded, the placeholder component can be unmounted.
+Unmounting can be achieved using a `useState` and the `Image`'s `onLoadingComplete` callback method.
+
+```jsx
+function BlurringImage({...}){
+  // ...
+  const [hasPlaceholder, setHasPlaceholder] = useState(true)
+
+  return <Container>
+    {hasPlaceholder && <Svg {...} />}
+    <Image {...} onLoadingComplete={() => setHasPlaceholder(false)} />
+  </Container>
+}
+```
+
+#### 5. Putting all the components together
+
+Here's the final Custom Image component with minor refactoring and default prop values:
+
+```jsx
+import React, {useState} from 'react'
+import styled from '@emotion/styled'
+import Image from 'next/image'
+
+export function BlurringImage({
+  svg: [Svg, svgProps, rectangles],
+  img,
+  alt,
+  style,
+  blurLevel = 5,
+  height = undefined,
+  width = undefined,
+  ...props
+}) {
+  const [hasPlaceholder, setHasPlaceholder] = useState(true)
+
+  return (
+    <Container style={style}>
+      {hasPlaceholder && (
+        <Svg
+          {...svgProps}
+          style={{
+            ...svgProps.style,
+            filter: `blur(${blurLevel}px)`,
+          }}
+        >
+          {rectangles.map(([Rect, rectProps]) => (
+            <Rect {...rectProps} key={`${rectProps.x}${rectProps.y}`} />
+          ))}
+        </Svg>
+      )}
+
+      <Image
+        {...img}
+        {...props}
+        height={height}
+        width={width}
+        alt={alt}
+        onLoadingComplete={() => setHasPlaceholder(false)}
+      />
+    </Container>
+  )
+}
+
+const Container = styled.div`
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+`;
+```
+
+#### 6. End to end integration in a NexJs page
+
+Time to integrate our custom component in a NextJs application
+
+```jsx
+import {getPlaiceholder} from 'plaiceholder';
+import {BlurringImage} from '../components/BlurringImage';
+
+export default function IndexPage({img, svg}) {
+  return (
+    {/* <SomeHeaderComponent /> */}
+    <BlurringImage
+      img={img}
+      svg={svg}
+      layout="responsive"
+      width={1200}
+      height={800}
+    />
+  )
+}
+
+// or getServerSideProps depending on your needs
+export async function getStaticProps() {
+  const uri = 'https://i.imgur.com/gf3TZMr.jpeg';
+
+  const {img, svg} = await getPlaiceholder(uri, {
+    size: 64,
+  });
+
+  return {
+    props: {
+      img,
+      svg,
+    },
+  }
+}
+```
+
+Here's the final result:
+
+<Gif height={696} width={872} src="https://media2.giphy.com/media/zFXCVRyaQKfmmJYhFh/giphy.gif"/>
+
+<br />
+
+The web page seems to be loading faster even on a slow internet connection, and the transition of the image seems to be more natural.
+
+<br />
+
+Here's a local lighthouse score:
+
+<Gif height={1000} width={1884} src="https://media2.giphy.com/media/MwQqCxy9Ml0aw4bqUx/giphy.gif"/>
+
+<br />
+
+
+## Conclusion
+By adding a dynamic placeholder image, the users' experience will improve due to immediate feedback which
+gives the impression that the application is working faster.
+There's no need to stare at an empty screen while waiting for an image to load, especially on a slower network.
+Also, the transition seems to be more natural as the placeholder image is derived from the original image.
