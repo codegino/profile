@@ -1,6 +1,5 @@
 import React from 'react';
 import Image from 'next/image';
-import {useMediaQuery} from 'react-responsive';
 import {Carousel} from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
@@ -15,12 +14,8 @@ type Props = {
 };
 
 export default function TechStackCarousel({techStacks}: Props) {
-  const isMediumDevice = useMediaQuery({
-    query: '(min-width: 900px)',
-  });
-
   return (
-    <div className="text-center flex justify-center">
+    <div className="text-center flex justify-center overflow-hidden">
       <div>
         <Carousel
           infiniteLoop
@@ -39,9 +34,9 @@ export default function TechStackCarousel({techStacks}: Props) {
                     unoptimized
                     loader={({src}) => src}
                     src={techstack.url}
-                    layout="intrinsic"
-                    height={isMediumDevice ? 500 : 350}
-                    width={isMediumDevice ? 600 : 300}
+                    layout="fixed"
+                    height={300}
+                    width={300}
                     alt={techstack.name}
                     title={techstack.name}
                   />
