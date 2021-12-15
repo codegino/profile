@@ -84,10 +84,6 @@ body {
   color: var(--color-foreground);
 }
 
-li {
-  @apply leading-none;
-}
-
 a {
   color: inherit;
   text-decoration: none;

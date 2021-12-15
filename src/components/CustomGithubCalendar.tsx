@@ -6,7 +6,7 @@ import NextLink from './basic/NextLink';
 export default function CustomGithubCalendar() {
   return (
     <Zoom>
-      <div className="flex flex-col items-center my-10 overflow-hidden px-5">
+      <div className="flex flex-col items-center my-10 overflow-hidden px-5 bg-lightest p-1 rounded-xl">
         <h2 className="mb-5">
           My&nbsp;
           <NextLink
@@ -28,7 +28,6 @@ export default function CustomGithubCalendar() {
           blockMargin={10}
           blockRadius={6}
           blockSize={25}
-          fontSize={25}
         />
       </div>
     </Zoom>

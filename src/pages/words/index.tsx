@@ -84,7 +84,7 @@ export default function WordsPage({}) {
         <title>Vocabulary Page | Code Gino | Carlo Gino Catapang</title>
         {commonMetaTags('Words Page', '/words')}
       </Head>
-      <main className="flex items-center flex-col overflow-hidden pb-4">
+      <main className="flex items-center flex-col overflow-hidden pb-4 bg-light">
         <h1>English words I learned</h1>
 
         {words.length === 0 && isFetching && (
@@ -113,7 +113,7 @@ export default function WordsPage({}) {
 }
 
 const WordContentLoader = () => (
-  <article className="w-4/5 sm:w-3/5 max-w-3xl p-4 rounded-2xl min-w-min shadow-sm shadow-dark mb-10">
+  <article className="min-w-[20rem] w-4/5 max-w-3xl p-4 rounded-2xl shadow-sm shadow-dark mb-10 bg-lightest">
     <ContentLoader viewBox="1 1 175 95" className="h-[10rem]">
       <rect x="0" y="10" rx="3" ry="3" width="80" height="12" />
       <rect x="0" y="30" rx="3" ry="3" width="100" height="10" />

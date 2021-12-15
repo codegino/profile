@@ -93,7 +93,7 @@ const Content: React.FC<{exp: WorkExperience}> = ({exp, children = null}) => {
           <p className="font-bold">{exp.title}</p> <p>&nbsp;({exp.role})</p>
         </div>
       </div>
-      <div>{children}</div>
+      <div className="max-w-[45rem]">{children}</div>
       <p className="bg-light text-dark justify-self-center py-1">
         {exp.start_date}
       </p>

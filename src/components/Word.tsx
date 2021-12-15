@@ -30,7 +30,7 @@ const Word = ({word}: {word: WordFromBackend}) => {
   }, [showDefinition, word.word, word.type]);
 
   return (
-    <article className="w-4/5 min-w-[20rem] max-w-3xl p-4 rounded-xl shadow-sm shadow-dark mb-10">
+    <article className="w-4/5 min-w-[20rem] max-w-3xl p-4 rounded-xl shadow-sm shadow-dark mb-10 bg-lightest">
       <h2 className="mb-0">
         {word.word} | <span className="font-normal text-lg">({word.type})</span>
       </h2>

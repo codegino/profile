@@ -7,12 +7,12 @@ import Input from './basic/Input';
 const SubscribeForm = () => {
   return (
     <>
-      <div className="h-screen min-h-[45rem] px-2 w-full flex flex-col items-center justify-center">
-        <div className="text-center max-w-3xl ">
-          <h2 className="my-8 text-4xl">Stay up to date🚀</h2>
+      <div className="h-screen min-h-[40rem] px-2 w-full flex flex-col items-center justify-center">
+        <div className="text-center max-w-2xl ">
+          <h2 className="my-8 text-4xl">Stay up to date 🚀</h2>
           <h3 className="mb-8 text-2xl">
             Subscribe to my newsletter, and you&lsquo;ll be the first to know my
-            latest content📰.
+            latest content 📰.
           </h3>
           <h4>
             No spam
@@ -25,7 +25,7 @@ const SubscribeForm = () => {
           method="post"
           action="https://codegino.us20.list-manage.com/subscribe/post?u=9821406d00b8039df9f681e58&amp;id=76050ac432"
           className="relative mt-8 shadow-sm shadow-dark overflow-hidden bg-light w-full
-          max-w-3xl min-w-3xl mb-24 rounded-2xl min-h-[20rem]"
+          max-w-2xl min-w-2xl mb-24 rounded-2xl min-h-[20rem]"
           id="1j27oq"
           data-async="true"
           data-recaptcha="true"

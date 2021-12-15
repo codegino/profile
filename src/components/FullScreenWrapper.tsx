@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import {BottomLeftShape} from './extras/BottomLeftShape';
 import {BottomRightShape} from './extras/BottomRightShape';
 import {TopLeftShape} from './extras/TopLeftShape';
@@ -12,14 +13,11 @@ export const FullScreenWrapper: React.FC<{
   children: any;
   className?: string;
 }> = ({children, tr, bl, br, tl, className, ...props}) => {
-  let classNames =
+  const classNames =
     'min-h-screen min-w-full flex flex-col justify-center relative overflow-hidden';
 
-  if (className) {
-    classNames += ` ${className}`;
-  }
   return (
-    <div className={classNames} {...props}>
+    <div className={clsx(classNames, className)} {...props}>
       {tr && <TopRightShape />}
       {bl && <BottomLeftShape />}
       {tl && <TopLeftShape />}

@@ -24,11 +24,6 @@ export default function WakatimeCharts() {
           <embed src="https://wakatime.com/share/@codegino/aa8c74ed-2174-445a-805d-e46a869c3b8b.svg"></embed>
         </figure>
       </Zoom>
-      <Zoom>
-        <figure>
-          <embed src="https://wakatime.com/share/@codegino/e7ca5c4c-67a6-47fc-a3c6-e020cb97b66b.svg"></embed>
-        </figure>
-      </Zoom>
     </div>
   );
 }

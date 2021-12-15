@@ -35,6 +35,8 @@ module.exports = {
           900: 'var(--color-primary-900)',
           dark: 'var(--color-primary-dark)',
         },
+        lightest: 'var(--color-light-light)',
+        darkest: 'var(--color-dark-dark)',
         light: 'var(--color-light)',
         dark: 'var(--color-dark)',
       },

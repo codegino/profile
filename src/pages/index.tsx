@@ -52,24 +52,24 @@ export default function Home({
         <Greetings />
       </FullScreenWrapper>
       <main>
-        <FullScreenWrapper tl br>
+        <FullScreenWrapper tl br className="bg-lightest">
           <ResumeSummary img={profileImage} svg={profileSvg} />
           <Skills skills={skills} />
-          <div className="text-center mb-20">
-            <p>
+          <div className="text-center my-10">
+            <p className="text-xl">
               Check&nbsp;
               <NextLink
                 href="/resume#skills"
                 aria-label="full skills list"
                 className="text-primary-dark underline-on-hover"
               >
-                full list
+                <span className="text-xl">full list</span>
               </NextLink>
               &nbsp;of skills
             </p>
           </div>
         </FullScreenWrapper>
-        <FullScreenWrapper tr bl>
+        <FullScreenWrapper tr bl className="bg-lightest">
           <BlogSuggestionsList blogs={blogs} />
         </FullScreenWrapper>
         <FullScreenWrapper tl br>
@@ -78,13 +78,13 @@ export default function Home({
               <CustomGithubCalendar />
             </div>
           </div>
-          <div className="w-full flex justify-center">
+          <div className="w-full flex justify-center mb-10">
             <div className="w-full max-w-4xl">
               <WakatimeCharts />
             </div>
           </div>
-          <div className="text-center mb-20">
-            <p>
+          <div className="text-center mb-10">
+            <p className="text-xl">
               Visit my&nbsp;
               <NextLink
                 href="/resume"
@@ -92,7 +92,7 @@ export default function Home({
                 title="Link to my resume"
                 className="text-primary-dark underline-on-hover"
               >
-                resume
+                <span className="text-xl">resume</span>
               </NextLink>
               &nbsp;for more info
             </p>
