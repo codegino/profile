@@ -9,7 +9,7 @@ function Coffee() {
         href="https://www.buymeacoffee.com/codegino"
         target="_blank"
         aria-label="Buy me a coffee"
-        rel="noopener nofollow"
+        rel="noopener noreferrer nofollow"
       >
         <span
           className="leading-3 flex h-16 w-[17rem]

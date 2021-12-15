@@ -1,12 +1,12 @@
 ---
 title: Error handling in Remix
 description: How to handle errors gracefully in Remix
-date: '2021-12-09'
-dateUpdated: '2021-12-09'
+date: '2021-12-15'
+dateUpdated: '2021-12-15'
 bannerId: https://i.imgur.com/ogxFvNx.jpg
 bannerDescription: stock market crash 
 tags: ['react', 'tech', 'remix']
-keywords: ['remix error handling']
+keywords: ['remix error handling', 'remix catch boundary']
 published: false
 ---
 
@@ -14,11 +14,12 @@ published: false
 
 ## TLDR
 
-## Introduction - What are the basics of error handling in Remix?
+### How Remix hanldes errors
 
-## How to Handle Unhandled Rejection Errors in Remix 
+From the Remix official documentation
 
 > **Remix will automatically catch errors and render the nearest error boundary for errors thrown while:**
+>
 > - rendering in the browser
 > - rendering on the server
 > - in a loader during the initial server rendered document request
@@ -26,128 +27,100 @@ published: false
 > - in a loader during a client-side transition in the browser (Remix serializes the error and sends it over the network to the browser)
 > - in an action during a client-side transition in the browser
 
+
+### Functions to catch errors in Remix
+
+#### `ErrorBoundary`
+
+```tsx
+import type { ErrorBoundaryComponent } from "remix";
+
+export const ErrorBoundary: ErrorBoundaryComponent = ({ error }) => {
+  return <div>ERROR: {error.message}</div>;
+};
+```
+
+Catches these errors
+
+- syntax errors
+```tsx
+export function loader() {
+  somethingNotDefined;
+}
+```
+
+```html noLine
+<div>ERROR: "somethingNotDefined is not defined"</div>
+```
+
+- unhandled errors
+
+```tsx
+export function action() {
+	return fetch("http://a.b.c");
+}
+```
+
+```html noLine
+<div>ERROR: "request to http://a.b.c/ failed, reason: getaddrinfo ENOTFOUND a.b.c"</div>
+```
+
+- explicitly thrown errors
+```tsx
+export function loader() {
+  throw new Error('I failed!')
+}
+```
+
+```html noLine
+<div>ERROR: "I failed!"</div>
+```
+
+#### `CatchBoundary`
+
+Catches error thrown by throwing a response
+
 #### Root Error boundary
 
 ```tsx
 export function CatchBoundary() {
-  let caught = useCatch();
+  const caught = useCatch();
 
-  let message;
-  switch (caught.status) {
-    case 404:
-      message = <p>This is a custom error message for 404 pages</p>;
-      break;
-    // You can customize the behavior for other status codes
-    default: {
-      if (process.env.NODE_ENV === "development") {
-        throw new Error(JSON.stringify(caught.data) || caught.statusText);
-      } else {
-        message = (
-          <p>
-            An error occurred. Please try again later. If the problem persists,
-            please contact us.
-          </p>
-        );
-        break;
-      }
-    }
-  }
-
-  return (
-    <Document title={`${caught.status} ${caught.statusText}`}>
-      <Layout>
-        <h1>
-          {caught.status}: {caught.statusText}
-        </h1>
-        {message}
-      </Layout>
-    </Document>
+	return (
+    <>
+      <div>
+        ERROR: {caught.statusText} {caught.status}
+      </div>
+      <div>{caught.data.message}</div>
+    </>
   );
 }
 ```
 
-
-### Handling error in Server-side
-
-#### Handling error in a loader
-
 ```tsx
-import {json} from "remix";
-import type {LoaderFunction} from "remix";
-
-export const loader: LoaderFunction = async ({ params }) => {
-	// Whatever API you are using
-  const { data } = await supabase
-    .from<Word>("words")
-    .select("*")
-    .eq("id", params.id as string)
-    .single();
-
-  if (!data) {
-		// We structure this anyway we want. It's up to the client-side to handle this.
-		const data = {message: "Word could not be found" }
-
-    throw json(data, 404);
-  }
-
-  return data;
-};
-```
-
-#### Handling error in an action 
-
-```tsx
-import {json} from "remix";
-import type {ActionFunction} from "remix";
-
-export const action: ActionFunction = async ({ params }) => {
-	const session = await getSession(request.headers.get("Cookie"));
-
-  const accessToken = session.get("access_token");
-
-	if (!accesToken) {
-		throw json(
-      {
-        message: "Please login",
-      },
-      { status: 401 }
-    );
-	}
-
-
-	// Not related to handling errors
-	const { data, error } = await supabase
-    .from("words")
-    .insert([newWord])
-    .single();
-
-  if (error) {
-    return redirect(`/words`);
-  }
-
-  return redirect(`/words/${data?.id}`);
-})
-
-```
-
-### Handling Error in Client-Side
-
-```tsx
-export function CatchBoundary() {
-	cosnt caught = useCatch();
-
-  return (
-		{/*We format this anyway we want*/}
-    <section>
-      <h2>
-        {caught.status}: {caught.statusText}
-      </h2>
-			{/*We can display here properties set from the backend*/}
-      {caught.data && <p>{caught.data.message}</p>}
-    </section>
-  );
+export function loader() {
+  throw json({ message: "Some custom message" }, 501);
 }
 ```
 
+will yield to 
 
-#### Router Error boundary
+```html noLine
+<div>ERROR: Not Implemented 501</div>
+<div>Some custom message</div>
+```
+
+## Live examples
+
+### Handling 404 error
+/words/404
+
+### Handling error in an action
+/words/add
+
+### Handing error in a nested route
+/words/edit/non-existing-word
+
+### Propagating error to the root route
+/test
+

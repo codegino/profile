@@ -47,7 +47,7 @@ export default function Skills({skills}: {skills: CategorizedSkill[]}) {
                       title={`Click to visit ${skill.name}`}
                       target="_blank"
                       aria-label={skill.name}
-                      rel="noopener nofollow"
+                      rel="noopener noreferrer nofollow"
                     >
                       {skill.name}
                     </NextLink>

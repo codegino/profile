@@ -6,6 +6,7 @@ const BlogAnchor: FunctionComponent = ({children, ...props}) => {
       className="underline-on-hover underline--dark text-primary-dark"
       target="_blank"
       aria-label={children as string}
+      rel="noopener noreferrer nofollow"
       title={children as string}
       {...props}
     >

@@ -82,7 +82,7 @@ const Content: React.FC<{exp: WorkExperience}> = ({exp, children = null}) => {
             href={exp.url}
             target="_blank"
             aria-label={exp.organization}
-            rel="noopener nofollow"
+            rel="noopener noreferrer nofollow"
             className="text-primary-dark font-bold underline-on-hover underline--dark"
             title={`Click to visit ${exp.organization}`}
           >

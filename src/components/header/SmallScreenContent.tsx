@@ -105,7 +105,7 @@ export default function SmallScreenContent() {
                 target="_blank"
                 title="Email me"
                 aria-label="Email Me"
-                rel="noopener nofollow"
+                rel="noopener noreferrer nofollow"
               >
                 <CustomIcon
                   color="#ea4335"

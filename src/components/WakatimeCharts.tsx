@@ -11,7 +11,7 @@ export default function WakatimeCharts() {
           href="https://wakatime.com/@codegino"
           target="_blank"
           aria-label="Wakatime profile"
-          rel="noopener nofollow"
+          rel="noopener noreferrer nofollow"
           title="Link to my Wakatime profile"
           className="text-primary-dark text-2xl underline-on-hover underline--dark"
         >

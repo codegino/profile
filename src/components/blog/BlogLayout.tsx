@@ -23,6 +23,7 @@ const Layout: React.FC = ({children, ...props}) => {
         .blog-layout li {
           list-style: disc;
           margin-left: 2rem;
+          font-size: 1rem;
           line-height: 1.3;
         }
 
