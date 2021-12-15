@@ -48,8 +48,10 @@ export default function ResumeSummary({
             rel="noopener nofollow"
             className="underline-on-hover underline-on-hover--dark"
           >
-            <FaEnvelopeSquare />
-            &nbsp;{summary.email}
+            <span className="text-xl">
+              <FaEnvelopeSquare size={25} />
+              &nbsp;{summary.email}
+            </span>
           </NextLink>
         </h3>
         <h3 className="m-2 lg:mt-4">

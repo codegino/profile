@@ -14,13 +14,18 @@ export default function Footer() {
       md:flex-row md:justify-around md:text-right"
       >
         <div className="m-1">
-          <NextLink href="/sitemap.xml" aria-label="Sitemap" className="mr-4">
+          <NextLink
+            href="/sitemap.xml"
+            aria-label="Sitemap"
+            className="mr-4 text-lg"
+          >
             Sitemap
           </NextLink>
           <NextLink
             href="/rss.xml"
             aria-label="Rss Feed"
             rel="noopener nofollow"
+            className="text-lg"
           >
             RSS Feed
           </NextLink>

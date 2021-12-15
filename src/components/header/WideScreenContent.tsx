@@ -32,7 +32,7 @@ export default function WideScreenContentImpl() {
                 }
                 aria-label={link.label}
               >
-                {link.label}
+                <span className="text-xl">{link.label}</span>
               </NextLink>
             </li>
           ))}

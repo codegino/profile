@@ -31,7 +31,7 @@ export default function Skills({skills}: {skills: CategorizedSkill[]}) {
                 {category.category.toUpperCase()}
               </h3>
             </Slide>
-            <div className="max-w-5xl flex flex-wrap justify-center gap-y-2">
+            <div className="max-w-5xl flex flex-wrap justify-center gap-y-3">
               {category.skills.map((skill, i) => {
                 return (
                   <Zoom
