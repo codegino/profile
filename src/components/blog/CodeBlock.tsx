@@ -109,4 +109,4 @@ const CodeBlock: FunctionComponent<CodeBlockProps> = ({
   );
 };
 
-export default CodeBlock;
+export default React.memo(CodeBlock);
