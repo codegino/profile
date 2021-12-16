@@ -2,6 +2,7 @@ import type {InferGetStaticPropsType} from 'next';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import {FullScreenWrapper} from '../components/FullScreenWrapper';
+import Greetings from '../components/Greetings';
 import Hero from '../components/Hero';
 import ResumeSummary from '../components/ResumeSummary';
 import NextLink from '../components/basic/NextLink';
@@ -13,10 +14,6 @@ import {formatDate} from '../utils/date-formatter';
 import {getBlogsMetadata} from '../utils/mdxUtils';
 import {fetchSkills} from '../utils/resume-props';
 import {getImageFromSupabase} from '../utils/supabase.utils';
-
-const Greetings = dynamic(() => import('../components/Greetings'), {
-  ssr: false,
-});
 
 const Skills = dynamic(() => import('../components/skills/Skills'), {
   ssr: false,
