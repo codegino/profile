@@ -24,10 +24,6 @@ export const commonMetaTags = (pageName: string, slug = '') => (
     <link rel="manifest" href="/manifest.json" />
     <link rel="apple-touch-icon" href="/assets/logo.png"></link>
 
-    {/* ABtesting.ai Code */}
-    <link rel="preconnect" href="https://external.abtesting.ai" />
-    <script async src="https://js.abtesting.ai/ab.js?userid=5393" />
-
     {/* Global Site Tag (gtag.js) - Google Analytics */}
     <script
       async

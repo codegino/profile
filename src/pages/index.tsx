@@ -45,6 +45,10 @@ export default function Home({
       <Head>
         <title>Welcome to my Website | Code Gino | Carlo Gino Catapang</title>
         {commonMetaTags('Home Page')}
+
+        {/* ABtesting.ai Code */}
+        <link rel="preconnect" href="https://external.abtesting.ai" />
+        <script async src="https://js.abtesting.ai/ab.js?userid=5393" />
       </Head>
 
       <Hero img={heroImage} svg={heroSvg} />
