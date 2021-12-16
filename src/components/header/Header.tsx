@@ -11,7 +11,7 @@ export default function Header() {
   const router = useRouter();
 
   return (
-    <header className="h-12 relative bg-black flex items-center overflow-hidden py-0 px-2 text-white">
+    <header className="h-14 relative bg-black flex items-center overflow-hidden py-0 px-2 text-white">
       <TopLeftShape />
       <div className="flex items-center min-w-max ml-2 mr-6">
         <NextLink href="/" aria-label="My Logo">
