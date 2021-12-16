@@ -73,24 +73,18 @@ const CodeBlock: FunctionComponent<CodeBlockProps> = ({
               className={clsx(
                 'p-2 pl-2 overflow-auto flex relative flex-col leading-[1.188] my-1 text-lg',
                 'rounded-bl-md rounded-br-md',
+                className,
                 {
                   'pl-8': !noLine,
                 },
-                className,
               )}
               style={style}
             >
               {tokens.map((line, i) => (
-                <span
-                  key={i}
-                  {...getLineProps({line, key: i})}
-                  className={clsx('table-row relative ml-0')}
-                >
-                  <span className="table-cell">
-                    {line.map((token, key) => (
-                      <span key={key} {...getTokenProps({token, key})} />
-                    ))}
-                  </span>
+                <span key={i} {...getLineProps({line, key: i})}>
+                  {line.map((token, key) => (
+                    <span key={key} {...getTokenProps({token, key})} />
+                  ))}
                 </span>
               ))}
             </span>
