@@ -8,6 +8,10 @@ const Layout: React.FC = ({children, ...props}) => {
     >
       {children}
       <style jsx global>{`
+        body {
+          background-color: var(--color-light);
+        }
+
         .blog-layout > pre {
           margin: var(--spacing-small) 0;
         }
@@ -58,7 +62,6 @@ const Layout: React.FC = ({children, ...props}) => {
           font-size: 0.75rem;
         }
       `}</style>
-      `
     </main>
   );
 };
