@@ -1,8 +1,10 @@
-import React, {FunctionComponent} from 'react';
+import React from 'react';
+import type {FunctionComponent} from 'react';
 import clsx from 'clsx';
-import Highlight, {defaultProps, Language} from 'prism-react-renderer';
+import Highlight, {defaultProps} from 'prism-react-renderer';
+import type {Language} from 'prism-react-renderer';
 import vsDark from 'prism-react-renderer/themes/vsDark';
-import {ClipboardCopyButton} from '../ClipboardCopyButton';
+import ClipboardCopyButton from '../ClipboardCopyButton';
 import NextLink from '../basic/NextLink';
 
 export type CodeBlockProps = {
@@ -52,9 +54,9 @@ const CodeBlock: FunctionComponent<CodeBlockProps> = ({
       >
         {({className, style, tokens, getLineProps, getTokenProps}) => (
           <>
-            <span className="absolute z-10 flex flex-col left-0 top-8 bottom-0">
-              {tokens.map((_, i) => {
-                return !noLine ? (
+            {!noLine && (
+              <span className="absolute z-10 flex flex-col left-0 top-6 pt-2 bottom-0 bg-[#1e1e1e]">
+                {tokens.map((_, i) => (
                   <span
                     className="bg-[#1e1e1e] pl-2 pr-3 text-white text-right leading-[1.188]
                     max-w-[2rem] min-w-[2rem] select-none
@@ -63,13 +65,17 @@ const CodeBlock: FunctionComponent<CodeBlockProps> = ({
                   >
                     {i + 1}
                   </span>
-                ) : null;
-              })}
-            </span>
+                ))}
+              </span>
+            )}
+
             <span
               className={clsx(
                 'p-2 pl-2 overflow-auto flex relative flex-col leading-[1.188] my-1 text-lg',
                 'rounded-bl-md rounded-br-md',
+                {
+                  'pl-8': !noLine,
+                },
                 className,
               )}
               style={style}
@@ -78,9 +84,7 @@ const CodeBlock: FunctionComponent<CodeBlockProps> = ({
                 <span
                   key={i}
                   {...getLineProps({line, key: i})}
-                  className={clsx('table-row relative ml-0', {
-                    'ml-8': !noLine,
-                  })}
+                  className={clsx('table-row relative ml-0')}
                 >
                   <span className="table-cell">
                     {line.map((token, key) => (

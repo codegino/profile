@@ -73,4 +73,4 @@ function ClipboardCopyButton({value}: ClipboardCopyButtonProps) {
   );
 }
 
-export {ClipboardCopyButton};
+export default ClipboardCopyButton;
