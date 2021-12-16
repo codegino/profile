@@ -1,5 +1,4 @@
 import React from 'react';
-import {DiscussionEmbed} from 'disqus-react';
 import {IBlogMetadata} from '../../models/blog';
 import Coffee from '../Coffee';
 import SubscribeButton from '../basic/Button';
@@ -34,15 +33,6 @@ const BlogFooter = ({blog}: {blog: IBlogMetadata}) => {
           Follow @code_gino
         </span>
       </NextLink>
-      <DiscussionEmbed
-        shortname="carlogino"
-        config={{
-          url: `https://codegino.com/blog/${blog.slug}`,
-          identifier: blog.slug,
-          title: blog.title,
-          language: 'en_US',
-        }}
-      />
     </footer>
   );
 };
