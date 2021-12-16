@@ -82,7 +82,6 @@ async function generateSitemap() {
         <url>
           <loc>${ROOT_URL}/blog/${sitemap.slug}</loc>
           <priority>${sitemap.priority}</priority>
-          <lastmod>${sitemap.lastMod}</lastmod>
         </url>
       `;
     })

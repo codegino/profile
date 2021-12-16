@@ -1,24 +1,20 @@
 ---
-title: Error handling in Remix
-description: How to handle errors gracefully in Remix
-date: '2021-12-15'
-dateUpdated: '2021-12-15'
+title: How to handle errors gracefully in Remix
+description: How to use ErrorBoundary and CatchBoundary in error handling
+date: '2021-12-16'
+dateUpdated: '2021-12-16'
 bannerId: https://i.imgur.com/ogxFvNx.jpg
 bannerDescription: stock market crash 
 tags: ['react', 'tech', 'remix']
-keywords: ['remix error handling', 'remix catch boundary']
-published: false
+keywords: ['remix error handling', 'remix error boundary', 'remix catch boundary']
+published: true
 ---
 
-## The Complete Guide to Handling Errors in Remix
+### How Remix handles errors
 
-## TLDR
-
-### How Remix hanldes errors
-
-From the Remix official documentation
-
-> **Remix will automatically catch errors and render the nearest error boundary for errors thrown while:**
+> **From the Remix official documentation**
+>
+> Remix will automatically catch errors and render the nearest error boundary for errors thrown while:
 >
 > - rendering in the browser
 > - rendering on the server
@@ -27,10 +23,20 @@ From the Remix official documentation
 > - in a loader during a client-side transition in the browser (Remix serializes the error and sends it over the network to the browser)
 > - in an action during a client-side transition in the browser
 
+### What can we use to handle errors in Remix?
 
-### Functions to catch errors in Remix
+Since Remix is still a JavasScript framework, we can still use JavaScript constructs to catch errors such as `try/cath`.
+This blog will only discuss how to catch errors using `ErrorBoundary` and `CatchBoundary`.
 
-#### `ErrorBoundary`
+<br />
+
+#### Using `ErrorBoundary`
+
+> **From the official Docs**
+>
+> An ErrorBoundary is a React component that renders whenever there is an error anywhere on the route, either during rendering or during data loading.
+
+Here is an example of using the `ErrorBoundary` component to catch errors in Remix.
 
 ```tsx
 import type { ErrorBoundaryComponent } from "remix";
@@ -40,20 +46,22 @@ export const ErrorBoundary: ErrorBoundaryComponent = ({ error }) => {
 };
 ```
 
-Catches these errors
+Using the `ErrorBoundary` above, Here are some examples of errors we can catch and the corresponding result.
 
-- syntax errors
+<br />
+
+- ##### Explicitly thrown errors
 ```tsx
 export function loader() {
-  somethingNotDefined;
+  throw new Error('I am a failure!')
 }
 ```
 
 ```html noLine
-<div>ERROR: "somethingNotDefined is not defined"</div>
+<div>ERROR: "I am a failure!"</div>
 ```
 
-- unhandled errors
+- ##### Unhandled errors
 
 ```tsx
 export function action() {
@@ -65,22 +73,37 @@ export function action() {
 <div>ERROR: "request to http://a.b.c/ failed, reason: getaddrinfo ENOTFOUND a.b.c"</div>
 ```
 
-- explicitly thrown errors
+- ##### Other errors in backend
 ```tsx
 export function loader() {
-  throw new Error('I failed!')
+  // syntax error
+  someCodeInBackend;
 }
 ```
 
 ```html noLine
-<div>ERROR: "I failed!"</div>
+<div>ERROR: "someCodeInBackend is not defined"</div>
 ```
 
-#### `CatchBoundary`
+- ##### Errors in React land
 
-Catches error thrown by throwing a response
+```tsx
+export default function Index() {
+  someCodeInReact;
 
-#### Root Error boundary
+  return <div>{/*...*/}</div>;
+}
+```
+
+```html noLine
+<div>ERROR: "someCodeInReact is not defined"</div>
+```
+
+<br />
+
+#### Using `CatchBoundary`
+
+> A CatchBoundary is a React component that renders whenever an action or loader throws a Response.
 
 ```tsx
 export function CatchBoundary() {
@@ -110,17 +133,57 @@ will yield to
 <div>Some custom message</div>
 ```
 
-## Live examples
+```tsx
+export function action() {
+  throw json("Some custom message", 501);
+}
+```
 
-### Handling 404 error
-/words/404
+will yield to 
 
-### Handling error in an action
-/words/add
+```html noLine
+<div>ERROR: Not Implemented 501</div>
+<div></div>
+```
 
-### Handing error in a nested route
-/words/edit/non-existing-word
+<br />
 
-### Propagating error to the root route
-/test
+### In which cases should we use one over the other?
 
+We should use `CatchBoundary` if we care about the context of the error, such as status codes or the custom data related to the error; in another case, we use `ErrorBoundary`.
+
+The good thing is we can even use them together. So, for example, if there's an error in the `CatchBoundary`, that error will be caught by the `ErrorBoundary`.
+
+<br />
+
+### Live examples
+
+#### Handling global 404 error
+[/non-exisiting-page](https://playground-efupcps19-codegino.vercel.app/non-exisiting-page)
+
+#### Handling route 404 error
+[/words/404](https://playground-efupcps19-codegino.vercel.app/words/404)
+
+#### Handling error in an action
+
+Try to fill in the form, then click submit to see the `401` error.
+
+[/words/add](https://playground-efupcps19-codegino.vercel.app/words/add)
+
+#### Handing error in a nested route
+[/words/edit/404](https://playground-efupcps19-codegino.vercel.app/words/edit/404)
+
+#### Propagating error from `/test` to the root route
+[/test](https://playground-efupcps19-codegino.vercel.app/test)
+
+<br />
+
+### Additional note:
+
+> Your root `ErrorBoundary` should not throw an error in a production environment since there's nothing else to catch the error. If the root `ErrorBoundary` can throw an error, the user might see something like [this](https://playground-jb6w7fn95-codegino.vercel.app/words/404)
+
+
+## Conclusion
+
+I find using `ErrorBoundary` and `CatchBoundary` an easy way to handle route errors in Remix as it allows us to have fine-grained control on how we want to display an error.
+In my opinion, it improves the readability of what we are trying to achieve as there is the precise placement of the success and error cases. 
