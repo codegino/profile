@@ -31,16 +31,6 @@ class MyDocument extends Document {
             media="(prefers-color-scheme: dark)"
             content="black"
           />
-          <link rel="preconnect" href="https://fonts.googleapis.com" />
-          <link
-            rel="preconnect"
-            href="https://fonts.gstatic.com"
-            crossOrigin="true"
-          />
-          <link
-            href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=optional"
-            rel="stylesheet"
-          />
         </Head>
         <body>
           <Main />
