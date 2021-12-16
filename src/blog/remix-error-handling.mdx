@@ -105,6 +105,8 @@ export default function Index() {
 
 > A CatchBoundary is a React component that renders whenever an action or loader throws a Response.
 
+It works in combination with `useCatch`. The hook will allow us to get a reference to the response's `data`, `status`, and `statusText`.
+
 ```tsx
 export function CatchBoundary() {
   const caught = useCatch();
@@ -132,6 +134,11 @@ will yield to
 <div>ERROR: Not Implemented 501</div>
 <div>Some custom message</div>
 ```
+
+<br />
+
+We can also use other data formats such as plain string,
+but we need to make sure our `CatchBoundary` can handle them properly.
 
 ```tsx
 export function action() {
@@ -185,5 +192,5 @@ Try to fill in the form, then click submit to see the `401` error.
 
 ## Conclusion
 
-I find using `ErrorBoundary` and `CatchBoundary` an easy way to handle route errors in Remix as it allows us to have fine-grained control on how we want to display an error.
+I find using `ErrorBoundary` and `CatchBoundary` an easy way to handle route errors in Remix as it allows us to have fine-grained control on how we want to display errors in our pages.
 In my opinion, it improves the readability of what we are trying to achieve as there is the precise placement of the success and error cases. 
