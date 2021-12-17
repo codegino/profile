@@ -21,7 +21,7 @@
   --color-primary-300: hsl(140, 100%, 80%);
   --color-primary-400: hsl(140, 100%, 75%);
   --color-primary-500: hsl(140, 100%, 60%);
-  --color-primary-600: hsl(140, 100%, 50%);
+  --color-primary-600: hsl(80, 68%, 50%);
   --color-primary-700: hsl(140, 100%, 40%);
   --color-primary-800: hsl(140, 100%, 30%);
   --color-primary-900: hsl(140, 100%, 20%);
@@ -32,7 +32,7 @@
   --color-primary: hsl(140, 100%, 30%);
   --color-primary-contrast: hsl(0, 0%, 100%);
   --color-primary-light: hsl(80, 69%, 49%);
-  --color-primary-dark: hsl(var(--color-primary-h), 100%, 25%);
+  --color-primary-dark: hsl(var(--color-primary-h), 100%, 20%);
   --color-primary-accent: hsl(104, 100%, 47%);
 
   --color-dark: var(--color-constant-dark);
@@ -57,7 +57,7 @@
   --color-primary: hsl(140, 100%, 30%);
   --color-primary-contrast: hsl(0, 0%, 100%);
   --color-primary-dark: hsl(80, 69%, 49%);
-  --color-primary-light: hsl(var(--color-primary-h), 100%, 25%);
+  --color-primary-light: hsl(var(--color-primary-h), 100%, 20%);
   --color-primary-accent: hsl(104, 100%, 47%);
 
   --color-light: hsl(0, 0%, 13%);

@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import dynamic from 'next/dynamic';
 import {useRouter} from 'next/router';
 import useDarkMode from 'use-dark-mode';
@@ -20,15 +21,14 @@ export default function WideScreenContentImpl() {
           {navigationLinks.map(link => (
             <li
               key={link.label}
-              className="underline-on-hover text-white mr-2 last:mr-0 hover:text-primary-light"
+              className="underline-on-hover text-white mr-2 last:mr-0 "
             >
               <NextLink
                 href={link.url}
-                className={
-                  router.asPath.includes(`${link.url}`)
-                    ? 'text-primary-light border-b-2 border-b-primary-light'
-                    : ''
-                }
+                className={clsx('hover:text-primary-600', {
+                  'text-primary-600 border-b-2 border-b-primary-600':
+                    router.asPath.includes(link.url),
+                })}
                 aria-label={link.label}
               >
                 <span className="text-xl">{link.label}</span>

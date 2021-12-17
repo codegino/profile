@@ -13,7 +13,7 @@ export default function AboutMeHero({
   const {scrollToContent} = useScrollToView('#about-me-details');
 
   return (
-    <div className="overflow-hidden relative h-[95vh] m-auto flex justify-center">
+    <div className="overflow-hidden relative h-[95vh] m-auto flex justify-center bg-black">
       <BlurringImage
         alt="weird quote"
         title="weird quote"
@@ -31,7 +31,7 @@ export default function AboutMeHero({
       >
         {quote.map((word, i) => (
           <Zoom delay={i * 700 + i * i * 150} key={`${word}-${i}`}>
-            <p className="text-white text-3xl md:text-5xl lg:text-6xl text-shadow">
+            <p className="text-white text-3xl md:text-5xl lg:text-6xl text-shadow bg-transparent">
               {word}
             </p>
           </Zoom>

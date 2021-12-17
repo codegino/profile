@@ -11,9 +11,9 @@ function Coffee() {
         rel="noopener noreferrer nofollow"
       >
         <span
-          className="leading-3 flex h-16 w-[17rem]
-            items-center justify-center p-4
-            bg-red-500 text-white  relative
+          className="leading-3 flex h-12 w-[16rem]
+            items-center justify-center p-3
+            bg-orange-700 text-white relative
             rounded-xl hover:shadow-md hover:shadow-dark
           "
         >
