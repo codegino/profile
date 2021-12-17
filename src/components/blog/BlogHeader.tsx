@@ -9,23 +9,22 @@ type Props = {
 
 const BlogHeader: FunctionComponent<Props> = ({blog, img, svg}) => {
   return (
-    <article className="mb-8 text-center">
-      <h1>{blog.title}</h1>
+    <article className="mb-8 text-center flex flex-col items-center">
+      <h1 className="mt-6 mb-0">{blog.title}</h1>
       {blog.description && <h2 className="description">{blog.description}</h2>}
       <p className="mb-4">{blog.date}</p>
       {img && svg && !blog.hideBanner ? (
-        <div className="cover-image">
+        <div className="relative h-[66vh] w-[95vw] lg:h-[35rem] lg:w-[65rem] lg:px-10 flex justify-center items-center">
           <BlurringImage
             alt={blog.bannerDescription}
             title={blog.bannerDescription}
             img={img}
             svg={svg}
-            layout="responsive"
-            height={700}
-            width={1200}
+            layout="fill"
             objectFit="cover"
             objectPosition="center"
-            className="rounded-xl"
+            priority={true}
+            className="rounded-xl shadow-sm shadow-dark"
           />
         </div>
       ) : null}

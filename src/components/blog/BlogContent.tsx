@@ -1,6 +1,6 @@
 import React, {FunctionComponent} from 'react';
-import {MDXRemote, MDXRemoteSerializeResult} from 'next-mdx-remote';
-import dynamic from 'next/dynamic';
+import {MDXRemote} from 'next-mdx-remote';
+import type {MDXRemoteSerializeResult} from 'next-mdx-remote';
 import BlockQuote from './BlockQuote';
 import BlogAnchor from './BlogAnchor';
 import BlogBookMark from './BlogBookmarkAnchor';
@@ -9,6 +9,7 @@ import BlogImg from './BlogImg';
 import BlogListElement from './BlogListElement';
 import BlogParagraph from './BlogParagraph';
 import CodeBlock from './CodeBlock';
+import TableOfContents from './TableOfContents';
 
 // Custom components/renderers to pass to MDX.
 // Since the MDX files aren't loaded by webpack, they have no knowledge of how
@@ -23,6 +24,7 @@ const components = {
   Gif: BlogGif,
   Img: BlogImg,
   Bookmark: BlogBookMark,
+  TableOfContents,
 };
 
 type Props = {
@@ -30,7 +32,7 @@ type Props = {
 };
 
 const BlogContent: FunctionComponent<Props> = ({source}) => {
-  return <MDXRemote {...source} components={components} />;
+  return <MDXRemote {...source} components={components} lazy={false} />;
 };
 
 export default BlogContent;

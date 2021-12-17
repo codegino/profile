@@ -14,7 +14,7 @@ export default function ResumeSummary({
       className="w-full flex justify-center items-center flex-col py-20 md:flex-row  min-w-max"
       id="resume-summary"
     >
-      <div className="overflow-hidden rounded-full h-32 w-32  md:rounded-none md:h-40 md:w-40 xl:h-48 xl:w-48">
+      <div className="overflow-hidden rounded-full h-36 w-36 md:rounded-none md:h-44 md:w-44 xl:h-48 xl:w-48">
         <BlurringImage
           img={img}
           svg={svg}

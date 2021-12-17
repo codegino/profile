@@ -51,8 +51,8 @@ export default function BlogPage({
         <meta name="twitter:title" content="Carlo Gino Catapang" />
       </Head>
 
+      <BlogHeader blog={blog} img={img} svg={svg} />
       <BlogLayout>
-        <BlogHeader blog={blog} img={img} svg={svg} />
         <BlogContent source={source} />
         <br />
         <BlogFooter blog={blog} />
