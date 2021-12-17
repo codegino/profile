@@ -49,6 +49,8 @@ export default function BlogPage({
         <meta name="twitter:image" content={blog.bannerId} />
         <meta name="twitter:description" content={blog.description} />
         <meta name="twitter:title" content="Carlo Gino Catapang" />
+
+        <link rel="canonical" href={`https://codegino.com/blog/${blog.slug}`} />
       </Head>
 
       <BlogHeader blog={blog} img={img} svg={svg} />

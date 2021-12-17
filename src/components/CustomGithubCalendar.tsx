@@ -6,7 +6,7 @@ import NextLink from './basic/NextLink';
 export default function CustomGithubCalendar() {
   return (
     <Zoom>
-      <div className="flex flex-col items-center my-10 overflow-hidden px-5 bg-lightest p-1 rounded-xl">
+      <div className="flex flex-col items-center my-10 bg-lightest p-1 rounded-xl">
         <h2 className="mb-5">
           My&nbsp;
           <NextLink
@@ -22,13 +22,27 @@ export default function CustomGithubCalendar() {
           &nbsp;activity
         </h2>
 
-        <GithubCalendar
-          username="codegino"
-          hideColorLegend={true}
-          blockMargin={10}
-          blockRadius={6}
-          blockSize={25}
-        />
+        <div className="overflow-x-auto max-w-lg sm:max-w-6xl  pb-4">
+          <style jsx global>
+            {`
+              .react-activity-calendar__legend-month text {
+                font-size: 2rem;
+              }
+
+              .react-activity-calendar {
+                width: 65rem;
+                padding: 0 6rem;
+              }
+            `}
+          </style>
+          <GithubCalendar
+            username="codegino"
+            fontSize={30}
+            blockMargin={10}
+            blockRadius={6}
+            blockSize={25}
+          ></GithubCalendar>
+        </div>
       </div>
     </Zoom>
   );

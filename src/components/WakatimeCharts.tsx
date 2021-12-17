@@ -20,8 +20,11 @@ export default function WakatimeCharts() {
         &nbsp;activity
       </h2>
       <Zoom>
-        <figure>
-          <embed src="https://wakatime.com/share/@codegino/aa8c74ed-2174-445a-805d-e46a869c3b8b.svg"></embed>
+        <figure className="flex justify-center">
+          <embed
+            className="max-w-md md:max-w-lg"
+            src="https://wakatime.com/share/@codegino/aa8c74ed-2174-445a-805d-e46a869c3b8b.svg"
+          ></embed>
         </figure>
       </Zoom>
     </div>

@@ -18,11 +18,8 @@ export const commonMetaTags = (pageName: string, slug = '') => (
 
     <meta name="description" content={metaDescription(pageName)} />
 
+    <link rel="canonical" href={`https://codegino.com${slug}`} />
     <link rel="icon" href="/favicon.ico" />
-
-    {/* For PWA */}
-    <link rel="manifest" href="/manifest.json" />
-    <link rel="apple-touch-icon" href="/assets/logo.png"></link>
 
     {/* Global Site Tag (gtag.js) - Google Analytics */}
     <script
