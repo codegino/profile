@@ -6,7 +6,6 @@ import {FaFacebookMessenger} from '@react-icons/all-files/fa/FaFacebookMessenger
 import clsx from 'clsx';
 import {useRouter} from 'next/router';
 import {CSSTransition} from 'react-transition-group';
-import useDarkMode from 'use-dark-mode';
 import DarkModeToggle from '../DarkModeToggle';
 import NextLink from '../basic/NextLink';
 import CustomIcon from '../icon/CustomIcon';
@@ -20,7 +19,6 @@ const SmallScreenSidebar: FunctionComponent<{
   const router = useRouter();
   const EMAIL_ADDRESS = 'carloginocatapang@gmail.com';
   const nodeRef = useRef(null);
-  const {value: isDarkMode, toggle} = useDarkMode();
   const sidebarClose = (e: MouseEvent<HTMLElement>) => {
     e.stopPropagation();
     setIsOpen(false);
@@ -117,12 +115,7 @@ const SmallScreenSidebar: FunctionComponent<{
 
           <section className="text-left">
             <h3 className="my-4 text-2xl">Toggle Theme</h3>
-            <DarkModeToggle
-              onChange={toggle}
-              checked={isDarkMode}
-              size={70}
-              className="outline-2 outline-white rounded-3xl"
-            />
+            <DarkModeToggle className="outline-2 outline-white rounded-3xl" />
           </section>
 
           <section className="absolute bottom-2 flex flex-col items-center">

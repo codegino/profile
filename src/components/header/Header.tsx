@@ -35,7 +35,7 @@ export default function Header() {
         <NextLink href="/" aria-label="Code Gino">
           <span
             className={clsx('underline-on-hover ml-2 text-2xl font-bold', {
-              'text-primary-600 border-b-2 border-b-primary-600':
+              'text-white border-b-2 border-b-primary-600':
                 router.asPath === '/',
             })}
           >

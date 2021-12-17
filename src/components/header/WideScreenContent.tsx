@@ -1,7 +1,6 @@
 import clsx from 'clsx';
 import dynamic from 'next/dynamic';
 import {useRouter} from 'next/router';
-import useDarkMode from 'use-dark-mode';
 import NextLink from '../basic/NextLink';
 import SocialMedia from '../social/SocialMedia';
 import {navigationLinks} from './nav-links';
@@ -12,7 +11,6 @@ const DarkModeToggle = dynamic(() => import('../DarkModeToggle'), {
 
 export default function WideScreenContentImpl() {
   const router = useRouter();
-  const {value: isDarkMode, toggle} = useDarkMode();
 
   return (
     <div className="hidden items-center justify-between w-full lg:flex">
@@ -40,7 +38,7 @@ export default function WideScreenContentImpl() {
       <div className="flex items-center">
         <SocialMedia />
         <div className="h-full ml-3 min-w-[2.2rem]">
-          <DarkModeToggle onChange={toggle} checked={isDarkMode} size={69} />
+          <DarkModeToggle />
         </div>
       </div>
     </div>
