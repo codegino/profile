@@ -92,7 +92,7 @@ export default function Resume({
         <div id="skills">
           <Skills skills={skills} />
         </div>
-        <div className="flex justify-center">
+        <div className="w-full flex justify-center overflow-hidden">
           <div className="max-w-6xl">
             <CustomGithubCalendar />
           </div>
