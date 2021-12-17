@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+import {useState} from 'react';
+import type {CSSProperties} from 'react';
 import clsx from 'clsx';
 import Image, {ImageProps} from 'next/image';
 import type {IGetPlaiceholderReturn} from 'plaiceholder';
@@ -6,7 +7,7 @@ import type {IGetPlaiceholderReturn} from 'plaiceholder';
 type BlurringImageProps = {blurLevel?: number; transformScaleLevel?: number};
 
 type Props = BlurringImageProps & {
-  style?: React.CSSProperties;
+  style?: CSSProperties;
 } & Omit<ImageProps, 'src'> &
   Pick<IGetPlaiceholderReturn, 'svg' | 'img'>;
 

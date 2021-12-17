@@ -1,8 +1,8 @@
-import React from 'react';
+import type {HTMLAttributes} from 'react';
 
 const BlogListElement = ({
   children,
   ...props
-}: React.HTMLAttributes<HTMLLIElement>) => <li {...props}>{children}</li>;
+}: HTMLAttributes<HTMLLIElement>) => <li {...props}>{children}</li>;
 
 export default BlogListElement;

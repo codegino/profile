@@ -1,4 +1,3 @@
-import React from 'react';
 import {IGetPlaiceholderReturn} from 'plaiceholder';
 import Zoom from 'react-reveal/Zoom';
 import {useScrollToView} from '../utils/scroll-to-view-hook';

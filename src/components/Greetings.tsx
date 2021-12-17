@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+import {useState} from 'react';
+import type {FunctionComponent} from 'react';
 import {BsChevronRight} from '@react-icons/all-files/bs/BsChevronRight';
 import {BsTerminalFill} from '@react-icons/all-files/bs/BsTerminalFill';
 import clsx from 'clsx';
@@ -14,7 +15,7 @@ const StyledBsChevronRight = () => {
   );
 };
 
-const Span: React.FC<{className?: string}> = props => {
+const Span: FunctionComponent<{className?: string}> = props => {
   return (
     <span
       {...props}

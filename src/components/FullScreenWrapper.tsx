@@ -1,10 +1,11 @@
+import type {FunctionComponent} from 'react';
 import clsx from 'clsx';
 import {BottomLeftShape} from './extras/BottomLeftShape';
 import {BottomRightShape} from './extras/BottomRightShape';
 import {TopLeftShape} from './extras/TopLeftShape';
 import {TopRightShape} from './extras/TopRightShape';
 
-export const FullScreenWrapper: React.FC<{
+export const FullScreenWrapper: FunctionComponent<{
   tr?: boolean;
   tl?: boolean;
   bl?: boolean;

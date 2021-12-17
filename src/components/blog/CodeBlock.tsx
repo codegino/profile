@@ -1,4 +1,4 @@
-import React from 'react';
+import {memo} from 'react';
 import type {FunctionComponent} from 'react';
 import clsx from 'clsx';
 import Highlight, {defaultProps} from 'prism-react-renderer';
@@ -107,4 +107,4 @@ const CodeBlock: FunctionComponent<CodeBlockProps> = ({
   );
 };
 
-export default React.memo(CodeBlock);
+export default memo(CodeBlock);

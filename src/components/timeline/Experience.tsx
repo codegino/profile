@@ -1,6 +1,6 @@
-import React from 'react';
+import type {FunctionComponent} from 'react';
 
-export const Experience: React.FC<{hasConnector?: boolean}> = ({
+export const Experience: FunctionComponent<{hasConnector?: boolean}> = ({
   children,
   hasConnector = false,
 }) => {

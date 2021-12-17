@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import {useState} from 'react';
 import {IconType} from '@react-icons/all-files';
 
 export default function CustomIcon(sm: IconProps) {

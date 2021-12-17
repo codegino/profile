@@ -1,4 +1,4 @@
-import React, {FunctionComponent} from 'react';
+import type {FunctionComponent} from 'react';
 
 const BlogBookMark: FunctionComponent = ({...props}) => {
   return (

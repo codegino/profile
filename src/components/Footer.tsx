@@ -1,4 +1,3 @@
-import React from 'react';
 import NextLink from './basic/NextLink';
 import {BottomRightShape} from './extras/BottomRightShape';
 import {TopLeftShape} from './extras/TopLeftShape';

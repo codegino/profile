@@ -1,4 +1,3 @@
-import React from 'react';
 import type {IBlogMetadata} from '../../models/blog';
 import NextLink from '../basic/NextLink';
 import {BlogCardPreview} from './BlogCardPreview';

@@ -1,6 +1,6 @@
-import React from 'react';
+import type {FunctionComponent} from 'react';
 
-const Layout: React.FC = ({children, ...props}) => {
+const Layout: FunctionComponent = ({children, ...props}) => {
   return (
     <main
       {...props}

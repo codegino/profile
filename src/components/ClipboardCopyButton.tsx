@@ -1,4 +1,4 @@
-import * as React from 'react';
+import {useEffect, useState} from 'react';
 import {FaCheck as CheckIcon} from '@react-icons/all-files/fa/FaCheck';
 import {FaCopy as CopyIcon} from '@react-icons/all-files/fa/FaCopy';
 
@@ -33,9 +33,9 @@ enum State {
 }
 
 function ClipboardCopyButton({value}: ClipboardCopyButtonProps) {
-  const [state, setState] = React.useState<State>(State.Idle);
+  const [state, setState] = useState<State>(State.Idle);
 
-  React.useEffect(() => {
+  useEffect(() => {
     async function transition() {
       switch (state) {
         case State.Copy: {

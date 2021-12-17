@@ -1,9 +1,9 @@
-import React from 'react';
+import type {FunctionComponent} from 'react';
 import {BsMoon} from '@react-icons/all-files/bs/BsMoon';
 import {BsSun} from '@react-icons/all-files/bs/BsSun';
 import clsx from 'clsx';
 
-const DarkModeToggle: React.FC<{
+const DarkModeToggle: FunctionComponent<{
   onChange: (isDarkMode: boolean) => void;
   checked: boolean;
   size: number;

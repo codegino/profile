@@ -1,4 +1,4 @@
-import React from 'react';
+import type {FunctionComponent} from 'react';
 import {FaBriefcase} from '@react-icons/all-files/fa/FaBriefcase';
 import {FaBuilding} from '@react-icons/all-files/fa/FaBuilding';
 import {FaGraduationCap} from '@react-icons/all-files/fa/FaGraduationCap';
@@ -68,7 +68,10 @@ export default function Timeline({
   );
 }
 
-const Content: React.FC<{exp: WorkExperience}> = ({exp, children = null}) => {
+const Content: FunctionComponent<{exp: WorkExperience}> = ({
+  exp,
+  children = null,
+}) => {
   return (
     <Zoom cascade={true} duration={800}>
       <div>

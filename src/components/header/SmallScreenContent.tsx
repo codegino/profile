@@ -1,4 +1,5 @@
-import React, {useState, useRef} from 'react';
+import {useState, useRef} from 'react';
+import type {MouseEvent} from 'react';
 import {AiOutlineClose} from '@react-icons/all-files/ai/AiOutlineClose';
 import {AiOutlineMenu} from '@react-icons/all-files/ai/AiOutlineMenu';
 import {FaEnvelopeSquare} from '@react-icons/all-files/fa/FaEnvelopeSquare';
@@ -28,7 +29,7 @@ export default function SmallScreenContent() {
     setIsOpen(true);
   };
 
-  const sidebarClose = (e: React.MouseEvent<HTMLElement>) => {
+  const sidebarClose = (e: MouseEvent<HTMLElement>) => {
     e.stopPropagation();
     setIsOpen(false);
   };

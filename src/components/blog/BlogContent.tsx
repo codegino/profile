@@ -1,4 +1,4 @@
-import React, {FunctionComponent} from 'react';
+import type {FunctionComponent} from 'react';
 import {MDXRemote} from 'next-mdx-remote';
 import type {MDXRemoteSerializeResult} from 'next-mdx-remote';
 import BlockQuote from './BlockQuote';

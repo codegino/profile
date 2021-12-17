@@ -1,4 +1,3 @@
-import React from 'react';
 import {FaEnvelopeSquare} from '@react-icons/all-files/fa/FaEnvelopeSquare';
 import {FaMapMarkerAlt} from '@react-icons/all-files/fa/FaMapMarkerAlt';
 import {IGetPlaiceholderReturn} from 'plaiceholder';

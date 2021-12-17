@@ -1,18 +1,17 @@
-import React from 'react';
+import {forwardRef} from 'react';
 
-const Button = React.forwardRef<
-  HTMLButtonElement,
-  JSX.IntrinsicElements['button']
->(({className = '', ...props}, ref) => {
-  let classNames =
-    'py-3 px-2 border rounded-xl bg-primary-dark hover:bg-primary-800 text-light';
+const Button = forwardRef<HTMLButtonElement, JSX.IntrinsicElements['button']>(
+  ({className = '', ...props}, ref) => {
+    let classNames =
+      'py-3 px-2 border rounded-xl bg-primary-dark hover:bg-primary-800 text-light';
 
-  if (className) {
-    classNames += ` ${className}`;
-  }
+    if (className) {
+      classNames += ` ${className}`;
+    }
 
-  return <button {...props} ref={ref} className={classNames} />;
-});
+    return <button {...props} ref={ref} className={classNames} />;
+  },
+);
 
 Button.displayName = 'Button';
 

@@ -1,4 +1,4 @@
-import React, {FunctionComponent} from 'react';
+import type {FunctionComponent} from 'react';
 import {IGetPlaiceholderReturn} from 'plaiceholder';
 import type {IBlogMetadata} from '../../models/blog';
 import {BlurringImage} from '../BlurringImage';

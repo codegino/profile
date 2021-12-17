@@ -1,4 +1,3 @@
-import React from 'react';
 import {FaDev} from '@react-icons/all-files/fa/FaDev';
 import {FaFacebookSquare} from '@react-icons/all-files/fa/FaFacebookSquare';
 import {FaGithubSquare} from '@react-icons/all-files/fa/FaGithubSquare';

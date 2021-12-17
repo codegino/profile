@@ -1,4 +1,6 @@
-export const CornerShape: React.FC<{className?: any}> = ({
+import type {FunctionComponent} from 'react';
+
+export const CornerShape: FunctionComponent<{className?: any}> = ({
   className,
   ...props
 }) => {

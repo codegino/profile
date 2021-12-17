@@ -1,10 +1,10 @@
-import React from 'react';
+import type {FunctionComponent, HTMLProps} from 'react';
 import Link from 'next/link';
 import type {LinkProps} from 'next/link';
 
-type NextLinkProps = LinkProps & React.HTMLProps<HTMLButtonElement>;
+type NextLinkProps = LinkProps & HTMLProps<HTMLButtonElement>;
 
-const NextLink: React.FC<NextLinkProps> = ({
+const NextLink: FunctionComponent<NextLinkProps> = ({
   href,
   target,
   className,

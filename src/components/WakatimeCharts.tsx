@@ -1,4 +1,3 @@
-import React from 'react';
 import Zoom from 'react-reveal/Zoom';
 import NextLink from './basic/NextLink';
 

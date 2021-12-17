@@ -1,4 +1,4 @@
-import {MouseEventHandler} from 'react';
+import type {MouseEventHandler} from 'react';
 import {BsChevronDoubleDown} from '@react-icons/all-files/bs/BsChevronDoubleDown';
 
 type Props = {

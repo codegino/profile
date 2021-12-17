@@ -1,4 +1,3 @@
-import React from 'react';
 import GithubCalendar from 'react-github-calendar';
 import Zoom from 'react-reveal/Zoom';
 import NextLink from './basic/NextLink';

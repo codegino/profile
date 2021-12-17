@@ -1,4 +1,3 @@
-import React from 'react';
 import {IBlogMetadata} from '../../models/blog';
 import Coffee from '../Coffee';
 import SubscribeButton from '../basic/Button';

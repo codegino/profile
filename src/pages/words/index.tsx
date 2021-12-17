@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import {useCallback, useEffect, useState} from 'react';
 import Head from 'next/head';
 import ContentLoader from 'react-content-loader';
 import Word from '../../components/Word';
@@ -23,7 +23,7 @@ function usePagination<T>({
   const [isDone, setIsDone] = useState(false);
   const [isFetching, setIsFetching] = useState(false);
 
-  const fetchMoreData = React.useCallback(
+  const fetchMoreData = useCallback(
     (
       fetchFunction: (
         _currentPage: number,
@@ -68,7 +68,7 @@ export default function WordsPage({}) {
     currentPage: 0,
   });
 
-  const handleFetchMoreWords = React.useCallback(() => {
+  const handleFetchMoreWords = useCallback(() => {
     fetchMoreData(page => fetch(`/api/words?page=${page}`));
   }, [fetchMoreData]);
 

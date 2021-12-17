@@ -1,4 +1,3 @@
-import React from 'react';
 import {FaCheckDouble} from '@react-icons/all-files/fa/FaCheckDouble';
 import {FaDatabase} from '@react-icons/all-files/fa/FaDatabase';
 import {FaDumbbell} from '@react-icons/all-files/fa/FaDumbbell';

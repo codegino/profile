@@ -1,4 +1,3 @@
-import React from 'react';
 import {BiCool} from '@react-icons/all-files/bi/BiCool';
 import {RiSpamLine} from '@react-icons/all-files/ri/RiSpamLine';
 import Button from './basic/Button';

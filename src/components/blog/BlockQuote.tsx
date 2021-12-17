@@ -1,6 +1,6 @@
-import React from 'react';
+import type {FunctionComponent} from 'react';
 
-const BlockQuote: React.FC = props => {
+const BlockQuote: FunctionComponent = props => {
   return (
     <blockquote
       className="m-0 p-2 my-4 mx-0 font-block-quote bg-lightest

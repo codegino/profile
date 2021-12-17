@@ -1,4 +1,4 @@
-import React from 'react';
+import type {FunctionComponent} from 'react';
 import clsx from 'clsx';
 import Image from 'next/image';
 import type {IBlogMetadata} from '../../models/blog';
@@ -8,7 +8,7 @@ type Props = {
   blog: IBlogMetadata;
 };
 
-const BlogCard: React.FC<Props> = ({blog}) => {
+const BlogCard: FunctionComponent<Props> = ({blog}) => {
   return (
     <article
       className={clsx(

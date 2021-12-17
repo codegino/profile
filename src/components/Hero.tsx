@@ -1,4 +1,3 @@
-import React from 'react';
 import type {IGetPlaiceholderReturn} from 'plaiceholder';
 import Fade from 'react-reveal/Fade';
 import Zoom from 'react-reveal/Zoom';
