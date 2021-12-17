@@ -1,7 +1,7 @@
 const metaDescription = (pageName: string) =>
   `Carlo Gino Catapang|Code Gino|${pageName}, Web Developer, Software Engineer, Frontend Engineer. React, JavaScript, TypeScript expert. Husband and Father`;
 
-export const commonMetaTags = (pageName: string, slug = '') => (
+export const commonMetaTags = (pageName: string, slug = '/') => (
   <>
     <meta name="twitter:card" content="summary_large_image" />
     <meta
