@@ -17,7 +17,7 @@ type SiteMapUrl = {
 
 const staticPages: SiteMapUrl[] = [
   {
-    slug: '',
+    slug: '/',
     lastMod: '2021-11-14',
     priority: 1.0,
     changeFrequency: 'monthly',
