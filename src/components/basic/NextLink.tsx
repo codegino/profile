@@ -1,9 +1,10 @@
-import React, {FC} from 'react';
-import Link, {LinkProps} from 'next/link';
+import React from 'react';
+import Link from 'next/link';
+import type {LinkProps} from 'next/link';
 
 type NextLinkProps = LinkProps & React.HTMLProps<HTMLButtonElement>;
 
-const NextLink: FC<NextLinkProps> = ({
+const NextLink: React.FC<NextLinkProps> = ({
   href,
   target,
   className,

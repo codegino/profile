@@ -1,5 +1,5 @@
 import React from 'react';
-import {IGetPlaiceholderReturn} from 'plaiceholder';
+import type {IGetPlaiceholderReturn} from 'plaiceholder';
 import Fade from 'react-reveal/Fade';
 import Zoom from 'react-reveal/Zoom';
 import {useScrollToView} from '../utils/scroll-to-view-hook';

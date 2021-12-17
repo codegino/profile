@@ -6,7 +6,7 @@ import NextLink from '../basic/NextLink';
 import SocialMedia from '../social/SocialMedia';
 import {navigationLinks} from './nav-links';
 
-const DarkModeToggle = dynamic(() => import('react-dark-mode-toggle'), {
+const DarkModeToggle = dynamic(() => import('../DarkModeToggle'), {
   ssr: false,
 });
 
@@ -40,7 +40,7 @@ export default function WideScreenContentImpl() {
       </nav>
       <div className="flex items-center">
         <SocialMedia />
-        <div className="h-full ml-1 min-w-[4.4rem]">
+        <div className="h-full ml-3 min-w-[2.2rem]">
           <DarkModeToggle onChange={toggle} checked={isDarkMode} size={69} />
         </div>
       </div>

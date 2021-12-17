@@ -13,7 +13,7 @@ import CustomIcon from '../icon/CustomIcon';
 import SocialMedia from '../social/SocialMedia';
 import {navigationLinks} from './nav-links';
 
-const DarkModeToggle = dynamic(() => import('react-dark-mode-toggle'), {
+const DarkModeToggle = dynamic(() => import('../DarkModeToggle'), {
   ssr: false,
 });
 
@@ -57,7 +57,7 @@ export default function SmallScreenContent() {
             onClick={e => e.stopPropagation()}
             role="presentation"
             className="
-              w-[50vw] h-screen absolute bg-light top-0 right-0 text-dark flex flex-col
+              w-[16rem] h-screen absolute bg-light top-0 right-0 text-dark flex flex-col
               items-start p-4 text-2xl leading-10 z-20
             "
           >
@@ -68,7 +68,7 @@ export default function SmallScreenContent() {
             >
               <AiOutlineClose size={30} className="fill-primary-dark" />
             </div>
-            <h3 className="my-4">Links</h3>
+            <h3 className="my-4 text-2xl">Links</h3>
 
             <nav>
               <ul className="flex items-start flex-col">
@@ -81,7 +81,7 @@ export default function SmallScreenContent() {
                     <NextLink
                       href={link.url}
                       className={clsx(
-                        'px-2 text-3xl hover:text-dark hover:underline',
+                        'px-2 text-xl hover:text-dark hover:underline font-semibold',
                         {
                           'text-primary-dark underline': router.asPath.includes(
                             link.url,
@@ -96,9 +96,9 @@ export default function SmallScreenContent() {
                 ))}
               </ul>
             </nav>
-            <h3 className="my-4">Social</h3>
+            <h3 className="my-4 text-2xl">Social</h3>
             <SocialMedia />
-            <h3 className="my-4">Contact me</h3>
+            <h3 className="my-4 text-2xl">Contact me</h3>
             <div>
               <NextLink
                 href={`mailto:${EMAIL_ADDRESS}`}
@@ -106,6 +106,7 @@ export default function SmallScreenContent() {
                 title="Email me"
                 aria-label="Email Me"
                 rel="noopener noreferrer nofollow"
+                className="mr-2"
               >
                 <CustomIcon
                   color="#ea4335"
@@ -132,7 +133,7 @@ export default function SmallScreenContent() {
             </div>
 
             <section className="text-left">
-              <h3 className="my-4">Toggle Theme</h3>
+              <h3 className="my-4 text-2xl">Toggle Theme</h3>
               <DarkModeToggle
                 onChange={toggle}
                 checked={isDarkMode}
@@ -140,8 +141,23 @@ export default function SmallScreenContent() {
                 className="outline-2 outline-white rounded-3xl"
               />
             </section>
+
+            <section className="absolute bottom-2 flex flex-col items-center">
+              <p>All rights reserved</p>
+              <p>© Carlo Gino Catapang {new Date().getFullYear()}</p>
+            </section>
           </div>
           <style jsx>{`
+            .sidebar {
+              position: fixed;
+              top: 0;
+              right: 0;
+              z-index: 10;
+              height: 100vh;
+              width: 200vw;
+              transition: transform 0.5s;
+            }
+
             // enter from
             .sidebar.fade-enter {
               transform: translateX(100%);

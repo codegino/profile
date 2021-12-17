@@ -30,7 +30,7 @@ export default function Footer() {
             RSS Feed
           </NextLink>
           <p>All rights reserved</p>
-          <p>© Carlo Gino Catapang 2021</p>
+          <p>© Carlo Gino Catapang {new Date().getFullYear()}</p>
         </div>
         <SocialMedia />
       </div>

@@ -1,4 +1,4 @@
-import type {InferGetStaticPropsType} from 'next';
+import type {GetStaticProps, InferGetStaticPropsType} from 'next';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import {FullScreenWrapper} from '../components/FullScreenWrapper';
@@ -110,7 +110,7 @@ export default function Home({
   );
 }
 
-export const getStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   const {img: heroImage, svg: heroSvg} = await getImageFromSupabase(
     'home_hero_cover',
   );
