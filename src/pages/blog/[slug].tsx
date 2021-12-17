@@ -48,7 +48,7 @@ export default function BlogPage({
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image" content={blog.bannerId} />
         <meta name="twitter:description" content={blog.description} />
-        <meta name="twitter:title" content="Carlo Gino Catapang" />
+        <meta name="twitter:title" content={blog.title} />
 
         <link rel="canonical" href={`https://codegino.com/blog/${blog.slug}`} />
       </Head>
