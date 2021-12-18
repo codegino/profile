@@ -76,7 +76,7 @@ export default function Home({
         <FullScreenWrapper tr bl className="bg-lightest">
           <BlogSuggestionsList blogs={blogs} />
         </FullScreenWrapper>
-        <FullScreenWrapper tl br>
+        <FullScreenWrapper tl br className="bg-lightest">
           <div className="w-full flex justify-center">
             <div className="max-w-6xl">
               <CustomGithubCalendar />

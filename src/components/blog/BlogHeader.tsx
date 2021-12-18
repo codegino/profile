@@ -10,7 +10,7 @@ type Props = {
 const BlogHeader: FunctionComponent<Props> = ({blog, img, svg}) => {
   return (
     <article className="mb-8 text-center flex flex-col items-center">
-      <h1 className="mt-6 mb-0">{blog.title}</h1>
+      <h1 className="mb-0">{blog.title}</h1>
       {blog.description && <h2 className="description">{blog.description}</h2>}
       <p className="mb-4">{blog.date}</p>
       {img && svg && !blog.hideBanner ? (

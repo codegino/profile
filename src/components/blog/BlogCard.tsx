@@ -13,7 +13,7 @@ const BlogCard: FunctionComponent<Props> = ({blog}) => {
     <article
       className={clsx(
         ' flex items-center justify-between flex-col sm:flex-row-reverse',
-        'rounded-xl w-full py-4 px-8',
+        'rounded-xl w-full py-4 px-8 bg-lightest',
         'shadow-sm hover:shadow-md hover:shadow-dark shadow-dark mb-5 last:mb-0 max-w-[45rem] sm:max-w-[55rem]',
       )}
     >

@@ -17,9 +17,9 @@ function MyApp({Component, pageProps}: AppProps) {
 
   useEffect(() => {
     if (isDarkMode) {
-      document.documentElement.setAttribute('data-theme', 'dark');
+      document.documentElement.classList.add('dark');
     } else {
-      document.documentElement.setAttribute('data-theme', 'light');
+      document.documentElement.classList.remove('dark');
     }
   }, [isDarkMode]);
 

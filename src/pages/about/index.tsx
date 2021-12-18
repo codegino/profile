@@ -31,58 +31,60 @@ export default function AboutMe({
         {commonMetaTags('About Page', '/about')}
       </Head>
       <AboutMeHero img={img} svg={svg} />
-      <article className="mb-20" id="about-me-details">
-        <h1>About Carlo Gino Catapang</h1>
-        {aboutMeDetails.map(detail => {
-          return (
-            <section
-              className="flex flex-col items-center p-2"
-              key={detail.key}
+      <main className="mt-10">
+        <article className="mb-20" id="about-me-details">
+          <h1>About Carlo Gino Catapang</h1>
+          {aboutMeDetails.map(detail => {
+            return (
+              <section
+                className="flex flex-col items-center p-2"
+                key={detail.key}
+              >
+                <h3 className="mb-10 text-4xl">{detail.label}</h3>
+                <div
+                  className="text-justify max-w-screen-md"
+                  dangerouslySetInnerHTML={{
+                    __html: dompurify.sanitize(detail.content),
+                  }}
+                />
+              </section>
+            );
+          })}
+        </article>
+
+        <h2 className="text-center">This website is powered by</h2>
+        <TechStackCarousel techStacks={techStacks} />
+
+        <section className="mt-4 mb-2">
+          <h4 className="text-center">
+            This awesome carousel is easily made using&nbsp;
+            <NextLink
+              href="https://github.com/leandrowd/react-responsive-carousel"
+              target="_blank"
+              aria-label="React Responsive Carousel"
+              rel="noopener noreferrer nofollow"
+              className="text-primary-dark"
             >
-              <h3 className="mb-10 text-4xl">{detail.label}</h3>
-              <div
-                className="text-justify max-w-screen-md"
-                dangerouslySetInnerHTML={{
-                  __html: dompurify.sanitize(detail.content),
-                }}
-              />
-            </section>
-          );
-        })}
-      </article>
-
-      <h2 className="text-center">This website is powered by</h2>
-      <TechStackCarousel techStacks={techStacks} />
-
-      <section className="mt-4 mb-2">
-        <h4 className="text-center">
-          This awesome carousel is easily made using&nbsp;
-          <NextLink
-            href="https://github.com/leandrowd/react-responsive-carousel"
-            target="_blank"
-            aria-label="React Responsive Carousel"
-            rel="noopener noreferrer nofollow"
-            className="text-primary-dark"
-          >
-            React Responsive Carousel
-          </NextLink>
-          .
-        </h4>
-      </section>
-      <section className="mb-8">
-        <h4 className="text-center">
-          Here is the link to my&nbsp;
-          <NextLink
-            href="https://github.com/codegino/profile"
-            target="_blank"
-            aria-label="Github Repo"
-            className="text-primary-dark"
-          >
-            Github Repo
-          </NextLink>
-          .
-        </h4>
-      </section>
+              React Responsive Carousel
+            </NextLink>
+            .
+          </h4>
+        </section>
+        <section className="pb-8">
+          <h4 className="text-center">
+            Here is the link to my&nbsp;
+            <NextLink
+              href="https://github.com/codegino/profile"
+              target="_blank"
+              aria-label="Github Repo"
+              className="text-primary-dark"
+            >
+              Github Repo
+            </NextLink>
+            .
+          </h4>
+        </section>
+      </main>
     </>
   );
 }

@@ -8,10 +8,6 @@ const Layout: FunctionComponent = ({children, ...props}) => {
     >
       {children}
       <style jsx global>{`
-        body {
-          background-color: var(--color-light);
-        }
-
         .blog-layout > pre {
           margin: var(--spacing-small) 0;
         }

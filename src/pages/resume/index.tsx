@@ -79,7 +79,7 @@ export default function Resume({
           </span>
         </NextLink>
       </div>
-      <main className="bg-light">
+      <main>
         <ResumeSummary img={profileImage} svg={profileSvg} />
         <hr />
         <hr />
