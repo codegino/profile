@@ -20,7 +20,7 @@ const BlogCard: FunctionComponent<Props> = ({blog}) => {
       <div
         className={clsx(
           'relative rounded-2xl overflow-hidden',
-          'mt-4',
+          'mt-4 shadow-md shadow-dark',
           'h-[7.5rem] sm:h-[15rem] w-full sm:w-[10rem] min-w-[7.5rem] sm:min-w-[20rem]',
         )}
       >

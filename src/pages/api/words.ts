@@ -26,7 +26,7 @@ const getPagination = (page: number, size: number) => {
   return {from, to};
 };
 
-const WORDS_PAGE_SIZE = 5;
+const WORDS_PAGE_SIZE = 10;
 
 export const fetchWords = async (page: number, pageSize = WORDS_PAGE_SIZE) => {
   const {from, to} = getPagination(page, pageSize);

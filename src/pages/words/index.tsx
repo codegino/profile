@@ -5,7 +5,7 @@ import Word from '../../components/Word';
 import {commonMetaTags} from '../../frontend-utils/meta-tags';
 import type {WordFromBackend} from '../../models/Vocabulary';
 
-const WORDS_PAGE_SIZE = 5;
+const WORDS_PAGE_SIZE = 10;
 
 type PaginationProps<T> = {
   currentPage?: number;
@@ -84,7 +84,7 @@ export default function WordsPage({}) {
         <title>Vocabulary Page | Code Gino | Carlo Gino Catapang</title>
         {commonMetaTags('Words Page', '/words')}
       </Head>
-      <main className="flex items-center flex-col overflow-hidden pb-4 bg-light">
+      <main className="flex items-center flex-col overflow-hidden pb-4 bg-light min-h-[90vh]">
         <h1>English words I learned</h1>
 
         {words.length === 0 && isFetching && (
@@ -99,7 +99,7 @@ export default function WordsPage({}) {
         {words.map(word => (
           <Word key={word.id} word={word} />
         ))}
-        {!isDone && (
+        {!isFetching && !isDone && (
           <button
             onClick={handleFetchMoreWords}
             className="underline text-dark font-semibold underline-on-hover"

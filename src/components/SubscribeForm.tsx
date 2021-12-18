@@ -30,10 +30,10 @@ const SubscribeForm = () => {
           data-recaptcha="true"
         >
           <div
-            className="flex justify-center bg-primary-dark h-16 py-8 items-center
+            className="flex justify-center bg-primary-dark py-2 items-center
           "
           >
-            <p className="text-light text-2xl">Get started</p>
+            <p className="text-light text-xl">Get started</p>
           </div>
           <div className="flex flex-col py-8 px-4 bg-light">
             <Input

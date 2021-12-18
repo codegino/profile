@@ -19,7 +19,7 @@ export default function WideScreenContentImpl() {
           {navigationLinks.map(link => (
             <li
               key={link.label}
-              className="underline-on-hover text-white mr-2 last:mr-0 "
+              className="underline-on-hover text-white mr-3 last:mr-0 "
             >
               <NextLink
                 href={link.url}
@@ -29,7 +29,7 @@ export default function WideScreenContentImpl() {
                 })}
                 aria-label={link.label}
               >
-                <span className="text-xl">{link.label}</span>
+                <span className="text-lg">{link.label}</span>
               </NextLink>
             </li>
           ))}
