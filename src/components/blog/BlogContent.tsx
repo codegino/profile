@@ -1,6 +1,7 @@
 import type {FunctionComponent} from 'react';
 import {MDXRemote} from 'next-mdx-remote';
 import type {MDXRemoteSerializeResult} from 'next-mdx-remote';
+import dynamic from 'next/dynamic';
 import BlockQuote from './BlockQuote';
 import BlogAnchor from './BlogAnchor';
 import BlogBookMark from './BlogBookmarkAnchor';
@@ -8,8 +9,11 @@ import BlogGif from './BlogGif';
 import BlogImg from './BlogImg';
 import BlogListElement from './BlogListElement';
 import BlogParagraph from './BlogParagraph';
-import CodeBlock from './CodeBlock';
 import TableOfContents from './TableOfContents';
+
+const CodeBlock = dynamic(() => import('./CodeBlock'), {
+  ssr: false,
+});
 
 // Custom components/renderers to pass to MDX.
 // Since the MDX files aren't loaded by webpack, they have no knowledge of how
