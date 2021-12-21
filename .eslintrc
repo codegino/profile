@@ -5,5 +5,8 @@
     "prettier",
     "plugin:jsx-a11y/recommended"
   ],
+  "rules": {
+    "no-console": "error"
+  },
   "plugins": ["jsx-a11y"]
 }

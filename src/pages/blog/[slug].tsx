@@ -50,6 +50,33 @@ export default function BlogPage({
         <meta name="twitter:description" content={blog.description} />
         <meta name="twitter:title" content={blog.title} />
 
+        <link rel="icon" href="/favicon.ico" />
+
+        {/* For PWA */}
+        <link rel="manifest" href="/manifest.json" />
+        <link rel="apple-touch-icon" href="/assets/logo.png"></link>
+
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: `{
+            "@context": "https://schema.org", 
+            "@type": "Article",
+            "headline": "${blog.title}",
+            "image": "${blog.bannerId}",
+            "editor": "Carlo Gino Catapang", 
+            "author": "Carlo Gino Catapang", 
+            "genre": "${blog.tags?.join(' ')}", 
+            "keywords": "${blog.keywords?.join(' ')}", 
+            "url": "https://codegino.com/blog/${blog.slug}",
+            "dateCreated": "${blog.date}",
+            "dateModified": "${blog.dateUpdated}",
+            "description": "${blog.description}",
+            "articleBody": "${blog.title}. ${blog.description}"
+            }`,
+          }}
+        ></script>
+
         <link rel="canonical" href={`https://codegino.com/blog/${blog.slug}`} />
       </Head>
 

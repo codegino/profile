@@ -43,8 +43,21 @@ export default function Home({
   return (
     <>
       <Head>
-        <title>Welcome to my Website | Code Gino | Carlo Gino Catapang</title>
+        <title>Home Page | CodeGino | Carlo Gino Catapang</title>
         {commonMetaTags('Home Page')}
+
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: `{
+          "@context": "http://schema.org/",
+          "@type": "Person",
+          "name": "Carlo Gino Catapang",
+          "jobTitle": "Senior Software Engineer",
+          "url": "https://codegino.com"
+          }`,
+          }}
+        ></script>
 
         {/* ABtesting.ai Code */}
         <link rel="preconnect" href="https://external.abtesting.ai" />
