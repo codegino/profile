@@ -1,3 +1,4 @@
+import {FaEnvelopeOpenText} from '@react-icons/all-files/fa/FaEnvelopeOpenText';
 import {FaTwitter} from '@react-icons/all-files/fa/FaTwitter';
 import {IBlogMetadata} from '../../models/blog';
 import Coffee from '../Coffee';
@@ -9,21 +10,26 @@ const BlogFooter = ({blog}: {blog: IBlogMetadata}) => {
   return (
     <footer className="flex w-full m-auto flex-col text-center">
       <ShareToSocialMedia blog={blog} />
-      <p className="m-6">
-        <i>Get latest updates directly into your mailbox.</i>
-      </p>
-      <form action="https://mailchi.mp/5d28d757da7a/codegino-newsletter">
-        <SubscribeButton className="px-4">
-          Subscribe to my Newsletter
-        </SubscribeButton>
-      </form>
 
       <p className="my-4">
         <i>If you find this useful and you want to support me</i>
       </p>
       <Coffee />
 
-      <p className="my-2">
+      <p className="my-4">
+        <i>Get latest updates directly into your mailbox.</i>
+      </p>
+      <form action="https://mailchi.mp/5d28d757da7a/codegino-newsletter">
+        <SubscribeButton className="px-5">
+          <FaEnvelopeOpenText
+            size={25}
+            className="dark:text-black text-white mr-2"
+          />{' '}
+          Subscribe to my Newsletter
+        </SubscribeButton>
+      </form>
+
+      <p className="mt-4 mb-2">
         <i>Connect with me</i>
       </p>
       <NextLink

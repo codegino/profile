@@ -1,6 +1,7 @@
 import type {GetStaticProps, InferGetStaticPropsType} from 'next';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
+import Script from 'next/script';
 import {FullScreenWrapper} from '../components/FullScreenWrapper';
 import Greetings from '../components/Greetings';
 import Hero from '../components/Hero';
@@ -57,12 +58,17 @@ export default function Home({
           "url": "https://codegino.com"
           }`,
           }}
-        ></script>
+        />
 
         {/* ABtesting.ai Code */}
         <link rel="preconnect" href="https://external.abtesting.ai" />
-        <script async src="https://js.abtesting.ai/ab.js?userid=5393" />
       </Head>
+
+      {/* ABtesting.ai Code */}
+      <Script
+        strategy="afterInteractive"
+        src="https://js.abtesting.ai/ab.js?userid=5393"
+      />
 
       <Hero img={heroImage} svg={heroSvg} />
       <FullScreenWrapper tr bl>
