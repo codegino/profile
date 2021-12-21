@@ -96,7 +96,7 @@ const CodeBlock: FunctionComponent<CodeBlockProps> = ({
           <NextLink
             href={`https://codepen.io/codegino/pen/${codePenID}`}
             target="_blank"
-            rel="noopener noreferrer nofollow"
+            rel="nnoreferrer"
             className="underline-on-hover underline-dark"
           >
             Link to Codepen

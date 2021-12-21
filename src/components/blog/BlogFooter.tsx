@@ -31,7 +31,7 @@ const BlogFooter = ({blog}: {blog: IBlogMetadata}) => {
         aria-label="Follow me on Twitter"
         target="_blank"
         className="mt-2"
-        rel="noopener noreferrer nofollow"
+        rel="nnoreferrer"
       >
         <span className="relative h-10 bg-[#1da1f2] text-white py-2 px-6 rounded-3xl hover:shadow-sm hover:shadow-dark">
           <FaTwitter /> Follow @code_gino

@@ -17,7 +17,7 @@ export default function SocialMedia() {
                 href={sm.url}
                 target="_blank"
                 aria-label={sm.title}
-                rel="noopener noreferrer nofollow"
+                rel="nnoreferrer"
               >
                 <CustomIcon {...sm} />
                 <span aria-hidden className="hidden">

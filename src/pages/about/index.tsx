@@ -62,7 +62,7 @@ export default function AboutMe({
               href="https://github.com/leandrowd/react-responsive-carousel"
               target="_blank"
               aria-label="React Responsive Carousel"
-              rel="noopener noreferrer nofollow"
+              rel="nnoreferrer"
               className="text-primary-dark"
             >
               React Responsive Carousel

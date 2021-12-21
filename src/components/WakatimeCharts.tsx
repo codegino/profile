@@ -10,7 +10,7 @@ export default function WakatimeCharts() {
           href="https://wakatime.com/@codegino"
           target="_blank"
           aria-label="Wakatime profile"
-          rel="noopener noreferrer nofollow"
+          rel="nnoreferrer"
           title="Link to my Wakatime profile"
           className="text-primary-dark text-2xl underline-on-hover underline--dark"
         >

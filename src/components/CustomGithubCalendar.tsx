@@ -12,7 +12,7 @@ export default function CustomGithubCalendar() {
             href="https://github.com/codegino"
             target="_blank"
             aria-label="Github profile"
-            rel="noopener noreferrer nofollow"
+            rel="nnoreferrer"
             title="Link to my Github profile"
             className="text-primary-dark text-2xl underline-on-hover underline--dark"
           >

@@ -86,7 +86,7 @@ const SmallScreenSidebar: FunctionComponent<{
               target="_blank"
               title="Email me"
               aria-label="Email Me"
-              rel="noopener noreferrer nofollow"
+              rel="nnoreferrer"
               className="mr-2"
             >
               <CustomIcon
