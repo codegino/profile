@@ -9,7 +9,6 @@ import {FaServer} from '@react-icons/all-files/fa/FaServer';
 import {FaStar} from '@react-icons/all-files/fa/FaStar';
 import {FaThumbsUp} from '@react-icons/all-files/fa/FaThumbsUp';
 import {FaTools} from '@react-icons/all-files/fa/FaTools';
-import Slide from 'react-reveal/Slide';
 import Zoom from 'react-reveal/Zoom';
 import type {CategorizedSkill, SkillCategory} from '../../models/skill';
 import NextLink from '../basic/NextLink';
@@ -24,12 +23,12 @@ export default function Skills({skills}: {skills: CategorizedSkill[]}) {
       {skills.map(category => {
         return (
           <section className="mb-4" key={category.category}>
-            <Slide bottom>
+            <Zoom bottom>
               <h3 className="text-center my-2">
                 {getSkillCategoryIcon(category.category)}&nbsp;
                 {category.category.toUpperCase()}
               </h3>
-            </Slide>
+            </Zoom>
             <div className="max-w-5xl flex flex-wrap justify-center gap-y-3">
               {category.skills.map((skill, i) => {
                 return (

@@ -3,7 +3,6 @@ import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import Script from 'next/script';
 import {FullScreenWrapper} from '../components/FullScreenWrapper';
-import Greetings from '../components/Greetings';
 import Hero from '../components/Hero';
 import ResumeSummary from '../components/ResumeSummary';
 import NextLink from '../components/basic/NextLink';
@@ -15,6 +14,10 @@ import {formatDate} from '../utils/date-formatter';
 import {getBlogsMetadata} from '../utils/mdxUtils';
 import {fetchSkills} from '../utils/resume-props';
 import {getImageFromSupabase} from '../utils/supabase.utils';
+
+const Greetings = dynamic(() => import('../components/Greetings'), {
+  ssr: false,
+});
 
 const Skills = dynamic(() => import('../components/skills/Skills'), {
   ssr: false,
@@ -63,8 +66,8 @@ export default function Home({
         {/* ABtesting.ai Code */}
         <link rel="preconnect" href="https://external.abtesting.ai" />
       </Head>
-
       {/* ABtesting.ai Code */}
+
       <Script
         strategy="afterInteractive"
         src="https://js.abtesting.ai/ab.js?userid=5393"

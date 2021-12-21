@@ -1,5 +1,4 @@
 import type {IGetPlaiceholderReturn} from 'plaiceholder';
-import Fade from 'react-reveal/Fade';
 import Zoom from 'react-reveal/Zoom';
 import {useScrollToView} from '../utils/scroll-to-view-hook';
 import {BlurringImage} from './BlurringImage';
@@ -24,7 +23,7 @@ export default function Hero({
         objectPosition="center"
         priority={true}
       />
-      <Fade cascade duration={1500} delay={200}>
+      <Zoom cascade duration={1500} delay={200}>
         <div className="absolute flex flex-col items-center sm:ml-[2rem] xl:ml-[2rem] 2xl:ml-[3rem]">
           <h2 className="text-white text-5xl xl:text-6xl text-center text-shadow">
             Hello World
@@ -33,7 +32,7 @@ export default function Hero({
             Welcome to my page!
           </p>
         </div>
-      </Fade>
+      </Zoom>
       <Zoom delay={1900}>
         <div className="absolute z-10 bottom-[8vh]">
           <GuideArrow onClick={scrollToContent} />
