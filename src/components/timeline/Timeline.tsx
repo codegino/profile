@@ -85,7 +85,7 @@ const Content: FunctionComponent<{exp: WorkExperience}> = ({
             href={exp.url}
             target="_blank"
             aria-label={exp.organization}
-            rel="nnoreferrer"
+            rel="noreferrer"
             className="text-primary-dark font-bold underline-on-hover underline--dark"
             title={`Click to visit ${exp.organization}`}
           >

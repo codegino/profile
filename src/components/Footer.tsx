@@ -23,7 +23,7 @@ export default function Footer() {
           <NextLink
             href="/rss.xml"
             aria-label="Rss Feed"
-            rel="nnoreferrer"
+            rel="noreferrer"
             className="text-lg"
           >
             RSS Feed

@@ -32,7 +32,7 @@ export default function ResumeSummary({
             href={summary.companyWebsite}
             target="_blank"
             aria-label="Company Website"
-            rel="nnoreferrer"
+            rel="noreferrer"
             className="underline-on-hover"
           >
             <h2 className="m-0 lg:my-2">&nbsp;at {summary.company}</h2>
@@ -44,7 +44,7 @@ export default function ResumeSummary({
             target="_blank"
             aria-label="Email me"
             title="Send me an email"
-            rel="nnoreferrer"
+            rel="noreferrer"
             className="underline-on-hover underline-on-hover--dark"
           >
             <span className="text-xl">

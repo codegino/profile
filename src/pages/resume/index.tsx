@@ -47,7 +47,7 @@ export default function Resume({
           target="_blank"
           title="Download PDF Version"
           aria-label="Download PDF Version"
-          rel="nnoreferrer"
+          rel="noopener noreferrer nofollow"
         >
           <CustomIcon
             icon={FaFilePdf}
@@ -65,7 +65,7 @@ export default function Resume({
           target="_blank"
           title="Download Word Version"
           aria-label="Download Word Version"
-          rel="nnoreferrer"
+          rel="noopener noreferrer nofollow"
         >
           <CustomIcon
             icon={FaFileWord}
