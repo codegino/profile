@@ -1,5 +1,5 @@
 const metaDescription = (pageName: string) =>
-  `Carlo Gino Catapang|Code Gino|${pageName}, Web Developer, Software Engineer, Frontend Engineer. React, JavaScript, TypeScript expert. Husband and Father`;
+  `Carlo Gino Catapang | Code Gino | ${pageName}, Web Developer, Software Engineer, Frontend Engineer. React, JavaScript, TypeScript expert. Husband & Father`;
 
 export const commonMetaTags = (pageName: string, slug = '/') => (
   <>
