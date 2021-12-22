@@ -1,0 +1,429 @@
+---
+title: How to improve the performance of your website
+description: Checklist of things to consider to improve the performance of your website
+date: '2021-12-22'
+dateUpdated: '2021-12-22'
+bannerId: https://i.imgur.com/nUC1Cll.jpg
+bannerDescription: performance 
+tags: ['performance']
+keywords: ['lighthouse performance', 'website performance', 'LCP', 'FCP', 'CLS', 'TBT']
+published: true
+---
+
+
+<TableOfContents
+  list={[
+    {href: '#introduction', label: 'Introduction'},
+    {href: '#lcp', label: '(LCP) Largest Contentful Paint'},
+    {href: '#fcp', label: '(FCP) First Contentful Paint'},
+    {href: '#cls', label: '(CLS) Cumulative Layout Shift'},
+    {href: '#tbt', label: '(TBT) Total Blocking Time'},
+    {href: '#others', label: 'Other performance consideration'},
+  ]}
+/>
+
+<br />
+
+## TL;DR
+
+> Use [Lighthouse](https://developers.google.com/web/tools/lighthouse) to check your website's performance. You will see the same exact information in the Performance report.
+
+### Introduction <Bookmark id="introduction" />
+
+Web performance is the measure of a website's performance from the user's perspective. A website could have high download speeds, but if it takes too long to load, the user would perceive it as slow. That is why web performance includes not only download speed and throughput but also page load times and interactivity.
+
+<br />
+
+This blog contains a list of things to consider when improving your website's performance which is categorized in the following metrics:
+
+- Largest Contentful Paint
+- First Contentful Paint
+- Cumulative Layout Shift
+- Total Blocking Time
+
+<br />
+
+### LCP (Largest Contentful Paint) <Bookmark id="lcp"/>
+
+#### What is LCP?
+
+The Largest Contentful Paint (LCP) metric reports the render time of the largest image or text block visible within the viewport, relative to when the page first started loading.
+
+> Largest Contentful Paint (LCP) is an important, user-centric metric for measuring perceived load speed because it marks the point in the page load timeline when the page's main content has likely loaded—a fast LCP helps reassure the user that the page is useful.
+
+To learn more about LCP, check the [original article](https://web.dev/lcp/) where I copy-pasted the descriptions above.
+
+<br />
+
+#### What can we do to improve LCP?
+
+- **Reduce unused JavaScript**
+
+Reduce unused JavaScript and defer loading scripts until they are required to decrease bytes consumed by network activity.
+
+[Learn more](https://web.dev/unused-javascript/)
+
+<br />
+
+- **Use video formats for animated content**
+
+Large GIFs are inefficient for delivering animated content. Consider using `MPEG4/WebM` videos for animations and `PNG/WebP` for static images instead of `GIF` to save network bytes.
+
+[Learn more](https://web.dev/efficient-animated-content/)
+
+<br />
+
+- **Preload Largest Contentful Paint image**
+
+Preload the image used by the LCP element in order to improve your LCP time
+
+[Learn more](https://web.dev/optimize-lcp/#preload-important-resources)
+
+<br />
+
+- **Avoids enormous network payloads**
+
+Large network payloads cost users real money and are highly correlated with long load times.
+
+[Learn more](https://web.dev/total-byte-weight/)
+
+<br />
+
+- **Avoid chaining critical requests**
+
+The Critical Request Chains below show you what resources are loaded with a high priority. Consider reducing the length of chains, reducing the download size of resources, or deferring the download of unnecessary resources to improve page load.
+
+[Learn more](https://web.dev/critical-request-chains/)
+
+<br />
+
+- **Largest Contentful Paint element**
+
+This is the largest contentful element painted within the viewport.
+
+[Learn more](https://web.dev/lighthouse-largest-contentful-paint/)
+
+<br />
+
+### FPC (First Contentful Paint)  <Bookmark id="fcp"/>
+
+#### What is FCP?
+
+The First Contentful Paint (FCP) metric measures the time from when the page starts loading to when any part of the page's content is rendered on the screen. For this metric, "content" refers to text, images (including background images), `<svg>` elements, or non-white `<canvas>` elements.
+
+> First Contentful Paint (FCP) is an important, user-centric metric for measuring perceived load speed because it marks the first point in the page load timeline where the user can see anything on the screen—a fast FCP helps reassure the user that something is happening.
+
+To learn more about FCP, check the [original article](https://web.dev/fcp/) where I copy-pasted the descriptions above.
+
+<br />
+
+#### What can we do to improve FCP?
+
+> NOTE: If you check the Chrome's Lighthouse report, you will see that everything in `FCP` is also in `LCP`.
+> 
+> Meaning, the following list below can be included in the list in `LCP`.
+
+- **Eliminate render-blocking resources**
+Resources are blocking the first paint of your page. Consider delivering critical JS/CSS inline and deferring all non-critical JS/styles.
+
+[Learn more](https://web.dev/render-blocking-resources/)
+
+<br />
+
+- **Minify CSS**
+
+Minifying CSS files can reduce network payload sizes.
+
+[Learn more](https://web.dev/unminified-css/)
+
+<br />
+
+- **Minify JavaScript**
+
+Minifying JavaScript files can reduce payload sizes and script parse time.
+
+[Learn more](https://web.dev/unminified-javascript/)
+
+<br />
+
+- **Reduce unused CSS**
+
+Reduce unused rules from stylesheets and defer CSS not used for above-the-fold content to decrease bytes consumed by network activity.
+
+[Learn more](https://web.dev/unused-css-rules/)
+
+<br />
+
+- **Enable text compression**
+
+Text-based resources should be served with compression (gzip, deflate or brotli) to minimize total network bytes.
+
+[Learn more](https://web.dev/uses-text-compression/)
+
+<br />
+
+- **Preconnect to required origins**
+
+Consider adding `preconnect` or `dns-prefetch` resource hints to establish early connections to important third-party origins.
+
+[Learn more](https://web.dev/uses-rel-preconnect/)
+
+<br />
+
+- **Initial server response time was short**
+
+Keep the server response time for the main document short because all other requests depend on it.
+
+[Learn more](https://web.dev/time-to-first-byte/)
+
+<br />
+
+- **Avoid multiple page redirects**
+
+Redirects introduce additional delays before the page can be loaded.
+
+[Learn more](https://web.dev/redirects/)
+
+<br />
+
+- **Preload key requests**
+
+Consider using `<link rel=preload>` to prioritize fetching resources that are currently requested later in page load.
+
+[Learn more](https://web.dev/uses-rel-preload/)
+
+<br />
+
+- **Avoid chaining critical requests**
+
+The Critical Request Chains below show you what resources are loaded with a high priority. Consider reducing the length of chains, reducing the download size of resources, or deferring the download of unnecessary resources to improve page load.
+
+[Learn more](https://web.dev/critical-request-chains/)
+
+<br />
+
+- **All text remains visible during webfont loads**
+
+Leverage the font-display CSS feature to ensure text is user-visible while webfonts are loading.
+
+[Learn more](https://web.dev/font-display/)
+
+<br />
+
+### CLS (Cumulative Layout Shift) <Bookmark id="cls"/>
+
+#### What is CLS?
+
+CLS is a measure of the largest burst of layout shift scores for every unexpected layout shift that occurs during the entire lifespan of a page.
+
+> Cumulative Layout Shift (CLS) is an important, user-centric metric for measuring visual stability because it helps quantify how often users experience unexpected layout shifts—a low CLS helps ensure that the page is delightful.
+
+To learn more about CLS, check the [original article](https://web.dev/cls/) where I copy-pasted the descriptions above.
+
+<br />
+
+#### What can we do to improve CLS?
+
+- **Avoid non-composited animations**
+
+Animations which are not composited can be janky and increase CLS.
+
+[Learn more](https://web.dev/non-composited-animations/)
+
+<br />
+
+- **Avoid large layout shifts**
+
+These DOM elements contribute most to the CLS of the page.
+
+<br />
+
+- **Image elements have explicit `width` and `height`**
+
+Set an explicit width and height on image elements to reduce layout shifts and improve CLS.
+
+[Learn more](https://web.dev/optimize-cls/#images-without-dimensions)
+
+<br />
+
+
+### TBT (Total Blocking Time) <Bookmark id="tbt"/>
+
+#### What is TBT?
+
+The Total Blocking Time (TBT) metric measures the total amount of time between First Contentful Paint (FCP) and Time to Interactive (TTI) where the main thread was blocked for long enough to prevent input responsiveness.
+
+> Total Blocking Time (TBT) is an important lab metric for measuring load responsiveness because it helps quantify the severity of how non-interactive a page is prior to it becoming reliably interactive—a low TBT helps ensure that the page is usable.
+
+To learn more about TBT, check the [original article](https://web.dev/tbt/) where I copy-pasted the descriptions above.
+
+<br />
+
+#### What can we do to improve TBT?
+
+- **Avoid long main-thread tasks**
+
+Lists the longest tasks on the main thread, useful for identifying worst contributors to input delay.
+
+[Learn more](https://web.dev/long-tasks-devtools/)
+
+<br />
+
+- **Remove duplicate modules in JavaScript bundles**
+
+Remove large, duplicate JavaScript modules from bundles to reduce unnecessary bytes consumed by network activity.
+
+<br />
+
+- **Avoid serving legacy JavaScript to modern browsers**
+
+Polyfills and transforms enable legacy browsers to use new JavaScript features. However, many aren't necessary for modern browsers. For your bundled JavaScript, adopt a modern script deployment strategy using module/nomodule feature detection to reduce the amount of code shipped to modern browsers, while retaining support for legacy browsers.
+
+[Learn more](https://philipwalton.com/articles/deploying-es2015-code-in-production-today/)
+
+<br />
+
+- **Avoids an excessive DOM size**
+
+A large DOM will increase memory usage, cause longer [style calculations](https://developers.google.com/web/fundamentals/performance/rendering/reduce-the-scope-and-complexity-of-style-calculations), and produce costly [layout reflows](https://developers.google.com/speed/docs/insights/browser-reflow).
+
+[Learn more](https://web.dev/dom-size/)
+
+<br />
+
+- **JavaScript execution time**
+
+Consider reducing the time spent parsing, compiling, and executing JS. You may find delivering smaller JS payloads helps with this.
+
+[Learn more](https://web.dev/bootup-time/)
+
+<br />
+
+- **Minimizes main-thread work**
+
+Consider reducing the time spent parsing, compiling and executing JS. You may find delivering smaller JS payloads helps with this.
+
+[Learn more](https://web.dev/mainthread-work-breakdown/)
+
+<br />
+
+- **Minimize third-party usage**
+
+Third-party code can significantly impact load performance. Limit the number of redundant third-party providers and try to load third-party code after your page has primarily finished loading.
+
+[Learn more](https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/loading-third-party-javascript)
+
+<br />
+
+- **Lazy load third-party resources with facades**
+
+Some third-party embeds can be lazy loaded. Consider replacing them with a facade until they are required.
+
+[Learn more](https://web.dev/third-party-facades/)
+
+<br />
+
+- **Has a `<meta name="viewport">` tag with `width` or `initial-scale`**
+
+A `<meta name="viewport">` not only optimizes your app for mobile screen sizes, but also prevents [a 300 millisecond delay to user input](https://developers.google.com/web/updates/2013/12/300ms-tap-delay-gone-away).
+
+[Learn more](https://web.dev/viewport/)
+
+<br />
+
+### Other performance consideration  <Bookmark id="others"/>
+
+- **Avoids `document.write()`**
+
+For users on slow connections, external scripts dynamically injected via `document.write()` can delay page load by tens of seconds.
+
+[Learn more](https://web.dev/no-document-write/)
+
+<br />
+
+- **Keep request counts low and transfer sizes small** 
+
+To set budgets for the quantity and size of page resources, add a budget.json file.
+
+[Learn more](https://web.dev/use-lighthouse-for-performance-budgets/)
+
+<br />
+
+- **User Timing marks and measures**
+
+Consider instrumenting your app with the User Timing API to measure your app's real-world performance during key user experiences.
+
+[Learn more](https://web.dev/user-timings/)
+
+<br />
+
+- **Properly size images**
+
+Serve images that are appropriately-sized to save cellular data and improve load time
+
+[Learn more](https://web.dev/uses-responsive-images/)
+
+<br />
+
+- **Defer offscreen images**
+
+Consider lazy-loading offscreen and hidden images after all critical resources have finished loading to lower time to interactive.
+
+[Learn more](https://web.dev/offscreen-images/)
+
+<br />
+
+- **Efficiently encode images**
+
+Optimized images load faster and consume less cellular data.
+
+[Learn more](https://web.dev/uses-optimized-images/)
+
+<br />
+
+- **Serve images in next-gen formats**
+
+Image formats like WebP and AVIF often provide better compression than PNG or JPEG, which means faster downloads and less data consumption.
+
+[Learn more](https://web.dev/uses-webp-images/)
+
+<br />
+
+- **Use `HTTP/2`**
+
+`HTTP/2` offers many benefits over `HTTP/1.1`, including binary headers and multiplexing.
+
+[Learn more](https://web.dev/uses-http2/)
+
+<br />
+
+- **Uses efficient cache policy on static assets**
+
+A long cache lifetime can speed up repeat visits to your page.
+
+[Learn more](https://web.dev/uses-long-cache-ttl/)
+
+<br />
+
+- **Largest Contentful Paint image was not lazily loaded**
+
+Above-the-fold images that are lazily loaded render later in the page lifecycle, which can delay the largest contentful paint.
+
+[Learn more](https://web.dev/lcp-lazy-loading/)
+
+<br />
+
+- **Uses passive listeners to improve scrolling performance**
+
+Consider marking your touch and wheel event listeners as `passive` to improve your page's scroll performance.
+
+[Learn more](https://web.dev/uses-passive-event-listeners/)
+
+
+<br />
+
+### What's next (_More copy-pasting_)
+
+- Best practices
+- Accessibility
+- SEO
