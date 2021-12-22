@@ -7,8 +7,10 @@ export default function CustomIcon(sm: IconProps) {
   return (
     <sm.icon
       size={sm.size || 32}
-      className="icon"
-      style={{fill: hover ? sm.hoverColor : sm.color}}
+      className="icon hover:bg-white hover:rounded"
+      style={{
+        fill: hover ? sm.hoverColor : sm.color,
+      }}
       title={sm.title}
       aria-label={sm.title}
       onMouseEnter={() => setHover(true)}

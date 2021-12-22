@@ -2,6 +2,7 @@ import {FaDev} from '@react-icons/all-files/fa/FaDev';
 import {FaFacebookSquare} from '@react-icons/all-files/fa/FaFacebookSquare';
 import {FaGithubSquare} from '@react-icons/all-files/fa/FaGithubSquare';
 import {FaLinkedin} from '@react-icons/all-files/fa/FaLinkedin';
+import {FaPinterestSquare} from '@react-icons/all-files/fa/FaPinterestSquare';
 import {FaTwitterSquare} from '@react-icons/all-files/fa/FaTwitterSquare';
 import NextLink from '../basic/NextLink';
 import CustomIcon, {SocialMediaProps} from '../icon/CustomIcon';
@@ -17,6 +18,7 @@ export default function SocialMedia() {
                 href={sm.url}
                 target="_blank"
                 aria-label={sm.title}
+                title={sm.title}
                 rel="noreferrer"
               >
                 <CustomIcon {...sm} />
@@ -38,21 +40,14 @@ const socialMedia: SocialMediaProps[] = [
     icon: FaDev,
     title: 'dev',
     color: '',
-    hoverColor: '#cccccc',
+    hoverColor: '#333333',
   },
   {
     url: 'https://github.com/codegino',
     icon: FaGithubSquare,
     title: 'github',
     color: '',
-    hoverColor: '#cccccc',
-  },
-  {
-    url: 'https://www.facebook.com/codegino',
-    icon: FaFacebookSquare,
-    title: 'facebook',
-    color: '',
-    hoverColor: '#1877f2',
+    hoverColor: '#333333',
   },
   {
     url: 'https://www.linkedin.com/in/carlogino/',
@@ -67,5 +62,19 @@ const socialMedia: SocialMediaProps[] = [
     title: 'twitter',
     color: '',
     hoverColor: '#1da1f2',
+  },
+  {
+    url: 'https://pinterest.com/code_gino',
+    icon: FaPinterestSquare,
+    title: 'pinterest',
+    color: '',
+    hoverColor: '#bd081c',
+  },
+  {
+    url: 'https://www.facebook.com/codegino',
+    icon: FaFacebookSquare,
+    title: 'facebook',
+    color: '',
+    hoverColor: '#1877f2',
   },
 ];
