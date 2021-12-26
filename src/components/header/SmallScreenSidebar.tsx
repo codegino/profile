@@ -8,6 +8,7 @@ import {useRouter} from 'next/router';
 import {CSSTransition} from 'react-transition-group';
 import DarkModeToggle from '../DarkModeToggle';
 import NextLink from '../basic/NextLink';
+import RoundButton from '../basic/RoundButton';
 import CustomIcon from '../icon/CustomIcon';
 import SocialMedia from '../social/SocialMedia';
 import {navigationLinks} from './nav-links';
@@ -33,143 +34,151 @@ const SmallScreenSidebar: FunctionComponent<{
   };
 
   return (
-    <CSSTransition
-      in={isOpen}
-      timeout={100}
-      classNames="fade"
-      unmountOnExit
-      nodeRef={nodeRef}
-    >
-      <div
-        className="sidebar"
-        onClick={sidebarClose}
-        ref={nodeRef}
-        role="presentation"
+    <>
+      {isOpen && (
+        <RoundButton
+          className="fixed top-3 left-[18px] z-50 animate-spin-fast"
+          onClick={() => setIsOpen(false)}
+        >
+          <AiOutlineClose
+            size={32}
+            className="fill-gray-900 select-none outline-none"
+          />
+        </RoundButton>
+      )}
+      <CSSTransition
+        in={isOpen}
+        timeout={100}
+        classNames="fade"
+        unmountOnExit
+        nodeRef={nodeRef}
       >
         <div
-          onClick={e => e.stopPropagation()}
+          className="sidebar cursor-pointer"
+          onClick={sidebarClose}
+          ref={nodeRef}
           role="presentation"
-          className="
-        w-[16rem] h-screen absolute bg-light top-0 right-0 text-dark flex flex-col
-        items-start p-4 text-2xl leading-10 border-l-1 shadow-lg
-      "
         >
           <div
-            onClick={sidebarClose}
+            onClick={e => e.stopPropagation()}
             role="presentation"
-            className="cursor-pointer absolute top-1 right-2 shadow-md
-            fill-dark bg-light rounded-full box-content border-8 border-light
-            "
+            className="
+        w-[16rem] h-screen absolute bg-light top-0 right-0 text-dark flex flex-col
+        items-start p-4 text-2xl leading-10 border-l-1 shadow-lg cursor-default
+      "
           >
-            <AiOutlineClose size={34} className="fill-dark" />
-          </div>
-          <h3 className="my-4 text-2xl">Links</h3>
+            <h3 className="my-4 text-2xl">Links</h3>
 
-          <nav>
-            <ul className="flex items-start flex-col">
-              {sidebarLinks.map(link => (
-                <li key={link.label} onClick={sidebarClose} role="presentation">
-                  <NextLink
-                    href={link.url}
-                    className={clsx(
-                      'px-2 text-xl hover:text-dark hover:underline font-semibold',
-                      {
-                        'text-primary-dark underline':
-                          (link.url === '/' && router.asPath === '/') ||
-                          (link.url !== '/' &&
-                            router.asPath.includes(link.url)),
-                      },
-                    )}
-                    aria-label={link.label}
+            <nav>
+              <ul className="flex items-start flex-col">
+                {sidebarLinks.map(link => (
+                  <li
+                    key={link.label}
+                    onClick={sidebarClose}
+                    role="presentation"
                   >
-                    {link.label}
-                  </NextLink>
-                </li>
-              ))}
-            </ul>
-          </nav>
-          <h3 className="my-4 text-2xl">Social</h3>
-          <SocialMedia />
-          <h3 className="my-4 text-2xl">Contact me</h3>
-          <div>
-            <NextLink
-              href={`mailto:${EMAIL_ADDRESS}`}
-              target="_blank"
-              title="Email me"
-              aria-label="Email Me"
-              rel="noreferrer"
-              className="mr-2"
-            >
-              <CustomIcon
-                color="#ea4335"
-                title="Email Me"
-                icon={FaEnvelopeSquare}
-                hoverColor="red"
-                size={30}
-              />
-            </NextLink>
-            <NextLink
-              href={`https://m.me/codegino`}
-              target="_blank"
-              title="Send me a facebook message"
-              aria-label="Facebook Messenger"
-            >
-              <CustomIcon
-                color="#3b5998"
-                icon={FaFacebookMessenger}
-                title="Facebook Messenger"
-                hoverColor="blue"
-                size={30}
-              />
-            </NextLink>
+                    <NextLink
+                      href={link.url}
+                      className={clsx(
+                        'px-2 text-xl hover:text-dark hover:underline font-semibold',
+                        {
+                          'text-primary-dark underline':
+                            (link.url === '/' && router.asPath === '/') ||
+                            (link.url !== '/' &&
+                              router.asPath.includes(link.url)),
+                        },
+                      )}
+                      aria-label={link.label}
+                    >
+                      {link.label}
+                    </NextLink>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+            <h3 className="my-4 text-2xl">Social</h3>
+            <SocialMedia />
+            <h3 className="my-4 text-2xl">Contact me</h3>
+            <div>
+              <NextLink
+                href={`mailto:${EMAIL_ADDRESS}`}
+                target="_blank"
+                title="Email me"
+                aria-label="Email Me"
+                rel="noreferrer"
+                className="mr-2"
+              >
+                <CustomIcon
+                  color="#ea4335"
+                  title="Email Me"
+                  icon={FaEnvelopeSquare}
+                  hoverColor="red"
+                  size={30}
+                />
+              </NextLink>
+              <NextLink
+                href={`https://m.me/codegino`}
+                target="_blank"
+                title="Send me a facebook message"
+                aria-label="Facebook Messenger"
+              >
+                <CustomIcon
+                  color="#3b5998"
+                  icon={FaFacebookMessenger}
+                  title="Facebook Messenger"
+                  hoverColor="blue"
+                  size={30}
+                />
+              </NextLink>
+            </div>
+
+            <section className="text-left">
+              <h3 className="my-4 text-2xl">Toggle Theme</h3>
+              <DarkModeToggle className="outline-2 outline-white rounded-3xl" />
+            </section>
+
+            <section className="absolute bottom-2 flex flex-col items-center">
+              <p>All rights reserved</p>
+              <p>© Carlo Gino Catapang {new Date().getFullYear()}</p>
+            </section>
           </div>
+          <style jsx>{`
+            .sidebar {
+              position: fixed;
+              top: 0;
+              right: 0;
+              z-index: 20;
+              height: 100vh;
+              width: 200vw;
+              transition: transform 0.2s;
+            }
 
-          <section className="text-left">
-            <h3 className="my-4 text-2xl">Toggle Theme</h3>
-            <DarkModeToggle className="outline-2 outline-white rounded-3xl" />
-          </section>
+            // enter from
+            .sidebar.fade-enter {
+              transform: translateX(100%);
+            }
 
-          <section className="absolute bottom-2 flex flex-col items-center">
-            <p>All rights reserved</p>
-            <p>© Carlo Gino Catapang {new Date().getFullYear()}</p>
-          </section>
+            // enter to
+            .sidebar.fade-enter-active {
+              transform: translateX(0%);
+            }
+
+            // exit from
+            .sidebar.fade-exit {
+              transform: translateX(0%);
+              transition: transform 2s;
+            }
+
+            // exit to
+            .sidebar.fade-exit-active {
+              transform: translateX(100%);
+              transition: transform 2s;
+            }
+          `}</style>
+          `
         </div>
-        <style jsx>{`
-          .sidebar {
-            position: fixed;
-            top: 0;
-            right: 0;
-            z-index: 20;
-            height: 100vh;
-            width: 200vw;
-            transition: transform 0.2s;
-          }
-
-          // enter from
-          .sidebar.fade-enter {
-            transform: translateX(100%);
-          }
-
-          // enter to
-          .sidebar.fade-enter-active {
-            transform: translateX(0%);
-          }
-
-          // exit from
-          .sidebar.fade-exit {
-            transform: translateX(0%);
-            transition: transform 2s;
-          }
-
-          // exit to
-          .sidebar.fade-exit-active {
-            transform: translateX(100%);
-            transition: transform 2s;
-          }
-        `}</style>
-        `
-      </div>
-    </CSSTransition>
+      </CSSTransition>
+    </>
   );
 };
 

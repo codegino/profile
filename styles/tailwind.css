@@ -20,3 +20,9 @@
   font-style: normal;
   font-display: swap;
 }
+
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
