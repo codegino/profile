@@ -57,9 +57,11 @@ const SmallScreenSidebar: FunctionComponent<{
           <div
             onClick={sidebarClose}
             role="presentation"
-            className="cursor-pointer absolute top-2 right-2"
+            className="cursor-pointer absolute top-1 right-2 shadow-md
+            fill-dark bg-light rounded-full box-content border-8 border-light
+            "
           >
-            <AiOutlineClose size={30} className="fill-primary-dark" />
+            <AiOutlineClose size={34} className="fill-dark" />
           </div>
           <h3 className="my-4 text-2xl">Links</h3>
 
@@ -137,7 +139,7 @@ const SmallScreenSidebar: FunctionComponent<{
             position: fixed;
             top: 0;
             right: 0;
-            z-index: 10;
+            z-index: 20;
             height: 100vh;
             width: 200vw;
             transition: transform 0.2s;

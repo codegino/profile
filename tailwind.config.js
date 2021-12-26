@@ -17,6 +17,9 @@ module.exports = {
       zIndex: {
         1: '1',
       },
+      animation: {
+        'spin-fast': 'spin 0.15s linear',
+      },
       screens: {
         xs: '400px',
       },

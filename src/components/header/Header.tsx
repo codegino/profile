@@ -7,6 +7,7 @@ import NextLink from '../basic/NextLink';
 import {TopLeftShape} from '../extras/TopLeftShape';
 import {SmallScreenContent} from './SmallScreenContent';
 import WideScreenContentImpl from './WideScreenContent';
+import {useScrollDirection} from './use-scroll-direction';
 
 const Logo: FunctionComponent<{className?: string}> = () => {
   const router = useRouter();
@@ -47,6 +48,7 @@ const Logo: FunctionComponent<{className?: string}> = () => {
 
 export default function Header() {
   const [inView, setInView] = useState(false);
+  const {direction} = useScrollDirection();
 
   return (
     <>
@@ -58,15 +60,7 @@ export default function Header() {
           <SmallScreenContent className="lg:hidden pr-3" />
         </header>
       </InView>
-      {!inView && (
-        <div
-          className="fixed top-3 right-3 z-50 shadow-lg
-          fill-dark bg-light rounded-full box-content border-8 border-light
-        "
-        >
-          <SmallScreenContent />
-        </div>
-      )}
+      {!inView && direction !== 'down' && <SmallScreenContent floating />}
     </>
   );
 }
