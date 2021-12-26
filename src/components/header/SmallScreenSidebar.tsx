@@ -12,6 +12,14 @@ import CustomIcon from '../icon/CustomIcon';
 import SocialMedia from '../social/SocialMedia';
 import {navigationLinks} from './nav-links';
 
+const sidebarLinks = [
+  {
+    url: '/',
+    label: 'Home',
+  },
+  ...navigationLinks,
+];
+
 const SmallScreenSidebar: FunctionComponent<{
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
@@ -43,7 +51,7 @@ const SmallScreenSidebar: FunctionComponent<{
           role="presentation"
           className="
         w-[16rem] h-screen absolute bg-light top-0 right-0 text-dark flex flex-col
-        items-start p-4 text-2xl leading-10 z-20
+        items-start p-4 text-2xl leading-10 border-l-1 shadow-lg
       "
         >
           <div
@@ -57,16 +65,17 @@ const SmallScreenSidebar: FunctionComponent<{
 
           <nav>
             <ul className="flex items-start flex-col">
-              {navigationLinks.map(link => (
+              {sidebarLinks.map(link => (
                 <li key={link.label} onClick={sidebarClose} role="presentation">
                   <NextLink
                     href={link.url}
                     className={clsx(
                       'px-2 text-xl hover:text-dark hover:underline font-semibold',
                       {
-                        'text-primary-dark underline': router.asPath.includes(
-                          link.url,
-                        ),
+                        'text-primary-dark underline':
+                          (link.url === '/' && router.asPath === '/') ||
+                          (link.url !== '/' &&
+                            router.asPath.includes(link.url)),
                       },
                     )}
                     aria-label={link.label}
@@ -131,7 +140,7 @@ const SmallScreenSidebar: FunctionComponent<{
             z-index: 10;
             height: 100vh;
             width: 200vw;
-            transition: transform 0.5s;
+            transition: transform 0.2s;
           }
 
           // enter from
@@ -147,11 +156,13 @@ const SmallScreenSidebar: FunctionComponent<{
           // exit from
           .sidebar.fade-exit {
             transform: translateX(0%);
+            transition: transform 2s;
           }
 
           // exit to
           .sidebar.fade-exit-active {
             transform: translateX(100%);
+            transition: transform 2s;
           }
         `}</style>
         `

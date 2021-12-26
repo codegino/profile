@@ -1,12 +1,15 @@
-import {useState, useRef} from 'react';
+import {useState, useRef, FunctionComponent} from 'react';
 import {AiOutlineMenu} from '@react-icons/all-files/ai/AiOutlineMenu';
+import clsx from 'clsx';
 import dynamic from 'next/dynamic';
 
 const SmallScreenSidebar = dynamic(() => import('./SmallScreenSidebar'), {
   ssr: false,
 });
 
-export default function SmallScreenContent() {
+export const SmallScreenContent: FunctionComponent<{
+  className?: string;
+}> = ({className}) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const sidebarOpen = () => {
@@ -14,13 +17,13 @@ export default function SmallScreenContent() {
   };
 
   return (
-    <div className="relative w-full text-right block lg:hidden z-20">
+    <div className={clsx('relative w-full text-right block ', className)}>
       <AiOutlineMenu
         size={30}
         onClick={sidebarOpen}
-        className="cursor-pointer"
+        className={clsx('cursor-pointer')}
       />
       <SmallScreenSidebar isOpen={isOpen} setIsOpen={setIsOpen} />
     </div>
   );
-}
+};

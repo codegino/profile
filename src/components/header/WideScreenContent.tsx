@@ -35,7 +35,7 @@ export default function WideScreenContentImpl() {
           ))}
         </ul>
       </nav>
-      <div className="flex items-center">
+      <div className="flex items-center pr-3">
         <SocialMedia />
         <div className="h-full ml-3 min-w-[2.2rem]">
           <DarkModeToggle />
