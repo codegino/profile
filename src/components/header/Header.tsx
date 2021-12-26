@@ -7,20 +7,20 @@ import {TopLeftShape} from '../extras/TopLeftShape';
 import Logo from './Logo';
 import {SmallScreenContent} from './SmallScreenContent';
 import WideScreenContentImpl from './WideScreenContent';
+import {HeaderProvider, useHeader} from './header-context';
 import {useScrollDirection} from './use-scroll-direction';
 
 const LogoWrapper: FunctionComponent<{className?: string}> = () => {
   const router = useRouter();
+  const {showSidebar} = useHeader();
 
   return (
     <div className="flex items-center min-w-max ml-2.5 mr-6">
-      <NextLink
-        href="/"
-        aria-label="My Logo"
-        className="bg-white text-black rounded-full"
-      >
-        <Logo />
-      </NextLink>
+      <Logo
+        className="bg-white text-black rounded-full lg:hidden"
+        onClick={showSidebar}
+      />
+      <Logo className="bg-white text-black rounded-full hidden lg:flex" />
 
       <NextLink href="/" aria-label="Code Gino">
         <span
@@ -35,12 +35,23 @@ const LogoWrapper: FunctionComponent<{className?: string}> = () => {
   );
 };
 
+const FloatingLogo: FunctionComponent = () => {
+  const {showSidebar} = useHeader();
+
+  return (
+    <Logo
+      onClick={showSidebar}
+      className={clsx('fixed top-3 left-[17px] z-50 animate-spin-fast')}
+    />
+  );
+};
+
 export default function Header() {
   const [inView, setInView] = useState(false);
   const {direction} = useScrollDirection();
 
   return (
-    <>
+    <HeaderProvider>
       <InView
         as="header"
         onChange={setInView}
@@ -50,8 +61,13 @@ export default function Header() {
         <LogoWrapper />
         <WideScreenContentImpl />
         <SmallScreenContent className="lg:hidden pr-3" />
-        {!inView && direction !== 'down' && <SmallScreenContent floating />}
+        {!inView && direction !== 'down' && (
+          <>
+            <FloatingLogo />
+            <SmallScreenContent />
+          </>
+        )}
       </InView>
-    </>
+    </HeaderProvider>
   );
 }

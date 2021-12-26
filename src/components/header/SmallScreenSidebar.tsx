@@ -11,6 +11,7 @@ import NextLink from '../basic/NextLink';
 import RoundButton from '../basic/RoundButton';
 import CustomIcon from '../icon/CustomIcon';
 import SocialMedia from '../social/SocialMedia';
+import {useHeader} from './header-context';
 import {navigationLinks} from './nav-links';
 
 const sidebarLinks = [
@@ -21,24 +22,23 @@ const sidebarLinks = [
   ...navigationLinks,
 ];
 
-const SmallScreenSidebar: FunctionComponent<{
-  isOpen: boolean;
-  setIsOpen: (isOpen: boolean) => void;
-}> = ({isOpen, setIsOpen}) => {
+const SmallScreenSidebar: FunctionComponent = () => {
   const router = useRouter();
   const EMAIL_ADDRESS = 'carloginocatapang@gmail.com';
   const nodeRef = useRef(null);
+  const {hideSidebar, isSidebarVisible} = useHeader();
+
   const sidebarClose = (e: MouseEvent<HTMLElement>) => {
     e.stopPropagation();
-    setIsOpen(false);
+    hideSidebar();
   };
 
   return (
     <>
-      {isOpen && (
+      {isSidebarVisible && (
         <RoundButton
           className="fixed top-3 left-[18px] z-50 animate-spin-fast"
-          onClick={() => setIsOpen(false)}
+          onClick={hideSidebar}
         >
           <AiOutlineClose
             size={32}
@@ -47,7 +47,7 @@ const SmallScreenSidebar: FunctionComponent<{
         </RoundButton>
       )}
       <CSSTransition
-        in={isOpen}
+        in={isSidebarVisible}
         timeout={100}
         classNames="fade"
         unmountOnExit
