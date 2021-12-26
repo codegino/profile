@@ -16,7 +16,7 @@ import {fetchSkills} from '../utils/resume-props';
 import {getImageFromSupabase} from '../utils/supabase.utils';
 
 const Greetings = dynamic(() => import('../components/Greetings'), {
-  ssr: false,
+  ssr: true,
 });
 
 const Skills = dynamic(() => import('../components/skills/Skills'), {

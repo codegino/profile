@@ -1,49 +1,27 @@
 import {FunctionComponent, useState} from 'react';
 import clsx from 'clsx';
-import {useRouter} from 'next/router';
+import dynamic from 'next/dynamic';
 import {InView} from 'react-intersection-observer';
-import NextLink from '../basic/NextLink';
 import {TopLeftShape} from '../extras/TopLeftShape';
 import Logo from './Logo';
-import {SmallScreenContent} from './SmallScreenContent';
+import {LogoWrapper} from './LogoWrapper';
 import WideScreenContentImpl from './WideScreenContent';
 import {HeaderProvider, useHeader} from './header-context';
 import {useScrollDirection} from './use-scroll-direction';
 
-const LogoWrapper: FunctionComponent<{className?: string}> = () => {
-  const router = useRouter();
-  const {showSidebar} = useHeader();
-
-  return (
-    <div className="flex items-center min-w-max ml-2.5 mr-6">
-      <Logo
-        className="bg-white text-black rounded-full lg:hidden"
-        onClick={showSidebar}
-      />
-      <Logo className="bg-white text-black rounded-full hidden lg:flex" />
-
-      <NextLink href="/" aria-label="Code Gino">
-        <span
-          className={clsx('underline-on-hover ml-2 text-2xl font-bold', {
-            'text-white border-b-2 border-b-primary-600': router.asPath === '/',
-          })}
-        >
-          Code Gino
-        </span>
-      </NextLink>
-    </div>
-  );
-};
+const SmallScreenSidebar = dynamic(() => import('./SmallScreenSidebar'), {
+  ssr: false,
+});
 
 const FloatingLogo: FunctionComponent = () => {
-  const {showSidebar} = useHeader();
+  const {showSidebar, isSidebarVisible} = useHeader();
 
-  return (
+  return !isSidebarVisible ? (
     <Logo
       onClick={showSidebar}
-      className={clsx('fixed top-3 left-[17px] z-50 animate-spin-fast')}
+      className={'fixed top-3 left-[17px] z-[100] animate-spin-fast'}
     />
-  );
+  ) : null;
 };
 
 export default function Header() {
@@ -60,13 +38,12 @@ export default function Header() {
         <TopLeftShape />
         <LogoWrapper />
         <WideScreenContentImpl />
-        <SmallScreenContent className="lg:hidden pr-3" />
         {!inView && direction !== 'down' && (
           <>
             <FloatingLogo />
-            <SmallScreenContent />
           </>
         )}
+        {direction !== 'down' && <SmallScreenSidebar />}
       </InView>
     </HeaderProvider>
   );

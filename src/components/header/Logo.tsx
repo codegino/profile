@@ -11,7 +11,7 @@ const Logo: FunctionComponent<{onClick?: () => void; className?: string}> = ({
     <RoundButton
       onClick={onClick}
       className={clsx(
-        'rounded-full mr-0 flex justify-center items-center',
+        'bg-white text-black rounded-full mr-0 flex justify-center items-center',
         className,
       )}
     >

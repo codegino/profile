@@ -37,7 +37,7 @@ const SmallScreenSidebar: FunctionComponent = () => {
     <>
       {isSidebarVisible && (
         <RoundButton
-          className="fixed top-3 left-[18px] z-50 animate-spin-fast"
+          className="fixed top-3 left-[17px] z-[100] animate-spin-fast"
           onClick={hideSidebar}
         >
           <AiOutlineClose
@@ -62,11 +62,14 @@ const SmallScreenSidebar: FunctionComponent = () => {
           <div
             onClick={e => e.stopPropagation()}
             role="presentation"
-            className="
-        w-[16rem] h-screen absolute bg-light top-0 right-0 text-dark flex flex-col
-        items-start p-4 text-2xl leading-10 border-l-1 shadow-lg cursor-default
-      "
+            className={clsx(
+              'w-[20rem] h-screen absolute bg-light top-0 left-0 text-dark flex flex-col',
+              'items-start p-4 text-2xl leading-10 shadow-dark shadow-md cursor-default',
+            )}
           >
+            <div className={clsx('flex items-center min-w-max relative')}>
+              <span className="ml-14 text-2xl font-bold">Code Gino</span>
+            </div>
             <h3 className="my-4 text-2xl">Links</h3>
 
             <nav>
@@ -146,7 +149,7 @@ const SmallScreenSidebar: FunctionComponent = () => {
             .sidebar {
               position: fixed;
               top: 0;
-              right: 0;
+              left: 0;
               z-index: 20;
               height: 100vh;
               width: 200vw;
@@ -155,7 +158,7 @@ const SmallScreenSidebar: FunctionComponent = () => {
 
             // enter from
             .sidebar.fade-enter {
-              transform: translateX(100%);
+              transform: translateX(-100%);
             }
 
             // enter to
@@ -171,11 +174,10 @@ const SmallScreenSidebar: FunctionComponent = () => {
 
             // exit to
             .sidebar.fade-exit-active {
-              transform: translateX(100%);
+              transform: translateX(-100%);
               transition: transform 2s;
             }
           `}</style>
-          `
         </div>
       </CSSTransition>
     </>
