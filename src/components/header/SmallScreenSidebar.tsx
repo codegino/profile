@@ -67,82 +67,86 @@ const SmallScreenSidebar: FunctionComponent = () => {
               'items-start p-4 text-2xl leading-10 shadow-dark shadow-md cursor-default',
             )}
           >
-            <div className={clsx('flex items-center min-w-max relative')}>
+            <div className={clsx('flex items-center min-w-max relative pb-4')}>
               <span className="ml-14 text-2xl font-bold">Code Gino</span>
             </div>
-            <h3 className="my-4 text-2xl">Links</h3>
+            <section className="sidebar__content overflow-y-auto w-full relative h-full flex flex-col justify-between">
+              <div>
+                <h3 className="my-4 text-2xl">Links</h3>
 
-            <nav>
-              <ul className="flex items-start flex-col">
-                {sidebarLinks.map(link => (
-                  <li
-                    key={link.label}
-                    onClick={sidebarClose}
-                    role="presentation"
+                <nav>
+                  <ul className="flex items-start flex-col">
+                    {sidebarLinks.map(link => (
+                      <li
+                        key={link.label}
+                        onClick={sidebarClose}
+                        role="presentation"
+                      >
+                        <NextLink
+                          href={link.url}
+                          className={clsx(
+                            'px-2 text-xl hover:text-dark hover:underline font-semibold',
+                            {
+                              'text-primary-dark underline':
+                                (link.url === '/' && router.asPath === '/') ||
+                                (link.url !== '/' &&
+                                  router.asPath.includes(link.url)),
+                            },
+                          )}
+                          aria-label={link.label}
+                        >
+                          {link.label}
+                        </NextLink>
+                      </li>
+                    ))}
+                  </ul>
+                </nav>
+                <h3 className="my-4 text-2xl">Social</h3>
+                <SocialMedia />
+                <h3 className="my-4 text-2xl">Contact me</h3>
+                <div>
+                  <NextLink
+                    href={`mailto:${EMAIL_ADDRESS}`}
+                    target="_blank"
+                    title="Email me"
+                    aria-label="Email Me"
+                    rel="noreferrer"
+                    className="mr-2"
                   >
-                    <NextLink
-                      href={link.url}
-                      className={clsx(
-                        'px-2 text-xl hover:text-dark hover:underline font-semibold',
-                        {
-                          'text-primary-dark underline':
-                            (link.url === '/' && router.asPath === '/') ||
-                            (link.url !== '/' &&
-                              router.asPath.includes(link.url)),
-                        },
-                      )}
-                      aria-label={link.label}
-                    >
-                      {link.label}
-                    </NextLink>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-            <h3 className="my-4 text-2xl">Social</h3>
-            <SocialMedia />
-            <h3 className="my-4 text-2xl">Contact me</h3>
-            <div>
-              <NextLink
-                href={`mailto:${EMAIL_ADDRESS}`}
-                target="_blank"
-                title="Email me"
-                aria-label="Email Me"
-                rel="noreferrer"
-                className="mr-2"
-              >
-                <CustomIcon
-                  color="#ea4335"
-                  title="Email Me"
-                  icon={FaEnvelopeSquare}
-                  hoverColor="red"
-                  size={30}
-                />
-              </NextLink>
-              <NextLink
-                href={`https://m.me/codegino`}
-                target="_blank"
-                title="Send me a facebook message"
-                aria-label="Facebook Messenger"
-              >
-                <CustomIcon
-                  color="#3b5998"
-                  icon={FaFacebookMessenger}
-                  title="Facebook Messenger"
-                  hoverColor="blue"
-                  size={30}
-                />
-              </NextLink>
-            </div>
+                    <CustomIcon
+                      color="#ea4335"
+                      title="Email Me"
+                      icon={FaEnvelopeSquare}
+                      hoverColor="red"
+                      size={30}
+                    />
+                  </NextLink>
+                  <NextLink
+                    href={`https://m.me/codegino`}
+                    target="_blank"
+                    title="Send me a facebook message"
+                    aria-label="Facebook Messenger"
+                  >
+                    <CustomIcon
+                      color="#3b5998"
+                      icon={FaFacebookMessenger}
+                      title="Facebook Messenger"
+                      hoverColor="blue"
+                      size={30}
+                    />
+                  </NextLink>
+                </div>
 
-            <section className="text-left">
-              <h3 className="my-4 text-2xl">Toggle Theme</h3>
-              <DarkModeToggle className="outline-2 outline-white rounded-3xl" />
-            </section>
+                <section className="text-left">
+                  <h3 className="my-4 text-2xl">Toggle Theme</h3>
+                  <DarkModeToggle className="outline-2 outline-white rounded-3xl" />
+                </section>
+              </div>
 
-            <section className="absolute bottom-2 flex flex-col items-center">
-              <p>All rights reserved</p>
-              <p>© Carlo Gino Catapang {new Date().getFullYear()}</p>
+              <div className="flex flex-col items-center min-h-[4rem] justify-end">
+                <p>All rights reserved</p>
+                <p>© Carlo Gino Catapang {new Date().getFullYear()}</p>
+              </div>
             </section>
           </div>
           <style jsx>{`
@@ -154,6 +158,16 @@ const SmallScreenSidebar: FunctionComponent = () => {
               height: 100vh;
               width: 200vw;
               transition: transform 0.2s;
+            }
+
+            .sidebar__content {
+              -ms-overflow-style: none;
+              scrollbar-width: none;
+              overflow-y: scroll;
+            }
+
+            .sidebar__content::-webkit-scrollbar {
+              display: none;
             }
 
             // enter from
