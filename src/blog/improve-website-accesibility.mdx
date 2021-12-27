@@ -1,0 +1,509 @@
+---
+title: Web Accessibility Cheat Sheet
+description: Checklist of things to consider to improve the accessibility of your website
+date: '2021-12-27'
+dateUpdated: '2021-12-27'
+bannerId: https://i.imgur.com/EoUkqVN.jpg
+bannerDescription: accessible 
+tags: ['accessibility']
+keywords: ['lighthouse accessiblity', 'website accessibility']
+published: true
+---
+
+<TableOfContents
+  list={[
+    {href: '#introduction', label: 'Introduction'},
+    {href: '#aria', label: 'ARIA'},
+    {href: '#navigation', label: 'Navigation'},
+    {href: '#semantic', label: 'Semantic Structure'},
+    {href: '#visual', label: 'Visual'},
+    {href: '#language', label: 'Language'},
+    {href: '#forms', label: 'Forms'},
+    {href: '#alt-text', label: 'Alternate Text'},
+    {href: '#others', label: 'Other accessibility consideration'},
+  ]}
+/>
+
+
+## TL;DR
+
+> Use [Lighthouse](https://developers.google.com/web/tools/lighthouse) to check your website's accessibility. You will see the same exact information in the Accessibility report.
+
+### Introduction <Bookmark id="introduction" />
+
+Accessibility is the practice of making your websites usable by as many people as possible. We traditionally think of this as being about people with disabilities, but the practice of making sites accessible also benefits other groups such as those using mobile devices, or those with slow network connections.
+
+<br />
+
+You might also think of accessibility as treating everyone the same, and giving them equal opportunities, no matter what their ability or circumstances. Just as it is wrong to exclude someone from a physical building because they are in a wheelchair (modern public buildings generally have wheelchair ramps or elevators), it is also not right to exclude someone from a website because they have a visual impairment. We are all different, but we are all human, and therefore have the same human rights.
+
+<br />
+
+To learn more, check [this page](https://developer.mozilla.org/en-US/docs/Learn/Accessibility/What_is_accessibility#so_what_is_accessibility) where I copy pasted the content above.
+
+<br />
+
+### ARIA (Accessible Rich Internet Applications) <Bookmark id="aria" />
+
+[Accessible Rich Internet Applications (ARIA)](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA) is a set of attributes that define ways to make web content and web applications (especially those developed with JavaScript) more accessible to people with disabilities.
+
+<br />
+
+It supplements HTML so that interactions and widgets commonly used in applications can be passed to assistive technologies when there is not otherwise a mechanism. For example, ARIA enables accessible navigation landmarks in HTML4, JavaScript widgets, form hints and error messages, live content updates, and more.
+
+> Warning: Many of these widgets were later incorporated into HTML5, and developers should prefer using the correct semantic HTML element over using ARIA, if such an element exists. For instance, native elements have built-in [keyboard accessibility](https://developer.mozilla.org/en-US/docs/Web/Accessibility/Keyboard-navigable_JavaScript_widgets), roles and states. However, if you choose to use ARIA, you are responsible for mimicking (the equivalent) browser behavior in script.
+
+#### Here are some accessibility guidelines related to ARIA:
+
+- **`[aria-*]` attributes match their roles**
+
+Each ARIA `role` supports a specific subset of `aria-*` attributes. Mismatching these invalidates the `aria-*` attributes.
+
+[Learn more](https://web.dev/aria-allowed-attr/)
+
+<br />
+
+- **`[aria-hidden="true"]` is not present on the document `<body>`**
+
+Assistive technologies, like screen readers, work inconsistently when `aria-hidden="true"` is set on the document `<body>`.
+
+[Learn more](https://web.dev/aria-hidden-body/)
+
+
+- **`button`, `link`, and `input` elements have accessible names**
+
+When an element doesn't have an accessible name, screen readers announce it with a generic name, making it unusable for users who rely on screen readers.
+
+[Learn more](https://web.dev/aria-name/)
+
+<br />
+
+- **`meter`, `progressbar`, `tooltip`, `treeitem`, and `menuitem` elements have accessible names**
+
+When an element doesn't have an accessible name, screen readers announce it with a generic name, making it unusable for users who rely on screen readers.
+
+[Learn more](https://web.dev/aria-name/)
+
+<br />
+
+- **`[aria-hidden="true"]` elements do not contain focusable descendents**
+
+Focusable descendents within an `[aria-hidden="true"]` element prevent those interactive elements from being available to users of assistive technologies like screen readers.
+
+[Learn more](https://web.dev/aria-hidden-focus/)
+
+
+<br />
+
+- **`[role]`s have all required `[aria-*]` attributes**
+
+Some ARIA roles have required attributes that describe the state of the element to screen readers.
+
+[Learn more](https://web.dev/aria-required-attr/)
+
+<br />
+
+- **`[role]` values are valid**
+
+ARIA roles must have valid values in order to perform their intended accessibility functions.
+
+[Learn more](https://web.dev/aria-roles/)
+
+<br />
+
+- **`[aria-*]` attributes have valid values**
+
+Assistive technologies, like screen readers, can't interpret ARIA attributes with invalid values.
+
+[Learn more](https://web.dev/aria-valid-attr-value/)
+
+<br />
+
+- **`[aria-*]` attributes are valid and not misspelled**
+
+Assistive technologies, like screen readers, can't interpret ARIA attributes with invalid names.
+
+[Learn more](https://web.dev/aria-valid-attr/)
+
+<br />
+
+- **Elements with an ARIA `[role]` that require children to contain a specific `[role]` have all required children.**
+
+Some ARIA parent roles must contain specific child roles to perform their intended accessibility functions.
+
+[Learn more](https://web.dev/aria-required-children/)
+
+<br />
+
+- **`[role]`s are contained by their required parent element**
+
+Some ARIA child roles must be contained by specific parent roles to properly perform their intended accessibility functions.
+
+[Learn more](https://web.dev/aria-required-parent/)
+
+<br />
+
+- **ARIA toggle fields have accessible names**
+
+When a toggle field doesn't have an accessible name, screen readers announce it with a generic name, making it unusable for users who rely on screen readers.
+
+[Learn more](https://web.dev/aria-name/)
+
+<br />
+
+- **Custom controls have ARIA roles**
+
+Custom interactive controls have appropriate ARIA roles.
+
+[Learn more](https://web.dev/custom-control-roles/)
+
+<br />
+
+- **ARIA IDs are unique**
+
+The value of an ARIA ID must be unique to prevent other instances from being overlooked by assistive technologies.
+
+[Learn more](https://web.dev/duplicate-id-aria/)
+
+<br />
+
+- **Custom controls have associated labels**
+
+Custom interactive controls have associated labels, provided by aria-label or aria-labelledby.
+
+[Learn more](https://web.dev/custom-controls-labels/)
+
+<br />
+
+
+### Navigation  <Bookmark id="navigation" />
+
+Navigation is the way users find and traverse the different pages available on your site. For this reason, it is imperative that navigation is accessible. By their nature, links are tab-able and all keyboard users and screen readers will read them–so, if your navigation is coded with links, a screen reader should find them.
+
+<br />
+
+#### Here are some accessibility guidelines related to navigation:
+
+- **HTML5 landmark elements are used to improve navigation**
+
+Landmark elements (`<main>`, `<nav>`, etc.) are used to improve the keyboard navigation of the page for assistive technology.
+
+[Learn more](https://web.dev/use-landmarks/)
+
+- **The page contains a heading, skip link, or landmark region**
+
+Adding ways to bypass repetitive content lets keyboard users navigate the page more efficiently.
+
+[Learn more](https://web.dev/bypass/)
+
+<br />
+
+- **`[accesskey]` values are unique**
+
+Access keys let users quickly focus a part of the page. For proper navigation, each access key must be unique.
+
+[Learn more](https://web.dev/accesskeys/)
+
+<br />
+
+- **Visual order on the page follows DOM order**
+
+DOM order matches the visual order, improving navigation for assistive technology.
+
+[Learn more](https://web.dev/visual-order-follows-dom/)
+
+<br />
+
+- **The page has a logical tab order**
+
+Tabbing through the page follows the visual layout. Users cannot focus elements that are offscreen.
+
+[Learn more](https://web.dev/logical-tab-order/)
+
+<br />
+
+- **No element has a `[tabindex]` value greater than 0**
+
+A value greater than `0` implies an explicit navigation ordering. Although technically valid, this often creates frustrating experiences for users who rely on assistive technologies.
+
+[Learn more](https://web.dev/tabindex/)
+
+<br />
+
+- **Interactive controls are keyboard focusable**
+
+Custom interactive controls are keyboard focusable and display a focus indicator.
+
+[Learn more](https://web.dev/focusable-controls/)
+
+<br />
+
+- **The user's focus is directed to new content added to the page**
+
+If new content, such as a dialog, is added to the page, the user's focus is directed to it.
+
+[Learn more](https://web.dev/managed-focus/)
+
+<br />
+
+- **User focus is not accidentally trapped in a region**
+
+A user can tab into and out of any control or region without accidentally trapping their focus.
+
+[Learn more](https://web.dev/focus-traps/)
+
+<br />
+
+- **Buttons have an accessible name**
+
+When a button doesn't have an accessible name, screen readers announce it as "button", making it unusable for users who rely on screen readers.
+
+[Learn more](https://web.dev/button-name/)
+
+<br />
+
+### Semantic structure  <Bookmark id="semantic" />
+
+Structural, semantic HTML is the key starting point toward good accessibility practices. When a screen reader, or any sort of assistive device scans a web page, it gets information about the Document Object Model (DOM), or the HTML structure of the page. No styles or JavaScript will be read by a screen reader.
+
+#### Here are some accessibility guidelines related to semantic structure:
+
+- **Heading elements appear in a sequentially-descending order**
+
+Properly ordered headings that do not skip levels convey the semantic structure of the page, making it easier to navigate and understand when using assistive technologies.
+
+[Learn more](https://web.dev/heading-order/)
+
+<br />
+
+- **Lists contain only `<li>` elements and script supporting elements `(<script> and <template>)`**
+
+Screen readers have a specific way of announcing lists. Ensuring proper list structure aids screen reader output.
+
+[Learn more](https://web.dev/list/)
+
+<br />
+
+- **List items `<li>` are contained within `<ul>` or `<ol>` parent elements**
+
+Screen readers require list items (`<li>`) to be contained within a parent `<ul>` or `<ol>` to be announced properly. Learn more.
+
+[Learn more](https://web.dev/listitem/)
+
+<br />
+
+- **`<dl>`'s contain only properly-ordered `<dt>` and `<dd>` groups, `<script>`, `<template>` or `<div>` elements.**
+
+When definition lists are not properly marked up, screen readers may produce confusing or inaccurate output.
+
+[Learn more](https://web.dev/definition-list/)
+
+<br />
+
+- **Definition list items are wrapped in `<dl>` elements**
+
+Definition list items (`<dt>` and `<dd>`) must be wrapped in a parent `<dl>` element to ensure that screen readers can properly announce them.
+
+[Learn more](https://web.dev/dlitem/)
+
+<br />
+
+- **Cells in a `<table>` element that use the `[headers]` attribute refer to table cells within the same table.**
+
+Screen readers have features to make navigating tables easier. Ensuring `<td>` cells using the `[headers]` attribute only refer to other cells in the same table may improve the experience for screen reader users.
+
+[Learn more](https://web.dev/td-headers-attr/)
+
+<br />
+
+- **`<th>` elements and elements with `[role="columnheader"/"rowheader"]` have data cells they describe.**
+
+Screen readers have features to make navigating tables easier. Ensuring table headers always refer to some set of cells may improve the experience for screen reader users.
+
+[Learn more](https://web.dev/th-has-data-cells/)
+
+<br />
+
+### Visual  <Bookmark id="visual" />
+
+#### Here are some accessibility guidelines related to visual consideration:
+
+- **Background and foreground colors have a sufficient contrast ratio**
+
+Low-contrast text is difficult or impossible for many users to read.
+
+[Learn more](https://web.dev/color-contrast/)
+
+<br />
+
+- **`[user-scalable="no"]` is not used in the `<meta name="viewport">` element and the `[maximum-scale]` attribute is not less than 5.**
+
+Disabling zooming is problematic for users with low vision who rely on screen magnification to properly see the contents of a web page.
+
+[Learn more](https://web.dev/meta-viewport/)
+
+<br />
+
+
+### Language  <Bookmark id="language" />
+
+#### Here are some accessibility guidelines related to language:
+
+- **`<html>` element has a valid value for its `[lang]` attribute**
+
+Specifying a valid [BCP 47 language](https://www.w3.org/International/questions/qa-choosing-language-tags#question) helps screen readers announce text properly.
+
+[Learn more](https://web.dev/html-lang-valid/)
+
+<br />
+
+- **`<html>` element has a `[lang]` attribute**
+
+If a page doesn't specify a lang attribute, a screen reader assumes that the page is in the default language that the user chose when setting up the screen reader. If the page isn't actually in the default language, then the screen reader might not announce the page's text correctly.
+
+[Learn more](https://web.dev/html-has-lang/)
+
+<br />
+
+- **`[lang]` attributes have a valid value**
+
+Specifying a valid [BCP 47 language](https://www.w3.org/International/questions/qa-choosing-language-tags#question) on elements helps ensure that text is pronounced correctly by a screen reader.
+
+[Learn more](https://web.dev/valid-lang/)
+
+<br />
+
+
+### Forms  <Bookmark id="forms" />
+
+Forms are constantly being used to collect information from users: signing up for something, buying something, asking a question, or contacting someone. Since forms are so commonly used, it is imperative to make forms accessible for all users.
+
+#### Here are some accessibility guidelines related to forms:
+
+- **No form fields have multiple labels**
+
+Form fields with multiple labels can be confusingly announced by assistive technologies like screen readers which use either the first, the last, or all of the labels.
+
+[Learn more](https://web.dev/form-field-multiple-labels/)
+
+<br />
+
+- **Form elements have associated labels**
+
+Labels ensure that form controls are announced properly by assistive technologies, like screen readers.
+
+[Learn more](https://web.dev/label/)
+
+<br />
+
+### Alternate Text  <Bookmark id="alt-text" />
+
+Alternative text is a textual substitute for non-text content in web pages.
+
+#### Alternative text serves several functions:
+- Screen readers announce alternative text in place of images, helping users with visual or certain cognitive disabilities perceive the content and function of the images.
+- If an image fails to load or the user has blocked images, the browser will present the alternative text visually in place of the image.
+- Search engines use alternative text and factor it into their assessment of the page purpose and content.
+
+
+#### Here are some accessibility guidelines related to alternate text:
+
+- **Image elements have `[alt]` attributes**
+
+Informative elements should aim for short, descriptive alternate text. Decorative elements can be ignored with an empty alt attribute.
+
+[Learn more](https://web.dev/image-alt/)
+
+<br />
+
+
+- **`<input type="image">` elements have `[alt]` text**
+
+When an image is being used as an `<input>` button, providing alternative text can help screen reader users understand the purpose of the button.
+
+[Learn more](https://web.dev/input-image-alt/)
+
+<br />
+
+
+- **`<object>` elements have `[alt]` text**
+
+Screen readers cannot translate non-text content. Adding alt text to `<object>` elements helps screen readers convey meaning to users.
+
+[Learn more](https://web.dev/object-alt/)
+
+<br />
+
+- **Links have a discernible name**
+
+Link text (and alternate text for images, when used as links) that is discernible, unique, and focusable improves the navigation experience for screen reader users.
+
+[Learn more](https://web.dev/link-name/)
+
+<br />
+
+
+### Other accessibility considerations  <Bookmark id="others" />
+
+- **Document has a `<title>` element**
+
+The title gives screen reader users an overview of the page, and search engine users rely on it heavily to determine if a page is relevant to their search.
+
+[Learn more](https://web.dev/document-title/)
+
+<br />
+
+- **The document does not use `<meta http-equiv="refresh">`**
+
+Users do not expect a page to refresh automatically, and doing so will move focus back to the top of the page. This may create a frustrating or confusing experience.
+
+[Learn more](https://web.dev/meta-refresh/)
+
+<br />
+
+
+- **`[id]` attributes on active, focusable elements are unique**
+
+All focusable elements must have a unique `id` to ensure that they're visible to assistive technologies.
+
+[Learn more](https://web.dev/duplicate-id-active/)
+
+<br />
+
+- **`<frame>` or `<iframe>` elements have a title**
+
+Screen reader users rely on frame titles to describe the contents of frames.
+
+[Learn more](https://web.dev/frame-title/)
+
+<br />
+
+- **`<video>` elements contain a `<track>` element with `[kind="captions"]`**
+
+When a video provides a caption it is easier for deaf and hearing impaired users to access its information.
+
+[Learn more](https://web.dev/video-caption/)
+
+<br />
+
+- **Interactive elements indicate their purpose and state**
+
+Interactive elements, such as links and buttons, should indicate their state and be distinguishable from non-interactive elements.
+
+[Learn more](https://web.dev/interactive-element-affordance/)
+
+<br />
+
+- **Offscreen content is hidden from assistive technology**
+
+Offscreen content is hidden with display: none or aria-hidden=true.
+
+[Learn more](https://web.dev/offscreen-content-hidden/)
+
+<br />
+
+### What's next (_More copy-pasting_)
+
+- [Performance](https://codegino.com/blog/improve-website-performance)
+- Best practices
+- SEO
