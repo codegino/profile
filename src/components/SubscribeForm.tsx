@@ -1,9 +1,65 @@
+import {useState} from 'react';
+import type {FormEvent} from 'react';
 import {BiCool} from '@react-icons/all-files/bi/BiCool';
 import {RiSpamLine} from '@react-icons/all-files/ri/RiSpamLine';
+import {useRouter} from 'next/router';
+import {useGoogleReCaptcha} from 'react-google-recaptcha-v3';
 import Button from './basic/Button';
 import Input from './basic/Input';
 
+interface FormElements extends HTMLFormControlsCollection {
+  name: HTMLInputElement;
+  email: HTMLInputElement;
+}
+interface SubscribeFormElement extends HTMLFormElement {
+  readonly elements: FormElements;
+}
+
 const SubscribeForm = () => {
+  const [error, setError] = useState('');
+  const {executeRecaptcha} = useGoogleReCaptcha();
+
+  const router = useRouter();
+
+  const handleSubmit = async (e: FormEvent<SubscribeFormElement>) => {
+    e.preventDefault();
+    const {email, name} = e.currentTarget.elements;
+
+    if (!executeRecaptcha) {
+      return;
+    }
+
+    const token = await executeRecaptcha('newsletter_subscribe');
+
+    if (!token) {
+      return setError('Please verify that you are not a robot.');
+    }
+
+    fetch('/api/newsletter', {
+      method: 'POST',
+      headers: new Headers({'Content-Type': 'application/json'}),
+      credentials: 'same-origin',
+      body: JSON.stringify({
+        email: email.value,
+        name: name.value,
+        token,
+      }),
+    })
+      .then(async (res: any) => {
+        const body = await res.json();
+        if (res.status >= 400 && res.status < 600) {
+          throw new Error(body.message);
+        }
+        return body;
+      })
+      .then(() => {
+        router.push('/signup-success');
+      })
+      .catch(err => {
+        setError(err.message);
+      });
+  };
+
   return (
     <>
       <div className="h-screen min-h-[40rem] px-2 w-full flex flex-col items-center justify-center">
@@ -21,13 +77,10 @@ const SubscribeForm = () => {
         </div>
 
         <form
-          method="post"
-          action="https://codegino.us20.list-manage.com/subscribe/post?u=9821406d00b8039df9f681e58&amp;id=76050ac432"
+          onSubmit={handleSubmit}
           className="relative mt-8 shadow-sm shadow-dark overflow-hidden bg-light w-full
           max-w-2xl min-w-2xl mb-24 rounded-2xl min-h-[20rem]"
           id="1j27oq"
-          data-async="true"
-          data-recaptcha="true"
         >
           <div
             className="flex justify-center bg-primary-dark py-2 items-center
@@ -39,14 +92,14 @@ const SubscribeForm = () => {
             <Input
               type="text"
               placeholder="First Name"
-              name="FNAME"
+              name="name"
               className="mb-4"
               required
             />
             <Input
               type="email"
               placeholder="Email"
-              name="EMAIL"
+              name="email"
               required
               className="mb-8"
             />
@@ -60,6 +113,11 @@ const SubscribeForm = () => {
                 className="absolute -left-full"
               />
             </div>
+            {error && (
+              <div className="w-full text-center text-red-500 font-bold mb-2">
+                {error}
+              </div>
+            )}
             <Button type="submit" className="text-2xl font-bold">
               Sign up
             </Button>
