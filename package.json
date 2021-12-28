@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@react-icons/all-files": "4.1.0",
+    "@sendinblue/client": "^3.0.1",
     "clsx": "1.1.1",
     "isomorphic-dompurify": "0.17.0",
     "next": "12.0.7",

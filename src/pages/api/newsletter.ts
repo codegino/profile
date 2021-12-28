@@ -1,5 +1,17 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+import {
+  ContactsApi,
+  ContactsApiApiKeys,
+  CreateContact,
+} from '@sendinblue/client';
 import type {NextApiRequest, NextApiResponse} from 'next';
+
+const apiInstance = new ContactsApi();
+
+apiInstance.setApiKey(
+  ContactsApiApiKeys.apiKey,
+  process.env.SIB_API_KEY as string,
+);
 
 type Data = {
   message: string;
@@ -30,26 +42,24 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   }
 
   try {
-    const result = await fetch('https://emails.pabbly.com/api/subscribers', {
-      method: 'POST',
-      headers: new Headers({
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${process.env.PABBLY_EMAIL_API_KEY}`,
-      }),
-      body: JSON.stringify({
-        list_id: 'IjkyNTM3OSI',
-        import: 'single',
-        email,
-        name,
-      }),
-    }).then(res => res.json());
+    let createContact = new CreateContact();
 
-    if (result.status === 'success') {
+    createContact.email = email;
+    createContact.attributes = {FNAME: name};
+    createContact.listIds = [5];
+
+    const data = await apiInstance.createContact(createContact);
+
+    if (data?.response?.statusCode === 201) {
       return res.status(201).json({message: 'success'});
     }
-    return res.status(400).json({message: result.message});
-  } catch (error) {
-    return res.status(500).json({message: 'an error has occur'});
+    return res
+      .status(400)
+      .json({message: 'An error has occur, please check your email.'});
+  } catch (error: any) {
+    return res
+      .status(error?.response?.statusCode ?? 500)
+      .json({message: error?.response?.body?.message ?? 'An error has occur'});
   }
 };
 
