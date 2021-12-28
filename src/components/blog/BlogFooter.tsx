@@ -19,10 +19,7 @@ const BlogFooter = ({blog}: {blog: IBlogMetadata}) => {
       <p className="my-4">
         <i>Get latest updates directly into your mailbox.</i>
       </p>
-      <form
-        action="https://mailchi.mp/5d28d757da7a/codegino-newsletter"
-        className="flex justify-center"
-      >
+      <form action="/#subscribe" className="flex justify-center">
         <SubscribeButton className="px-5 bg-primary-800 flex items-center">
           <FaEnvelopeOpenText size={25} className="text-white mr-2" />
           <span className="text-white">Subscribe to my Newsletter</span>
