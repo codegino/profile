@@ -5,6 +5,7 @@ export default function Blog() {
     <>
       <Head>
         <title>Thank you for signing up</title>
+        <meta name="robots" content="noindex"></meta>
       </Head>
       <main className="flex items-center flex-col min-h-[80vh] py-8">
         <article className="textc max-w-2xl">
