@@ -12,7 +12,11 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
     `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${token}`,
   ).then(res => res.json());
 
-  if (!result.success || result.action !== 'newsletter_subscribe') {
+  if (
+    !result.success ||
+    result.action !== 'newsletter_subscribe' ||
+    result.score < 0.5
+  ) {
     return res.status(400).json({
       message: 'We detected that you might be a robot. Please try again.',
     });
