@@ -616,7 +616,7 @@
   resolved "https://registry.yarnpkg.com/@rushstack/eslint-patch/-/eslint-patch-1.1.0.tgz#7f698254aadf921e48dda8c0a6b304026b8a9323"
   integrity sha512-JLo+Y592QzIE+q7Dl2pMUtt4q8SKYI5jDrZxrozEQxnGVOyYE+GWK9eLkwTaeN9DDctlaRAQ3TBmzZ1qdLE30A==
 
-"@sendinblue/client@^3.0.1":
+"@sendinblue/client@3.0.1":
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/@sendinblue/client/-/client-3.0.1.tgz#24e3e92f7d8de4dafc2ef43f095edbb2f1811d22"
   integrity sha512-b1MIqSecq34vNzCruolL2db6xwr+NBW1cyWKgFity+CQeOrrQ8cuKYFLPGo7P0gTTi23dU6zmcoEvVHGZHoqxg==
@@ -4832,7 +4832,7 @@ react-github-calendar@3.2.2:
   dependencies:
     react-activity-calendar "^1.4.4"
 
-react-google-recaptcha-v3@^1.9.7:
+react-google-recaptcha-v3@1.9.7:
   version "1.9.7"
   resolved "https://registry.yarnpkg.com/react-google-recaptcha-v3/-/react-google-recaptcha-v3-1.9.7.tgz#a6f677276fbc12ab059e34446e5c5136e07c9311"
   integrity sha512-LgHTuPUE86jGOtmMYMUWEYux8n7M2ZNj5GHct//DlXWZGyLIgFfLbvxA3UlgrG+tSu2pgw2mqXtYdPxaldqhWQ==

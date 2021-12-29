@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@react-icons/all-files": "4.1.0",
-    "@sendinblue/client": "^3.0.1",
+    "@sendinblue/client": "3.0.1",
     "clsx": "1.1.1",
     "isomorphic-dompurify": "0.17.0",
     "next": "12.0.7",
@@ -21,7 +21,7 @@
     "react-content-loader": "6.1.0",
     "react-dom": "17.0.2",
     "react-github-calendar": "3.2.2",
-    "react-google-recaptcha-v3": "^1.9.7",
+    "react-google-recaptcha-v3": "1.9.7",
     "react-intersection-observer": "8.33.1",
     "react-responsive-carousel": "3.2.22",
     "react-reveal": "1.2.2",
