@@ -4,11 +4,9 @@ import Image from 'next/image';
 import NextLink from '../../components/basic/NextLink';
 import type {IBlogMetadata} from '../../models/blog';
 
-type Props = {
+const BlogCard: FunctionComponent<{
   blog: IBlogMetadata;
-};
-
-const BlogCard: FunctionComponent<Props> = ({blog}) => {
+}> = ({blog}) => {
   return (
     <article
       className={clsx(

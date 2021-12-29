@@ -4,58 +4,9 @@ import ContentLoader from 'react-content-loader';
 import Word from '../../components/Word';
 import {commonMetaTags} from '../../frontend-utils/meta-tags';
 import type {WordFromBackend} from '../../models/Vocabulary';
+import {usePagination} from '../../utils/pagination-hook';
 
 const WORDS_PAGE_SIZE = 10;
-
-type PaginationProps<T> = {
-  currentPage?: number;
-  pageSize?: number;
-  defaultValues?: T[];
-};
-
-function usePagination<T>({
-  currentPage = 0,
-  pageSize = WORDS_PAGE_SIZE,
-  defaultValues = [],
-}: PaginationProps<T>) {
-  const [data, setData] = useState<T[]>(defaultValues);
-  const [page, setPage] = useState(currentPage);
-  const [isDone, setIsDone] = useState(false);
-  const [isFetching, setIsFetching] = useState(false);
-
-  const fetchMoreData = useCallback(
-    (
-      fetchFunction: (
-        _currentPage: number,
-        _pageSize: number,
-      ) => Promise<Response>,
-    ) => {
-      setIsFetching(true);
-      fetchFunction(page, pageSize)
-        .then(res => res.json())
-        .then(res => {
-          if (res.count > 0) {
-            setData(prev => [...prev, ...res.data]);
-            setPage(prev => prev + 1);
-          }
-
-          if (res.count < pageSize) {
-            setIsDone(true);
-          }
-        })
-        .finally(() => setIsFetching(false));
-    },
-    [page, pageSize],
-  );
-
-  return {
-    fetchMoreData,
-    page,
-    data,
-    isFetching,
-    isDone,
-  };
-}
 
 export default function WordsPage({}) {
   const {
@@ -66,6 +17,7 @@ export default function WordsPage({}) {
     isFetching,
   } = usePagination<WordFromBackend>({
     currentPage: 0,
+    pageSize: WORDS_PAGE_SIZE,
   });
 
   const handleFetchMoreWords = useCallback(() => {
