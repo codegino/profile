@@ -1,20 +1,23 @@
 import {createClient} from 'contentful';
 import type {EducationExperience, WorkExperience} from '../models/resume';
 import type {CategorizedSkill, Skill} from '../models/skill';
-import {supabase} from '../utils/supabaseClient';
 import {formatDate} from './date-formatter';
 
 export const fetchSkills = async (onlyHightlights = false) => {
-  let {data: skills} = onlyHightlights
-    ? await supabase
-        .from<Skill>('skill')
-        .select('id,name,description,url,category,is_highlight,level')
-        .eq('is_highlight', onlyHightlights)
-        .order('level', {ascending: false})
-    : await supabase
-        .from<Skill>('skill')
-        .select('*')
-        .order('level', {ascending: false});
+  const client = createClient({
+    space: process.env.CONTENTFUL_SPACE_ID as string,
+    accessToken: process.env.CONTENTFUL_ACCESS_TOKEN as string,
+  });
+
+  const entries = await client.getEntries<Skill>({
+    content_type: 'skill',
+    order: '-fields.level',
+  });
+
+  const skills = entries.items.map(skill => ({
+    ...skill.fields,
+    id: skill.sys.id,
+  }));
 
   const categorizedSkills: CategorizedSkill[] = !onlyHightlights
     ? skills?.reduce(
@@ -39,7 +42,7 @@ export const fetchSkills = async (onlyHightlights = false) => {
     : [];
 
   // Create category for active skills
-  const activeSkills = skills?.filter(skill => skill.is_highlight) ?? [];
+  const activeSkills = skills?.filter(skill => skill.isHighlight) ?? [];
 
   // Set active skills as the first element
   categorizedSkills.unshift({

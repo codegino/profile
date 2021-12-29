@@ -1,10 +1,9 @@
 export type Skill = {
   name: string;
-  id: number;
-  description: string;
+  id: string;
   url: string;
   category: SkillCategory;
-  is_highlight: boolean;
+  isHighlight: boolean;
   level: number;
 };
 
