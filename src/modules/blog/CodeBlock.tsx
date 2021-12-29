@@ -4,8 +4,8 @@ import clsx from 'clsx';
 import Highlight, {defaultProps} from 'prism-react-renderer';
 import type {Language} from 'prism-react-renderer';
 import vsDark from 'prism-react-renderer/themes/vsDark';
-import ClipboardCopyButton from '../ClipboardCopyButton';
-import NextLink from '../basic/NextLink';
+import ClipboardCopyButton from '../../components/ClipboardCopyButton';
+import NextLink from '../../components/basic/NextLink';
 
 export type CodeBlockProps = {
   children: string;

@@ -1,9 +1,9 @@
 import {FaEnvelopeOpenText} from '@react-icons/all-files/fa/FaEnvelopeOpenText';
 import {FaTwitter} from '@react-icons/all-files/fa/FaTwitter';
+import Coffee from '../../components/Coffee';
+import SubscribeButton from '../../components/basic/Button';
+import NextLink from '../../components/basic/NextLink';
 import {IBlogMetadata} from '../../models/blog';
-import Coffee from '../Coffee';
-import SubscribeButton from '../basic/Button';
-import NextLink from '../basic/NextLink';
 import ShareToSocialMedia from './ShareToSocialMedia';
 
 const BlogFooter = ({blog}: {blog: IBlogMetadata}) => {

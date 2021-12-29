@@ -1,7 +1,7 @@
 import type {FunctionComponent} from 'react';
 import {IGetPlaiceholderReturn} from 'plaiceholder';
+import {BlurringImage} from '../../components/BlurringImage';
 import type {IBlogMetadata} from '../../models/blog';
-import {BlurringImage} from '../BlurringImage';
 
 type Props = {
   blog: IBlogMetadata;

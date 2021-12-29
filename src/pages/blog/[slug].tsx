@@ -9,16 +9,16 @@ import {serialize} from 'next-mdx-remote/serialize';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import path from 'path';
-import BlogContent from '../../components/blog/BlogContent';
-import BlogHeader from '../../components/blog/BlogHeader';
-import BlogLayout from '../../components/blog/BlogLayout';
 import type {IBlogMetadata} from '../../models/blog';
+import BlogContent from '../../modules/blog/BlogContent';
+import BlogHeader from '../../modules/blog/BlogHeader';
+import BlogLayout from '../../modules/blog/BlogLayout';
 import {formatDate} from '../../utils/date-formatter';
 import {blurImage} from '../../utils/image-blur.utils';
 import {getBlogsMetadata} from '../../utils/mdxUtils';
 import {BLOGS_PATH} from '../../utils/mdxUtils';
 
-const BlogFooter = dynamic(() => import('../../components/blog/BlogFooter'), {
+const BlogFooter = dynamic(() => import('../../modules/blog/BlogFooter'), {
   ssr: false,
 });
 
