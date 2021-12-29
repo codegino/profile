@@ -5,7 +5,7 @@ import {FaGraduationCap} from '@react-icons/all-files/fa/FaGraduationCap';
 import {FaScroll} from '@react-icons/all-files/fa/FaScroll';
 import dompurify from 'isomorphic-dompurify';
 import Slide from 'react-reveal/Slide';
-import type {WorkExperience} from '../../models/resume';
+import type {EducationExperience, WorkExperience} from '../../models/resume';
 import NextLink from '../basic/NextLink';
 import {Experience} from './Experience';
 
@@ -14,7 +14,7 @@ export default function Timeline({
   educationExperiences,
 }: {
   workExperiences: WorkExperience[];
-  educationExperiences: WorkExperience[];
+  educationExperiences: EducationExperience[];
 }) {
   return (
     <article className="flex items-center flex-col overflow-hidden min-h-min pt-12">
@@ -67,15 +67,14 @@ export default function Timeline({
   );
 }
 
-const Content: FunctionComponent<{exp: WorkExperience}> = ({
-  exp,
-  children = null,
-}) => {
+const Content: FunctionComponent<{
+  exp: WorkExperience | EducationExperience;
+}> = ({exp, children = null}) => {
   return (
     <Slide cascade={true} duration={800}>
       <div>
         <p className="bg-light text-dark justify-self-center py-1">
-          {exp.end_date === exp.start_date ? 'Present' : exp.end_date}
+          {exp.endDate === exp.startDate ? 'Present' : exp.endDate}
         </p>
         <div>
           {exp.category === 'work' ? <FaBuilding /> : <FaGraduationCap />}
@@ -97,7 +96,7 @@ const Content: FunctionComponent<{exp: WorkExperience}> = ({
       </div>
       <div className="max-w-[45rem]">{children}</div>
       <p className="bg-light text-dark justify-self-center py-1">
-        {exp.start_date}
+        {exp.startDate}
       </p>
     </Slide>
   );

@@ -1,4 +1,5 @@
-import type {WorkExperience} from '../models/resume';
+import {createClient} from 'contentful';
+import type {EducationExperience, WorkExperience} from '../models/resume';
 import type {CategorizedSkill, Skill} from '../models/skill';
 import {supabase} from '../utils/supabaseClient';
 import {formatDate} from './date-formatter';
@@ -50,32 +51,35 @@ export const fetchSkills = async (onlyHightlights = false) => {
 };
 
 export const fectchExperiences = async () => {
-  let {data: workExperiences} = await supabase
-    .from<WorkExperience>('experience')
-    .select('*')
-    .eq('category', 'work')
-    .order('start_date', {ascending: false});
+  const client = createClient({
+    space: process.env.CONTENTFUL_SPACE_ID as string,
+    accessToken: process.env.CONTENTFUL_ACCESS_TOKEN as string,
+  });
 
-  let {data: educationExperiences} = await supabase
-    .from<WorkExperience>('experience')
-    .select('*')
-    .eq('category', 'education')
-    .order('id', {ascending: true});
+  const workExperiences = await client.getEntries<WorkExperience>({
+    content_type: 'experience',
+    order: '-fields.startDate',
+  });
 
-  // const categorizedSkills = await categorizedSkills();
+  const educationExperiences = await client.getEntries<EducationExperience>({
+    content_type: 'education',
+    order: '-fields.startDate',
+  });
 
   return {
     workExperiences:
-      workExperiences?.map(exp => ({
-        ...exp,
-        end_date: formatDate(new Date(exp.end_date)),
-        start_date: formatDate(new Date(exp.start_date)),
+      workExperiences.items?.map(exp => ({
+        ...exp.fields,
+        id: exp.sys.id,
+        end_date: formatDate(new Date(exp.fields.endDate)),
+        start_date: formatDate(new Date(exp.fields.startDate)),
       })) ?? [],
     educationExperiences:
-      educationExperiences?.map(exp => ({
-        ...exp,
-        end_date: formatDate(new Date(exp.end_date)),
-        start_date: formatDate(new Date(exp.start_date)),
+      educationExperiences.items?.map(exp => ({
+        ...exp.fields,
+        id: exp.sys.id,
+        end_date: formatDate(new Date(exp.fields.endDate)),
+        start_date: formatDate(new Date(exp.fields.startDate)),
       })) ?? [],
   };
 };

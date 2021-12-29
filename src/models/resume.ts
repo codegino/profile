@@ -1,11 +1,23 @@
 export type WorkExperience = {
-  id: number;
+  id: string;
   organization: string;
   role: string;
   title: string;
-  start_date: string;
-  end_date: string;
+  startDate: string;
+  endDate: string;
   content: string;
-  category: 'work' | 'education';
+  category: 'work';
+  url: string;
+};
+
+export type EducationExperience = {
+  id: string;
+  organization: string;
+  role: string;
+  title: string;
+  startDate: string;
+  endDate: string;
+  content: string;
+  category: 'education';
   url: string;
 };
