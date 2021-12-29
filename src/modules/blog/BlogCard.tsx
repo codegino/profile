@@ -1,8 +1,8 @@
 import type {FunctionComponent} from 'react';
 import clsx from 'clsx';
 import Image from 'next/image';
+import NextLink from '../../components/basic/NextLink';
 import type {IBlogMetadata} from '../../models/blog';
-import NextLink from '../basic/NextLink';
 
 type Props = {
   blog: IBlogMetadata;

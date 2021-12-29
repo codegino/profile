@@ -1,5 +1,5 @@
+import NextLink from '../../components/basic/NextLink';
 import type {IBlogMetadata} from '../../models/blog';
-import NextLink from '../basic/NextLink';
 import {BlogCardPreview} from './BlogCardPreview';
 
 type Props = {

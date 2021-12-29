@@ -1,8 +1,8 @@
 import type {InferGetStaticPropsType} from 'next';
 import Head from 'next/head';
 import SubscribeForm from '../../components/SubscribeForm';
-import BlogCard from '../../components/blog/BlogCard';
 import {commonMetaTags} from '../../frontend-utils/meta-tags';
+import BlogCard from '../../modules/blog/BlogCard';
 import {formatDate} from '../../utils/date-formatter';
 import {getBlogsMetadata} from '../../utils/mdxUtils';
 
