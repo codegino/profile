@@ -130,8 +130,7 @@ export default function Home({
         <GoogleReCaptchaProvider
           reCaptchaKey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
           scriptProps={{
-            async: true,
-            defer: true,
+
             appendTo: 'head',
           }}
         >
