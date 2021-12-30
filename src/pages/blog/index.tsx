@@ -6,6 +6,7 @@ import {commonMetaTags} from '../../frontend-utils/meta-tags';
 import type {IBlogMetadata} from '../../models/blog';
 import BlogCard from '../../modules/blog/BlogCard';
 import BlogsFilter from '../../modules/blog/BlogsFilter';
+import {client} from '../../utils/contentful.utils';
 import {formatDate} from '../../utils/date-formatter';
 import {getBlogsMetadata} from '../../utils/mdxUtils';
 
@@ -56,6 +57,13 @@ export const getStaticProps = async () => {
       ...blog,
       date: formatDate(new Date(blog.date)),
     }));
+
+  for (let blog of blogs) {
+    const asset = await client.getAsset(blog.bannerId);
+
+    const bannerUrl = `https:${asset.fields.file.url}`;
+    blog.bannerId = bannerUrl;
+  }
 
   return {
     props: {blogs: blogs as IBlogMetadata[]},

@@ -11,7 +11,7 @@ import {commonMetaTags} from '../frontend-utils/meta-tags';
 import {generateRssFeed} from '../lib/rss';
 import generateSitemap from '../lib/sitemap';
 import BlogSuggestionsList from '../modules/blog/BlogSuggestionsList';
-import {getBlurringImage} from '../utils/contentful.utils';
+import {client, getBlurringImage} from '../utils/contentful.utils';
 import {formatDate} from '../utils/date-formatter';
 import {getBlogsMetadata} from '../utils/mdxUtils';
 import {fetchSkills} from '../utils/resume-props';
@@ -130,7 +130,6 @@ export default function Home({
         <GoogleReCaptchaProvider
           reCaptchaKey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
           scriptProps={{
-
             appendTo: 'head',
           }}
         >
@@ -157,6 +156,13 @@ export const getStaticProps: GetStaticProps = async () => {
       date: formatDate(new Date(blog.date)),
     }))
     .slice(0, 4);
+
+  for (let blog of blogs) {
+    const asset = await client.getAsset(blog.bannerId);
+
+    const bannerUrl = `https:${asset.fields.file.url}`;
+    blog.bannerId = bannerUrl;
+  }
 
   if (process.env.NODE_ENV === 'production') {
     await generateSitemap();

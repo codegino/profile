@@ -13,6 +13,7 @@ import type {IBlogMetadata} from '../../models/blog';
 import BlogContent from '../../modules/blog/BlogContent';
 import BlogHeader from '../../modules/blog/BlogHeader';
 import BlogLayout from '../../modules/blog/BlogLayout';
+import {client, getBlurringImage} from '../../utils/contentful.utils';
 import {formatDate} from '../../utils/date-formatter';
 import {blurImage} from '../../utils/image-blur.utils';
 import {getBlogsMetadata} from '../../utils/mdxUtils';
@@ -96,7 +97,10 @@ export const getStaticProps = async ({params}: GetStaticPropsContext) => {
 
   const {content, data} = matter(source);
 
-  const {img, svg} = await blurImage(data.bannerId);
+  const asset = await client.getAsset(data.bannerId);
+
+  const bannerUrl = `https:${asset.fields.file.url}`;
+  const {img, svg} = await blurImage(bannerUrl);
 
   const mdxSource = await serialize(content, {
     // Optionally pass remark/rehype plugins
@@ -114,6 +118,7 @@ export const getStaticProps = async ({params}: GetStaticPropsContext) => {
         ...data,
         slug: params?.slug,
         date: formatDate(new Date(data.date)),
+        bannerId: bannerUrl,
       } as IBlogMetadata,
       img,
       svg,
