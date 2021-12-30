@@ -18,32 +18,32 @@ type SiteMapUrl = {
 const staticPages: SiteMapUrl[] = [
   {
     slug: '/',
-    lastMod: '2021-11-14',
-    priority: 1.0,
+    lastMod: '2021-12-29',
+    priority: 0.7,
     changeFrequency: 'monthly',
   },
   {
     slug: '/about',
-    lastMod: '2021-11-14',
-    priority: 1.0,
+    lastMod: '2021-12-29',
+    priority: 0.5,
     changeFrequency: 'monthly',
   },
   {
     slug: '/resume',
-    lastMod: '2021-11-14',
-    priority: 1.0,
+    lastMod: '2021-12-29',
+    priority: 0.6,
     changeFrequency: 'monthly',
   },
   {
     slug: '/blog',
-    lastMod: '2021-11-14',
-    priority: 1.0,
+    lastMod: '2021-12-29',
+    priority: 0.8,
     changeFrequency: 'monthly',
   },
   {
     slug: '/words',
-    lastMod: '2021-11-14',
-    priority: 1.0,
+    lastMod: '2021-12-29',
+    priority: 0.7,
     changeFrequency: 'monthly',
   },
 ];
@@ -56,7 +56,7 @@ const generateBlogSiteMapData = async (): Promise<SiteMapUrl[]> => {
       slug: meta.slug,
       changeFrequency: 'monthly',
       lastMod: meta.dateUpdated,
-      priority: 1,
+      priority: 0.8,
     };
   });
 };
@@ -71,6 +71,7 @@ async function generateSitemap() {
       return `
         <url>
           <loc>${ROOT_URL}${sitemap.slug}</loc>
+          <lastmod>${sitemap.lastMod}</lastmod>
           <priority>${sitemap.priority}</priority>
         </url>
       `;
@@ -81,6 +82,7 @@ async function generateSitemap() {
       return `
         <url>
           <loc>${ROOT_URL}/blog/${sitemap.slug}</loc>
+          <lastmod>${sitemap.lastMod}</lastmod>
           <priority>${sitemap.priority}</priority>
         </url>
       `;
