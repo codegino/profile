@@ -1,7 +1,7 @@
+import {createClient} from 'contentful';
 import type {NextApiRequest, NextApiResponse} from 'next';
 import type {WordFromBackend} from '../../models/Vocabulary';
 import {formatDate} from '../../utils/date-formatter';
-import {supabase} from '../../utils/supabaseClient';
 
 export default async function handler(
   req: NextApiRequest,
@@ -18,28 +18,27 @@ export default async function handler(
   });
 }
 
-const getPagination = (page: number, size: number) => {
-  const limit = size ? +size : 3;
-  const from = page ? page * limit : 0;
-  const to = page ? from + size - 1 : size - 1;
-
-  return {from, to};
-};
-
 const WORDS_PAGE_SIZE = 10;
-
 export const fetchWords = async (page: number, pageSize = WORDS_PAGE_SIZE) => {
-  const {from, to} = getPagination(page, pageSize);
+  const client = createClient({
+    space: process.env.CONTENTFUL_SPACE_ID as string,
+    accessToken: process.env.CONTENTFUL_ACCESS_TOKEN as string,
+  });
 
-  let {data} = await supabase
-    .from<WordFromBackend>('words')
-    .select('*')
-    .order('date', {ascending: false})
-    .range(from, to);
+  const entries = await client.getEntries<WordFromBackend>({
+    content_type: 'words',
+    skip: page * pageSize,
+    limit: pageSize,
+    order: '-fields.date',
+  });
 
   return {
-    data: data ?? [],
-    count: data?.length ?? 0,
+    data:
+      entries.items.map(word => ({
+        ...word.fields,
+        id: word.sys.id,
+      })) ?? [],
+    count: entries.items.length ?? 0,
     page,
   };
 };

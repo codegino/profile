@@ -6,7 +6,6 @@ import type {
 
 const Word = ({word}: {word: WordFromBackend}) => {
   const [showDefinition, setShowDefinition] = useState(false);
-  const [definitions, setDefinitions] = useState<string[]>([]);
   const [isFetching, setIsFetching] = useState(false);
   const [pronunciation, setPronunciation] =
     useState<{hw: string; pr: string}>();
@@ -18,7 +17,6 @@ const Word = ({word}: {word: WordFromBackend}) => {
         .then(res => res.json())
         .then((res: DictionaryApiResponse) => {
           if (res) {
-            setDefinitions(res?.shortdef);
             setPronunciation({
               pr: res?.hwi.prs[0].mw,
               hw: res?.hwi.hw,
@@ -60,7 +58,7 @@ const Word = ({word}: {word: WordFromBackend}) => {
         <section className="mt-2">
           <h3>Definition</h3>
           <ul className="my-2">
-            {definitions.map((definition, index) => (
+            {word.definitions.map((definition, index) => (
               <li key={index}>
                 <i>{definition}</i>
               </li>

@@ -1,34 +1,32 @@
-import {useCallback, useEffect, useState} from 'react';
+import {useCallback} from 'react';
+import type {GetStaticProps, InferGetStaticPropsType} from 'next';
 import Head from 'next/head';
 import ContentLoader from 'react-content-loader';
 import Word from '../../components/Word';
 import {commonMetaTags} from '../../frontend-utils/meta-tags';
 import type {WordFromBackend} from '../../models/Vocabulary';
 import {usePagination} from '../../utils/pagination-hook';
+import {fetchWords} from '../api/words';
 
 const WORDS_PAGE_SIZE = 10;
 
-export default function WordsPage({}) {
+export default function WordsPage({
+  words: defaultValues,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
   const {
     data: words,
     fetchMoreData,
     isDone,
-    page,
     isFetching,
   } = usePagination<WordFromBackend>({
-    currentPage: 0,
+    currentPage: 1,
     pageSize: WORDS_PAGE_SIZE,
+    defaultValues,
   });
 
   const handleFetchMoreWords = useCallback(() => {
     fetchMoreData(page => fetch(`/api/words?page=${page}`));
   }, [fetchMoreData]);
-
-  useEffect(() => {
-    if (page === 0) {
-      handleFetchMoreWords();
-    }
-  }, [handleFetchMoreWords, page]);
 
   return (
     <>
@@ -39,18 +37,15 @@ export default function WordsPage({}) {
       <main className="flex items-center flex-col overflow-hidden pb-4 bg-light min-h-[90vh]">
         <h1>English words I learned</h1>
 
-        {words.length === 0 && isFetching && (
+        {words.map(word => (
+          <Word key={word.id} word={word} />
+        ))}
+        {isFetching && (
           <>
-            <WordContentLoader />
-            <WordContentLoader />
-            <WordContentLoader />
             <WordContentLoader />
             <WordContentLoader />
           </>
         )}
-        {words.map(word => (
-          <Word key={word.id} word={word} />
-        ))}
         {!isFetching && !isDone && (
           <button
             onClick={handleFetchMoreWords}
@@ -63,6 +58,17 @@ export default function WordsPage({}) {
     </>
   );
 }
+
+export const getStaticProps: GetStaticProps = async () => {
+  const words = await fetchWords(0).then(res => res.data);
+
+  return {
+    props: {
+      words,
+    },
+    revalidate: 1,
+  };
+};
 
 const WordContentLoader = () => (
   <article className="min-w-[20rem] w-4/5 max-w-3xl p-4 rounded-2xl shadow-sm shadow-dark mb-10 bg-lightest">

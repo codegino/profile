@@ -23,9 +23,10 @@ export type DictionaryApiResponse = {
 };
 
 export type WordFromBackend = {
-  id: number;
+  id: string;
   word: string;
   sentences: string[];
+  definitions: string[];
   date: string;
   type: WordType;
 };
