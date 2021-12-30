@@ -3,15 +3,10 @@ import type {InferGetStaticPropsType} from 'next';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import AboutMeHero from '../../components/AboutMeHero';
-import type {TechStack} from '../../components/TechStackCarousel';
 import NextLink from '../../components/basic/NextLink';
 import {commonMetaTags} from '../../frontend-utils/meta-tags';
 import type {StaticContent} from '../../models/static-content';
-import {
-  getImageFromSupabase,
-  getUrlFromSupabase,
-} from '../../utils/supabase.utils';
-import {supabase} from '../../utils/supabaseClient';
+import {client, getBlurringImage} from '../../utils/contentful.utils';
 
 const TechStackCarousel = dynamic(
   () => import('../../components/TechStackCarousel'),
@@ -90,55 +85,30 @@ export default function AboutMe({
 }
 
 export const getStaticProps = async () => {
-  const {data: aboutMe} = await supabase
-    .from('static_content')
-    .select('key, content, label')
-    .eq('category', 'about_me');
+  const entries = await client.getEntries<StaticContent>({
+    content_type: 'staticText',
+    'fields.category': 'about_me',
+    order: '-fields.order',
+  });
 
-  const {img, svg} = await getImageFromSupabase('about_me_hero_cover');
+  const {img, svg} = await getBlurringImage('6F53k0CwsdmREXx1Y2ErSl');
 
-  const techStacks: TechStack[] = [
-    {
-      name: 'React ',
-      url: await getUrlFromSupabase('react_logo'),
-    },
-    {
-      name: 'NextJS',
-      url: await getUrlFromSupabase('nextjs_logo'),
-    },
-    {
-      name: 'Prettier',
-      url: await getUrlFromSupabase('prettier_logo'),
-    },
-    {
-      name: 'Eslint',
-      url: await getUrlFromSupabase('eslint_logo'),
-    },
-    {
-      name: 'Emotion',
-      url: await getUrlFromSupabase('emotion_logo'),
-    },
-    {
-      name: 'Supabase',
-      url: await getUrlFromSupabase('supabase_logo'),
-    },
-    {
-      name: 'Github',
-      url: await getUrlFromSupabase('github_logo'),
-    },
-    {
-      name: 'Vercel',
-      url: await getUrlFromSupabase('vercel_logo'),
-    },
-    {
-      name: 'TypeScript',
-      url: await getUrlFromSupabase('typescript_logo'),
-    },
-  ];
+  const assets = await client.getAssets({
+    'fields.title[in]':
+      'React,TypeScript,NextJS,Prettier,ESLint,Emotion,Supabase,GitHub,Vercel',
+  });
+
+  const techStacks = assets.items.map(asset => ({
+    ...asset,
+    name: asset.fields.title,
+    url: asset.fields.file.url,
+  }));
 
   return {
     props: {
-      aboutMeDetails: aboutMe as StaticContent[],
+      aboutMeDetails: entries.items.map(
+        entry => entry.fields,
+      ) as StaticContent[],
       techStacks,
       img,
       svg,

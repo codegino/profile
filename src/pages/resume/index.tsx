@@ -8,11 +8,8 @@ import NextLink from '../../components/basic/NextLink';
 import CustomIcon from '../../components/icon/CustomIcon';
 import Timeline from '../../components/timeline/Timeline';
 import {commonMetaTags} from '../../frontend-utils/meta-tags';
+import {client, getBlurringImage} from '../../utils/contentful.utils';
 import {fectchExperiences, fetchSkills} from '../../utils/resume-props';
-import {
-  getImageFromSupabase,
-  getUrlFromSupabase,
-} from '../../utils/supabase.utils';
 
 const CustomGithubCalendar = dynamic(
   () => import('../../components/CustomGithubCalendar'),
@@ -103,14 +100,21 @@ export default function Resume({
 export const getStaticProps = async () => {
   const experiences = await fectchExperiences();
   const skills = await fetchSkills();
-  const {img, svg} = await getImageFromSupabase('profile_photo');
+
+  const {img, svg} = await getBlurringImage('3fgK6fKTGvBcmIRel2hJ6Y');
+
+  const resumePdfAsset = await client.getAsset('3BjRYsXrkYX4uwCWkYHCjK');
+  const resumeWordAsset = await client.getAsset('3WY4hQgMdEJiffLSpsHRnJ');
+
+  const resumePdfUrl = `https:${resumePdfAsset.fields.file.url}`;
+  const resumeWordUrl = `https:${resumeWordAsset.fields.file.url}`;
 
   return {
     props: {
       ...experiences,
       skills,
-      resumePdfUrl: await getUrlFromSupabase('resume_pdf_url'),
-      resumeWordUrl: await getUrlFromSupabase('resume_word_url'),
+      resumePdfUrl,
+      resumeWordUrl,
       profileImage: img,
       profileSvg: svg,
     },
