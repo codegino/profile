@@ -11,10 +11,10 @@ import {commonMetaTags} from '../frontend-utils/meta-tags';
 import {generateRssFeed} from '../lib/rss';
 import generateSitemap from '../lib/sitemap';
 import BlogSuggestionsList from '../modules/blog/BlogSuggestionsList';
+import {getBlurringImage} from '../utils/contentful.utils';
 import {formatDate} from '../utils/date-formatter';
 import {getBlogsMetadata} from '../utils/mdxUtils';
 import {fetchSkills} from '../utils/resume-props';
-import {getImageFromSupabase} from '../utils/supabase.utils';
 
 const Greetings = dynamic(() => import('../components/Greetings'), {
   ssr: true,
@@ -143,12 +143,12 @@ export default function Home({
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const {img: heroImage, svg: heroSvg} = await getImageFromSupabase(
-    'home_hero_cover',
+  const {img: heroImage, svg: heroSvg} = await getBlurringImage(
+    '4tQ2p1PhiXEya0uWbAZC6O',
   );
 
-  const {img: profileImage, svg: profileSvg} = await getImageFromSupabase(
-    'profile_photo',
+  const {img: profileImage, svg: profileSvg} = await getBlurringImage(
+    '3fgK6fKTGvBcmIRel2hJ6Y',
   );
 
   const blogs = (await getBlogsMetadata())

@@ -1,14 +1,10 @@
 import {createClient} from 'contentful';
 import type {EducationExperience, WorkExperience} from '../models/resume';
 import type {CategorizedSkill, Skill} from '../models/skill';
+import {client} from './contentful.utils';
 import {formatDate} from './date-formatter';
 
 export const fetchSkills = async (onlyHightlights = false) => {
-  const client = createClient({
-    space: process.env.CONTENTFUL_SPACE_ID as string,
-    accessToken: process.env.CONTENTFUL_ACCESS_TOKEN as string,
-  });
-
   const entries = await client.getEntries<Skill>({
     content_type: 'skill',
     order: '-fields.level',
@@ -54,11 +50,6 @@ export const fetchSkills = async (onlyHightlights = false) => {
 };
 
 export const fectchExperiences = async () => {
-  const client = createClient({
-    space: process.env.CONTENTFUL_SPACE_ID as string,
-    accessToken: process.env.CONTENTFUL_ACCESS_TOKEN as string,
-  });
-
   const workExperiences = await client.getEntries<WorkExperience>({
     content_type: 'experience',
     order: '-fields.startDate',
