@@ -3,7 +3,6 @@ import type {FormEvent} from 'react';
 import {BiCool} from '@react-icons/all-files/bi/BiCool';
 import {RiSpamLine} from '@react-icons/all-files/ri/RiSpamLine';
 import {useRouter} from 'next/router';
-import {useGoogleReCaptcha} from 'react-google-recaptcha-v3';
 import Button from './basic/Button';
 import Input from './basic/Input';
 
@@ -17,23 +16,12 @@ interface SubscribeFormElement extends HTMLFormElement {
 
 const SubscribeForm = () => {
   const [error, setError] = useState('');
-  const {executeRecaptcha} = useGoogleReCaptcha();
 
   const router = useRouter();
 
   const handleSubmit = async (e: FormEvent<SubscribeFormElement>) => {
     e.preventDefault();
     const {email, name} = e.currentTarget.elements;
-
-    if (!executeRecaptcha) {
-      return;
-    }
-
-    const token = await executeRecaptcha('newsletter_subscribe');
-
-    if (!token) {
-      return setError('Please verify that you are not a robot.');
-    }
 
     fetch('/api/newsletter', {
       method: 'POST',
@@ -42,7 +30,6 @@ const SubscribeForm = () => {
       body: JSON.stringify({
         email: email.value,
         name: name.value,
-        token,
       }),
     })
       .then(async (res: any) => {

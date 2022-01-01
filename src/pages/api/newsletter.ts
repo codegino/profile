@@ -18,21 +18,7 @@ type Data = {
 };
 
 const handler = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
-  const {email, name, token} = req.body;
-
-  const result = await fetch(
-    `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${token}`,
-  ).then(res => res.json());
-
-  if (
-    !result.success ||
-    result.action !== 'newsletter_subscribe' ||
-    result.score < 0.5
-  ) {
-    return res.status(400).json({
-      message: 'We detected that you might be a robot. Please try again.',
-    });
-  }
+  const {email, name} = req.body;
 
   // Easier to  hardcode
   const isSameOrigin = req.headers.origin !== 'https://codegino.com';

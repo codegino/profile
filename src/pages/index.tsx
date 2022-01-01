@@ -2,7 +2,6 @@ import type {GetStaticProps, InferGetStaticPropsType} from 'next';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import Script from 'next/script';
-import {GoogleReCaptchaProvider} from 'react-google-recaptcha-v3';
 import {FullScreenWrapper} from '../components/FullScreenWrapper';
 import Hero from '../components/Hero';
 import ResumeSummary from '../components/ResumeSummary';
@@ -127,14 +126,7 @@ export default function Home({
         </FullScreenWrapper>
       </main>
       <FullScreenWrapper className="bg-light" tr bl id="subscribe">
-        <GoogleReCaptchaProvider
-          reCaptchaKey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
-          scriptProps={{
-            appendTo: 'head',
-          }}
-        >
-          <SubscribeForm />
-        </GoogleReCaptchaProvider>
+        <SubscribeForm />
       </FullScreenWrapper>
     </>
   );
