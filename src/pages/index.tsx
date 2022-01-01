@@ -62,16 +62,7 @@ export default function Home({
           }`,
           }}
         />
-
-        {/* ABtesting.ai Code */}
-        <link rel="preconnect" href="https://external.abtesting.ai" />
       </Head>
-      {/* ABtesting.ai Code */}
-
-      <Script
-        strategy="afterInteractive"
-        src="https://js.abtesting.ai/ab.js?userid=5393"
-      />
 
       <Hero img={heroImage} svg={heroSvg} />
       <FullScreenWrapper tr bl>
