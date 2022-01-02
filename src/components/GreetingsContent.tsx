@@ -39,7 +39,7 @@ const GreetingsContent: FunctionComponent<{className?: string}> = () => {
             >
               {isTyping ? (
                 <Typist
-                  avgTypingDelay={0}
+                  avgTypingDelay={20}
                   onTypingDone={() => setIsGuideVisible(true)}
                 >
                   <StyledBsChevronRight />
