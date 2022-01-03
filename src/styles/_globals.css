@@ -42,7 +42,7 @@
   --color-primary-light: hsl(140, 100%, 20%);
 
   --color-light: hsl(0, 0%, 13%);
-  --color-light-lightest: hsl(0, 0%, 0%);
+  --color-lightest: hsl(0, 0%, 0%);
 
   --color-dark: hsl(0, 0%, 95%);
   --color-darkest: hsl(0, 0%, 100%);
