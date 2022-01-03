@@ -1,0 +1,183 @@
+---
+title: Search Engine Optimization Cheat Sheet
+description: Checklist of things to consider to improve the SEO of your website
+date: '2022-01-03'
+dateUpdated: '2022-01-03'
+bannerId: MWGzIChSl45u3WUY1Rogj
+bannerDescription: seo 
+tags: ['SEO']
+keywords: ['lighthouse SEO', 'search engine optimization']
+published: true
+---
+
+<TableOfContents
+  list={[
+    {href: '#introduction', label: 'Introduction'},
+    {href: '#others', label: 'Other accessibility consideration'},
+  ]}
+/>
+
+## TL;DR
+
+> Use [Lighthouse](https://developers.google.com/web/tools/lighthouse) to check your website's SEO. You will see the same exact information in the SEO report.
+
+### Introduction <Bookmark id="introduction" />
+
+SEO (Search Engine Optimization) is the process of making a website more visible in search results, also termed improving search rankings.
+
+<br />
+
+Search engines crawl the web, following links from page to page, and index the content found. When you search, the search engine displays the indexed content. Crawlers follow rules. If you follow those rules closely when doing SEO for a website, you give the site the best chances of showing up among the first results, increasing traffic and possibly revenue (for ecommerce and ads).
+
+<br />
+
+To learn more, check [this page](https://developer.mozilla.org/en-US/docs/Glossary/SEO), where I copy-pasted the content above.
+
+<br />
+
+### Prerequisite before focusing on SEO specific stuff <Bookmark id="prerequisite" />
+
+#### Optimize Your Page Speed
+
+Page speed is a measurement of how fast the content on your page loads. Here are some reasons why page speed matters:
+
+- If your site takes a long time to load, users will be frustrated which will result in a lower ranking in search results.
+
+- Google can crawl your unoptimized page, but the page may not be indexed or be visible in search results. (see [crawl budget](https://backlinko.com/hub/seo/crawl-budget))
+
+<br />
+
+To learn more, here's a link to the [Performance cheat sheet](https://codegino.com/blog/improve-website-performance).
+
+<br />
+
+### SEO specific guidelines
+
+- **Structured data is valid**
+
+Run the [Structured Data Testing Tool](https://developers.google.com/search/docs/advanced/structured-data) and the [Structured Data Linter](http://linter.structured-data.org/) to validate structured data.
+
+[Learn more](https://web.dev/structured-data/?utm_source=lighthouse&utm_medium=devtools)
+
+<br />
+
+- **Has a `<meta name="viewport">` tag with width or initial-scale**
+
+A `<meta name="viewport">` not only optimizes your app for mobile screen sizes, but also prevents a 300 millisecond delay to user inpu
+
+[Learn more](https://web.dev/viewport/?utm_source=lighthouse&utm_medium=devtools)
+
+
+<br />
+
+- **Document has a `<title>` element**
+
+The title gives screen reader users an overview of the page, and search engine users rely on it heavily to determine if a page is relevant to their search
+
+[Learn more](https://web.dev/document-title/?utm_source=lighthouse&utm_medium=devtools)
+
+<br />
+
+- **Document has a meta description**
+
+Meta descriptions may be included in search results to concisely summarize page content.
+
+[Learn more](https://web.dev/meta-description/?utm_source=lighthouse&utm_medium=devtools)
+
+<br />
+
+- **Page has successful HTTP status code**
+
+Pages with unsuccessful HTTP status codes may not be indexed properly
+
+[Learn more](https://web.dev/http-status-code/?utm_source=lighthouse&utm_medium=devtools)
+
+<br />
+
+- **Links have descriptive text**
+
+Descriptive link text helps search engines understand your content.
+
+[Learn more](https://web.dev/link-text/?utm_source=lighthouse&utm_medium=devtools)
+
+<br />
+
+- **Links are crawlable**
+
+Search engines may use `href` attributes on links to crawl websites. Ensure that the `href` attribute of anchor elements links to an appropriate destination, so more pages of the site can be discovered. 
+
+[Learn more](https://developers.google.com/search/docs/advanced/guidelines/links-crawlable)
+
+<br />
+
+- **Page isn’t blocked from indexing**
+
+Search engines are unable to include your pages in search results if they don't have permission to crawl them.
+
+[Learn more](https://web.dev/is-crawlable/?utm_source=lighthouse&utm_medium=devtools)
+
+<br />
+
+- **`robots.txt` is valid**
+
+If your robots.txt file is malformed, crawlers may not be able to understand how you want your website to be crawled or indexed.
+
+[Learn more](https://web.dev/robots-txt/?utm_source=lighthouse&utm_medium=devtools)
+
+<br />
+
+- **Image elements have `[alt]` attributes**
+
+Informative elements should aim for short, descriptive alternate text. Decorative elements can be ignored with an empty alt attribute.
+
+[Learn more](https://web.dev/image-alt/?utm_source=lighthouse&utm_medium=devtools)
+
+<br />
+
+- **Document has a valid `hreflang`**
+
+`hreflang` links tell search engines what version of a page they should list in search results for a given language or region. 
+
+[Learn more](https://web.dev/hreflang/?utm_source=lighthouse&utm_medium=devtools)
+
+<br />
+
+- **Document has a valid `rel=canonical`**
+
+Canonical links suggest which URL to show in search results.
+
+[Learn more](https://web.dev/canonical/?utm_source=lighthouse&utm_medium=devtools)
+
+<br />
+
+- **Document avoids plugins**
+
+Search engines can't index plugin content, and many devices restrict plugins or don't support them.
+
+[Learn more](https://web.dev/plugins/?utm_source=lighthouse&utm_medium=devtools)
+
+<br />
+
+- **Document uses legible font sizes**
+
+Font sizes less than 12px are too small to be legible and require mobile visitors to “pinch to zoom” in order to read. Strive to have >60% of page text ≥12px.
+
+[Learn more](https://web.dev/font-size/?utm_source=lighthouse&utm_medium=devtools)
+
+<br />
+
+- **Tap targets are sized appropriately**
+
+Interactive elements like buttons and links should be large enough (48x48px), and have enough space around them, to be easy enough to tap without overlapping onto other elements.
+
+[Learn more](https://web.dev/tap-targets/?utm_source=lighthouse&utm_medium=devtools)
+
+<br />
+
+> Additional note: The list above may not be that exhaustive as this article focused on Lighthouse's recommendations. There are other things to consider to improve SEO which I will try to compile in another article.
+
+### What's next (_More copy-pasting_)
+
+- [Performance](https://codegino.com/blog/improve-website-performance)
+- [Accessibility](https://codegino.com/blog/improve-website-accessibility)
+- Best practices
