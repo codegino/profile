@@ -47,7 +47,7 @@ export default function Home({
   return (
     <>
       <Head>
-        <title>Home Page | CodeGino | Carlo Gino Catapang</title>
+        <title>Carlo Gino Catapang | Code Gino | Home</title>
         {commonMetaTags('Home Page')}
 
         <script

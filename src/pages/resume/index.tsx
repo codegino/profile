@@ -32,7 +32,7 @@ export default function Resume({
   return (
     <>
       <Head>
-        <title>Check out my Resume Page | CodeGino | Carlo Gino Catapang</title>
+        <title>Carlo Gino Catapang | Code Gino | Resume</title>
         {commonMetaTags('Resume Page', '/resume')}
       </Head>
 

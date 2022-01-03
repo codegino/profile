@@ -44,7 +44,7 @@ const staticPages: SiteMapUrl[] = [
     slug: '/words',
     lastMod: '2021-12-29',
     priority: 0.7,
-    changeFrequency: 'monthly',
+    changeFrequency: 'daily',
   },
 ];
 
