@@ -43,9 +43,8 @@ const Layout: FunctionComponent = ({children, ...props}) => {
         .blog-layout h4 code,
         .blog-layout h5 code,
         .blog-layout h6 code {
-          background-color: var(--color-light);
-          padding: 0 var(--spacing-small);
-          border: 1px solid var(--color-light-dark);
+          padding: 0 var(--spacing-very-small);
+          border: 1px solid var(--color-primary-dark);
           border-radius: 2px;
           font-family: monospace;
         }

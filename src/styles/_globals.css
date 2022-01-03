@@ -25,10 +25,10 @@
   --color-primary-dark: hsl(140, 100%, 20%);
 
   --color-dark: hsl(140, 100%, 3%);
-  --color-dark-dark: hsl(0, 0%, 0%);
+  --color-darkest: hsl(0, 0%, 0%);
 
   --color-light: hsl(0, 0%, 95%);
-  --color-light-light: hsl(0, 0%, 100%);
+  --color-lightest: hsl(0, 0%, 100%);
 
   --color-foreground: hsl(0, 0%, 0%);
   --color-background: hsl(0, 0%, 100%);
@@ -42,10 +42,10 @@
   --color-primary-light: hsl(140, 100%, 20%);
 
   --color-light: hsl(0, 0%, 13%);
-  --color-light-light: hsl(0, 0%, 0%);
+  --color-light-lightest: hsl(0, 0%, 0%);
 
   --color-dark: hsl(0, 0%, 95%);
-  --color-dark-dark: hsl(0, 0%, 100%);
+  --color-darkest: hsl(0, 0%, 100%);
 }
 
 html,
