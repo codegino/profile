@@ -616,10 +616,10 @@
   resolved "https://registry.yarnpkg.com/@rushstack/eslint-patch/-/eslint-patch-1.1.0.tgz#7f698254aadf921e48dda8c0a6b304026b8a9323"
   integrity sha512-JLo+Y592QzIE+q7Dl2pMUtt4q8SKYI5jDrZxrozEQxnGVOyYE+GWK9eLkwTaeN9DDctlaRAQ3TBmzZ1qdLE30A==
 
-"@sendinblue/client@3.0.1":
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/@sendinblue/client/-/client-3.0.1.tgz#24e3e92f7d8de4dafc2ef43f095edbb2f1811d22"
-  integrity sha512-b1MIqSecq34vNzCruolL2db6xwr+NBW1cyWKgFity+CQeOrrQ8cuKYFLPGo7P0gTTi23dU6zmcoEvVHGZHoqxg==
+"@sendinblue/client@3.1.0":
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/@sendinblue/client/-/client-3.1.0.tgz#641e29348edbcf33acfef3fe6f25c68daebe368f"
+  integrity sha512-tt0pkPTTk2fy+K5h04Q8rQ80OW1YXosvIiwrO9yrdYNYK4WpBeJ/4bN00Z7uKl0NfKvRMVJk2JjqJi2g7QtArA==
   dependencies:
     bluebird "^3.5.0"
     lodash "^4.17.21"
