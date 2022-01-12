@@ -15,7 +15,7 @@
     "clsx": "1.1.1",
     "contentful": "9.1.5",
     "isomorphic-dompurify": "0.17.0",
-    "next": "12.0.7",
+    "next": "12.0.8",
     "next-mdx-remote": "3.0.8",
     "prism-react-renderer": "1.2.1",
     "react": "17.0.2",
@@ -31,7 +31,7 @@
     "use-dark-mode": "2.3.1"
   },
   "devDependencies": {
-    "@next/bundle-analyzer": "12.0.7",
+    "@next/bundle-analyzer": "12.0.8",
     "@trivago/prettier-plugin-sort-imports": "3.1.1",
     "@types/react": "17.0.38",
     "@types/react-gtm-module": "2.0.1",
@@ -41,7 +41,7 @@
     "cross-env": "7.0.3",
     "cz-conventional-changelog": "3.3.0",
     "eslint": "8.6.0",
-    "eslint-config-next": "12.0.7",
+    "eslint-config-next": "12.0.8",
     "eslint-config-prettier": "8.3.0",
     "eslint-plugin-jsx-a11y": "6.5.1",
     "gray-matter": "4.0.3",
