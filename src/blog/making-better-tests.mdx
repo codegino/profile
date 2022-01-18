@@ -1,0 +1,345 @@
+---
+title: Creating more effective tests
+description: How to get more value by writing less tests
+date: '2022-01-21'
+dateUpdated: '2022-01-21'
+bannerId: 7E2ZI7pmLjYwclCitRLek
+bannerDescription: eye test
+tags: ['testing']
+keywords: ['test', 'jest', 'react']
+published: true
+---
+
+
+<HalfScreen />
+
+# Problem
+
+<h2 style={{textAlign: 'center'}}>Tests that takes forever to run</h2>
+
+<Img src="https://xvcorfohslswcnlfcndv.supabase.in/storage/v1/object/sign/img/testing-meme.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWcvdGVzdGluZy1tZW1lLnBuZyIsImlhdCI6MTY0MjUyMTA5NCwiZXhwIjoxOTU3ODgxMDk0fQ.kBnV7cTpCxx70qup9RozOjiSNLLx4Ju0h_V15NnHfg0" />
+
+
+<HalfScreen />
+
+
+## Why do we care?
+
+> Having a well defined tests, not only give the business-side a sense of product maintainability,
+> it also give developers more confidence to make changes without breaking crucial functionality.
+
+> As automation practices(CI/CD, DevOps) become common now, it is important to know that having an automated test is one factor to make it work.
+
+<Img src="https://xvcorfohslswcnlfcndv.supabase.in/storage/v1/object/sign/img/cicd-pipelines_devops.webp?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWcvY2ljZC1waXBlbGluZXNfZGV2b3BzLndlYnAiLCJpYXQiOjE2NDI1MTY2NDYsImV4cCI6MTk1Nzg3NjY0Nn0.DZtesM4TZKTnzx_-w8Ec8I_o6NTirUZLfvaygddZnB0" />
+
+
+<HalfScreen />
+
+
+
+
+## Why is the test slow? - Too many tests
+
+> Due to the hardcore practice of TDD, early adopters of the convention tried to write tests for everything (even the trivial ones).
+
+```jsx
+test('Initialize OrderLog component', () => {
+	const props = {
+		url: 'customer-support/orders/order-log/10085807',
+		match: {
+			params: { id: 10085807 },
+		},
+	}
+	const wrapper = shallow(<OrderLog {...props} />)
+
+	expect(wrapper).toBeTruthy()
+})
+```
+
+<HalfScreen />
+
+## As days, weeks, months, and years pass, developers come and go; new developers start refactoring the code according to what they see fit.
+## However, some developers do not dare touch the unit tests that are already working.
+
+
+<br />
+
+### How come those "orphan test case" still exists?
+
+<HalfScreen />
+
+<Img src="https://i.imgur.com/tDHXanY.gif" />
+
+<HalfScreen />
+
+# What is the solution???
+
+<HalfScreen />
+
+# Design your tests to a level where you can get around 90% coverage with lesser tests
+
+<HalfScreen />
+
+# It is easier said than done, isn't it?
+
+<HalfScreen />
+
+# Demo of the feature we are going to test
+
+<HalfScreen />
+
+# How to create tests for cases with multiple scenarios
+
+1. ### Create a setup function that will resemble the initial state of the application
+2. ### Mock the database response using tools such as [MSW](https://mswjs.io/)
+3. ### Create a utility function for repeated tasks
+4. ### Create a test case for each scenario
+
+
+<HalfScreen />
+
+# Create a setup function that will resemble the initial state of the application
+
+```tsx add-challenge.test
+function renderAddChallengePage(props = {}, renderOptions = {}) {
+  return render(
+    <AddChallengePage
+      history={{
+        push: mockRouterPush,
+      }}
+      {...props}
+    />,
+		{
+			wrapper: RouterWrapper,
+    	...renderOptions
+		}
+  )
+}
+
+const RouterWrapper = ({ children }) => {
+  return (
+    <MemoryRouter initialEntries={['/marketing/challenges']}>
+      {children}
+    </MemoryRouter>
+  )
+}
+```
+
+<HalfScreen />
+
+# Mock the database response using tools such as [MSW](https://mswjs.io/)
+
+```ts fileName=add-challenge.test
+const server = setupServer(
+  rest.get(`${GO_HOST}/account-service/store`, async (req, res, ctx) => {
+    return res(ctx.json(mockStores))
+  }),
+  rest.post(
+    `${STORE_TECH_HOST}/campaigns/v1.0/campaigns`,
+    async (req, res, ctx) => {
+      return res(ctx.json({message: 'CREATED'}))
+    }
+  ),
+  rest.get(`${GO_HOST}/ef-customer-core/tags`, async (req, res, ctx) => {
+    const { query, limit } = req.url.searchParams
+
+    const response = ctx.json({ tags: [
+        createMockTag({ id: 1, name: faker.lorem.word() }),
+        createMockTag({ id: 2, name: faker.lorem.word()  }),
+    ]})
+
+    if (query || limit) {
+      return res(response)
+    }
+    return res(response)
+  }),
+)
+```
+
+<HalfScreen />
+
+# Create a utility function for repeated tasks
+
+```tsx fileName=fill-challenge-form
+export const fillChallengeForm = () => {
+  userEvent.type(screen.getByLabelText(/challenge's type/i), faker.lorem.word())
+  userEvent.type(
+    screen.getByLabelText(/challenge's title/i),
+    faker.lorem.words()
+  )
+  userEvent.type(
+    screen.getByLabelText(/max linkpoints cap/i),
+    faker.datatype.number()
+  )
+
+  userEvent.type(screen.getByLabelText(/start date/i), faker.date.past())
+  userEvent.type(screen.getByLabelText(/end date/i), faker.date.future())
+
+  userEvent.type(screen.getByLabelText(/upload icon/i), faker.image.imageUrl())
+  userEvent.type(
+    screen.getByLabelText(/upload banner/i),
+    faker.image.imageUrl()
+  )
+
+  // Add a rule
+  userEvent.click(screen.getByText(/add rule/i))
+
+  userEvent.type(screen.getByLabelText(/rules title/i), faker.lorem.words())
+  userEvent.type(screen.getByLabelText(/min\. spend/i), faker.datatype.number())
+  userEvent.type(
+    screen.getByLabelText(/bonus linkpoints/i),
+    faker.datatype.number()
+  )
+
+  // Add a stage
+  userEvent.click(screen.getByText(/add stage/i))
+
+  userEvent.selectOptions(
+    screen.getByLabelText(/CTA Button Text on Screen/i),
+    'Scan'
+  )
+  userEvent.selectOptions(
+    screen.getByLabelText(/^Landing Page$/i),
+    'https://test.com/url_a'
+  )
+
+  // Add a tip
+  userEvent.click(screen.getByText(/add tip/i))
+  userEvent.type(screen.getByLabelText(/bullet point/i), faker.lorem.text())
+  userEvent.type(screen.getByLabelText(/tips title/i), faker.lorem.words())
+  userEvent.type(
+    screen.getByLabelText(/campaign page url/i),
+    faker.internet.url()
+  )
+}
+```
+
+<HalfScreen />
+
+# Create a test case for each scenario
+
+```tsx
+test('Create new challenge with rewardsType = fixed && challengeType = order', async () => {
+  const page = renderAddChallengePage()
+
+  fillChallengeForm()
+
+  userEvent.click(screen.getByText('Fixed'))
+  userEvent.selectOptions((screen.getByPlaceholderText(/challenge type/i), 'Order'))
+  userEvent.click(screen.getByText(/submit/i))
+
+  await waitForLoadingToShowThenHide(page)
+
+  expect(apiPostSpy).toHaveBeenCalledWith(
+    expect.objectContaining({
+      campaignType: CAMPAIGN_TYPE.MS_LP_FIXED,
+      rules: [{ awardAmount: 1, minOrderAmount: 1 }],
+    })
+  )
+
+  expect(mockRouterPush).toHaveBeenCalledWith('/marketing/challenges')
+})
+```
+
+<HalfScreen />
+
+# Running the tests
+
+<Img src="https://xvcorfohslswcnlfcndv.supabase.in/storage/v1/object/public/gif/Running-challenges-tests.gif" />
+
+<br />
+<br />
+<br />
+
+> ### 49 test cases
+>
+> 5.494(total execution time) - 3(loading time) = 2.494s
+>
+> 2.5/49 = x/1000
+>
+
+<HalfScreen />
+
+<Img src="https://xvcorfohslswcnlfcndv.supabase.in/storage/v1/object/sign/img/calculating-meme.jpeg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWcvY2FsY3VsYXRpbmctbWVtZS5qcGVnIiwiaWF0IjoxNjQyNTE0NTUzLCJleHAiOjE5NTc4NzQ1NTN9.-hQ5aoSi2S4EnAW4wBybJtiXu8TYdCFt3gCogSNUJCM" />
+<p style={{textAlign: 'center'}}>computing...</p>
+
+<br />
+<br />
+
+> x = 51.20
+
+<HalfScreen />
+
+# How about the coverage?
+
+<Img width="1397" height="146" src="https://xvcorfohslswcnlfcndv.supabase.in/storage/v1/object/sign/img/Screenshot 2022-01-18 at 3.04.52 PM.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWcvU2NyZWVuc2hvdCAyMDIyLTAxLTE4IGF0IDMuMDQuNTIgUE0ucG5nIiwiaWF0IjoxNjQyNTE0MDI4LCJleHAiOjE5NTc4NzQwMjh9.pPaFWrTTQ64jpmnQKHLPq3pAJGWzWSkKRfdpFHdoeu4" />
+
+<HalfScreen />
+
+
+
+<HalfScreen />
+
+# Wait a minute!
+
+<h2 style={{textAlign: 'center'}}>Those are not unit tests...</h2>
+
+<HalfScreen />
+
+# Behavior Based Tests
+
+<h2 style={{textAlign: 'center'}}>Test Driven Development(TDD) ➡️ Behavior Driven Development(BDD)</h2>
+
+<HalfScreen />
+
+# When do we use unit testing that we once knew?
+
+<HalfScreen />
+
+# For edge cases that is impossible to replicate or does not make any sense
+
+<HalfScreen />
+
+```js fileName=generate-challenge.util
+const fromApiFormat = ({ customerSegment }, segmentFields) => {
+	// ...
+  let updatedCustomerSegment
+
+	switch (customerSegment) {
+		case 'new':
+			updatedCustomerSegment = segmentFields.new
+			break
+		case 'returning':
+			updatedCustomerSegment = segmentFields.returning
+			break
+		// ...other switch cases
+		default:
+			throw new Error('Unhandled customer segment')
+	}
+
+  // ...
+}
+```
+
+<br />
+<br />
+
+```ts fileName=generate-challenge.util.test
+test('should not throw an error when some fields are missing', () => {
+  const mockChallenge = createMockChallenge({
+    customerSegment: undefined,
+  })
+  expect(() => fromApiFormat(mockChallenge)).toThrow('Parsing error')
+})
+```
+
+<HalfScreen />
+
+# Conclusion
+
+- ### Tests serve as documentation of feature requirements
+- ### Tests are refactor friendly
+- ### Faster
+- ### Less code, more coverage
+
+<HalfScreen />
