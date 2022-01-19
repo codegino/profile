@@ -15,7 +15,7 @@ published: true
 
 # Problem
 
-<h2 style={{textAlign: 'center'}}>Tests that takes forever to run</h2>
+<h2 style={{textAlign: 'center'}}>Tests that take forever to run</h2>
 
 <Img src="https://xvcorfohslswcnlfcndv.supabase.in/storage/v1/object/sign/img/testing-meme.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWcvdGVzdGluZy1tZW1lLnBuZyIsImlhdCI6MTY0MjUyMTA5NCwiZXhwIjoxOTU3ODgxMDk0fQ.kBnV7cTpCxx70qup9RozOjiSNLLx4Ju0h_V15NnHfg0" />
 
@@ -23,22 +23,33 @@ published: true
 <HalfScreen />
 
 
-## Why do we care?
+# Why do we care?
 
-> Having a well defined tests, not only give the business-side a sense of product maintainability,
-> it also give developers more confidence to make changes without breaking crucial functionality.
+### Having a well-defined tests, not only give the business-side a sense of product maintainability, it also give developers more confidence to make changes without breaking crucial functionality.
 
 > As automation practices(CI/CD, DevOps) become common now, it is important to know that having an automated test is one factor to make it work.
 
 <Img src="https://xvcorfohslswcnlfcndv.supabase.in/storage/v1/object/sign/img/cicd-pipelines_devops.webp?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWcvY2ljZC1waXBlbGluZXNfZGV2b3BzLndlYnAiLCJpYXQiOjE2NDI1MTY2NDYsImV4cCI6MTk1Nzg3NjY0Nn0.DZtesM4TZKTnzx_-w8Ec8I_o6NTirUZLfvaygddZnB0" />
 
+<HalfScreen />
+
+# Is unit testing slow?
 
 <HalfScreen />
 
+# Unit test is supposed to be fast.
 
+## If your test is slow, you are probably doing something wrong.
 
+<HalfScreen />
 
-## Why is the test slow? - Too many tests
+# Why tests are running slow in my pipeline?
+
+<h2 style={{textAlign: 'center'}}>Too many tests...</h2>
+
+<HalfScreen />
+
+# Concerete example
 
 > Due to the hardcore practice of TDD, early adopters of the convention tried to write tests for everything (even the trivial ones).
 
@@ -58,13 +69,14 @@ test('Initialize OrderLog component', () => {
 
 <HalfScreen />
 
+
 ## As days, weeks, months, and years pass, developers come and go; new developers start refactoring the code according to what they see fit.
 ## However, some developers do not dare touch the unit tests that are already working.
 
 
 <br />
 
-### How come those "orphan test case" still exists?
+### How come those "orphaned test case" still exists?
 
 <HalfScreen />
 
@@ -84,15 +96,57 @@ test('Initialize OrderLog component', () => {
 
 <HalfScreen />
 
+# How can we get a 100% coverage?
+
+```js
+const oneOutput = () => 'foo';
+
+// test file
+test('oneOutput() should return foo', () => {
+	expect(oneOutput()).toBe('foo');
+})
+```
+
+<HalfScreen />
+
+# Conditional branching
+
+```js
+const twoOutputs = (bool) => {
+  if (bool === true) {
+    return 'foo';
+  }
+
+  return 'bar';
+}
+
+// test files
+test('twoOutputs(true) should return foo', () => {
+	expect(twoOutputs(true)).toBe('foo');
+})
+
+test('twoOutputs(false) should return foo', () => {
+	expect(twoOutputs(false)).toBe('bar');
+})
+```
+
+<HalfScreen />
+
 # Demo of the feature we are going to test
+
+<h2 style={{textAlign: 'center'}}>Marketing Challenges Campaign</h2>
+
+- ### Challenges Listing Page
+- ### Add Challenge Page
+- ### Edit(with Delete) Challenge Page
 
 <HalfScreen />
 
 # How to create tests for cases with multiple scenarios
 
 1. ### Create a setup function that will resemble the initial state of the application
-2. ### Mock the database response using tools such as [MSW](https://mswjs.io/)
-3. ### Create a utility function for repeated tasks
+2. ### Mock the server responses using tools such as [MSW](https://mswjs.io/)
+3. ### Create a utility function for repeated behavior
 4. ### Create a test case for each scenario
 
 
@@ -100,7 +154,7 @@ test('Initialize OrderLog component', () => {
 
 # Create a setup function that will resemble the initial state of the application
 
-```tsx add-challenge.test
+```jsx add-challenge.test
 function renderAddChallengePage(props = {}, renderOptions = {}) {
   return render(
     <AddChallengePage
@@ -108,11 +162,7 @@ function renderAddChallengePage(props = {}, renderOptions = {}) {
         push: mockRouterPush,
       }}
       {...props}
-    />,
-		{
-			wrapper: RouterWrapper,
-    	...renderOptions
-		}
+    />, { wrapper: RouterWrapper, ...renderOptions}
   )
 }
 
@@ -129,7 +179,7 @@ const RouterWrapper = ({ children }) => {
 
 # Mock the database response using tools such as [MSW](https://mswjs.io/)
 
-```ts fileName=add-challenge.test
+```js fileName=add-challenge-mock-server
 const server = setupServer(
   rest.get(`${GO_HOST}/account-service/store`, async (req, res, ctx) => {
     return res(ctx.json(mockStores))
@@ -158,7 +208,7 @@ const server = setupServer(
 
 <HalfScreen />
 
-# Create a utility function for repeated tasks
+# Create a utility function for repeated behavior
 
 ```tsx fileName=fill-challenge-form
 export const fillChallengeForm = () => {
@@ -218,7 +268,7 @@ export const fillChallengeForm = () => {
 
 # Create a test case for each scenario
 
-```tsx
+```jsx fileName=add-challenge.test
 test('Create new challenge with rewardsType = fixed && challengeType = order', async () => {
   const page = renderAddChallengePage()
 
@@ -226,6 +276,7 @@ test('Create new challenge with rewardsType = fixed && challengeType = order', a
 
   userEvent.click(screen.getByText('Fixed'))
   userEvent.selectOptions((screen.getByPlaceholderText(/challenge type/i), 'Order'))
+
   userEvent.click(screen.getByText(/submit/i))
 
   await waitForLoadingToShowThenHide(page)
@@ -238,6 +289,108 @@ test('Create new challenge with rewardsType = fixed && challengeType = order', a
   )
 
   expect(mockRouterPush).toHaveBeenCalledWith('/marketing/challenges')
+})
+```
+
+<HalfScreen />
+
+# Or you prefer to test this way
+
+```jsx fileName=Details.test
+test('It should not render delivery order actions menu for completed order', async () => {
+	jest.mock('../../../../lib/api', (orderResp) => {
+			const mock = require('../../../../../mocks')
+			return jest.fn(function () {
+					(this.cancel = () => { }),
+							(this.get = () =>
+									Promise.resolve({
+											code: 200,
+											status: 'SUCCESS',
+											data: {
+													config: {
+															communication: {
+																	allowCall: null,
+																	allowEmail: null,
+																	allowSms: null
+															}
+													},
+											},
+											deliveryOrder: mock.deliveryOrderResponse.deliveryOrder
+									})
+							),
+							(this.post = () =>
+									Promise.resolve({ code: 200 })
+							)
+			})
+	})
+
+	const props = {
+			url: 'operations/delivery-orders/70032370',
+			router: {
+					match: {
+							params: { id: 70032370 },
+							url: 'operations/delivery-orders/70032370',
+					}
+			},
+			history: ['/']
+	}
+
+	const DeliveryOrderDetailsView = require('./index').default
+	const { container, getByText,
+			getByLabelText, getByTestId } = render(
+					<MemoryRouter>
+							<DeliveryOrderDetailsView
+									{...props}
+							/>
+					</MemoryRouter>
+			)
+
+	await waitForExpect(() => {
+		expect(getByText('70032370')).toBeInTheDocument()
+		expect(getByText('Pending')).toBeInTheDocument()
+		expect(container.querySelector(`div[class='dropdown-menu hidden']`)).toBeInTheDocument()
+	})
+
+	const modalPortal = document.createElement('div');
+	modalPortal.setAttribute('id', 'portal');
+	document.body.append(modalPortal);
+
+	const openAction = getByTestId('order-status-actions-icon-web');
+	fireEvent.click(openAction);
+	await waitForExpect(() => {
+			expect(container.querySelector(`div[class='dropdown-menu']`)).toBeInTheDocument()
+			expect(getByText('Pack Order')).toBeInTheDocument()
+	})
+
+	const packOrder = getByText('Pack Order')
+	fireEvent.click(packOrder)
+
+	await waitForExpect(() => {
+			expect(getByText('Submit')).toBeInTheDocument()
+			expect(getByText('Full Pick')).toBeInTheDocument()
+	})
+	fireEvent.click(getByLabelText('Full Pick'))
+
+	await waitForExpect(() => {
+			expect(getByText('Submit')).toBeInTheDocument()
+	})
+
+	fireEvent.click(getByTestId('pack-order-submit'))
+
+	expect(
+		container.querySelector(`span[class='dropdown-toggle']`)
+	).not.toBeInTheDocument()
+	expect(
+		container.querySelector(`div[class='dropdown-menu hidden']`)
+	).not.toBeInTheDocument()
+	expect(
+		container.querySelector(`div[class='dropdown-menu']`)
+	).not.toBeInTheDocument()
+	await waitForExpect(() => {
+		expect(getByText('70032370')).toBeInTheDocument()
+		expect(getByText('Completed')).toBeInTheDocument()
+		expect(container.querySelector(`div[class='dropdown-menu']`)).not.toBeInTheDocument()
+	})
 })
 ```
 
@@ -276,7 +429,9 @@ test('Create new challenge with rewardsType = fixed && challengeType = order', a
 
 <HalfScreen />
 
+# How are we able to achieve this with fewer test cases?
 
+<h2 style={{textAlign: 'center'}}>Write only essential code to make a feature test pass</h2>
 
 <HalfScreen />
 
@@ -337,9 +492,23 @@ test('should not throw an error when some fields are missing', () => {
 
 # Conclusion
 
+## Requirements
+
+- ### Write only tests that reflect the business logic
+- ### Write only unit tests for edge cases
+- ### Utilize modern tooling
+
+<br />
+
+## Benefits
+
 - ### Tests serve as documentation of feature requirements
 - ### Tests are refactor friendly
 - ### Faster
 - ### Less code, more coverage
+
+<HalfScreen />
+
+<Img src="https://xvcorfohslswcnlfcndv.supabase.in/storage/v1/object/public/gif/ThankYouGif.gif" />
 
 <HalfScreen />

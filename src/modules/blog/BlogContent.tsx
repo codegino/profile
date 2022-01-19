@@ -15,7 +15,7 @@ const CodeBlock = dynamic(() => import('./CodeBlock'), {
   ssr: false,
 });
 
-const HalfScreen = () => <div className="h-[50vh]">&nbsp;</div>;
+const HalfScreen = () => <div className="h-[60vh]">&nbsp;</div>;
 
 // Custom components/renderers to pass to MDX.
 // Since the MDX files aren't loaded by webpack, they have no knowledge of how
