@@ -59,9 +59,7 @@ published: true
 
 <HalfScreen />
 
-# Concerete example
-
-<h3 style={{textAlign: 'center'}}>Due to the hardcore practice of TDD, early adopters of the convention tried to write tests for everything (even the trivial ones).</h3>
+# Concerete examples
 
 ```jsx
 test('Initialize OrderLog component', () => {
@@ -97,13 +95,8 @@ test('Product Form should update store status', () => {
 <HalfScreen />
 
 
-## As days, weeks, months, and years pass, developers come and go; new developers start refactoring the code according to what they see fit.
-## However, some developers do not dare touch the unit tests that are already working.
-
-
-<br />
-
-### How come those "orphaned test case" still exists?
+## As time passes, developers come and go; other developers add features, fix bugs, and add new tests.
+## However, some developers won't dare touch the old unit tests that are already working.
 
 <HalfScreen />
 
@@ -118,7 +111,6 @@ test('Product Form should update store status', () => {
 # Fastest solution
 
 <Img src="https://xvcorfohslswcnlfcndv.supabase.in/storage/v1/object/sign/img/meme-there-is-no-test-production-only-there-is.jpeg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWcvbWVtZS10aGVyZS1pcy1uby10ZXN0LXByb2R1Y3Rpb24tb25seS10aGVyZS1pcy5qcGVnIiwiaWF0IjoxNjQyNjYxNjg3LCJleHAiOjE5NTgwMjE2ODd9.SJ9Ce9Djit9VGaZZK7phFehEgMdcx2N65LcmCjmwk7Y" />
-
 
 <HalfScreen />
 
@@ -138,49 +130,12 @@ test('Product Form should update store status', () => {
 
 <HalfScreen />
 
-# How can we get a 100% coverage?
-
-```js
-const oneOutput = () => 'foo';
-
-// test file
-test('oneOutput() should return foo', () => {
-	expect(oneOutput()).toBe('foo');
-})
-```
-
-<HalfScreen />
-
-# Conditional branching
-
-```js
-const twoOutputs = (bool) => {
-  if (bool === true) {
-    return 'foo';
-  }
-
-  return 'bar';
-}
-
-// test files
-test('twoOutputs(true) should return foo', () => {
-	expect(twoOutputs(true)).toBe('foo');
-})
-
-test('twoOutputs(false) should return foo', () => {
-	expect(twoOutputs(false)).toBe('bar');
-})
-```
-
-<HalfScreen />
 
 # Demo of the feature we are going to test
 
 <h2 style={{textAlign: 'center'}}>Marketing Challenges Campaign</h2>
 
-- ### Challenges Listing Page
-- ### Add Challenge Page
-- ### Edit(with Delete) Challenge Page
+<h3 style={{textAlign: 'center'}}>Guess how many tests it needs to get a high coverage</h3>
 
 <HalfScreen />
 
@@ -190,108 +145,6 @@ test('twoOutputs(false) should return foo', () => {
 2. ### Mock the server responses using tools such as [MSW](https://mswjs.io/)
 3. ### Create a utility function for repeated behavior
 4. ### Create a test case for each scenario
-
-<HalfScreen />
-
-# Or you prefer to test this way
-
-```jsx fileName=Details.test
-test('It should not render delivery order actions menu for completed order', async () => {
-	jest.mock('../../../../lib/api', (orderResp) => {
-			const mock = require('../../../../../mocks')
-			return jest.fn(function () {
-					(this.cancel = () => { }),
-							(this.get = () =>
-									Promise.resolve({
-											code: 200,
-											status: 'SUCCESS',
-											data: {
-													config: {
-															communication: {
-																	allowCall: null,
-																	allowEmail: null,
-																	allowSms: null
-															}
-													},
-											},
-											deliveryOrder: mock.deliveryOrderResponse.deliveryOrder
-									})
-							),
-							(this.post = () =>
-									Promise.resolve({ code: 200 })
-							)
-			})
-	})
-
-	const props = {
-			url: 'operations/delivery-orders/70032370',
-			router: {
-					match: {
-							params: { id: 70032370 },
-							url: 'operations/delivery-orders/70032370',
-					}
-			},
-			history: ['/']
-	}
-
-	const DeliveryOrderDetailsView = require('./index').default
-	const { container, getByText,
-			getByLabelText, getByTestId } = render(
-					<MemoryRouter>
-							<DeliveryOrderDetailsView
-									{...props}
-							/>
-					</MemoryRouter>
-			)
-
-	await waitForExpect(() => {
-		expect(getByText('70032370')).toBeInTheDocument()
-		expect(getByText('Pending')).toBeInTheDocument()
-		expect(container.querySelector(`div[class='dropdown-menu hidden']`)).toBeInTheDocument()
-	})
-
-	const modalPortal = document.createElement('div');
-	modalPortal.setAttribute('id', 'portal');
-	document.body.append(modalPortal);
-
-	const openAction = getByTestId('order-status-actions-icon-web');
-	fireEvent.click(openAction);
-	await waitForExpect(() => {
-			expect(container.querySelector(`div[class='dropdown-menu']`)).toBeInTheDocument()
-			expect(getByText('Pack Order')).toBeInTheDocument()
-	})
-
-	const packOrder = getByText('Pack Order')
-	fireEvent.click(packOrder)
-
-	await waitForExpect(() => {
-			expect(getByText('Submit')).toBeInTheDocument()
-			expect(getByText('Full Pick')).toBeInTheDocument()
-	})
-	fireEvent.click(getByLabelText('Full Pick'))
-
-	await waitForExpect(() => {
-			expect(getByText('Submit')).toBeInTheDocument()
-	})
-
-	fireEvent.click(getByTestId('pack-order-submit'))
-
-	expect(
-		container.querySelector(`span[class='dropdown-toggle']`)
-	).not.toBeInTheDocument()
-	expect(
-		container.querySelector(`div[class='dropdown-menu hidden']`)
-	).not.toBeInTheDocument()
-	expect(
-		container.querySelector(`div[class='dropdown-menu']`)
-	).not.toBeInTheDocument()
-	await waitForExpect(() => {
-		expect(getByText('70032370')).toBeInTheDocument()
-		expect(getByText('Completed')).toBeInTheDocument()
-		expect(container.querySelector(`div[class='dropdown-menu']`)).not.toBeInTheDocument()
-	})
-})
-```
 
 <HalfScreen />
 
@@ -473,7 +326,7 @@ test('Create new challenge with rewardsType = fixed && challengeType = order', a
 
 <HalfScreen />
 
-# How are we able to achieve this with fewer test cases?
+# How were we able to achieve this with fewer test cases?
 
 <HalfScreen />
 
