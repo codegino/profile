@@ -93,7 +93,7 @@ test('Product Form should update store status', () => {
 
 	productForm.updateStoreStatus(['4712052989979'], true, 4, 0);
 
-	expect(productForm.getStatus()).toBe('4712052989979')
+	expect(productForm.getStatus('4712052989979')).toBe(true)
 });
 ```
 
