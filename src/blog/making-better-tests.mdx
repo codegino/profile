@@ -15,19 +15,29 @@ published: true
 
 # Problem
 
-<h2 style={{textAlign: 'center'}}>Tests that take forever to run</h2>
+<h2 style={{textAlign: 'center'}}>Unit tests that take forever to run</h2>
 
 <Img src="https://xvcorfohslswcnlfcndv.supabase.in/storage/v1/object/sign/img/testing-meme.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWcvdGVzdGluZy1tZW1lLnBuZyIsImlhdCI6MTY0MjUyMTA5NCwiZXhwIjoxOTU3ODgxMDk0fQ.kBnV7cTpCxx70qup9RozOjiSNLLx4Ju0h_V15NnHfg0" />
 
+<HalfScreen />
+
+# Why do even we care?
+
+<Img src="https://xvcorfohslswcnlfcndv.supabase.in/storage/v1/object/sign/img/Unit-test-meme-2.jpeg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWcvVW5pdC10ZXN0LW1lbWUtMi5qcGVnIiwiaWF0IjoxNjQyNjYxOTU2LCJleHAiOjE5NTgwMjE5NTZ9.dv9LyIcfFkWannO1cBMKAlo7v56Bat-nY-PIiLeOHBo" />
 
 <HalfScreen />
 
+# Fastest solution
 
-# Why do we care?
+<Img src="https://xvcorfohslswcnlfcndv.supabase.in/storage/v1/object/sign/img/meme-there-is-no-test-production-only-there-is.jpeg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWcvbWVtZS10aGVyZS1pcy1uby10ZXN0LXByb2R1Y3Rpb24tb25seS10aGVyZS1pcy5qcGVnIiwiaWF0IjoxNjQyNjYxNjg3LCJleHAiOjE5NTgwMjE2ODd9.SJ9Ce9Djit9VGaZZK7phFehEgMdcx2N65LcmCjmwk7Y" />
 
-### Having a well-defined tests, not only give the business-side a sense of product maintainability, it also give developers more confidence to make changes without breaking crucial functionality.
+<HalfScreen />
 
-> As automation practices(CI/CD, DevOps) become common now, it is important to know that automated test is a key factor to make it work.
+# Having a well-defined tests, not only give the business-side a sense of product maintainability, it also give developers the confidence to make changes without breaking crucial functionality.
+
+<HalfScreen />
+
+# As automation practices(CI/CD, DevOps) become common now, it is important to know that automated test is a key factor to make it more effective.
 
 <Img src="https://xvcorfohslswcnlfcndv.supabase.in/storage/v1/object/sign/img/cicd-pipelines_devops.webp?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWcvY2ljZC1waXBlbGluZXNfZGV2b3BzLndlYnAiLCJpYXQiOjE2NDI1MTY2NDYsImV4cCI6MTk1Nzg3NjY0Nn0.DZtesM4TZKTnzx_-w8Ec8I_o6NTirUZLfvaygddZnB0" />
 
@@ -54,7 +64,7 @@ published: true
 
 # Concerete example
 
-<h3 style={{textAlign: 'center'}}>Due to the hardcore practice of TDD, early adopters of the convention tried to write tests everything (even the trivial ones).</h3>
+<h3 style={{textAlign: 'center'}}>Due to the hardcore practice of TDD, early adopters of the convention tried to write tests for everything (even the trivial ones).</h3>
 
 ```jsx
 test('Initialize OrderLog component', () => {
@@ -68,6 +78,23 @@ test('Initialize OrderLog component', () => {
 
 	expect(wrapper).toBeTruthy()
 })
+```
+
+<br />
+<br />
+<br />
+
+```js
+test('Product Form should update store status', () => {
+	const productForm = new ProductForm({});
+
+	productForm.setState = () => {};
+	productForm.updateState = () => {};
+
+	productForm.updateStoreStatus(['4712052989979'], true, 4, 0);
+
+	expect(productForm.getStatus()).toBe('4712052989979')
+});
 ```
 
 <HalfScreen />
@@ -93,7 +120,7 @@ test('Initialize OrderLog component', () => {
 
 # ⛔️ Warning ⛔️
 
-<h2 style={{textAlign: 'center'}}>Other's might find this subjective</h2>
+<h2 style={{textAlign: 'center'}}>Other devs might find this subjective</h2>
 
 <h3 style={{textAlign: 'center'}}>Viewer's discretion is advised</h3>
 
@@ -154,7 +181,7 @@ test('twoOutputs(false) should return foo', () => {
 
 <HalfScreen />
 
-# How to create tests for cases with multiple scenarios
+# How to create tests for multiple scenarios
 
 1. ### Create a setup function that will resemble the initial state of the application
 2. ### Mock the server responses using tools such as [MSW](https://mswjs.io/)
@@ -263,18 +290,16 @@ test('It should not render delivery order actions menu for completed order', asy
 })
 ```
 
-
-
 <HalfScreen />
 
-# Create a setup function that will resemble the initial state of the application
+# 1. Create a setup function that will resemble the initial state of the application
 
 ```jsx add-challenge.test
 function renderAddChallengePage(props = {}, renderOptions = {}) {
   return render(
     <AddChallengePage
       history={{
-        push: mockRouterPush,
+        push: navigateTo,
       }}
       {...props}
     />, { wrapper: RouterWrapper, ...renderOptions}
@@ -289,13 +314,13 @@ const RouterWrapper = ({ children }) => {
   )
 }
 
-const apiPostSpy = jest.spyOn(API.prototype, 'post')
-const mockRouterPush = jest.fn()
+const postRequest = jest.spyOn(API.prototype, 'post')
+const navigateTo = jest.fn()
 ```
 
 <HalfScreen />
 
-# Mock the database response using tools such as [MSW](https://mswjs.io/)
+# 2. Mock the database response using tools such as [MSW](https://mswjs.io/)
 
 ```js fileName=add-challenge-mock-server
 const server = setupServer(
@@ -326,10 +351,10 @@ const server = setupServer(
 
 <HalfScreen />
 
-# Create a utility function for repeated behavior
+# 3. Create a utility function for repeated behavior
 
 ```tsx fileName=fill-challenge-form
-export const fillChallengeForm = () => {
+export const fillMandatoryFields = () => {
   userEvent.type(screen.getByLabelText(/challenge's type/i), faker.lorem.word())
   userEvent.type(
     screen.getByLabelText(/challenge's title/i),
@@ -384,13 +409,13 @@ export const fillChallengeForm = () => {
 
 <HalfScreen />
 
-# Create a test case for each scenario
+# 4. Create a test case for each scenario
 
 ```jsx fileName=add-challenge.test
 test('Create new challenge with rewardsType = fixed && challengeType = order', async () => {
   const page = renderAddChallengePage()
 
-  fillChallengeForm()
+  fillMandatoryFields()
 
   userEvent.click(screen.getByText('Fixed'))
   userEvent.selectOptions((screen.getByPlaceholderText(/challenge type/i), 'Order'))
@@ -399,14 +424,14 @@ test('Create new challenge with rewardsType = fixed && challengeType = order', a
 
   await waitForLoadingToShowThenHide(page)
 
-  expect(apiPostSpy).toHaveBeenCalledWith(
+  expect(postRequest).toHaveBeenCalledWith(
     expect.objectContaining({
       campaignType: CAMPAIGN_TYPE.MS_LP_FIXED,
       rules: [{ awardAmount: 1, minOrderAmount: 1 }],
     })
   )
 
-  expect(mockRouterPush).toHaveBeenCalledWith('/marketing/challenges')
+  expect(navigateTo).toHaveBeenCalledWith('/marketing/challenges')
 })
 ```
 
@@ -435,7 +460,7 @@ test('Create new challenge with rewardsType = fixed && challengeType = order', a
 <br />
 <br />
 
-> x = 51.20
+> x = 51.20s
 
 <HalfScreen />
 
@@ -449,10 +474,14 @@ test('Create new challenge with rewardsType = fixed && challengeType = order', a
 
 <h2 style={{textAlign: 'center'}}>Write only essential code to make a feature test pass</h2>
 
-
 # [YAGNI (You aren't gonna need it)](https://en.wikipedia.org/wiki/You_aren%27t_gonna_need_it)
 
 # [KISS (keep it simple, stup🤬d)](https://en.wikipedia.org/wiki/KISS_principle)
+
+<HalfScreen />
+
+<h2 style={{textAlign: 'center'}}>Code will have 100% coverage naturally</h2>
+<h3 style={{textAlign: 'center'}}>(even helper and private functions will get covered)</h3>
 
 <HalfScreen />
 
@@ -477,7 +506,7 @@ test('Create new challenge with rewardsType = fixed && challengeType = order', a
 <HalfScreen />
 
 ```js fileName=generate-challenge.util
-const fromApiFormat = ({ customerSegment }, segmentFields) => {
+export const fromApiFormat = ({ customerSegment }, segmentFields) => {
 	// ...
   let updatedCustomerSegment
 
@@ -505,7 +534,7 @@ test('should not throw an error when some fields are missing', () => {
   const mockChallenge = createMockChallenge({
     customerSegment: undefined,
   })
-  expect(() => fromApiFormat(mockChallenge)).toThrow('Parsing error')
+  expect(() => fromApiFormat(mockChallenge)).toThrow('Unhandled customer segment')
 })
 ```
 
@@ -516,17 +545,17 @@ test('should not throw an error when some fields are missing', () => {
 ## Requirements
 
 - ### Write only tests that reflect the business logic
-- ### Write only unit tests for edge cases
 - ### Utilize modern tooling
+- ### Write only unit tests for edge cases
 
 <br />
 
 ## Benefits
 
-- ### Tests serve as documentation of feature requirements
-- ### Tests are refactor friendly
 - ### Faster
 - ### Less code, more coverage
+- ### Tests serve as documentation of feature requirements
+- ### Tests are refactor/optimization friendly
 
 <HalfScreen />
 
