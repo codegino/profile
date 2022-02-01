@@ -31,7 +31,7 @@
     "use-dark-mode": "2.3.1"
   },
   "devDependencies": {
-    "@next/bundle-analyzer": "12.0.9",
+    "@next/bundle-analyzer": "12.0.10",
     "@trivago/prettier-plugin-sort-imports": "3.1.1",
     "@types/react": "17.0.38",
     "@types/react-gtm-module": "2.0.1",
@@ -41,7 +41,7 @@
     "cross-env": "7.0.3",
     "cz-conventional-changelog": "3.3.0",
     "eslint": "8.8.0",
-    "eslint-config-next": "12.0.9",
+    "eslint-config-next": "12.0.10",
     "eslint-config-prettier": "8.3.0",
     "eslint-plugin-jsx-a11y": "6.5.1",
     "gray-matter": "4.0.3",
