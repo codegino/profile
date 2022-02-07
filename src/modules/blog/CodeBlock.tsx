@@ -92,7 +92,7 @@ const CodeBlock: FunctionComponent<CodeBlockProps> = ({
         )}
       </Highlight>
       {codePenID && (
-        <samp>
+        <div>
           <NextLink
             href={`https://codepen.io/codegino/pen/${codePenID}`}
             target="_blank"
@@ -101,7 +101,7 @@ const CodeBlock: FunctionComponent<CodeBlockProps> = ({
           >
             Link to Codepen
           </NextLink>
-        </samp>
+        </div>
       )}
     </code>
   );
