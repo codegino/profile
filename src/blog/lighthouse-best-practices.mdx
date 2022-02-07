@@ -1,0 +1,201 @@
+---
+title: Lighthouse Best Practices Cheat Sheet
+description: Checklist of general practices to improve the overall code health of your web app
+date: '2022-02-07'
+dateUpdated: '2022-02-07'
+bannerId: 5M1PfAe13TWqaRUDoXATPH
+bannerDescription: best practice 
+tags: ['best practices', 'lighthouse']
+keywords: ['lighthouse best practices']
+published: true
+---
+
+### TL;DR
+
+> Use [Lighthouse](https://developers.google.com/web/tools/lighthouse) to check if your website is following the list of best practices. You will see the same exact information in the Best Practices report.
+
+Here some of the best practices audits to improve the code health of your web page. To learn more, check [this page](https://web.dev/lighthouse-best-practices/) where I based the categorization.
+
+<br />
+
+### General best practices
+
+- **Page has the HTML doctype**
+
+Specifying a doctype prevents the browser from switching to quirks-mode.
+
+[Learn more](https://web.dev/doctype/)
+
+<br />
+
+- **No browser errors logged to the console**
+
+Errors logged to the console indicate unresolved problems. They can come from network request failures and other browser concerns.
+
+[Learn more](https://web.dev/errors-in-console/)
+
+<br />
+
+
+- **Displays images with correct aspect ratio**
+
+Image display dimensions should match natural aspect ratio.
+
+[Learn more](https://web.dev/image-aspect-ratio/)
+
+<br />
+
+- **Properly defines charset**
+
+A character encoding declaration is required. It can be done with a `<meta>` tag in the first 1024 bytes of the HTML or in the Content-Type HTTP response header.
+
+[Learn more](https://web.dev/charset/)
+
+<br />
+
+
+
+- **Fonts with font-display: optional are preloaded**
+
+Preload `optional` fonts so first-time visitors may use them.
+
+[Learn more](https://web.dev/preload-optional-fonts/)
+
+
+- **Avoids unload event listeners**
+
+The `unload` event does not fire reliably and listening for it can prevent browser optimizations like the Back-Forward Cache. Consider using the `pagehide` or `visibilitychange` events instead.
+
+[Learn more](https://developers.google.com/web/updates/2018/07/page-lifecycle-api#the-unload-event)
+
+<br />
+
+
+### Make your page secure
+
+- **Uses HTTPS**
+
+All sites should be protected with HTTPS, even ones that don't handle sensitive data. This includes avoiding [mixed content](https://web.dev/what-is-mixed-content/), where some resources are loaded over HTTP despite the initial request being served over HTTPS. HTTPS prevents intruders from tampering with or passively listening in on the communications between your app and your users, and is a prerequisite for HTTP/2 and many new web platform APIs.
+
+[Learn more](https://web.dev/is-on-https/)
+
+<br />
+
+- **Detected JavaScript libraries**
+
+All front-end JavaScript libraries detected on the page.
+
+[Learn more](https://web.dev/js-libraries/)
+
+<br />
+
+- **Ensure CSP is effective against XSS attacks**
+
+A strong Content Security Policy (CSP) significantly reduces the risk of cross-site scripting (XSS) attacks.
+
+[Learn more](https://web.dev/csp-xss/)
+
+<br />
+
+- **Links to cross-origin destinations are safe**
+
+Add `rel="noopener"` or `rel="noreferrer"` to any external links to improve performance and prevent security vulnerabilities.
+
+[Learn more](https://web.dev/external-anchors-use-rel-noopener/)
+
+<br />
+
+- **Avoids front-end JavaScript libraries with known security vulnerabilities**
+
+Some third-party scripts may contain known security vulnerabilities that are easily identified and exploited by attackers.
+
+[Learn more](https://web.dev/no-vulnerable-libraries/)
+
+<br />
+
+
+
+
+### Create a good user experience
+
+- **Serves images with appropriate resolution**
+
+Image natural dimensions should be proportional to the display size and the pixel ratio to maximize image clarity.
+
+[Learn more](https://web.dev/serve-responsive-images/)
+
+<br />
+
+- **Avoids requesting the geolocation permission on page load**
+
+Users are mistrustful of or confused by sites that request their location without context. Consider tying the request to a user action instead.
+
+[Learn more](https://web.dev/geolocation-on-start/)
+
+<br />
+
+- **Avoids requesting the notification permission on page load**
+
+Users are mistrustful of or confused by sites that request to send notifications without context. Consider tying the request to user gestures instead.
+
+[Learn more](https://web.dev/notification-on-start/)
+
+<br />
+
+- **Allows users to paste into password fields**
+
+Preventing password pasting undermines good security policy.
+
+[Learn more](https://web.dev/password-inputs-can-be-pasted-into/)
+
+<br />
+
+
+### Avoid deprecated technologies
+
+- **Avoids Application Cache**
+
+Application Cache is deprecated.
+
+[Learn more](https://web.dev/appcache-manifest/)
+
+<br />
+
+- **Avoids deprecated APIs**
+
+Deprecated APIs will eventually be removed from the browser.
+
+[Learn more](https://web.dev/deprecations/)
+
+<br />
+
+### Diagnostics audits
+
+- **Detected JavaScript libraries**
+
+All front-end JavaScript libraries detected on the page.
+
+[Learn more](https://web.dev/js-libraries/)
+
+<br />
+
+- **No issues in the Issues panel in Chrome Devtools**
+
+Issues logged to the `Issues` panel in Chrome Devtools indicate unresolved problems. They can come from network request failures, insufficient security controls, and other browser concerns. Open up the Issues panel in Chrome DevTools for more details on each issue.
+
+<br />
+
+- **Page has valid source maps**
+
+Source maps translate minified code to the original source code. This helps developers debug in production. In addition, Lighthouse is able to provide further insights. Consider deploying source maps to take advantage of these benefits.
+
+[Learn more](https://developer.chrome.com/docs/devtools/javascript/source-maps/)
+
+<br />
+
+
+### What's next (_More copy-pasting_)
+
+- [Performance](https://codegino.com/blog/improve-website-performance)
+- [Accessiblity](https://codegino.com/blog/improve-website-accessibility)
+- [SEO](https://codegino.com/blog/improve-website-seo)
