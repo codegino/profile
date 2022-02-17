@@ -1,0 +1,182 @@
+---
+title: How to make your web pages appear in Google Search results
+description: A guide on using Google Search Console to add your web pages in Google Search results
+date: '2022-02-17'
+dateUpdated: '2022-02-17'
+bannerId: 68Uwi5CFsOUaff5MfQ6ONu
+bannerDescription: google searching 
+tags: ['seo']
+keywords: ['google search']
+published: true 
+---
+
+<TableOfContents
+  list={[
+    {href: '#introduction', label: 'Introduction'},
+    {href: '#prerequisites', label: 'Prerequisites'},
+    {href: '#verify-ownership', label: 'Verify ownership'},
+    {href: '#index-the-page', label: 'Index the page'},
+    {href: '#test-page', label: 'Test the web page'},
+  ]}
+/>
+
+## Introduction <Bookmark id="introduction" />
+
+### Why do we even care about making our web pages visible on Google?
+
+Even though there are other search engines out there, At of the time of this writing, Google still has a 91.9% search engine market share. Here's the [latest data](https://gs.statcounter.com/search-engine-market-share).
+
+<br />
+
+With Google's search engine still dominating the market, it's essential to make sure that your web pages are visible in its search results to reach more users. For others, **more users reached** means **more money**. 
+
+<br />
+
+#### There are two main steps to make your web page visible in Google's search results.
+
+- First, web admins must verify ownership of the web page
+- Second, web admins must index the web page
+
+<br />
+
+### Prerequisites: Make sure your website is SEO friendly  <Bookmark id="prerequisites" />
+
+Before attempting to make your web page visible on Google Search, make sure it's optimized for search engines. SEO is no magic; There are a set of rules that you can follow to help your web page appear in any search engine.
+
+> For starters, Check this [SEO cheatsheet](https://codegino.com/blog/improve-website-seo)
+> 
+> If you're not sure whether your website is SEO friendly, you can check this [tool](https://www.google.com/webmasters/tools/richsnippets).
+
+### First step: Verify website ownership in Google Search Console <Bookmark id="verify-ownership" />
+
+> Actually, verifying your website ownership in Google Search Console is not necessary.
+> A webpage can still appear in Google's search results if the content is excellent. Although, we won't know when it will show.
+
+It would be best to have complete control here; plus, there are [other features](https://direction.com/10-google-search-console-features/) that you can use once you become the owner of the website.
+<br />
+
+I used a dummy website I created from [one of my blogs](https://codegino.com/blog/remix-supabase-integration) to test it out. Initially, I could not see it in Google's search results even if I specifically searched for the domain using this search value `site:codegino.vercel.app`. 
+
+<Img width={890} height={797} src="https://i.imgur.com/MhK2gYN.png" />
+
+<br />
+
+We don't want to wait for a month or a year for our content to be visible in Google's search results.
+
+<br />
+
+
+So let's start by verifying that we're the website owner by going to [Google Search Console](https://search.google.com/search-console/about).
+
+<br />
+
+
+<Img width={1210} height={642} src="https://i.imgur.com/Xs0zt1i.png" />
+
+Click on Start now to sign in. Login using your Google account Or Create a new one if you don't have any.
+
+<br />
+
+After logging in, you'll be redirected to the Search Console dashboard. If the account is newly created, you'll be asked to set up a verification method.
+
+<Img width={849} height={705} src="https://i.imgur.com/p8RKKop.png" />
+
+<br />
+
+
+#### Verification using domain
+
+For the first option, you can use a domain to verify ownership. In my case, I can enter the domain `codegino.vercel.app` and click on the `continue` button.
+
+<br />
+
+After clicking the `continue` button, you'll be asked to verify the ownership of the domain.
+
+<Img width={643} height={517} src="https://i.imgur.com/mdYuTTJ.png" />
+
+TBH, the steps provided by Google are pretty straightforward, so I'll skip the explanation.
+
+<br />
+
+Here are samples of adding the value above to your DNS configuration.
+
+<Img width={801} height={691} src="https://i.imgur.com/F9Q92Tm.png" />
+
+<br />
+
+#### Verification using URL prefix
+
+You can use URL prefixes to verify ownership for the second verification option. In my case, I entered the URL prefix `https://codegino.vercel.app` and click on the `continue` button.
+
+> For this blog post, I chose the second type of verification.
+
+After clicking the `continue` button, you'll be asked how you prefer to verify the ownership of the URL prefix.
+
+<Img width={644} height={804} src="https://i.imgur.com/N55HyV3.png" />
+
+<br />
+
+Their recommended option simply states that you copy-paste the downloaded file to the `public` directory together with theindex.html.
+
+<br />
+
+For the other URL prefix verification methods, I believe they are well documented; simply go to the `Full details` link for more information.
+
+<br />
+
+NOTE: Before clicking the `VERIFY` button, do not forget to redeploy if your verification method includes adding/modifying something in your codebase.
+
+<br />
+
+Hopefully, your ownership is verified, and you should be seeing something like this.
+
+<Img width={1088} height={437} src="https://i.imgur.com/fYzVcEq.png" />
+
+<br />
+
+### Second step: Index the page you want to appear in Google Search <Bookmark id="index-the-page" />
+
+You're now ready to start adding your pages to Google's search results.
+
+<br />
+
+1. Click `URL Inspection`
+2. On the focused input, enter the URL of the page you want to index.
+3. Click `REQUEST INDEXING`
+
+<Img width={1234} height={877} src="https://i.imgur.com/yIvhntJ.png" />
+
+<br />
+
+If everything goes well, you should be able to see the following message.
+
+<Img width={1230} height={682} src="https://i.imgur.com/x0Ddyk9.png" />
+
+<br />
+
+### Test the web page in Google Search <Bookmark id="test-page" />
+
+> This won't be instant. It took me around 24 hours to see my page appear in Google's search results.
+
+After Google is done indexing your page, you can test it in Google's search engine.
+
+<br />
+
+Same as before, I explicitly searched for `site:codegino.vercel.app`; but this time, I can see my page in the search results!
+
+<Img width={890} height={361} src="https://i.imgur.com/EcULuMG.png" />
+
+<br />
+
+## Conlusion
+
+Since Google is still the most popular search engine, it's essential to ensure that your web page will show in Google's search results.
+Using Google Search Console can help with this task easier. It is pretty simple to index a page using the tool; the problem is waiting for the indexing to finish.
+If you have any idea how to make it faster, please let me know.
+
+<br />
+
+## What's next?
+
+**Congratulations!** We've made our website visible in Google's search results.
+However, we need to increase the page ranking. As the saying goes, _"The Best Place to Hide a Dead Body is Page Two of Google"_.
