@@ -2,7 +2,7 @@ import type {FunctionComponent} from 'react';
 
 const Layout: FunctionComponent = ({children, ...props}) => {
   return (
-    <main
+    <article
       {...props}
       className="blog-layout m-auto px-2 mb-10 flex flex-col max-w-screen-md"
     >
@@ -57,7 +57,7 @@ const Layout: FunctionComponent = ({children, ...props}) => {
           font-size: 0.75rem;
         }
       `}</style>
-    </main>
+    </article>
   );
 };
 

@@ -38,7 +38,7 @@ export default function BlogPage({
           property="og:url"
           content={`https://codegino.com/blog/${blog.slug}`}
         />
-        <meta property="og:type" content="blog" />
+        <meta property="og:type" content="article" />
         <meta property="og:title" content={blog.title} />
         <meta property="og:description" content={blog.description} />
         <meta property="og:image" content={blog.bannerId} />
@@ -81,12 +81,14 @@ export default function BlogPage({
         <link rel="canonical" href={`https://codegino.com/blog/${blog.slug}`} />
       </Head>
 
-      <BlogHeader blog={blog} img={img} svg={svg} />
-      <BlogLayout>
-        <BlogContent source={source} />
-        <br />
-        <BlogFooter blog={blog} />
-      </BlogLayout>
+      <main role="main">
+        <BlogLayout>
+          <BlogHeader blog={blog} img={img} svg={svg} />
+          <BlogContent source={source} />
+          <br />
+          <BlogFooter blog={blog} />
+        </BlogLayout>
+      </main>
     </>
   );
 }

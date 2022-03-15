@@ -14,7 +14,10 @@ export const commonMetaTags = (pageName: string, slug = '/') => (
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Carlo Gino Catapang" />
     <meta property="og:description" content={metaDescription(pageName)} />
-    <meta property="og:image" content="/assets/preview.png" />
+    <meta
+      property="og:image"
+      content="https://codegino.com/assets/preview.png"
+    />
 
     <meta name="description" content={metaDescription(pageName)} />
 
