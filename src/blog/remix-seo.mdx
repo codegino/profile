@@ -1,0 +1,195 @@
+---
+title: Remix Search Engine Optimization 
+description: How to improve SEO in your Remix application
+date: '2022-03-09'
+dateUpdated: '2022-03-09'
+bannerId: 51jrs8N4gcJ1P6ex6D1ZM6
+bannerDescription: seo
+tags: ['react', 'tech', 'remix', 'seo']
+keywords: ['remix supabase', 'remix seo']
+published: true 
+---
+
+### Introduction
+
+
+> **From the official [documentation](https://remix.run/docs/en/v1/api/conventions#meta)**
+> 
+> The meta export will set meta tags for your html document. We highly recommend setting the title and description on every route besides layout routes (their index route will set the meta).
+
+
+### High-quality content
+
+The best way to improve your SEO is to have a good content.
+
+### Adding title
+
+A title tag is the second most important factor for on-page SEO, only trailing high quality content.
+
+```jsx
+export const meta = () => {
+  return {
+    title: "Page Title. Ideally length 60-70 characters",
+  }
+}
+```
+
+```html
+<head>
+  <title>Page Title. Ideally length 60-70 characters</title>
+</head>
+```
+
+
+### Adding description
+
+The meta description often serves as a pitch to people who find your website on Google or social media sites. While it's not required and Google can use text from you website instead of what you specifiy in the meta data, it's better to control the description text where you can.
+
+```jsx
+export const meta = () => {
+  return {
+    //...
+    description: "Page description. No longer than 155 characters."
+  }
+}
+```
+
+```html
+<head>
+  <!--...-->
+  <meta name="description" content="Page description. No longer than 155 characters.">
+</head>
+```
+
+### Adding image
+
+With the visual nature of the web your Meta Tag Image is the most valuable graphic content you can create to encourage users to click and visit your website.
+
+```jsx
+export const meta = () => {
+  return {
+    //...
+    "og:image": "https://codegino.com/assets/preview.png"
+  }
+}
+```
+
+```html
+<head>
+  <!--...-->
+  <meta property="og:image" content="https://codegino.com/assets/preview.png">
+</head>
+```
+
+### Using meta tag
+
+Meta tags are specific snippets of text and image content that provide a summary for a webpage. Often meta tag data shows up whenever someone shares a link on social media, in messaging, or in your business chat software .
+
+In addition meta tags can contain information to help search engines and other technical services scan your site to figure out what it’s all about and whether or not it’s legit!
+
+### Adding OG:info
+
+```jsx
+export const meta = () => {
+  return {
+    //...
+    "og:type": "website",
+    "og:url": "https://codegino.com",
+    "og:title": "Page Title. Ideally length 60-70 characters",
+    "og:description": "Page description. No longer than 155 characters.",
+    "og:image": "https://codegino.com/assets/preview.png",
+  }
+}
+```
+
+```html
+<head>
+  <!--...-->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://codegino.com">
+  <meta property="og:title" content="Page Title. Ideally length 60-70 characters">
+  <meta property="og:description" content="Page description. No longer than 155 characters.">
+  <meta property="og:image" content="https://codegino.com/assets/preview.png">
+</head>
+```
+
+### Adding twitter:info
+
+```jsx
+export const meta = () => {
+  return {
+    //...
+    "twitter:card": "summary_large_image",
+    "twitter:url": "https://codegino.com",
+    "twitter:title": "Page Title. Ideally length 60-70 characters",
+    "twitter:description": "Page description. No longer than 155 characters.",
+    "twitter:image": "https://codegino.com/assets/preview.png",
+  }
+}
+```
+
+```html
+<head>
+  <!--...-->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://codegino.com">
+  <meta name="twitter:title" content="Page Title. Ideally length 60-70 characters">
+  <meta name="twitter:description" content="Page description. No longer than 155 characters.">
+  <meta name="twitter:image" content="https://codegino.com/assets/preview.png">
+</head>
+```
+
+#### Validators
+
+- Facebook: https://developers.facebook.com/tools/debug
+- Twitter: https://cards-dev.twitter.com/validator
+- LinkedIn: https://www.linkedin.com/post-inspector/inspect/
+- Pinterest: https://developers.pinterest.com/tools/url-debugger/
+- Structured Data: https://developers.google.com/search/docs/advanced/structured-data
+- Multiple: https://metatags.io/
+
+### Add a sitemap.xml
+
+A sitemap is a file where you provide information about the pages, videos, and other files on your site, and the relationships between them. Search engines like Google read this file to crawl your site more efficiently. A sitemap tells Google which pages and files you think are important in your site, and also provides valuable information about these files. For example, when the page was last updated and any alternate language versions of the page. [Learn more](https://developers.google.com/search/docs/advanced/sitemaps/overview)
+
+Create a `sitemap.xml` inside the `public` directory.
+
+Since I only have 2 routes that I want to be indexed, I will only add 2 of
+
+```xml fileName=sitemap.
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+	<url>
+		<loc>https://codegino.vercel.app</loc>
+	</url>
+	<url>
+		<loc>https://codegino.vercel.app/words</loc>
+    <lastmod>2022-03-20T20:58:44.110Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+	</url>
+</urlset>
+```
+
+
+If you have a lot of dynamic pages, you can create a sitemap generator
+
+### Add a robots.txt
+
+A robots.txt file tells search engine crawlers which URLs the crawler can access on your site. This is used mainly to avoid overloading your site with requests; it is not a mechanism for keeping a web page out of Google.
+
+[Learn more](https://developers.google.com/search/docs/advanced/robots/intro)
+
+Create a `robots.txt` inside the `public` directory.
+
+```txt fileName=robots.
+User-agent: *
+Allow: /
+```
+
+
+
+
+
+
+
