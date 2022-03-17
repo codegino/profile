@@ -1,30 +1,104 @@
 ---
 title: Remix Search Engine Optimization 
 description: How to improve SEO in your Remix application
-date: '2022-03-09'
-dateUpdated: '2022-03-09'
+date: '2022-03-17'
+dateUpdated: '2022-03-17'
 bannerId: 51jrs8N4gcJ1P6ex6D1ZM6
 bannerDescription: seo
 tags: ['react', 'tech', 'remix', 'seo']
-keywords: ['remix supabase', 'remix seo']
+keywords: ['remix seo']
 published: true 
 ---
 
-### Introduction
+## TL;DR
+
+Here is a checklist a Remix SEO checklist
+- <a href="#high-quality" target="_self">High quality content</a>
+- <a href="#title" target="_self">Title</a>
+- <a href="#description" target="_self">Description</a>
+- <a href="#image" target="_self">Image</a>
+- <a href="#social-media" target="_self">Social media meta tags</a>
+- <a href="#sitemap" target="_self">Sitemap</a>
+- <a href="#robots" target="_self">Robots.txt</a>
+
+<br />
 
 
-> **From the official [documentation](https://remix.run/docs/en/v1/api/conventions#meta)**
-> 
-> The meta export will set meta tags for your html document. We highly recommend setting the title and description on every route besides layout routes (their index route will set the meta).
+### Introduction: Why bother?
 
+SEO stands for search engine optimization, which is a set of practices designed to improve the appearance and positioning of web pages in organic search results. Because organic search is the most prominent way for people to discover and access online content, a good SEO strategy is essential for improving the quality and quantity of traffic to your website.
 
-### High-quality content
+<br />
 
-The best way to improve your SEO is to have a good content.
+Although Remix is a great framework, we still need to manually configure SEO to reach more users. In this blog, I will discuss how to improve SEO in your Remix application.
 
-### Adding title
+> Check this [blog](https://codegino.com/blog/remix-getting-started) in case you are not familiar with Remix.
 
-A title tag is the second most important factor for on-page SEO, only trailing high quality content.
+### High-quality content <Bookmark id="high-quality"/>
+
+This is not Remix specific, but just like in any website, the best way to improve your SEO is to have good content.
+
+<br />
+
+Now, let's continue on things we can control, as a developer, in our Remix application.
+
+<br />
+
+### Using meta tags
+
+Meta tags are specific snippets of text and image content that summarize a web page. Often meta-tag data shows up whenever someone shares a link on social media, in messaging, or in your business chat software.
+
+<br />
+
+To render the meta tags that we will declare in our routes, we first need to add the `Meta` component in the `head` of your `app/root` file.
+
+```jsx fileName=app/root
+import { Meta} from "remix";
+
+// ...
+<html lang="en">
+  <head>
+    {/* other stuff */}
+
+    {/* All meta exports on all routes will go here */}
+    <Meta />
+  </head>
+  {/* body */}
+</html>
+// ...
+```
+
+Check this [link](https://github.com/codegino/playground/blob/main/app/root.tsx#L74) to see a sample usage of the above code.
+
+> You can technically add meta tags directly to the `head` of the `html` template. However, it is recommended to add "unique" information such as `title` and `description` on every route.
+
+Using Vanila JavaScript
+```jsx fileName=app/routes/[routeName]
+export const meta = () => {
+  return {
+    [property]: "value"
+  }
+}
+```
+
+Using TypeScript
+```tsx fileName=app/routes/[routeName]
+import type { MetaFunction } from "remix";
+
+export const meta: MetaFunction = () => {
+  return {
+    [property]: "value"
+  }
+}
+```
+
+> Remix is smart enough to convert a `meta` property into the appropriate tag with the correct value as shown in the upcoming examples.
+
+### Must have meta tags
+
+#### Title  <Bookmark id="title"/>
+
+A title tag is the second most important factor for on-page SEO, only trailing high-quality content.
 
 ```jsx
 export const meta = () => {
@@ -40,8 +114,7 @@ export const meta = () => {
 </head>
 ```
 
-
-### Adding description
+#### Description  <Bookmark id="description"/>
 
 The meta description often serves as a pitch to people who find your website on Google or social media sites. While it's not required and Google can use text from you website instead of what you specifiy in the meta data, it's better to control the description text where you can.
 
@@ -61,9 +134,9 @@ export const meta = () => {
 </head>
 ```
 
-### Adding image
+#### Image  <Bookmark id="image"/>
 
-With the visual nature of the web your Meta Tag Image is the most valuable graphic content you can create to encourage users to click and visit your website.
+With the visual nature of the web, your Meta Tag Image is the most valuable graphic content you can create to encourage users to click and visit your website.
 
 ```jsx
 export const meta = () => {
@@ -81,13 +154,19 @@ export const meta = () => {
 </head>
 ```
 
-### Using meta tag
+### Social media meta tags  <Bookmark id="social-media"/>
 
-Meta tags are specific snippets of text and image content that provide a summary for a webpage. Often meta tag data shows up whenever someone shares a link on social media, in messaging, or in your business chat software .
+Although it is not required, with a good social media presence, you can attract more users which will organically increase your search ranking.
 
-In addition meta tags can contain information to help search engines and other technical services scan your site to figure out what it’s all about and whether or not it’s legit!
+<br />
 
-### Adding OG:info
+#### OG:info
+
+Open Graph meta tags are snippets of code that control how URLs are displayed when shared on social media. 
+
+<br />
+
+They're part of Facebook's Open Graph protocol and are also used by other social media sites, including LinkedIn and Twitter (if Twitter Cards are absent).
 
 ```jsx
 export const meta = () => {
@@ -113,13 +192,21 @@ export const meta = () => {
 </head>
 ```
 
-### Adding twitter:info
+<br />
+
+#### Adding twitter:info
+
+These are used by Twitter to display information about your website. 
+
+You don't define all of these as Twitter will reuse some `og` meta tags.
+In case of an overlap(`og:description` and `twitter:description`), Twitter will pick the Twitter-specific information.
 
 ```jsx
 export const meta = () => {
   return {
     //...
-    "twitter:card": "summary_large_image",
+    "twitter:card": "summary_large_image", // summary, summary_large_image, app, player
+    "twitter:creator": "@code_gino",
     "twitter:url": "https://codegino.com",
     "twitter:title": "Page Title. Ideally length 60-70 characters",
     "twitter:description": "Page description. No longer than 155 characters.",
@@ -132,6 +219,7 @@ export const meta = () => {
 <head>
   <!--...-->
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:creator" content="@code_gino">
   <meta name="twitter:url" content="https://codegino.com">
   <meta name="twitter:title" content="Page Title. Ideally length 60-70 characters">
   <meta name="twitter:description" content="Page description. No longer than 155 characters.">
@@ -139,22 +227,50 @@ export const meta = () => {
 </head>
 ```
 
+<br />
+
+#### Putting all the meta tags together
+
+```jsx
+export const meta = () => {
+  return {
+    title: "Page Title. Ideally length 60-70 characters",
+    description: "Page description. No longer than 155 characters.",
+    "og:type": "website",
+    "og:url": "https://codegino.com",
+    "og:title": "Page Title. Ideally length 60-70 characters",
+    "og:description": "Page description. No longer than 155 characters.",
+    "og:image": "https://codegino.com/assets/preview.png",
+    "twitter:card": "summary_large_image",
+    "twitter:creator": "@code_gino",
+    "twitter:url": "https://codegino.com",
+    "twitter:title": "Page Title. Ideally length 60-70 characters",
+    "twitter:description": "Page description. No longer than 155 characters.",
+    "twitter:image": "https://codegino.com/assets/preview.png",
+  }
+}
+```
+
 #### Validators
 
+Here are some validators that you can use to test your meta tags.
+
+- One Stop Shop validator: https://metatags.io/ 
 - Facebook: https://developers.facebook.com/tools/debug
 - Twitter: https://cards-dev.twitter.com/validator
 - LinkedIn: https://www.linkedin.com/post-inspector/inspect/
 - Pinterest: https://developers.pinterest.com/tools/url-debugger/
 - Structured Data: https://developers.google.com/search/docs/advanced/structured-data
-- Multiple: https://metatags.io/
 
-### Add a sitemap.xml
+<br />
 
-A sitemap is a file where you provide information about the pages, videos, and other files on your site, and the relationships between them. Search engines like Google read this file to crawl your site more efficiently. A sitemap tells Google which pages and files you think are important in your site, and also provides valuable information about these files. For example, when the page was last updated and any alternate language versions of the page. [Learn more](https://developers.google.com/search/docs/advanced/sitemaps/overview)
+### Sitemap.xml  <Bookmark id="sitemap"/>
 
-Create a `sitemap.xml` inside the `public` directory.
+A sitemap is a file where you provide information about the pages, videos, and other files on your site and their relationships. Search engines like Google read this file to crawl your site more efficiently. A sitemap tells Google which pages and files you think are important in your site and provides valuable information about these files. For example, when the page was last updated and any alternate language versions. [Learn more](https://developers.google.com/search/docs/advanced/sitemaps/overview)
 
-Since I only have 2 routes that I want to be indexed, I will only add 2 of
+<br />
+
+Create a [`sitemap.xml` inside the `public` directory](https://github.com/codegino/playground/blob/main/public/sitemap.xml)
 
 ```xml fileName=sitemap.
 <?xml version="1.0" encoding="UTF-8"?>
@@ -171,25 +287,22 @@ Since I only have 2 routes that I want to be indexed, I will only add 2 of
 </urlset>
 ```
 
+> If you have a lot of dynamic pages, you can create a sitemap generator.
 
-If you have a lot of dynamic pages, you can create a sitemap generator
+### Robots.txt  <Bookmark id="robots"/>
 
-### Add a robots.txt
+A robots.txt file tells search engine crawlers which URLs the crawler can access on your site. This is used mainly to avoid overloading your site with requests; it is not a mechanism for keeping a web page out of Google. [Learn more](https://developers.google.com/search/docs/advanced/robots/intro)
 
-A robots.txt file tells search engine crawlers which URLs the crawler can access on your site. This is used mainly to avoid overloading your site with requests; it is not a mechanism for keeping a web page out of Google.
+<br />
 
-[Learn more](https://developers.google.com/search/docs/advanced/robots/intro)
-
-Create a `robots.txt` inside the `public` directory.
+Create a [`robots.txt` inside the `public` directory](https://github.com/codegino/playground/blob/main/public/robots.txt)
 
 ```txt fileName=robots.
 User-agent: *
 Allow: /
 ```
 
+## Additional things to consider
 
-
-
-
-
-
+- [Adding your website to Google Search](https://codegino.com/blog/adding-webpage-to-google-search-results)
+- [SEO Optimization Cheat Sheet](https://codegino.com/blog/improve-website-seo)
