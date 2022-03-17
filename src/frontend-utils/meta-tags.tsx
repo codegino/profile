@@ -3,7 +3,6 @@ const metaDescription = (pageName: string) =>
 
 export const commonMetaTags = (pageName: string, slug = '/') => (
   <>
-    <meta name="twitter:card" content="summary_large_image" />
     <meta
       name="twitter:image"
       content="https://codegino.com/assets/preview.png"

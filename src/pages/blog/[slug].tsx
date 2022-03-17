@@ -45,8 +45,6 @@ export default function BlogPage({
 
         <meta name="description" content={blog.description} />
 
-        <meta name="twitter:image" content="/assets/logo.png" />
-        <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image" content={blog.bannerId} />
         <meta name="twitter:description" content={blog.description} />
         <meta name="twitter:title" content={blog.title} />

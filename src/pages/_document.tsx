@@ -15,6 +15,8 @@ class MyDocument extends Document {
             name="google-site-verification"
             content={`${process.env.NEXT_PUBLIC_GOOOGLE_SITE_VERIFICATION}`}
           />
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:creator" content="@code_gino" />
           <meta name="twitter:site" content="@code_gino" />
           <meta name="author" content="Carlo Gino Catapang" />
           <meta
