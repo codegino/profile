@@ -49,9 +49,10 @@ export const fetchSkills = async (onlyHightlights = false) => {
   return categorizedSkills;
 };
 
-export const fectchExperiences = async () => {
+export const fectchExperiences = async (lang = 'en') => {
   const workExperiences = await client.getEntries<WorkExperience>({
     content_type: 'experience',
+    'fields.language': lang,
     order: '-fields.startDate',
   });
 

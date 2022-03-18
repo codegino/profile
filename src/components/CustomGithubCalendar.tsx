@@ -1,13 +1,16 @@
+import {useTranslation} from 'next-i18next';
 import GithubCalendar from 'react-github-calendar';
 import Zoom from 'react-reveal/Zoom';
 import NextLink from './basic/NextLink';
 
 export default function CustomGithubCalendar() {
+  const {t} = useTranslation('resume');
+
   return (
     <Zoom>
       <div className="flex flex-col items-center my-10 bg-lightest p-1 rounded-xl">
         <h2 className="mb-5">
-          My&nbsp;
+          {t('my')}&nbsp;
           <NextLink
             href="https://github.com/codegino"
             target="_blank"
@@ -18,7 +21,7 @@ export default function CustomGithubCalendar() {
           >
             Github
           </NextLink>
-          &nbsp;activity
+          &nbsp;{t('activity')}
         </h2>
 
         <div className="overflow-x-auto max-w-lg sm:max-w-6xl  pb-4">

@@ -1,3 +1,4 @@
+import {useTranslation} from 'next-i18next';
 import NextLink from '../../components/basic/NextLink';
 import type {IBlogMetadata} from '../../models/blog';
 import {BlogCardPreview} from './BlogCardPreview';
@@ -7,6 +8,8 @@ type Props = {
 };
 
 const BlogSuggestionsList = ({blogs}: Props) => {
+  const {t} = useTranslation('home');
+
   return (
     <section
       id="blogs-list"
@@ -14,13 +17,13 @@ const BlogSuggestionsList = ({blogs}: Props) => {
         py-16 bg-light"
     >
       <h2 className="mb-16 text-4xl relative">
-        Recent&nbsp;
+        {t('recent')}&nbsp;
         <NextLink
           href="/blog"
           aria-label="Blogs List"
           className="text-4xl text-primary-dark"
         >
-          Blogs
+          {t('blogs')}
         </NextLink>
       </h2>
       <div className="grid-cols-1 w-screen px-6 mb-0 grid md:grid-cols-2 md:max-w-4xl gap-8 ">

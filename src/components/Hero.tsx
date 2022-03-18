@@ -1,3 +1,4 @@
+import {useTranslation} from 'next-i18next';
 import type {IGetPlaiceholderReturn} from 'plaiceholder';
 import Zoom from 'react-reveal/Zoom';
 import {useScrollToView} from '../utils/scroll-to-view-hook';
@@ -10,6 +11,8 @@ export default function Hero({
   svg,
 }: Pick<IGetPlaiceholderReturn, 'svg' | 'img'>) {
   const {scrollToContent} = useScrollToView('#greetings');
+
+  const {t} = useTranslation('home');
 
   return (
     <div className="overflow-hidden relative h-[95vh] w-full flex justify-center items-center">
@@ -26,10 +29,10 @@ export default function Hero({
       <Zoom cascade duration={1500} delay={200}>
         <div className="absolute flex flex-col items-center sm:ml-[2rem] xl:ml-[2rem] 2xl:ml-[3rem]">
           <h2 className="text-white text-5xl xl:text-6xl text-center text-shadow">
-            Hello World
+            {t('hello')}
           </h2>
           <p className="text-3xl text-center text-white text-shadow">
-            Welcome to my page!
+            {t('welcome')}
           </p>
         </div>
       </Zoom>

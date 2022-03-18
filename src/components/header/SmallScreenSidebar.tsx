@@ -12,6 +12,7 @@ import NextLink from '../basic/NextLink';
 import RoundButton from '../basic/RoundButton';
 import CustomIcon from '../icon/CustomIcon';
 import SocialMedia from '../social/SocialMedia';
+import {ChangeLocale} from './ChangeLocale';
 import {useHeader} from './header-context';
 import {navigationLinks} from './nav-links';
 
@@ -104,6 +105,7 @@ const SmallScreenSidebar: FunctionComponent = () => {
                     ))}
                   </ul>
                 </nav>
+
                 <h3 className="my-4 text-2xl">Social</h3>
                 <SocialMedia />
                 <h3 className="my-4 text-2xl">Contact me</h3>
@@ -140,9 +142,11 @@ const SmallScreenSidebar: FunctionComponent = () => {
                   </NextLink>
                 </div>
 
-                <section className="text-left">
-                  <h3 className="my-4 text-2xl">Toggle Theme</h3>
-                  <DarkModeToggle className="outline-2 outline-white rounded-3xl" />
+                <section className="text-left mt-12">
+                  <div className="flex items-center">
+                    <DarkModeToggle className="outline-2 outline-white rounded-3xl" />
+                    <ChangeLocale className="text-5xl ml-3" />
+                  </div>
                 </section>
               </div>
 

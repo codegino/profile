@@ -99,7 +99,7 @@ export default function Resume({
 }
 
 export const getStaticProps: GetStaticProps = async ({locale}) => {
-  const experiences = await fectchExperiences();
+  const experiences = await fectchExperiences(locale);
   const skills = await fetchSkills();
 
   const {img, svg} = await getBlurringImage('3fgK6fKTGvBcmIRel2hJ6Y');
@@ -118,7 +118,11 @@ export const getStaticProps: GetStaticProps = async ({locale}) => {
       resumeWordUrl,
       profileImage: img,
       profileSvg: svg,
-      ...(await serverSideTranslations(locale as string, ['common'])),
+      ...(await serverSideTranslations(locale as string, [
+        'common',
+        'home',
+        'resume',
+      ])),
     },
   };
 };

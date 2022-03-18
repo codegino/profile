@@ -1,11 +1,14 @@
+import {useTranslation} from 'next-i18next';
 import Zoom from 'react-reveal/Zoom';
 import NextLink from './basic/NextLink';
 
 export default function WakatimeCharts() {
+  const {t} = useTranslation('resume');
+
   return (
     <div className="overflow-hidden flex flex-col py-4 sm:px-24 w-full">
       <h2 className="mb-4 text-center">
-        My&nbsp;
+        {t('my')}&nbsp;
         <NextLink
           href="https://wakatime.com/@codegino"
           target="_blank"
@@ -16,7 +19,7 @@ export default function WakatimeCharts() {
         >
           Wakatime
         </NextLink>
-        &nbsp;activity
+        &nbsp;{t('activity')}
       </h2>
       <Zoom>
         <figure className="flex justify-center">

@@ -1,5 +1,6 @@
 import {FaEnvelopeSquare} from '@react-icons/all-files/fa/FaEnvelopeSquare';
 import {FaMapMarkerAlt} from '@react-icons/all-files/fa/FaMapMarkerAlt';
+import {useTranslation} from 'next-i18next';
 import {IGetPlaiceholderReturn} from 'plaiceholder';
 import {BlurringImage} from './BlurringImage';
 import NextLink from './basic/NextLink';
@@ -8,6 +9,8 @@ export default function ResumeSummary({
   img,
   svg,
 }: Pick<IGetPlaiceholderReturn, 'svg' | 'img'>) {
+  const {t} = useTranslation('resume');
+
   return (
     <div
       className="w-full flex justify-center items-center flex-col py-20 md:flex-row  min-w-max"
@@ -27,7 +30,7 @@ export default function ResumeSummary({
       <section className="flex flex-col items-center justify-start ml-0 md:ml-8">
         <h1 className="m-0">{summary.name}</h1>
         <div className="flex flex-col items-center md:flex-row">
-          <h2 className="m-0 lg:my-2">{summary.jobTitle}</h2>
+          <h2 className="m-0 lg:my-2">{t(summary.jobTitle)}</h2>
           <NextLink
             href={summary.companyWebsite}
             target="_blank"
@@ -63,7 +66,7 @@ export default function ResumeSummary({
 }
 
 const summary = {
-  jobTitle: 'Senior Software Engineer',
+  jobTitle: 'jobTitle',
   company: 'NE Digital',
   email: 'carloginocatapang@gmail.com',
   address: 'Tampines, Singapore',

@@ -172,7 +172,11 @@ export const getStaticProps: GetStaticProps = async ({locale}) => {
       heroSvg,
       profileImage,
       profileSvg,
-      ...(await serverSideTranslations(locale as string, ['common'])),
+      ...(await serverSideTranslations(locale as string, [
+        'common',
+        'home',
+        'resume',
+      ])),
     },
   };
 };

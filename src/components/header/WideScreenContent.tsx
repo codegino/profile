@@ -4,6 +4,7 @@ import dynamic from 'next/dynamic';
 import {useRouter} from 'next/router';
 import NextLink from '../basic/NextLink';
 import SocialMedia from '../social/SocialMedia';
+import {ChangeLocale} from './ChangeLocale';
 import {navigationLinks} from './nav-links';
 
 const DarkModeToggle = dynamic(() => import('../DarkModeToggle'), {
@@ -40,9 +41,10 @@ export default function WideScreenContentImpl() {
       </nav>
       <div className="flex items-center pr-3">
         <SocialMedia />
-        <div className="h-full ml-3 min-w-[2.2rem]">
+        <div className="h-full mx-3 min-w-[2.2rem]">
           <DarkModeToggle />
         </div>
+        <ChangeLocale />
       </div>
     </div>
   );
