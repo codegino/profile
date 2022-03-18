@@ -1,5 +1,11 @@
 import dompurify from 'isomorphic-dompurify';
-import type {InferGetStaticPropsType} from 'next';
+import type {
+  GetStaticProps,
+  GetStaticPropsContext,
+  GetStaticPropsResult,
+  InferGetStaticPropsType,
+} from 'next';
+import {serverSideTranslations} from 'next-i18next/serverSideTranslations';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import AboutMeHero from '../../components/AboutMeHero';
@@ -84,7 +90,7 @@ export default function AboutMe({
   );
 }
 
-export const getStaticProps = async () => {
+export const getStaticProps = async ({locale}: GetStaticPropsContext) => {
   const entries = await client.getEntries<StaticContent>({
     content_type: 'staticText',
     'fields.category': 'about_me',
@@ -106,6 +112,7 @@ export const getStaticProps = async () => {
 
   return {
     props: {
+      ...(await serverSideTranslations(locale as string, ['common'])),
       aboutMeDetails: entries.items.map(
         entry => entry.fields,
       ) as StaticContent[],

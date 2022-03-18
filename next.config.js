@@ -1,9 +1,12 @@
+const {i18n} = require('./next-i18next.config');
+
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 });
 
 const config = {
   reactStrictMode: true,
+  i18n,
   pageExtensions: ['js', 'ts', 'jsx', 'tsx', 'md', 'mdx'],
   compress: true,
   images: {

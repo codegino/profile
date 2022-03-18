@@ -1,6 +1,7 @@
 import {FaFilePdf} from '@react-icons/all-files/fa/FaFilePdf';
 import {FaFileWord} from '@react-icons/all-files/fa/FaFileWord';
-import type {InferGetStaticPropsType} from 'next';
+import type {GetStaticProps, InferGetStaticPropsType} from 'next';
+import {serverSideTranslations} from 'next-i18next/serverSideTranslations';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import ResumeSummary from '../../components/ResumeSummary';
@@ -97,7 +98,7 @@ export default function Resume({
   );
 }
 
-export const getStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async ({locale}) => {
   const experiences = await fectchExperiences();
   const skills = await fetchSkills();
 
@@ -117,6 +118,7 @@ export const getStaticProps = async () => {
       resumeWordUrl,
       profileImage: img,
       profileSvg: svg,
+      ...(await serverSideTranslations(locale as string, ['common'])),
     },
   };
 };

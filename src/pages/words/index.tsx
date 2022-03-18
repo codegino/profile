@@ -1,5 +1,6 @@
 import {useCallback} from 'react';
 import type {GetStaticProps, InferGetStaticPropsType} from 'next';
+import {serverSideTranslations} from 'next-i18next/serverSideTranslations';
 import Head from 'next/head';
 import ContentLoader from 'react-content-loader';
 import Word from '../../components/Word';
@@ -59,12 +60,13 @@ export default function WordsPage({
   );
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async ({locale}) => {
   const words = await fetchWords(0).then(res => res.data);
 
   return {
     props: {
       words,
+      ...(await serverSideTranslations(locale as string, ['common'])),
     },
     revalidate: 1,
   };

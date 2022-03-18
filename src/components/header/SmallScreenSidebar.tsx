@@ -4,6 +4,7 @@ import {AiOutlineClose} from '@react-icons/all-files/ai/AiOutlineClose';
 import {FaEnvelopeSquare} from '@react-icons/all-files/fa/FaEnvelopeSquare';
 import {FaFacebookMessenger} from '@react-icons/all-files/fa/FaFacebookMessenger';
 import clsx from 'clsx';
+import {useTranslation} from 'next-i18next';
 import {useRouter} from 'next/router';
 import {CSSTransition} from 'react-transition-group';
 import DarkModeToggle from '../DarkModeToggle';
@@ -17,7 +18,7 @@ import {navigationLinks} from './nav-links';
 const sidebarLinks = [
   {
     url: '/',
-    label: 'Home',
+    label: 'home',
   },
   ...navigationLinks,
 ];
@@ -32,6 +33,8 @@ const SmallScreenSidebar: FunctionComponent = () => {
     e.stopPropagation();
     hideSidebar();
   };
+
+  const {t} = useTranslation();
 
   return (
     <>
@@ -93,9 +96,9 @@ const SmallScreenSidebar: FunctionComponent = () => {
                                   router.asPath.includes(link.url)),
                             },
                           )}
-                          aria-label={link.label}
+                          aria-label={t(link.label)}
                         >
-                          {link.label}
+                          {t(link.label)}
                         </NextLink>
                       </li>
                     ))}

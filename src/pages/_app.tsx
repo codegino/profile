@@ -1,4 +1,5 @@
 import {useEffect} from 'react';
+import {appWithTranslation} from 'next-i18next';
 import type {AppProps} from 'next/app';
 import TagManager from 'react-gtm-module';
 import useDarkMode from 'use-dark-mode';
@@ -35,4 +36,4 @@ function MyApp({Component, pageProps}: AppProps) {
     </>
   );
 }
-export default MyApp;
+export default appWithTranslation(MyApp);

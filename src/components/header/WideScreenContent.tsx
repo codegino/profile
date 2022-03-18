@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import {useTranslation} from 'next-i18next';
 import dynamic from 'next/dynamic';
 import {useRouter} from 'next/router';
 import NextLink from '../basic/NextLink';
@@ -11,6 +12,8 @@ const DarkModeToggle = dynamic(() => import('../DarkModeToggle'), {
 
 export default function WideScreenContentImpl() {
   const router = useRouter();
+
+  const {t} = useTranslation();
 
   return (
     <div className="hidden items-center justify-between w-full lg:flex">
@@ -27,9 +30,9 @@ export default function WideScreenContentImpl() {
                   'text-primary-600 border-b-2 border-b-primary-600':
                     router.asPath.includes(link.url),
                 })}
-                aria-label={link.label}
+                aria-label={t(link.label)}
               >
-                <span className="text-lg">{link.label}</span>
+                <span className="text-lg">{t(link.label)}</span>
               </NextLink>
             </li>
           ))}

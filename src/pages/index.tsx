@@ -1,4 +1,5 @@
 import type {GetStaticProps, InferGetStaticPropsType} from 'next';
+import {serverSideTranslations} from 'next-i18next/serverSideTranslations';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import Script from 'next/script';
@@ -132,7 +133,7 @@ export default function Home({
   );
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async ({locale}) => {
   const {img: heroImage, svg: heroSvg} = await getBlurringImage(
     '4tQ2p1PhiXEya0uWbAZC6O',
   );
@@ -171,6 +172,7 @@ export const getStaticProps: GetStaticProps = async () => {
       heroSvg,
       profileImage,
       profileSvg,
+      ...(await serverSideTranslations(locale as string, ['common'])),
     },
   };
 };

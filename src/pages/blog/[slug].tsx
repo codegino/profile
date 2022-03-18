@@ -5,6 +5,7 @@ import {
   GetStaticPropsContext,
   InferGetStaticPropsType,
 } from 'next';
+import {serverSideTranslations} from 'next-i18next/serverSideTranslations';
 import {serialize} from 'next-mdx-remote/serialize';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
@@ -29,6 +30,15 @@ export default function BlogPage({
   img,
   svg,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
+  if (!blog) {
+    return (
+      <div className="h-[80vh] w-full bg-transparent text-center pt-10">
+        <h2>Please wait</h2>
+        <h3>Using magic to load content...</h3>
+      </div>
+    );
+  }
+
   return (
     <>
       <Head>
@@ -59,14 +69,14 @@ export default function BlogPage({
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: `{
-            "@context": "https://schema.org", 
+            "@context": "https://schema.org",
             "@type": "Article",
             "headline": "${blog.title}",
             "image": "${blog.bannerId}",
-            "editor": "Carlo Gino Catapang", 
-            "author": "Carlo Gino Catapang", 
-            "genre": "${blog.tags?.join(' ')}", 
-            "keywords": "${blog.keywords?.join(' ')}", 
+            "editor": "Carlo Gino Catapang",
+            "author": "Carlo Gino Catapang",
+            "genre": "${blog.tags?.join(' ')}",
+            "keywords": "${blog.keywords?.join(' ')}",
             "url": "https://codegino.com/blog/${blog.slug}",
             "dateCreated": "${blog.date}",
             "dateModified": "${blog.dateUpdated}",
@@ -91,7 +101,10 @@ export default function BlogPage({
   );
 }
 
-export const getStaticProps = async ({params}: GetStaticPropsContext) => {
+export const getStaticProps = async ({
+  params,
+  locale,
+}: GetStaticPropsContext) => {
   const postFilePath = path.join(BLOGS_PATH, `${params?.slug}.mdx`);
   const source = fs.readFileSync(postFilePath);
 
@@ -122,11 +135,12 @@ export const getStaticProps = async ({params}: GetStaticPropsContext) => {
       } as IBlogMetadata,
       img,
       svg,
+      ...(await serverSideTranslations(locale as string, ['common'])),
     },
   };
 };
 
-export const getStaticPaths: GetStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths = async a => {
   const paths = (await getBlogsMetadata()).map(meta => {
     return {
       params: {
@@ -138,6 +152,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
   return {
     paths,
 
-    fallback: false,
+    fallback: true,
   };
 };

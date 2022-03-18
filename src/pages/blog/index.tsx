@@ -1,5 +1,6 @@
 import {useState} from 'react';
-import type {InferGetStaticPropsType} from 'next';
+import type {GetStaticPropsContext, InferGetStaticPropsType} from 'next';
+import {serverSideTranslations} from 'next-i18next/serverSideTranslations';
 import Head from 'next/head';
 import SubscribeForm from '../../components/SubscribeForm';
 import {commonMetaTags} from '../../frontend-utils/meta-tags';
@@ -50,7 +51,7 @@ export default function Blog({
   );
 }
 
-export const getStaticProps = async () => {
+export const getStaticProps = async ({locale}: GetStaticPropsContext) => {
   const blogs = (await getBlogsMetadata())
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
     .map(blog => ({
@@ -66,6 +67,9 @@ export const getStaticProps = async () => {
   }
 
   return {
-    props: {blogs: blogs as IBlogMetadata[]},
+    props: {
+      blogs: blogs as IBlogMetadata[],
+      ...(await serverSideTranslations(locale as string, ['common'])),
+    },
   };
 };
