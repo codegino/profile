@@ -3,5 +3,47 @@
   "welcome": "Welcome to my page!",
   "at": "at",
   "blogs": "Blogs",
-  "recent": "Recent"
+  "recent": "Recent",
+  "sitemap": "Sitemap",
+  "rssFeed": "RSS Feed",
+  "visitSkills": {
+    "1": "Check the ",
+    "2": "full list",
+    "3": " of skills"
+  },
+  "visitResume": {
+    "1": "visit my",
+    "2": "resume",
+    "3": " for more info"
+  },
+  "allRightsReserved": "All rights reserved",
+  "greetings": {
+    "filename": "Greetings.sh",
+    "1": "Hi! How are you?",
+    "2": "This is Carlo Gino, your Web",
+    "3": " developer",
+    "del1": 14,
+    "4": " Software developer",
+    "del2": 18,
+    "5": "SOFTWARE ENGINEER",
+    "6": "who will make your software problems go away",
+    "7": "Got any ideas for personal,",
+    "8": " business,",
+    "9": " or other uses?",
+    "10": "Let's make them come into existence!",
+    "11": "We'll create something marvelous together.",
+    "12": "Scroll down to know more about me..."
+  },
+  "newsletter": {
+    "title": "Stay up to date 🚀",
+    "subtitle": "Subscribe to my newsletter, and you‘ll be the first to know my latest content 📰.",
+    "noSpam": "No spam",
+    "unsubscribe": "Unsubscribe anytime.",
+    "form": {
+      "title": "Get started",
+      "firstName": "First name",
+      "email": "Email",
+      "button": "Sign up"
+    }
+  }
 }

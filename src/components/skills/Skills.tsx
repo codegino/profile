@@ -9,17 +9,20 @@ import {FaServer} from '@react-icons/all-files/fa/FaServer';
 import {FaStar} from '@react-icons/all-files/fa/FaStar';
 import {FaThumbsUp} from '@react-icons/all-files/fa/FaThumbsUp';
 import {FaTools} from '@react-icons/all-files/fa/FaTools';
+import {useTranslation} from 'next-i18next';
 import Zoom from 'react-reveal/Zoom';
 import type {CategorizedSkill, SkillCategory} from '../../models/skill';
 import NextLink from '../basic/NextLink';
 
 export default function Skills({skills}: {skills: CategorizedSkill[]}) {
+  const {t} = useTranslation('resume');
+
   return (
     <div className="flex justify-center">
       <article className="flex justify-center items-center flex-col pb-2 overflow-hidden max-w-3xl">
         <h2>
           <FaDumbbell />
-          &nbsp; Skills
+          &nbsp; {t('skills')}
         </h2>
         {skills.map(category => {
           return (

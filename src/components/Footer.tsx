@@ -1,9 +1,12 @@
+import {useTranslation} from 'next-i18next';
 import NextLink from './basic/NextLink';
 import {BottomRightShape} from './extras/BottomRightShape';
 import {TopLeftShape} from './extras/TopLeftShape';
 import SocialMedia from './social/SocialMedia';
 
 export default function Footer() {
+  const {t} = useTranslation('home');
+
   return (
     <footer className="w-full relative h-48 bg-black text-white flex justify-center overflow-hidden md:h-32">
       <TopLeftShape />
@@ -18,7 +21,7 @@ export default function Footer() {
             aria-label="Sitemap"
             className="mr-4 text-lg"
           >
-            Sitemap
+            {t('sitemap')}
           </NextLink>
           <NextLink
             href="/rss.xml"
@@ -26,9 +29,9 @@ export default function Footer() {
             rel="noreferrer"
             className="text-lg"
           >
-            RSS Feed
+            {t('rssFeed')}
           </NextLink>
-          <p>All rights reserved</p>
+          <p>{t('allRightsReserved')}</p>
           <p>© Carlo Gino Catapang {new Date().getFullYear()}</p>
         </div>
         <SocialMedia />

@@ -2,6 +2,7 @@ import {useState} from 'react';
 import type {FormEvent} from 'react';
 import {BiCool} from '@react-icons/all-files/bi/BiCool';
 import {RiSpamLine} from '@react-icons/all-files/ri/RiSpamLine';
+import {useTranslation} from 'next-i18next';
 import {useRouter} from 'next/router';
 import Button from './basic/Button';
 import Input from './basic/Input';
@@ -18,6 +19,8 @@ const SubscribeForm = () => {
   const [error, setError] = useState('');
 
   const router = useRouter();
+
+  const {t} = useTranslation('home');
 
   const handleSubmit = async (e: FormEvent<SubscribeFormElement>) => {
     e.preventDefault();
@@ -51,14 +54,11 @@ const SubscribeForm = () => {
     <>
       <div className="h-screen min-h-[40rem] px-2 w-full flex flex-col items-center justify-center">
         <div className="text-center max-w-2xl ">
-          <h2 className="my-8 text-4xl">Stay up to date 🚀</h2>
-          <h3 className="mb-8 text-2xl">
-            Subscribe to my newsletter, and you&lsquo;ll be the first to know my
-            latest content 📰.
-          </h3>
+          <h2 className="my-8 text-4xl">{t('newsletter.title')}</h2>
+          <h3 className="mb-8 text-2xl">{t('newsletter.subtitle')}</h3>
           <h4>
-            No spam
-            <RiSpamLine size={25} />. Unsubscribe anytime.
+            {t('newsletter.noSpam')}
+            <RiSpamLine size={25} />. {t('newsletter.unsubscribe')}
             <BiCool size={25} />
           </h4>
         </div>
@@ -73,19 +73,19 @@ const SubscribeForm = () => {
             className="flex justify-center bg-primary-dark py-2 items-center
           "
           >
-            <p className="text-light text-xl">Get started</p>
+            <p className="text-light text-xl">{t('newsletter.form.title')}</p>
           </div>
           <div className="flex flex-col py-8 px-4 bg-light">
             <Input
               type="text"
-              placeholder="First Name"
+              placeholder={t('newsletter.form.firstName')}
               name="name"
               className="mb-4"
               required
             />
             <Input
               type="email"
-              placeholder="Email"
+              placeholder={t('newsletter.form.email')}
               name="email"
               required
               className="mb-8"
@@ -106,7 +106,7 @@ const SubscribeForm = () => {
               </div>
             )}
             <Button type="submit" className="text-2xl font-bold">
-              Sign up
+              {t('newsletter.form.button')}
             </Button>
           </div>
         </form>

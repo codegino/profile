@@ -3,6 +3,7 @@ import type {FunctionComponent} from 'react';
 import {BsChevronRight} from '@react-icons/all-files/bs/BsChevronRight';
 import {BsTerminalFill} from '@react-icons/all-files/bs/BsTerminalFill';
 import clsx from 'clsx';
+import {useTranslation} from 'next-i18next';
 import Zoom from 'react-reveal/Zoom';
 import Typist from 'react-typist';
 import 'react-typist/dist/Typist.css';
@@ -13,6 +14,8 @@ const GreetingsContent: FunctionComponent<{className?: string}> = () => {
   const [isTyping, setIsTyping] = useState(false);
   const {scrollToContent} = useScrollToView('#resume-summary');
   const [isGuideVisible, setIsGuideVisible] = useState(false);
+
+  const {t} = useTranslation('home');
 
   return (
     <>
@@ -30,7 +33,7 @@ const GreetingsContent: FunctionComponent<{className?: string}> = () => {
               <div className="min-h-[0.75rem] min-w-[0.75rem] rounded-full mr-3 bg-green-600" />
               <BsTerminalFill size={18} />
               <div className="relative md:absolute w-full justify-self-center text-center text-base font-mono">
-                Greetings.sh
+                {t('greetings.filename')}
               </div>
             </div>
             <div
@@ -44,28 +47,28 @@ const GreetingsContent: FunctionComponent<{className?: string}> = () => {
                 >
                   <StyledBsChevronRight />
                   <Typist.Delay ms={1200} />
-                  <Span>Hi! How are you?</Span>
+                  <Span>{t('greetings.1')}</Span>
                   <br />
                   <StyledBsChevronRight />
                   <Typist.Delay ms={500} />
                   <br />
                   <StyledBsChevronRight />
                   <Typist.Delay ms={500} />
-                  <Span>This is Carlo Gino, your Web</Span>
+                  <Span>{t('greetings.2')}</Span>
                   <Typist.Delay ms={500} />
-                  <Span> developer</Span>
+                  <Span>{t('greetings.3')}</Span>
                   <Typist.Delay ms={1000} />
-                  <Typist.Backspace count={14} />
-                  <Span> Software developer</Span>
+                  <Typist.Backspace count={Number(t('greetings.del1'))} />
+                  <Span>{t('greetings.4')}</Span>
                   <Typist.Delay ms={1200} />
-                  <Typist.Backspace count={18} />{' '}
+                  <Typist.Backspace count={Number(t('greetings.del2'))} />
                   <Span className="font-bold text-primary-light">
-                    SOFTWARE ENGINEER
+                    {t('greetings.5')}
                   </Span>
                   <Typist.Delay ms={200} />
                   <br />
                   <StyledBsChevronRight />
-                  <Span>who will make your software problems go away</Span>
+                  <Span>{t('greetings.6')}</Span>
                   <Typist.Delay ms={1500} />
                   <br />
                   <StyledBsChevronRight />
@@ -73,19 +76,19 @@ const GreetingsContent: FunctionComponent<{className?: string}> = () => {
                   <br />
                   <StyledBsChevronRight />
                   <Typist.Delay ms={500} />
-                  <Span>Got any ideas for a personal,</Span>
+                  <Span>{t('greetings.7')}</Span>
                   <Typist.Delay ms={300} />
-                  <Span> business,</Span>
+                  <Span>{t('greetings.8')}</Span>
                   <Typist.Delay ms={300} />
-                  <Span> or other uses?</Span>
+                  <Span>{t('greetings.9')}</Span>
                   <br />
                   <StyledBsChevronRight />
                   <Typist.Delay ms={500} />
-                  <Span>Let&lsquo;s make them come to existense!</Span>
+                  <Span>{t('greetings.10')}</Span>
                   <br />
                   <StyledBsChevronRight />
                   <Typist.Delay ms={500} />
-                  <Span>We&lsquo;ll create something marvelous together.</Span>
+                  <Span>{t('greetings.11')}</Span>
                   <br />
                   <StyledBsChevronRight />
                   <Typist.Delay ms={300} />
@@ -101,7 +104,7 @@ const GreetingsContent: FunctionComponent<{className?: string}> = () => {
                   <br />
                   <StyledBsChevronRight />
                   <Typist.Delay ms={1000} />
-                  <Span>Scroll down to know more about me...</Span>
+                  <Span>{t('greetings.12')}.</Span>
                 </Typist>
               ) : null}
             </div>

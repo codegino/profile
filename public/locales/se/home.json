@@ -3,5 +3,47 @@
   "welcome": "Välkommen till min sida!",
   "at": "at",
   "blogs": "Bloggar",
-  "recent": "Senaste"
+  "recent": "Senaste",
+  "sitemap": "Webbplatskarta",
+  "rssFeed": "RSS-Feed",
+  "visitSkills": {
+    "1": "Kontrollera hela ",
+    "2": "listan",
+    "3": " över färdigheter"
+  },
+  "visitResume": {
+    "1": "Besök mitt ",
+    "2": "CV",
+    "3": " för mer information"
+  },
+  "allRightsReserved": "Alla rättigheter reserverade",
+  "greetings": {
+    "filename": "Hälsningsfraser.sh",
+    "1": "Hej! Hur mår du?",
+    "2": "Det här är Carlo Gino, din webb",
+    "3": "utvecklare",
+    "del1": 15,
+    "4": " Mjukvaruutvecklare",
+    "del2": 18,
+    "5": "PROGRAMVARUINGENJÖR",
+    "6": "som får dina programvaruproblem att försvinna",
+    "7": "Har du några idéer för personliga, ",
+    "8": " affärsmässiga",
+    "9": " eller andra saker?",
+    "10": "Låt oss få dem att komma till stånd!",
+    "11": "Vi skapar något fantastiskt tillsammans.",
+    "12": "Scrolla ner för att veta mer om mig..."
+  },
+  "newsletter": {
+    "title": "Håll dig uppdaterad 🚀",
+    "subtitle": "Prenumerera på mitt nyhetsbrev så blir du den första som får veta mitt senaste innehåll 📰.",
+    "noSpam": "Ingen spam",
+    "unsubscribe": "Avsluta prenumerationen när som helst.",
+    "form": {
+      "title": "Sätta igång",
+      "firstName": "Förnamn",
+      "email": "E-post",
+      "button": "Registrera sig"
+    }
+  }
 }

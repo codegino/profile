@@ -1,4 +1,5 @@
 import type {GetStaticProps, InferGetStaticPropsType} from 'next';
+import {useTranslation} from 'next-i18next';
 import {serverSideTranslations} from 'next-i18next/serverSideTranslations';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
@@ -45,6 +46,8 @@ export default function Home({
   profileSvg,
   blogs,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
+  const {t} = useTranslation('home');
+
   return (
     <>
       <Head>
@@ -84,15 +87,15 @@ export default function Home({
           <Skills skills={skills} />
           <div className="text-center my-10">
             <p className="text-xl">
-              Check&nbsp;
+              {t('visitSkills.1')}
               <NextLink
                 href="/resume#skills"
                 aria-label="full skills list"
                 className="text-primary-dark underline-on-hover"
               >
-                <span className="text-xl">full list</span>
+                <span className="text-xl">{t('visitSkills.2')}</span>
               </NextLink>
-              &nbsp;of skills
+              {t('visitSkills.3')}
             </p>
           </div>
         </FullScreenWrapper>
@@ -112,16 +115,16 @@ export default function Home({
           </div>
           <div className="text-center mb-10">
             <p className="text-xl">
-              Visit my&nbsp;
+              {t('visitResume.1')}
               <NextLink
                 href="/resume"
                 aria-label="resume"
                 title="Link to my resume"
                 className="text-primary-dark underline-on-hover"
               >
-                <span className="text-xl">resume</span>
+                <span className="text-xl">{t('visitResume.2')}</span>
               </NextLink>
-              &nbsp;for more info
+              {t('visitResume.3')}
             </p>
           </div>
         </FullScreenWrapper>
