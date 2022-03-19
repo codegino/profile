@@ -33,17 +33,5 @@
     "10": "Låt oss få dem att komma till stånd!",
     "11": "Vi skapar något fantastiskt tillsammans.",
     "12": "Scrolla ner för att veta mer om mig..."
-  },
-  "newsletter": {
-    "title": "Håll dig uppdaterad 🚀",
-    "subtitle": "Prenumerera på mitt nyhetsbrev så blir du den första som får veta mitt senaste innehåll 📰.",
-    "noSpam": "Ingen spam",
-    "unsubscribe": "Avsluta prenumerationen när som helst.",
-    "form": {
-      "title": "Sätta igång",
-      "firstName": "Förnamn",
-      "email": "E-post",
-      "button": "Registrera sig"
-    }
   }
 }

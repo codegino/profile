@@ -20,7 +20,7 @@ const SubscribeForm = () => {
 
   const router = useRouter();
 
-  const {t} = useTranslation('home');
+  const {t} = useTranslation('newsletter');
 
   const handleSubmit = async (e: FormEvent<SubscribeFormElement>) => {
     e.preventDefault();
@@ -54,11 +54,11 @@ const SubscribeForm = () => {
     <>
       <div className="h-screen min-h-[40rem] px-2 w-full flex flex-col items-center justify-center">
         <div className="text-center max-w-2xl ">
-          <h2 className="my-8 text-4xl">{t('newsletter.title')}</h2>
-          <h3 className="mb-8 text-2xl">{t('newsletter.subtitle')}</h3>
+          <h2 className="my-8 text-4xl">{t('title')}</h2>
+          <h3 className="mb-8 text-2xl">{t('subtitle')}</h3>
           <h4>
-            {t('newsletter.noSpam')}
-            <RiSpamLine size={25} />. {t('newsletter.unsubscribe')}
+            {t('noSpam')}
+            <RiSpamLine size={25} />. {t('unsubscribe')}
             <BiCool size={25} />
           </h4>
         </div>
@@ -73,19 +73,19 @@ const SubscribeForm = () => {
             className="flex justify-center bg-primary-dark py-2 items-center
           "
           >
-            <p className="text-light text-xl">{t('newsletter.form.title')}</p>
+            <p className="text-light text-xl">{t('form.title')}</p>
           </div>
           <div className="flex flex-col py-8 px-4 bg-light">
             <Input
               type="text"
-              placeholder={t('newsletter.form.firstName')}
+              placeholder={t('form.firstName')}
               name="name"
               className="mb-4"
               required
             />
             <Input
               type="email"
-              placeholder={t('newsletter.form.email')}
+              placeholder={t('form.email')}
               name="email"
               required
               className="mb-8"
@@ -106,7 +106,7 @@ const SubscribeForm = () => {
               </div>
             )}
             <Button type="submit" className="text-2xl font-bold">
-              {t('newsletter.form.button')}
+              {t('form.button')}
             </Button>
           </div>
         </form>

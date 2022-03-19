@@ -179,6 +179,7 @@ export const getStaticProps: GetStaticProps = async ({locale}) => {
         'common',
         'home',
         'resume',
+        'newsletter',
       ])),
     },
   };

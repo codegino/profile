@@ -33,17 +33,5 @@
     "10": "Let's make them come into existence!",
     "11": "We'll create something marvelous together.",
     "12": "Scroll down to know more about me..."
-  },
-  "newsletter": {
-    "title": "Stay up to date 🚀",
-    "subtitle": "Subscribe to my newsletter, and you‘ll be the first to know my latest content 📰.",
-    "noSpam": "No spam",
-    "unsubscribe": "Unsubscribe anytime.",
-    "form": {
-      "title": "Get started",
-      "firstName": "First name",
-      "email": "Email",
-      "button": "Sign up"
-    }
   }
 }

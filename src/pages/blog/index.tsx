@@ -69,7 +69,10 @@ export const getStaticProps = async ({locale}: GetStaticPropsContext) => {
   return {
     props: {
       blogs: blogs as IBlogMetadata[],
-      ...(await serverSideTranslations(locale as string, ['common'])),
+      ...(await serverSideTranslations(locale as string, [
+        'common',
+        'newsletter',
+      ])),
     },
   };
 };
