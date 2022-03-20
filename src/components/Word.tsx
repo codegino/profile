@@ -1,4 +1,5 @@
 import {useEffect, useState} from 'react';
+import {useTranslation} from 'next-i18next';
 import type {
   DictionaryApiResponse,
   WordFromBackend,
@@ -9,6 +10,8 @@ const Word = ({word}: {word: WordFromBackend}) => {
   const [isFetching, setIsFetching] = useState(false);
   const [pronunciation, setPronunciation] =
     useState<{hw: string; pr: string}>();
+
+  const {t} = useTranslation('common');
 
   useEffect(() => {
     if (showDefinition) {
@@ -37,7 +40,18 @@ const Word = ({word}: {word: WordFromBackend}) => {
           {pronunciation.hw} <b>|</b> \ {pronunciation.pr} \
         </p>
       )}
-      <p className="text-dark text-xl my-2 italic">{word.date}</p>
+      <p className="text-dark text-xl my-2 italic">
+        {t('date', {
+          val: new Date(word.date),
+          formatParams: {
+            val: {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+            },
+          },
+        })}
+      </p>
       <section>
         <h3>Sentences</h3>
         <ul className="my-2">

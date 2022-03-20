@@ -1,7 +1,6 @@
 import {createClient} from 'contentful';
 import type {NextApiRequest, NextApiResponse} from 'next';
 import type {WordFromBackend} from '../../models/Vocabulary';
-import {formatDate} from '../../utils/date-formatter';
 
 export default async function handler(
   req: NextApiRequest,
@@ -11,10 +10,7 @@ export default async function handler(
 
   res.status(200).json({
     ...result,
-    data: result.data.map(word => ({
-      ...word,
-      date: formatDate(new Date(word.date)),
-    })),
+    data: result.data,
   });
 }
 

@@ -2,7 +2,6 @@ import {createClient} from 'contentful';
 import type {EducationExperience, WorkExperience} from '../models/resume';
 import type {CategorizedSkill, Skill} from '../models/skill';
 import {client} from './contentful.utils';
-import {formatDate} from './date-formatter';
 
 export const fetchSkills = async (onlyHightlights = false) => {
   const entries = await client.getEntries<Skill>({
@@ -66,15 +65,11 @@ export const fectchExperiences = async (lang = 'en') => {
       workExperiences.items?.map(exp => ({
         ...exp.fields,
         id: exp.sys.id,
-        end_date: formatDate(new Date(exp.fields.endDate)),
-        start_date: formatDate(new Date(exp.fields.startDate)),
       })) ?? [],
     educationExperiences:
       educationExperiences.items?.map(exp => ({
         ...exp.fields,
         id: exp.sys.id,
-        end_date: formatDate(new Date(exp.fields.endDate)),
-        start_date: formatDate(new Date(exp.fields.startDate)),
       })) ?? [],
   };
 };

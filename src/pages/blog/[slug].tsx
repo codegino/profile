@@ -14,8 +14,7 @@ import type {IBlogMetadata} from '../../models/blog';
 import BlogContent from '../../modules/blog/BlogContent';
 import BlogHeader from '../../modules/blog/BlogHeader';
 import BlogLayout from '../../modules/blog/BlogLayout';
-import {client, getBlurringImage} from '../../utils/contentful.utils';
-import {formatDate} from '../../utils/date-formatter';
+import {client} from '../../utils/contentful.utils';
 import {blurImage} from '../../utils/image-blur.utils';
 import {getBlogsMetadata} from '../../utils/mdxUtils';
 import {BLOGS_PATH} from '../../utils/mdxUtils';
@@ -130,7 +129,6 @@ export const getStaticProps = async ({
       frontMatter: {
         ...data,
         slug: params?.slug,
-        date: formatDate(new Date(data.date)),
         bannerId: bannerUrl,
       } as IBlogMetadata,
       img,
@@ -140,7 +138,7 @@ export const getStaticProps = async ({
   };
 };
 
-export const getStaticPaths: GetStaticPaths = async a => {
+export const getStaticPaths: GetStaticPaths = async () => {
   const paths = (await getBlogsMetadata()).map(meta => {
     return {
       params: {

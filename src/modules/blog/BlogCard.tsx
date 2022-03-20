@@ -1,5 +1,6 @@
 import type {FunctionComponent} from 'react';
 import clsx from 'clsx';
+import {useTranslation} from 'next-i18next';
 import Image from 'next/image';
 import NextLink from '../../components/basic/NextLink';
 import type {IBlogMetadata} from '../../models/blog';
@@ -7,6 +8,8 @@ import type {IBlogMetadata} from '../../models/blog';
 const BlogCard: FunctionComponent<{
   blog: IBlogMetadata;
 }> = ({blog}) => {
+  const {t} = useTranslation('common');
+
   return (
     <article
       className={clsx(
@@ -35,7 +38,19 @@ const BlogCard: FunctionComponent<{
       <NextLink href={`/blog/${blog.slug}`} aria-label={blog.title}>
         <h2>{blog.title}</h2>
         <h3>{blog.description}</h3>
-        <p className="mt-3">{blog.date}</p>
+        <p className="mt-3">
+          {t('date', {
+            val: new Date(blog.date),
+            formatParams: {
+              val: {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+              },
+            },
+          })}
+        </p>
 
         {blog.tags && blog.tags.length ? (
           <div className="mt-4 sm:mt-8 flex gap-2 flex-wrap">

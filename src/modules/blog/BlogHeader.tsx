@@ -1,4 +1,5 @@
 import type {FunctionComponent} from 'react';
+import {useTranslation} from 'next-i18next';
 import {IGetPlaiceholderReturn} from 'plaiceholder';
 import {BlurringImage} from '../../components/BlurringImage';
 import type {IBlogMetadata} from '../../models/blog';
@@ -8,11 +9,25 @@ type Props = {
 } & Pick<IGetPlaiceholderReturn, 'svg' | 'img'>;
 
 const BlogHeader: FunctionComponent<Props> = ({blog, img, svg}) => {
+  const {t} = useTranslation('common');
+
   return (
     <article className="mb-8 text-center flex flex-col items-center">
       <h1 className="mb-0">{blog.title}</h1>
       {blog.description && <h2 className="description">{blog.description}</h2>}
-      <p className="mb-4">{blog.date}</p>
+      <p className="mb-4">
+        {t('date', {
+          val: new Date(blog.date),
+          formatParams: {
+            val: {
+              weekday: 'long',
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+            },
+          },
+        })}
+      </p>
       {img && svg && !blog.hideBanner ? (
         <div className="relative h-[66vh] w-[95vw] lg:h-[35rem] lg:w-[65rem] lg:px-10 flex justify-center items-center">
           <BlurringImage

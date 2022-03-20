@@ -1,0 +1,10 @@
+{
+  "home": "Hem",
+  "resume": "Återupptas",
+  "about": "Om",
+  "blog": "Blogg",
+  "vocab": "Ordförråd",
+  "date": "{{val, datetime}}",
+  "sitemap": "Webbplatskarta",
+  "rssFeed": "RSS-Feed"
+}

@@ -40,7 +40,7 @@ const locales = [
     alt: 'English',
   },
   {
-    value: 'se',
+    value: 'sv',
     label: '🇸🇪',
     alt: 'Swedish',
   },

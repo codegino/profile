@@ -3,5 +3,8 @@
   "resume": "Resume",
   "about": "About",
   "blog": "Blog",
-  "vocab": "Vocab"
+  "vocab": "Vocab",
+  "date": "{{val, datetime}}",
+  "sitemap": "Sitemap",
+  "rssFeed": "RSS Feed"
 }

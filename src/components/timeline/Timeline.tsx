@@ -4,6 +4,7 @@ import {FaBuilding} from '@react-icons/all-files/fa/FaBuilding';
 import {FaGraduationCap} from '@react-icons/all-files/fa/FaGraduationCap';
 import {FaScroll} from '@react-icons/all-files/fa/FaScroll';
 import dompurify from 'isomorphic-dompurify';
+import {useTranslation} from 'next-i18next';
 import Slide from 'react-reveal/Slide';
 import type {EducationExperience, WorkExperience} from '../../models/resume';
 import NextLink from '../basic/NextLink';
@@ -70,11 +71,24 @@ export default function Timeline({
 const Content: FunctionComponent<{
   exp: WorkExperience | EducationExperience;
 }> = ({exp, children = null}) => {
+  const {t} = useTranslation('common');
+
   return (
     <Slide cascade={true} duration={800}>
       <div>
         <p className="bg-light text-dark justify-self-center py-1">
-          {exp.endDate === exp.startDate ? 'Present' : exp.endDate}
+          {exp.endDate === exp.startDate
+            ? 'Present'
+            : t('date', {
+                val: new Date(exp.endDate),
+                formatParams: {
+                  val: {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                  },
+                },
+              })}
         </p>
         <div>
           {exp.category === 'work' ? <FaBuilding /> : <FaGraduationCap />}
@@ -96,7 +110,16 @@ const Content: FunctionComponent<{
       </div>
       <div className="max-w-[45rem]">{children}</div>
       <p className="bg-light text-dark justify-self-center py-1">
-        {exp.startDate}
+        {t('date', {
+          val: new Date(exp.startDate),
+          formatParams: {
+            val: {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+            },
+          },
+        })}
       </p>
     </Slide>
   );

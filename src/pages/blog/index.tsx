@@ -8,7 +8,6 @@ import type {IBlogMetadata} from '../../models/blog';
 import BlogCard from '../../modules/blog/BlogCard';
 import BlogsFilter from '../../modules/blog/BlogsFilter';
 import {client} from '../../utils/contentful.utils';
-import {formatDate} from '../../utils/date-formatter';
 import {getBlogsMetadata} from '../../utils/mdxUtils';
 
 export default function Blog({
@@ -52,12 +51,9 @@ export default function Blog({
 }
 
 export const getStaticProps = async ({locale}: GetStaticPropsContext) => {
-  const blogs = (await getBlogsMetadata())
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-    .map(blog => ({
-      ...blog,
-      date: formatDate(new Date(blog.date)),
-    }));
+  const blogs = (await getBlogsMetadata()).sort(
+    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
+  );
 
   for (let blog of blogs) {
     const asset = await client.getAsset(blog.bannerId);

@@ -13,7 +13,6 @@ import {generateRssFeed} from '../lib/rss';
 import generateSitemap from '../lib/sitemap';
 import BlogSuggestionsList from '../modules/blog/BlogSuggestionsList';
 import {client, getBlurringImage} from '../utils/contentful.utils';
-import {formatDate} from '../utils/date-formatter';
 import {getBlogsMetadata} from '../utils/mdxUtils';
 import {fetchSkills} from '../utils/resume-props';
 
@@ -147,10 +146,6 @@ export const getStaticProps: GetStaticProps = async ({locale}) => {
 
   const blogs = (await getBlogsMetadata())
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-    .map(blog => ({
-      ...blog,
-      date: formatDate(new Date(blog.date)),
-    }))
     .slice(0, 4);
 
   for (let blog of blogs) {
