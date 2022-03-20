@@ -1,5 +1,6 @@
 import type {FunctionComponent} from 'react';
 import {useTranslation} from 'next-i18next';
+import {useRouter} from 'next/router';
 import {IGetPlaiceholderReturn} from 'plaiceholder';
 import {BlurringImage} from '../../components/BlurringImage';
 import type {IBlogMetadata} from '../../models/blog';
@@ -10,6 +11,7 @@ type Props = {
 
 const BlogHeader: FunctionComponent<Props> = ({blog, img, svg}) => {
   const {t} = useTranslation('common');
+  const {locale} = useRouter();
 
   return (
     <article className="mb-8 text-center flex flex-col items-center">
@@ -48,6 +50,8 @@ const BlogHeader: FunctionComponent<Props> = ({blog, img, svg}) => {
           <i className="text-base">{blog.bannerDescription}</i>
         </aside>
       ) : null}
+      <br />
+      {locale !== 'en' && <i>Sorry, this blog is only available in English</i>}
     </article>
   );
 };
