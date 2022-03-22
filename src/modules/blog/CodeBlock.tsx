@@ -17,7 +17,7 @@ export type CodeBlockProps = {
   fileName: string;
 };
 
-const executableExtensions = ['js', 'jsx', 'ts', 'tsx', 'html', 'css'];
+const executableExtensions = ['js', 'jsx', 'ts', 'tsx', 'html', 'css', 'json'];
 
 const CodeBlock: FunctionComponent<CodeBlockProps> = ({
   children,
