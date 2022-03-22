@@ -69,7 +69,7 @@ yarn add -D autoprefixer postcss postcss-cli postcss-import tailwindcss cssnano
 
 #### Add Script for CSS generation
 
-```json package
+```json fileName=package
 "scripts": {
   // ...
   "css:watch": "npm run css:build -- --watch",
@@ -90,7 +90,7 @@ app/styles/*.css
 
 #### Add Script for cleaning up build files
 
-```json package
+```json fileName=package
 "scripts": {
   // ...
   "build": "npm run css:prod && remix build",
@@ -127,7 +127,7 @@ npm run build
 
 If you are not a fan of multiple terminals, use `concurrently` to run `css:watch` and `remix dev` in parallel
 
-```json package
+```json fileName=package
 "scripts": {
   // ...
   "dev": "concurrently npm run css:watch && remix dev",

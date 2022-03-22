@@ -1,0 +1,436 @@
+---
+title: Next.js i18n
+description: A guide on how to use Next.js i18n
+date: '2022-03-23'
+dateUpdated: '2022-03-23'
+bannerId: 1hRWtyM5wqNlpkKghyYbRJ
+bannerDescription: cozy environment
+tags: ['react', 'tech', 'next.js']
+keywords: ['nextjs environment variables', 'nextjs api key']
+published: true
+---
+
+## Introduction
+
+### Initialize a NextJS project
+
+[link](https://nextjs.org/docs/api-reference/create-next-app)
+
+### Remove boilerplate code
+
+```jsx fileName=pages/index
+export default function Home() {
+  return <main>Hello world</main>;
+}
+```
+
+Commit message
+
+### Create another route/page
+
+This step is optional. It will allow better demo
+
+```jsx fileName=pages/index
+import { useRouter } from "next/router";
+
+export default function Home() {
+  const { locale } = useRouter();
+
+  return <main>Hello world: {locale}</main>;
+}
+```
+
+```jsx fileName=pages/about
+import { useRouter } from "next/router";
+
+export default function About() {
+  const { locale } = useRouter();
+
+  return <main>About page: {locale}</main>;
+}
+```
+
+# Images of empty locales and 404 pages
+
+### Add built-in NextJS i18n configuration
+
+```js
+const nextConfig = {
+  // other stuff
+  i18n: {
+    defaultLocale: "en",
+    locales: ["en", "sv", "cn"],
+  },
+};
+```
+
+# Images of auto created routes
+
+### Create a header component 
+
+#### Navigation links
+
+#### Changing of locale
+
+```jsx fileName=components/Header
+import React from "react";
+import Link from "next/link";
+import { useRouter } from "next/router";
+
+const Header = () => {
+  const router = useRouter();
+
+  const handleLocaleChange = (event) => {
+    const value = event.target.value;
+
+    router.push(router.route, router.asPath, {
+      locale: value,
+    });
+  };
+
+  return (
+    <header>
+      <nav>
+        <Link href="/">
+          <a className={router.asPath === "/" ? "active" : ""}>Home</a>
+        </Link>
+        <Link href="/about">
+          <a className={router.asPath === "/about" ? "active" : ""}>About</a>
+        </Link>
+      </nav>
+
+      <select onChange={handleLocaleChange} value={router.locale}>
+        <option value="en">🇺🇸 English</option>
+        <option value="cn">🇨🇳 中文</option>
+        <option value="sv">🇸🇪 Swedish</option>
+      </select>
+
+      <style jsx>{`
+        a {
+          margin-right: 0.5rem;
+        }
+
+        a.active {
+          color: blue;
+        }
+
+        nav {
+          margin-bottom: 0.5rem;
+        }
+      `}</style>
+    </header>
+  );
+};
+
+export default Header;
+```
+
+```jsx fileName=pages/_app
+import Header from "../components/Header";
+import "../styles/globals.css";
+
+function MyApp({ Component, pageProps }) {
+  return (
+    <>
+      <Header />
+      <Component {...pageProps} />
+    </>
+  );
+}
+
+export default MyApp;
+```
+
+<Img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/q13kb9x0z1jnbdmo5hnu.gif" width={600} height={270}/>
+
+### Install next-i18next
+
+```sh
+npm install next-i18next
+```
+
+### Create a `next-i18next.config.js` and update `next.config.js`
+
+
+```js fileName=next-i18next.config
+module.exports = {
+  i18n: {
+    defaultLocale: "en",
+    locales: ["en", "sv", "cn"],
+    localePath: "./locales",
+  },
+};
+```
+
+`localePath` is optional and will default to `./public/locales`.
+
+```js
+const { i18n } = require("./next-i18next.config");
+
+const nextConfig = {
+  // other stuff
+  i18n,
+};
+
+module.exports = nextConfig;
+```
+
+### Create translation files
+
+#### English Translations
+```json fileName=locales/en/home.json
+{
+  "home": "Home",
+  "about": "About"
+}
+```
+
+```json fileName=locales/en/common.json
+{
+  "greeting": "Hello world!"
+}
+```
+
+#### Swedish translations
+
+```json fileName=locales/sv/home.json
+{
+  "home": "Hem",
+  "about": "Om"
+}
+```
+
+```json fileName=locales/sv/common.json
+{
+  "greeting": "Hej världen!"
+}
+```
+
+#### Chinese translations
+
+```json fileName=locales/cn/home.json
+{
+  "home": "主页",
+  "about": "关于页面"
+}
+```
+
+```json fileName=locales/cn/common.json
+{
+  "greeting": "世界您好"
+}
+```
+
+### There are three functions that next-i18next exports, which you will need to use to translate your project:
+
+
+#### `appWithTranslation`
+
+```jsx fileName=pages/_app
+import { appWithTranslation } from "next-i18next";
+import Header from "../components/Header";
+import "../styles/globals.css";
+
+function MyApp({ Component, pageProps }) {
+  return (
+    <>
+      <Header />
+      <Component {...pageProps} />
+    </>
+  );
+}
+
+export default appWithTranslation(MyApp);
+```
+
+#### `serverSideTranslations`
+
+```jsx fileName=pages/index
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+
+// export default function Home...
+
+export async function getStaticProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ["common", "home"])),
+      // Will be passed to the page component as props
+    },
+  };
+}
+```
+
+#### `useTranslation`
+
+```jsx fileName=pages/index
+// other imports
+import { useTranslation } from "next-i18next";
+
+export default function Home() {
+  // We want to get the translations from `home.json`
+  const { t } = useTranslation("home");
+
+  // Get the translation for `greeting` key
+  return <main>{t("greeting")}</main>;
+}
+
+// export async function getStaticProps...
+```
+
+```jsx fileName=components/Header
+// other imports
+import { useTranslation } from "next-i18next";
+
+const Header = () => {
+  // ...
+
+  // If no argument is passed, it will use `common.json`
+  const { t } = useTranslation();
+
+  return (
+    <header>
+      <nav>
+        <Link href="/">
+          <a className={router.asPath === "/" ? "active" : ""}>{t("home")}</a>
+        </Link>
+        <Link href="/about">
+          <a className={router.asPath === "/about" ? "active" : ""}>
+            {t("about")}
+          </a>
+        </Link>
+      </nav>
+      {/* Other code */}
+    </header>
+  );
+}
+```
+
+<Img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/15vltbuirueosirpaoof.gif" width={600} height={270}/>
+
+The `home` page is translated properly; however, the `about` page is not. It is because we need to use `serverSideTranslations` in every route.
+
+
+```jsx
+// other imports
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+
+// export default function About...
+
+export async function getStaticProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ["common"])),
+    },
+  };
+}
+```
+
+<Img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/oaisdtzj8lo1c73pcllp.gif" width={600} height={270}/>
+
+We only specified `common` in the `serverSideTranslations` because we don't plan on using anything in `home.json` in the About page.
+
+<br />
+
+Before we proceed in translating the About page's content, let's first check some cool stuff we can do with the `i18n-next` library.
+
+
+### Nested translation keys
+
+```json fileName=locales/en/newsletter
+{
+  "title": "Stay up to date",
+  "subtitle": "Subscribe to my newsletter",
+  "form": {
+    "firstName": "First name",
+    "email": "E-mail",
+    "action": {
+      "signUp": "Sign Up",
+      "cancel": "Cancel"
+    }
+  }
+}
+```
+
+```json fileName=locales/en/newsletter
+{
+  "title": "保持最新状态",
+  "form": {
+    "email": "电子邮箱",
+    "action": {
+      "cancel": "取消"
+    }
+  }
+}
+```
+
+```jsx fileName=components/SubscribeForm
+import { useTranslation } from "next-i18next";
+import React from "react";
+
+const SubscribeForm = () => {
+  const { t } = useTranslation("newsletter");
+
+  return (
+    <section>
+      <h3>{t("title")}</h3>
+      <h4>{t("subtitle")}</h4>
+
+      <form>
+        <input placeholder={t("form.firstName")} />
+        <input placeholder={t("form.email")} />
+        <button>{t("form.action.signUp")}</button>
+        <button>{t("form.action.cancel")}</button>
+      </form>
+      <style jsx>{`
+        form {
+          max-width: 300px;
+          display: flex;
+          flex-direction: column;
+        }
+
+        input {
+          margin-bottom: 0.5rem;
+        }
+      `}</style>
+    </section>
+  );
+};
+
+export default SubscribeForm;
+```
+
+Render the form in `pages/index.jsx` and add `newsletter` in `serverSideTranslations`.
+
+```jsx fileName=pages/index
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useTranslation } from "next-i18next";
+import SubscribeForm from "../components/SubscribeForm";
+
+export default function Home() {
+  const { t } = useTranslation("home");
+
+  return (
+    <main>
+      <div>{t("greeting")}</div>
+      {/* Render the form here */}
+      <SubscribeForm />
+    </main>
+  );
+}
+
+export async function getStaticProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, [
+        "common",
+        "home",
+        "newsletter", // Add newsletter translations
+      ])),
+    },
+  };
+}
+```
+
+<Img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/0wlfmq6ihzsr4b6r2x3d.gif" width={600} height={514}/>
+
+
