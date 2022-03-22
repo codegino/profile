@@ -50,7 +50,8 @@ export default function About() {
 }
 ```
 
-# Images of empty locales and 404 pages
+
+<Img width={680} height={635} src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/8fvgs0o141eglfmwoic5.png" />
 
 ### Add built-in NextJS i18n configuration
 
@@ -59,12 +60,21 @@ const nextConfig = {
   // other stuff
   i18n: {
     defaultLocale: "en",
-    locales: ["en", "sv", "cn"],
+    locales: ["en", "sv", "zh-CN"],
   },
 };
 ```
 
-# Images of auto created routes
+# Images of auto-created routes for home page
+<Img width={680} height={564} src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/ze3r6h54doxu0tc097ke.png" />
+
+# Images of auto-created routes for about page
+<Img width={680} height={559} src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/ww0xto6xf2zj41esnt4u.png" />
+
+
+# Not found page if not included in array of locales
+<Img width={680} height={432} src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/v93dzxk9p8f3dpdcgu0u.png" />
+
 
 ### Create a header component 
 
@@ -101,7 +111,7 @@ const Header = () => {
 
       <select onChange={handleLocaleChange} value={router.locale}>
         <option value="en">🇺🇸 English</option>
-        <option value="cn">🇨🇳 中文</option>
+        <option value="zh-CN">🇨🇳 中文</option>
         <option value="sv">🇸🇪 Swedish</option>
       </select>
 
@@ -141,7 +151,7 @@ function MyApp({ Component, pageProps }) {
 export default MyApp;
 ```
 
-<Img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/q13kb9x0z1jnbdmo5hnu.gif" width={600} height={270}/>
+<Img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/6clh33761tlx7wit99vx.gif" width={500} height={250}/>
 
 ### Install next-i18next
 
@@ -156,7 +166,7 @@ npm install next-i18next
 module.exports = {
   i18n: {
     defaultLocale: "en",
-    locales: ["en", "sv", "cn"],
+    locales: ["en", "sv", "zh-CN"],
     localePath: "./locales",
   },
 };
@@ -208,14 +218,14 @@ module.exports = nextConfig;
 
 #### Chinese translations
 
-```json fileName=locales/cn/home.json
+```json fileName=locales/zh-CN/home.json
 {
   "home": "主页",
   "about": "关于页面"
 }
 ```
 
-```json fileName=locales/cn/common.json
+```json fileName=locales/zh-CN/common.json
 {
   "greeting": "世界您好"
 }
@@ -305,7 +315,7 @@ const Header = () => {
 }
 ```
 
-<Img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/15vltbuirueosirpaoof.gif" width={600} height={270}/>
+<Img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/94h6kl9kdj9stl7qya8v.gif" width={500} height={250}/>
 
 The `home` page is translated properly; however, the `about` page is not. It is because we need to use `serverSideTranslations` in every route.
 
@@ -325,16 +335,15 @@ export async function getStaticProps({ locale }) {
 }
 ```
 
-<Img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/oaisdtzj8lo1c73pcllp.gif" width={600} height={270}/>
+<Img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/m1r3a9cbrrwirq71vxhh.gif" width={600} height={250}/>
 
 We only specified `common` in the `serverSideTranslations` because we don't plan on using anything in `home.json` in the About page.
 
 <br />
 
-Before we proceed in translating the About page's content, let's first check some cool stuff we can do with the `i18n-next` library.
+I will fetch the translations of the About page from the backend. But before that, let's first check some cool stuff we can do with the `i18n-next` library.
 
-
-### Nested translation keys
+### Nested translation keys and default translations
 
 ```json fileName=locales/en/newsletter
 {
@@ -351,7 +360,7 @@ Before we proceed in translating the About page's content, let's first check som
 }
 ```
 
-```json fileName=locales/en/newsletter
+```json fileName=locales/zh-CN/newsletter
 {
   "title": "保持最新状态",
   "form": {
@@ -431,6 +440,176 @@ export async function getStaticProps({ locale }) {
 }
 ```
 
-<Img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/0wlfmq6ihzsr4b6r2x3d.gif" width={600} height={514}/>
+<Img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/1amjqh6qvtpy6rfyudmp.gif" width={600} height={514}/>
 
 
+### Built-in Formats
+
+- Number
+- Currency
+- DateTime
+- RelativeTime
+- List
+
+
+```json fileName=locales/en/built-in-demo
+{
+  "number": "Number: {{val, number}}",
+  "currency": "Currency: {{val, currency}}",
+  "dateTime": "Date/Time: {{val, datetime}}",
+  "relativeTime": "Relative Time: {{val, relativetime}}",
+  "list": "List: {{val, list}}",
+  "weekdays": {
+    "monday": "Monday",
+    "tuesday": "Tuesday",
+    "wednesday": "Wednesday",
+    "thursday": "Thursday",
+    "friday": "Friday"
+  }
+}
+```
+
+```json fileName=locales/zh-CN/built-in-demo
+{
+  "number": "数: {{val, number}}",
+  "currency": "货币: {{val, currency}}",
+  "dateTime": "日期/时间: {{val, datetime}}",
+  "relativeTime": "相对时间: {{val, relativetime}}",
+  "list": "列表: {{val, list}}",
+  "weekdays": {
+    "monday": "星期一",
+    "tuesday": "星期二",
+    "wednesday": "星期三",
+    "thursday": "星期四",
+    "friday": "星期五"
+  }
+}
+```
+
+```json fileName=locales/sv/built-in-demo
+{
+  "number": "Nummer: {{val, number}}",
+  "currency": "Valuta: {{val, currency}}",
+  "dateTime": "Datum/tid: {{val, datetime}}",
+  "relativeTime": "Relativ tid: {{val, relativetime}}",
+  "list": "Lista: {{val, list}}",
+  "weekdays": {
+    "monday": "Måndag",
+    "tuesday": "Tisdag",
+    "wednesday": "Onsdag",
+    "thursday": "Torsdag",
+    "friday": "Fredag"
+  }
+}
+```
+
+```jsx
+import { useTranslation } from "next-i18next";
+import React from "react";
+
+const BuiltInFormatsDemo = () => {
+  const { t } = useTranslation("built-in-demo");
+
+  return (
+    <div>
+      <p>
+        {/* "number": "Number: {{val, number}}", */}
+        {t("number", {
+          val: 123456789.0123,
+        })}
+      </p>
+      <p>
+        {/* "currency": "Currency: {{val, currency}}", */}
+        {t("currency", {
+          val: 123456789.0123,
+          style: "currency",
+          currency: "USD",
+        })}
+      </p>
+
+      <p>
+        {/* "dateTime": "Date/Time: {{val, datetime}}", */}
+        {t("dateTime", {
+          val: new Date(1234567890123),
+          formatParams: {
+            val: {
+              weekday: "long",
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            },
+          },
+        })}
+      </p>
+
+      <p>
+        {/* "relativeTime": "Relative Time: {{val, relativetime}}", */}
+        {t("relativeTime", {
+          val: 12,
+          style: "long",
+        })}
+      </p>
+
+      <p>
+        {/* "list": "List: {{val, list}}", */}
+        {t("list", {
+          val: [
+            t("weekdays.monday"),
+            t("weekdays.tuesday"),
+            t("weekdays.wednesday"),
+            t("weekdays.thursday"),
+            t("weekdays.friday"),
+          ],
+        })}
+      </p>
+    </div>
+  );
+};
+
+export default BuiltInFormatsDemo;
+```
+
+
+<Img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/ojfg949500yj9ystfyyc.gif" width={502} height={468}/>
+
+I created a simple endpoint to fetch the content of the about page
+
+`https://next-i18n-example-cg.vercel.app/api/about`
+
+```js fileName=pages/api/about
+export default function handler(req, res) {
+  const lang = req.query.lang || "en";
+
+  if (lang === "sv") {
+    return res.status(200).json({ message: "Jag är Code Gino" });
+  } else if (lang === "zh-CN") {
+    return res.status(200).json({ message: "我是代码吉诺" });
+  } else {
+    return res.status(200).json({ message: "I am Code Gino" });
+  }
+}
+```
+
+```jsx fileName=pages/about
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+
+export default function About({ message }) {
+  return <h1>{message}</h1>;
+}
+
+export async function getStaticProps({ locale }) {
+  const { message } = await fetch(
+    // forward the locale value to the server via query params
+    `https://next-i18n-example-cg.vercel.app/api/about?lang=${locale}`
+  ).then((res) => res.json());
+
+  return {
+    props: {
+      message,
+      ...(await serverSideTranslations(locale, ["common"])),
+    },
+  };
+}
+```
+
+<Img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/qiqwndvaoxogaghs1jmw.gif" width={500} height={300}/>
