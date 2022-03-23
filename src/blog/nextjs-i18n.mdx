@@ -10,13 +10,25 @@ keywords: ['nextjs i18n', 'nextjs internationalization']
 published: true
 ---
 
-## TL;DR
+<TableOfContents
+  list={[
+    {href: '#tldr', label: 'TL;DR Source and Demo'},
+    {href: '#introduction', label: 'Introduction'},
+    {href: '#setup', label: 'Project Setup'},
+    {href: '#i18n-routing', label: 'Internationalized Routing'},
+    {href: '#content-translation', label: 'Content translation'},
+    {href: '#formatting', label: 'Built-in Formatting'},
+    {href: '#fetching-backend', label: 'Fetching from backend'},
+  ]}
+/>
+
+## TL;DR <Bookmark id="tldr"/>
 
 > Check the demo [here](https://next-i18n-example-cg.vercel.app/)
 >
 > Check the source code [here](https://github.com/codegino/next-i18n-example)
 
-## Introduction
+## Introduction <Bookmark id="introduction"/>
 
 Internationalization (i18n) is the process of preparing software so that it can support local languages and cultural settings. An internationalized product supports the requirements of local markets around the world, functioning more appropriately based on local norms and better meeting in-country user expectations. Copy-pasted from [here](https://lingoport.com/what-is-i18n)
 
@@ -26,7 +38,7 @@ In my early days of development, I find i18n to be a tedious task. However, in [
 
 <br />
 
-## Project Setup
+## Project Setup <Bookmark id="setup"/>
 
 ### Initialize a NextJS project
 
@@ -96,7 +108,7 @@ As you can see, `localhost:3000` shows `Hello world: `. This is because `useRout
 
 <br />
 
-## Internationalized Routing
+## Internationalized Routing <Bookmark id="i18n-routing"/>
 
 ### Built-in NextJS i18n routing
 
@@ -223,7 +235,7 @@ To learn more about NextJS i18n routing, check this [link](https://nextjs.org/do
 
 <br />
 
-## Content translation
+## Content translation <Bookmark id="content-translation"/>
 
 Unfortunately, there is no NextJS built-in support for content translation so we need to do it on our own.
 
@@ -567,7 +579,7 @@ And now, we have this!
 
 <br />
 
-### Built-in Formatting
+### Built-in Formatting <Bookmark id="formatting"/>
 
 It is very easy to format most of our data since `next-i18next` is using [i18next](https://www.i18next.com/) under the hood.
 
@@ -692,7 +704,7 @@ The more you look, the more you'll be amazed
 
 <br />
 
-### Fetching translations from backend
+### Fetching translations from backend <Bookmark id="fetching-backend"/>
 
 The work here is mainly done on the backend side or your CMS. On the frontend, we simply fetch the translations and pass a parameter to distinguish the language we want.
 
