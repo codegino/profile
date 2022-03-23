@@ -12,7 +12,10 @@ export type CodeBlockProps = {
   className: string;
   live: boolean;
   noLine: boolean;
+  noExt: boolean;
+  noCopy: boolean;
   noInline: boolean;
+  noHeader: boolean;
   codePenID: string;
   fileName: string;
 };
@@ -23,6 +26,8 @@ const CodeBlock: FunctionComponent<CodeBlockProps> = ({
   children,
   className,
   noLine = false,
+  noExt = false,
+  noHeader = false,
   codePenID,
   fileName,
 }) => {
@@ -34,18 +39,20 @@ const CodeBlock: FunctionComponent<CodeBlockProps> = ({
 
   return (
     <code className="relative my-4 shadow-md shadow-purple-500">
-      <span
-        className="
+      {!noHeader && (
+        <span
+          className="
         text-right w-full pl-2 pr-1 top-1 h-6 relative flex justify-between text-primary-dark
         bg-lightest rounded-tr-lg rounded-tl-lg
         "
-      >
-        <span className="inline-block text-ellipsis whitespace-nowrap overflow-hidden">
-          {fileName ? fileName : ''}
-          {languageLabel}
+        >
+          <span className="inline-block text-ellipsis whitespace-nowrap overflow-hidden">
+            {fileName ? fileName : ''}
+            {!noExt && languageLabel}
+          </span>
+          <ClipboardCopyButton value={children} />
         </span>
-        <ClipboardCopyButton value={children} />
-      </span>
+      )}
       <Highlight
         {...defaultProps}
         theme={vsDark}

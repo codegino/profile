@@ -1,22 +1,50 @@
 ---
-title: Next.js i18n
-description: A guide on how to use Next.js i18n
+title: NextJS i18n/Internationalization
+description: A guide on how to add i18n in your NextJS application
 date: '2022-03-23'
 dateUpdated: '2022-03-23'
-bannerId: 1hRWtyM5wqNlpkKghyYbRJ
-bannerDescription: cozy environment
+bannerId: 6hOJCXIzBMEz2sBCBmWME0
+bannerDescription: flags 
 tags: ['react', 'tech', 'next.js']
-keywords: ['nextjs environment variables', 'nextjs api key']
+keywords: ['nextjs i18n', 'nextjs internationalization']
 published: true
 ---
 
+## TL;DR
+
+> Check the demo [here](https://next-i18n-example-cg.vercel.app/)
+>
+> Check the source code [here](https://github.com/codegino/next-i18n-example)
+
 ## Introduction
+
+Internationalization (i18n) is the process of preparing software so that it can support local languages and cultural settings. An internationalized product supports the requirements of local markets around the world, functioning more appropriately based on local norms and better meeting in-country user expectations. Copy-pasted from [here](https://lingoport.com/what-is-i18n)
+
+<br />
+
+In my early days of development, I find i18n to be a tedious task. However, in [NextJS](https://nextjs.org/), it is relatively simple to create such as challenging feature.
+
+<br />
+
+## Project Setup
 
 ### Initialize a NextJS project
 
-[link](https://nextjs.org/docs/api-reference/create-next-app)
+Let's start by creating a new NextJS project. The simplest way is to use these commands:
 
-### Remove boilerplate code
+```sh
+npx create-next-app@latest
+# or
+yarn create next-app
+```
+
+For more information, check this [Create Next App docs](https://nextjs.org/docs/api-reference/create-next-app)
+
+<br />
+
+#### Remove boilerplate code
+
+Let's simplify the project by removing unused code.
 
 ```jsx fileName=pages/index
 export default function Home() {
@@ -24,11 +52,15 @@ export default function Home() {
 }
 ```
 
-Commit message
+Check the changes [here](https://github.com/codegino/next-i18n-example/commit/83f5f6a04f81ce3bf430f6deeb6a2ec1be62ef48)
+
+<br />
 
 ### Create another route/page
 
-This step is optional. It will allow better demo
+> This step is not related to i18n. It is mainly for easy demonstration.
+
+Update the Home page to display the current locale.
 
 ```jsx fileName=pages/index
 import { useRouter } from "next/router";
@@ -40,6 +72,8 @@ export default function Home() {
 }
 ```
 
+Let's create an About page with the same content as the Home page.
+
 ```jsx fileName=pages/about
 import { useRouter } from "next/router";
 
@@ -50,12 +84,25 @@ export default function About() {
 }
 ```
 
+Without any configuration changes, the pages will be rendered as:
 
 <Img width={680} height={635} src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/8fvgs0o141eglfmwoic5.png" />
 
-### Add built-in NextJS i18n configuration
+As you can see, `localhost:3000` shows `Hello world: `. This is because `useRouter` is not aware of the value of `locale`.
 
-```js
+<br />
+
+`localhost:3000/zh-CN` and `localhost:3000/sv` obviously will not exist because we have not created `pages/zh-CN.jsx` and `pages/sv.jsx`
+
+<br />
+
+## Internationalized Routing
+
+### Built-in NextJS i18n routing
+
+Let's add this simple `i18n` configuration to our `next.config.js` file and see what happens.
+
+```js fileName=next.config
 const nextConfig = {
   // other stuff
   i18n: {
@@ -65,22 +112,34 @@ const nextConfig = {
 };
 ```
 
-# Images of auto-created routes for home page
+With the configuration above, we automagically get the `locale` value and the following routes:
+
+#### Home page
+
 <Img width={680} height={564} src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/ze3r6h54doxu0tc097ke.png" />
 
-# Images of auto-created routes for about page
+<br />
+
+#### About page
+
 <Img width={680} height={559} src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/ww0xto6xf2zj41esnt4u.png" />
 
+<br />
 
-# Not found page if not included in array of locales
+#### Not defined locale
+
+If you try to access `localhost:3000/fr`, you will still get a 404 error. This is because we did not add `fr` to our `locale` values
+
 <Img width={680} height={432} src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/v93dzxk9p8f3dpdcgu0u.png" />
 
+<br />
 
 ### Create a header component 
 
-#### Navigation links
+To further simplify our demo, let's create a header component that can:
 
-#### Changing of locale
+- Navigate to home and about pages
+- Change the locale values using a dropdown
 
 ```jsx fileName=components/Header
 import React from "react";
@@ -135,6 +194,8 @@ const Header = () => {
 export default Header;
 ```
 
+Let's add the `Header` component to our `pages/_app.js` file.
+
 ```jsx fileName=pages/_app
 import Header from "../components/Header";
 import "../styles/globals.css";
@@ -151,7 +212,30 @@ function MyApp({ Component, pageProps }) {
 export default MyApp;
 ```
 
+Now we can see clearly the power of NextJS built-in i18n support. We can now access the `locale` value in our `useRouter` hook, and the URL is updated based on the `locale`.
+
 <Img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/6clh33761tlx7wit99vx.gif" width={500} height={250}/>
+
+
+<br />
+
+To learn more about NextJS i18n routing, check this [link](https://nextjs.org/docs/advanced-features/i18n-routing).
+
+<br />
+
+## Content translation
+
+Unfortunately, there is no NextJS built-in support for content translation so we need to do it on our own.
+
+<br />
+
+However, there are a libraries that can help to not reinvent the wheel. In this blog post, we will use [next-i18next](https://github.com/isaachinman/next-i18next).
+
+<br />
+
+Let's support content translation by setting up `next-i18next` in our app.
+
+<br />
 
 ### Install next-i18next
 
@@ -160,7 +244,6 @@ npm install next-i18next
 ```
 
 ### Create a `next-i18next.config.js` and update `next.config.js`
-
 
 ```js fileName=next-i18next.config
 module.exports = {
@@ -174,7 +257,7 @@ module.exports = {
 
 `localePath` is optional and will default to `./public/locales`.
 
-```js
+```js fileName=next.config
 const { i18n } = require("./next-i18next.config");
 
 const nextConfig = {
@@ -187,54 +270,72 @@ module.exports = nextConfig;
 
 ### Create translation files
 
+```txt noLine noHeader
+.
+└── locales
+    ├── en
+    |   └── common.json
+    |   └── home.json
+    └── zh-CH
+    |   └── common.json
+    |   └── home.json
+    └── se
+        └── common.json
+        └── home.json
+```
+
 #### English Translations
-```json fileName=locales/en/home.json
+
+```json fileName=locales/en/common
+{
+  "greeting": "Hello world!"
+}
+```
+
+```json fileName=locales/en/home
 {
   "home": "Home",
   "about": "About"
 }
 ```
 
-```json fileName=locales/en/common.json
-{
-  "greeting": "Hello world!"
-}
-```
-
-#### Swedish translations
-
-```json fileName=locales/sv/home.json
-{
-  "home": "Hem",
-  "about": "Om"
-}
-```
-
-```json fileName=locales/sv/common.json
-{
-  "greeting": "Hej världen!"
-}
-```
+> Please forgive me for any translation mistakes. I only used Google Translate to translate the content. 🤣
 
 #### Chinese translations
 
-```json fileName=locales/zh-CN/home.json
+```json fileName=locales/zh-CN/common
+{
+  "greeting": "世界您好"
+}
+```
+
+```json fileName=locales/zh-CN/home
 {
   "home": "主页",
   "about": "关于页面"
 }
 ```
 
-```json fileName=locales/zh-CN/common.json
+#### Swedish translations
+
+```json fileName=locales/sv/common
 {
-  "greeting": "世界您好"
+  "greeting": "Hej världen!"
 }
 ```
 
-### There are three functions that next-i18next exports, which you will need to use to translate your project:
+```json fileName=locales/sv/home
+{
+  "home": "Hem",
+  "about": "Om"
+}
+```
 
+> There are three functions that `next-i18next` exports, which you will need to use to translate your project:
 
-#### `appWithTranslation`
+#### appWithTranslation
+
+This is a HOC which wraps your `_app`. This HOC is primarily responsible for adding a [I18nextProvider](https://react.i18next.com/latest/i18nextprovider).
 
 ```jsx fileName=pages/_app
 import { appWithTranslation } from "next-i18next";
@@ -253,7 +354,11 @@ function MyApp({ Component, pageProps }) {
 export default appWithTranslation(MyApp);
 ```
 
-#### `serverSideTranslations`
+<br />
+
+##### serverSideTranslations
+
+This is an async function that you need to include on your page-level components, via either [getStaticProps](https://nextjs.org/docs/basic-features/data-fetching/overview#getstaticprops-static-generation) or [getServerSideProps](https://nextjs.org/docs/basic-features/data-fetching/overview#getserversideprops-server-side-rendering).
 
 ```jsx fileName=pages/index
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -270,7 +375,11 @@ export async function getStaticProps({ locale }) {
 }
 ```
 
-#### `useTranslation`
+<br />
+
+##### useTranslation
+
+This is the hook which you'll actually use to do the translation itself. The useTranslation hook comes from [react-i18next](https://react.i18next.com/latest/usetranslation-hook), but can be imported from next-i18next directly:
 
 ```jsx fileName=pages/index
 // other imports
@@ -286,6 +395,8 @@ export default function Home() {
 
 // export async function getStaticProps...
 ```
+
+Let's also translate the links in the `Header` component.
 
 ```jsx fileName=components/Header
 // other imports
@@ -315,12 +426,14 @@ const Header = () => {
 }
 ```
 
+The changes above will yield the following output:
+
 <Img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/94h6kl9kdj9stl7qya8v.gif" width={500} height={250}/>
 
 The `home` page is translated properly; however, the `about` page is not. It is because we need to use `serverSideTranslations` in every route.
 
 
-```jsx
+```jsx fileName=pages/about
 // other imports
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
@@ -335,15 +448,18 @@ export async function getStaticProps({ locale }) {
 }
 ```
 
+Now both routes are translated
 <Img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/m1r3a9cbrrwirq71vxhh.gif" width={600} height={250}/>
 
 We only specified `common` in the `serverSideTranslations` because we don't plan on using anything in `home.json` in the About page.
 
 <br />
 
-I will fetch the translations of the About page from the backend. But before that, let's first check some cool stuff we can do with the `i18n-next` library.
+> I will fetch the translations of the About page's content from the backend. But before that, let's first check some cool stuff we can do with our translation library.
 
-### Nested translation keys and default translations
+### Nested translation keys and default translation
+
+We are not limited to a flat JSON structure.
 
 ```json fileName=locales/en/newsletter
 {
@@ -360,6 +476,8 @@ I will fetch the translations of the About page from the backend. But before tha
 }
 ```
 
+We can omit some translation keys if we want it to use the default locale value(`en` in our case).
+
 ```json fileName=locales/zh-CN/newsletter
 {
   "title": "保持最新状态",
@@ -371,6 +489,8 @@ I will fetch the translations of the About page from the backend. But before tha
   }
 }
 ```
+
+Let's create a component which use the translations above.
 
 ```jsx fileName=components/SubscribeForm
 import { useTranslation } from "next-i18next";
@@ -390,6 +510,8 @@ const SubscribeForm = () => {
         <button>{t("form.action.signUp")}</button>
         <button>{t("form.action.cancel")}</button>
       </form>
+
+      {/* For styling only */}
       <style jsx>{`
         form {
           max-width: 300px;
@@ -440,17 +562,24 @@ export async function getStaticProps({ locale }) {
 }
 ```
 
+And now, we have this!
 <Img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/1amjqh6qvtpy6rfyudmp.gif" width={600} height={514}/>
 
+<br />
 
-### Built-in Formats
+### Built-in Formatting
 
-- Number
-- Currency
-- DateTime
-- RelativeTime
-- List
+It is very easy to format most of our data since `next-i18next` is using [i18next](https://www.i18next.com/) under the hood.
 
+- [Number](https://www.i18next.com/translation-function/formatting#number)
+- [Currency](https://www.i18next.com/translation-function/formatting#currency)
+- [DateTime](https://www.i18next.com/translation-function/formatting#datetime)
+- [RelativeTime](https://www.i18next.com/translation-function/formatting#relativetime)
+- [List](https://www.i18next.com/translation-function/formatting#list)
+
+<br />
+
+Let's use the translation files below to showcase the formatting features.
 
 ```json fileName=locales/en/built-in-demo
 {
@@ -459,13 +588,7 @@ export async function getStaticProps({ locale }) {
   "dateTime": "Date/Time: {{val, datetime}}",
   "relativeTime": "Relative Time: {{val, relativetime}}",
   "list": "List: {{val, list}}",
-  "weekdays": {
-    "monday": "Monday",
-    "tuesday": "Tuesday",
-    "wednesday": "Wednesday",
-    "thursday": "Thursday",
-    "friday": "Friday"
-  }
+  "weekdays": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
 }
 ```
 
@@ -476,13 +599,7 @@ export async function getStaticProps({ locale }) {
   "dateTime": "日期/时间: {{val, datetime}}",
   "relativeTime": "相对时间: {{val, relativetime}}",
   "list": "列表: {{val, list}}",
-  "weekdays": {
-    "monday": "星期一",
-    "tuesday": "星期二",
-    "wednesday": "星期三",
-    "thursday": "星期四",
-    "friday": "星期五"
-  }
+  "weekdays": ["星期一", "星期二", "星期三", "星期四", "星期五"]
 }
 ```
 
@@ -493,15 +610,11 @@ export async function getStaticProps({ locale }) {
   "dateTime": "Datum/tid: {{val, datetime}}",
   "relativeTime": "Relativ tid: {{val, relativetime}}",
   "list": "Lista: {{val, list}}",
-  "weekdays": {
-    "monday": "Måndag",
-    "tuesday": "Tisdag",
-    "wednesday": "Onsdag",
-    "thursday": "Torsdag",
-    "friday": "Fredag"
-  }
+  "weekdays": ["Måndag", "Tisdag", "Onsdag", "Torsdag", "Fredag"]
 }
 ```
+
+Let's create a component which use the translations above.
 
 ```jsx
 import { useTranslation } from "next-i18next";
@@ -553,13 +666,9 @@ const BuiltInFormatsDemo = () => {
       <p>
         {/* "list": "List: {{val, list}}", */}
         {t("list", {
-          val: [
-            t("weekdays.monday"),
-            t("weekdays.tuesday"),
-            t("weekdays.wednesday"),
-            t("weekdays.thursday"),
-            t("weekdays.friday"),
-          ],
+          // https://www.i18next.com/translation-function/objects-and-arrays#objects
+          // Check the link for more details on `returnObjects`
+          val: t("weekdays", { returnObjects: true }),
         })}
       </p>
     </div>
@@ -569,12 +678,27 @@ const BuiltInFormatsDemo = () => {
 export default BuiltInFormatsDemo;
 ```
 
-
+The more you look, the more you'll be amazed
 <Img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/ojfg949500yj9ystfyyc.gif" width={502} height={468}/>
 
-I created a simple endpoint to fetch the content of the about page
+<br />
 
-`https://next-i18n-example-cg.vercel.app/api/about`
+#### Other translation functions to check
+
+- [More info about Interpolation](https://www.i18next.com/translation-function/interpolation)
+- [Nesting](https://www.i18next.com/translation-function/nesting)
+- [Pluralization](https://www.i18next.com/translation-function/plurals)
+- [Context](https://www.i18next.com/translation-function/context)
+
+<br />
+
+### Fetching translations from backend
+
+The work here is mainly done on the backend side or your CMS. On the frontend, we simply fetch the translations and pass a parameter to distinguish the language we want.
+
+<br />
+
+I created a simple endpoint to fetch the content of the about page. The result will change based on query param `lang` value.
 
 ```js fileName=pages/api/about
 export default function handler(req, res) {
@@ -590,7 +714,23 @@ export default function handler(req, res) {
 }
 ```
 
+#### Sample usage
+
+- `/api/about`: English
+- `/api/about?lang=zh-CN`: Simplified Chinese 
+- `/api/about?lang=sv`: Svenska
+- `/api/about?lang=invalid`: English
+
+<br />
+
+We can consume the API as usual (e.g. inside `getServerSideProps`, `getStaticProps`, `useEffect`, etc.).
+
+<br />
+
+In this example, let's fetch the translation inside the `getStaticProps`. We can get the `locale` value from the context, then append `?lang=${locale}` to our request URL. 
+
 ```jsx fileName=pages/about
+// This import is not related to fetching translations from backend.
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 export default function About({ message }) {
@@ -606,10 +746,19 @@ export async function getStaticProps({ locale }) {
   return {
     props: {
       message,
+      // The code below is not related to fetching translations from backend.
       ...(await serverSideTranslations(locale, ["common"])),
     },
   };
 }
 ```
 
+The code above will yield the following result:
+
 <Img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/qiqwndvaoxogaghs1jmw.gif" width={500} height={300}/>
+
+<br />
+
+## Conclusion
+
+Internationalization is a complex requirement simplified in Next.js due to the built-in i18n routing support and the easy integration of next-i18next. And because `next-i18next` is using `i18next`, we can perform better translations with less code.
