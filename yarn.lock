@@ -3983,10 +3983,10 @@ rc@^1.2.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-activity-calendar@^1.4.4:
-  version "1.4.5"
-  resolved "https://registry.yarnpkg.com/react-activity-calendar/-/react-activity-calendar-1.4.5.tgz#41035522c249a0765de9e78f1b0e9017bef1a170"
-  integrity sha512-OBR0aOYCx+wuisiMkwJaiqVUY9vDgut3q4U9qxmAyjAwHndrp4HbsdX8yHFPZoblA+rh8kSd21ymeLS+HJAv1A==
+react-activity-calendar@^1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/react-activity-calendar/-/react-activity-calendar-1.5.0.tgz#fd408224d6f203aa4e768d280cb00718a1cc7c87"
+  integrity sha512-u2DEjS3GxpeYVrDsCcAHYg8cCOLgazmyxQvnCF7rbM0eD+2a1FQHxhfIuctIu+AP1Arh+yqfUVVFRnSQynM6/A==
   dependencies:
     date-fns "^2.28.0"
     tinycolor2 "^1.4.0"
@@ -4012,12 +4012,12 @@ react-easy-swipe@^0.0.21:
   dependencies:
     prop-types "^15.5.8"
 
-react-github-calendar@3.2.2:
-  version "3.2.2"
-  resolved "https://registry.yarnpkg.com/react-github-calendar/-/react-github-calendar-3.2.2.tgz#8bbb6b5d0f32ccea3eb5067cda6124f67a1fc32f"
-  integrity sha512-vPct/ZLq8EO7+UwFnnJ/meej3Bi6InQCYv1Wfhcu4yD05MQo5xTcw2xaKLDPx6P+QGLL2R9b3WsfbNoJmmRc6g==
+react-github-calendar@3.3.1:
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/react-github-calendar/-/react-github-calendar-3.3.1.tgz#6111cbfc7f8382d802bb630887e1d02d9dc7dcbc"
+  integrity sha512-0m9qnia/HbAYQdbOvr7l59zxLFSs3ZRzJYyXXKSUxGKdScHSipiGw3g2pu6rS1VGAPE9NtVJhuLq1qrbItlVpA==
   dependencies:
-    react-activity-calendar "^1.4.4"
+    react-activity-calendar "^1.5.0"
 
 react-gtm-module@2.0.11:
   version "2.0.11"
