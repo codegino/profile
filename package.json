@@ -32,7 +32,7 @@
     "use-dark-mode": "2.3.1"
   },
   "devDependencies": {
-    "@next/bundle-analyzer": "12.1.1",
+    "@next/bundle-analyzer": "12.1.5",
     "@trivago/prettier-plugin-sort-imports": "3.2.0",
     "@types/node": "17.0.22",
     "@types/react": "17.0.44",
