@@ -19,29 +19,15 @@ export const ChangeLocale: FC<{className?: string}> = ({className}) => {
       value={router.locale}
       className={clsx('bg-transparent text-4xl', className)}
     >
-      {locales.map(locale => (
-        <option
-          value={locale.value}
-          key={locale.value}
-          title={locale.alt}
-          aria-label={locale.alt}
-        >
-          {locale.label}
+      <option value={'en'} title="English" aria-label="English">
+        🇺🇸
+      </option>
+
+      {!router.asPath.includes('/blog') && (
+        <option value={'sv'} title="Swedish" aria-label="Swedish">
+          🇸🇪
         </option>
-      ))}
+      )}
     </select>
   );
 };
-
-const locales = [
-  {
-    value: 'en',
-    label: '🇺🇸',
-    alt: 'English',
-  },
-  {
-    value: 'sv',
-    label: '🇸🇪',
-    alt: 'Swedish',
-  },
-];
