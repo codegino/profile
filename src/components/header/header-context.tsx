@@ -3,7 +3,9 @@ import type {Dispatch, FunctionComponent, SetStateAction} from 'react';
 
 const HeaderContext = createContext<unknown>(null);
 
-export const HeaderProvider: FunctionComponent = ({children}) => {
+export const HeaderProvider: FunctionComponent<{children: React.ReactNode}> = ({
+  children,
+}) => {
   const state = useState(false);
 
   return (

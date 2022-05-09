@@ -4,7 +4,8 @@ import type {LinkProps} from 'next/link';
 
 type NextLinkProps = LinkProps & HTMLProps<HTMLButtonElement>;
 
-const NextLink: FunctionComponent<NextLinkProps> = ({
+// TODO update type definition
+const NextLink: FunctionComponent<any> = ({
   href,
   target,
   className,

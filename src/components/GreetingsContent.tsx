@@ -128,7 +128,10 @@ const StyledBsChevronRight = () => {
   );
 };
 
-const Span: FunctionComponent<{className?: string}> = props => {
+const Span: FunctionComponent<{
+  className?: string;
+  children: React.ReactNode;
+}> = props => {
   return (
     <span
       {...props}

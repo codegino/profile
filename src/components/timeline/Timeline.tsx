@@ -70,6 +70,7 @@ export default function Timeline({
 
 const Content: FunctionComponent<{
   exp: WorkExperience | EducationExperience;
+  children: React.ReactNode;
 }> = ({exp, children = null}) => {
   const {t} = useTranslation('common');
 

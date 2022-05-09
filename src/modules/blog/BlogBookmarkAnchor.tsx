@@ -1,6 +1,8 @@
 import type {FunctionComponent} from 'react';
 
-const BlogBookMark: FunctionComponent = ({...props}) => {
+const BlogBookMark: FunctionComponent<{children: React.ReactNode}> = ({
+  ...props
+}) => {
   return (
     <span
       aria-hidden="true"

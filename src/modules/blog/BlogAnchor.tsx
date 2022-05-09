@@ -1,6 +1,9 @@
 import type {FunctionComponent} from 'react';
 
-const BlogAnchor: FunctionComponent = ({children, ...props}) => {
+const BlogAnchor: FunctionComponent<{children: React.ReactNode}> = ({
+  children,
+  ...props
+}) => {
   return (
     <a
       className="underline-on-hover underline--dark text-primary-dark text-base font-semibold"

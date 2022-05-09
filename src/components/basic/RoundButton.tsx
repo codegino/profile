@@ -4,6 +4,7 @@ import clsx from 'clsx';
 const RoundButton: FunctionComponent<{
   onClick?: () => void;
   className?: string;
+  children: React.ReactNode;
 }> = ({onClick = () => {}, className, children}) => {
   return (
     <div

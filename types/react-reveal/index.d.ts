@@ -7,6 +7,7 @@
  * https://www.react-reveal.com/docs/props/
  */
  interface RevealProps {
+  children: React.ReactNode; 
   /**
    * This prop is used if the revealed element in the transition group or if an element has when, in or spy props. It `true` then the initial reveal animation will be shown. Defaults to `false`. Optional.
    * @property {boolean}

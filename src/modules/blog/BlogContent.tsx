@@ -36,7 +36,7 @@ type Props = {
 };
 
 const BlogContent: FunctionComponent<Props> = ({source}) => {
-  return <MDXRemote {...source} components={components} lazy={false} />;
+  return <MDXRemote {...source} components={components as any} lazy={false} />;
 };
 
 export default BlogContent;

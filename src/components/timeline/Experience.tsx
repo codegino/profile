@@ -1,9 +1,9 @@
 import type {FunctionComponent} from 'react';
 
-export const Experience: FunctionComponent<{hasConnector?: boolean}> = ({
-  children,
-  hasConnector = false,
-}) => {
+export const Experience: FunctionComponent<{
+  hasConnector?: boolean;
+  children: React.ReactNode;
+}> = ({children, hasConnector = false}) => {
   return (
     <div className="relative flex items-center flex-col z-1 mb-8 text-center max-w-6xl">
       <div

@@ -1,6 +1,9 @@
 import type {FunctionComponent} from 'react';
 
-const Layout: FunctionComponent = ({children, ...props}) => {
+const Layout: FunctionComponent<{children: React.ReactNode}> = ({
+  children,
+  ...props
+}) => {
   return (
     <article
       {...props}
