@@ -3,8 +3,10 @@
   "resume": "Återupptas",
   "about": "Om",
   "blog": "Blogg",
+  "nft": "NFT",
   "vocab": "Ordförråd",
   "date": "{{val, datetime}}",
   "sitemap": "Webbplatskarta",
-  "rssFeed": "RSS-Feed"
+  "rssFeed": "RSS-Feed",
+  "allRightsReserved": "Alla rättigheter reserverade"
 }
