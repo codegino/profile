@@ -1,9 +1,9 @@
-import type {FunctionComponent} from 'react';
+import type {HTMLAttributes} from 'react';
 
-const BlogAnchor: FunctionComponent<{children: React.ReactNode}> = ({
+const BlogAnchor = ({
   children,
   ...props
-}) => {
+}: HTMLAttributes<HTMLAnchorElement>) => {
   return (
     <a
       className="underline-on-hover underline--dark text-primary-dark text-base font-semibold"

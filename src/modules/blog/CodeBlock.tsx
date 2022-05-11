@@ -31,6 +31,10 @@ const CodeBlock: FunctionComponent<CodeBlockProps> = ({
   codePenID,
   fileName,
 }) => {
+  if (!className) {
+    return <code>{children}</code>;
+  }
+
   const language = className.replace(/language-/, '') as Language;
 
   const languageLabel = executableExtensions.some(ext => ext === language)

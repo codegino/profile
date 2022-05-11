@@ -1,4 +1,5 @@
 import type {FunctionComponent} from 'react';
+import * as mdx from '@mdx-js/react';
 import {MDXRemote} from 'next-mdx-remote';
 import type {MDXRemoteSerializeResult} from 'next-mdx-remote';
 import dynamic from 'next/dynamic';
@@ -19,8 +20,8 @@ const CodeBlock = dynamic(() => import('./CodeBlock'), {
 // Since the MDX files aren't loaded by webpack, they have no knowledge of how
 // to handle import statements. Instead, you must include components in scope
 // here.
-const components = {
-  code: CodeBlock,
+const components: React.ComponentProps<typeof mdx.MDXProvider>['components'] = {
+  code: CodeBlock as any,
   blockquote: BlockQuote,
   a: BlogAnchor,
   p: BlogParagraph,
@@ -28,7 +29,7 @@ const components = {
   Gif: BlogGif,
   Img: BlogImg,
   Bookmark: BlogBookMark,
-  TableOfContents,
+  TableOfContents: TableOfContents as any,
 };
 
 type Props = {
@@ -36,7 +37,7 @@ type Props = {
 };
 
 const BlogContent: FunctionComponent<Props> = ({source}) => {
-  return <MDXRemote {...source} components={components as any} lazy={false} />;
+  return <MDXRemote {...source} components={components} lazy={false} />;
 };
 
 export default BlogContent;

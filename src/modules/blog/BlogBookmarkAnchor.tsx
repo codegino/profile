@@ -1,8 +1,6 @@
-import type {FunctionComponent} from 'react';
+import type {HTMLAttributes} from 'react';
 
-const BlogBookMark: FunctionComponent<{children: React.ReactNode}> = ({
-  ...props
-}) => {
+const BlogBookMark = (props: HTMLAttributes<HTMLSpanElement>) => {
   return (
     <span
       aria-hidden="true"
