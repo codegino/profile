@@ -1,14 +1,21 @@
 import {createClient} from 'contentful';
 import type {GetStaticProps, InferGetStaticPropsType} from 'next';
 import {serverSideTranslations} from 'next-i18next/serverSideTranslations';
+import Head from 'next/head';
 import Image from 'next/image';
 import NextLink from '../../components/basic/NextLink';
+import {commonMetaTags} from '../../frontend-utils/meta-tags';
 
 export default function NFT({
   collections,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <main>
+      <Head>
+        <title>Carlo Gino Catapang | Code Gino | NFT</title>
+        {commonMetaTags('NFT Collection', '/nft')}
+      </Head>
+
       <h1>Check out my NFT collections</h1>
 
       <div>
