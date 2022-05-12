@@ -9,7 +9,7 @@ export default function NFT({
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <main>
-      <h1>Checkout my NFT collections</h1>
+      <h1>Check out my NFT collections</h1>
 
       <div>
         {collections.map(({name, contract, owned, slug, details}) => (
