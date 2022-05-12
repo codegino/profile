@@ -16,6 +16,7 @@ const config = {
       'images.ctfassets.net',
       'dev-to-uploads.s3.amazonaws.com',
       'lh3.googleusercontent.com',
+      'openseauserdata.com',
     ],
     imageSizes: [16, 32, 48, 64],
     deviceSizes: [
