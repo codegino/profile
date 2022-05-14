@@ -1,4 +1,4 @@
-import type {FunctionComponent} from 'react';
+import type {FunctionComponent, ReactNode} from 'react';
 import clsx from 'clsx';
 import {BottomLeftShape} from './extras/BottomLeftShape';
 import {BottomRightShape} from './extras/BottomRightShape';
@@ -11,7 +11,7 @@ export const FullScreenWrapper: FunctionComponent<{
   bl?: boolean;
   br?: boolean;
   id?: string;
-  children: any;
+  children: ReactNode;
   className?: string;
 }> = ({children, tr, bl, br, tl, className, ...props}) => {
   const classNames =
