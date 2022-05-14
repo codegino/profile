@@ -19,7 +19,7 @@ export default function NFT({
       <h1>Check out my NFT collections</h1>
 
       <div>
-        {collections.map(({name, contract, owned, slug, details}) => (
+        {collections.map(({name, details, contractAddress, owned, slug}) => (
           <div key={name} className="flex flex-col items-center mb-10">
             <span
               aria-hidden="true"
@@ -37,12 +37,12 @@ export default function NFT({
               <h2 className="text-2xl text-primary-dark mb-4 underline-on-hover">
                 {name}
               </h2>
-              <div className="max-w-[400px] md:max-w-[800px] mb-4 text-center">
-                {details}
-              </div>
             </NextLink>
+            <div className="max-w-[400px] md:max-w-[800px] mb-4 text-center">
+              {details}
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {owned.map(({id, img}) => (
+              {owned.map(({id, img, name: itemName}) => (
                 <div key={id} className="flex flex-col items-center">
                   <Image
                     src={img}
@@ -55,15 +55,13 @@ export default function NFT({
                   />
 
                   <NextLink
-                    href={`https://opensea.io/assets/${contract}/${id}`}
+                    href={`https://opensea.io/assets/${contractAddress}/${id}`}
                     aria-label={`Collection #${id}`}
                     title={`Collection #${id}`}
                     target="_blank"
                     className="text-primary-dark underline-on-hover"
                   >
-                    <div className="text-xl mt-1">
-                      {name} #{id}
-                    </div>
+                    <div className="text-xl mt-1">{itemName}</div>
                   </NextLink>
                 </div>
               ))}
@@ -102,6 +100,51 @@ export default function NFT({
 export const getStaticProps: GetStaticProps<{
   collections: NftCollection[];
 }> = async ({locale}) => {
+  const WALLET_ADDRESS = '0x704CD00cbB8BF91038dFCF8bC008D065DDF1D8F8';
+
+  const options = {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      'X-API-KEY': process.env.OPENSEA_API as string,
+    },
+  };
+
+  const coll = await fetch(
+    `https://api.opensea.io/api/v1/collections?asset_owner=${WALLET_ADDRESS}`,
+    options,
+  )
+    .then(response => response.json())
+    .then(response =>
+      response.map((item: any) => ({
+        details: item.description,
+        slug: item.slug,
+        name: item.name,
+        contractAddress: item.primary_asset_contracts[0].address,
+        owned: [],
+      })),
+    );
+
+  for (const iterator of coll) {
+    const res = await fetch(
+      `https://api.opensea.io/api/v1/assets?owner=${WALLET_ADDRESS}&asset_contract_address=${iterator.contractAddress}&include_orders=false`,
+      options,
+    )
+      .then(response => response.json())
+      .then(response =>
+        response.assets
+          .map((item: any) => ({
+            name: item.name,
+            img: item.image_url,
+            id: item.token_id,
+          }))
+          .filter((item: any) => item.name && item.img),
+      );
+
+    iterator.owned = res;
+  }
+
+  // This code is for collections not visible in OpenSea
   const client = createClient({
     space: process.env.CONTENTFUL_SPACE_ID as string,
     accessToken: process.env.CONTENTFUL_ACCESS_TOKEN as string,
@@ -115,9 +158,12 @@ export const getStaticProps: GetStaticProps<{
   return {
     props: {
       ...(await serverSideTranslations(locale as string, ['common'])),
-      collections: entries.items.map(e => ({
-        ...e.fields,
-      })),
+      collections: [
+        ...coll,
+        ...entries.items.map(e => ({
+          ...e.fields,
+        })),
+      ],
     },
     revalidate: 1,
   };
@@ -126,10 +172,11 @@ export const getStaticProps: GetStaticProps<{
 type NftCollection = {
   name: string;
   slug: string;
-  contract: string;
+  contractAddress: string;
   details: string;
   owned: {
     id: number;
     img: string;
+    name: string;
   }[];
 };
