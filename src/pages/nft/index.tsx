@@ -110,38 +110,32 @@ export const getStaticProps: GetStaticProps<{
     },
   };
 
-  const coll = await fetch(
+  const collectionResponse = await fetch(
     `https://api.opensea.io/api/v1/collections?asset_owner=${WALLET_ADDRESS}`,
     options,
-  )
-    .then(response => response.json())
-    .then(response =>
-      response.map((item: any) => ({
-        details: item.description,
-        slug: item.slug,
-        name: item.name,
-        contractAddress: item.primary_asset_contracts[0].address,
-        owned: [],
-      })),
-    );
+  ).then(response => response.json());
 
-  for (const iterator of coll) {
-    const res = await fetch(
+  const collection = collectionResponse.map((item: any) => ({
+    details: item.description,
+    slug: item.slug,
+    name: item.name,
+    contractAddress: item.primary_asset_contracts[0].address,
+    owned: [],
+  }));
+
+  for (const iterator of collection) {
+    const assetsResponse = await fetch(
       `https://api.opensea.io/api/v1/assets?owner=${WALLET_ADDRESS}&asset_contract_address=${iterator.contractAddress}&include_orders=false`,
       options,
-    )
-      .then(response => response.json())
-      .then(response =>
-        response.assets
-          .map((item: any) => ({
-            name: item.name,
-            img: item.image_url,
-            id: item.token_id,
-          }))
-          .filter((item: any) => item.name && item.img),
-      );
+    ).then(response => response.json());
 
-    iterator.owned = res;
+    iterator.owned = assetsResponse.assets
+      .map((item: any) => ({
+        name: item.name,
+        img: item.image_url,
+        id: item.token_id,
+      }))
+      .filter((item: any) => item.name && item.img);
   }
 
   // This code is for collections not visible in OpenSea
@@ -159,7 +153,7 @@ export const getStaticProps: GetStaticProps<{
     props: {
       ...(await serverSideTranslations(locale as string, ['common'])),
       collections: [
-        ...coll,
+        ...collection,
         ...entries.items.map(e => ({
           ...e.fields,
         })),
