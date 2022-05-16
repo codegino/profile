@@ -1723,7 +1723,7 @@ domexception@^4.0.0:
   dependencies:
     webidl-conversions "^7.0.0"
 
-dompurify@^2.3.5:
+dompurify@^2.3.8:
   version "2.3.8"
   resolved "https://registry.yarnpkg.com/dompurify/-/dompurify-2.3.8.tgz#224fe9ae57d7ebd9a1ae1ac18c1c1ca3f532226f"
   integrity sha512-eVhaWoVibIzqdGYjwsBWodIQIaXFSB+cKDf4cfxLMsK0xiud6SE+/WCVx/Xw/UwQsa4cS3T2eITcdtmTg2UKcw==
@@ -3025,13 +3025,13 @@ isexe@^2.0.0:
   resolved "https://registry.yarnpkg.com/isexe/-/isexe-2.0.0.tgz#e8fbf374dc556ff8947a10dcb0572d633f2cfa10"
   integrity sha1-6PvzdNxVb/iUehDcsFctYz8s+hA=
 
-isomorphic-dompurify@0.18.0:
-  version "0.18.0"
-  resolved "https://registry.yarnpkg.com/isomorphic-dompurify/-/isomorphic-dompurify-0.18.0.tgz#d8ce16d8dcd50ac95a7ebbd7d4d099f920c44600"
-  integrity sha512-JY7NuuaiBswg8/Nf5Vy0leWpdn5m2GQD0qRojVFg86nhLsJGfVo4qw4i/kvjxIFoXXd+SMrrQUYXSn6QwccnmA==
+isomorphic-dompurify@0.19.0:
+  version "0.19.0"
+  resolved "https://registry.yarnpkg.com/isomorphic-dompurify/-/isomorphic-dompurify-0.19.0.tgz#bb0d1dbf86e9d83cb8b34c4abb5257c3cf34c3a1"
+  integrity sha512-2kn8JO6twdp2LcJ54Ys2EhhAg2nqi+UjSk+TvLUhcBltqV96PxGiVc9dcDpOtgqfxwmKRmXx9n2CqrFyflonKQ==
   dependencies:
     "@types/dompurify" "^2.3.3"
-    dompurify "^2.3.5"
+    dompurify "^2.3.8"
     jsdom "^19.0.0"
 
 isstream@~0.1.2:
