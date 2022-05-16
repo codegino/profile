@@ -1,0 +1,187 @@
+---
+title: How to fetch NFT collection using JavaScript and OpenSea API
+description: A simple guide on how to use OpenSea's API to fetch your assets
+date: '2022-05-16'
+dateUpdated: '2022-05-16'
+bannerId: 3DagYgz5Eu6jVKGk9sUzDZ
+bannerDescription: open sea 
+tags: ['NFT']
+keywords: ['NFT', 'opensea']
+published: true 
+---
+
+> ## TLDR
+> Check the code <a href="#tldr" target="_self">here</a>
+>
+> Check my list of NFTs [here](https://codegino.com/nft)
+
+## Introduction
+
+Non-fungible tokens (NFT)
+- A way to represent anything unique as an Ethereum-based asset.
+- NFTs are giving more power to content creators than ever before.
+- Powered by smart contracts on the Ethereum blockchain.
+
+<br />
+
+OpenSea is the world's first and largest NFT marketplace. It can be used to discover, collect, and sell extraordinary NFTs.
+
+<br />
+
+In this article, I will show how I fetch all my collections using OpenSea's API and then display them on my website.
+
+## Prerequisite
+
+For us to be able to use OpenSea's API, we need to request an OpenSea API key [here](https://docs.opensea.io/reference/request-an-api-key)
+
+<br />
+
+### Create a reusable `options` object for each API call
+
+This will contain the API key provided by OpenSea
+
+```js
+  const options = {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+			// Do not expose your API key in the browser
+      'X-API-KEY': process.env.OPENSEA_API,
+    },
+  };
+```
+
+> To avoid exposing your API key, refer to this [blog](https://codegino.com/blog/next-hide-api-key).
+
+<br />
+
+### (OPTIONAL) Create a variable for the wallet's address
+
+This is the address of our wallet. We can use this address to fetch our collections and assets.
+
+```js
+	const WALLET_ADDRESS = '0x704CD00cbB8BF91038dFCF8bC008D065DDF1D8F8';
+```
+
+<br />
+
+### Fetch all collections owned by the specified address
+
+```js
+  const collectionResponse = await fetch(
+    `https://api.opensea.io/api/v1/collections?asset_owner=${WALLET_ADDRESS}`,
+    options,
+  ).then(response => response.json());
+```
+
+### Map the response to the preferred structure
+
+Here is the type definition of how my [website](https://codegino.com/nft) used the response data 
+
+```ts
+type NftCollection = {
+  name: string;
+  slug: string;
+  contractAddress: string;
+  details: string;
+  owned: {
+    id: number;
+    img: string;
+    name: string;
+  }[];
+};
+```
+
+Here is how the mapping of the response to the above type definition
+
+```js
+  const collection = collectionResponse.map((item) => ({
+    details: item.description,
+    slug: item.slug,
+    name: item.name,
+    contractAddress: item.primary_asset_contracts[0].address,
+    owned: [],
+  }));
+```
+
+
+### For each collection, fetch all assets owned by the defined address
+
+```js
+	for (const iterator of collection) {
+		const assetsResponse = await fetch(
+			`https://api.opensea.io/api/v1/assets?owner=${WALLET_ADDRESS}&asset_contract_address=${iterator.contractAddress}&include_orders=false`,
+			options,
+		).then(response => response.json());
+
+		iterator.owned = assetsResponse.assets
+			.map((item) => ({
+				name: item.name,
+				img: item.image_url,
+				id: item.token_id,
+			}))
+			.filter((item: any) => item.name && item.img);
+	}
+```
+
+### Putting it all together  <Bookmark id="tldr"/>
+
+```js
+const fetchOwnCollection = async () => {
+  const WALLET_ADDRESS = '0x704CD00cbB8BF91038dFCF8bC008D065DDF1D8F8';
+
+  const options = {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      'X-API-KEY': process.env.OPENSEA_API as string,
+    },
+  };
+
+  const collectionResponse = await fetch(
+    `https://api.opensea.io/api/v1/collections?asset_owner=${WALLET_ADDRESS}`,
+    options,
+  ).then(response => response.json());
+
+  const collection = collectionResponse.map(item => ({
+    details: item.description,
+    slug: item.slug,
+    name: item.name,
+    contractAddress: item.primary_asset_contracts[0].address,
+    owned: [],
+  }));
+
+  for (const iterator of collection) {
+    const assetsResponse = await fetch(
+      `https://api.opensea.io/api/v1/assets?owner=${WALLET_ADDRESS}&asset_contract_address=${iterator.contractAddress}&include_orders=false`,
+      options,
+    ).then(response => response.json());
+
+    iterator.owned = assetsResponse.assets
+      .map(item => ({
+        name: item.name,
+        img: item.image_url,
+        id: item.token_id,
+      }))
+      .filter(item => item.name && item.img);
+  }
+
+  return collection;
+};
+```
+
+### Rendering the collection
+
+It will depend on the frontend framework of choice. [Here](https://github.com/codegino/profile/blob/main/src/pages/nft/index.tsx#L22) is how I did it using NextJs.
+
+> NOTE: The overall API requests might be slow when fetched from the browser, make sure to have an appropriate content loader in place. Caching the response might help as well.
+
+### Demo
+
+<Img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/tr8gafjragivoqqsum40.gif" height={766} width={1416} />
+
+<br />
+
+## What's next?
+
+Add functionalities for visitors to make offers and buy my NFT collection.
