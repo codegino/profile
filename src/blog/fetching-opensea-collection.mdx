@@ -41,17 +41,17 @@ For us to be able to use OpenSea's API, we need to request an OpenSea API key [h
 This will contain the API key provided by OpenSea
 
 ```js
-  const options = {
-    method: 'GET',
-    headers: {
-      Accept: 'application/json',
-			// Do not expose your API key in the browser
-      'X-API-KEY': process.env.OPENSEA_API,
-    },
-  };
+const options = {
+  method: 'GET',
+  headers: {
+    Accept: 'application/json',
+    // Do not expose your API key in the browser
+    'X-API-KEY': process.env.OPENSEA_API,
+  },
+};
 ```
 
-> To avoid exposing your API key, refer to this [blog](https://codegino.com/blog/next-hide-api-key).
+> To avoid exposing your API key, refer to this [blog](https://dev.to/codegino/handling-sensitive-client-side-api-keys-in-next-2o0g).
 
 <br />
 
@@ -60,7 +60,7 @@ This will contain the API key provided by OpenSea
 This is the address of our wallet. We can use this address to fetch our collections and assets.
 
 ```js
-	const WALLET_ADDRESS = '0x704CD00cbB8BF91038dFCF8bC008D065DDF1D8F8';
+const WALLET_ADDRESS = '0x704CD00cbB8BF91038dFCF8bC008D065DDF1D8F8';
 ```
 
 <br />
@@ -68,10 +68,10 @@ This is the address of our wallet. We can use this address to fetch our collecti
 ### Fetch all collections owned by the specified address
 
 ```js
-  const collectionResponse = await fetch(
-    `https://api.opensea.io/api/v1/collections?asset_owner=${WALLET_ADDRESS}`,
-    options,
-  ).then(response => response.json());
+const collectionResponse = await fetch(
+  `https://api.opensea.io/api/v1/collections?asset_owner=${WALLET_ADDRESS}`,
+  options,
+).then(response => response.json());
 ```
 
 ### Map the response to the preferred structure
@@ -95,33 +95,33 @@ type NftCollection = {
 Here is how the mapping of the response to the above type definition
 
 ```js
-  const collection = collectionResponse.map((item) => ({
-    details: item.description,
-    slug: item.slug,
-    name: item.name,
-    contractAddress: item.primary_asset_contracts[0].address,
-    owned: [],
-  }));
+const collection = collectionResponse.map((item) => ({
+  details: item.description,
+  slug: item.slug,
+  name: item.name,
+  contractAddress: item.primary_asset_contracts[0].address,
+  owned: [],
+}));
 ```
 
 
 ### For each collection, fetch all assets owned by the defined address
 
 ```js
-	for (const iterator of collection) {
-		const assetsResponse = await fetch(
-			`https://api.opensea.io/api/v1/assets?owner=${WALLET_ADDRESS}&asset_contract_address=${iterator.contractAddress}&include_orders=false`,
-			options,
-		).then(response => response.json());
+for (const iterator of collection) {
+  const assetsResponse = await fetch(
+    `https://api.opensea.io/api/v1/assets?owner=${WALLET_ADDRESS}&asset_contract_address=${iterator.contractAddress}&include_orders=false`,
+    options,
+  ).then(response => response.json());
 
-		iterator.owned = assetsResponse.assets
-			.map((item) => ({
-				name: item.name,
-				img: item.image_url,
-				id: item.token_id,
-			}))
-			.filter((item: any) => item.name && item.img);
-	}
+  iterator.owned = assetsResponse.assets
+    .map((item) => ({
+      name: item.name,
+      img: item.image_url,
+      id: item.token_id,
+    }))
+    .filter((item: any) => item.name && item.img);
+}
 ```
 
 ### Putting it all together  <Bookmark id="tldr"/>
