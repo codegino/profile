@@ -51,7 +51,7 @@
     "eslint-plugin-jsx-a11y": "6.5.1",
     "gray-matter": "4.0.3",
     "husky": "8.0.1",
-    "lint-staged": "12.4.1",
+    "lint-staged": "12.4.2",
     "plaiceholder": "2.3.0",
     "postcss": "8.4.13",
     "prettier": "2.6.2",
