@@ -4118,10 +4118,10 @@ react-i18next@>=11.16.4, react-i18next@^11.16.2:
     html-escaper "^2.0.2"
     html-parse-stringify "^3.0.1"
 
-react-intersection-observer@9.2.0:
-  version "9.2.0"
-  resolved "https://registry.yarnpkg.com/react-intersection-observer/-/react-intersection-observer-9.2.0.tgz#4a11eb76f2ce0e1e7bb9f29219a62e1d19e41114"
-  integrity sha512-tETsf3nEuS9WGKPld5x16QkmMnq9vTQu0UzFYnU1jBajgAqe0rIyAtobxlGloabomOeYZVW7aL3JaDZ9jK0Yew==
+react-intersection-observer@9.2.1:
+  version "9.2.1"
+  resolved "https://registry.yarnpkg.com/react-intersection-observer/-/react-intersection-observer-9.2.1.tgz#2758b0436dac04723eed4ea3e2edd61555ef9b04"
+  integrity sha512-dnaOwZ/bsOAU4NKzY5dgqtAbGZS9XuYWEQIgHSigwYrk8IVGAkznVZClyiNDuvUT3yq7r/IePCpVXCKARk9D1w==
 
 react-is@^16.13.1, react-is@^16.7.0:
   version "16.13.1"
