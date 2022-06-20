@@ -100,7 +100,7 @@ export default function NFT({
 export const getStaticProps: GetStaticProps<{
   collections: NftCollection[];
 }> = async ({locale}) => {
-  const WALLET_ADDRESS = '0x704CD00cbB8BF91038dFCF8bC008D065DDF1D8F8';
+  const WALLET_ADDRESS = '0xF53B2131c70054BA3deedc0C4ce85fBE3f4B9043';
 
   const options = {
     method: 'GET',
