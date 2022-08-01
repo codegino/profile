@@ -1,0 +1,404 @@
+---
+title: Sync application state with the URL
+description: A simplified approach to syncing a React application state with the URL.
+date: '2022-07-08'
+dateUpdated: '2022-07-08'
+bannerId: 7jdel2RgTozVnrAFFAHMiJ
+bannerDescription: sink
+tags: ['react', 'tech']
+keywords: ['react', 'sync URL state']
+published: false
+---
+
+# TL;DR
+
+# Introduction
+
+# Demo of what needs to be done
+
+```jsx
+const App = () => {
+  const [data, setData] = React.useState([]);
+
+  useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then(response => response.json())
+      .then(json => setData(json));
+  }, []);
+
+  return (
+    <div>
+      <Table data={data} />
+    </div>
+  );
+};
+
+export default App;
+```
+
+```jsx
+const Table = ({data}) => {
+  return (
+    <table>
+      <thead>
+        <tr>
+          <th>Username</th>
+          <th>Name</th>
+          <th>website</th>
+        </tr>
+      </thead>
+      <tbody>
+        {data.map(item => {
+          return (
+            <tr key={item.username}>
+              <td>{item.username}</td>
+              <td>{item.name}</td>
+              <td>{item.website}</td>
+            </tr>
+          );
+        })}
+      </tbody>
+    </table>
+  );
+};
+
+export default Table;
+```
+
+> Obviously, that is not the most flexible Table component, but it's sufficient for this demo.
+
+# Complicated solution
+
+### Store the `sortBy` state using the `React.useState` hook
+
+```jsx
+const App = () => {
+  const [sortBy, setSortBy] = React.useState('');
+
+	// Create a sortedData based on the value of `sortProp`
+  const sortedData = sortBy
+    ? [...data].sort((a, b) => {
+        const firstValue = a[sortBy];
+        const secondValue = b[sortBy];
+
+        return firstValue && secondValue
+          ? firstValue.localeCompare(secondValue)
+          : 0;
+      })
+    : data;
+
+  return (
+    <div>
+      <Table data={sortedData} sortBy={sortBy} setSortBy={setSortBy} />
+    </div>
+  );
+}
+```
+
+
+### Add an event listener when a table header is clicked
+
+```jsx
+const Table = ({data, setSortBy, sortBy}) => {
+  const handleSorting = (value) => {
+    setSortBy(value === sortBy ? '' : value);
+  };
+
+  return (
+    <table>
+      <thead>
+        <tr>
+          <th onClick={() => handleSorting('username')}>Username</th>
+          <th onClick={() => handleSorting('name')}>Name</th>
+          <th onClick={() => handleSorting('website')}>website</th>
+        </tr>
+      </thead>
+      {/* ... */}
+    </table>
+	)
+}
+```
+
+> I will create a custom component for `SortableTableHeader`, but for now, that is not important.
+
+### Saving State to URL
+
+Saving the state to the URL is just as simple as changing the URL itself. The way to change the URL depends on your routing library of choice. For this example, I used the classic react-router.
+
+```jsx
+import { useNavigate, createSearchParams } from 'react-router-dom';
+
+const Table = ({data, setSortBy, sortBy}) => {
+  // react-outer utility hook to manage navigation
+  const navigate = useNavigate();
+
+  const handleSorting = (value) => {
+    // Check if the new value is the active sortBy value
+    const isActiveSort = value === sortBy;
+
+    // Update sortBy in the React land
+    setSortBy(isActiveSort ? '' : value);
+
+    // Update sortBy in the URL land
+    if (isActiveSort) {
+      navigate({});
+    } else {
+      navigate({
+        search: `?${createSearchParams({
+          sortBy: value,
+        })}`,
+      });
+    }
+  };
+
+  // return ...
+}
+```
+
+### Loading State from URL
+
+```jsx
+const App = () => {
+  // ...
+
+  // React router utility hook to get the query params
+  const [searchParams] = useSearchParams();
+
+  useEffect(() => {
+    const sortByQuery = searchParams.get('sortBy');
+
+    setSortBy(sortByQuery);
+  }, [searchParams]);
+
+  // ...
+}
+```
+
+# Simplified solution
+
+```jsx
+const App = () => {
+  // const [searchParams] = useSearchParams();
+
+  // useEffect(() => {
+  //   const sortByQuery = searchParams.get('sortBy');
+  //   setSortBy(sortByQuery);
+  // }, [searchParams]);
+
+  const [searchParams] = useSearchParams();
+  const sortBy = searchParams.get('sortBy') || '';
+
+  // ...
+}
+```
+
+```jsx
+// const Table = ({data, setSortBy, sortBy}) => {
+const Table = ({data}) => {
+  const [searchParams] = useSearchParams();
+  const sortBy = searchParams.get('sortBy');
+
+  const handleSorting = (value) => {
+    // Check if the new value is the active sortBy value
+    const isActiveSort = value === sortBy;
+
+    // setSortBy(isActiveSort ? '' : value);
+
+    if (isActiveSort) {
+      navigate({});
+    } else {
+      navigate({
+        search: `?${createSearchParams({
+          sortBy: value,
+        })}`,
+      });
+    }
+  };
+
+  // return ...
+}
+```
+
+
+```jsx
+const Table = ({data}) => {
+  const [searchParams] = useSearchParams();
+
+  const sortBy = searchParams.get('sortBy');
+
+  return (
+    <table>
+      <thead>
+        <tr>
+          <th>
+            <Link to={sortBy === 'username' ? '/' : '?sortBy=username'}>
+              Username
+            </Link>
+          </th>
+          <th>
+            <Link to={sortBy === 'name' ? '/' : '?sortBy=name'}>Name</Link>
+          </th>
+          <th>
+            <Link to={sortBy === 'website' ? '/' : '?sortBy=website'}>
+              Website
+            </Link>
+          </th>
+        </tr>
+      </thead>
+      {/* ... */}
+    </table>
+  )
+}
+```
+
+
+```jsx
+const Table = ({data}) => {
+  const [searchParams] = useSearchParams();
+  const sortBy = searchParams.get('sortBy');
+
+  const createToLink = (sortValue) => {
+    return sortBy === sortValue ? '/' : `?sortBy=${sortValue}`;
+  };
+
+  return (
+    <table>
+      <thead>
+        <tr>
+          <th>
+            <Link to={createToLink('username')}>Username</Link>
+          </th>
+          <th>
+            <Link to={createToLink('name')}>Name</Link>
+          </th>
+          <th>
+            <Link to={createToLink('website')}>Website</Link>
+          </th>
+        </tr>
+      </thead>
+      {/* ... */}
+    </table>
+  )
+}
+```
+
+
+### Final Solution
+
+```jsx
+import React, {useEffect} from 'react';
+import {useSearchParams} from 'react-router-dom';
+import Table from './Table';
+
+const App = () => {
+  const [data, setData] = React.useState([]);
+
+  useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then(response => response.json())
+      .then(json => setData(json));
+  }, []);
+
+
+  // You can extract these 3 lines to a custom hook if you want to.
+  const [searchParams] = useSearchParams();
+  const sortBy = searchParams.get('sortBy') || '';
+  const [sortProp, order] = sortBy ? sortBy.split(':') : [];
+
+  const sortedData = sortBy
+    ? [...data].sort((a, b) => {
+        const firstValue = a[sortProp];
+        const secondValue = b[sortProp];
+
+        if (!firstValue || !secondValue) {
+          return 0;
+        }
+
+        return order === 'desc'
+          ? secondValue.localeCompare(firstValue)
+          : firstValue.localeCompare(secondValue);
+      })
+    : data;
+
+  return (
+    <div>
+      <Table data={sortedData} />
+    </div>
+  );
+};
+
+export default App;
+```
+
+In case we want to create a custom table header component, we don't need to deal with prop drilling because our single source of truth is in the URL itself.
+
+```jsx
+const SortableTableHeader = ({sortValue, children, ...props}) => {
+  const [searchParams] = useSearchParams();
+
+  const sortBy = searchParams.get('sortBy');
+
+  const [sortProp, order] = sortBy ? sortBy.split(':') : [];
+
+  const createToLink = () => {
+    if (sortValue === sortProp) {
+      if (!order) {
+        return `?sortBy=${sortValue}:desc`;
+      } else {
+        return '/';
+      }
+    } else {
+      return `?sortBy=${sortValue}`;
+    }
+  };
+
+  const sortSymbol = () => {
+    if (sortValue === sortProp) {
+      return !order ? '️⬇️' : '⬆️';
+    }
+    return '';
+  };
+
+  return (
+    <th {...props}>
+      <Link to={createToLink()}>{children}{sortSymbol()}</Link>
+    </th>
+  );
+};
+```
+
+```jsx
+import React from 'react';
+import {Link, useSearchParams} from 'react-router-dom';
+
+const Table = ({data}) => {
+  return (
+    <table>
+      <thead>
+        <tr>
+          <SortableTableHeader sortValue="username">Username</SortableTableHeader>
+          <SortableTableHeader sortValue="name">Name</SortableTableHeader>
+          <SortableTableHeader sortValue="website">Website</SortableTableHeader>
+        </tr>
+      </thead>
+      <tbody>
+        {data.map(item => {
+          return (
+            <tr key={item.username}>
+              <td>{item.username}</td>
+              <td>{item.name}</td>
+              <td>{item.website}</td>
+            </tr>
+          );
+        })}
+      </tbody>
+    </table>
+  );
+};
+
+export default Table;
+```
+
+
+
+# Conclusion
