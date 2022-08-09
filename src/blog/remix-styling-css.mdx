@@ -73,7 +73,7 @@ rm -r app/styles/*
 
 Some CSS defaults I copied from the official documentation with some adjustments.
 
-```css fileName=app/styles/global
+```css fileName="app/styles/global"
 :root {
   --color-foreground: hsl(0, 0%, 0%);
   --color-background: hsl(0, 0%, 100%);
@@ -124,7 +124,7 @@ a:hover {
 
 We'll modify `app/root.tsx` to import the global stylesheet; then, export the style in a `links` function.
 
-```tsx fileName=app/root
+```tsx fileName="app/root"
 import type { LinksFunction } from "remix";
 import styles from "~/styles/global.css";
 
@@ -149,7 +149,7 @@ After Adding the links function, nothing changes in the app. If we check the ele
 
 Since Remix will only do what we tell it to do, we need to inform it to render the links we exported in our pages using the `Links` compnent.
 
-```tsx fileName=app/root
+```tsx fileName="app/root"
 import {/*other imports*/, Links} from "remix";
 
 // The function containing the HTML declaration
@@ -183,7 +183,7 @@ The [changes](https://github.com/codegino/playground/commit/b8846e32cfd3a97ac4a2
 
 #### Create the `/words` route styles
 
-```css fileName=app/styles/words
+```css fileName="app/styles/words"
 .words__page {
   margin: 1rem;
   padding: 1rem;
@@ -201,7 +201,7 @@ The [changes](https://github.com/codegino/playground/commit/b8846e32cfd3a97ac4a2
 
 #### Add class name definition inside the component
 
-```tsx fileName=app/routes/words
+```tsx fileName="app/routes/words"
 // ...
 
 export default function Index() {
@@ -221,7 +221,7 @@ export default function Index() {
 
 #### export the links function
 
-```tsx fileName=app/routes/words
+```tsx fileName="app/routes/words"
 // ...
 import type { LinksFunction } from "remix";
 import styles from "~/styles/words.css";
@@ -252,7 +252,7 @@ Since both our `/add` and `/edit/$id` routes use a form, let's create a shared c
 
 > I'm too lazy to think of a great design. Let's simply add a border.
 
-```css fileName=app/styles/words/shared
+```css fileName="app/styles/words/shared"
 form {
   border: 1px solid var(--color-gray-dark);
   padding: 0.5rem 1rem;
@@ -263,7 +263,7 @@ form {
 <br />
 
 Now, let's expose the style by exporting it in our `links` function.
-```tsx fileName=app/routes/words/add
+```tsx fileName="app/routes/words/add"
 // ...
 import sharedStyles from "~/styles/words/shared";
 
@@ -287,7 +287,7 @@ However, since the `Add new word` is inside a form as well, that form will also 
 
 A straightforward way to fix this is to improve the [specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity) of the word form by adding a class name.
 
-```css fileName=app/styles/words/shared
+```css fileName="app/styles/words/shared"
 form.word-form {
   border: 1px solid var(--color-gray-dark);
   padding: 0.5rem 1rem;
@@ -295,7 +295,7 @@ form.word-form {
 }
 ```
 
-```tsx fileName=app/components/WordForm
+```tsx fileName="app/components/WordForm"
 // ...
 export function WordForm({ word }: { word?: Word }) {
   // ...
@@ -316,7 +316,7 @@ After adding the class name, our `word form` styles won't leak to other form ele
 
 _I'm adding a temporary background color to demonstrate how sibling routes styling behave._
 
-```css fileName=app/styles/words/shared
+```css fileName="app/styles/words/shared"
 form.word-form {
   border: 1px solid var(--color-gray-dark);
   padding: 0.5rem 1rem;
@@ -338,7 +338,7 @@ The reason is simple; sibling routes do not share styles with other sibling rout
 
 To fix the issue, we need to apply similar change to `app/routes/words/edit.$id.tsx`
 
-```tsx fileName=app/routes/words/edit.$id
+```tsx fileName="app/routes/words/edit.$id"
 // ...
 import sharedStyles from "~/styles/words/shared.css";
 
@@ -371,7 +371,7 @@ The change we made was specific to a form and not a page, so we'll make the chan
 
 ##### Create the word form styles
 
-```css fileName=app/components/word-form/styles
+```css fileName="app/components/word-form/styles"
 .word-form label {
   font-size: 0.8em;
 }
@@ -390,7 +390,7 @@ The change we made was specific to a form and not a page, so we'll make the chan
 
 #### Export the declaration of our `links` magic function
 
-```tsx fileName=app/components/word-form/index
+```tsx fileName="app/components/word-form/index"
 import type { LinksFunction } from "remix";
 import styles from "./styles.css";
 
@@ -419,7 +419,7 @@ It seems the magical behavior of `export const links` only applied to `routes`
 To fix the issue, we need to propagate the styles to a route
 
 
-```tsx fileName=app/routes/words/add
+```tsx fileName="app/routes/words/add"
 import type { LinksFunction } from "remix";
 import { WordForm, links as formStyles } from "~/components/word-form";
 
@@ -443,7 +443,7 @@ The [changes](https://github.com/codegino/playground/commit/5a2170f3b59c1762e991
 
 #### Custom Button
 
-```tsx fileName=app/components/basic/button/index
+```tsx fileName="app/components/basic/button/index"
 import React from "react";
 import styles from "./styles.css";
 import type { LinksFunction } from "remix";
@@ -467,7 +467,7 @@ export const Button = React.forwardRef<
 ));
 ```
 
-```css fileName=app/components/basic/button/styles
+```css fileName="app/components/basic/button/styles"
 button[custom-button] {
   display: block;
   height: 2rem;
@@ -487,7 +487,7 @@ There is nothing fancy for other elements, so you can view the [sources here](ht
 
 #### Here is how we can propagate the components used in the word form to the `routes`
 
-```tsx fileName=app/components/word-form/index
+```tsx fileName="app/components/word-form/index"
 // ...
 import { Input, links as inputLinks } from "../basic/input/Input";
 import { Select, links as selectLinks } from "../basic/select/Select";
@@ -513,7 +513,7 @@ export const links: LinksFunction = () => [
 
 After replacing the default html elements with our custom ones, our word form will look like this:
 
-```tsx fileName=app/components/word-form/index
+```tsx fileName="app/components/word-form/index"
 import type { LinksFunction } from "remix";
 import { useTransition, Form } from "remix";
 import { Word, WordType } from "~/models/word";
@@ -622,7 +622,7 @@ This example will use `prefers-color-scheme` to update the CSS variables when a 
 
 #### Create `app/styles/dark.css` file with the following content:
 
-```css fileName=app/styles/dark
+```css fileName="app/styles/dark"
 :root {
   --color-foreground: hsl(0, 0%, 100%);
   --color-background: hsl(0, 0%, 7%);
@@ -633,7 +633,7 @@ This example will use `prefers-color-scheme` to update the CSS variables when a 
 
 #### Update `app/root.tsx` file with the following content:
 
-```tsx fileName=app/root
+```tsx fileName="app/root"
 // ...
 import styles from "~/styles/global.css";
 import darkStyles from "~/styles/dark.css";
@@ -668,7 +668,7 @@ We'll use the same approach in the dark mode example to change the layout depend
 
 #### Create `sm-words`
 
-```css fileName=app/styles/words-sm
+```css fileName="app/styles/words-sm"
 .words__content {
   grid-template-columns: 1fr;
   border: none;
@@ -681,7 +681,7 @@ We'll use the same approach in the dark mode example to change the layout depend
 
 #### Use in `app/routes/words.tsx`
 
-```tsx fileName=app/routes/words
+```tsx fileName="app/routes/words"
 import type { LinksFunction } from "remix";
 import styles from "~/styles/words.css";
 import smStyles from "~/styles/words-sm.css";

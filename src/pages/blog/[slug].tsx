@@ -12,6 +12,7 @@ import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import {useRouter} from 'next/router';
 import path from 'path';
+import remarkMdxCodeMeta from 'remark-mdx-code-meta';
 import type {IBlogMetadata} from '../../models/blog';
 import BlogContent from '../../modules/blog/BlogContent';
 import BlogHeader from '../../modules/blog/BlogHeader';
@@ -129,8 +130,9 @@ export const getStaticProps = async ({
   const mdxSource = await serialize(content, {
     // Optionally pass remark/rehype plugins
     mdxOptions: {
-      remarkPlugins: [],
+      remarkPlugins: [remarkMdxCodeMeta],
       rehypePlugins: [],
+      format: 'mdx',
     },
     scope: data,
   });

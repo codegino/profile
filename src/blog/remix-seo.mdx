@@ -52,7 +52,7 @@ Meta tags are specific snippets of text and image content that summarize a web p
 
 To render the meta tags that we will declare in our routes, we first need to add the `Meta` component in the `head` of your `app/root` file.
 
-```jsx fileName=app/root
+```jsx fileName="app/root"
 import { Meta} from "remix";
 
 // ...
@@ -73,7 +73,7 @@ Check this [link](https://github.com/codegino/playground/blob/main/app/root.tsx#
 > You can technically add meta tags directly to the `head` of the `html` template. However, it is recommended to add "unique" information such as `title` and `description` on every route.
 
 Using Vanila JavaScript
-```jsx fileName=app/routes/[routeName]
+```jsx fileName="app/routes/[routeName]"
 export const meta = () => {
   return {
     [property]: "value"
@@ -82,7 +82,7 @@ export const meta = () => {
 ```
 
 Using TypeScript
-```tsx fileName=app/routes/[routeName]
+```tsx fileName="app/routes/[routeName]"
 import type { MetaFunction } from "remix";
 
 export const meta: MetaFunction = () => {
@@ -101,7 +101,7 @@ export const meta: MetaFunction = () => {
 A title tag is the second most important factor for on-page SEO, only trailing high-quality content.
 
 ```jsx
-export const meta = () => {
+export c"onst meta = () => {"
   return {
     title: "Page Title. Ideally length 60-70 characters",
   }
@@ -119,7 +119,7 @@ export const meta = () => {
 The meta description often serves as a pitch to people who find your website on Google or social media sites. While it's not required and Google can use text from you website instead of what you specifiy in the meta data, it's better to control the description text where you can.
 
 ```jsx
-export const meta = () => {
+export c"onst meta = () => {"
   return {
     //...
     description: "Page description. No longer than 155 characters."
@@ -139,7 +139,7 @@ export const meta = () => {
 With the visual nature of the web, your Meta Tag Image is the most valuable graphic content you can create to encourage users to click and visit your website.
 
 ```jsx
-export const meta = () => {
+export c"onst meta = () => {"
   return {
     //...
     "og:image": "https://codegino.com/assets/preview.png"
@@ -169,7 +169,7 @@ Open Graph meta tags are snippets of code that control how URLs are displayed wh
 They're part of Facebook's Open Graph protocol and are also used by other social media sites, including LinkedIn and Twitter (if Twitter Cards are absent).
 
 ```jsx
-export const meta = () => {
+export c"onst meta = () => {"
   return {
     //...
     "og:type": "website",
@@ -202,7 +202,7 @@ You don't define all of these as Twitter will reuse some `og` meta tags.
 In case of an overlap(`og:description` and `twitter:description`), Twitter will pick the Twitter-specific information.
 
 ```jsx
-export const meta = () => {
+export c"onst meta = () => {"
   return {
     //...
     "twitter:card": "summary_large_image", // summary, summary_large_image, app, player
@@ -232,7 +232,7 @@ export const meta = () => {
 #### Putting all the meta tags together
 
 ```jsx
-export const meta = () => {
+export c"onst meta = () => {"
   return {
     title: "Page Title. Ideally length 60-70 characters",
     description: "Page description. No longer than 155 characters.",
@@ -272,7 +272,7 @@ A sitemap is a file where you provide information about the pages, videos, and o
 
 Create a [`sitemap.xml` inside the `public` directory](https://github.com/codegino/playground/blob/main/public/sitemap.xml)
 
-```xml fileName=sitemap.
+```xml fileName="sitemap."
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 	<url>
@@ -297,7 +297,7 @@ A robots.txt file tells search engine crawlers which URLs the crawler can access
 
 Create a [`robots.txt` inside the `public` directory](https://github.com/codegino/playground/blob/main/public/robots.txt)
 
-```txt fileName=robots.
+```txt fileName="robots."
 User-agent: *
 Allow: /
 ```

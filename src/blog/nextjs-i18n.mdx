@@ -58,7 +58,7 @@ For more information, check this [Create Next App docs](https://nextjs.org/docs/
 
 Let's simplify the project by removing unused code.
 
-```jsx fileName=pages/index
+```jsx fileName="pages/index"
 export default function Home() {
   return <main>Hello world</main>;
 }
@@ -74,7 +74,7 @@ Check the changes [here](https://github.com/codegino/next-i18n-example/commit/83
 
 Update the Home page to display the current locale.
 
-```jsx fileName=pages/index
+```jsx fileName="pages/index"
 import { useRouter } from "next/router";
 
 export default function Home() {
@@ -86,7 +86,7 @@ export default function Home() {
 
 Let's create an About page with the same content as the Home page.
 
-```jsx fileName=pages/about
+```jsx fileName="pages/about"
 import { useRouter } from "next/router";
 
 export default function About() {
@@ -114,7 +114,7 @@ As you can see, `localhost:3000` shows `Hello world: `. This is because `useRout
 
 Let's add this simple `i18n` configuration to our `next.config.js` file and see what happens.
 
-```js fileName=next.config
+```js fileName="next.config"
 const nextConfig = {
   // other stuff
   i18n: {
@@ -153,7 +153,7 @@ To further simplify our demo, let's create a header component that can:
 - Navigate to home and about pages
 - Change the locale values using a dropdown
 
-```jsx fileName=components/Header
+```jsx fileName="components/Header"
 import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -208,7 +208,7 @@ export default Header;
 
 Let's add the `Header` component to our `pages/_app.js` file.
 
-```jsx fileName=pages/_app
+```jsx fileName="pages/_app"
 import Header from "../components/Header";
 import "../styles/globals.css";
 
@@ -257,7 +257,7 @@ npm install next-i18next
 
 ### Create a `next-i18next.config.js` and update `next.config.js`
 
-```js fileName=next-i18next.config
+```js fileName="next-i18next.config"
 module.exports = {
   i18n: {
     defaultLocale: "en",
@@ -269,7 +269,7 @@ module.exports = {
 
 `localePath` is optional and will default to `./public/locales`.
 
-```js fileName=next.config
+```js fileName="next.config"
 const { i18n } = require("./next-i18next.config");
 
 const nextConfig = {
@@ -298,13 +298,13 @@ module.exports = nextConfig;
 
 #### English Translations
 
-```json fileName=locales/en/common
+```json fileName="locales/en/common"
 {
   "greeting": "Hello world!"
 }
 ```
 
-```json fileName=locales/en/home
+```json fileName="locales/en/home"
 {
   "home": "Home",
   "about": "About"
@@ -315,13 +315,13 @@ module.exports = nextConfig;
 
 #### Chinese translations
 
-```json fileName=locales/zh-CN/common
+```json fileName="locales/zh-CN/common"
 {
   "greeting": "世界您好"
 }
 ```
 
-```json fileName=locales/zh-CN/home
+```json fileName="locales/zh-CN/home"
 {
   "home": "主页",
   "about": "关于页面"
@@ -330,13 +330,13 @@ module.exports = nextConfig;
 
 #### Swedish translations
 
-```json fileName=locales/sv/common
+```json fileName="locales/sv/common"
 {
   "greeting": "Hej världen!"
 }
 ```
 
-```json fileName=locales/sv/home
+```json fileName="locales/sv/home"
 {
   "home": "Hem",
   "about": "Om"
@@ -349,7 +349,7 @@ module.exports = nextConfig;
 
 This is a HOC which wraps your `_app`. This HOC is primarily responsible for adding a [I18nextProvider](https://react.i18next.com/latest/i18nextprovider).
 
-```jsx fileName=pages/_app
+```jsx fileName="pages/_app"
 import { appWithTranslation } from "next-i18next";
 import Header from "../components/Header";
 import "../styles/globals.css";
@@ -372,7 +372,7 @@ export default appWithTranslation(MyApp);
 
 This is an async function that you need to include on your page-level components, via either [getStaticProps](https://nextjs.org/docs/basic-features/data-fetching/overview#getstaticprops-static-generation) or [getServerSideProps](https://nextjs.org/docs/basic-features/data-fetching/overview#getserversideprops-server-side-rendering).
 
-```jsx fileName=pages/index
+```jsx fileName="pages/index"
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 // export default function Home...
@@ -393,7 +393,7 @@ export async function getStaticProps({ locale }) {
 
 This is the hook which you'll actually use to do the translation itself. The useTranslation hook comes from [react-i18next](https://react.i18next.com/latest/usetranslation-hook), but can be imported from next-i18next directly:
 
-```jsx fileName=pages/index
+```jsx fileName="pages/index"
 // other imports
 import { useTranslation } from "next-i18next";
 
@@ -410,7 +410,7 @@ export default function Home() {
 
 Let's also translate the links in the `Header` component.
 
-```jsx fileName=components/Header
+```jsx fileName="components/Header"
 // other imports
 import { useTranslation } from "next-i18next";
 
@@ -445,7 +445,7 @@ The changes above will yield the following output:
 The `home` page is translated properly; however, the `about` page is not. It is because we need to use `serverSideTranslations` in every route.
 
 
-```jsx fileName=pages/about
+```jsx fileName="pages/about"
 // other imports
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
@@ -473,7 +473,7 @@ We only specified `common` in the `serverSideTranslations` because we don't plan
 
 We are not limited to a flat JSON structure.
 
-```json fileName=locales/en/newsletter
+```json fileName="locales/en/newsletter"
 {
   "title": "Stay up to date",
   "subtitle": "Subscribe to my newsletter",
@@ -490,7 +490,7 @@ We are not limited to a flat JSON structure.
 
 We can omit some translation keys if we want it to use the default locale value(`en` in our case).
 
-```json fileName=locales/zh-CN/newsletter
+```json fileName="locales/zh-CN/newsletter"
 {
   "title": "保持最新状态",
   "form": {
@@ -504,7 +504,7 @@ We can omit some translation keys if we want it to use the default locale value(
 
 Let's create a component which use the translations above.
 
-```jsx fileName=components/SubscribeForm
+```jsx fileName="components/SubscribeForm"
 import { useTranslation } from "next-i18next";
 import React from "react";
 
@@ -544,7 +544,7 @@ export default SubscribeForm;
 
 Render the form in `pages/index.jsx` and add `newsletter` in `serverSideTranslations`.
 
-```jsx fileName=pages/index
+```jsx fileName="pages/index"
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
 import SubscribeForm from "../components/SubscribeForm";
@@ -593,7 +593,7 @@ It is very easy to format most of our data since `next-i18next` is using [i18nex
 
 Let's use the translation files below to showcase the formatting features.
 
-```json fileName=locales/en/built-in-demo
+```json fileName="locales/en/built-in-demo"
 {
   "number": "Number: {{val, number}}",
   "currency": "Currency: {{val, currency}}",
@@ -604,7 +604,7 @@ Let's use the translation files below to showcase the formatting features.
 }
 ```
 
-```json fileName=locales/zh-CN/built-in-demo
+```json fileName="locales/zh-CN/built-in-demo"
 {
   "number": "数: {{val, number}}",
   "currency": "货币: {{val, currency}}",
@@ -615,7 +615,7 @@ Let's use the translation files below to showcase the formatting features.
 }
 ```
 
-```json fileName=locales/sv/built-in-demo
+```json fileName="locales/sv/built-in-demo"
 {
   "number": "Nummer: {{val, number}}",
   "currency": "Valuta: {{val, currency}}",
@@ -712,7 +712,7 @@ The work here is mainly done on the backend side or your CMS. On the frontend, w
 
 I created a simple endpoint to fetch the content of the about page. The result will change based on query param `lang` value.
 
-```js fileName=pages/api/about
+```js fileName="pages/api/about"
 export default function handler(req, res) {
   const lang = req.query.lang || "en";
 
@@ -741,7 +741,7 @@ We can consume the API as usual (e.g. inside `getServerSideProps`, `getStaticPro
 
 In this example, let's fetch the translation inside the `getStaticProps`. We can get the `locale` value from the context, then append `?lang=${locale}` to our request URL. 
 
-```jsx fileName=pages/about
+```jsx fileName="pages/about"
 // This import is not related to fetching translations from backend.
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 

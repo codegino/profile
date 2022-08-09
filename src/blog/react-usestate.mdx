@@ -23,7 +23,7 @@ published: true
 To give you more context, before `React v16.8`, we can only enable a component
 to have a state and manage it if a component is created using a `class`.
 
-```jsx codePenID=porBgXJ
+```jsx codePenID="porBgXJ"
 class MyClassComponent extends React.Component {
   constructor(props) {
     super(props)
@@ -63,7 +63,7 @@ If you notice, we need fewer keystrokes to create a functional component,
 but the problem is it would not be reactive to state changes.
 Let's try to mimic all the `class component` behaviors to our `function component`.
 
-```jsx codePenID=BadEjgb
+```jsx codePenID="BadEjgb"
 function MyFunctionalComponent () {
   let state = {attribute: 'some value'}
 
@@ -149,7 +149,7 @@ const [state, setState] = useState()
 
 Let's replicate the behavior of the class component in a function component using a `useState` hook.
 
-```jsx codePenID=QWMPNLL
+```jsx codePenID="QWMPNLL"
 function MyFunctionalComponent () {
   const [attribute, setAttribute] = React.useState('some value')
 
