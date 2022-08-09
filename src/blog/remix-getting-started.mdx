@@ -94,7 +94,7 @@ rm app/routes/index.tsx app/root.tsx
 
 Let's proceed with the mandatory `hello world` example.
 
-```tsx fileName=app/root
+```tsx fileName="app/root"
 import { LiveReload } from "remix";
 
 export default function App() {
@@ -121,7 +121,7 @@ Hello World, indeed.
 
 Since this file will serve as the global container for the app, let's refactor it to make this more generic.
 
-```tsx fileName=app/root
+```tsx fileName="app/root"
 import {Links,LiveReload,Meta,Outlet,Scripts,ScrollRestoration} from "remix";
 
 export default function App() {
@@ -173,7 +173,7 @@ function Layout({ children }: React.PropsWithChildren<{}>) {
 
 Now, We extract the content of our page
 
-```tsx fileName=app/routes/index
+```tsx fileName="app/routes/index"
 export default function Index() {
   return <div>
     <h2>Hello World</h2>
@@ -190,7 +190,7 @@ The two changes above will still yield the same result:
 
 We'll add the links inside `Layout` since it will be reusable across all pages.
 
-```tsx fileName=app/root
+```tsx fileName="app/root"
 import {Link /*other import*/} from "remix";
 // ...
 function Layout({ children }: React.PropsWithChildren<{}>) {
@@ -227,7 +227,7 @@ It is expected since we have not created a route handler for the `/pokemons` pag
 
 Before creating that route, let us use `CatchBoundary` and `useCatch` to create a custom `404` error message as a fallback for all Not Found routes.
 
-```tsx fileName=app/root
+```tsx fileName="app/root"
 import { useCatch /*other imports*/ } from "remix";
 // ...
 export function CatchBoundary() {
@@ -270,7 +270,7 @@ Here is the customized `404` error page:
 
 To fix this `404` error, let's create the `/pokemons` route
 
-```tsx fileName=app/routes/pokemons/index
+```tsx fileName="app/routes/pokemons/index"
 export default function Pokemons() {
   return (
     <div>
@@ -288,7 +288,7 @@ Meta tags are used here to update the title and description of the page. To lear
 
 <br />
 
-```tsx fileName=app/routes/pokemons
+```tsx fileName="app/routes/pokemons"
 // This is another "contract function"
 export function meta() {
   return {
@@ -311,7 +311,7 @@ Unlike the vanilla React where usually fetch the data from the client-side, in R
 
 #### Create a Loader
 
-```tsx fileName=app/routes/pokemons
+```tsx fileName="app/routes/pokemons"
 // previous imports
 import type { LoaderFunction } from "remix"
 
@@ -336,7 +336,7 @@ _I'm still cheking how they allow this magic to happen._
 
 Use the `useLoaderData` hook to access the data in React land.
 
-```tsx fileName=app/routes/pokemons
+```tsx fileName="app/routes/pokemons"
 // ...
 import { useLoaderData, Link /*other imports*/ } from 'remix'
 
@@ -374,7 +374,7 @@ For this demo, let's use the file path convention.
 Under the `pokemons` folder, create a folder named `$pokemonName.tsx`.
 _Yes, it's not a typo; add a **$** before the file name. We'll see how to use it later._
 
-```tsx fileName=app/routes/pokemons/$pokemonName
+```tsx fileName="app/routes/pokemons/$pokemonName"
 export default function Pokemon() {
   return (
     <div>
@@ -395,7 +395,7 @@ By naming the file `$pokemonName.tsx`, inside the file, we can access `pokemonNa
 
 We can use this information to fetch the specific data from the server. `see line #9`
 
-```tsx fileName=app/routes/pokemons/$pokemonName
+```tsx fileName="app/routes/pokemons/$pokemonName"
 import { useLoaderData } from "remix"
 import type { LoaderFunction } from "remix"
 
@@ -438,7 +438,7 @@ With the code above, we can show these details in our page
 
 Before wrapping this up, let's update the meta of the Pokemon details page.
 
-```tsx fileName=app/routes/pokemons/$pokemonName
+```tsx fileName="app/routes/pokemons/$pokemonName"
 import type { MetaFunction } from "remix"
 
 // You can access the `loader` data here

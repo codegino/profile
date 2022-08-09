@@ -6,7 +6,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<WordsResponse | {message: string}>,
 ) {
-  const result = await fetchWords(+req.query.page);
+  const result = await fetchWords(+(req.query?.page ?? ''));
 
   res.status(200).json({
     ...result,

@@ -2,6 +2,7 @@ import type {FunctionComponent, ReactNode, ComponentProps} from 'react';
 import {MDXRemote} from 'next-mdx-remote';
 import type {MDXRemoteSerializeResult} from 'next-mdx-remote';
 import dynamic from 'next/dynamic';
+import {ReactI18NextChild} from 'react-i18next';
 import BlockQuote from './BlockQuote';
 import BlogAnchor from './BlogAnchor';
 import BlogBookMark from './BlogBookmarkAnchor';
@@ -9,6 +10,7 @@ import BlogGif from './BlogGif';
 import BlogImg from './BlogImg';
 import BlogListElement from './BlogListElement';
 import BlogParagraph from './BlogParagraph';
+import {preToCodeBlock} from './PreToCodeBlock';
 import TableOfContents from './TableOfContents';
 
 const CodeBlock = dynamic(() => import('./CodeBlock'), {
@@ -20,8 +22,11 @@ const CodeBlock = dynamic(() => import('./CodeBlock'), {
 // to handle import statements. Instead, you must include components in scope
 // here.
 const components: ComponentProps<FunctionComponent> = {
-  code: CodeBlock,
-  inlineCode: ({children}: {children: ReactNode}) => <code>{children}</code>,
+  inlineCode: ({
+    children,
+  }: {
+    children: ReactI18NextChild | Iterable<ReactI18NextChild>;
+  }) => <code>{children}</code>,
   blockquote: BlockQuote,
   a: BlogAnchor,
   p: BlogParagraph,
@@ -30,6 +35,19 @@ const components: ComponentProps<FunctionComponent> = {
   Img: BlogImg,
   Bookmark: BlogBookMark,
   TableOfContents: TableOfContents,
+  pre: (preProps: any) => {
+    const props = preToCodeBlock(preProps);
+
+    if (props) {
+      return (
+        <pre>
+          <CodeBlock {...props} />
+        </pre>
+      );
+    } else {
+      return <pre {...preProps} />;
+    }
+  },
 };
 
 type Props = {

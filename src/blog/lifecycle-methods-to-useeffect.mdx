@@ -41,7 +41,7 @@ Here are basic templates to convert a class lifecycle method to a useEffect hook
 
 Create an empty dependency array and pass it to the `useEffect` hook.
 
-```jsx codePenID=qBXKWxx
+```jsx codePenID="qBXKWxx"
 useEffect(() => {
   // code to run when the component is mounted 
 
@@ -55,7 +55,7 @@ useEffect(() => {
 
 Add the dependency array and pass it to the `useEffect` hook.
 
-```jsx codePenID=gOxKObO
+```jsx codePenID="gOxKObO"
 // props: {name}
 // state: {visible}
 
@@ -74,7 +74,7 @@ useEffect(() => {
 
 A `useEffect` can return a function whose body will be executed when the component is unmounted.
 
-```jsx codePenID=vYJrBKr
+```jsx codePenID="vYJrBKr"
 useEffect(() => {
   return () => {
     // code to run when the component is unmounted
@@ -89,7 +89,7 @@ useEffect(() => {
 This is a bit subjective because it's up to the developer to decide how `componentDidUpdate` should behave (the simplest is the same as `componentDidMount` mapping).
 It could also be a combination of `componentDidMount` and `shouldComponentUpdate` mapping with the addition of a reference variable to check if the component has been mounted as shown below:
 
-```jsx codePenID=qBXKBeB
+```jsx codePenID="qBXKBeB"
 const hasMount = useRef(false)
 
 useEffect(() => {

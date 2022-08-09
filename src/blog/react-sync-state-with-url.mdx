@@ -1,0 +1,66 @@
+---
+title: Sync application state with the URL
+description: A simplified approach to syncing a React application state with the URL.
+date: '2022-07-08'
+dateUpdated: '2022-07-08'
+bannerId: 7jdel2RgTozVnrAFFAHMiJ
+bannerDescription: sink
+tags: ['react', 'tech']
+keywords: ['react', 'sync URL state']
+published: false 
+---
+
+# TL;DR
+
+# Introduction
+
+# Demo of what needs to be done
+
+```jsx
+const App = () => {
+  const [data, setData] = React.useState([]);
+
+  useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then(response => response.json())
+      .then(json => setData(json));
+  }, []);
+
+  return (
+    <div>
+      <Table data={data} />
+    </div>
+  );
+};
+
+export default App;
+```
+
+```jsx
+const Table = ({data}) => {
+  return (
+    <table>
+      <thead>
+        <tr>
+          <th>Username</th>
+          <th>Name</th>
+          <th>website</th>
+        </tr>
+      </thead>
+      <tbody>
+        {data.map(item => {
+          return (
+            <tr key={item.username}>
+              <td>{item.username}</td>
+              <td>{item.name}</td>
+              <td>{item.website}</td>
+            </tr>
+          );
+        })}
+      </tbody>
+    </table>
+  );
+};
+
+export default Table;
+```

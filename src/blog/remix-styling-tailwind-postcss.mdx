@@ -69,7 +69,7 @@ yarn add -D autoprefixer postcss postcss-cli postcss-import tailwindcss cssnano
 
 #### Add Script for CSS generation
 
-```json fileName=package
+```json fileName="package"
 "scripts": {
   // ...
   "css:watch": "npm run css:build -- --watch",
@@ -90,7 +90,7 @@ app/styles/*.css
 
 #### Add Script for cleaning up build files
 
-```json fileName=package
+```json fileName="package"
 "scripts": {
   // ...
   "build": "npm run css:prod && remix build",
@@ -127,7 +127,7 @@ npm run build
 
 If you are not a fan of multiple terminals, use `concurrently` to run `css:watch` and `remix dev` in parallel
 
-```json fileName=package
+```json fileName="package"
 "scripts": {
   // ...
   "dev": "concurrently npm run css:watch && remix dev",
@@ -146,7 +146,7 @@ If you are not a fan of multiple terminals, use `concurrently` to run `css:watch
 We need to explicitly declare the features we want to use in our CSS.
 Here's a [reference](https://tailwindcss.com/docs/functions-and-directives#tailwind) of what you can use.
 
-```css fileName=styles/tailwind
+```css fileName="styles/tailwind"
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -156,7 +156,7 @@ Here's a [reference](https://tailwindcss.com/docs/functions-and-directives#tailw
 #### App CSS presets
 Some CSS defaults I prefer
 
-```css fileName=styles/app
+```css fileName="styles/app"
 :root {
   --color-primary-light: hsl(210, 100%, 98%);
   --color-primary-100: hsl(210, 100%, 95%);
@@ -192,7 +192,7 @@ textarea {
 
 #### PostCSS Config File
 
-```js fileName=postcss.config
+```js fileName="postcss.config"
 module.exports = {
   plugins: [
     require("tailwindcss"),
@@ -210,7 +210,7 @@ module.exports = {
 
 #### Tailwind Config File
 
-```js fileName=tailwind.config
+```js fileName="tailwind.config"
 module.exports = {
   mode: process.env.NODE_ENV ? "jit" : undefined,
   // To purge CSS in .ts .tsx files
@@ -248,7 +248,7 @@ module.exports = {
 
 Add a reference of the generated CSS files using `links` in `app/root.tsx`
 
-```tsx fileName=app/root
+```tsx fileName="app/root"
 // ...
 import type { LinksFunction } from "remix";
 import tailwindStyles from "~/styles/tailwind.css";
@@ -272,7 +272,7 @@ export let links: LinksFunction = () => {
 
 Use Tailwind, as usual; add Tailwind's class names added inside the `className` prop.
 
-```tsx fileName=app/components/word-form/index
+```tsx fileName="app/components/word-form/index"
 import { Form, useTransition } from "remix";
 import { Word, WordType } from "~/models/word";
 import { Button } from "../basic/button";

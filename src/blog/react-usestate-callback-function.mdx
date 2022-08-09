@@ -45,7 +45,7 @@ The problem occurs when the source of our state is computationally expensive.
 Every time we re-render our component, we need to re-evaluate our default state.
 Try to see the problem by playing with the code below.
 
-```jsx codePenID=RwZOrdJ
+```jsx codePenID="RwZOrdJ"
 function UseStateDemo() {
   const complexFunction = () => {
     // Something computationally expensive
@@ -76,7 +76,7 @@ const [,setState] = React.useState(complexFunction)
 <br />
 
 Try to play with the code below and see the difference
-```jsx codePenID=zYdXrXo
+```jsx codePenID="zYdXrXo"
 function SetStateDemo() {
   const complexFunction = () => {
     // Something computationally expensive

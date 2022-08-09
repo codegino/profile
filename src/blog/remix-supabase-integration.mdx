@@ -170,7 +170,7 @@ rm app/routes/index.tsx app/root.tsx
 
 #### Re-create file `root.tsx` file under `app` folder.
 
-```tsx fileName=app/root
+```tsx fileName="app/root"
 import {LiveReload,Meta,Outlet,Scripts,ScrollRestoration,useCatch} from "remix";
 
 export default function App() {
@@ -242,7 +242,7 @@ export function CatchBoundary() {
 
 #### Re-create file `index.tsx` file under `app/routes` folder.
 
-```tsx fileName=app/routes/index
+```tsx fileName="app/routes/index"
 export default function Index() {
   return (
     <div>
@@ -294,7 +294,7 @@ SUPABASE_URL=YOUR_SUPABASE_URL
 
 #### Create a Supabase client utility for reusability
 
-```ts fileName=libs/supabase-client
+```ts fileName="libs/supabase-client"
 import { createClient } from "@supabase/supabase-js";
 
 const supabaseUrl = process.env.SUPABASE_URL as string;
@@ -315,7 +315,7 @@ To take advantage of strong typing, I will create a type definition.
 
 > If you prefer not to use TypeScript, remove the declarations and usages of types, and change the file extensions from `.tsx` to `.jsx`.
 
-```ts fileName=app/models/word
+```ts fileName="app/models/word"
 export enum WordType {
   NOUN = "noun",
   VERB = "verb",
@@ -339,7 +339,7 @@ export type Word = {
 As I plan to create multiple mini-apps in this project, I'll redirect `/` to `/words`, for now.
 The code below will ensure we don't need to manually navigate to `/words` every time we open the root page.
 
-```tsx fileName=app/routes/index
+```tsx fileName="app/routes/index"
 import { redirect } from "remix";
 
 export function loader() {
@@ -362,7 +362,7 @@ export function loader() {
 
 <br />
 
-```tsx fileName=app/routes/words
+```tsx fileName="app/routes/words"
 import type { LoaderFunction } from "remix";
 import { supabase } from "~/libs/supabase-client";
 import { Word } from "~/models/word";
@@ -382,7 +382,7 @@ export const loader: LoaderFunction = async () => {
 
 #### Create a React component to display the list of words 
 
-```tsx fileName=app/routes/words
+```tsx fileName="app/routes/words"
 import { useLoaderData, Link } from "remix";
 
 // export const loader ...
@@ -424,7 +424,7 @@ The code above will fetch the data from Supabase and display it in a list.
 
 ##### Create the loader function
 
-```tsx fileName=app/routes/words/$id
+```tsx fileName="app/routes/words/$id"
 import type { LoaderFunction } from "remix";
 import { supabase } from "~/libs/supabase-client";
 import { Word } from "~/models/word";
@@ -444,7 +444,7 @@ export const loader: LoaderFunction = async ({ params }) => {
 
 ##### Create the component
 
-```tsx fileName=app/routes/words/$id
+```tsx fileName="app/routes/words/$id"
 // import ...
 import { /*other imports*/, useLoaderData } from "remix";
 
@@ -482,7 +482,7 @@ The image below shows that it still won't show even after creating the `/words/[
 
 We need to add an `Outlet` inside our Words Index component to fix the above issue.
 
-```tsx fileName=app/routes/words
+```tsx fileName="app/routes/words"
 import {/*other imports*/, Outlet} from "remix";
 
 // export const loader ...
@@ -524,7 +524,7 @@ Since we're already on the `/words/$id` page, let's proceed with deletion first
 
 #### Add a button to delete the word
 
-```tsx fileName=app/routes/words/$id
+```tsx fileName="app/routes/words/$id"
 import {/*other imports*/, Form} from "remix";
 
 // export const loader ...
@@ -551,7 +551,7 @@ The image shows a message that we did not define any action to handle the submit
 
 #### Delete the word in the database using Remix's `action`
 
-```tsx fileName=app/routes/words/$id
+```tsx fileName="app/routes/words/$id"
 import { /*other imports*/, redirect} from "remix";
 import type {/*other imports*/, ActionFunction} from "remix";
 
@@ -600,7 +600,7 @@ Now we don't have anything on the list; let's create the route to handle creatio
 
 We can use the `useNavigate` hook here, But for this blog, I'll show you how we can perform the entire CRUD operations without using any JavaScript on the client-side.
 
-```tsx fileName=app/routes/words
+```tsx fileName="app/routes/words"
 import { /*other imports*/ Form } from "remix";
 
 // export const loader ...
@@ -628,7 +628,7 @@ To avoid a `404` page, let's create the `/words/add` route.
 
 ##### Create the component
 
-```tsx fileName=app/routes/words/add
+```tsx fileName="app/routes/words/add"
 import {Form} from "remix";
 import { WordType } from "~/models/word";
 
@@ -681,7 +681,7 @@ The image below shows the form we created after clicking on the `Add new word` b
 
 To avoid the missing action error after clicking on the `Submit` button, let's add an action on the `words/add` route.
 
-```tsx fileName=app/routes/words/add
+```tsx fileName="app/routes/words/add"
 import { /*other imports*/, redirect } from "remix";
 import type { ActionFunction } from "remix";
 import { supabase } from "~/libs/supabase-client";
@@ -733,7 +733,7 @@ The above example will result in `words/edit/[id]`.
 ###### Refactoring
 Since the edit form is very similar to the add form, we can reuse the same form with additional checks to determine if we are adding or editing.
 
-```tsx fileName=app/components/WordForm
+```tsx fileName="app/components/WordForm"
 import { Form } from "remix";
 import { Word, WordType } from "~/models/word";
 
@@ -812,7 +812,7 @@ That's a lot of code; however, we can reap the benefits of simplifying the code 
 
 ##### Update `routes/words/add.tsx`
 
-```tsx fileName=app/routes/words/add
+```tsx fileName="app/routes/words/add"
 // other code...
 
 export default function AddWord() {
@@ -822,7 +822,7 @@ export default function AddWord() {
 
 ##### Create `routes/words/edit.$id.tsx`
 
-```tsx fileName=app/routes/words/edit.$id
+```tsx fileName="app/routes/words/edit.$id"
 import { useLoaderData } from "remix";
 import WordForm from "~/components/WordForm";
 import { Word } from "~/models/word";
@@ -842,7 +842,7 @@ Now, we have a reusable form. If we have to make a style change, we can update t
 
 In order for the edit form to be populated with the existing data, we need to create a loader.
 
-```tsx fileName=app/routes/words/edit.$id
+```tsx fileName="app/routes/words/edit.$id"
 import { supabase } from "~/libs/supabase-client";
 import type {LoaderFunction} from "remix";
 
@@ -861,7 +861,7 @@ export const loader: LoaderFunction = async ({ params }) => {
 
 #### Create a button in the `/words/$id` page to edit a word
 
-```tsx fileName=app/routes/words/$id
+```tsx fileName="app/routes/words/$id"
 // ...
 
 export default function Word() {
@@ -887,7 +887,7 @@ The image below shows the pre-filled form depending on the content of `id` in th
 
 To handle the form submission, we need to add an action handler.
 
-```tsx fileName=app/routes/words/edit.$id
+```tsx fileName="app/routes/words/edit.$id"
 import {/*other imports*/, redirect} from "remix";
 import type {/*other imports*/, ActionFunction} from "remix";
 
@@ -921,7 +921,7 @@ After modifying some fields and clicking the submit button, the page will redire
 By utilizing the `useTransition` hook, we can add or change something on the screen depending on the route's state.
 
 ```tsx
-import { useTransition } from "remix";
+import {" useTransition } from "remix";"
 
 // Somewhere in the route's compnent
 let transition = useTransition();

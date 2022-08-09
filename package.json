@@ -15,10 +15,10 @@
     "clsx": "1.2.1",
     "contentful": "9.1.32",
     "isomorphic-dompurify": "0.20.0",
-    "next": "12.1.6",
+    "next": "12.2.4",
     "next-i18next": "11.3.0",
-    "next-mdx-remote": "3.0.8",
-    "prism-react-renderer": "1.3.1",
+    "next-mdx-remote": "4.1.0",
+    "prism-react-renderer": "1.3.5",
     "react": "18.2.0",
     "react-content-loader": "6.2.0",
     "react-dom": "18.2.0",
@@ -29,6 +29,7 @@
     "react-reveal": "1.2.2",
     "react-transition-group": "4.4.2",
     "react-typist": "2.0.5",
+    "remark-mdx-code-meta": "2.0.0",
     "use-dark-mode": "2.3.1"
   },
   "resolutions": {
@@ -37,8 +38,8 @@
   "devDependencies": {
     "@next/bundle-analyzer": "12.1.6",
     "@trivago/prettier-plugin-sort-imports": "3.3.0",
-    "@types/node": "18.0.0",
-    "@types/react": "18.0.15",
+    "@types/node": "18.6.5",
+    "@types/react": "18.0.17",
     "@types/react-gtm-module": "2.0.1",
     "@types/react-transition-group": "4.4.5",
     "@types/react-typist": "2.0.3",

@@ -101,7 +101,7 @@ CREATE POLICY "user_based_delete" ON public.words FOR DELETE USING (
 
 #### Create server instance of Supabase client
 
-```tsx fileName=app/utils/supabase.server
+```tsx fileName="app/utils/supabase.server"
 import { createClient } from "@supabase/supabase-js";
 
 const supabaseUrl = process.env.SUPABASE_URL as string;
@@ -114,7 +114,7 @@ export const supabase = createClient(supabaseUrl, supabaseKey);
 
 #### Use `createCookieSessionStorage` to help in managing our Supabase token
 
-```tsx fileName=app/utils/supabase.server
+```tsx fileName="app/utils/supabase.server"
 // ...
 import { createCookieSessionStorage } from "remix";
 
@@ -144,7 +144,7 @@ export { getSession, commitSession, destroySession };
 
 #### Create a utility to set the Supabase token from the Request
 
-```tsx fileName=app/utils/supabase.server
+```tsx fileName="app/utils/supabase.server"
 // ...
 
 export const setAuthToken = async (request: Request) => {
@@ -164,7 +164,7 @@ export const setAuthToken = async (request: Request) => {
 
 #### Create Supabase Provider and a custom hook which returns the Supabase instance
 
-```tsx fileName=app/utils/supabase-client
+```tsx fileName="app/utils/supabase-client"
 import { SupabaseClient } from "@supabase/supabase-js";
 import React from "react";
 
@@ -188,7 +188,7 @@ export const useSupabase = () => React.useContext(SupabaseContext);
 
 #### Pass Supabase environment variables to our client
 
-```tsx fileName=app/root
+```tsx fileName="app/root"
 export const loader = () => {
   return {
     supabaseKey: process.env.SUPABASE_ANON_KEY,
@@ -201,7 +201,7 @@ export const loader = () => {
 
 #### Create a Supabase instance and pass it into the root level Supabase provider
 
-```tsx fileName=app/root
+```tsx fileName="app/root"
 import { createClient } from "@supabase/supabase-js";
 import { SupabaseProvider } from "./utils/supabase-client";
 
@@ -244,7 +244,7 @@ yarn add @supabase/ui
 
 > You can create your custom sign-up and sign-in form if you want. 
 
-```tsx fileName=app/routes/auth
+```tsx fileName="app/routes/auth"
 import React from "react";
 import { Auth } from "@supabase/ui";
 import { useSupabase } from "~/utils/supabase-client";
@@ -266,7 +266,7 @@ export default function AuthBasic() {
 
 #### Create the component to inform the server that we have a Supabase session
 
-```tsx fileName=app/routes/auth
+```tsx fileName="app/routes/auth"
 import React, { useEffect } from "react";
 import { useSubmit } from "remix";
 
@@ -299,7 +299,7 @@ const Container: React.FC = ({ children }) => {
 
 #### Create an action handler to process the Supabase token
 
-```tsx fileName=app/routes/auth
+```tsx fileName="app/routes/auth"
 import { Auth } from "@supabase/ui";
 import { useSubmit, redirect } from "remix";
 import type { ActionFunction } from "remix";
@@ -340,7 +340,7 @@ After logging in, the user will be redirected to the `/words` route.
 
 #### Create a logout button in the header
 
-```tsx fileName=app/root
+```tsx fileName="app/root"
 import { {/*...*/}, useSubmit } from "remix";
 import { {/*...*/}, useSupabase } from "./utils/supabase-client";
 import { Button } from "./components/basic/button";
@@ -376,7 +376,7 @@ function Layout({ children }: React.PropsWithChildren<{}>) {
 
 I don't want to pollute my other route, so I will create my signout action handler separately
 
-```tsx fileName=app/routes/signout
+```tsx fileName="app/routes/signout"
 import { destroySession, getSession } from "../utils/supabase.server";
 import { redirect } from "remix";
 import type { ActionFunction } from "remix";
@@ -404,7 +404,7 @@ export const loader = () => {
 
 #### Using in a `loader` or `action`
 ```tsx
-export const action = async ({ request, params }) => {
+export c"onst action = async ({ request, params }) => {"
   // Just set the token to any part you want to have access to.
   // I haven't tried making a global handler for this,
   // but I prefer to be explicit about setting this.
@@ -420,7 +420,7 @@ export const action = async ({ request, params }) => {
 #### Conditional rendering based on auth state
 
 ```tsx
-export default function Index() {
+export d"efault function Index() {"
   const supabase = useSupabase();
 
   return supabase.auth.user()
@@ -442,7 +442,7 @@ The examples below are a longer version of using our setup for CRUD operations.
 
 ### Fetching All operation <Bookmark id="fetch-all"/>
 
-```tsx fileName=app/routes/words
+```tsx fileName="app/routes/words"
 import { Form, useTransition } from "remix";
 import type { LoaderFunction } from "remix";
 import { useLoaderData, Link, Outlet } from "remix";
@@ -513,7 +513,7 @@ export default function Index() {
 
 ### Retrieve one and Delete one operation <Bookmark id="get-delete-one"/>
 
-```tsx fileName=app/routes/words/$id
+```tsx fileName="app/routes/words/$id"
 import { Form, useLoaderData, redirect, useTransition } from "remix";
 import type { LoaderFunction, ActionFunction } from "remix";
 import type { Word } from "~/models/word";
@@ -597,7 +597,7 @@ export default function Word() {
 
 ### Create operation <Bookmark id="create-one"/>
 
-```tsx fileName=app/routes/words/add
+```tsx fileName="app/routes/words/add"
 import { redirect } from "remix";
 import type { ActionFunction } from "remix";
 import { setAuthToken, supabase } from "~/utils/supabase.server";
@@ -638,7 +638,7 @@ export default function AddWord() {
 
 ### Update operation <Bookmark id="update-one"/>
 
-```tsx fileName=app/routes/words/edit/$id
+```tsx fileName="app/routes/words/edit/$id"
 import { useLoaderData, redirect } from "remix";
 import type { LoaderFunction, ActionFunction } from "remix";
 import { WordForm } from "~/components/word-form";
