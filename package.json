@@ -24,10 +24,10 @@
     "react-dom": "18.2.0",
     "react-github-calendar": "3.3.1",
     "react-gtm-module": "2.0.11",
-    "react-intersection-observer": "9.3.5",
+    "react-intersection-observer": "9.4.0",
     "react-responsive-carousel": "3.2.23",
     "react-reveal": "1.2.2",
-    "react-transition-group": "4.4.2",
+    "react-transition-group": "4.4.5",
     "react-typist": "2.0.5",
     "remark-mdx-code-meta": "2.0.0",
     "use-dark-mode": "2.3.1"
