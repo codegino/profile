@@ -1,9 +1,10 @@
-import {createClient} from 'contentful';
+// import {createClient} from 'contentful';
 import type {GetStaticProps, InferGetStaticPropsType} from 'next';
 import {serverSideTranslations} from 'next-i18next/serverSideTranslations';
 import Head from 'next/head';
 import Image from 'next/image';
 import NextLink from '../../components/basic/NextLink';
+import nfts from '../../data/eth-nft.json';
 import {commonMetaTags} from '../../frontend-utils/meta-tags';
 
 export default function NFT({
@@ -100,64 +101,60 @@ export default function NFT({
 export const getStaticProps: GetStaticProps<{
   collections: NftCollection[];
 }> = async ({locale}) => {
-  const WALLET_ADDRESS = '0xF53B2131c70054BA3deedc0C4ce85fBE3f4B9043';
+  // Commented for future NFT generation
+  // const ETH_WALLET_ADDRESS = '0xF53B2131c70054BA3deedc0C4ce85fBE3f4B9043';
 
-  const options = {
-    method: 'GET',
-    headers: {
-      Accept: 'application/json',
-      'X-API-KEY': process.env.OPENSEA_API as string,
-    },
-  };
+  // const options = {
+  //   method: 'GET',
+  //   headers: {
+  //     Accept: 'application/json',
+  //     'X-API-KEY': process.env.OPENSEA_API as string,
+  //   },
+  // };
 
-  const collectionResponse = await fetch(
-    `https://api.opensea.io/api/v1/collections?asset_owner=${WALLET_ADDRESS}`,
-    options,
-  ).then(response => response.json());
+  // const ethCollectionResponse = await fetch(
+  //   `https://api.opensea.io/api/v1/collections?asset_owner=${ETH_WALLET_ADDRESS}`,
+  //   options,
+  // ).then(response => response.json());
 
-  const collection = collectionResponse.map((item: any) => ({
-    details: item.description,
-    slug: item.slug,
-    name: item.name,
-    contractAddress: item.primary_asset_contracts[0].address,
-    owned: [],
-  }));
+  // const ethCollection = ethCollectionResponse.map((item: any) => ({
+  //   details: item.description,
+  //   slug: item.slug,
+  //   name: item.name,
+  //   contractAddress: item.primary_asset_contracts[0].address,
+  //   owned: [],
+  // }));
 
-  for (const iterator of collection) {
-    const assetsResponse = await fetch(
-      `https://api.opensea.io/api/v1/assets?owner=${WALLET_ADDRESS}&asset_contract_address=${iterator.contractAddress}&include_orders=false`,
-      options,
-    ).then(response => response.json());
+  // for (const iterator of ethCollection) {
+  //   const assetsResponse = await fetch(
+  //     `https://api.opensea.io/api/v1/assets?owner=${ETH_WALLET_ADDRESS}&asset_contract_address=${iterator.contractAddress}&include_orders=false`,
+  //     options,
+  //   ).then(response => response.json());
 
-    iterator.owned = assetsResponse.assets
-      .map((item: any) => ({
-        name: item.name,
-        img: item.image_url,
-        id: item.token_id,
-      }))
-      .filter((item: any) => item.name && item.img);
-  }
+  //   iterator.owned = assetsResponse.assets
+  //     .map((item: any) => ({
+  //       name: item.name,
+  //       img: item.image_url,
+  //       id: item.token_id,
+  //     }))
+  //     .filter((item: any) => item.name && item.img);
+  // }
 
-  // This code is for collections not visible in OpenSea
-  const client = createClient({
-    space: process.env.CONTENTFUL_SPACE_ID as string,
-    accessToken: process.env.CONTENTFUL_ACCESS_TOKEN as string,
-  });
+  // // This code is for collections not visible in OpenSea
+  // const client = createClient({
+  //   space: process.env.CONTENTFUL_SPACE_ID as string,
+  //   accessToken: process.env.CONTENTFUL_ACCESS_TOKEN as string,
+  // });
 
-  const entries = await client.getEntries<NftCollection>({
-    content_type: 'nftCollection',
-    order: 'fields.order',
-  });
+  // const entries = await client.getEntries<NftCollection>({
+  //   content_type: 'nftCollection',
+  //   order: 'fields.order',
+  // });
 
   return {
     props: {
       ...(await serverSideTranslations(locale as string, ['common'])),
-      collections: [
-        ...collection,
-        ...entries.items.map(e => ({
-          ...e.fields,
-        })),
-      ],
+      collections: nfts as NftCollection[],
     },
     revalidate: 1,
   };
