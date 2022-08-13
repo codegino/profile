@@ -33,6 +33,10 @@ class MyDocument extends Document {
             media="(prefers-color-scheme: dark)"
             content="black"
           />
+          <link
+            rel="stylesheet"
+            href="https://sdk.birdeatsbug.com/latest/style.css"
+          ></link>
         </Head>
         <body>
           <Main />
