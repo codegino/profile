@@ -720,6 +720,11 @@
   resolved "https://registry.yarnpkg.com/@types/scheduler/-/scheduler-0.16.2.tgz#1a62f89525723dde24ba1b01b092bf5df8ad4d39"
   integrity sha512-hppQEBDmlwhFAXKJX2KnWLYu5yMfi91yazPb2l+lbJiwW+wdo1gNeRA+3RgNSO39WYX2euey41KEwnqesU2Jew==
 
+"@types/tinycolor2@^1.4.3":
+  version "1.4.3"
+  resolved "https://registry.yarnpkg.com/@types/tinycolor2/-/tinycolor2-1.4.3.tgz#ed4a0901f954b126e6a914b4839c77462d56e706"
+  integrity sha512-Kf1w9NE5HEgGxCRyIcRXR/ZYtDv0V8FVPtYHwLxl0O+maGX0erE77pQlD0gpP+/KByMZ87mOA79SjifhSB3PjQ==
+
 "@types/trusted-types@*":
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/@types/trusted-types/-/trusted-types-2.0.2.tgz#fc25ad9943bcac11cceb8168db4f275e0e72e756"
@@ -4392,11 +4397,12 @@ rc@^1.2.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-activity-calendar@^1.5.0:
-  version "1.6.0"
-  resolved "https://registry.yarnpkg.com/react-activity-calendar/-/react-activity-calendar-1.6.0.tgz#72e482f31389b0bf018030fb2ea630660e281c37"
-  integrity sha512-Pyar4K9S2/SKdAF0ZIRZHBUAchOof8m34HRLrkI1uTjU38a1c2LNBcoQBiQEr4s6ZtNjzy0ZHUHiZdCBbUC12g==
+react-activity-calendar@^1.6.0:
+  version "1.6.2"
+  resolved "https://registry.yarnpkg.com/react-activity-calendar/-/react-activity-calendar-1.6.2.tgz#337dc14303fd6f835c240352fd71a2329c9de0d2"
+  integrity sha512-ZpWBbpdft8h4VJvd7h1ROgE7gtItIDN0quaNCYwC6fJmbV/GSBWYpf9EaXtsAl7DmmEP/jgFa1OOfWQTuR69Tg==
   dependencies:
+    "@types/tinycolor2" "^1.4.3"
     date-fns "^2.28.0"
     tinycolor2 "^1.4.0"
 
@@ -4420,12 +4426,12 @@ react-easy-swipe@^0.0.21:
   dependencies:
     prop-types "^15.5.8"
 
-react-github-calendar@3.3.1:
-  version "3.3.1"
-  resolved "https://registry.yarnpkg.com/react-github-calendar/-/react-github-calendar-3.3.1.tgz#6111cbfc7f8382d802bb630887e1d02d9dc7dcbc"
-  integrity sha512-0m9qnia/HbAYQdbOvr7l59zxLFSs3ZRzJYyXXKSUxGKdScHSipiGw3g2pu6rS1VGAPE9NtVJhuLq1qrbItlVpA==
+react-github-calendar@3.3.3:
+  version "3.3.3"
+  resolved "https://registry.yarnpkg.com/react-github-calendar/-/react-github-calendar-3.3.3.tgz#98d73fd08e9a32e5f7e50e6b114249853e863b19"
+  integrity sha512-ocqFbA2jIzdi/yVXmmyfvuOV/K8b5N60w700TZgovfbbmUC1W7oO2i3F9Q5WmvbJjoFV7GjVP/DY/LdMpzX8lg==
   dependencies:
-    react-activity-calendar "^1.5.0"
+    react-activity-calendar "^1.6.0"
 
 react-gtm-module@2.0.11:
   version "2.0.11"
