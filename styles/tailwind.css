@@ -26,3 +26,21 @@
     -webkit-tap-highlight-color: transparent;
   }
 }
+
+@layer utilities {
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    /* display: none; */
+    background-color: #1e1e1e;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+
+  .code-line-height {
+    line-height: 1.188;
+  }
+}

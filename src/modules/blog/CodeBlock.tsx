@@ -61,9 +61,9 @@ const CodeBlock: FunctionComponent<CodeBlockProps> = ({
           language={language}
         >
           {({className, style, tokens, getLineProps, getTokenProps}) => (
-            <>
+            <div className="relative">
               {!noLine && (
-                <span className="absolute z-10 flex flex-col left-0 top-7 pt-2 bottom-0 bg-[#1e1e1e]">
+                <span className="absolute z-10 flex flex-col left-0 top-0 pt-2 bottom-0 bg-[#1e1e1e]">
                   {tokens.map((_, i) => (
                     <span
                       className="bg-[#1e1e1e] pl-2 pr-3 text-white text-right leading-[1.188]
@@ -80,7 +80,7 @@ const CodeBlock: FunctionComponent<CodeBlockProps> = ({
               <span
                 className={clsx(
                   'p-2 pl-2 overflow-auto flex relative flex-col leading-[1.188] my-1 text-lg',
-                  'rounded-bl-md rounded-br-md shadow-sm shadow-darkest',
+                  'rounded-bl-md rounded-br-md shadow-sm shadow-darkest no-scrollbar',
                   className,
                   {
                     'pl-8': !noLine,
@@ -96,7 +96,7 @@ const CodeBlock: FunctionComponent<CodeBlockProps> = ({
                   </span>
                 ))}
               </span>
-            </>
+            </div>
           )}
         </Highlight>
       </code>
