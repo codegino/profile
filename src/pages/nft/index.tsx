@@ -156,7 +156,6 @@ export const getStaticProps: GetStaticProps<{
       ...(await serverSideTranslations(locale as string, ['common'])),
       collections: nfts as NftCollection[],
     },
-    revalidate: 1,
   };
 };
 
