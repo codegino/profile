@@ -23,11 +23,19 @@ const Layout: FunctionComponent<{children: React.ReactNode}> = ({
           margin: 0;
         }
 
-        .blog-layout li {
-          list-style: disc;
+        .blog-layout ol > li,
+        .blog-layout ul > li {
           margin-left: 2rem;
           font-size: 1rem;
           line-height: 1.3;
+        }
+
+        .blog-layout > ol > li {
+          list-style: auto;
+        }
+
+        .blog-layout > ul > li {
+          list-style: disc;
         }
 
         .blog-layout > ol {

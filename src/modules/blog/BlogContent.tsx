@@ -28,6 +28,7 @@ const components: ComponentProps<FunctionComponent> = {
     children: ReactI18NextChild | Iterable<ReactI18NextChild>;
   }) => <code>{children}</code>,
   blockquote: BlockQuote,
+  Anchor: BlogAnchor,
   a: BlogAnchor,
   p: BlogParagraph,
   li: BlogListElement,
