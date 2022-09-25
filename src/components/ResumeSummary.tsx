@@ -67,9 +67,9 @@ export default function ResumeSummary({
 
 const summary = {
   jobTitle: 'jobTitle',
-  company: 'NE Digital',
+  company: 'Devoteam Creative Tech',
   email: 'carloginocatapang@gmail.com',
-  address: 'Tampines, Singapore',
+  address: 'Stockholm, Sweden',
   name: 'Carlo Gino Catapang',
-  companyWebsite: 'https://www.nedigital.sg',
+  companyWebsite: 'https://se.devoteam.com/',
 };
