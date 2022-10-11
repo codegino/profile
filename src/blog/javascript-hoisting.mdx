@@ -1,0 +1,335 @@
+---
+title: How JavaScript hoisting actually works
+description: You probably do not know what really is happening
+date: '2022-10-12'
+dateUpdated: '2022-10-12'
+bannerId: 1vCFjsPPN7WKRVgOfDDtVi
+bannerDescription: hoist
+tags: ['javascript', 'tech']
+keywords: ['javascript hoisting', 'hoisting', 'javascript hoist']
+published: true
+---
+
+### What we used to know
+
+> #### According to [w3schools](https://www.w3schools.com/js/js_hoisting.asp)
+> "Hoisting is JavaScript's default behavior of moving declarations to the top."
+
+If we take that description literally, given the following code
+
+```js
+hello = 'hello';
+
+console.log(hello)
+
+var hello;
+```
+
+JavaScript will rearrange the code for us to this one.
+
+```js
+var hello;
+
+hello = 'hello';
+
+console.log(hello)
+```
+
+<br />
+
+Or, with a slightly more complex example
+
+```js
+var hello = "goodbye";
+world = "world";
+
+greet1();
+greet2();
+
+function greet1() {
+  var world = "WORLD!";
+  console.log(hello, world);
+}
+
+function greet2() {
+  greet2();
+  var hello = "hello";
+  greet2();
+
+  function greet2() {
+    console.log(hello, world);
+  }
+}
+
+var world;
+```
+
+JavaScript will magically rearrange the variables and function declarations; then, it will run from top to bottom.
+
+```js
+var hello;
+var world;
+
+hello = "goodbye";
+world = "world";
+
+function greet1() {
+  var world = "WORLD!";
+  console.log(hello, world);
+}
+
+function greet2() {
+  var hello;
+  greet2();
+
+  function greet2() {
+    console.log(hello, world);
+  }
+
+  hello = "hello";
+  greet2();
+}
+
+greet1();
+greet2();
+```
+
+
+That's what I used to believe, and it's a good mental model, but it's not accurate.
+
+> If you think that `let` and `const` will solve the issue because they do not hoist, you are in for a treat.
+
+### What is hoisting?
+
+Unfortunately, no hoisting JavaScript exists, as in magically moving the declarations to the top.
+
+The word `hoist` does not even exist in the old [ECMAScript specification](https://262.ecma-international.org/5.1/).
+
+Hoisting is more of a mental model to help us understand how JavaScript let us use a function or variable before they are declared.
+
+<br />
+
+### So what now?
+
+As an alternative mental model, think that JavaScript is doing two phases before we get the output.
+
+1. Creation Phase - When we put our declarations in the [Environment Record](https://tc39.es/ecma262/multipage/executable-code-and-execution-contexts.html#sec-environment-records)
+2. Execution Phase - When we run line by line to do what we already know(creating variables, running functions, etc.)
+
+<br />
+
+Let's try running this code without using the alternative approach.
+
+```js
+var hello = "goodbye";
+world = "world";
+
+greet1();
+greet2();
+
+function greet1() {
+  var world = "WORLD!";
+  console.log(hello, world);
+}
+
+function greet2() {
+  greet2();
+  var hello = "hello";
+  greet2();
+
+  function greet2() {
+    console.log(hello, world);
+  }
+}
+
+var world;
+```
+
+<details>
+  <summary>Output</summary>
+  <pre className="px-8">
+    undefined "world"
+    "hello" "world"
+    "goodbye" "WORLD!"
+  </pre>
+</details>
+
+<br />
+
+### Creation Phase
+
+<Img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/ouoib7rwqd2bzpp6yzwm.gif" />
+
+1. Start with an empty global scope Environment Record(red)
+2. Line 1 has a variable declaration; add it to the red(global) scope
+3. Line 7 has a function declaration; add it to the red scope
+4. Because line 7 is a function declaration, create a new Function Environment Record(green)
+5. Line 8 has a variable declaration; add it to the green scope
+6. Line 12 has a function declaration; add it to the red scope
+7. Because line 12 is a function declaration, create a new Function Environment Record(blue)
+8. Line 14 has a variable declaration; add it to the blue scope
+9. Line 17 has a function declaration; add it to the blue scope
+10. Because line 17 is a function declaration, create a new Function Environment Record(yellow)
+11. No more formal declarations; move on to the next phase
+
+> Imagine the Creation Phase as making an execution plan. It can help us visualize what the execution context will look like. It can even tell us if there is an undeclared keyword.
+
+### Execution Phase
+
+#### Variable creation
+
+<Img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/6wp2yi9ladx6igzldv0s.gif" />
+
+1. Find `hello` in the red scope
+2. Since the variable exists in the red scope, create the variable in the Global(red) Execution Context with the default value `undefined`
+3. Assign the value `"goodbye"` to variable `hello` in the red(global) Execution Context
+
+
+<br />
+
+> #### NOTE
+> Regarding Step 2, setting the variable's default value to undefined is why we will get a **functionName is not a function** error when we call a function expression before it is declared.
+>
+> Examples of a function expression below
+
+
+```js
+functionName()
+
+var functionName = function functionName() {/**/};
+// OR
+const functionName = () => {/**/};
+// OR
+let functionName = function () {/**/};
+```
+
+<br />
+
+#### What if there is an undeclared entity?
+
+An error is thrown if a variable, function, class, etc., is missing in the Environment Record.
+
+<Img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/3nqc2bxrogfmt1rtyd4w.gif" />
+
+1. Try to find `worldz` in the Environment Record
+2. If it cannot be found, throw an error
+3. Log `Uncaught ReferenceError: worldz is not defined`
+
+<br />
+
+Let's go back to the normal flow.
+
+#### Invoking the global `greet1`
+
+<Img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/e535l3e1gzs3l81fxdao.gif" />
+
+1. Find `greet1` in the red scope
+2. Since the function exists in the red scope, create reference in the Global(red) Execution Context
+3. `greet1` is invoked, which will create a green Execution Context
+4. Find `world` in the Environment record
+5. Since the variable exists in the green scope, create the variable in the green Execution Context with the default value `undefined`
+6. Assign the value `"WORLD!"` to variable `world` in the green Execution Context
+
+<br />
+
+#### Invoking `console.log` inside `greet1`
+
+It's time to invoke `console.log`, but where is it coming from?
+
+<Img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/fwg2jdptji176jde5hbf.gif" />
+
+1. Find `console` in the green scope
+2. Since it does not exist in the green scope, go one level up
+3. Find `console` in the red scope
+4. Luckily, `console` exists in the Global Environment Record, so we can label it as red
+5. We already have access to the `console` object in the Global Execution Context.
+6. Find `hello` in the green scope
+7. Since it does not exist in the green scope, go one level up
+8. Find `hello` in the red scope
+9. `hello` exists in the red scope, and it already has the value of `"goodbye"`
+10. Find `world` in the green scope
+11. `world` exists in the green scope, and it already has the value of `"WORLD!"`
+12. After invoking `console.log` it will log `"goodble" "WORLD!"`
+13. End of `greet1` Execution Context;
+
+<br />
+
+> I'm now omitting some of the steps for brevity.
+
+#### Running `greet2` and the shadowed `greet1`
+
+<Img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/g2x4r54lianpwvuvgj0z.gif" />
+
+1. The function `greet2` is in the red scope so create a function reference in the Global Execution Context 
+2. Invoke `greet2` and create a blue Execution Context
+3. Find `greet1` in the blue scope
+4. Since the function exists in the blue scope, create a function reference in the blue Execution Context
+5. Invoke `greet1` and create a yellow Execution Context
+
+<br />
+
+#### Invoking `console.log` inside the shadowed `greet1`
+
+<Img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/hxog1nkakju03h6jhfjs.gif" />
+
+1. Since we did not overwrite `console`, we already know that `console` is in the global scope
+2. Same as before, the value is resolved by going one step up until we get the matching scope and Execution Context
+3. `hello` has a value of `undefined` because it points to the blue Execution Context
+4. `world` has a value of `"world"` because it points to the red Execution Context
+5. After invoking `console.log` it will log `undefined "world"`
+6. End of the inner `greet1` Execution Context;
+
+<br />
+
+#### Updating the value of `hello` inside `greet2`
+
+<Img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/qr8s4r9hqg946jpn9l4d.gif" />
+
+1. Assign the value `"hello"` to the `hello` variable in blue Execution Context
+2. Run inner `greet1` again to create a new yellow Execution Context
+
+<br />
+
+#### Running the shadowed `greet1`, AGAIN!
+
+<Img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/rb1khiycld1yve2gi8sc.gif" />
+
+1. After running `greet1` the first time, we already have colored what the scopes in line 18 will be.
+2. The second time we run the function, we already know which box to look at.
+3. `console` is in red 
+4. `hello` is in blue
+5. `world` is in red
+6. So the console will output `"hello" "world"`
+
+<br />
+
+### How about `let` and `const`?
+
+There is the misconception that we can use `let` and `const` to avoid the issue of hoisting. The thing is, `let` and `const` both "hoist", but they get an unaccessible reference instead of `undefined` initially.
+
+<Img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/eth58k6ncmideqw06tcs.gif" />
+
+1. Because we declare `world` in line number 22, lines 1-21 are considered to be its [TDZ(Temporal Dead Zone)](https://www.freecodecamp.org/news/what-is-the-temporal-dead-zone/)
+2. In line number 2, we are trying to access the variable `world`
+3. Since line number 2 is in the TDZ, we throw `Uncaught ReferenceError: Cannot access 'world' before initialization`
+
+<br />
+
+If you are not convinced, try running the code snippet below. 
+
+```js
+{
+	console.log(typeof nonExistingVarible); // undefined
+	console.log(typeof hello); // Cannot access 'hello' before initialization
+
+	let hello = "hello";
+	// const hello = "hello"; // same result as using `let`
+}
+```
+
+<br />
+
+## Conclusion
+
+Having a better mental model is essential to be a better JavaScript developer.
+Instead of blaming the "weird" behavior of JavaScript, we can actually use them to our advantage.
