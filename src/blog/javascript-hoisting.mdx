@@ -28,7 +28,7 @@ var hello;
 JavaScript will rearrange the code for us to this one.
 
 ```js
-var hello;
+var hello; // hoisted variable
 
 hello = 'hello';
 
@@ -67,22 +67,22 @@ var world;
 JavaScript will magically rearrange the variables and function declarations; then, it will run from top to bottom.
 
 ```js
-var hello;
-var world;
+var hello; // hoisted variable
+var world; // hoisted variable
 
 hello = "goodbye";
 world = "world";
 
-function greet1() {
+function greet1() { // hoisted function 
   var world = "WORLD!";
   console.log(hello, world);
 }
 
-function greet2() {
-  var hello;
+function greet2() { // hoisted function 
+  var hello; // hoisted variable 
   greet2();
 
-  function greet2() {
+  function greet2() { // hoisted function 
     console.log(hello, world);
   }
 
@@ -101,9 +101,9 @@ That's what I used to believe, and it's a good mental model, but it's not accura
 
 ### What is hoisting?
 
-Unfortunately, no hoisting JavaScript exists, as in magically moving the declarations to the top.
+Unfortunately, no hoisting JavaScript exists, as in the magical movement of declarations to the top. The word `hoist` does not even exist in the old [ECMAScript specification](https://262.ecma-international.org/5.1/).
 
-The word `hoist` does not even exist in the old [ECMAScript specification](https://262.ecma-international.org/5.1/).
+<br />
 
 Hoisting is more of a mental model to help us understand how JavaScript let us use a function or variable before they are declared.
 
@@ -118,7 +118,7 @@ As an alternative mental model, think that JavaScript is doing two phases before
 
 <br />
 
-Let's try running this code without using the alternative approach.
+Let's try running this code using the alternative approach.
 
 ```js
 var hello = "goodbye";
