@@ -21,7 +21,7 @@ const BlogCard: FunctionComponent<{
       <div
         className={clsx(
           'relative rounded-2xl overflow-hidden',
-          'mt-4 shadow-md shadow-dark',
+          'mt-4 shadow-md shadow-dark md:ml-2',
           'h-[7.5rem] sm:h-[15rem] w-full sm:w-[10rem] min-w-[7.5rem] sm:min-w-[20rem]',
         )}
       >
@@ -32,7 +32,7 @@ const BlogCard: FunctionComponent<{
           layout="fill"
           objectFit="cover"
           placeholder="blur"
-          blurDataURL="/assets/blog-placeholder.jpeg"
+          blurDataURL={blog.bannerId}
         />
       </div>
       <NextLink href={`/blog/${blog.slug}`} aria-label={blog.title}>

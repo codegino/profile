@@ -11,39 +11,39 @@ export const BlogCardPreview = ({blog}: Props) => {
   const {t} = useTranslation('common');
 
   return (
-    <div className="w-full overflow-hidden shadow-sm hover:shadow-md hover:shadow-dark shadow-dark rounded-2xl bg-light pb-1 md:max-w-4xl">
+    <figure className="relative w-full min-h-[20rem] text-center overflow-hidden shadow-sm hover:shadow-md hover:shadow-dark shadow-dark rounded-2xl bg-light md:max-w-4xl">
       <NextLink href={`/blog/${blog.slug}`} aria-label={blog.title}>
-        <article className="text-center">
-          <Image
-            src={blog.bannerId}
-            alt={blog.bannerDescription}
-            title={blog.bannerDescription}
-            layout="responsive"
-            height={670}
-            width={1200}
-            objectFit="cover"
-            placeholder="blur"
-            blurDataURL="/assets/blog-placeholder.jpeg"
-          />
-          <h2>{blog.title}</h2>
-          <p>{blog.description}</p>
-          <p className="mt-2 text-dark">
-            <i>
-              {t('date', {
-                val: new Date(blog.date),
-                formatParams: {
-                  val: {
-                    weekday: 'short',
-                    year: 'numeric',
-                    month: 'short',
-                    day: 'numeric',
+        <Image
+          src={blog.bannerId}
+          alt={blog.bannerDescription}
+          title={blog.bannerDescription}
+          layout="fill"
+          objectFit="cover"
+          placeholder="blur"
+          blurDataURL={blog.bannerId}
+        />
+        <figcaption className="absolute bottom-0 w-full bg-white pb-4 opacity-90 px-4 md:h-[10rem] flex flex-col justify-between">
+          <h2 className="line-clamp-2">{blog.title}</h2>
+          <div>
+            <p className="line-clamp-1">{blog.description}</p>
+            <p className="mt-2 text-dark">
+              <i>
+                {t('date', {
+                  val: new Date(blog.date),
+                  formatParams: {
+                    val: {
+                      weekday: 'short',
+                      year: 'numeric',
+                      month: 'short',
+                      day: 'numeric',
+                    },
                   },
-                },
-              })}
-            </i>
-          </p>
-        </article>
+                })}
+              </i>
+            </p>
+          </div>
+        </figcaption>
       </NextLink>
-    </div>
+    </figure>
   );
 };
