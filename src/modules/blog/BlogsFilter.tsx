@@ -61,11 +61,11 @@ const BlogsFilter: FunctionComponent<{
   return (
     <section className="flex flex-col items-center mb-8 max-w-4xl">
       <h3 className="mb-4">Filter by tags</h3>
-      <div className="flex gap-2 flex-wrap justify-center">
+      <div className="flex gap-2 flex-wrap justify-center mb-4">
         {tags.map((tag, i) => (
           <div
             className={clsx(
-              'inline-block bg-lightest py-2 px-4 rounded-xl shadow-md mr-2 last:mr-0 cursor-pointer',
+              'inline-block bg-lightest py-2 px-4 rounded-xl shadow-md mr-2 last:mr-0 cursor-pointer whitespace-nowrap',
               {
                 'text-primary-100': selectedTags.has(tag),
                 'bg-primary-900': selectedTags.has(tag),
