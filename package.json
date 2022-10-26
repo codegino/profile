@@ -38,7 +38,7 @@
   "devDependencies": {
     "@next/bundle-analyzer": "12.3.1",
     "@trivago/prettier-plugin-sort-imports": "3.4.0",
-    "@types/node": "18.11.4",
+    "@types/node": "18.11.6",
     "@types/react": "18.0.21",
     "@types/react-gtm-module": "2.0.1",
     "@types/react-transition-group": "4.4.5",
