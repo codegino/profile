@@ -1450,12 +1450,12 @@ concat-map@0.0.1:
   resolved "https://registry.yarnpkg.com/concat-map/-/concat-map-0.0.1.tgz#d8a96bd77fd68df7793a73036a3ba0d5405d477b"
   integrity sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==
 
-contentful-resolve-response@^1.3.0:
-  version "1.3.8"
-  resolved "https://registry.yarnpkg.com/contentful-resolve-response/-/contentful-resolve-response-1.3.8.tgz#58835a1d0894a97ab42541a47f4175d11adaa978"
-  integrity sha512-y3ttLqttxAN8yh3KfXNF+5kbnJa/01VFV/Rr1GNCaTWEVp6S9VGsTa1GH1cSf5czrK4nM4LUG5r6SzgNg3OkWw==
+contentful-resolve-response@^1.3.12:
+  version "1.3.12"
+  resolved "https://registry.yarnpkg.com/contentful-resolve-response/-/contentful-resolve-response-1.3.12.tgz#8d1c37e4c084d87eba825a1f376e3562cb834385"
+  integrity sha512-fe2dsACyV3jzRjHcoeAa4bBt06YwkdsY+kdQwFCcdETyBQIxifuyGamIF4NmKcDqvZ9Yhw7ujjPCadzHb9jmKw==
   dependencies:
-    fast-copy "^2.1.3"
+    fast-copy "^2.1.7"
 
 contentful-sdk-core@^7.0.1:
   version "7.0.2"
@@ -1468,13 +1468,13 @@ contentful-sdk-core@^7.0.1:
     p-throttle "^4.1.1"
     qs "^6.9.4"
 
-contentful@9.2.5:
-  version "9.2.5"
-  resolved "https://registry.yarnpkg.com/contentful/-/contentful-9.2.5.tgz#64279fd347670c2add7d25690890799427f7c00d"
-  integrity sha512-BXDmO5oWubZsKVHcXxPBCEcAH6bhtgfav3uMXCS7NBtSmFVSiAFbJjR/yJyLs7fNHJP9Ktq2F7qAznwwnyOTjQ==
+contentful@9.2.8:
+  version "9.2.8"
+  resolved "https://registry.yarnpkg.com/contentful/-/contentful-9.2.8.tgz#94405754e0b44fcfe2250193f9da15d0635faa02"
+  integrity sha512-wgfQ/xNeRE8FSK6D5NZOXYVXiJi0LEnZKrp+6rFo76sEiI+q/hrU4Veg5Abu5ehcC/oLemW77wmQg9zklUs7zQ==
   dependencies:
     axios "^0.27.0"
-    contentful-resolve-response "^1.3.0"
+    contentful-resolve-response "^1.3.12"
     contentful-sdk-core "^7.0.1"
     fast-copy "^2.1.0"
     json-stringify-safe "^5.0.1"
@@ -2233,6 +2233,11 @@ fast-copy@^2.1.0, fast-copy@^2.1.3:
   version "2.1.3"
   resolved "https://registry.yarnpkg.com/fast-copy/-/fast-copy-2.1.3.tgz#bf6e05ac3cb7a9d66fbf12c51dd4440e9ddd4afb"
   integrity sha512-LDzYKNTHhD+XOp8wGMuCkY4eTxFZOOycmpwLBiuF3r3OjOmZnURRD8t2dUAbmKuXGbo/MGggwbSjcBdp8QT0+g==
+
+fast-copy@^2.1.7:
+  version "2.1.7"
+  resolved "https://registry.yarnpkg.com/fast-copy/-/fast-copy-2.1.7.tgz#affc9475cb4b555fb488572b2a44231d0c9fa39e"
+  integrity sha512-ozrGwyuCTAy7YgFCua8rmqmytECYk/JYAMXcswOcm0qvGoE3tPb7ivBeIHTOK2DiapBhDZgacIhzhQIKU5TCfA==
 
 fast-deep-equal@^3.1.1, fast-deep-equal@^3.1.3:
   version "3.1.3"
