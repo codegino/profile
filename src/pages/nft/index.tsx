@@ -2,7 +2,7 @@
 import type {GetStaticProps, InferGetStaticPropsType} from 'next';
 import {serverSideTranslations} from 'next-i18next/serverSideTranslations';
 import Head from 'next/head';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import NextLink from '../../components/basic/NextLink';
 import nfts from '../../data/eth-nft.json';
 import {commonMetaTags} from '../../frontend-utils/meta-tags';

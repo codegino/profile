@@ -15,17 +15,16 @@ const NextLink: FunctionComponent<any> = ({
   rel,
   ...rest
 }) => (
-  <Link href={href} {...rest}>
-    <a
-      href={href}
-      className={className}
-      target={target}
-      rel={rel}
-      aria-label={ariaLabel}
-      title={title ? title : ariaLabel}
-    >
-      {children}
-    </a>
+  <Link
+    href={href}
+    {...rest}
+    className={className}
+    target={target}
+    rel={rel}
+    aria-label={ariaLabel}
+    title={title ? title : ariaLabel}
+  >
+    {children}
   </Link>
 );
 

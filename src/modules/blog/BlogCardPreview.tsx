@@ -1,5 +1,5 @@
 import {useTranslation} from 'next-i18next';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import NextLink from '../../components/basic/NextLink';
 import type {IBlogMetadata} from '../../models/blog';
 

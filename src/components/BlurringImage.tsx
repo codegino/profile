@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import type {CSSProperties} from 'react';
 import clsx from 'clsx';
-import Image, {ImageProps} from 'next/image';
+import Image, {ImageProps} from 'next/legacy/image';
 import type {IGetPlaiceholderReturn} from 'plaiceholder';
 
 type BlurringImageProps = {blurLevel?: number; transformScaleLevel?: number};

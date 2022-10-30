@@ -7,7 +7,7 @@ bannerId: 1zYFvHrnd3inm2phwz0l8P
 bannerDescription: blurred
 tags: ['react', 'tech', 'next.js']
 keywords: ['nextjs dynamic image', 'nextjs image placeholder', 'nextjs blurred image']
-published: true 
+published: true
 ---
 
 ## How to create a dynamic image placeholder?
@@ -32,7 +32,7 @@ It gives the impression that something is wrong with our app.
 
 > #### Alternative
 > We can use the built-in placeholder image in Next.js,
-> but for some cases like cover images, we might need something that resembles the actual image.  
+> but for some cases like cover images, we might need something that resembles the actual image.
 >  &nbsp;
 >
 > Check this [blog](https://codegino.com/blog/next-image-state-handling) for more info
@@ -96,7 +96,7 @@ For our purposes, we only need the `img` and `svg` property.
 #### 2. Create the svg component
 
 The way to create the SVG component will depend on how placeholder metadata is created.
-Here's a reference to [`plaiceholder`](https://github.com/joe-bell/plaiceholder/blob/main/packages/plaiceholder/src/get-image.ts)'s version. 
+Here's a reference to [`plaiceholder`](https://github.com/joe-bell/plaiceholder/blob/main/packages/plaiceholder/src/get-image.ts)'s version.
 
 <br />
 
@@ -115,7 +115,7 @@ The second element in the SVG metadata is the SVG properties.
 function BlurringImage({ svg }){
   const Svg = svg[0]
   const svgProps = svg[1]
-  
+
   return <Svg {...svgProps}>
     {/* TODO */}
   </Svg>
@@ -132,7 +132,7 @@ The third element in the SVG metadata is the list of `rect`s, which will be rend
 function BlurringImage({ svg }){
   // ...
   const rectangles = svg[2]
-  
+
   return <Svg {...}>
     {rectangles.map((rect) => {
       const Rect = rect[0]
@@ -157,7 +157,7 @@ The SVG can be blurred to remove the pixelated look.
 function BlurringImage({ svg }){
   // ...
   const svgProps = svg[1]
-  
+
   return <Svg
     style={{
       ...svgProps.style,
@@ -173,8 +173,8 @@ Applying step `2.c` will make the svg looks like this:
 <Img src="https://i.imgur.com/W4wTCCZ.png" />
 
 > **NOTE:** Make sure to apply an appropriate filter value
-> 
-> For `svg metadata` with fewer `rect`s, the result might looks like this: 
+>
+> For `svg metadata` with fewer `rect`s, the result might looks like this:
 
 <Img src="https://i.imgur.com/Hovh5CF.png" />
 
@@ -186,8 +186,12 @@ Applying step `2.c` will make the svg looks like this:
 The `svg` and `Image` can be **optionally** wrapped in a another component(*for styling*).
 Spread the `img` props in the next `Image` component.
 
+
+> NOTE: If you are using Next version 13+, import from `next/legacy/image`
+
 ```jsx
 import Image from 'next/image'
+
 
 function BlurringImage({ img }){
   // ...

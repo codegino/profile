@@ -1,6 +1,6 @@
 import React, {FunctionComponent} from 'react';
 import clsx from 'clsx';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import RoundButton from '../basic/RoundButton';
 
 const Logo: FunctionComponent<{onClick?: () => void; className?: string}> = ({

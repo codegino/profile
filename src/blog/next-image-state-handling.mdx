@@ -7,7 +7,7 @@ bannerId: 3xEMs1mBxDZTUOot4Vz7wc
 bannerDescription: loading timber
 tags: ['react', 'tech', 'next.js']
 keywords: ['nextjs image state', 'nextjs image placeholder', 'nextjs image loading']
-published: true 
+published: true
 ---
 
 ### How to create a loading and error state placeholder for images?
@@ -24,6 +24,9 @@ published: true
 #### Creating a basic image
 
 `next/image` provides an easy way to create an image.
+
+> NOTE: If you are using Next version 13+, import from `next/legacy/image`
+
 
 ```jsx
 import Image from 'next/image'
@@ -126,7 +129,7 @@ function CustomImage({alt, ...props}) {
     <Image
       {...props}
       src={src}
-      alt={alt} // To fix lint warning 
+      alt={alt} // To fix lint warning
       onError={() => setSrc('/assets/image-error.png')}
       placeholder="blur"
       blurDataURL="/assets/image-placeholder.png"
