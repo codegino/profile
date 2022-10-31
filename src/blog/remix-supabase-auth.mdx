@@ -158,7 +158,7 @@ export const setAuthToken = async (request: Request) => {
 
 <br />
 
-## Setting up authentication in the Remix side 
+## Setting up authentication in the Remix side
 
 ### Create client-side utilities for managing Supabase session <Bookmark id="client-side-utils"/>
 
@@ -242,7 +242,7 @@ yarn add @supabase/ui
 
 #### Create the main auth component
 
-> You can create your custom sign-up and sign-in form if you want. 
+> You can create your custom sign-up and sign-in form if you want.
 
 ```tsx fileName="app/routes/auth"
 import React from "react";
@@ -404,7 +404,7 @@ export const loader = () => {
 
 #### Using in a `loader` or `action`
 ```tsx
-export c"onst action = async ({ request, params }) => {"
+export const action = async ({ request, params }) => {
   // Just set the token to any part you want to have access to.
   // I haven't tried making a global handler for this,
   // but I prefer to be explicit about setting this.
@@ -420,7 +420,7 @@ export c"onst action = async ({ request, params }) => {"
 #### Conditional rendering based on auth state
 
 ```tsx
-export d"efault function Index() {"
+export default function Index() {
   const supabase = useSupabase();
 
   return supabase.auth.user()
