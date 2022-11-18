@@ -13,7 +13,7 @@
     "@react-icons/all-files": "4.1.0",
     "@sendinblue/client": "3.2.2",
     "clsx": "1.2.1",
-    "contentful": "9.2.11",
+    "contentful": "9.2.12",
     "isomorphic-dompurify": "0.24.0",
     "next": "^13.0.3",
     "next-i18next": "12.1.0",
