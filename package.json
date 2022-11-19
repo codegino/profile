@@ -47,7 +47,7 @@
     "cross-env": "7.0.3",
     "cz-conventional-changelog": "3.3.0",
     "eslint": "8.28.0",
-    "eslint-config-next": "13.0.3",
+    "eslint-config-next": "13.0.4",
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-jsx-a11y": "6.6.1",
     "gray-matter": "4.0.3",
