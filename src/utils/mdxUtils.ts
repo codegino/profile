@@ -1,5 +1,5 @@
 import fs from 'fs';
-import globby from 'globby';
+import {globby} from 'globby';
 import matter from 'gray-matter';
 import path from 'path';
 import type {IBlogMetadata} from '../models/blog';
