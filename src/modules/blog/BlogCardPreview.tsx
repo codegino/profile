@@ -22,7 +22,7 @@ export const BlogCardPreview = ({blog}: Props) => {
           placeholder="blur"
           blurDataURL={blog.bannerId}
         />
-        <figcaption className="absolute bottom-0 w-full bg-white pb-4 opacity-90 px-4 md:h-[10rem] flex flex-col justify-between">
+        <figcaption className="absolute bottom-0 w-full bg-white dark:bg-black pb-4 opacity-90 px-4 md:h-[10rem] flex flex-col justify-between">
           <h2 className="line-clamp-2">{blog.title}</h2>
           <div>
             <p className="line-clamp-1">{blog.description}</p>
