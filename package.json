@@ -52,7 +52,7 @@
     "eslint-config-prettier": "8.6.0",
     "eslint-plugin-jsx-a11y": "6.6.1",
     "gray-matter": "4.0.3",
-    "husky": "8.0.2",
+    "husky": "8.0.3",
     "lint-staged": "13.1.0",
     "plaiceholder": "2.5.0",
     "postcss": "8.4.20",
