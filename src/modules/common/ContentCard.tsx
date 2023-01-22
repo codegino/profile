@@ -4,10 +4,12 @@ import {useTranslation} from 'next-i18next';
 import Image from 'next/legacy/image';
 import NextLink from '../../components/basic/NextLink';
 import type {IBlogMetadata} from '../../models/blog';
+import {ISlideMetadata} from '../../models/slide';
 
 const BlogCard: FunctionComponent<{
-  blog: IBlogMetadata;
-}> = ({blog}) => {
+  blog: IBlogMetadata | ISlideMetadata;
+  slug?: 'blog' | 'slides';
+}> = ({blog, slug: feature = 'blog'}) => {
   const {t} = useTranslation('common');
 
   return (
@@ -37,7 +39,7 @@ const BlogCard: FunctionComponent<{
         />
       </div>
       <figcaption className="bg-white dark:bg-black opacity-90 sm:opacity-100 p-4 sm:p-0 absolute bottom-0 w-full sm:relative">
-        <NextLink href={`/blog/${blog.slug}`} aria-label={blog.title}>
+        <NextLink href={`/${feature}/${blog.slug}`} aria-label={blog.title}>
           <h2 className="line-clamp-2">{blog.title}</h2>
           <h3 className="line-clamp-2">{blog.description}</h3>
           <p className="mt-3">

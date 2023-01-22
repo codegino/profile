@@ -1,6 +1,6 @@
 import Image, {ImageProps} from 'next/legacy/image';
 
-const BlogGif = ({
+const GifElement = ({
   width = 1100,
   height = 600,
   objectFit = 'contain',
@@ -25,4 +25,4 @@ const BlogGif = ({
   </div>
 );
 
-export default BlogGif;
+export default GifElement;

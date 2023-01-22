@@ -5,8 +5,8 @@ import Head from 'next/head';
 import SubscribeForm from '../../components/SubscribeForm';
 import {commonMetaTags} from '../../frontend-utils/meta-tags';
 import type {IBlogMetadata} from '../../models/blog';
-import BlogCard from '../../modules/blog/BlogCard';
 import BlogsFilter from '../../modules/blog/BlogsFilter';
+import BlogCard from '../../modules/common/ContentCard';
 import {getBlogsMetadata} from '../../utils/blogs-mdx.utils';
 import {client} from '../../utils/contentful.utils';
 

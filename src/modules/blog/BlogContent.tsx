@@ -1,20 +1,15 @@
 import type {FunctionComponent, ReactNode, ComponentProps} from 'react';
 import {MDXRemote} from 'next-mdx-remote';
 import type {MDXRemoteSerializeResult} from 'next-mdx-remote';
-import dynamic from 'next/dynamic';
-import BlockQuote from './BlockQuote';
-import BlogAnchor from './BlogAnchor';
-import BlogBookMark from './BlogBookmarkAnchor';
-import BlogGif from './BlogGif';
-import BlogImg from './BlogImg';
-import BlogListElement from './BlogListElement';
-import BlogParagraph from './BlogParagraph';
-import {preToCodeBlock} from './PreToCodeBlock';
+import ContentAnchor from '../common/AnchorTag';
+import ContentBlockQuote from '../common/BlockquoteTag';
+import ContentBookMark from '../common/BookmarkElement';
+import ContentCodeBlock from '../common/CodeBlockElement';
+import GifElement from '../common/GifElement';
+import ContentImage from '../common/ImageTag';
+import ContentListElement from '../common/ListElementTag';
+import ContentParagraph from '../common/ParagraphTag';
 import TableOfContents from './TableOfContents';
-
-const CodeBlock = dynamic(() => import('./CodeBlock'), {
-  ssr: false,
-});
 
 // Custom components/renderers to pass to MDX.
 // Since the MDX files aren't loaded by webpack, they have no knowledge of how
@@ -22,28 +17,16 @@ const CodeBlock = dynamic(() => import('./CodeBlock'), {
 // here.
 const components: ComponentProps<FunctionComponent> = {
   inlineCode: ({children}: {children: JSX.Element}) => <code>{children}</code>,
-  blockquote: BlockQuote,
-  Anchor: BlogAnchor,
-  a: BlogAnchor,
-  p: BlogParagraph,
-  li: BlogListElement,
-  Gif: BlogGif,
-  Img: BlogImg,
-  Bookmark: BlogBookMark,
+  blockquote: ContentBlockQuote,
+  Anchor: ContentAnchor,
+  a: ContentAnchor,
+  Gif: GifElement,
+  p: ContentParagraph,
+  li: ContentListElement,
+  Img: ContentImage,
+  Bookmark: ContentBookMark,
   TableOfContents: TableOfContents,
-  pre: (preProps: any) => {
-    const props = preToCodeBlock(preProps);
-
-    if (props) {
-      return (
-        <pre>
-          <CodeBlock {...props} />
-        </pre>
-      );
-    } else {
-      return <pre {...preProps} />;
-    }
-  },
+  pre: ContentCodeBlock,
 };
 
 type Props = {

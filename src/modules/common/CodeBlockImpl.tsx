@@ -22,7 +22,7 @@ export type CodeBlockProps = {
 
 const executableExtensions = ['js', 'jsx', 'ts', 'tsx', 'html', 'css', 'json'];
 
-const CodeBlock: FunctionComponent<CodeBlockProps> = ({
+const CodeBlockImpl: FunctionComponent<CodeBlockProps> = ({
   noLine = false,
   noExt = false,
   noHeader = false,
@@ -116,4 +116,4 @@ const CodeBlock: FunctionComponent<CodeBlockProps> = ({
   );
 };
 
-export default memo(CodeBlock);
+export default memo(CodeBlockImpl);
