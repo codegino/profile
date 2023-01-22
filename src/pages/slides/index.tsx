@@ -1,39 +1,24 @@
-import {useState} from 'react';
 import type {GetStaticPropsContext, InferGetStaticPropsType} from 'next';
 import {serverSideTranslations} from 'next-i18next/serverSideTranslations';
 import Head from 'next/head';
-import SubscribeForm from '../../components/SubscribeForm';
 import {commonMetaTags} from '../../frontend-utils/meta-tags';
-import type {IBlogMetadata} from '../../models/blog';
+import {ISlideMetadata} from '../../models/slide';
 import BlogCard from '../../modules/blog/BlogCard';
-import BlogsFilter from '../../modules/blog/BlogsFilter';
-import {getBlogsMetadata} from '../../utils/blogs-mdx.utils';
 import {client} from '../../utils/contentful.utils';
+import {getSlidessMetadata} from '../../utils/slides-mdx.utils';
 
-export default function Blog({
-  blogs,
+export default function Slides({
+  slides: filtered,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  const [filtered, setFiltered] = useState<IBlogMetadata[]>(blogs);
-
   return (
     <>
       <Head>
-        <title>My Blogs Listing Page | CodeGino | Carlo Gino Catapang</title>
+        <title>My slides Listing Page | CodeGino | Carlo Gino Catapang</title>
         {commonMetaTags('Blogs Page', '/blog')}
       </Head>
 
-      <main className="flex items-center flex-col pt-12">
-        <h1>My Blogs</h1>
-        <BlogsFilter
-          blogs={blogs}
-          onChange={slugs => {
-            const filteredBlogs = blogs.filter(blog =>
-              slugs.includes(blog.slug),
-            );
-
-            setFiltered(filteredBlogs);
-          }}
-        />
+      <main className="flex items-center flex-col pt-12 min-h-[76vh]">
+        <h1>Presentation Slides</h1>
         {filtered.length > 0 ? (
           filtered.map(blog => {
             return <BlogCard key={blog.slug} blog={blog} />;
@@ -45,26 +30,25 @@ export default function Blog({
           </section>
         )}
       </main>
-      <SubscribeForm />
     </>
   );
 }
 
 export const getStaticProps = async ({locale}: GetStaticPropsContext) => {
-  const blogs = (await getBlogsMetadata()).sort(
+  const slides = (await getSlidessMetadata()).sort(
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
   );
 
-  for (let blog of blogs) {
-    const asset = await client.getAsset(blog.bannerId);
+  for (let slide of slides) {
+    const asset = await client.getAsset(slide.bannerId);
 
     const bannerUrl = `https:${asset.fields.file.url}`;
-    blog.bannerId = bannerUrl;
+    slide.bannerId = bannerUrl;
   }
 
   return {
     props: {
-      blogs: blogs as IBlogMetadata[],
+      slides: slides as ISlideMetadata[],
       ...(await serverSideTranslations(locale as string, [
         'common',
         'newsletter',

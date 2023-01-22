@@ -1,7 +1,7 @@
 import fs from 'fs';
 import {GetServerSideProps, InferGetServerSidePropsType} from 'next';
 import {IBlogMetadata} from '../models/blog';
-import {getBlogsMetadata} from '../utils/mdxUtils';
+import {getBlogsMetadata} from '../utils/blogs-mdx.utils';
 
 const blogPostsRssXml = (blogPosts: IBlogMetadata[]) => {
   let latestPostDate: string = '';
@@ -17,7 +17,7 @@ const blogPostsRssXml = (blogPosts: IBlogMetadata[]) => {
         <link>
           https://codegino.com/blog/${post.slug}
         </link>
-        
+
         <pubDate>${post.date}</pubDate>
         <description>
         <![CDATA[${post.description}]]>

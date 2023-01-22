@@ -1,5 +1,5 @@
 import fs from 'fs';
-import {getBlogsMetadata} from '../utils/mdxUtils';
+import {getBlogsMetadata} from '../utils/blogs-mdx.utils';
 
 type SiteMapUrl = {
   slug: string;

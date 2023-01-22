@@ -12,8 +12,8 @@ import {commonMetaTags} from '../frontend-utils/meta-tags';
 import {generateRssFeed} from '../lib/rss';
 import generateSitemap from '../lib/sitemap';
 import BlogSuggestionsList from '../modules/blog/BlogSuggestionsList';
+import {getBlogsMetadata} from '../utils/blogs-mdx.utils';
 import {client, getBlurringImage} from '../utils/contentful.utils';
-import {getBlogsMetadata} from '../utils/mdxUtils';
 import {fetchSkills} from '../utils/resume-props';
 
 const Greetings = dynamic(() => import('../components/Greetings'), {
