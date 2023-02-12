@@ -8,7 +8,8 @@ import Button from './basic/Button';
 import Input from './basic/Input';
 
 interface FormElements extends HTMLFormControlsCollection {
-  name: HTMLInputElement;
+  firstName: HTMLInputElement;
+  lastName: HTMLInputElement;
   email: HTMLInputElement;
 }
 interface SubscribeFormElement extends HTMLFormElement {
@@ -17,6 +18,7 @@ interface SubscribeFormElement extends HTMLFormElement {
 
 const SubscribeForm = () => {
   const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const router = useRouter();
 
@@ -24,7 +26,8 @@ const SubscribeForm = () => {
 
   const handleSubmit = async (e: FormEvent<SubscribeFormElement>) => {
     e.preventDefault();
-    const {email, name} = e.currentTarget.elements;
+    setIsLoading(true);
+    const {email, firstName, lastName} = e.currentTarget.elements;
 
     fetch('/api/newsletter', {
       method: 'POST',
@@ -32,7 +35,8 @@ const SubscribeForm = () => {
       credentials: 'same-origin',
       body: JSON.stringify({
         email: email.value,
-        name: name.value,
+        firstName: firstName.value,
+        lastName: lastName.value,
       }),
     })
       .then(async (res: any) => {
@@ -45,6 +49,7 @@ const SubscribeForm = () => {
       .then(() => {
         router.push('/signup-success');
       })
+      .finally(() => setIsLoading(false))
       .catch(err => {
         setError(err.message);
       });
@@ -73,39 +78,39 @@ const SubscribeForm = () => {
             className="flex justify-center bg-primary-dark py-2 items-center
           "
           >
-            <p className="text-light text-xl">{t('form.title')}</p>
+            <p className="text-light text-2xl">{t('form.title')}</p>
           </div>
           <div className="flex flex-col py-8 px-4 bg-light">
             <Input
+              type="email"
+              placeholder={'*' + t('form.email') ?? ''}
+              name="email"
+              className="mb-6"
+              required
+            />
+            <Input
               type="text"
-              placeholder={t('form.firstName') ?? ''}
-              name="name"
+              placeholder={'*' + t('form.firstName') ?? ''}
+              name="firstName"
               className="mb-4"
               required
             />
             <Input
-              type="email"
-              placeholder={t('form.email') ?? ''}
-              name="email"
-              required
+              type="text"
+              placeholder={t('form.lastName') ?? ''}
+              name="lastName"
               className="mb-8"
             />
-            <div aria-hidden="true">
-              <input
-                type="text"
-                name="a_password"
-                tabIndex={-1}
-                defaultValue=""
-                autoComplete="off"
-                className="absolute -left-full"
-              />
-            </div>
             {error && (
               <div className="w-full text-center text-red-500 font-bold mb-2">
                 {error}
               </div>
             )}
-            <Button type="submit" className="text-2xl font-bold">
+            <Button
+              type="submit"
+              className="text-2xl font-bold disabled:bg-slate-500 disabled:text-slate-50 disabled:cursor-not-allowed"
+              disabled={isLoading}
+            >
               {t('form.button')}
             </Button>
           </div>

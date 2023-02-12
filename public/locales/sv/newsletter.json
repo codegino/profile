@@ -6,6 +6,7 @@
   "form": {
     "title": "Sätta igång",
     "firstName": "Förnamn",
+    "lastName": "Efternamn",
     "email": "E-post",
     "button": "Registrera sig"
   }

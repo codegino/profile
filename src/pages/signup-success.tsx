@@ -1,3 +1,5 @@
+import {GetStaticProps} from 'next';
+import {serverSideTranslations} from 'next-i18next/serverSideTranslations';
 import Head from 'next/head';
 
 export default function Blog() {
@@ -20,3 +22,12 @@ export default function Blog() {
     </>
   );
 }
+
+export const getStaticProps: GetStaticProps = async ({locale}) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale as string, ['common'])),
+    },
+    revalidate: 1,
+  };
+};

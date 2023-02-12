@@ -6,6 +6,7 @@
   "form": {
     "title": "Get started",
     "firstName": "First name",
+    "lastName": "Last name",
     "email": "Email",
     "button": "Sign up"
   }

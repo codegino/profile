@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@react-icons/all-files": "4.1.0",
-    "@sendinblue/client": "3.2.2",
+    "@supabase/supabase-js": "^2.7.1",
     "clsx": "1.2.1",
     "contentful": "9.3.2",
     "isomorphic-dompurify": "0.27.0",
