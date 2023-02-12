@@ -14,7 +14,7 @@
     "@sendinblue/client": "3.2.2",
     "clsx": "1.2.1",
     "contentful": "9.3.2",
-    "isomorphic-dompurify": "0.26.0",
+    "isomorphic-dompurify": "0.27.0",
     "next": "^13.1.6",
     "next-i18next": "13.1.5",
     "next-mdx-remote": "4.3.0",
