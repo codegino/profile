@@ -25,7 +25,17 @@ const DarkModeToggle: FunctionComponent<{
       )}
     >
       {isDarkMode ? (
-        <BsMoon fill="white" size={29} />
+        <BsMoon
+          fill="white"
+          size={28}
+          style={{
+            borderRadius: '50%',
+            width: '100%',
+            height: '100%',
+            padding: 1,
+            backgroundColor: '#1a202c',
+          }}
+        />
       ) : (
         <BsSun fill="orange" size={28} />
       )}
