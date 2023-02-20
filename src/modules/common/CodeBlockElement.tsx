@@ -36,6 +36,8 @@ export function preToCodeBlock(preProps: any) {
       noExt = false,
       noHeader = false,
       codePenID,
+      add,
+      del,
     } = preProps;
     const {className = '', ...props} = preProps.children.props;
 
@@ -46,6 +48,8 @@ export function preToCodeBlock(preProps: any) {
       noHeader,
       codePenID,
       noLine,
+      add,
+      del,
       ...props,
     };
   }

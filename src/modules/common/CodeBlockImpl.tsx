@@ -10,17 +10,26 @@ import NextLink from '../../components/basic/NextLink';
 export type CodeBlockProps = {
   children: string;
   className: string;
-  live: boolean;
   noLine: boolean;
   noExt: boolean;
-  noCopy: boolean;
   noInline: boolean;
   noHeader: boolean;
   codePenID: string;
   fileName: string;
+  add: string;
+  del: string;
 };
 
-const executableExtensions = ['js', 'jsx', 'ts', 'tsx', 'html', 'css', 'json'];
+const executableExtensions = [
+  'js',
+  'jsx',
+  'ts',
+  'tsx',
+  'html',
+  'css',
+  'json',
+  'diff',
+];
 
 const CodeBlockImpl: FunctionComponent<CodeBlockProps> = ({
   noLine = false,
@@ -30,12 +39,43 @@ const CodeBlockImpl: FunctionComponent<CodeBlockProps> = ({
   fileName,
   children,
   className,
+  add,
+  del,
 }) => {
   const language = className.replace(/language-/, '') as Language;
 
   const languageLabel = executableExtensions.some(ext => ext === language)
     ? `.${language}`
     : language;
+
+  const addedLines = new Set<number>();
+  const removedLines = new Set<number>();
+
+  if (add) {
+    for (const line of add.split(',')) {
+      const [start, end] = line.split('-').map(Number);
+      if (start && end) {
+        for (let i = start; i <= end; i++) {
+          addedLines.add(i);
+        }
+      } else {
+        addedLines.add(start);
+      }
+    }
+  }
+
+  if (del) {
+    for (const line of del.split(',')) {
+      const [start, end] = line.split('-').map(Number);
+      if (start && end) {
+        for (let i = start; i <= end; i++) {
+          removedLines.add(i);
+        }
+      } else {
+        removedLines.add(start);
+      }
+    }
+  }
 
   return (
     <>
@@ -72,6 +112,16 @@ const CodeBlockImpl: FunctionComponent<CodeBlockProps> = ({
                       key={i}
                     >
                       {i + 1}
+                      {add && addedLines.has(i + 1) && (
+                        <span className="w-[4.25ch] inline-block absolute left-0 text-right text-green-400">
+                          +
+                        </span>
+                      )}
+                      {del && removedLines.has(i + 1) && (
+                        <span className="w-[4.25ch] inline-block absolute left-0 text-right text-red-400">
+                          -
+                        </span>
+                      )}
                     </span>
                   ))}
                 </span>
@@ -84,6 +134,7 @@ const CodeBlockImpl: FunctionComponent<CodeBlockProps> = ({
                   className,
                   {
                     'pl-8': !noLine,
+                    'ml-3': add || del,
                   },
                 )}
                 style={style}
@@ -91,7 +142,14 @@ const CodeBlockImpl: FunctionComponent<CodeBlockProps> = ({
                 {tokens.map((line, i) => (
                   <span key={i} {...getLineProps({line, key: i})}>
                     {line.map((token, key) => (
-                      <span key={key} {...getTokenProps({token, key})} />
+                      <span
+                        key={key}
+                        {...getTokenProps({token, key})}
+                        className={clsx({
+                          '!text-green-400': add && addedLines.has(i + 1),
+                          '!text-red-400': del && removedLines.has(i + 1),
+                        })}
+                      />
                     ))}
                   </span>
                 ))}
