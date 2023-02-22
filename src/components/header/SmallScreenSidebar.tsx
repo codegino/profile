@@ -35,7 +35,7 @@ const SmallScreenSidebar: FunctionComponent = () => {
     hideSidebar();
   };
 
-  const {t} = useTranslation();
+  const {t} = useTranslation('common');
 
   return (
     <>

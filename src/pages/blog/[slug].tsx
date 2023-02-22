@@ -113,10 +113,7 @@ export default function BlogPage({
   );
 }
 
-export const getStaticProps = async ({
-  params,
-  locale,
-}: GetStaticPropsContext) => {
+export const getStaticProps = async ({params}: GetStaticPropsContext) => {
   const postFilePath = path.join(BLOGS_PATH, `${params?.slug}.mdx`);
   const source = fs.readFileSync(postFilePath);
 
@@ -147,7 +144,7 @@ export const getStaticProps = async ({
       } as IBlogMetadata,
       img,
       svg,
-      ...(await serverSideTranslations(locale as string, ['common'])),
+      ...(await serverSideTranslations('en', ['common'])),
     },
   };
 };
@@ -163,7 +160,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths,
-
     fallback: true,
   };
 };

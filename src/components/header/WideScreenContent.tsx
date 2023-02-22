@@ -14,7 +14,7 @@ const DarkModeToggle = dynamic(() => import('../DarkModeToggle'), {
 export default function WideScreenContentImpl() {
   const router = useRouter();
 
-  const {t} = useTranslation();
+  const {t} = useTranslation('common');
 
   return (
     <div className="hidden items-center justify-between w-full lg:flex">
