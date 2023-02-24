@@ -1,0 +1,216 @@
+---
+title: Add an Options Page to Chrome Extension
+description: Learn how to add an options page to your Chrome Extension
+date: '2023-02-24'
+dateUpdated: '2023-02-24'
+bannerId: 7Gzn9v0xHuulnmx2i2glbb
+bannerDescription: options
+tags: ['svelte', 'tailwind', 'chrome extension']
+keywords: ['svelte chrome extension', 'chrome extension']
+published: true
+---
+
+## Introduction
+
+This is a continuation of the [previous article](https://codegino.com/blog/svelte-chromium-extension) about creating a Chrome Extension using Svelte and Tailwind. This article will focus on adding an Options page to the extension.
+
+<br />
+
+### What is a Chrome Extension?
+
+A [Chrome extension](https://developer.chrome.com/docs/extensions/) is a software program that extends the functionality of Google Chrome. It modifies the browser's behavior and adds new features.
+
+### What is a Google Extension Options Page?
+
+The [Options Page](https://developer.chrome.com/docs/extensions/mv3/options/) is a page that allows users to configure the extension. It is a page that is opened when the user right-clicks on the extension icon in the toolbar; then, clicks the `Options` menu.
+
+<Img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/bned38m3k5vmlvygt8gc.png" />
+
+By default, the `Options` option is not available. We will add it in the next section.
+
+<br />
+
+## Project setup
+
+### Clone the repo from the previous blog
+
+The easiest way is to use [degit](https://github.com/Rich-Harris/degit).
+
+```sh noExt
+npx degit codegino/svelte-tailwind-chrome-plugin#01-intro my-target-folder
+```
+
+### Install the dependencies.
+
+```sh noExt
+cd my-target-folder
+npm install
+```
+
+
+### Create the content of the options page
+
+```html fileName="src/options/index"
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Popup</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="./index.ts"></script>
+  </body>
+</html>
+```
+
+> It is important to match the absolute file path with the one in the manifest file.
+
+#### Create the options script
+
+```ts fileName="src/options/index"
+import '../app.css';
+import Options from '../components/Options.svelte';
+
+const target = document.getElementById('app');
+
+async function render() {
+  new Options({target});
+}
+
+document.addEventListener('DOMContentLoaded', render);
+```
+
+<br />
+
+#### Create the Options Svelte component
+
+> NOTE: I'm using Svelte here because it was a focus of the previous blog. Do not focus too much on the content of this component because an Options page could contain anything.
+
+This example contains a simple form that allows the user to update the count from the input field to the local storage.
+
+```ts fileName="src/components/Options.svelte" noExt
+<script lang="ts">
+  import { onMount } from "svelte";
+
+  let count = 0;
+  let message: string = null;
+
+  onMount(() => {
+    chrome.storage.sync.get("count", (data) => {
+      count = data.count;
+    });
+  });
+
+  const handleSave = () => {
+    chrome.storage.sync.set({ count }).then(() => {
+      message = "Updated!";
+
+      setTimeout(() => {
+        message = null;
+      }, 2000);
+    });
+  };
+</script>
+
+
+<div class="flex flex-col py-[3%] px-[2%] bg-blue-50 h-screen">
+  <h2 class="mb-5">Options Page</h2>
+  {#if message}
+    <span class="font-bold text-blue-800">{message}</span>
+  {/if}
+
+  <form on:submit|preventDefault={handleSave} class="flex flex-col gap-4">
+    <div class="flex items-center gap-2 w-full">
+      <label for="count" class="text-lg font-bold text-gray-700">
+        New Count:
+      </label>
+      <input
+        type="number"
+        id="count"
+        name="count"
+        class="border border-gray-300 rounded-md p-2 flex-1"
+        bind:value={count}
+      />
+    </div>
+    <i>Add other configurations here!</i>
+
+    <button
+      class="w-full bg-blue-500 text-white text-base font-bold py-2 px-4 rounded"
+      type="submit"
+    >
+      Save
+    </button>
+  </form>
+</div>
+```
+
+#### Update the manifest file
+
+The manifest file contains the necessary information for the browser to load the extension. For more information, check out the [Chrome Extension Manifest](https://developer.chrome.com/docs/extensions/mv3/intro)
+
+Simply add the `options_ui` property to the manifest file.
+
+```json fileName="manifest" add="9-11"
+{
+  "name": "Svelte Tailwind Chrome Extension",
+  "description": "Sample Extension using Svelte and Tailwind",
+  "version": "1.0",
+  "manifest_version": 3,
+  "action": {
+    "default_popup": "src/popup/index.html"
+  },
+  "options_ui": {
+    "page": "src/options/options.html",
+  },
+  "permissions": ["storage"]
+}
+```
+
+### Build and load the extension
+
+1. Run `npm run dev` or `npm run build`
+2. Open the chrome extension page by typing `chrome://extensions` in the address bar
+3. Enable the developer mode
+4. Click on the `Load unpacked` button
+5. Select the `dist` folder
+6. Open the extension menu; then, click the loaded extension
+
+<Img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/1wischzgpa3jfymes063.gif" />
+
+<br />
+
+### Open the options in a new tab
+
+By default, the options page is opened in a popup. We can change this behavior by adding the `open_in_tab` property.
+
+```json fileName="manifest" add="5"
+{
+  // ...
+  "options_ui": {
+    "page": "src/options/options.html",
+    "open_in_tab": true
+  },
+  // ...
+}
+```
+
+Now the options page will be opened in a new tab.
+
+<Img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/2zykfs3o33ieog2q1ddj.gif" />
+
+<br />
+
+## Repository
+
+Check the source code [here](https://github.com/codegino/svelte-tailwind-chrome-plugin/tree/02-options)
+
+<br />
+
+### What's next
+
+- [ ] Sync plugin contents without reloading
+- [ ] Add a content script
+- [ ] Add a background script
+- [ ] Add a dev tools page
+- [ ] Deploying the extension
