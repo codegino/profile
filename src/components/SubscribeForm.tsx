@@ -1,5 +1,5 @@
-import {useState} from 'react';
 import type {FormEvent} from 'react';
+import {useState} from 'react';
 import {BiCool} from '@react-icons/all-files/bi/BiCool';
 import {RiSpamLine} from '@react-icons/all-files/ri/RiSpamLine';
 import {useTranslation} from 'next-i18next';
@@ -71,7 +71,7 @@ const SubscribeForm = () => {
         <form
           onSubmit={handleSubmit}
           className="relative mt-8 shadow-sm shadow-dark overflow-hidden bg-light w-full
-          max-w-2xl min-w-2xl mb-24 rounded-2xl min-h-[20rem]"
+          max-w-2xl min-w-2xl mb-24 rounded-2xl min-h-[25rem]"
           id="1j27oq"
         >
           <div
