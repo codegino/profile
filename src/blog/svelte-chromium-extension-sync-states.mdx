@@ -1,0 +1,317 @@
+---
+title: Synchronize Chrome Extensions state
+description: How to use custom events to sync state between Chrome Extension instances
+date: '2023-03-06'
+dateUpdated: '2023-03-06'
+bannerId: 6Pcazltbk4UIIQC4GKgz2F
+bannerDescription: synchronized
+tags: ['svelte', 'tailwind', 'chrome extension']
+keywords: ['svelte chrome extension', 'chrome extension', 'svelte chrome extension sync']
+published: true
+---
+
+## Introduction
+
+This is a continuation of the [previous article](https://codegino.com/blog/svelte-chromium-extension-options) about creating a Chrome Extension using Svelte and Tailwind. This article will focus on adding an Options page to the extension.
+
+<br />
+
+### The problem
+
+When an action is performed in one instance of the plugin, the data is not synced automatically. For example, if the user updates the count in one tab, the other tabs' content does not automatically react to changes.
+
+<Img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/xymzb4wp31jjkv9ek8qz.gif" />
+
+<br />
+
+## Project setup
+
+### Clone the repo from the previous blog
+
+The easiest way is to use [degit](https://github.com/Rich-Harris/degit).
+
+```sh noExt
+npx degit codegino/svelte-tailwind-chrome-plugin#02-options my-target-folder
+```
+
+### Install dependencies and run the applicaiton
+
+```sh noExt
+cd my-target-folder
+npm install
+npm run dev
+```
+
+
+### Handling Event Communication
+
+> This article will focus on using custom events to allow plugin communication. Check the [api documentation](https://developer.chrome.com/docs/extensions/reference) to learn more about handling other events.
+
+To create our custom events, we can use the [chrome.runtime](https://developer.chrome.com/docs/extensions/reference/runtime/) API. The runtime API provides a way to send messages between different parts of the extension.
+
+<br />
+
+Here are the steps that we can follow when creating custom events:
+
+1. Trigger an event (REQUIRED)
+2. Add event listener (REQUIRED)
+3. Handle the response from listeners
+4. Handle connection error
+5. Handle disconnection
+
+<br />
+
+#### 1. Trigger an event
+
+This step includes two changes. First, we need to change the function declaration to an `async/await` syntax so it will be easier to read later on. Second, we need to dispatch a message with some payload.
+
+> The payload could be anything. In this example, I added a `type` property to the payload to identify the event in the event listener.
+
+```ts del="8-16" add="17-27" fileName="src/components/Counter.svelte" noExt
+<script lang="ts">
+  export let count: number;
+  let message: string = null;
+
+  const increment = () => (count += 1);
+  const decrement = () => (count -= 1);
+
+  const handleSave = () => {
+    chrome.storage.sync.set({ count }).then(() => {
+      message = "Updated!";
+
+      setTimeout(() => {
+        message = null;
+      }, 2000);
+    });
+  };
+  const handleSave = async () => {
+    await chrome.storage.sync.set({ count });
+    message = "Updated!";
+
+    // This is the only different behavior
+    await chrome.runtime.sendMessage({count, type: "count_updated"});
+
+    setTimeout(() => {
+      message = null;
+    }, 2000);
+  };
+</script>
+```
+
+#### 2. Add an event listener
+
+Since we are using Svelte, we can use the `onMount` hook to add the listener.
+
+```ts add="2-3,7-15" fileName="src/components/Counter.svelte" noExt
+<script lang="ts">
+  import { onMount } from "svelte";
+
+  export let count: number;
+  let message: string = null;
+
+  onMount(() => {
+    chrome.runtime.onMessage.addListener(handleMessageEvent);
+  });
+
+  function handleMessageEvent(request, _, sendResponse) {
+    if (request.type === "count_updated") {
+      count = request.count;
+    }
+  }
+
+  const increment = () => (count += 1);
+  const decrement = () => (count -= 1);
+
+  const handleSave = async () => {
+    await chrome.storage.sync.set({ count });
+    message = "Updated!";
+
+    await chrome.runtime.sendMessage({count, type: "count_updated"});
+
+    setTimeout(() => {
+      message = null;
+    }, 2000);
+  };
+</script>
+```
+
+<br />
+
+After adding the listener, we can see that the count is updated in all tabs.
+<Img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/heb023vwoentoj1gr3e1.gif" />
+
+<br />
+
+It is easy verify that it will also work in the popup because we are using the same component.
+<Img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/o771ipmun2byh13mi6jo.gif" />
+
+<br />
+
+#### 3. Handle the response from listeners
+
+In the event handler, we can call a `sendResponse` function with the payload that we want to send back to the sender. In this example, I'm sending back the change in the count value.
+
+<br />
+
+The `sendMessage` function returns a promise. We can use the `await` keyword to get the response from the listener. In this example, I'm simply appending the response to the message;
+
+```ts add="3,13-14" del="12" fileName="src/components/Counter.svelte" noExt
+function handleMessageEvent(request, _, sendResponse) {
+  if (request.type === "count_updated") {
+    sendResponse({ message: `from ${count} to ${request.count}` });
+    count = request.count;
+  }
+}
+
+const handleSave = async () => {
+  await chrome.storage.sync.set({ count });
+  message = "Updated!";
+
+  await chrome.runtime.sendMessage({count, type: "count_updated"});
+  const res = await chrome.runtime.sendMessage({count, type: "count_updated"});
+  message += ` ${res.message}`;
+
+  setTimeout(() => {
+    message = null;
+  }, 2000);
+};
+```
+
+The response is now at the end of the success message.
+<Img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/ytnj531nv1hey291ow5z.gif" />
+
+<br />
+
+#### 4. Handle connection error
+
+In case we only have one instance of the plugin running, the `sendMessage` function will throw an error. Also, the success message `Updated!` will always be visible because the code to hide the message will not be reached.
+
+<Img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/v6orgaew8l2ongcegn37.gif" />
+
+<br />
+
+ We can handle the error by wrapping the `sendMessage` in a `try/catch` block.
+
+
+```ts add="7-13" del="5-6" fileName="src/components/Counter.svelte" noExt
+  const handleSave = async () => {
+    await chrome.storage.sync.set({ count });
+    message = "Updated!";
+
+    const res = await chrome.runtime.sendMessage({count, type: "count_updated"});
+    message += ` ${res.message}`;
+    try {
+      const res = await chrome.runtime.sendMessage({count, type: "count_updated"});
+      message += ` ${res.message}`;
+    } catch (error) {
+      // Handle error here
+      console.log("TODO:", error);
+    }
+
+    setTimeout(() => {
+      message = null;
+    }, 2000);
+  };
+```
+
+#### Side note: Handle connection error with callback
+
+If you are using a callback for whatever reason, you need to explicitly check for the error.
+
+```ts fileName="src/components/Counter.svelte" noExt
+const handleSave = async () => {
+  await chrome.storage.sync.set({ count });
+  message = "Updated!";
+
+  chrome.runtime.sendMessage({count, type: "count_updated"},
+    (res) => {
+      const lastError = chrome.runtime.lastError;
+
+      // This conditional check is important to remove the error
+      if (lastError) {
+        // Handle error here
+        console.log("TODO:", lastError.message);
+        return;
+      }
+      message += ` ${res.message}`;
+    }
+  );
+
+  setTimeout(() => {
+    message = null;
+  }, 2000);
+};
+```
+
+Now, the error is handled properly, and the code to hide the message continues to execute.
+<Img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/ava5lw9psese48zguf96.gif" />
+
+<br />
+
+
+#### 5. Unsubscribe from the listener
+
+Sometimes, we need to free up resources. In this case, we can use the `onDestroy` hook to remove the listener.
+
+```ts fileName="src/components/Counter.svelte" noExt
+import { onDestroy } from "svelte";
+
+// Rest of the code...
+
+onDestroy(() => {
+  chrome.runtime.onMessage.removeListener(handleMessageEvent);
+});
+```
+
+<br />
+
+An alternative is to return a function from the `onMount` hook. This function will be called when the component is destroyed.
+
+```ts add="5-8" fileName="src/components/Counter.svelte" noExt
+// Rest of the code...
+
+onMount(() => {
+  chrome.runtime.onMessage.addListener(handleMessageEvent);
+
+  return () => {
+    chrome.runtime.onMessage.removeListener(handleMessageEvent);
+  };
+});
+```
+
+<br />
+
+To simplify the demo of removing the listener, I'm removing the listener after 4 seconds the component is mounted.
+
+```ts add="4-7" fileName="src/components/Counter.svelte" noExt
+onMount(() => {
+  chrome.runtime.onMessage.addListener(handleMessageEvent);
+
+  // For demo purposes only
+  setTimeout(() => {
+    chrome.runtime.onMessage.removeListener(handleMessageEvent);
+  }, 4000);
+
+  return () => {
+    chrome.runtime.onMessage.removeListener(handleMessageEvent);
+  };
+});
+```
+
+The other tabs will stop listening `count_changed` event, and there will be an error because no one is listening.
+<Img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/xpye3yalajn26wu9jjgt.gif" />
+
+<br />
+
+## Repository
+
+Check the source code [here](https://github.com/codegino/svelte-tailwind-chrome-plugin/tree/03-sync-state)
+
+<br />
+
+### What's next
+
+- [ ] Add a content script
+- [ ] Add a background script
+- [ ] Add a dev tools page
+- [ ] Deploying the extension
