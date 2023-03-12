@@ -20,7 +20,7 @@
     "next-mdx-remote": "4.4.1",
     "prism-react-renderer": "1.3.5",
     "react": "18.2.0",
-    "react-content-loader": "6.2.0",
+    "react-content-loader": "6.2.1",
     "react-dom": "18.2.0",
     "react-github-calendar": "3.4.0",
     "react-gtm-module": "2.0.11",
