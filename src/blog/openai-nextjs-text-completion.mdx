@@ -1,0 +1,433 @@
+---
+title: Next.js and OpenAI Text Completion
+description: How to build a simple Q&A using Next.js and OpenAI Text Completion
+date: '2023-03-30'
+dateUpdated: '2023-03-30'
+bannerId: G9gzPXm6ngR2t6c84KWb0
+tags: ['nextjs', 'tailwind', 'openai']
+keywords: ['nextjs', 'openai', 'tailwind']
+published: true
+---
+
+## TL;DR
+Check these [API implementation](https://github.com/codegino/nextjs-openai-tailwind/blob/main/src/pages/api/completion.ts) and [frontend implementation](https://github.com/codegino/nextjs-openai-tailwind/blob/main/src/pages/index.tsx) on Github. Here is the [link](https://nextjs-bg3htd396-codegino.vercel.app/) to the demo app.
+
+<br />
+
+## Introduction
+
+[OpenAI](https://openai.com/) is a powerful artificial intelligence platform that allows developers to create intelligent applications. [Next.js](https://nextjs.org/) is a popular React framework that provides server-side rendering and other advanced features. In this blog, I will create a simple Q&A app using OpenAI and Next.js.
+
+<br />
+
+OpenAI's [text completion](https://platform.openai.com/docs/guides/completion) API uses AI to generate human-like text based on a given prompt, making it a powerful tool for tasks like generating creative writing, building chatbots, and creating language models. Its advanced language processing and vast data resources enable it to produce text that closely resembles human writing, making it a valuable resource for businesses and developers.
+
+## Prerequisites
+
+Before you begin, you should have a basic understanding of React and Next.js. You should also have an OpenAI API key. If you don't have an OpenAI API key, you can sign up for a free account on their website.
+
+<br />
+
+I will only be using TypeScript and TailwindCSS for this project, but you can use JavaScript and any CSS framework you prefer.
+
+<br />
+
+## Project Setup
+
+### Initialize a NextJS project
+
+You can create a project as suggested in the [NextJS official documentation](https://nextjs.org/docs/getting-started#automatic-setup).
+
+```
+npx create-next-app@latest
+# or
+yarn create next-app
+```
+
+<br />
+
+But if you are like me that prefer to have TypeScript and Tailwind, you can clone this [boilerplate](https://github.com/codegino/nextjs-tailwind-slim-boilerplate) instead.
+
+```
+npx degit codegino/nextjs-tailwind-slim-boilerplate
+```
+
+<br />
+
+### Create the Backend API
+
+#### Create a reusable OpenAI client
+
+```ts fileName="src/libs/openai"
+import {Configuration, OpenAIApi} from 'openai';
+const configuration = new Configuration({
+  apiKey: process.env.OPENAI_API_KEY,
+});
+
+export const openai = new OpenAIApi(configuration);
+```
+
+> Never commit your API key to your repository. You can `.env` out of the box to store your API key.
+
+#### Create a NextJS API handler
+
+We only need the API to handle POST requests, so we can return an error if the request method is not POST.
+
+We can use the `OpenAI` client to create a [completion](https://platform.openai.com/docs/guides/completion) using the `createCompletion` method. We can set the `prompt` to the question, and the [model](https://platform.openai.com/docs/models/gpt-3-5) to `text-davinci-003`. The `temperature` and `max_tokens` can be adjusted to get different results. We can set the `n` to `1` to only get one result(also to save some money).
+
+```ts fileName="src/pages/api/completion"
+import {NextApiRequest, NextApiResponse} from 'next';
+import {openai} from '../../libs/openai';
+
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse,
+) {
+  const {prompt} = req.body;
+
+  if (req.method !== 'POST') {
+    return res.status(400).json({error: 'Invalid request'});
+  }
+
+  const response = await openai.createCompletion({
+    prompt,
+    model: 'text-davinci-003',
+    temperature: 0.6,
+    max_tokens: 100,
+    n: 1,
+  });
+
+  return res.status(200).json({
+    data: response.data
+  });
+}
+```
+
+<br />
+
+Run the application using `yarn dev`. Test the newly created endpoint using [curl](https://curl.se), [Postman](https://www.postman.com/), [Hoppscotch](https://hoppscotch.io/), or whatever you prefer.
+
+<br/ >
+
+We should see the response data from OpenAI.
+
+<Img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/tt1e79nvdim0zj3q2u7p.png" width="400" height="350"/>
+
+<br />
+
+#### Update the API response
+
+Since we don't need the entire response from OpenAI, we can simplify the response to only return the data we need. Because we set the number of results to only one using `n: 1`, we can simplify the response to only extract the first choice.
+
+Also, we can remove the new lines from the beginning of the response using the `replace` method.
+
+```tsx fileName="src/pages/api/completion" del="22-24" add="26-33"
+import {NextApiRequest, NextApiResponse} from 'next';
+import {openai} from '../../libs/openai';
+
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse,
+) {
+  const {prompt} = req.body;
+
+  if (req.method !== 'POST') {
+    return res.status(400).json({error: 'Invalid request'});
+  }
+
+  const response = await openai.createCompletion({
+    prompt,
+    model: 'text-davinci-003',
+    temperature: 0.6,
+    max_tokens: 100,
+    n: 1,
+  });
+
+  return res.status(200).json({
+    data: response.data
+  });
+
+  const firstResponse = response.data.choices[0];
+
+  return res.status(200).json({
+    data: {
+      ...firstResponse,
+      text: firstResponse.text.replace(/^\n+/, ''),
+    },
+  });
+}
+```
+
+The response should be simpler for the Frontend to process
+<Img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/oq4wlfyt7sz89ba95i6u.png" width="400" height="300" />
+
+<br />
+
+### Create the Question Form
+
+#### Create variables to store the question and the answer
+```tsx fileName="src/pages/index"
+const [prompt, setPrompt] = useState('');
+const [response, setResponse] = useState('');
+```
+
+#### Create a function handler when the user clicks the button
+```tsx fileName="src/pages/index"
+const handleSubmit = async e => {
+  e.preventDefault();
+
+  const res = await fetch('/api/completion', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({prompt: prompt.trim()}),
+  }).then(res => res.json());
+
+  setResponse(res.data.text);
+```
+
+#### Create the form with an input and a submit button
+
+```tsx fileName="src/pages/index"
+return (
+  <div className="max-w-md mx-auto pt-20">
+    <h1 className="text-3xl font-bold text-center mb-6 bg-white">Ask Me Anything!</h1>
+    <form onSubmit={handleSubmit} className="bg-white shadow-md rounded p-8">
+      <div className="mb-4">
+        <label htmlFor="prompt" className="block text-gray-700 text-sm font-bold mb-2">
+          What do you want to know?
+        </label>
+        <input id="prompt" type="text" name="prompt" value={prompt} autoComplete="off"
+          onChange={e => setPrompt(e.target.value)} placeholder="How to ask a question?"
+          className="shadow border rounded w-full py-2 px-3 text-gray-700"
+        />
+      </div>
+      <div className="flex gap-2">
+        <button type="submit" className="bg-blue-500 text-white font-bold py-2 px-4 rounded">
+          Ask
+        </button>
+      </div>
+    </form>
+  </div>
+);
+```
+
+#### Render the response if it exists
+
+```tsx fileName="pages/index" add="14-19"
+return (
+  <div className="max-w-md mx-auto pt-20">
+    <h1 className="text-3xl font-bold text-center mb-6 bg-white">Ask Me Anything!</h1>
+    <form onSubmit={handleSubmit} className="bg-white shadow-md rounded p-8">
+      <div className="mb-4">
+        <label htmlFor="prompt" className="block text-gray-700 text-sm font-bold mb-2">
+          What do you want to know?
+        </label>
+        <input id="prompt" type="text" name="prompt" value={prompt} autoComplete="off"
+          onChange={e => setPrompt(e.target.value)} placeholder="How to ask a question?"
+          className="shadow border rounded w-full py-2 px-3 text-gray-700"
+        />
+      </div>
+      {response && (
+        <div className="mb-4">
+          <h2 className="font-bold">Response</h2>
+          <p className="pl-2 text-gray-700 whitespace-pre-line">{response}</p>
+        </div>
+      )}
+      <div className="flex gap-2">
+        <button type="submit" className="bg-blue-500 text-white font-bold py-2 px-4 rounded">
+          Ask
+        </button>
+      </div>
+    </form>
+  </div>
+);
+```
+
+
+#### (OPTIONAL) Add global style to the page
+
+```css fileName="src/styles/tailwind.css"
+body {
+  background-image: radial-gradient(blue 0.1px, transparent 0.5px);
+  background-size: 10px 10px;
+}
+```
+
+#### The whole component should look like this
+
+```tsx fileName="src/pages/index"
+import {useState} from 'react';
+
+const IndexPage = () => {
+  const [prompt, setPrompt] = useState('');
+  const [response, setResponse] = useState('');
+
+  const handleSubmit = async e => {
+    e.preventDefault();
+
+    const res = await fetch('/api/completion', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({prompt: prompt.trim()}),
+    }).then(res => res.json());
+
+    setResponse(res.data.text);
+  };
+
+  return (
+    <div className="max-w-md mx-auto pt-20">
+      <h1 className="text-3xl font-bold text-center mb-6 bg-white">Ask Me Anything!</h1>
+      <form onSubmit={handleSubmit} className="bg-white shadow-md rounded p-8">
+        <div className="mb-4">
+          <label htmlFor="prompt" className="block text-gray-700 text-sm font-bold mb-2">
+            What do you want to know?
+          </label>
+          <input id="prompt" type="text" name="prompt" value={prompt} autoComplete="off"
+            onChange={e => setPrompt(e.target.value)} placeholder="How to ask a question?"
+            className="shadow border rounded w-full py-2 px-3 text-gray-700"
+          />
+        </div>
+        {response && (
+          <div className="mb-4">
+            <h2 className="font-bold">Response</h2>
+            <p className="pl-2 text-gray-700 whitespace-pre-line">{response}</p>
+          </div>
+        )}
+        <div className="flex gap-2">
+          <button type="submit" className="bg-blue-500 text-white font-bold py-2 px-4 rounded">
+            Ask
+          </button>
+        </div>
+      </form>
+    </div>
+  );
+};
+
+export default IndexPage;
+```
+
+
+Here is how the markup looks like:
+<Img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/ugbg6ld89l7lruelvsbv.png" />
+
+<br />
+
+And here is the output when the user submits the form:
+<Img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/4imk3yndk3osv5xi89p1.png" />
+
+> Tip: You can use the tailwind `whitespace-pre-line` OR vanilla CSS `white-space: pre-line;` style to preserve the new lines in the response.
+
+<Img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/fjeoknbbwfp1c7nt72he.png" />
+
+<br />
+
+### Improve the UX a little bit
+
+We can add a loading state to the button and disable the input field while the request is being processed. Also, instead of spamming the `Ask` button, we can add a `Try Again` button to reset the form. That way we can save some of our precious OpenAI credits.
+
+```tsx fileName="src/pages/index"
+import {useState} from 'react';
+
+const IndexPage = () => {
+  const [response, setResponse] = useState('');
+  const [prompt, setPrompt] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async e => {
+    e.preventDefault();
+
+    setLoading(true);
+    setResponse('');
+
+    const res = await fetch('/api/completion', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({prompt: prompt.trim()}),
+    }).then(res => res.json());
+
+    setResponse(res.data.text);
+    setLoading(false);
+  };
+
+  const handleTryAgain = () => {
+    setResponse('');
+    setPrompt('');
+  };
+
+  return (
+    <div className="max-w-md mx-auto pt-20">
+      <h1 className="text-3xl font-bold text-center mb-6 bg-white">
+        Ask Me Anything!
+      </h1>
+      <form onSubmit={handleSubmit} className="bg-white shadow-md rounded p-8">
+        <div className="mb-4">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="prompt"
+          >
+            What do you want to know?
+          </label>
+          <input id="prompt" type="text" name="prompt" value={prompt}
+            onChange={e => setPrompt(e.target.value)} placeholder="How to ask a question?"
+            autoComplete="off" disabled={!!response || loading}
+            className="shadow border rounded w-full py-2 px-3 text-gray-700"
+          />
+        </div>
+        {response && (
+          <div className="mb-4">
+            <h2 className="font-bold">Response</h2>
+            <p className="pl-2 text-gray-700 whitespace-pre-line">{response}</p>
+          </div>
+        )}
+        <div className="flex gap-2">
+          {response ? (
+            <button
+              onClick={handleTryAgain}
+              className="bg-blue-500 text-white font-bold py-2 px-4 rounded"
+            >
+              Try again
+            </button>
+          ) : (
+            <button
+              type="submit"
+              disabled={!!loading || prompt.length < 5}
+              className="bg-blue-500 text-white font-bold py-2 px-4 rounded disabled:opacity-50"
+            >
+              {loading ? 'Thinking...' : 'Ask'}
+            </button>
+          )}
+        </div>
+      </form>
+    </div>
+  );
+};
+
+export default IndexPage;
+```
+
+And here is a slightly better experience:
+<Img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/t4gz4d5ago0vd8joo22a.gif" />
+
+<br />
+
+## Source Code
+The source code for this project is available on [GitHub](https://github.com/codegino/nextjs-openai-tailwind)
+
+<br />
+
+## Conclusion
+
+In this blog post, I demonstrated how simple it is to use OpenAI text completion with Next.js. We have seen how to create an API route in Next.js, how to make an API request to the OpenAI API using the `openai` library, and create a client-side form to accept prompts and display the response from the API. And those three steps are all we need to create a more awesome app.
+
+<br />
+
+## What's Next
+
+- Image generation with OpenAI
+- Save the responses to a database
