@@ -452,10 +452,10 @@
   dependencies:
     cross-fetch "^3.1.5"
 
-"@supabase/gotrue-js@^2.16.0":
-  version "2.16.0"
-  resolved "https://registry.yarnpkg.com/@supabase/gotrue-js/-/gotrue-js-2.16.0.tgz#518b382e2050dcb442e39ac04f98f7be1373e55b"
-  integrity sha512-k7curH5xxnQmUiG8AeFW7KEJST99vhFnBCidWFhuSSyLP1Ja8Ix3g4bmLUv209mhX8LmAaDMGKNQs8gG0MOKCw==
+"@supabase/gotrue-js@^2.18.1":
+  version "2.20.1"
+  resolved "https://registry.yarnpkg.com/@supabase/gotrue-js/-/gotrue-js-2.20.1.tgz#5222752375fed279896eea3b63d2414c858ec98f"
+  integrity sha512-TvXAhLpB/ghLAMNRX5Du3EAc9t0W1w9OFKFn9FNgX3mCAvyhJOni2DVdeSYas4xKbUuyMt4Mp3NDSculLtD0DA==
   dependencies:
     cross-fetch "^3.1.5"
 
@@ -475,23 +475,23 @@
     "@types/websocket" "^1.0.3"
     websocket "^1.0.34"
 
-"@supabase/storage-js@^2.3.1":
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/@supabase/storage-js/-/storage-js-2.3.1.tgz#fb557c416d2eeaa2422b2c961c7f08133234d755"
-  integrity sha512-BaPIvyvjuZW1V0CnfGKUZyzpBUXnsh0XD8eqTOYd+MdiGPmIPI0vtwnT4fAoK8mipp1vpcN62EVQaqeUnWXPtQ==
+"@supabase/storage-js@^2.4.0":
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/@supabase/storage-js/-/storage-js-2.4.0.tgz#132ea032d96421087f700968dbfdc9d3031d15c8"
+  integrity sha512-uCT6WjeZsyxH/Br1MnXieJnXrYxS3DpIkdNxEFTKCoaPX/KZ2t62v++R2IMNB/XGI1LMuJfN5wM28uuK6DMpfw==
   dependencies:
     cross-fetch "^3.1.5"
 
-"@supabase/supabase-js@^2.13.1":
-  version "2.13.1"
-  resolved "https://registry.yarnpkg.com/@supabase/supabase-js/-/supabase-js-2.13.1.tgz#785ff5aafd8ca36d242c6615de6fb315e294bcca"
-  integrity sha512-+Q3FMj0TuI6xJBTTREIRxuLW1QreZhtRxlF5+7aprmlVq1+GsMfnpBOpXcdyhcWWL8UcmaoMJD8tJiedXGCXlg==
+"@supabase/supabase-js@^2.15.0":
+  version "2.15.0"
+  resolved "https://registry.yarnpkg.com/@supabase/supabase-js/-/supabase-js-2.15.0.tgz#20bfd289cf9e363ab41a7a00aff11f2e58dd169a"
+  integrity sha512-gtgq8Tyb4AJoTGeUH3EISOiobdSYwUPcjV+mqL8zGMND+mfqh6l90fnxVPxepnIFXeppJh67YIFTu2bZhr6AMA==
   dependencies:
     "@supabase/functions-js" "^2.1.0"
-    "@supabase/gotrue-js" "^2.16.0"
+    "@supabase/gotrue-js" "^2.18.1"
     "@supabase/postgrest-js" "^1.1.1"
     "@supabase/realtime-js" "^2.7.1"
-    "@supabase/storage-js" "^2.3.1"
+    "@supabase/storage-js" "^2.4.0"
     cross-fetch "^3.1.5"
 
 "@swc/helpers@0.4.14":
