@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@react-icons/all-files": "4.1.0",
-    "@supabase/supabase-js": "^2.16.0",
+    "@supabase/supabase-js": "^2.18.0",
     "clsx": "1.2.1",
     "contentful": "9.3.5",
     "isomorphic-dompurify": "1.2.0",
