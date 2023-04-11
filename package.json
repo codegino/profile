@@ -22,7 +22,7 @@
     "react": "18.2.0",
     "react-content-loader": "6.2.1",
     "react-dom": "18.2.0",
-    "react-github-calendar": "3.4.0",
+    "react-github-calendar": "4.0.0",
     "react-gtm-module": "2.0.11",
     "react-intersection-observer": "9.4.3",
     "react-responsive-carousel": "3.2.23",
