@@ -10,7 +10,6 @@ import ResumeSummary from '../components/ResumeSummary';
 import NextLink from '../components/basic/NextLink';
 import {commonMetaTags} from '../frontend-utils/meta-tags';
 import {generateRssFeed} from '../lib/rss';
-import generateSitemap from '../lib/sitemap';
 import BlogSuggestionsList from '../modules/blog/BlogSuggestionsList';
 import {getBlogsMetadata} from '../utils/blogs-mdx.utils';
 import {client, getBlurringImage} from '../utils/contentful.utils';
@@ -156,7 +155,6 @@ export const getStaticProps: GetStaticProps = async ({locale}) => {
   }
 
   if (process.env.NODE_ENV === 'production') {
-    await generateSitemap();
     await generateRssFeed();
   }
 
