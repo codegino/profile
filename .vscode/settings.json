@@ -29,8 +29,13 @@
           "respectful",
           "friendly"
         ],
-        "goals": ["inform", "describe"]
+        "goals": [
+          "inform",
+          "describe"
+        ]
       }
     }
-  ]
+  ],
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true
 }
