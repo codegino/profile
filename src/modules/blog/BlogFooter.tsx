@@ -32,14 +32,14 @@ const BlogFooter = ({blog}: {blog: IBlogMetadata}) => {
         <i>Connect with me</i>
       </p>
       <NextLink
-        href="https://twitter.com/code_gino"
+        href="https://twitter.com/codegino"
         aria-label="Follow me on Twitter"
         target="_blank"
         className="mt-2"
         rel="noreferrer"
       >
         <span className="relative h-10 bg-[#1da1f2] text-white py-2 px-6 rounded-3xl hover:shadow-sm hover:shadow-dark">
-          <FaTwitter /> Follow @code_gino
+          <FaTwitter /> Follow @codegino
         </span>
       </NextLink>
     </footer>
