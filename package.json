@@ -14,7 +14,7 @@
     "@supabase/supabase-js": "2.21.0",
     "clsx": "1.2.1",
     "contentful": "9.3.5",
-    "isomorphic-dompurify": "1.3.0",
+    "isomorphic-dompurify": "1.5.0",
     "next": "13.3.0",
     "next-i18next": "13.2.2",
     "next-mdx-remote": "4.4.1",
