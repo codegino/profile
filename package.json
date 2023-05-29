@@ -13,7 +13,7 @@
     "@react-icons/all-files": "4.1.0",
     "@supabase/supabase-js": "2.22.0",
     "clsx": "1.2.1",
-    "contentful": "9.3.5",
+    "contentful": "10.2.2",
     "isomorphic-dompurify": "1.5.0",
     "next": "13.3.0",
     "next-i18next": "13.2.2",
