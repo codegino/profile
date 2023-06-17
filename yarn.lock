@@ -4550,10 +4550,10 @@ react-i18next@12.2.2:
     "@babel/runtime" "^7.20.6"
     html-parse-stringify "^3.0.1"
 
-react-intersection-observer@9.4.3:
-  version "9.4.3"
-  resolved "https://registry.yarnpkg.com/react-intersection-observer/-/react-intersection-observer-9.4.3.tgz#ec84ce0c25cad548075130ea045ac5c7adf908f3"
-  integrity sha512-WNRqMQvKpupr6MzecAQI0Pj0+JQong307knLP4g/nBex7kYfIaZsPpXaIhKHR+oV8z+goUbH9e10j6lGRnTzlQ==
+react-intersection-observer@9.5.0:
+  version "9.5.0"
+  resolved "https://registry.yarnpkg.com/react-intersection-observer/-/react-intersection-observer-9.5.0.tgz#1025e4749a8916516fbcfec06018bd149cb2b133"
+  integrity sha512-bQbfe6Jl8KSynbWfQWz8LoGCCmG6fhsilljgc6dc1NMYpNmP20wfFsrF7CE5N9+LbWx33DUgJdkNBVhU1JzIRA==
 
 react-is@^16.13.1, react-is@^16.7.0:
   version "16.13.1"
