@@ -1,3 +1,4 @@
+'use client';
 import {useTranslation} from 'next-i18next';
 import GithubCalendar from 'react-github-calendar';
 import Zoom from 'react-reveal/Zoom';

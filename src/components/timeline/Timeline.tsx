@@ -1,14 +1,16 @@
+'use client';
 import type {FunctionComponent} from 'react';
 import {FaBriefcase} from '@react-icons/all-files/fa/FaBriefcase';
 import {FaBuilding} from '@react-icons/all-files/fa/FaBuilding';
 import {FaGraduationCap} from '@react-icons/all-files/fa/FaGraduationCap';
 import {FaScroll} from '@react-icons/all-files/fa/FaScroll';
 import dompurify from 'isomorphic-dompurify';
-import {useTranslation} from 'next-i18next';
 import Slide from 'react-reveal/Slide';
 import type {EducationExperience, WorkExperience} from '../../models/resume';
 import NextLink from '../basic/NextLink';
 import {Experience} from './Experience';
+import {useTranslation} from '../../app/i18n/client';
+import {useParams} from 'next/navigation';
 
 export default function Timeline({
   workExperiences,
@@ -72,7 +74,8 @@ const Content: FunctionComponent<{
   exp: WorkExperience | EducationExperience;
   children: React.ReactNode;
 }> = ({exp, children = null}) => {
-  const {t} = useTranslation('common');
+  const params = useParams();
+  const {t} = useTranslation(params?.lng, 'common');
 
   return (
     <Slide cascade={true} duration={800}>

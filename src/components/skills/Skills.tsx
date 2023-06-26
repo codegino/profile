@@ -1,3 +1,4 @@
+'use client';
 import {FaCheckDouble} from '@react-icons/all-files/fa/FaCheckDouble';
 import {FaDatabase} from '@react-icons/all-files/fa/FaDatabase';
 import {FaDumbbell} from '@react-icons/all-files/fa/FaDumbbell';
@@ -9,13 +10,13 @@ import {FaServer} from '@react-icons/all-files/fa/FaServer';
 import {FaStar} from '@react-icons/all-files/fa/FaStar';
 import {FaThumbsUp} from '@react-icons/all-files/fa/FaThumbsUp';
 import {FaTools} from '@react-icons/all-files/fa/FaTools';
-import {useTranslation} from 'next-i18next';
 import Zoom from 'react-reveal/Zoom';
 import type {CategorizedSkill, SkillCategory} from '../../models/skill';
 import NextLink from '../basic/NextLink';
+import {createTranslation} from '../../app/i18n';
 
-export default function Skills({skills}: {skills: CategorizedSkill[]}) {
-  const {t} = useTranslation('resume');
+export default async function Skills({skills}: {skills: CategorizedSkill[]}) {
+  const {t} = await createTranslation('en', 'resume');
 
   return (
     <div className="flex justify-center">

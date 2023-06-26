@@ -6,6 +6,8 @@ import NextLink from '../../../components/basic/NextLink';
 import {commonMetaTags} from '../../../frontend-utils/meta-tags';
 import type {StaticContent} from '../../../models/static-content';
 import {client, getBlurringImage} from '../../../utils/contentful.utils';
+import {NextPage} from 'next';
+import {PropsWithLocale} from '../../../types/server-component';
 
 const TechStackCarousel = dynamic(
   () => import('../../../components/TechStackCarousel'),
@@ -16,10 +18,10 @@ export const metadata = {
   title: 'About Page | Code Gino | Carlo Gino Catapang',
 };
 
-export default async function AboutMe() {
+const AboutMePage: NextPage<PropsWithLocale> = async ({params: {lng}}) => {
   const {
     props: {aboutMeDetails, img, svg, techStacks},
-  } = await getStaticProps({locale: 'en'});
+  } = await getStaticProps({locale: lng});
   return (
     <>
       <Head>{commonMetaTags('About Page', '/about')}</Head>
@@ -80,7 +82,7 @@ export default async function AboutMe() {
       </main>
     </>
   );
-}
+};
 
 const getStaticProps = async ({locale}: {locale: 'en' | 'sv'}) => {
   const entries = await client.getEntries<StaticContent>({
@@ -113,3 +115,5 @@ const getStaticProps = async ({locale}: {locale: 'en' | 'sv'}) => {
     },
   };
 };
+
+export default AboutMePage;
