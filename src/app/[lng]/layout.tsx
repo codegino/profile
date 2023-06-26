@@ -1,0 +1,25 @@
+import React, {FC, PropsWithChildren} from 'react';
+import Footer from '../../components/Footer-v2';
+import '../../../styles/tailwind.css';
+import '../../styles/_globals.css';
+import '../../styles/animations.css';
+import '../../styles/custom.css';
+import Header from '../../components/header-v2/Header';
+
+const layout: FC<
+  PropsWithChildren<{
+    params: {
+      lng: 'sv' | 'en';
+    };
+  }>
+> = async ({children, params: {lng}}) => {
+  return (
+    <>
+      <Header />
+      {children}
+      <Footer lang={lng} />
+    </>
+  );
+};
+
+export default layout;
