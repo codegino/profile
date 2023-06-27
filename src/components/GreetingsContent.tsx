@@ -12,7 +12,8 @@ import {useTranslation} from '../app/i18n/client';
 import {useParams} from 'next/navigation';
 
 const GreetingsContent: FunctionComponent<{className?: string}> = () => {
-  const [isTyping, setIsTyping] = useState(false);
+  // Changed to true because react-reveal was removed temporarily
+  const [isTyping, setIsTyping] = useState(true);
   const {scrollToContent} = useScrollToView('#resume-summary');
   const [isGuideVisible, setIsGuideVisible] = useState(false);
 

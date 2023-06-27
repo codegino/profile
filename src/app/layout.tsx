@@ -1,6 +1,7 @@
 import GlobalEffects from './global-effects';
 
 export const metadata = {
+  metadataBase: new URL(process.env.CNAME as string),
   verification: {
     google: process.env.NEXT_PUBLIC_GOOOGLE_SITE_VERIFICATION,
   },
