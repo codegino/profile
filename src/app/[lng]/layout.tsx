@@ -1,5 +1,5 @@
 import React, {FC, PropsWithChildren} from 'react';
-import Footer from '../../components/Footer-v2';
+import Footer from '../../components/Footer';
 import '../../../styles/tailwind.css';
 import '../../styles/_globals.css';
 import '../../styles/animations.css';
