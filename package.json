@@ -1,6 +1,9 @@
 {
   "name": "profile",
   "version": "0.1.0",
+  "engines": {
+    "node": "18.13.0"
+  },
   "private": true,
   "scripts": {
     "dev": "cross-env NODE_OPTIONS='--inspect' next dev",
