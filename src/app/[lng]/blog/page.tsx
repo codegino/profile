@@ -1,9 +1,12 @@
+import {NextPage} from 'next';
 import SubscribeForm from '../../../components/SubscribeForm';
 import {newCommonMetaTags} from '../../../frontend-utils/meta-tags';
 import type {IBlogMetadata} from '../../../models/blog';
 import {getBlogsMetadata} from '../../../utils/blogs-mdx.utils';
 import {client} from '../../../utils/contentful.utils';
 import BlogsWrapper from './BlogsWrapper';
+import {PropsWithLocale} from '../../../types/server-component';
+import {createTranslation} from '../../i18n';
 
 export const dynamic = 'force-static';
 
@@ -12,21 +15,24 @@ export const metadata = {
   title: 'My Blogs Listing Page | CodeGino | Carlo Gino Catapang',
 };
 
-export default async function Blog() {
+const BlogPage: NextPage<PropsWithLocale> = async ({params: {lng}}) => {
   const {
     props: {blogs},
   } = await getStaticProps();
+  const {t} = await createTranslation(lng, 'blog');
 
   return (
     <>
       <main className="flex items-center flex-col pt-12">
-        <h1>My Blogs</h1>
-        <BlogsWrapper blogs={blogs} />
+        <h1>{t('myBlogs')}</h1>
+        <BlogsWrapper blogs={blogs} lang={lng} />
       </main>
       <SubscribeForm />
     </>
   );
-}
+};
+
+export default BlogPage;
 
 const getStaticProps = async () => {
   const blogs = (await getBlogsMetadata()).sort(

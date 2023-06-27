@@ -2,11 +2,15 @@ import {useMemo, useState} from 'react';
 import type {FunctionComponent} from 'react';
 import clsx from 'clsx';
 import type {IBlogMetadata} from '../../models/blog';
+import {useTranslation} from '../../app/i18n/client';
+import {locales} from '../../app/i18n/locales.enum';
 
 const BlogsFilter: FunctionComponent<{
   blogs: IBlogMetadata[];
+  lang: locales;
   onChange: (slugs: string[]) => void;
-}> = ({blogs, onChange}) => {
+}> = ({blogs, lang, onChange}) => {
+  const {t} = useTranslation(lang, 'blog');
   const tags = useMemo(() => {
     const generatedTags = blogs.reduce((acc: Set<string>, blog) => {
       blog.tags.forEach(tag => {
@@ -60,7 +64,7 @@ const BlogsFilter: FunctionComponent<{
 
   return (
     <section className="flex flex-col items-center mb-8 max-w-4xl">
-      <h3 className="mb-4">Filter by tags</h3>
+      <h3 className="mb-4">{t('filterByTags')}</h3>
       <div className="flex gap-2 flex-wrap justify-center mb-4">
         {tags.map((tag, i) => (
           <div

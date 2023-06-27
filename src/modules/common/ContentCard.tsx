@@ -12,7 +12,7 @@ const BlogCard: FunctionComponent<{
   slug?: 'blog' | 'slides';
 }> = ({blog, slug: feature = 'blog'}) => {
   const locale = useParams()?.lng;
-  const {t} = useTranslation(locale, 'common');
+  const {t} = useTranslation(locale, 'blog');
 
   return (
     <figure

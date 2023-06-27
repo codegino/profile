@@ -1,36 +1,34 @@
 import type {FC} from 'react';
 import clsx from 'clsx';
-import {useRouter, useParams, usePathname} from 'next/navigation';
+import {useRouter, useParams, useSelectedLayoutSegments} from 'next/navigation';
 
 export const ChangeLocale: FC<{className?: string}> = ({className}) => {
   const router = useRouter();
   const params = useParams();
-  const path = usePathname();
+  const urlSegments = useSelectedLayoutSegments();
 
   const handleChangeLocale = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const value = event.target.value;
 
-    // router.push(path, {
-    //   // locale: value,
-    // });
-    router.push(`${path}`);
+    const newPath = `/${value}/${urlSegments.join('/')}`;
+
+    router.push(newPath, {
+      forceOptimisticNavigation: true,
+    });
   };
 
   return (
     <select
       onChange={handleChangeLocale}
-      value={params?.locale}
+      value={params?.lng}
       className={clsx('bg-transparent text-4xl', className)}
     >
       <option value={'en'} title="English" aria-label="English">
         🇺🇸
       </option>
-
-      {!path?.includes('/blog') && (
-        <option value={'sv'} title="Swedish" aria-label="Swedish">
-          🇸🇪
-        </option>
-      )}
+      <option value={'sv'} title="Swedish" aria-label="Swedish">
+        🇸🇪
+      </option>
     </select>
   );
 };

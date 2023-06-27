@@ -1,0 +1,5 @@
+{
+  "myBlogs": "Mina bloggar",
+  "filterByTags": "Filtrera efter taggar",
+  "date": "{{val, datetime}}"
+}
