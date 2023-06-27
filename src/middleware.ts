@@ -7,13 +7,23 @@ export const config = {
   matcher: ['/((?!api|_next/static|_next/image|assets|favicon.ico|sw.js).*)'],
 };
 
-const cookieName = 'i18next';
+const staticFiles = [
+  'sitemap.xml',
+  'robots.txt',
+  'favicon.ico',
+  'manifest.json',
+  'rss.xml',
+];
 
 export function middleware(req: NextRequest) {
   let lng;
 
   // Get the first part of the path
   const firstPath = req.nextUrl.pathname.split('/')[1];
+
+  if (staticFiles.includes(firstPath)) {
+    return NextResponse.next();
+  }
 
   if (!languages.includes(firstPath)) {
     lng = fallbackLng;

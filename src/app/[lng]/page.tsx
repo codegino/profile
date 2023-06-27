@@ -13,6 +13,7 @@ import {NextPage} from 'next';
 import Skills from '../../components/skills/Skills';
 import {newCommonMetaTags} from '../../frontend-utils/meta-tags';
 import Script from 'next/script';
+import {generateRssFeed} from '../../lib/rss';
 
 export const dynamic = 'force-static';
 
@@ -145,9 +146,9 @@ const getStaticProps = async () => {
     blog.bannerId = bannerUrl;
   }
 
-  //   if (process.env.NODE_ENV === 'production') {
-  //     await generateRssFeed();
-  //   }
+  if (process.env.NODE_ENV === 'production') {
+    await generateRssFeed();
+  }
 
   const skills = await fetchSkills(true);
 
