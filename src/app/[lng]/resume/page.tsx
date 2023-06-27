@@ -1,4 +1,4 @@
-import dynamic from 'next/dynamic';
+import dynamicImport from 'next/dynamic';
 import ResumeSummary from '../../../components/ResumeSummary';
 import Timeline from '../../../components/timeline/Timeline';
 import {client, getBlurringImage} from '../../../utils/contentful.utils';
@@ -8,14 +8,19 @@ import LinkWrapper from './LinkWrapper';
 import {NextPage} from 'next';
 import {PropsWithLocale} from '../../../types/server-component';
 
-const CustomGithubCalendar = dynamic(
+export const dynamic = 'force-static';
+
+const CustomGithubCalendar = dynamicImport(
   () => import('../../../components/CustomGithubCalendar'),
   {ssr: false},
 );
 
-const Skills = dynamic(() => import('../../../components/skills/Skills'), {
-  ssr: false,
-});
+const Skills = dynamicImport(
+  () => import('../../../components/skills/Skills'),
+  {
+    ssr: false,
+  },
+);
 
 const ResumePage: NextPage<PropsWithLocale> = async ({params: {lng}}) => {
   const {

@@ -6,6 +6,8 @@ import {getBlogsMetadata} from '../../../utils/blogs-mdx.utils';
 import {client} from '../../../utils/contentful.utils';
 import BlogsWrapper from './BlogsWrapper';
 
+export const dynamic = 'force-static';
+
 export default async function Blog() {
   const {
     props: {blogs},

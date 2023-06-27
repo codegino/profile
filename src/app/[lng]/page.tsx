@@ -1,4 +1,4 @@
-import dynamic from 'next/dynamic';
+import dynamicImport from 'next/dynamic';
 import {FullScreenWrapper} from '../../components/FullScreenWrapper';
 import Hero from '../../components/Hero';
 import ResumeSummary from '../../components/ResumeSummary';
@@ -12,20 +12,25 @@ import {createTranslation} from '../i18n';
 import {NextPage} from 'next';
 import Skills from '../../components/skills/Skills';
 
-const Greetings = dynamic(() => import('../../components/Greetings'), {
+export const dynamic = 'force-static';
+
+const Greetings = dynamicImport(() => import('../../components/Greetings'), {
   ssr: false,
 });
 
-const SubscribeForm = dynamic(() => import('../../components/SubscribeForm'), {
-  ssr: false,
-});
+const SubscribeForm = dynamicImport(
+  () => import('../../components/SubscribeForm'),
+  {
+    ssr: false,
+  },
+);
 
-const CustomGithubCalendar = dynamic(
+const CustomGithubCalendar = dynamicImport(
   () => import('../../components/CustomGithubCalendar'),
   {ssr: false},
 );
 
-const WakatimeCharts = dynamic(
+const WakatimeCharts = dynamicImport(
   () => import('../../components/WakatimeCharts'),
   {
     ssr: false,

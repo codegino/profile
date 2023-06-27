@@ -1,5 +1,5 @@
 import dompurify from 'isomorphic-dompurify';
-import dynamic from 'next/dynamic';
+import dynamicImport from 'next/dynamic';
 import AboutMeHero from '../../../components/AboutMeHero';
 import NextLink from '../../../components/basic/NextLink';
 import type {StaticContent} from '../../../models/static-content';
@@ -7,7 +7,9 @@ import {client, getBlurringImage} from '../../../utils/contentful.utils';
 import {NextPage} from 'next';
 import {PropsWithLocale} from '../../../types/server-component';
 
-const TechStackCarousel = dynamic(
+export const dynamic = 'force-static';
+
+const TechStackCarousel = dynamicImport(
   () => import('../../../components/TechStackCarousel'),
   {ssr: false},
 );

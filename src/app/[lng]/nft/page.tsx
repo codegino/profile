@@ -1,9 +1,9 @@
 // import {createClient} from 'contentful';
-import type {GetStaticProps, InferGetStaticPropsType} from 'next';
-import {serverSideTranslations} from 'next-i18next/serverSideTranslations';
 import Image from 'next/legacy/image';
 import NextLink from '../../../components/basic/NextLink';
 import nfts from '../../../data/eth-nft.json';
+
+export const dynamic = 'force-static';
 
 export default async function NFT() {
   const {
