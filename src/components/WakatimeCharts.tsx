@@ -1,9 +1,11 @@
-import {useTranslation} from 'next-i18next';
-import Zoom from 'react-reveal/Zoom';
+'use client';
 import NextLink from './basic/NextLink';
+import {useTranslation} from '../app/i18n/client';
+import {useParams} from 'next/navigation';
 
 export default function WakatimeCharts() {
-  const {t} = useTranslation('resume');
+  const params = useParams();
+  const {t} = useTranslation(params?.lng, 'resume');
 
   return (
     <div className="overflow-hidden flex flex-col py-4 sm:px-24 w-full">
@@ -21,14 +23,12 @@ export default function WakatimeCharts() {
         </NextLink>
         &nbsp;{t('activity')}
       </h2>
-      <Zoom>
-        <figure className="flex justify-center">
-          <embed
-            className="max-w-md md:max-w-lg"
-            src="https://wakatime.com/share/@codegino/aa8c74ed-2174-445a-805d-e46a869c3b8b.svg"
-          ></embed>
-        </figure>
-      </Zoom>
+      <figure className="flex justify-center">
+        <embed
+          className="max-w-md md:max-w-lg"
+          src="https://wakatime.com/share/@codegino/aa8c74ed-2174-445a-805d-e46a869c3b8b.svg"
+        ></embed>
+      </figure>
     </div>
   );
 }

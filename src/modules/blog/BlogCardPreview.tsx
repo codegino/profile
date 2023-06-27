@@ -1,14 +1,16 @@
-import {useTranslation} from 'next-i18next';
 import Image from 'next/legacy/image';
 import NextLink from '../../components/basic/NextLink';
 import type {IBlogMetadata} from '../../models/blog';
+import {useTranslation} from '../../app/i18n/client';
+import {useParams} from 'next/navigation';
 
 type Props = {
   blog: IBlogMetadata;
 };
 
 export const BlogCardPreview = ({blog}: Props) => {
-  const {t} = useTranslation('common');
+  const locale = useParams()?.lng;
+  const {t} = useTranslation(locale, 'common');
 
   return (
     <figure className="relative w-full min-h-[20rem] text-center overflow-hidden shadow-sm hover:shadow-md hover:shadow-dark shadow-dark rounded-2xl bg-light md:max-w-4xl">

@@ -1,11 +1,12 @@
-import {useTranslation} from 'next-i18next';
 import NextLink from './basic/NextLink';
 import {BottomRightShape} from './extras/BottomRightShape';
 import {TopLeftShape} from './extras/TopLeftShape';
 import SocialMedia from './social/SocialMedia';
+import type {FC} from 'react';
+import {createTranslation} from '../app/i18n';
 
-export default function Footer() {
-  const {t} = useTranslation('common');
+const Footer: FC<{lang: 'en' | 'sv'}> = async ({lang}) => {
+  const {t} = await createTranslation(lang, 'common');
 
   return (
     <footer className="w-full relative h-48 bg-black text-white flex justify-center overflow-hidden md:h-32">
@@ -38,4 +39,6 @@ export default function Footer() {
       </div>
     </footer>
   );
-}
+};
+
+export default Footer;

@@ -1,3 +1,4 @@
+'use client';
 import type {FunctionComponent} from 'react';
 
 const ContentLayout: FunctionComponent<{children: React.ReactNode}> = ({

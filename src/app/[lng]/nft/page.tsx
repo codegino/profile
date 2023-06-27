@@ -1,22 +1,23 @@
 // import {createClient} from 'contentful';
-import type {GetStaticProps, InferGetStaticPropsType} from 'next';
-import {serverSideTranslations} from 'next-i18next/serverSideTranslations';
-import Head from 'next/head';
 import Image from 'next/legacy/image';
-import NextLink from '../../components/basic/NextLink';
-import nfts from '../../data/eth-nft.json';
-import {commonMetaTags} from '../../frontend-utils/meta-tags';
+import NextLink from '../../../components/basic/NextLink';
+import nfts from '../../../data/eth-nft.json';
 
-export default function NFT({
-  collections,
-}: InferGetStaticPropsType<typeof getStaticProps>) {
+import {newCommonMetaTags} from '../../../frontend-utils/meta-tags';
+
+export const dynamic = 'force-static';
+
+export const metadata = {
+  ...newCommonMetaTags('NFT Collection', '/nft', 'nft-preview.jpg'),
+  title: 'My NFT Collection | CodeGino | Carlo Gino Catapang',
+};
+
+export default async function NFT() {
+  const {
+    props: {collections},
+  } = await getStaticProps();
   return (
     <main>
-      <Head>
-        <title>Carlo Gino Catapang | Code Gino | NFT</title>
-        {commonMetaTags('NFT Collection', '/nft', 'nft-preview.jpg')}
-      </Head>
-
       <h1>Check out my NFT collections</h1>
 
       <div>
@@ -98,62 +99,9 @@ export default function NFT({
   );
 }
 
-export const getStaticProps: GetStaticProps<{
-  collections: NftCollection[];
-}> = async ({locale}) => {
-  // Commented for future NFT generation
-  // const ETH_WALLET_ADDRESS = '0xF53B2131c70054BA3deedc0C4ce85fBE3f4B9043';
-
-  // const options = {
-  //   method: 'GET',
-  //   headers: {
-  //     Accept: 'application/json',
-  //     'X-API-KEY': process.env.OPENSEA_API as string,
-  //   },
-  // };
-
-  // const ethCollectionResponse = await fetch(
-  //   `https://api.opensea.io/api/v1/collections?asset_owner=${ETH_WALLET_ADDRESS}`,
-  //   options,
-  // ).then(response => response.json());
-
-  // const ethCollection = ethCollectionResponse.map((item: any) => ({
-  //   details: item.description,
-  //   slug: item.slug,
-  //   name: item.name,
-  //   contractAddress: item.primary_asset_contracts[0].address,
-  //   owned: [],
-  // }));
-
-  // for (const iterator of ethCollection) {
-  //   const assetsResponse = await fetch(
-  //     `https://api.opensea.io/api/v1/assets?owner=${ETH_WALLET_ADDRESS}&asset_contract_address=${iterator.contractAddress}&include_orders=false`,
-  //     options,
-  //   ).then(response => response.json());
-
-  //   iterator.owned = assetsResponse.assets
-  //     .map((item: any) => ({
-  //       name: item.name,
-  //       img: item.image_url,
-  //       id: item.token_id,
-  //     }))
-  //     .filter((item: any) => item.name && item.img);
-  // }
-
-  // // This code is for collections not visible in OpenSea
-  // const client = createClient({
-  //   space: process.env.CONTENTFUL_SPACE_ID as string,
-  //   accessToken: process.env.CONTENTFUL_ACCESS_TOKEN as string,
-  // });
-
-  // const entries = await client.getEntries<NftCollection>({
-  //   content_type: 'nftCollection',
-  //   order: 'fields.order',
-  // });
-
+const getStaticProps = async () => {
   return {
     props: {
-      ...(await serverSideTranslations(locale as string, ['common'])),
       collections: nfts as NftCollection[],
     },
   };

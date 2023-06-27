@@ -1,4 +1,5 @@
-import type {FunctionComponent, ReactNode, ComponentProps} from 'react';
+'use client';
+import type {FunctionComponent, ComponentProps} from 'react';
 import {MDXRemote} from 'next-mdx-remote';
 import type {MDXRemoteSerializeResult} from 'next-mdx-remote';
 import ContentAnchor from '../common/AnchorTag';

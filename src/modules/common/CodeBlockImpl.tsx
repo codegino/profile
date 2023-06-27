@@ -1,9 +1,8 @@
 import {memo} from 'react';
 import type {FunctionComponent} from 'react';
 import clsx from 'clsx';
-import Highlight, {defaultProps} from 'prism-react-renderer';
+import {Highlight, themes} from 'prism-react-renderer';
 import type {Language} from 'prism-react-renderer';
-import vsDark from 'prism-react-renderer/themes/vsDark';
 import ClipboardCopyButton from '../../components/ClipboardCopyButton';
 import NextLink from '../../components/basic/NextLink';
 
@@ -95,8 +94,7 @@ const CodeBlockImpl: FunctionComponent<CodeBlockProps> = ({
           </span>
         )}
         <Highlight
-          {...defaultProps}
-          theme={vsDark}
+          theme={themes.vsDark}
           code={children.trim()}
           language={language}
         >
@@ -140,11 +138,11 @@ const CodeBlockImpl: FunctionComponent<CodeBlockProps> = ({
                 style={style}
               >
                 {tokens.map((line, i) => (
-                  <span key={i} {...getLineProps({line, key: i})}>
+                  <span {...getLineProps({line, key: i})} key={i}>
                     {line.map((token, key) => (
                       <span
-                        key={key}
                         {...getTokenProps({token, key})}
+                        key={key}
                         className={clsx({
                           '!text-green-400': add && addedLines.has(i + 1),
                           '!text-red-400': del && removedLines.has(i + 1),

@@ -1,36 +1,33 @@
 import dompurify from 'isomorphic-dompurify';
-import type {
-  GetStaticProps,
-  GetStaticPropsContext,
-  GetStaticPropsResult,
-  InferGetStaticPropsType,
-} from 'next';
-import {serverSideTranslations} from 'next-i18next/serverSideTranslations';
-import dynamic from 'next/dynamic';
-import Head from 'next/head';
-import AboutMeHero from '../../components/AboutMeHero';
-import NextLink from '../../components/basic/NextLink';
-import {commonMetaTags} from '../../frontend-utils/meta-tags';
-import type {StaticContent} from '../../models/static-content';
-import {client, getBlurringImage} from '../../utils/contentful.utils';
+import dynamicImport from 'next/dynamic';
+import AboutMeHero from '../../../components/AboutMeHero';
+import NextLink from '../../../components/basic/NextLink';
+import type {StaticContent} from '../../../models/static-content';
+import {client, getBlurringImage} from '../../../utils/contentful.utils';
+import type {Metadata, NextPage} from 'next';
+import {PropsWithLocale} from '../../../types/server-component';
+import {newCommonMetaTags} from '../../../frontend-utils/meta-tags';
 
-const TechStackCarousel = dynamic(
-  () => import('../../components/TechStackCarousel'),
+export const dynamic = 'force-static';
+
+const TechStackCarousel = dynamicImport(
+  () => import('../../../components/TechStackCarousel'),
   {ssr: false},
 );
 
-export default function AboutMe({
-  aboutMeDetails,
-  img,
-  svg,
-  techStacks,
-}: InferGetStaticPropsType<typeof getStaticProps>) {
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    ...newCommonMetaTags('About Page'),
+    title: 'About Page | Code Gino | Carlo Gino Catapang',
+  };
+}
+
+const AboutMePage: NextPage<PropsWithLocale> = async () => {
+  const {
+    props: {aboutMeDetails, img, svg, techStacks},
+  } = await getStaticProps();
   return (
     <>
-      <Head>
-        <title>About Page | Code Gino | Carlo Gino Catapang</title>
-        {commonMetaTags('About Page', '/about')}
-      </Head>
       <AboutMeHero img={img} svg={svg} />
       <main className="mt-10">
         <article className="mb-20" id="about-me-details">
@@ -88,9 +85,9 @@ export default function AboutMe({
       </main>
     </>
   );
-}
+};
 
-export const getStaticProps = async ({locale}: GetStaticPropsContext) => {
+const getStaticProps = async () => {
   const entries = await client.getEntries<StaticContent>({
     content_type: 'staticText',
     'fields.category': 'about_me',
@@ -112,7 +109,6 @@ export const getStaticProps = async ({locale}: GetStaticPropsContext) => {
 
   return {
     props: {
-      ...(await serverSideTranslations(locale as string, ['common'])),
       aboutMeDetails: entries.items.map(
         entry => entry.fields,
       ) as StaticContent[],
@@ -122,3 +118,5 @@ export const getStaticProps = async ({locale}: GetStaticPropsContext) => {
     },
   };
 };
+
+export default AboutMePage;

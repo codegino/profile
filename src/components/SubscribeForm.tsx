@@ -1,11 +1,13 @@
+'use client';
 import type {FormEvent} from 'react';
-import {useState} from 'react';
+import {use, useState} from 'react';
 import {BiCool} from '@react-icons/all-files/bi/BiCool';
 import {RiSpamLine} from '@react-icons/all-files/ri/RiSpamLine';
-import {useTranslation} from 'next-i18next';
-import {useRouter} from 'next/router';
+import {useRouter} from 'next/navigation';
 import Button from './basic/Button';
 import Input from './basic/Input';
+import {useTranslation} from '../app/i18n/client';
+import {useParams} from 'next/dist/client/components/navigation';
 
 interface FormElements extends HTMLFormControlsCollection {
   firstName: HTMLInputElement;
@@ -22,7 +24,8 @@ const SubscribeForm = () => {
 
   const router = useRouter();
 
-  const {t} = useTranslation('newsletter');
+  const locale = useParams()?.lng;
+  const {t} = useTranslation(locale, 'newsletter');
 
   const handleSubmit = async (e: FormEvent<SubscribeFormElement>) => {
     e.preventDefault();

@@ -1,5 +1,5 @@
+'use client';
 import {FunctionComponent, useState} from 'react';
-import clsx from 'clsx';
 import dynamic from 'next/dynamic';
 import {InView} from 'react-intersection-observer';
 import {TopLeftShape} from '../extras/TopLeftShape';

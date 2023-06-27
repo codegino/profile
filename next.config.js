@@ -1,12 +1,9 @@
-const {i18n} = require('./next-i18next.config');
-
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 });
 
 const config = {
   reactStrictMode: true,
-  i18n,
   pageExtensions: ['js', 'ts', 'jsx', 'tsx', 'md', 'mdx'],
   compress: true,
   images: {
@@ -22,9 +19,6 @@ const config = {
     deviceSizes: [
       96, 128, 256, 384, 512, 640, 750, 828, 1080, 1200, 1920, 2048, 3840,
     ],
-  },
-  experimental: {
-    appDir: true,
   },
 };
 
