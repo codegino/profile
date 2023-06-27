@@ -4,8 +4,7 @@ import {AiOutlineClose} from '@react-icons/all-files/ai/AiOutlineClose';
 import {FaEnvelopeSquare} from '@react-icons/all-files/fa/FaEnvelopeSquare';
 import {FaFacebookMessenger} from '@react-icons/all-files/fa/FaFacebookMessenger';
 import clsx from 'clsx';
-import {useTranslation} from 'next-i18next';
-import {useRouter} from 'next/navigation';
+import {useParams} from 'next/navigation';
 import {CSSTransition} from 'react-transition-group';
 import DarkModeToggle from '../DarkModeToggle';
 import NextLink from '../basic/NextLink';
@@ -15,6 +14,7 @@ import SocialMedia from '../social/SocialMedia';
 import {ChangeLocale} from './ChangeLocale';
 import {useHeader} from './header-context';
 import {navigationLinks} from './nav-links';
+import {useTranslation} from '../../app/i18n/client';
 
 const sidebarLinks = [
   {
@@ -25,7 +25,6 @@ const sidebarLinks = [
 ];
 
 const SmallScreenSidebar: FunctionComponent = () => {
-  const router = useRouter();
   const EMAIL_ADDRESS = 'carloginocatapang@gmail.com';
   const nodeRef = useRef(null);
   const {hideSidebar, isSidebarVisible} = useHeader();
@@ -35,7 +34,8 @@ const SmallScreenSidebar: FunctionComponent = () => {
     hideSidebar();
   };
 
-  const {t} = useTranslation('common');
+  const locale = useParams()?.lng;
+  const {t} = useTranslation(locale, 'common');
 
   return (
     <>

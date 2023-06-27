@@ -4,18 +4,20 @@ import type {FunctionComponent} from 'react';
 import {BsChevronRight} from '@react-icons/all-files/bs/BsChevronRight';
 import {BsTerminalFill} from '@react-icons/all-files/bs/BsTerminalFill';
 import clsx from 'clsx';
-import {useTranslation} from 'next-i18next';
 import Typist from 'react-typist';
 import 'react-typist/dist/Typist.css';
 import {useScrollToView} from '../utils/scroll-to-view-hook';
 import {GuideArrow} from './GuideArrow';
+import {useTranslation} from '../app/i18n/client';
+import {useParams} from 'next/navigation';
 
 const GreetingsContent: FunctionComponent<{className?: string}> = () => {
   const [isTyping, setIsTyping] = useState(false);
   const {scrollToContent} = useScrollToView('#resume-summary');
   const [isGuideVisible, setIsGuideVisible] = useState(false);
 
-  const {t} = useTranslation('home');
+  const locale = useParams()?.lng;
+  const {t} = useTranslation(locale, 'home');
 
   return (
     <>

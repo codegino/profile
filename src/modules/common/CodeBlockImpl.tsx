@@ -1,9 +1,8 @@
 import {memo} from 'react';
 import type {FunctionComponent} from 'react';
 import clsx from 'clsx';
-import Highlight, {defaultProps} from 'prism-react-renderer';
+import {Highlight, themes} from 'prism-react-renderer';
 import type {Language} from 'prism-react-renderer';
-import vsDark from 'prism-react-renderer/themes/vsDark';
 import ClipboardCopyButton from '../../components/ClipboardCopyButton';
 import NextLink from '../../components/basic/NextLink';
 
@@ -95,8 +94,7 @@ const CodeBlockImpl: FunctionComponent<CodeBlockProps> = ({
           </span>
         )}
         <Highlight
-          {...defaultProps}
-          theme={vsDark}
+          theme={themes.vsDark}
           code={children.trim()}
           language={language}
         >

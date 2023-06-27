@@ -1,10 +1,11 @@
 'use client';
-import {useTranslation} from 'next-i18next';
 import type {IGetPlaiceholderReturn} from 'plaiceholder';
 import {useScrollToView} from '../utils/scroll-to-view-hook';
 import {GuideArrow} from './GuideArrow';
 import {BottomRightShape} from './extras/BottomRightShape';
 import Image from 'next/legacy/image';
+import {useTranslation} from '../app/i18n/client';
+import {useParams} from 'next/navigation';
 
 export default function Hero({
   img,
@@ -12,7 +13,8 @@ export default function Hero({
 }: Pick<IGetPlaiceholderReturn, 'svg' | 'img'>) {
   const {scrollToContent} = useScrollToView('#greetings');
 
-  const {t} = useTranslation('home');
+  const locale = useParams()?.lng;
+  const {t} = useTranslation(locale, 'home');
 
   return (
     <div className="overflow-hidden relative h-[95vh] w-full flex justify-center items-center">

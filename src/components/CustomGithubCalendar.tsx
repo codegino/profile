@@ -1,10 +1,12 @@
 'use client';
-import {useTranslation} from 'next-i18next';
 import GithubCalendar from 'react-github-calendar';
 import NextLink from './basic/NextLink';
+import {useTranslation} from '../app/i18n/client';
+import {useParams} from 'next/navigation';
 
 export default function CustomGithubCalendar() {
-  const {t} = useTranslation('resume');
+  const locale = useParams()?.lng;
+  const {t} = useTranslation(locale, 'resume');
 
   return (
     <div className="flex flex-col items-center my-10 bg-lightest p-1 rounded-xl">

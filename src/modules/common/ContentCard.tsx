@@ -1,16 +1,18 @@
 import type {FunctionComponent} from 'react';
 import clsx from 'clsx';
-import {useTranslation} from 'next-i18next';
 import Image from 'next/legacy/image';
 import NextLink from '../../components/basic/NextLink';
 import type {IBlogMetadata} from '../../models/blog';
 import {ISlideMetadata} from '../../models/slide';
+import {useTranslation} from '../../app/i18n/client';
+import {useParams} from 'next/navigation';
 
 const BlogCard: FunctionComponent<{
   blog: IBlogMetadata | ISlideMetadata;
   slug?: 'blog' | 'slides';
 }> = ({blog, slug: feature = 'blog'}) => {
-  const {t} = useTranslation('common');
+  const locale = useParams()?.lng;
+  const {t} = useTranslation(locale, 'common');
 
   return (
     <figure

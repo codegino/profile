@@ -1,13 +1,9 @@
 import {useEffect} from 'react';
-import {appWithTranslation} from 'next-i18next';
 import type {AppProps} from 'next/app';
-import Head from 'next/head';
-import Link from 'next/link';
 import Script from 'next/script';
 import TagManager from 'react-gtm-module';
 import useDarkMode from 'use-dark-mode';
 import '../../styles/tailwind.css';
-import Footer from '../components/Footer';
 import Header from '../components/header/Header';
 import {useScrollDirection} from '../components/header/use-scroll-direction';
 import '../styles/_globals.css';
@@ -56,8 +52,7 @@ function MyApp({Component, pageProps}: AppProps) {
       ></Script>
       <Header />
       <Component {...pageProps} />
-      <Footer />
     </>
   );
 }
-export default appWithTranslation(MyApp);
+export default MyApp;

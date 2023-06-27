@@ -1,11 +1,12 @@
 import clsx from 'clsx';
-import {useTranslation} from 'next-i18next';
 import dynamic from 'next/dynamic';
 import {useRouter} from 'next/router';
 import NextLink from '../basic/NextLink';
 import SocialMedia from '../social/SocialMedia';
 import {ChangeLocale} from './ChangeLocale';
 import {navigationLinks} from './nav-links';
+import {useTranslation} from '../../app/i18n/client';
+import {useParams} from 'next/navigation';
 
 const DarkModeToggle = dynamic(() => import('../DarkModeToggle'), {
   ssr: false,
@@ -14,7 +15,8 @@ const DarkModeToggle = dynamic(() => import('../DarkModeToggle'), {
 export default function WideScreenContentImpl() {
   const router = useRouter();
 
-  const {t} = useTranslation('common');
+  const locale = useParams()?.lng;
+  const {t} = useTranslation(locale, 'common');
 
   return (
     <div className="hidden items-center justify-between w-full lg:flex">
