@@ -3,9 +3,11 @@ import Script from 'next/script';
 import React, {useEffect} from 'react';
 import TagManager from 'react-gtm-module';
 import useDarkMode from 'use-dark-mode';
+import {useScrollDirection} from '../components/header/use-scroll-direction';
 
 const GlobalEffects = () => {
   const {value: isDarkMode} = useDarkMode();
+  const {direction} = useScrollDirection();
 
   useEffect(() => {
     if (isDarkMode) {
@@ -21,6 +23,18 @@ const GlobalEffects = () => {
       TagManager.initialize({gtmId: process.env.NEXT_PUBLIC_GTM as string});
     }
   }, []);
+
+  useEffect(() => {
+    const bugReportButton = document.getElementById(
+      'birdeatsbug-default-button',
+    ) as HTMLButtonElement;
+
+    if (bugReportButton) {
+      bugReportButton.style.visibility =
+        direction !== 'down' ? 'visible' : 'hidden';
+    }
+  }, [direction]);
+
   return (
     <>
       <Script

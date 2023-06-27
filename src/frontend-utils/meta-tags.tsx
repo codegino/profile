@@ -1,3 +1,5 @@
+import type {Metadata} from 'next';
+
 const metaDescription = (pageName: string) =>
   `Carlo Gino Catapang | Code Gino | ${pageName}, Web Developer, Software Engineer, Frontend Engineer. React, JavaScript, TypeScript expert. Husband & Father`;
 
@@ -29,3 +31,37 @@ export const commonMetaTags = (
     <link rel="apple-touch-icon" href="/assets/logo.png"></link>
   </>
 );
+
+export const newCommonMetaTags = (
+  pageName: string,
+  slug = '/',
+  previewImg = 'preview.png',
+): Metadata => {
+  return {
+    twitter: {
+      images: `https://codegino.com/assets/${previewImg}`,
+      title: 'Carlo Gino Catapang',
+      description: metaDescription(pageName),
+      creator: '@codegino',
+      site: '@codegino',
+    },
+    openGraph: {
+      url: `https://codegino.com${slug}`,
+      type: 'website',
+      title: 'Carlo Gino Catapang',
+      description: metaDescription(pageName),
+      images: {
+        url: `https://codegino.com/assets/${previewImg}`,
+      },
+    },
+    description: metaDescription(pageName),
+    alternates: {
+      canonical: `https://codegino.com${slug}`,
+    },
+    manifest: '/manifest.json',
+    icons: {
+      apple: '/assets/logo.png',
+      icon: '/favicon.ico',
+    },
+  };
+};

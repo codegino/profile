@@ -7,6 +7,7 @@ import {locales} from '../../i18n/locales.enum';
 import LinkWrapper from './LinkWrapper';
 import {NextPage} from 'next';
 import {PropsWithLocale} from '../../../types/server-component';
+import {newCommonMetaTags} from '../../../frontend-utils/meta-tags';
 
 export const dynamic = 'force-static';
 
@@ -21,6 +22,11 @@ const Skills = dynamicImport(
     ssr: false,
   },
 );
+
+export const metadata = {
+  ...newCommonMetaTags('Resume Page', '/resume'),
+  title: 'Carlo Gino Catapang | Code Gino | Resume',
+};
 
 const ResumePage: NextPage<PropsWithLocale> = async ({params: {lng}}) => {
   const {

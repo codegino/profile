@@ -4,7 +4,7 @@ import '../../../styles/tailwind.css';
 import '../../styles/_globals.css';
 import '../../styles/animations.css';
 import '../../styles/custom.css';
-import Header from '../../components/header-v2/Header';
+import Header from '../../components/header/Header';
 import {PropsWithLocale} from '../../types/server-component';
 
 const layout: FC<PropsWithChildren<PropsWithLocale>> = async ({

@@ -4,8 +4,9 @@ import AboutMeHero from '../../../components/AboutMeHero';
 import NextLink from '../../../components/basic/NextLink';
 import type {StaticContent} from '../../../models/static-content';
 import {client, getBlurringImage} from '../../../utils/contentful.utils';
-import {NextPage} from 'next';
+import type {Metadata, NextPage} from 'next';
 import {PropsWithLocale} from '../../../types/server-component';
+import {newCommonMetaTags} from '../../../frontend-utils/meta-tags';
 
 export const dynamic = 'force-static';
 
@@ -14,9 +15,12 @@ const TechStackCarousel = dynamicImport(
   {ssr: false},
 );
 
-export const metadata = {
-  title: 'About Page | Code Gino | Carlo Gino Catapang',
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    ...newCommonMetaTags('About Page'),
+    title: 'About Page | Code Gino | Carlo Gino Catapang',
+  };
+}
 
 const AboutMePage: NextPage<PropsWithLocale> = async () => {
   const {

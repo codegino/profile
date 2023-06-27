@@ -1,6 +1,6 @@
 import fs from 'fs';
 import matter from 'gray-matter';
-import {NextPage} from 'next';
+import type {Metadata, NextPage} from 'next';
 import {serialize} from 'next-mdx-remote/serialize';
 import Head from 'next/head';
 import path from 'path';
@@ -14,8 +14,46 @@ import {BLOGS_PATH} from '../../../../utils/blogs-mdx.utils';
 import {client} from '../../../../utils/contentful.utils';
 import {blurImage} from '../../../../utils/image-blur.utils';
 import BlogFooter from '../../../../modules/blog/BlogFooter';
+import {newCommonMetaTags} from '../../../../frontend-utils/meta-tags';
+import Script from 'next/script';
 
 export const dynamic = 'force-static';
+
+export const generateMetadata = async ({
+  params: {slug},
+}: {
+  params: {slug: string};
+}): Promise<Metadata> => {
+  const postFilePath = path.join(BLOGS_PATH, `${slug}.mdx`);
+  const source = fs.readFileSync(postFilePath);
+
+  const {content, data: blog} = matter(source);
+
+  const asset = await client.getAsset(blog.bannerId);
+
+  const bannerUrl = `https:${asset.fields.file.url}`;
+
+  return {
+    ...newCommonMetaTags(blog.title, `/blog/${blog.slug}}`),
+    title: blog.title,
+    description: blog.description,
+    keywords: blog.keywords?.join(','),
+    openGraph: {
+      url: `https://codegino.com/blog/${blog.slug}`,
+      type: 'article',
+      title: blog.title,
+      description: blog.description,
+      images: bannerUrl,
+    },
+    twitter: {
+      title: blog.title,
+      description: blog.description,
+      images: bannerUrl,
+      creator: '@codegino',
+      site: '@codegino',
+    },
+  };
+};
 
 const BlogPage: NextPage<{
   params: {
@@ -35,34 +73,11 @@ const BlogPage: NextPage<{
 
   return (
     <>
-      <Head>
-        <title>{blog.title}</title>
-        <meta name="keywords" content={blog.keywords?.join(',')} />
-        <meta
-          property="og:url"
-          content={`https://codegino.com/blog/${blog.slug}`}
-        />
-        <meta property="og:type" content="article" />
-        <meta property="og:title" content={blog.title} />
-        <meta property="og:description" content={blog.description} />
-        <meta property="og:image" content={blog.bannerId} />
-
-        <meta name="description" content={blog.description} />
-
-        <meta name="twitter:image" content={blog.bannerId} />
-        <meta name="twitter:description" content={blog.description} />
-        <meta name="twitter:title" content={blog.title} />
-
-        <link rel="icon" href="/favicon.ico" />
-
-        {/* For PWA */}
-        <link rel="manifest" href="/manifest.json" />
-        <link rel="apple-touch-icon" href="/assets/logo.png"></link>
-
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: `{
+      <Script
+        id="structured-data"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: `{
             "@context": "https://schema.org",
             "@type": "Article",
             "headline": "${blog.title}",
@@ -77,11 +92,8 @@ const BlogPage: NextPage<{
             "description": "${blog.description}",
             "articleBody": "${blog.title}. ${blog.description}"
             }`,
-          }}
-        ></script>
-
-        <link rel="canonical" href={`https://codegino.com/blog/${blog.slug}`} />
-      </Head>
+        }}
+      ></Script>
 
       <main role="main">
         <BlogLayout>

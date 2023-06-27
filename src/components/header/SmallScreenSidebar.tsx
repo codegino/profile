@@ -4,7 +4,7 @@ import {AiOutlineClose} from '@react-icons/all-files/ai/AiOutlineClose';
 import {FaEnvelopeSquare} from '@react-icons/all-files/fa/FaEnvelopeSquare';
 import {FaFacebookMessenger} from '@react-icons/all-files/fa/FaFacebookMessenger';
 import clsx from 'clsx';
-import {useRouter} from 'next/router';
+import {useParams} from 'next/navigation';
 import {CSSTransition} from 'react-transition-group';
 import DarkModeToggle from '../DarkModeToggle';
 import NextLink from '../basic/NextLink';
@@ -15,7 +15,6 @@ import {ChangeLocale} from './ChangeLocale';
 import {useHeader} from './header-context';
 import {navigationLinks} from './nav-links';
 import {useTranslation} from '../../app/i18n/client';
-import {useParams} from 'next/navigation';
 
 const sidebarLinks = [
   {
@@ -26,7 +25,6 @@ const sidebarLinks = [
 ];
 
 const SmallScreenSidebar: FunctionComponent = () => {
-  const router = useRouter();
   const EMAIL_ADDRESS = 'carloginocatapang@gmail.com';
   const nodeRef = useRef(null);
   const {hideSidebar, isSidebarVisible} = useHeader();
@@ -92,12 +90,12 @@ const SmallScreenSidebar: FunctionComponent = () => {
                           href={link.url}
                           className={clsx(
                             'px-2 text-xl hover:text-dark hover:underline font-semibold',
-                            {
-                              'text-primary-dark underline':
-                                (link.url === '/' && router.asPath === '/') ||
-                                (link.url !== '/' &&
-                                  router.asPath.includes(link.url)),
-                            },
+                            // {
+                            //   'text-primary-dark underline':
+                            //     (link.url === '/' && router.asPath === '/') ||
+                            //     (link.url !== '/' &&
+                            //       router.asPath.includes(link.url)),
+                            // },
                           )}
                           aria-label={t(link.label)}
                         >

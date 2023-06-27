@@ -1,22 +1,21 @@
 import clsx from 'clsx';
 import dynamic from 'next/dynamic';
-import {useRouter} from 'next/router';
+import {useParams, usePathname} from 'next/navigation';
 import NextLink from '../basic/NextLink';
 import SocialMedia from '../social/SocialMedia';
 import {ChangeLocale} from './ChangeLocale';
 import {navigationLinks} from './nav-links';
 import {useTranslation} from '../../app/i18n/client';
-import {useParams} from 'next/navigation';
 
 const DarkModeToggle = dynamic(() => import('../DarkModeToggle'), {
   ssr: false,
 });
 
 export default function WideScreenContentImpl() {
-  const router = useRouter();
+  const path = usePathname();
+  const params = useParams();
 
-  const locale = useParams()?.lng;
-  const {t} = useTranslation(locale, 'common');
+  const {t} = useTranslation(params?.lng, 'common');
 
   return (
     <div className="hidden items-center justify-between w-full lg:flex">
@@ -28,10 +27,10 @@ export default function WideScreenContentImpl() {
               className="underline-on-hover text-white mr-3 last:mr-0 "
             >
               <NextLink
-                href={'/en' + link.url}
+                href={params?.lng + link.url}
                 className={clsx('hover:text-primary-600', {
                   'text-primary-600 border-b-2 border-b-primary-600':
-                    router.asPath.includes(link.url),
+                    path?.includes(link.url),
                 })}
                 aria-label={t(link.label)}
               >

@@ -11,6 +11,8 @@ import {PropsWithLocale} from '../../types/server-component';
 import {createTranslation} from '../i18n';
 import {NextPage} from 'next';
 import Skills from '../../components/skills/Skills';
+import {newCommonMetaTags} from '../../frontend-utils/meta-tags';
+import Script from 'next/script';
 
 export const dynamic = 'force-static';
 
@@ -37,6 +39,11 @@ const WakatimeCharts = dynamicImport(
   },
 );
 
+export const metadata = {
+  ...newCommonMetaTags('Home Page', '/'),
+  title: 'Home Page | Code Gino | Carlo Gino Catapang',
+};
+
 const HomePage: NextPage<PropsWithLocale> = async ({params: {lng}}) => {
   const {
     props: {skills, heroImage, heroSvg, profileImage, profileSvg, blogs},
@@ -46,6 +53,19 @@ const HomePage: NextPage<PropsWithLocale> = async ({params: {lng}}) => {
 
   return (
     <>
+      <Script
+        id="structured-data"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: `{
+          "@context": "http://schema.org/",
+          "@type": "Person",
+          "name": "Carlo Gino Catapang",
+          "jobTitle": "Senior Software Engineer",
+          "url": "https://codegino.com"
+          }`,
+        }}
+      />
       <Hero img={heroImage} svg={heroSvg} />
       <FullScreenWrapper tr bl>
         <Greetings />

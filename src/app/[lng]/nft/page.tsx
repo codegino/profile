@@ -3,7 +3,14 @@ import Image from 'next/legacy/image';
 import NextLink from '../../../components/basic/NextLink';
 import nfts from '../../../data/eth-nft.json';
 
+import {newCommonMetaTags} from '../../../frontend-utils/meta-tags';
+
 export const dynamic = 'force-static';
+
+export const metadata = {
+  ...newCommonMetaTags('NFT Collection', '/nft', 'nft-preview.jpg'),
+  title: 'My NFT Collection | CodeGino | Carlo Gino Catapang',
+};
 
 export default async function NFT() {
   const {

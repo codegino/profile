@@ -1,12 +1,16 @@
-import Head from 'next/head';
 import SubscribeForm from '../../../components/SubscribeForm';
-import {commonMetaTags} from '../../../frontend-utils/meta-tags';
+import {newCommonMetaTags} from '../../../frontend-utils/meta-tags';
 import type {IBlogMetadata} from '../../../models/blog';
 import {getBlogsMetadata} from '../../../utils/blogs-mdx.utils';
 import {client} from '../../../utils/contentful.utils';
 import BlogsWrapper from './BlogsWrapper';
 
 export const dynamic = 'force-static';
+
+export const metadata = {
+  ...newCommonMetaTags('Blogs Page', '/blog'),
+  title: 'My Blogs Listing Page | CodeGino | Carlo Gino Catapang',
+};
 
 export default async function Blog() {
   const {
@@ -15,11 +19,6 @@ export default async function Blog() {
 
   return (
     <>
-      <Head>
-        <title>My Blogs Listing Page | CodeGino | Carlo Gino Catapang</title>
-        {commonMetaTags('Blogs Page', '/blog')}
-      </Head>
-
       <main className="flex items-center flex-col pt-12">
         <h1>My Blogs</h1>
         <BlogsWrapper blogs={blogs} />
@@ -44,10 +43,6 @@ const getStaticProps = async () => {
   return {
     props: {
       blogs: blogs as IBlogMetadata[],
-      // ...(await serverSideTranslations(locale as string, [
-      //   'common',
-      //   'newsletter',
-      // ])),
     },
   };
 };
