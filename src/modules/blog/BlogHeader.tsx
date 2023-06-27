@@ -1,17 +1,18 @@
+'use client';
 import type {FunctionComponent} from 'react';
-import {useTranslation} from 'next-i18next';
-import {useRouter} from 'next/router';
+import {useParams, useRouter} from 'next/navigation';
 import {IGetPlaiceholderReturn} from 'plaiceholder';
 import {BlurringImage} from '../../components/BlurringImage';
 import type {IBlogMetadata} from '../../models/blog';
+import {useTranslation} from '../../app/i18n/client';
 
 type Props = {
   blog: IBlogMetadata;
 } & Pick<IGetPlaiceholderReturn, 'svg' | 'img'>;
 
 const BlogHeader: FunctionComponent<Props> = ({blog, img, svg}) => {
-  const {t} = useTranslation('common');
-  const {locale} = useRouter();
+  const locale = useParams()?.lng;
+  const {t} = useTranslation(locale, 'common');
 
   return (
     <article className="mb-8 text-center flex flex-col items-center">

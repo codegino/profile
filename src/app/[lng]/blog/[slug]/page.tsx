@@ -1,46 +1,28 @@
-import {useEffect} from 'react';
 import fs from 'fs';
 import matter from 'gray-matter';
-import {
-  GetStaticPaths,
-  GetStaticPropsContext,
-  InferGetStaticPropsType,
-} from 'next';
-import {serverSideTranslations} from 'next-i18next/serverSideTranslations';
+import {NextPage} from 'next';
 import {serialize} from 'next-mdx-remote/serialize';
-import dynamic from 'next/dynamic';
 import Head from 'next/head';
-import {useRouter} from 'next/router';
 import path from 'path';
 import remarkMdxCodeMeta from 'remark-mdx-code-meta';
-import type {IBlogMetadata} from '../../../models/blog';
-import BlogContent from '../../../modules/blog/BlogContent';
-import BlogHeader from '../../../modules/blog/BlogHeader';
-import BlogLayout from '../../../modules/common/ContentLayout';
-import {getBlogsMetadata} from '../../../utils/blogs-mdx.utils';
-import {BLOGS_PATH} from '../../../utils/blogs-mdx.utils';
-import {client} from '../../../utils/contentful.utils';
-import {blurImage} from '../../../utils/image-blur.utils';
+import type {IBlogMetadata} from '../../../../models/blog';
+import BlogContent from '../../../../modules/blog/BlogContent';
+import BlogHeader from '../../../../modules/blog/BlogHeader';
+import BlogLayout from '../../../../modules/common/ContentLayout';
+import {getBlogsMetadata} from '../../../../utils/blogs-mdx.utils';
+import {BLOGS_PATH} from '../../../../utils/blogs-mdx.utils';
+import {client} from '../../../../utils/contentful.utils';
+import {blurImage} from '../../../../utils/image-blur.utils';
+import BlogFooter from '../../../../modules/blog/BlogFooter';
 
-const BlogFooter = dynamic(() => import('../../../modules/blog/BlogFooter'), {
-  ssr: false,
-});
+export const dynamic = 'force-static';
 
-export default function BlogPage({
-  source,
-  frontMatter: blog,
-  img,
-  svg,
-}: InferGetStaticPropsType<typeof getStaticProps>) {
-  const router = useRouter();
-
-  useEffect(() => {
-    if (router.locale !== 'en') {
-      router.replace(router.route, router.asPath, {
-        locale: 'en',
-      });
-    }
-  }, [router]);
+const BlogPage: NextPage<{
+  params: {
+    slug: string;
+  };
+}> = async ({params: {slug}}) => {
+  const {frontMatter: blog, img, source, svg} = await getStaticProps(slug);
 
   if (!blog) {
     return (
@@ -111,10 +93,10 @@ export default function BlogPage({
       </main>
     </>
   );
-}
+};
 
-export const getStaticProps = async ({params}: GetStaticPropsContext) => {
-  const postFilePath = path.join(BLOGS_PATH, `${params?.slug}.mdx`);
+const getStaticProps = async (slug: string) => {
+  const postFilePath = path.join(BLOGS_PATH, `${slug}.mdx`);
   const source = fs.readFileSync(postFilePath);
 
   const {content, data} = matter(source);
@@ -135,31 +117,23 @@ export const getStaticProps = async ({params}: GetStaticPropsContext) => {
   });
 
   return {
-    props: {
-      source: mdxSource,
-      frontMatter: {
-        ...data,
-        slug: params?.slug,
-        bannerId: bannerUrl,
-      } as IBlogMetadata,
-      img,
-      svg,
-      ...(await serverSideTranslations('en', ['common'])),
-    },
+    source: mdxSource,
+    frontMatter: {
+      ...data,
+      slug,
+      bannerId: bannerUrl,
+    } as IBlogMetadata,
+    img,
+    svg,
   };
 };
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = (await getBlogsMetadata()).map(meta => {
+export const generateStaticParams = async () => {
+  return (await getBlogsMetadata()).map(meta => {
     return {
-      params: {
-        slug: meta.slug,
-      },
+      slug: meta.slug,
     };
   });
-
-  return {
-    paths,
-    fallback: true,
-  };
 };
+
+export default BlogPage;

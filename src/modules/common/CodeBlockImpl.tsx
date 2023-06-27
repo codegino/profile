@@ -140,11 +140,11 @@ const CodeBlockImpl: FunctionComponent<CodeBlockProps> = ({
                 style={style}
               >
                 {tokens.map((line, i) => (
-                  <span key={i} {...getLineProps({line, key: i})}>
+                  <span {...getLineProps({line, key: i})} key={i}>
                     {line.map((token, key) => (
                       <span
-                        key={key}
                         {...getTokenProps({token, key})}
+                        key={key}
                         className={clsx({
                           '!text-green-400': add && addedLines.has(i + 1),
                           '!text-red-400': del && removedLines.has(i + 1),

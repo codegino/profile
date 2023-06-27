@@ -1,3 +1,4 @@
+'use client';
 import {useEffect, useState} from 'react';
 import {FaCheck as CheckIcon} from '@react-icons/all-files/fa/FaCheck';
 import {FaCopy as CopyIcon} from '@react-icons/all-files/fa/FaCopy';
