@@ -1,14 +1,8 @@
-import {GetStaticProps} from 'next';
-import {serverSideTranslations} from 'next-i18next/serverSideTranslations';
 import Head from 'next/head';
 
 export default function Blog() {
   return (
     <>
-      <Head>
-        <title>Thank you for signing up</title>
-        <meta name="robots" content="noindex"></meta>
-      </Head>
       <main className="flex items-center flex-col min-h-[80vh] py-8">
         <article className="textc max-w-2xl">
           <h1>Success🥳</h1>
@@ -22,12 +16,3 @@ export default function Blog() {
     </>
   );
 }
-
-export const getStaticProps: GetStaticProps = async ({locale}) => {
-  return {
-    props: {
-      ...(await serverSideTranslations(locale as string, ['common'])),
-    },
-    revalidate: 1,
-  };
-};

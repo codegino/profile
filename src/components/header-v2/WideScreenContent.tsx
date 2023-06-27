@@ -27,7 +27,7 @@ export default function WideScreenContentImpl() {
               className="underline-on-hover text-white mr-3 last:mr-0 "
             >
               <NextLink
-                href={link.url}
+                href={params?.lng + link.url}
                 className={clsx('hover:text-primary-600', {
                   'text-primary-600 border-b-2 border-b-primary-600':
                     path?.includes(link.url),

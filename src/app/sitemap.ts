@@ -4,26 +4,26 @@ import {getBlogsMetadata} from '../utils/blogs-mdx.utils';
 const ROOT_URL = 'https://codegino.com';
 
 const staticPages: MetadataRoute.Sitemap = [
-  {
-    url: `${ROOT_URL}/`,
-    lastModified: '2021-12-29',
-  },
-  {
-    url: `${ROOT_URL}/about`,
-    lastModified: '2021-12-29',
-  },
-  {
-    url: `${ROOT_URL}/resume`,
-    lastModified: '2021-12-29',
-  },
-  {
-    url: `${ROOT_URL}/blog`,
-    lastModified: '2021-12-29',
-  },
-  {
-    url: `${ROOT_URL}/words`,
-    lastModified: '2021-12-29',
-  },
+  // {
+  //   url: `${ROOT_URL}/`,
+  //   lastModified: '2021-12-29',
+  // },
+  // {
+  //   url: `${ROOT_URL}/about`,
+  //   lastModified: '2021-12-29',
+  // },
+  // {
+  //   url: `${ROOT_URL}/resume`,
+  //   lastModified: '2021-12-29',
+  // },
+  // {
+  //   url: `${ROOT_URL}/blog`,
+  //   lastModified: '2021-12-29',
+  // },
+  // {
+  //   url: `${ROOT_URL}/words`,
+  //   lastModified: '2021-12-29',
+  // },
 ];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {

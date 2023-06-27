@@ -1,15 +1,16 @@
 import {FaEnvelopeSquare} from '@react-icons/all-files/fa/FaEnvelopeSquare';
 import {FaMapMarkerAlt} from '@react-icons/all-files/fa/FaMapMarkerAlt';
-import {useTranslation} from 'next-i18next';
 import {IGetPlaiceholderReturn} from 'plaiceholder';
 import {BlurringImage} from './BlurringImage';
 import NextLink from './basic/NextLink';
+import {createTranslation} from '../app/i18n';
 
-export default function ResumeSummary({
+export default async function ResumeSummary({
   img,
   svg,
-}: Pick<IGetPlaiceholderReturn, 'svg' | 'img'>) {
-  const {t} = useTranslation('resume');
+  lang,
+}: Pick<IGetPlaiceholderReturn, 'svg' | 'img'> & {lang: string}) {
+  const {t} = await createTranslation(lang, 'resume');
 
   return (
     <div

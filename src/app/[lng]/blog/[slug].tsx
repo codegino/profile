@@ -13,16 +13,16 @@ import Head from 'next/head';
 import {useRouter} from 'next/router';
 import path from 'path';
 import remarkMdxCodeMeta from 'remark-mdx-code-meta';
-import type {IBlogMetadata} from '../../models/blog';
-import BlogContent from '../../modules/blog/BlogContent';
-import BlogHeader from '../../modules/blog/BlogHeader';
-import BlogLayout from '../../modules/common/ContentLayout';
-import {getBlogsMetadata} from '../../utils/blogs-mdx.utils';
-import {BLOGS_PATH} from '../../utils/blogs-mdx.utils';
-import {client} from '../../utils/contentful.utils';
-import {blurImage} from '../../utils/image-blur.utils';
+import type {IBlogMetadata} from '../../../models/blog';
+import BlogContent from '../../../modules/blog/BlogContent';
+import BlogHeader from '../../../modules/blog/BlogHeader';
+import BlogLayout from '../../../modules/common/ContentLayout';
+import {getBlogsMetadata} from '../../../utils/blogs-mdx.utils';
+import {BLOGS_PATH} from '../../../utils/blogs-mdx.utils';
+import {client} from '../../../utils/contentful.utils';
+import {blurImage} from '../../../utils/image-blur.utils';
 
-const BlogFooter = dynamic(() => import('../../modules/blog/BlogFooter'), {
+const BlogFooter = dynamic(() => import('../../../modules/blog/BlogFooter'), {
   ssr: false,
 });
 

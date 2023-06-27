@@ -12,7 +12,6 @@
   "dependencies": {
     "@react-icons/all-files": "4.1.0",
     "@supabase/supabase-js": "2.22.0",
-    "accept-language": "3.0.18",
     "clsx": "1.2.1",
     "contentful": "9.3.5",
     "i18next": "23.2.3",

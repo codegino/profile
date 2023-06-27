@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic';
-import ResumeSummary from '../../../components/ResumeSummary-v2';
+import ResumeSummary from '../../../components/ResumeSummary';
 import Timeline from '../../../components/timeline/Timeline';
 import {client, getBlurringImage} from '../../../utils/contentful.utils';
 import {fectchExperiences, fetchSkills} from '../../../utils/resume-props';

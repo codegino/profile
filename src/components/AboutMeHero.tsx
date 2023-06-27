@@ -1,10 +1,9 @@
 'use client';
 
 import {IGetPlaiceholderReturn} from 'plaiceholder';
-import Zoom from 'react-reveal/Zoom';
 import {useScrollToView} from '../utils/scroll-to-view-hook';
-import {BlurringImage} from './BlurringImage';
 import {GuideArrow} from './GuideArrow';
+import Image from 'next/legacy/image';
 
 const quote = ['With great power', 'comes great', 'responsibility', '- Batman'];
 
@@ -16,11 +15,9 @@ export default function AboutMeHero({
 
   return (
     <div className="overflow-hidden relative h-[95vh] m-auto flex justify-center bg-black">
-      <BlurringImage
+      <Image
+        {...img}
         alt="weird quote"
-        title="weird quote"
-        img={img}
-        svg={svg}
         layout="fill"
         objectFit="cover"
         objectPosition="right"
@@ -32,18 +29,17 @@ export default function AboutMeHero({
           lg:top-10 lg:left-10"
       >
         {quote.map((word, i) => (
-          <Zoom delay={i * 700 + i * i * 150} key={`${word}-${i}`}>
-            <p className="text-white text-3xl md:text-5xl lg:text-6xl text-shadow bg-transparent">
-              {word}
-            </p>
-          </Zoom>
+          <p
+            key={i}
+            className="text-white text-3xl md:text-5xl lg:text-6xl text-shadow bg-transparent"
+          >
+            {word}
+          </p>
         ))}
       </div>
-      <Zoom delay={4000}>
-        <div className="absolute bottom-8 z-10">
-          <GuideArrow onClick={scrollToContent} />
-        </div>
-      </Zoom>
+      <div className="absolute bottom-8 z-10">
+        <GuideArrow onClick={scrollToContent} />
+      </div>
     </div>
   );
 }

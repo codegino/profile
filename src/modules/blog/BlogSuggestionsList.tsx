@@ -1,14 +1,17 @@
-import {useTranslation} from 'next-i18next';
+'use client';
+import {useTranslation} from '../../app/i18n/client';
 import NextLink from '../../components/basic/NextLink';
 import type {IBlogMetadata} from '../../models/blog';
 import {BlogCardPreview} from './BlogCardPreview';
+import {useParams} from 'next/navigation';
 
 type Props = {
   blogs: IBlogMetadata[];
 };
 
 const BlogSuggestionsList = ({blogs}: Props) => {
-  const {t} = useTranslation('home');
+  const params = useParams();
+  const {t} = useTranslation(params?.lng, 'home');
 
   return (
     <section

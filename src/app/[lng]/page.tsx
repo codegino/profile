@@ -1,87 +1,53 @@
-import type {GetStaticProps, InferGetStaticPropsType} from 'next';
-import {useTranslation} from 'next-i18next';
-import {serverSideTranslations} from 'next-i18next/serverSideTranslations';
 import dynamic from 'next/dynamic';
-import Head from 'next/head';
-import Script from 'next/script';
-import {FullScreenWrapper} from '../components/FullScreenWrapper';
-import Hero from '../components/Hero';
-import ResumeSummary from '../components/ResumeSummary';
-import NextLink from '../components/basic/NextLink';
-import {commonMetaTags} from '../frontend-utils/meta-tags';
-import {generateRssFeed} from '../lib/rss';
-import BlogSuggestionsList from '../modules/blog/BlogSuggestionsList';
-import {getBlogsMetadata} from '../utils/blogs-mdx.utils';
-import {client, getBlurringImage} from '../utils/contentful.utils';
-import {fetchSkills} from '../utils/resume-props';
+import {FullScreenWrapper} from '../../components/FullScreenWrapper';
+import Hero from '../../components/Hero';
+import ResumeSummary from '../../components/ResumeSummary';
+import NextLink from '../../components/basic/NextLink';
+import BlogSuggestionsList from '../../modules/blog/BlogSuggestionsList';
+import {getBlogsMetadata} from '../../utils/blogs-mdx.utils';
+import {client, getBlurringImage} from '../../utils/contentful.utils';
+import {fetchSkills} from '../../utils/resume-props';
+import {PropsWithLocale} from '../../types/server-component';
+import {createTranslation} from '../i18n';
+import {NextPage} from 'next';
+import Skills from '../../components/skills/Skills';
 
-const Greetings = dynamic(() => import('../components/Greetings'), {
-  ssr: true,
-});
-
-const Skills = dynamic(() => import('../components/skills/Skills'), {
+const Greetings = dynamic(() => import('../../components/Greetings'), {
   ssr: false,
 });
 
-const SubscribeForm = dynamic(() => import('../components/SubscribeForm'), {
+const SubscribeForm = dynamic(() => import('../../components/SubscribeForm'), {
   ssr: false,
 });
 
 const CustomGithubCalendar = dynamic(
-  () => import('../components/CustomGithubCalendar'),
+  () => import('../../components/CustomGithubCalendar'),
   {ssr: false},
 );
 
-const WakatimeCharts = dynamic(() => import('../components/WakatimeCharts'), {
-  ssr: false,
-});
+const WakatimeCharts = dynamic(
+  () => import('../../components/WakatimeCharts'),
+  {
+    ssr: false,
+  },
+);
 
-export default function Home({
-  skills,
-  heroImage,
-  heroSvg,
-  profileImage,
-  profileSvg,
-  blogs,
-}: InferGetStaticPropsType<typeof getStaticProps>) {
-  const {t} = useTranslation('home');
+const HomePage: NextPage<PropsWithLocale> = async ({params: {lng}}) => {
+  const {
+    props: {skills, heroImage, heroSvg, profileImage, profileSvg, blogs},
+  } = await getStaticProps();
+
+  const {t} = await createTranslation(lng, 'home');
 
   return (
     <>
-      <Head>
-        <title>Carlo Gino Catapang | Code Gino | Home</title>
-        {commonMetaTags('Home Page')}
-
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: `{
-          "@context": "http://schema.org/",
-          "@type": "Person",
-          "name": "Carlo Gino Catapang",
-          "jobTitle": "Senior Software Engineer",
-          "url": "https://codegino.com"
-          }`,
-          }}
-        />
-
-        {/* ABtesting.ai Code */}
-        <link rel="preconnect" href="https://external.abtesting.ai" />
-      </Head>
-      {/* ABtesting.ai Code */}
-
-      <Script
-        strategy="afterInteractive"
-        src="https://js.abtesting.ai/ab.js?userid=5393"
-      />
-
       <Hero img={heroImage} svg={heroSvg} />
       <FullScreenWrapper tr bl>
         <Greetings />
       </FullScreenWrapper>
       <main>
         <FullScreenWrapper tl br className="bg-lightest">
-          <ResumeSummary img={profileImage} svg={profileSvg} />
+          <ResumeSummary img={profileImage} svg={profileSvg} lang={lng} />
           <Skills skills={skills} />
           <div className="text-center my-10">
             <p className="text-xl">
@@ -129,12 +95,12 @@ export default function Home({
       </main>
       <FullScreenWrapper className="bg-light" tr bl id="subscribe">
         <SubscribeForm />
-      </FullScreenWrapper>
+      </FullScreenWrapper>{' '}
     </>
   );
-}
+};
 
-export const getStaticProps: GetStaticProps = async ({locale}) => {
+const getStaticProps = async () => {
   const {img: heroImage, svg: heroSvg} = await getBlurringImage(
     '4tQ2p1PhiXEya0uWbAZC6O',
   );
@@ -154,9 +120,9 @@ export const getStaticProps: GetStaticProps = async ({locale}) => {
     blog.bannerId = bannerUrl;
   }
 
-  if (process.env.NODE_ENV === 'production') {
-    await generateRssFeed();
-  }
+  //   if (process.env.NODE_ENV === 'production') {
+  //     await generateRssFeed();
+  //   }
 
   const skills = await fetchSkills(true);
 
@@ -168,12 +134,8 @@ export const getStaticProps: GetStaticProps = async ({locale}) => {
       heroSvg,
       profileImage,
       profileSvg,
-      ...(await serverSideTranslations(locale as string, [
-        'common',
-        'home',
-        'resume',
-        'newsletter',
-      ])),
     },
   };
 };
+
+export default HomePage;
