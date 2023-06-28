@@ -9,8 +9,8 @@ dependencies:
     specifier: 4.1.0
     version: 4.1.0(react@18.2.0)
   '@supabase/supabase-js':
-    specifier: 2.23.0
-    version: 2.23.0
+    specifier: 2.26.0
+    version: 2.26.0
   clsx:
     specifier: 1.2.1
     version: 1.2.1
@@ -680,8 +680,8 @@ packages:
       - encoding
     dev: false
 
-  /@supabase/supabase-js@2.23.0:
-    resolution: {integrity: sha512-mlkzAQ3aLmcyJtlEdrkLNeq4MbnWcr/W+PjWZwBfxnrakoQqT97eRt/XZ1bXcWbmA9NKG8wHsLiTEOJmWW6CcQ==}
+  /@supabase/supabase-js@2.26.0:
+    resolution: {integrity: sha512-RXmTPTobaYAwkSobadHZmEVLmzX3SGrtRZIGfLWnLv92VzBRrjuXn0a+bJqKl50GUzsyqPA+j5pod7EwMkcH5A==}
     dependencies:
       '@supabase/functions-js': 2.1.2
       '@supabase/gotrue-js': 2.34.0
