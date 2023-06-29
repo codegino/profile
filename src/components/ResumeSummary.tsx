@@ -1,6 +1,6 @@
 import {FaEnvelopeSquare} from '@react-icons/all-files/fa/FaEnvelopeSquare';
 import {FaMapMarkerAlt} from '@react-icons/all-files/fa/FaMapMarkerAlt';
-import {IGetPlaiceholderReturn} from 'plaiceholder';
+import type {IGetPlaiceholderReturn} from 'plaiceholder';
 import {BlurringImage} from './BlurringImage';
 import NextLink from './basic/NextLink';
 import {createTranslation} from '../app/i18n';

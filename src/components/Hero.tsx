@@ -3,13 +3,14 @@ import type {IGetPlaiceholderReturn} from 'plaiceholder';
 import {useScrollToView} from '../utils/scroll-to-view-hook';
 import {GuideArrow} from './GuideArrow';
 import {BottomRightShape} from './extras/BottomRightShape';
-import Image from 'next/legacy/image';
 import {useTranslation} from '../app/i18n/client';
 import {useParams} from 'next/navigation';
 import {Zoom} from 'react-awesome-reveal';
+import {BlurringImage} from './BlurringImage';
 
 export default function Hero({
-  img: {height, width, ...imgRest},
+  img,
+  svg,
 }: Pick<IGetPlaiceholderReturn, 'svg' | 'img'>) {
   const {scrollToContent} = useScrollToView('#greetings');
 
@@ -18,10 +19,11 @@ export default function Hero({
 
   return (
     <div className="overflow-hidden relative h-[95vh] w-full flex justify-center items-center">
-      <Image
-        {...imgRest}
+      <BlurringImage
         alt="black hole"
         title="black hole"
+        img={img}
+        svg={svg}
         layout="fill"
         objectFit="cover"
         objectPosition="center"

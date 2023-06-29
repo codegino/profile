@@ -1,23 +1,26 @@
 'use client';
 
-import {IGetPlaiceholderReturn} from 'plaiceholder';
+import type {IGetPlaiceholderReturn} from 'plaiceholder';
 import {useScrollToView} from '../utils/scroll-to-view-hook';
 import {GuideArrow} from './GuideArrow';
-import Image from 'next/legacy/image';
 import {Zoom} from 'react-awesome-reveal';
+import {BlurringImage} from './BlurringImage';
 
 const quote = ['With great power', 'comes great', 'responsibility', '- Batman'];
 
 export default function AboutMeHero({
   img,
+  svg,
 }: Pick<IGetPlaiceholderReturn, 'svg' | 'img'>) {
   const {scrollToContent} = useScrollToView('#about-me-details');
 
   return (
     <div className="overflow-hidden relative h-[95vh] m-auto flex justify-center bg-black">
-      <Image
-        {...img}
+      <BlurringImage
         alt="weird quote"
+        title="weird quote"
+        img={img}
+        svg={svg}
         layout="fill"
         objectFit="cover"
         objectPosition="right"

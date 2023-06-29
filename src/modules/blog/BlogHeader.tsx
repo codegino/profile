@@ -1,7 +1,7 @@
 'use client';
 import type {FunctionComponent} from 'react';
-import {useParams, useRouter} from 'next/navigation';
-import {IGetPlaiceholderReturn} from 'plaiceholder';
+import {useParams} from 'next/navigation';
+import type {IGetPlaiceholderReturn} from 'plaiceholder';
 import {BlurringImage} from '../../components/BlurringImage';
 import type {IBlogMetadata} from '../../models/blog';
 import {useTranslation} from '../../app/i18n/client';
