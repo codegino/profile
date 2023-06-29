@@ -4,14 +4,14 @@ import {useState} from 'react';
 import type {CSSProperties} from 'react';
 import clsx from 'clsx';
 import Image, {ImageProps} from 'next/legacy/image';
-import type {IGetPlaiceholderReturn} from 'plaiceholder';
+import type {BlurImageType} from '../utils/image-blur.utils';
 
 type BlurringImageProps = {blurLevel?: number; transformScaleLevel?: number};
 
 type Props = BlurringImageProps & {
   style?: CSSProperties;
 } & Omit<ImageProps, 'src'> &
-  Pick<IGetPlaiceholderReturn, 'svg' | 'img'>;
+  Pick<BlurImageType, 'img' | 'svg'>;
 
 export function BlurringImage({
   svg: [Svg, svgProps, rectangles],
@@ -26,6 +26,7 @@ export function BlurringImage({
   ...props
 }: Props) {
   const [hasPlaceholder, setHasPlaceholder] = useState(true);
+  img;
   return (
     <div
       className={clsx('relative overflow-hidden h-full w-full', className)}

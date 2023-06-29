@@ -1,15 +1,15 @@
 import {FaEnvelopeSquare} from '@react-icons/all-files/fa/FaEnvelopeSquare';
 import {FaMapMarkerAlt} from '@react-icons/all-files/fa/FaMapMarkerAlt';
-import type {IGetPlaiceholderReturn} from 'plaiceholder';
 import {BlurringImage} from './BlurringImage';
 import NextLink from './basic/NextLink';
 import {createTranslation} from '../app/i18n';
+import type {BlurImageType} from '../utils/image-blur.utils';
 
 export default async function ResumeSummary({
   img,
   svg,
   lang,
-}: Pick<IGetPlaiceholderReturn, 'svg' | 'img'> & {lang: string}) {
+}: Pick<BlurImageType, 'svg' | 'img'> & {lang: string}) {
   const {t} = await createTranslation(lang, 'resume');
 
   return (

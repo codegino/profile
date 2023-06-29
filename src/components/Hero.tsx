@@ -1,5 +1,4 @@
 'use client';
-import type {IGetPlaiceholderReturn} from 'plaiceholder';
 import {useScrollToView} from '../utils/scroll-to-view-hook';
 import {GuideArrow} from './GuideArrow';
 import {BottomRightShape} from './extras/BottomRightShape';
@@ -7,11 +6,9 @@ import {useTranslation} from '../app/i18n/client';
 import {useParams} from 'next/navigation';
 import {Zoom} from 'react-awesome-reveal';
 import {BlurringImage} from './BlurringImage';
+import type {BlurImageType} from '../utils/image-blur.utils';
 
-export default function Hero({
-  img,
-  svg,
-}: Pick<IGetPlaiceholderReturn, 'svg' | 'img'>) {
+export default function Hero({img, svg}: Pick<BlurImageType, 'svg' | 'img'>) {
   const {scrollToContent} = useScrollToView('#greetings');
 
   const locale = useParams()?.lng;

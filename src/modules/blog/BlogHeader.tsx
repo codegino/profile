@@ -1,14 +1,14 @@
 'use client';
 import type {FunctionComponent} from 'react';
 import {useParams} from 'next/navigation';
-import type {IGetPlaiceholderReturn} from 'plaiceholder';
 import {BlurringImage} from '../../components/BlurringImage';
 import type {IBlogMetadata} from '../../models/blog';
 import {useTranslation} from '../../app/i18n/client';
+import type {BlurImageType} from '../../utils/image-blur.utils';
 
 type Props = {
   blog: IBlogMetadata;
-} & Pick<IGetPlaiceholderReturn, 'svg' | 'img'>;
+} & Pick<BlurImageType, 'svg' | 'img'>;
 
 const BlogHeader: FunctionComponent<Props> = ({blog, img, svg}) => {
   const locale = useParams()?.lng;
