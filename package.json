@@ -59,7 +59,7 @@
     "gray-matter": "4.0.3",
     "husky": "8.0.3",
     "lint-staged": "13.2.3",
-    "plaiceholder": "2.5.0",
+    "plaiceholder": "3.0.0",
     "postcss": "8.4.24",
     "prettier": "2.8.8",
     "sharp": "0.32.1",
