@@ -76,8 +76,8 @@ const getStaticProps = async ({locale}: {locale: locales}) => {
   const resumePdfAsset = await client.getAsset('3BjRYsXrkYX4uwCWkYHCjK');
   const resumeWordAsset = await client.getAsset('3WY4hQgMdEJiffLSpsHRnJ');
 
-  const resumePdfUrl = `https:${resumePdfAsset.fields.file.url}`;
-  const resumeWordUrl = `https:${resumeWordAsset.fields.file.url}`;
+  const resumePdfUrl = `https:${resumePdfAsset.fields?.file?.url}`;
+  const resumeWordUrl = `https:${resumeWordAsset.fields?.file?.url}`;
 
   return {
     props: {
@@ -87,11 +87,6 @@ const getStaticProps = async ({locale}: {locale: locales}) => {
       resumeWordUrl,
       profileImage: img,
       profileSvg: svg,
-      // ...(await serverSideTranslations(locale as string, [
-      //   'common',
-      //   'home',
-      //   'resume',
-      // ])),
     },
   };
 };

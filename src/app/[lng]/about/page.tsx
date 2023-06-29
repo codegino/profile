@@ -7,6 +7,8 @@ import {client, getBlurringImage} from '../../../utils/contentful.utils';
 import type {Metadata, NextPage} from 'next';
 import {PropsWithLocale} from '../../../types/server-component';
 import {newCommonMetaTags} from '../../../frontend-utils/meta-tags';
+import {EntryFieldTypes} from 'contentful';
+import {locales} from '../../i18n/locales.enum';
 
 export const dynamic = 'force-static';
 
@@ -87,24 +89,36 @@ const AboutMePage: NextPage<PropsWithLocale> = async () => {
   );
 };
 
+type StaticAssetSkeleton = {
+  contentTypeId: 'staticText';
+  fields: {
+    key: EntryFieldTypes.Text;
+    content: EntryFieldTypes.Text;
+    category: EntryFieldTypes.Text;
+    label: EntryFieldTypes.Text;
+    order: EntryFieldTypes.Number;
+  };
+};
+
 const getStaticProps = async () => {
-  const entries = await client.getEntries<StaticContent>({
+  const entries = await client.getEntries<StaticAssetSkeleton, locales>({
     content_type: 'staticText',
     'fields.category': 'about_me',
-    order: '-fields.order',
+    order: ['fields.order'],
   });
 
   const {img, svg} = await getBlurringImage('6F53k0CwsdmREXx1Y2ErSl');
 
-  const assets = await client.getAssets({
-    'fields.title[in]':
+  const assets = await client.getAssets<locales>({
+    'fields.title[in]': [
       'React,TypeScript,NextJS,Prettier,ESLint,Emotion,Supabase,GitHub,Vercel',
+    ],
   });
 
   const techStacks = assets.items.map(asset => ({
     ...asset,
-    name: asset.fields.title,
-    url: asset.fields.file.url,
+    name: asset.fields.title as string,
+    url: asset.fields.file?.url as string,
   }));
 
   return {

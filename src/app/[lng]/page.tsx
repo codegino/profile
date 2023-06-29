@@ -141,7 +141,7 @@ const getStaticProps = async () => {
   for (let blog of blogs) {
     const asset = await client.getAsset(blog.bannerId);
 
-    const bannerUrl = `https:${asset.fields.file.url}`;
+    const bannerUrl = `https:${asset.fields.file?.url}`;
     blog.bannerId = bannerUrl;
   }
 

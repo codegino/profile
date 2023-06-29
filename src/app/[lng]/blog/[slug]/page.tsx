@@ -31,7 +31,7 @@ export const generateMetadata = async ({
 
   const asset = await client.getAsset(blog.bannerId);
 
-  const bannerUrl = `https:${asset.fields.file.url}`;
+  const bannerUrl = `https:${asset.fields.file?.url}`;
 
   return {
     ...newCommonMetaTags(blog.title, `/blog/${blog.slug}}`),
@@ -115,7 +115,7 @@ const getStaticProps = async (slug: string) => {
 
   const asset = await client.getAsset(data.bannerId);
 
-  const bannerUrl = `https:${asset.fields.file.url}`;
+  const bannerUrl = `https:${asset.fields.file?.url}`;
   const {img, svg} = await blurImage(bannerUrl);
 
   const mdxSource = await serialize(content, {

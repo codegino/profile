@@ -1,4 +1,3 @@
-// import {createClient} from 'contentful';
 import Image from 'next/legacy/image';
 import NextLink from '../../../components/basic/NextLink';
 import nfts from '../../../data/eth-nft.json';

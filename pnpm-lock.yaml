@@ -18,8 +18,8 @@ dependencies:
     specifier: 1.2.1
     version: registry.npmjs.org/clsx@1.2.1
   contentful:
-    specifier: 9.3.5
-    version: registry.npmjs.org/contentful@9.3.5
+    specifier: 10.3.0
+    version: registry.npmjs.org/contentful@10.3.0
   i18next:
     specifier: 23.2.5
     version: registry.npmjs.org/i18next@23.2.5
@@ -1581,13 +1581,12 @@ packages:
     engines: {node: '>=4'}
     dev: true
 
-  registry.npmjs.org/axios@0.27.2:
-    resolution: {integrity: sha512-t+yRIyySRTp/wua5xEr+z1q60QmLq8ABsS5O9Me1AsE5dfKqgnCFzwiCZZ/cGNd1lq4/7akDWMxdhVlucjmnOQ==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/axios/-/axios-0.27.2.tgz}
+  registry.npmjs.org/axios@0.26.1:
+    resolution: {integrity: sha512-fPwcX4EvnSHuInCMItEhAGnaSEXRBjtzh9fOtsE6E1G6p7vl7edEeZe11QHf18+6+9gR5PbKV/sGKNaD8YaMeA==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/axios/-/axios-0.26.1.tgz}
     name: axios
-    version: 0.27.2
+    version: 0.26.1
     dependencies:
       follow-redirects: registry.npmjs.org/follow-redirects@1.15.2
-      form-data: registry.npmjs.org/form-data@4.0.0
     transitivePeerDependencies:
       - debug
     dev: false
@@ -2073,19 +2072,18 @@ packages:
       qs: registry.npmjs.org/qs@6.11.2
     dev: false
 
-  registry.npmjs.org/contentful@9.3.5:
-    resolution: {integrity: sha512-QVXHwD9nxREBpcemC6Po2LUYStmBBHPyVbN3SKzkR+WmIZhflF6x+TDmmz2jcCg/RSN+INDZbhe8FQ1S/zTE8w==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/contentful/-/contentful-9.3.5.tgz}
+  registry.npmjs.org/contentful@10.3.0:
+    resolution: {integrity: sha512-o1AhgGHzn3TwWXvAbY3fHJk/QZ/uGNBBtjE9C3h86cQMUU4glGcKpzI6qp/80efCG4DLROxzjtgSOPSuE7BbRg==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/contentful/-/contentful-10.3.0.tgz}
     name: contentful
-    version: 9.3.5
+    version: 10.3.0
     engines: {node: '>=12'}
-    requiresBuild: true
     dependencies:
       '@contentful/rich-text-types': registry.npmjs.org/@contentful/rich-text-types@16.2.0
-      axios: registry.npmjs.org/axios@0.27.2
+      axios: registry.npmjs.org/axios@0.26.1
       contentful-resolve-response: registry.npmjs.org/contentful-resolve-response@1.7.0
       contentful-sdk-core: registry.npmjs.org/contentful-sdk-core@7.1.0
-      fast-copy: registry.npmjs.org/fast-copy@2.1.7
       json-stringify-safe: registry.npmjs.org/json-stringify-safe@5.0.1
+      type-fest: registry.npmjs.org/type-fest@3.12.0
     transitivePeerDependencies:
       - debug
     dev: false
@@ -7132,6 +7130,13 @@ packages:
     version: 0.21.3
     engines: {node: '>=10'}
     dev: true
+
+  registry.npmjs.org/type-fest@3.12.0:
+    resolution: {integrity: sha512-qj9wWsnFvVEMUDbESiilKeXeHL7FwwiFcogfhfyjmvT968RXSvnl23f1JOClTHYItsi7o501C/7qVllscUP3oA==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/type-fest/-/type-fest-3.12.0.tgz}
+    name: type-fest
+    version: 3.12.0
+    engines: {node: '>=14.16'}
+    dev: false
 
   registry.npmjs.org/type@1.2.0:
     resolution: {integrity: sha512-+5nt5AAniqsCnu2cEQQdpzCAh33kVx8n0VoFidKpB1dVVLAN/F+bgVOqOJqOnEnrhp222clB5p3vUlD+1QAnfg==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/type/-/type-1.2.0.tgz}

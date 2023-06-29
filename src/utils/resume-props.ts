@@ -1,16 +1,28 @@
-import {createClient} from 'contentful';
-import type {EducationExperience, WorkExperience} from '../models/resume';
-import type {CategorizedSkill, Skill} from '../models/skill';
+import type {EntryFieldTypes} from 'contentful';
+import type {CategorizedSkill, Skill, SkillCategory} from '../models/skill';
 import {client} from './contentful.utils';
 
+type SkillSkeleton = {
+  contentTypeId: 'skill';
+  fields: {
+    name: EntryFieldTypes.Text;
+    id: EntryFieldTypes.Text;
+    url: EntryFieldTypes.Text;
+    category: EntryFieldTypes.Text;
+    isHighlight: EntryFieldTypes.Boolean;
+    level: EntryFieldTypes.Number;
+  };
+};
+
 export const fetchSkills = async (onlyHightlights = false) => {
-  const entries = await client.getEntries<Skill>({
+  const entries = await client.getEntries<SkillSkeleton>({
     content_type: 'skill',
-    order: '-fields.level',
+    order: ['-fields.level'],
   });
 
   const skills = entries.items.map(skill => ({
     ...skill.fields,
+    category: skill.fields.category as SkillCategory,
     id: skill.sys.id,
   }));
 
@@ -48,16 +60,48 @@ export const fetchSkills = async (onlyHightlights = false) => {
   return categorizedSkills;
 };
 
+type WorkExperienceSkeleton = {
+  contentTypeId: 'experience';
+  fields: {
+    id: EntryFieldTypes.Text;
+    url: EntryFieldTypes.Text;
+    organization: EntryFieldTypes.Text;
+    role: EntryFieldTypes.Text;
+    title: EntryFieldTypes.Text;
+    startDate: EntryFieldTypes.Date;
+    endDate: EntryFieldTypes.Text;
+    content: EntryFieldTypes.Text;
+    language: EntryFieldTypes.Text;
+    category: 'work';
+  };
+};
+
+type EducationSkeleton = {
+  contentTypeId: 'education';
+  fields: {
+    id: EntryFieldTypes.Text;
+    organization: EntryFieldTypes.Text;
+    role: EntryFieldTypes.Text;
+    title: EntryFieldTypes.Text;
+    startDate: EntryFieldTypes.Date;
+    endDate: EntryFieldTypes.Text;
+    content: EntryFieldTypes.Text;
+    language: EntryFieldTypes.Text;
+    category: 'education';
+    url: EntryFieldTypes.Text;
+  };
+};
+
 export const fectchExperiences = async (lang = 'en') => {
-  const workExperiences = await client.getEntries<WorkExperience>({
+  const workExperiences = await client.getEntries<WorkExperienceSkeleton>({
     content_type: 'experience',
     'fields.language': lang,
-    order: '-fields.startDate',
+    order: ['-fields.startDate'],
   });
 
-  const educationExperiences = await client.getEntries<EducationExperience>({
+  const educationExperiences = await client.getEntries<EducationSkeleton>({
     content_type: 'education',
-    order: '-fields.startDate',
+    order: ['-fields.startDate'],
   });
 
   return {
