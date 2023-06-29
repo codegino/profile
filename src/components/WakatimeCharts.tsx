@@ -2,6 +2,7 @@
 import NextLink from './basic/NextLink';
 import {useTranslation} from '../app/i18n/client';
 import {useParams} from 'next/navigation';
+import {Zoom} from 'react-awesome-reveal';
 
 export default function WakatimeCharts() {
   const params = useParams();
@@ -23,12 +24,14 @@ export default function WakatimeCharts() {
         </NextLink>
         &nbsp;{t('activity')}
       </h2>
-      <figure className="flex justify-center">
-        <embed
-          className="max-w-md md:max-w-lg"
-          src="https://wakatime.com/share/@codegino/aa8c74ed-2174-445a-805d-e46a869c3b8b.svg"
-        ></embed>
-      </figure>
+      <Zoom triggerOnce>
+        <figure className="flex justify-center">
+          <embed
+            className="max-w-md md:max-w-lg"
+            src="https://wakatime.com/share/@codegino/aa8c74ed-2174-445a-805d-e46a869c3b8b.svg"
+          ></embed>
+        </figure>
+      </Zoom>
     </div>
   );
 }

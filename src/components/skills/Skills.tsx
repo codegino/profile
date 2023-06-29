@@ -1,3 +1,4 @@
+'use client';
 import {FaCheckDouble} from '@react-icons/all-files/fa/FaCheckDouble';
 import {FaDatabase} from '@react-icons/all-files/fa/FaDatabase';
 import {FaDumbbell} from '@react-icons/all-files/fa/FaDumbbell';
@@ -11,10 +12,13 @@ import {FaThumbsUp} from '@react-icons/all-files/fa/FaThumbsUp';
 import {FaTools} from '@react-icons/all-files/fa/FaTools';
 import type {CategorizedSkill, SkillCategory} from '../../models/skill';
 import NextLink from '../basic/NextLink';
-import {createTranslation} from '../../app/i18n';
+import {Zoom} from 'react-awesome-reveal';
+import {useTranslation} from '../../app/i18n/client';
+import {useParams} from 'next/navigation';
 
-export default async function Skills({skills}: {skills: CategorizedSkill[]}) {
-  const {t} = await createTranslation('en', 'resume');
+export default function Skills({skills}: {skills: CategorizedSkill[]}) {
+  const locale = useParams()?.lng;
+  const {t} = useTranslation(locale, 'resume');
 
   return (
     <div className="flex justify-center">
@@ -26,25 +30,34 @@ export default async function Skills({skills}: {skills: CategorizedSkill[]}) {
         {skills.map(category => {
           return (
             <section className="mb-4" key={category.category}>
-              <h3 className="text-center my-2">
-                {getSkillCategoryIcon(category.category)}&nbsp;
-                {category.category.toUpperCase()}
-              </h3>
+              <Zoom direction="down" triggerOnce>
+                <h3 className="text-center my-2">
+                  {getSkillCategoryIcon(category.category)}&nbsp;
+                  {category.category.toUpperCase()}
+                </h3>
+              </Zoom>
               <div className="max-w-5xl flex flex-wrap justify-center gap-y-3">
                 {category.skills.map((skill, i) => {
                   return (
-                    <NextLink
-                      key={i}
-                      href={skill.url}
-                      className="py-1 px-3 bg-dark text-light border-dark rounded-lg border mr-2
-                    hover:bg-light hover:text-dark shadow-sm shadow-dark"
-                      title={`Click to visit ${skill.name}`}
-                      target="_blank"
-                      aria-label={skill.name}
-                      rel="noreferrer"
+                    <Zoom
+                      triggerOnce
+                      key={skill.id}
+                      delay={i * 110}
+                      direction={i % 2 === 0 ? 'left' : 'right'}
                     >
-                      {skill.name}
-                    </NextLink>
+                      <NextLink
+                        key={i}
+                        href={skill.url}
+                        className="py-1 px-3 bg-dark text-light border-dark rounded-lg border mr-2
+                    hover:bg-light hover:text-dark shadow-sm shadow-dark"
+                        title={`Click to visit ${skill.name}`}
+                        target="_blank"
+                        aria-label={skill.name}
+                        rel="noreferrer"
+                      >
+                        {skill.name}
+                      </NextLink>
+                    </Zoom>
                   );
                 })}
               </div>

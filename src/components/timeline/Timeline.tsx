@@ -10,6 +10,7 @@ import NextLink from '../basic/NextLink';
 import {Experience} from './Experience';
 import {useTranslation} from '../../app/i18n/client';
 import {useParams} from 'next/navigation';
+import {Slide} from 'react-awesome-reveal';
 
 export default function Timeline({
   workExperiences,
@@ -21,39 +22,51 @@ export default function Timeline({
   return (
     <article className="flex items-center flex-col overflow-hidden min-h-min pt-12">
       <div>
-        <Experience>
-          <h2 className="m-0 text-dark">
-            <FaBriefcase />
-            &nbsp; Work Experiences
-          </h2>
-        </Experience>
+        <Slide direction="up" triggerOnce>
+          <Experience>
+            <h2 className="m-0 text-dark">
+              <FaBriefcase />
+              &nbsp; Work Experiences
+            </h2>
+          </Experience>
+        </Slide>
         {workExperiences.map((exp, i) => {
           return (
-            <Experience key={exp.id} hasConnector>
-              <Content exp={exp}>
-                <div
-                  className="mt-4 text-left text-dark"
-                  dangerouslySetInnerHTML={{
-                    __html: dompurify.sanitize(exp.content),
-                  }}
-                />
-              </Content>
-            </Experience>
+            <Slide key={exp.id} direction="up" triggerOnce>
+              <Experience hasConnector>
+                <Content exp={exp}>
+                  <div
+                    className="mt-4 text-left text-dark"
+                    dangerouslySetInnerHTML={{
+                      __html: dompurify.sanitize(exp.content),
+                    }}
+                  />
+                </Content>
+              </Experience>
+            </Slide>
           );
         })}
-        <Experience hasConnector>
-          <h2 className="m-0 text-dark">
-            <FaScroll />
-            &nbsp;Education
-          </h2>
-        </Experience>
+        <Slide direction="down" triggerOnce>
+          <Experience hasConnector>
+            <h2 className="m-0 text-dark">
+              <FaScroll />
+              &nbsp;Education
+            </h2>
+          </Experience>
+        </Slide>
         {educationExperiences.map((exp, i) => {
           return (
-            <Experience key={exp.id} hasConnector={true}>
-              <Content exp={exp}>
-                <span />
-              </Content>
-            </Experience>
+            <Slide
+              key={exp.id}
+              triggerOnce
+              direction={i % 2 === 0 ? 'left' : 'right'}
+            >
+              <Experience key={exp.id} hasConnector={true}>
+                <Content exp={exp}>
+                  <span />
+                </Content>
+              </Experience>
+            </Slide>
           );
         })}
       </div>

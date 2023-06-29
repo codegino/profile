@@ -4,12 +4,12 @@ import {IGetPlaiceholderReturn} from 'plaiceholder';
 import {useScrollToView} from '../utils/scroll-to-view-hook';
 import {GuideArrow} from './GuideArrow';
 import Image from 'next/legacy/image';
+import {Zoom} from 'react-awesome-reveal';
 
 const quote = ['With great power', 'comes great', 'responsibility', '- Batman'];
 
 export default function AboutMeHero({
   img,
-  svg,
 }: Pick<IGetPlaiceholderReturn, 'svg' | 'img'>) {
   const {scrollToContent} = useScrollToView('#about-me-details');
 
@@ -29,16 +29,17 @@ export default function AboutMeHero({
           lg:top-10 lg:left-10"
       >
         {quote.map((word, i) => (
-          <p
-            key={i}
-            className="text-white text-3xl md:text-5xl lg:text-6xl text-shadow bg-transparent"
-          >
-            {word}
-          </p>
+          <Zoom delay={i * 700 + i * i * 150} key={i} triggerOnce>
+            <p className="text-white text-3xl md:text-5xl lg:text-6xl text-shadow bg-transparent">
+              {word}
+            </p>
+          </Zoom>
         ))}
       </div>
       <div className="absolute bottom-8 z-10">
-        <GuideArrow onClick={scrollToContent} />
+        <Zoom delay={4000} triggerOnce>
+          <GuideArrow onClick={scrollToContent} />
+        </Zoom>
       </div>
     </div>
   );
