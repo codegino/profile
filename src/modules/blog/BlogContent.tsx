@@ -6,7 +6,6 @@ import ContentAnchor from '../common/AnchorTag';
 import ContentBlockQuote from '../common/BlockquoteTag';
 import ContentBookMark from '../common/BookmarkElement';
 import ContentCodeBlock from '../common/CodeBlockElement';
-import GifElement from '../common/GifElement';
 import ContentImage from '../common/ImageTag';
 import ContentListElement from '../common/ListElementTag';
 import ContentParagraph from '../common/ParagraphTag';
@@ -21,7 +20,6 @@ const components: ComponentProps<FunctionComponent> = {
   blockquote: ContentBlockQuote,
   Anchor: ContentAnchor,
   a: ContentAnchor,
-  Gif: GifElement,
   p: ContentParagraph,
   li: ContentListElement,
   Img: ContentImage,

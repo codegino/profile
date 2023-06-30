@@ -1,4 +1,4 @@
-import Image from 'next/legacy/image';
+import Image from 'next/image';
 import NextLink from '../../../components/basic/NextLink';
 import nfts from '../../../data/eth-nft.json';
 
@@ -49,7 +49,7 @@ export default async function NFT() {
                     src={img}
                     height={390}
                     width={390}
-                    layout="fixed"
+                    loading="lazy"
                     placeholder="blur"
                     blurDataURL="/assets/nft-placeholder.png"
                     alt={`Collection #${id}`}

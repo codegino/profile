@@ -1,6 +1,6 @@
 import type {FunctionComponent} from 'react';
 import clsx from 'clsx';
-import Image from 'next/legacy/image';
+import Image from 'next/image';
 import NextLink from '../../components/basic/NextLink';
 import type {IBlogMetadata} from '../../models/blog';
 import {ISlideMetadata} from '../../models/slide';
@@ -34,8 +34,8 @@ const BlogCard: FunctionComponent<{
           src={blog.bannerId}
           alt={blog.bannerDescription}
           title={blog.bannerDescription}
-          layout="fill"
-          objectFit="cover"
+          fill={true}
+          className="object-cover"
           placeholder="blur"
           blurDataURL={blog.bannerId}
         />

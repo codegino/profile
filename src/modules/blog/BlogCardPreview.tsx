@@ -1,4 +1,4 @@
-import Image from 'next/legacy/image';
+import Image from 'next/image';
 import NextLink from '../../components/basic/NextLink';
 import type {IBlogMetadata} from '../../models/blog';
 import {useTranslation} from '../../app/i18n/client';
@@ -19,8 +19,8 @@ export const BlogCardPreview = ({blog}: Props) => {
           src={blog.bannerId}
           alt={blog.bannerDescription}
           title={blog.bannerDescription}
-          layout="fill"
-          objectFit="cover"
+          fill={true}
+          className="object-cover"
           placeholder="blur"
           blurDataURL={blog.bannerId}
         />

@@ -1,5 +1,5 @@
 'use client';
-import Image from 'next/legacy/image';
+import Image from 'next/image';
 import {Carousel} from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
@@ -28,15 +28,15 @@ export default function TechStackCarousel({techStacks}: Props) {
         >
           {techStacks.map(techstack => {
             return (
-              <div className="bg-light py-10" key={techstack.name}>
+              <div
+                className="bg-light py-10 h-[300px] w-[40px]"
+                key={techstack.name}
+              >
                 {techstack.url ? (
                   <Image
-                    unoptimized
                     loader={({src}) => src}
                     src={techstack.url}
-                    layout="fixed"
-                    height={300}
-                    width={300}
+                    fill={true}
                     alt={techstack.name}
                     title={techstack.name}
                   />

@@ -3,7 +3,7 @@
 import {useState} from 'react';
 import type {CSSProperties} from 'react';
 import clsx from 'clsx';
-import Image, {ImageProps} from 'next/legacy/image';
+import Image, {type ImageProps} from 'next/image';
 import type {BlurImageType} from '../utils/image-blur.utils';
 
 type BlurringImageProps = {blurLevel?: number; transformScaleLevel?: number};

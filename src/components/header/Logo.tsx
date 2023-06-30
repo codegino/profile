@@ -1,6 +1,6 @@
 import React, {FunctionComponent} from 'react';
 import clsx from 'clsx';
-import Image from 'next/legacy/image';
+import Image from 'next/image';
 import RoundButton from '../basic/RoundButton';
 
 const Logo: FunctionComponent<{onClick?: () => void; className?: string}> = ({
@@ -18,12 +18,11 @@ const Logo: FunctionComponent<{onClick?: () => void; className?: string}> = ({
       <Image
         priority
         src="/assets/logo.svg"
-        height={32}
-        width={32}
+        height={26}
+        width={26}
         alt="CG"
         title="CG"
         aria-label="CG Logo"
-        layout="fixed"
       />
     </RoundButton>
   );

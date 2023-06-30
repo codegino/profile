@@ -21,9 +21,8 @@ export default function Hero({img, svg}: Pick<BlurImageType, 'svg' | 'img'>) {
         title="black hole"
         img={img}
         svg={svg}
-        layout="fill"
-        objectFit="cover"
-        objectPosition="center"
+        fill={true}
+        className="object-cover object-center"
         priority={true}
       />
       <div className="absolute flex flex-col items-center sm:ml-[2rem] xl:ml-[2rem] 2xl:ml-[3rem]">

@@ -42,7 +42,7 @@ However, we still need to configure some properties to cater to our specific nee
 
 The GIF below shows what a user will see for an image loaded using a slow internet connection.
 
-<Gif height={688} width={792} src="https://media2.giphy.com/media/mgOpxkjm3zjT2Utg5Q/giphy.gif"/>
+<Img height={688} width={792} src="https://media2.giphy.com/media/mgOpxkjm3zjT2Utg5Q/giphy.gif"/>
 
 It gives the impression that something is wrong with our app.
 
@@ -62,7 +62,7 @@ Simply adding the `placeholder` and `blurDataURL` will do the trick.
 
 The code will yield the following result:
 
-<Gif height={688} width={792} src="https://media2.giphy.com/media/nNsPF6B8EjQODCbqNM/giphy.gif"/>
+<Img height={688} width={792} src="https://media2.giphy.com/media/nNsPF6B8EjQODCbqNM/giphy.gif"/>
 
 There's a brief delay before the placeholder is loaded
 because even the placeholder image is needed to be fetched from the server.
@@ -73,7 +73,7 @@ because even the placeholder image is needed to be fetched from the server.
 The good thing is that once the placeholder image is loaded, all other images that use the same asset
 will display the placeholder immediately.
 
-<Gif height={688} width={792} src="https://media2.giphy.com/media/p1yrnptxP3GEXKV02B/giphy.gif"/>
+<Img height={688} width={792} src="https://media2.giphy.com/media/p1yrnptxP3GEXKV02B/giphy.gif"/>
 
 <br />
 
@@ -111,7 +111,7 @@ const [src, setSrc] = React.useState('https://i.imgur.com/gf3TZMr.jpeg');
 />
 ```
 
-<Gif height={688} width={792} src="https://media2.giphy.com/media/GEtkLddj2L7lk6tqhU/giphy.gif"/>
+<Img height={688} width={792} src="https://media2.giphy.com/media/GEtkLddj2L7lk6tqhU/giphy.gif"/>
 
 *I believe it's much better.*
 
