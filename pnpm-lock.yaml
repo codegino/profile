@@ -45,8 +45,8 @@ dependencies:
     specifier: 18.2.0
     version: 18.2.0
   react-awesome-reveal:
-    specifier: 4.2.4
-    version: 4.2.4(@emotion/react@11.11.1)(react@18.2.0)
+    specifier: 4.2.5
+    version: 4.2.5(@emotion/react@11.11.1)(react@18.2.0)
   react-content-loader:
     specifier: 6.2.1
     version: 6.2.1(react@18.2.0)
@@ -4702,8 +4702,8 @@ packages:
       react-dom: 18.2.0(react@18.2.0)
     dev: false
 
-  /react-awesome-reveal@4.2.4(@emotion/react@11.11.1)(react@18.2.0):
-    resolution: {integrity: sha512-+LjUpJi/6BIfN9xgqTbvGmn4ESgNvjts+P56QsBB4j4nIsWy2fKZ0ac0TS9fHQHYqn6J9mo3/XYD0rlw2ZRloA==}
+  /react-awesome-reveal@4.2.5(@emotion/react@11.11.1)(react@18.2.0):
+    resolution: {integrity: sha512-oHYoYvgNgfMVQ13UfgO650AkDS58aFGXhoIZDsHMAVjyHfmpG46T1ZXL8t07gO+yPnQ9dQREo7v2p40shxS3GA==}
     peerDependencies:
       '@emotion/react': ^11.0.0
       react: '>=16.14.0'
