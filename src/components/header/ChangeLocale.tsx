@@ -12,9 +12,7 @@ export const ChangeLocale: FC<{className?: string}> = ({className}) => {
 
     const newPath = `/${value}/${urlSegments.join('/')}`;
 
-    router.push(newPath, {
-      forceOptimisticNavigation: true,
-    });
+    router.push(newPath);
   };
 
   return (
