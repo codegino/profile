@@ -1,6 +1,8 @@
 import type {EntryFieldTypes} from 'contentful';
 import type {CategorizedSkill, Skill, SkillCategory} from '../models/skill';
 import {client} from './contentful.utils';
+import {mapLocale} from '../app/i18n/map-locale.util';
+import {locales} from '../app/i18n/locales.enum';
 
 type SkillSkeleton = {
   contentTypeId: 'skill';
@@ -92,11 +94,11 @@ type EducationSkeleton = {
   };
 };
 
-export const fectchExperiences = async (lang = 'en') => {
+export const fectchExperiences = async (lang: locales = 'en') => {
   const workExperiences = await client.getEntries<WorkExperienceSkeleton>({
     content_type: 'experience',
-    'fields.language': lang,
     order: ['-fields.startDate'],
+    locale: mapLocale(lang),
   });
 
   const educationExperiences = await client.getEntries<EducationSkeleton>({
