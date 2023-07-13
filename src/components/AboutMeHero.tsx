@@ -21,9 +21,8 @@ export default function AboutMeHero({
         title="weird quote"
         img={img}
         svg={svg}
-        layout="fill"
-        objectFit="cover"
-        objectPosition="right"
+        fill={true}
+        className="object-cover object-center"
         priority={true}
       />
       <div

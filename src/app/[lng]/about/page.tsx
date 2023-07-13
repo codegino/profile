@@ -9,6 +9,7 @@ import {PropsWithLocale} from '../../../types/server-component';
 import {newCommonMetaTags} from '../../../frontend-utils/meta-tags';
 import {EntryFieldTypes} from 'contentful';
 import {locales} from '../../i18n/locales.enum';
+import {mapLocale} from '../../i18n/map-locale.util';
 
 export const dynamic = 'force-static';
 
@@ -24,10 +25,10 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-const AboutMePage: NextPage<PropsWithLocale> = async () => {
+const AboutMePage: NextPage<PropsWithLocale> = async ({params: {lng}}) => {
   const {
     props: {aboutMeDetails, img, svg, techStacks},
-  } = await getStaticProps();
+  } = await getStaticProps(lng);
   return (
     <>
       <AboutMeHero img={img} svg={svg} />
@@ -100,11 +101,12 @@ type StaticAssetSkeleton = {
   };
 };
 
-const getStaticProps = async () => {
+const getStaticProps = async (lang: locales) => {
   const entries = await client.getEntries<StaticAssetSkeleton, locales>({
     content_type: 'staticText',
     'fields.category': 'about_me',
     order: ['fields.order'],
+    locale: mapLocale(lang),
   });
 
   const {img, svg} = await getBlurringImage('6F53k0CwsdmREXx1Y2ErSl');
