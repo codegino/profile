@@ -17,7 +17,7 @@
     "@emotion/react": "11.11.1",
     "@react-icons/all-files": "4.1.0",
     "@supabase/supabase-js": "2.26.0",
-    "clsx": "1.2.1",
+    "clsx": "2.0.0",
     "contentful": "10.3.4",
     "i18next": "23.2.11",
     "i18next-browser-languagedetector": "7.1.0",
