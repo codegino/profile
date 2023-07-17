@@ -83,8 +83,8 @@ dependencies:
 
 devDependencies:
   '@next/bundle-analyzer':
-    specifier: 13.4.3
-    version: 13.4.3
+    specifier: 13.4.10
+    version: 13.4.10
   '@trivago/prettier-plugin-sort-imports':
     specifier: 4.1.1
     version: 4.1.1(prettier@2.8.8)
@@ -591,8 +591,8 @@ packages:
       react: 18.2.0
     dev: false
 
-  /@next/bundle-analyzer@13.4.3:
-    resolution: {integrity: sha512-jzWk6eaCFaIXfIswyQQWnR6FN22HpWoSWe3nLa3JCNkNd2ksriJgn86oQyZRxgAPaEbVKQXBp8GZi8e5DrhVJg==}
+  /@next/bundle-analyzer@13.4.10:
+    resolution: {integrity: sha512-QwjRH/x1coj8+2Q2suXKez01Irc/rZQXiZ7qE96jj/xR1C+zze6cEdlhWzMlsBFlLmazBhFeOb0PeK6r4dVImA==}
     dependencies:
       webpack-bundle-analyzer: 4.7.0
     transitivePeerDependencies:
