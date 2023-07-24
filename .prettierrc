@@ -13,7 +13,5 @@
   "singleQuote": true,
   "tabWidth": 2,
   "trailingComma": "all",
-  "useTabs": false,
-  "importOrder": ["^react$", "^@\\w", "^\\w", "^[/.+/]"],
-  "experimentalBabelParserPluginsList": ["jsx", "typescript"]
+  "useTabs": false
 }
