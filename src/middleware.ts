@@ -4,18 +4,9 @@ import {NextRequest} from 'next/server';
 
 export const config = {
   // matcher: '/:lng*',
-  matcher: [
-    '/((?!api|_next/static|.well-known|_next/image|assets|favicon.ico|sw.js).*)',
-  ],
+  matcher:
+    '/((?!api|_next/static|.well-known|_next/image|sitemap.xml|.well-known|robots.txt|manifest.json|rss.xml|assets|favicon.ico|sw.js).*)',
 };
-
-const staticFiles = [
-  'sitemap.xml',
-  'robots.txt',
-  'favicon.ico',
-  'manifest.json',
-  'rss.xml',
-];
 
 export function middleware(request: NextRequest) {
   // Check if there is any supported locale in the pathname
