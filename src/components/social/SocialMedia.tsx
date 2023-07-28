@@ -65,7 +65,7 @@ const socialMedia: SocialMediaProps[] = [
     hoverColor: '#1da1f2',
   },
   {
-    url: 'https://pinterest.com/codegino',
+    url: 'https://pinterest.com/code_gino',
     icon: FaPinterestSquare,
     title: 'pinterest',
     color: '',

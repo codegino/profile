@@ -20,12 +20,14 @@ export function middleware(req: NextRequest) {
 
   // Get the first part of the path
   const firstPath = req.nextUrl.pathname.split('/')[1];
+  let statusCode = 307;
 
   if (staticFiles.includes(firstPath)) {
     return NextResponse.next();
   }
 
   if (!languages.includes(firstPath)) {
+    statusCode = 308;
     lng = fallbackLng;
   }
 
@@ -36,6 +38,7 @@ export function middleware(req: NextRequest) {
   ) {
     return NextResponse.redirect(
       new URL(`/${lng}${req.nextUrl.pathname}`, req.url),
+      {status: statusCode},
     );
   }
 

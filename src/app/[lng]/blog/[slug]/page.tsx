@@ -27,14 +27,15 @@ export const generateMetadata = async ({
   const postFilePath = path.join(BLOGS_PATH, `${slug}.mdx`);
   const source = fs.readFileSync(postFilePath);
 
-  const {content, data: blog} = matter(source);
+  const {data: blog} = matter(source);
+  blog.slug = slug;
 
   const asset = await client.getAsset(blog.bannerId);
 
   const bannerUrl = `https:${asset.fields.file?.url}`;
 
   return {
-    ...newCommonMetaTags(blog.title, `/blog/${blog.slug}}`),
+    ...newCommonMetaTags(blog.title, `/blog/${blog.slug}`),
     title: blog.title,
     description: blog.description,
     keywords: blog.keywords?.join(','),
