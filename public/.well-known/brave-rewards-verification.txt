@@ -1,4 +1,0 @@
-This is a Brave Rewards publisher verification file.
-
-Domain: carlogino.com
-Token: d54ac37e7a8b5d0a679343f29a0a0d09b0e2df2bce7ffa3ef35edb9b71386830
