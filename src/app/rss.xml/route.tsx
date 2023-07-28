@@ -25,7 +25,7 @@ const blogPostsRssXml = (blogPosts: IBlogMetadata[]) => {
         <item>
           <title>${post.title}</title>
           <link>
-            https://codegino.com/blog/${post.slug}
+            https://carlogino.com/blog/${post.slug}
           </link>
   
           <pubDate>${post.date}</pubDate>
@@ -46,7 +46,7 @@ const getRssXml = (blogPosts: IBlogMetadata[]) => {
     <rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
       <channel>
           <title>Blogs by Code Gino</title>
-          <link>https://codegino.com/</link>
+          <link>https://carlogino.com/</link>
           <description>Code Gino Blogs</description>
           <language>en</language>
           <lastBuildDate>${latestPostDate}</lastBuildDate>

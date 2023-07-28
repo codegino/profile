@@ -62,7 +62,7 @@ const HomePage: NextPage<PropsWithLocale> = async ({params: {lng}}) => {
           "@type": "Person",
           "name": "Carlo Gino Catapang",
           "jobTitle": "Senior Software Engineer",
-          "url": "https://codegino.com"
+          "url": "https://carlogino.com"
           }`,
         }}
       />

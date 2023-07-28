@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://codegino.com/sitemap.xml',
+    sitemap: 'https://carlogino.com/sitemap.xml',
   };
 }

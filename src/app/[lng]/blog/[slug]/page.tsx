@@ -39,7 +39,7 @@ export const generateMetadata = async ({
     description: blog.description,
     keywords: blog.keywords?.join(','),
     openGraph: {
-      url: `https://codegino.com/blog/${blog.slug}`,
+      url: `https://carlogino.com/blog/${blog.slug}`,
       type: 'article',
       title: blog.title,
       description: blog.description,
@@ -86,7 +86,7 @@ const BlogPage: NextPage<{
             "author": "Carlo Gino Catapang",
             "genre": "${blog.tags?.join(' ')}",
             "keywords": "${blog.keywords?.join(' ')}",
-            "url": "https://codegino.com/blog/${blog.slug}",
+            "url": "https://carlogino.com/blog/${blog.slug}",
             "dateCreated": "${blog.date}",
             "dateModified": "${blog.dateUpdated}",
             "description": "${blog.description}",

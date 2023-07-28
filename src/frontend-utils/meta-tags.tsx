@@ -11,20 +11,20 @@ export const commonMetaTags = (
   <>
     <meta
       name="twitter:image"
-      content={`https://codegino.com/assets/${previewImg}`}
+      content={`https://carlogino.com/assets/${previewImg}`}
     />
     <meta name="twitter:description" content={metaDescription(pageName)} />
     <meta name="twitter:title" content="Carlo Gino Catapang" />
-    <meta property="og:url" content={`https://codegino.com${slug}`} />
+    <meta property="og:url" content={`https://carlogino.com${slug}`} />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Carlo Gino Catapang" />
     <meta property="og:description" content={metaDescription(pageName)} />
     <meta
       property="og:image"
-      content={`https://codegino.com/assets/${previewImg}`}
+      content={`https://carlogino.com/assets/${previewImg}`}
     />
     <meta name="description" content={metaDescription(pageName)} />
-    <link rel="canonical" href={`https://codegino.com${slug}`} />
+    <link rel="canonical" href={`https://carlogino.com${slug}`} />
     <link rel="icon" href="/favicon.ico" />
     {/* For PWA */}
     <link rel="manifest" href="/manifest.json" />
@@ -39,24 +39,24 @@ export const newCommonMetaTags = (
 ): Metadata => {
   return {
     twitter: {
-      images: `https://codegino.com/assets/${previewImg}`,
+      images: `https://carlogino.com/assets/${previewImg}`,
       title: 'Carlo Gino Catapang',
       description: metaDescription(pageName),
       creator: '@codegino',
       site: '@codegino',
     },
     openGraph: {
-      url: `https://codegino.com${slug}`,
+      url: `https://carlogino.com${slug}`,
       type: 'website',
       title: 'Carlo Gino Catapang',
       description: metaDescription(pageName),
       images: {
-        url: `https://codegino.com/assets/${previewImg}`,
+        url: `https://carlogino.com/assets/${previewImg}`,
       },
     },
     description: metaDescription(pageName),
     alternates: {
-      canonical: `https://codegino.com${slug}`,
+      canonical: `https://carlogino.com${slug}`,
     },
     manifest: '/manifest.json',
     icons: {

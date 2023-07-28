@@ -7,7 +7,7 @@ type Data = {
 
 const handler = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   // Easier to  hardcode
-  const isSameOrigin = req.headers.origin !== 'https://codegino.com';
+  const isSameOrigin = req.headers.origin !== 'https://carlogino.com';
 
   if (isSameOrigin || req.method !== 'POST') {
     return res.status(400).json({message: 'An error has occur'});

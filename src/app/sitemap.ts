@@ -1,7 +1,7 @@
 import type {MetadataRoute} from 'next';
 import {getBlogsMetadata} from '../utils/blogs-mdx.utils';
 
-const ROOT_URL = 'https://codegino.com';
+const ROOT_URL = 'https://carlogino.com';
 
 const staticPages: MetadataRoute.Sitemap = [
   // {

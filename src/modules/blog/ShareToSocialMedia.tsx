@@ -11,28 +11,28 @@ const socialMedia = [
   {
     name: 'Twitter',
     href: (blog: IBlogMetadata) =>
-      `https://twitter.com/share?url=https://codegino.com/blog/${blog.slug}&text=${blog.title}`,
+      `https://twitter.com/share?url=https://carlogino.com/blog/${blog.slug}&text=${blog.title}`,
     color: '#1da1f2',
     icon: FaTwitterSquare,
   },
   {
     name: 'Facebook',
     href: (blog: IBlogMetadata) =>
-      `https://www.facebook.com/sharer/sharer.php?u=https://codegino.com/blog/${blog.slug}`,
+      `https://www.facebook.com/sharer/sharer.php?u=https://carlogino.com/blog/${blog.slug}`,
     color: '#1877f2',
     icon: FaFacebookSquare,
   },
   {
     name: 'LinkedIn',
     href: (blog: IBlogMetadata) =>
-      `https://www.linkedin.com/sharing/share-offsite/?url=https://codegino.com/blog/${blog.slug}`,
+      `https://www.linkedin.com/sharing/share-offsite/?url=https://carlogino.com/blog/${blog.slug}`,
     color: '#0a66c2',
     icon: FaLinkedin,
   },
   {
     name: 'Pinterest',
     href: (blog: IBlogMetadata) =>
-      `http://pinterest.com/pin/create/button/?url=https://codegino.com/blog/${blog.slug}&media=${blog.bannerId}&description=${blog.description}&title=${blog.title}`,
+      `http://pinterest.com/pin/create/button/?url=https://carlogino.com/blog/${blog.slug}&media=${blog.bannerId}&description=${blog.description}&title=${blog.title}`,
     color: '#bd081c',
     icon: FaPinterest,
   },
