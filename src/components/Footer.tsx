@@ -4,6 +4,7 @@ import {TopLeftShape} from './extras/TopLeftShape';
 import SocialMedia from './social/SocialMedia';
 import type {FC} from 'react';
 import {createTranslation} from '../app/i18n';
+import BuyMeACoffeeIcon from './social/BuyMeACoffeeIcon';
 
 const Footer: FC<{lang: 'en' | 'sv'}> = async ({lang}) => {
   const {t} = await createTranslation(lang, 'common');
@@ -35,7 +36,11 @@ const Footer: FC<{lang: 'en' | 'sv'}> = async ({lang}) => {
           <p>{t('allRightsReserved')}</p>
           <p>© Carlo Gino Catapang {new Date().getFullYear()}</p>
         </div>
-        <SocialMedia />
+        <div className="flex items-center">
+          <BuyMeACoffeeIcon className="mr-1" />
+
+          <SocialMedia />
+        </div>
       </div>
     </footer>
   );

@@ -6,6 +6,7 @@ import SocialMedia from '../social/SocialMedia';
 import {ChangeLocale} from './ChangeLocale';
 import {navigationLinks} from './nav-links';
 import {useTranslation} from '../../app/i18n/client';
+import BuyMeACoffeeIcon from '../social/BuyMeACoffeeIcon';
 
 const DarkModeToggle = dynamic(() => import('../DarkModeToggle'), {
   ssr: false,
@@ -42,6 +43,7 @@ export default function WideScreenContentImpl() {
       </nav>
       <div className="flex items-center pr-3">
         <SocialMedia />
+        <BuyMeACoffeeIcon className="ml-4" />
         <div className="h-full mx-3 min-w-[2.2rem]">
           <DarkModeToggle />
         </div>

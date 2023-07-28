@@ -15,6 +15,7 @@ import {ChangeLocale} from './ChangeLocale';
 import {useHeader} from './header-context';
 import {navigationLinks} from './nav-links';
 import {useTranslation} from '../../app/i18n/client';
+import BuyMeACoffeeIcon from '../social/BuyMeACoffeeIcon';
 
 const sidebarLinks = [
   {
@@ -107,7 +108,10 @@ const SmallScreenSidebar: FunctionComponent = () => {
                 </nav>
 
                 <h3 className="my-4 text-2xl">Social</h3>
-                <SocialMedia />
+                <div className="flex items-center">
+                  <SocialMedia />
+                  <BuyMeACoffeeIcon className="ml-4" />
+                </div>
                 <h3 className="my-4 text-2xl">Contact me</h3>
                 <div>
                   <NextLink
