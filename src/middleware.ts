@@ -3,7 +3,7 @@ import {fallbackLng, languages} from './app/i18n/settings';
 import {NextRequest} from 'next/server';
 
 export const config = {
-  // matcher: '/:lng*'
+  // matcher: '/:lng*',
   matcher: [
     '/((?!api|_next/static|.well-known|_next/image|assets|favicon.ico|sw.js).*)',
   ],
@@ -17,32 +17,40 @@ const staticFiles = [
   'rss.xml',
 ];
 
-export function middleware(req: NextRequest) {
-  let lng;
+export function middleware(request: NextRequest) {
+  // Check if there is any supported locale in the pathname
+  const pathname = request.nextUrl.pathname;
 
-  // Get the first part of the path
-  const firstPath = req.nextUrl.pathname.split('/')[1];
-  let statusCode = 307;
-
-  if (staticFiles.includes(firstPath)) {
-    return NextResponse.next();
-  }
-
-  if (!languages.includes(firstPath)) {
-    statusCode = 308;
-    lng = fallbackLng;
-  }
-
-  // Redirect if lng in path is not supported
+  // Check if the default locale is in the pathname
   if (
-    !languages.some(loc => req.nextUrl.pathname.startsWith(`/${loc}`)) &&
-    !req.nextUrl.pathname.startsWith('/_next')
+    pathname.startsWith(`/${fallbackLng}/`) ||
+    pathname === `/${fallbackLng}`
   ) {
+    // e.g. incoming request is /en/resume
+    // The new URL is now /resume
     return NextResponse.redirect(
-      new URL(`/${lng}${req.nextUrl.pathname}`, req.url),
-      {status: statusCode},
+      new URL(
+        pathname.replace(
+          `/${fallbackLng}`,
+          pathname === `/${fallbackLng}` ? '/' : '',
+        ),
+        request.url,
+      ),
     );
   }
 
-  return NextResponse.next();
+  const pathnameIsMissingLocale = languages.every(
+    locale => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`,
+  );
+
+  if (pathnameIsMissingLocale) {
+    // We are on the default locale
+    // Rewrite so Next.js understands
+
+    // e.g. incoming request is /resume
+    // Tell Next.js it should pretend it's /en/resume
+    return NextResponse.rewrite(
+      new URL(`/${fallbackLng}${pathname}`, request.url),
+    );
+  }
 }
