@@ -12,8 +12,8 @@ const BlogCard: FunctionComponent<{
   blog: IBlogMetadata | ISlideMetadata;
   slug?: 'blog' | 'slides';
 }> = ({blog, slug: feature = 'blog'}) => {
-  const locale = useParams()?.lang as locales;
-  const {t} = useTranslation(locale, 'blog');
+  const lang = useParams()?.lang as locales;
+  const {t} = useTranslation(lang, 'blog');
 
   return (
     <figure
@@ -42,7 +42,10 @@ const BlogCard: FunctionComponent<{
         />
       </div>
       <figcaption className="bg-white dark:bg-black opacity-90 sm:opacity-100 p-4 sm:p-0 absolute bottom-0 w-full sm:relative">
-        <NextLink href={`/${feature}/${blog.slug}`} aria-label={blog.title}>
+        <NextLink
+          href={`/${lang}/${feature}/${blog.slug}`}
+          aria-label={blog.title}
+        >
           <h2 className="line-clamp-2">{blog.title}</h2>
           <h3 className="line-clamp-2">{blog.description}</h3>
           <p className="mt-3">

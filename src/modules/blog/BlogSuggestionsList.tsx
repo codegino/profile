@@ -11,8 +11,8 @@ type Props = {
 };
 
 const BlogSuggestionsList = ({blogs}: Props) => {
-  const params = useParams();
-  const {t} = useTranslation(params?.lang as locales, 'home');
+  const lang = useParams()?.lang as locales;
+  const {t} = useTranslation(lang, 'home');
 
   return (
     <section
@@ -23,7 +23,7 @@ const BlogSuggestionsList = ({blogs}: Props) => {
       <h2 className="mb-16 text-4xl relative">
         {t('recent')}&nbsp;
         <NextLink
-          href="/blog"
+          href={`/${lang}/blog`}
           aria-label="Blogs List"
           className="text-4xl text-primary-dark"
         >

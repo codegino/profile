@@ -15,7 +15,7 @@ export const BlogCardPreview = ({blog}: Props) => {
 
   return (
     <figure className="relative w-full min-h-[20rem] text-center overflow-hidden shadow-sm hover:shadow-md hover:shadow-dark shadow-dark rounded-2xl bg-light md:max-w-4xl">
-      <NextLink href={`/blog/${blog.slug}`} aria-label={blog.title}>
+      <NextLink href={`/${locale}/blog/${blog.slug}`} aria-label={blog.title}>
         <Image
           src={blog.bannerId}
           alt={blog.bannerDescription}
