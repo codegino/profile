@@ -44,12 +44,12 @@ export const metadata = {
   title: 'Home Page | Code Gino | Carlo Gino Catapang',
 };
 
-const HomePage: NextPage<PropsWithLocale> = async ({params: {lng}}) => {
+const HomePage: NextPage<PropsWithLocale> = async ({params: {lang}}) => {
   const {
     props: {skills, heroImage, heroSvg, profileImage, profileSvg, blogs},
   } = await getStaticProps();
 
-  const {t} = await createTranslation(lng, 'home');
+  const {t} = await createTranslation(lang, 'home');
 
   return (
     <>
@@ -72,7 +72,7 @@ const HomePage: NextPage<PropsWithLocale> = async ({params: {lng}}) => {
       </FullScreenWrapper>
       <main>
         <FullScreenWrapper tl br className="bg-lightest">
-          <ResumeSummary img={profileImage} svg={profileSvg} lang={lng} />
+          <ResumeSummary img={profileImage} svg={profileSvg} lang={lang} />
           <Skills skills={skills} />
           <div className="text-center my-10">
             <p className="text-xl">

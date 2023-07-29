@@ -25,10 +25,10 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-const AboutMePage: NextPage<PropsWithLocale> = async ({params: {lng}}) => {
+const AboutMePage: NextPage<PropsWithLocale> = async ({params: {lang}}) => {
   const {
     props: {aboutMeDetails, img, svg, techStacks},
-  } = await getStaticProps(lng);
+  } = await getStaticProps(lang);
   return (
     <>
       <AboutMeHero img={img} svg={svg} />

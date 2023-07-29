@@ -5,13 +5,14 @@ import {BlurringImage} from '../../components/BlurringImage';
 import type {IBlogMetadata} from '../../models/blog';
 import {useTranslation} from '../../app/i18n/client';
 import type {BlurImageType} from '../../utils/image-blur.utils';
+import {locales} from '../../app/i18n/locales.enum';
 
 type Props = {
   blog: IBlogMetadata;
 } & Pick<BlurImageType, 'svg' | 'img'>;
 
 const BlogHeader: FunctionComponent<Props> = ({blog, img, svg}) => {
-  const locale = useParams()?.lng;
+  const locale = useParams()?.lang as locales;
   const {t} = useTranslation(locale, 'common');
 
   return (

@@ -7,6 +7,7 @@ import {ChangeLocale} from './ChangeLocale';
 import {navigationLinks} from './nav-links';
 import {useTranslation} from '../../app/i18n/client';
 import BuyMeACoffeeIcon from '../social/BuyMeACoffeeIcon';
+import {locales} from '../../app/i18n/locales.enum';
 
 const DarkModeToggle = dynamic(() => import('../DarkModeToggle'), {
   ssr: false,
@@ -16,7 +17,7 @@ export default function WideScreenContentImpl() {
   const path = usePathname();
   const params = useParams();
 
-  const locale = params?.lng ?? 'en';
+  const locale = params?.lang as locales;
 
   const {t} = useTranslation(locale, 'common');
 

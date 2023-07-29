@@ -16,6 +16,7 @@ import {useHeader} from './header-context';
 import {navigationLinks} from './nav-links';
 import {useTranslation} from '../../app/i18n/client';
 import BuyMeACoffeeIcon from '../social/BuyMeACoffeeIcon';
+import {locales} from '../../app/i18n/locales.enum';
 
 const sidebarLinks = [
   {
@@ -36,7 +37,7 @@ const SmallScreenSidebar: FunctionComponent = () => {
     hideSidebar();
   };
 
-  const locale = useParams()?.lng ?? 'en';
+  const locale = useParams()?.lang as locales;
   const {t} = useTranslation(locale, 'common');
 
   return (

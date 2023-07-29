@@ -6,12 +6,13 @@ import type {IBlogMetadata} from '../../models/blog';
 import {ISlideMetadata} from '../../models/slide';
 import {useTranslation} from '../../app/i18n/client';
 import {useParams} from 'next/navigation';
+import {locales} from '../../app/i18n/locales.enum';
 
 const BlogCard: FunctionComponent<{
   blog: IBlogMetadata | ISlideMetadata;
   slug?: 'blog' | 'slides';
 }> = ({blog, slug: feature = 'blog'}) => {
-  const locale = useParams()?.lng;
+  const locale = useParams()?.lang as locales;
   const {t} = useTranslation(locale, 'blog');
 
   return (

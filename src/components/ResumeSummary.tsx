@@ -4,12 +4,13 @@ import {BlurringImage} from './BlurringImage';
 import NextLink from './basic/NextLink';
 import {createTranslation} from '../app/i18n';
 import type {BlurImageType} from '../utils/image-blur.utils';
+import {locales} from '../app/i18n/locales.enum';
 
 export default async function ResumeSummary({
   img,
   svg,
   lang,
-}: Pick<BlurImageType, 'svg' | 'img'> & {lang: string}) {
+}: Pick<BlurImageType, 'svg' | 'img'> & {lang: locales}) {
   const {t} = await createTranslation(lang, 'resume');
 
   return (

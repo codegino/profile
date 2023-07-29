@@ -11,6 +11,7 @@ import {GuideArrow} from './GuideArrow';
 import {useTranslation} from '../app/i18n/client';
 import {useParams} from 'next/navigation';
 import {Zoom} from 'react-awesome-reveal';
+import {locales} from '../app/i18n/locales.enum';
 
 const GreetingsContent: FunctionComponent<{className?: string}> = () => {
   // Changed to true because react-reveal was removed temporarily
@@ -18,7 +19,7 @@ const GreetingsContent: FunctionComponent<{className?: string}> = () => {
   const {scrollToContent} = useScrollToView('#resume-summary');
   const [isGuideVisible, setIsGuideVisible] = useState(false);
 
-  const locale = useParams()?.lng;
+  const locale = useParams()?.lang as locales;
   const {t} = useTranslation(locale, 'home');
 
   return (

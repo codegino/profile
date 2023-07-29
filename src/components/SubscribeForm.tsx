@@ -8,6 +8,7 @@ import Button from './basic/Button';
 import Input from './basic/Input';
 import {useTranslation} from '../app/i18n/client';
 import {useParams} from 'next/dist/client/components/navigation';
+import {locales} from '../app/i18n/locales.enum';
 
 interface FormElements extends HTMLFormControlsCollection {
   firstName: HTMLInputElement;
@@ -24,7 +25,7 @@ const SubscribeForm = () => {
 
   const router = useRouter();
 
-  const locale = useParams()?.lng;
+  const locale = useParams()?.lang as locales;
   const {t} = useTranslation(locale, 'newsletter');
 
   const handleSubmit = async (e: FormEvent<SubscribeFormElement>) => {

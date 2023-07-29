@@ -9,13 +9,13 @@ import {PropsWithLocale} from '../../types/server-component';
 
 const layout: FC<PropsWithChildren<PropsWithLocale>> = async ({
   children,
-  params: {lng},
+  params: {lang},
 }) => {
   return (
     <div>
       <Header />
       {children}
-      <Footer lang={lng} />
+      <Footer lang={lang} />
     </div>
   );
 };

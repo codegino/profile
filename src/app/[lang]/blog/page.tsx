@@ -15,17 +15,17 @@ export const metadata = {
   title: 'My Blogs Listing Page | CodeGino | Carlo Gino Catapang',
 };
 
-const BlogPage: NextPage<PropsWithLocale> = async ({params: {lng}}) => {
+const BlogPage: NextPage<PropsWithLocale> = async ({params: {lang}}) => {
   const {
     props: {blogs},
   } = await getStaticProps();
-  const {t} = await createTranslation(lng, 'blog');
+  const {t} = await createTranslation(lang, 'blog');
 
   return (
     <>
       <main className="flex items-center flex-col pt-12">
         <h1>{t('myBlogs')}</h1>
-        <BlogsWrapper blogs={blogs} lang={lng} />
+        <BlogsWrapper blogs={blogs} lang={lang} />
       </main>
       <SubscribeForm />
     </>

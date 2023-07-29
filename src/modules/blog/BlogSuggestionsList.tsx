@@ -1,5 +1,6 @@
 'use client';
 import {useTranslation} from '../../app/i18n/client';
+import {locales} from '../../app/i18n/locales.enum';
 import NextLink from '../../components/basic/NextLink';
 import type {IBlogMetadata} from '../../models/blog';
 import {BlogCardPreview} from './BlogCardPreview';
@@ -11,7 +12,7 @@ type Props = {
 
 const BlogSuggestionsList = ({blogs}: Props) => {
   const params = useParams();
-  const {t} = useTranslation(params?.lng, 'home');
+  const {t} = useTranslation(params?.lang as locales, 'home');
 
   return (
     <section

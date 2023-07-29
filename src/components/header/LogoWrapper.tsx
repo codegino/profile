@@ -10,7 +10,7 @@ export const LogoWrapper: FunctionComponent<{className?: string}> = ({
 }) => {
   const {showSidebar, isSidebarVisible} = useHeader();
   const path = usePathname();
-  const lang = useParams()?.lng ?? 'en';
+  const lang = useParams()?.lang;
 
   return (
     <div className={clsx('flex items-center min-w-max ml-2.5 mr-6', className)}>

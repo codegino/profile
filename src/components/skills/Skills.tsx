@@ -15,9 +15,10 @@ import NextLink from '../basic/NextLink';
 import {Zoom} from 'react-awesome-reveal';
 import {useTranslation} from '../../app/i18n/client';
 import {useParams} from 'next/navigation';
+import {locales} from '../../app/i18n/locales.enum';
 
 export default function Skills({skills}: {skills: CategorizedSkill[]}) {
-  const locale = useParams()?.lng;
+  const locale = useParams()?.lang as locales;
   const {t} = useTranslation(locale, 'resume');
 
   return (

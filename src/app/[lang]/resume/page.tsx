@@ -28,7 +28,7 @@ export const metadata = {
   title: 'Carlo Gino Catapang | Code Gino | Resume',
 };
 
-const ResumePage: NextPage<PropsWithLocale> = async ({params: {lng}}) => {
+const ResumePage: NextPage<PropsWithLocale> = async ({params: {lang}}) => {
   const {
     props: {
       workExperiences,
@@ -39,13 +39,13 @@ const ResumePage: NextPage<PropsWithLocale> = async ({params: {lng}}) => {
       resumePdfUrl,
       resumeWordUrl,
     },
-  } = await getStaticProps({locale: lng});
+  } = await getStaticProps({locale: lang});
 
   return (
     <>
       <LinkWrapper resumePdfUrl={resumePdfUrl} resumeWordUrl={resumeWordUrl} />
       <main>
-        <ResumeSummary img={profileImage} svg={profileSvg} lang={lng} />
+        <ResumeSummary img={profileImage} svg={profileSvg} lang={lang} />
         <hr />
         <hr />
         <Timeline

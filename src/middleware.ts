@@ -3,7 +3,7 @@ import {fallbackLng, languages} from './app/i18n/settings';
 import {NextRequest} from 'next/server';
 
 export const config = {
-  // matcher: '/:lng*',
+  // matcher: '/:lang*',
   matcher:
     '/((?!api|_next/static|.well-known|_next/image|sitemap.xml|.well-known|robots.txt|manifest.json|rss.xml|assets|favicon.ico|sw.js).*)',
 };

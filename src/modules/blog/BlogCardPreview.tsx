@@ -3,13 +3,14 @@ import NextLink from '../../components/basic/NextLink';
 import type {IBlogMetadata} from '../../models/blog';
 import {useTranslation} from '../../app/i18n/client';
 import {useParams} from 'next/navigation';
+import {locales} from '../../app/i18n/locales.enum';
 
 type Props = {
   blog: IBlogMetadata;
 };
 
 export const BlogCardPreview = ({blog}: Props) => {
-  const locale = useParams()?.lng;
+  const locale = useParams()?.lang as locales;
   const {t} = useTranslation(locale, 'common');
 
   return (

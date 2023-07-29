@@ -11,6 +11,7 @@ import {Experience} from './Experience';
 import {useTranslation} from '../../app/i18n/client';
 import {useParams} from 'next/navigation';
 import {Slide} from 'react-awesome-reveal';
+import {locales} from '../../app/i18n/locales.enum';
 
 export default function Timeline({
   workExperiences,
@@ -78,8 +79,8 @@ const Content: FunctionComponent<{
   exp: WorkExperience | EducationExperience;
   children: React.ReactNode;
 }> = ({exp, children = null}) => {
-  const params = useParams();
-  const {t} = useTranslation(params?.lng, 'common');
+  const lang = useParams()?.lang as locales;
+  const {t} = useTranslation(lang, 'common');
 
   return (
     <>
