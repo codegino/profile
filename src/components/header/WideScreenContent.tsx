@@ -16,7 +16,9 @@ export default function WideScreenContentImpl() {
   const path = usePathname();
   const params = useParams();
 
-  const {t} = useTranslation(params?.lng, 'common');
+  const locale = params?.lng ?? 'en';
+
+  const {t} = useTranslation(locale, 'common');
 
   return (
     <div className="hidden items-center justify-between w-full lg:flex">
@@ -28,7 +30,7 @@ export default function WideScreenContentImpl() {
               className="underline-on-hover text-white mr-3 last:mr-0 "
             >
               <NextLink
-                href={link.url}
+                href={`/${locale}/${link.url}`}
                 className={clsx('hover:text-primary-600', {
                   'text-primary-600 border-b-2 border-b-primary-600':
                     path?.includes(link.url),
