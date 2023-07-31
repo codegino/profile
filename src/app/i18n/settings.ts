@@ -1,13 +1,14 @@
 export const fallbackLng = 'en';
 export const languages = [fallbackLng, 'sv'];
-export const defaultNS = 'translation';
+export const defaultNS = 'common';
+import type {InitOptions} from 'i18next';
 
-export function getOptions(lang = fallbackLng, ns = defaultNS) {
+export function getOptions(lang = fallbackLng, ns = defaultNS): InitOptions {
   return {
     // debug: true,
     supportedLngs: languages,
     fallbackLng,
-    lang,
+    lng: lang,
     fallbackNS: defaultNS,
     defaultNS,
     ns,

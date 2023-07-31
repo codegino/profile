@@ -1,4 +1,3 @@
-// @ts-nocheck
 import {createInstance} from 'i18next';
 import resourcesToBackend from 'i18next-resources-to-backend';
 import {initReactI18next} from 'react-i18next/initReactI18next';
@@ -11,7 +10,7 @@ const initI18next = async (lang: locales, ns: string) => {
     .use(initReactI18next)
     .use(
       resourcesToBackend(
-        (language, namespace) =>
+        (language: string, namespace: typeof ns) =>
           import(`../../../public/locales/${language}/${namespace}.json`),
       ),
     )
@@ -22,7 +21,7 @@ const initI18next = async (lang: locales, ns: string) => {
 export async function createTranslation(
   lang: locales,
   ns: string,
-  options = {},
+  options: {keyPrefix?: string} = {},
 ) {
   const i18nextInstance = await initI18next(lang, ns);
   return {
