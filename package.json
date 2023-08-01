@@ -1,9 +1,6 @@
 {
   "name": "profile",
   "version": "0.1.0",
-  "engines": {
-    "node": "18.12.1"
-  },
   "private": true,
   "packageManager": "pnpm@8.6.11",
   "scripts": {
