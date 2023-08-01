@@ -52,13 +52,14 @@ export default async function NFT() {
                     loading="lazy"
                     placeholder="blur"
                     blurDataURL="/assets/nft-placeholder.png"
+                    title={`Collection #${id}`}
                     alt={`Collection #${id}`}
                   />
 
                   <NextLink
                     href={`https://opensea.io/assets/${contractAddress}/${id}`}
                     aria-label={`Collection #${id}`}
-                    title={`Collection #${id}`}
+                    title={`${name} #${id}`}
                     target="_blank"
                     className="text-primary-dark underline-on-hover"
                   >
