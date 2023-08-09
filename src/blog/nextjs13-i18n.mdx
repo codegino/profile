@@ -1,7 +1,7 @@
 ---
-title: Internationalization in NextJS 13 app directory
-description: Building a multilingual NextJS app using the new app directory
-date: '2023-08-07'
+title: Building a multilingual NextJS app using the new app directory
+description: Learn how to build a multilingual NextJS app using the new app directory and i18next library
+date: '2023-08-09'
 dateUpdated: '2023-08-09'
 bannerId: 40TNy2EZvtxBkf4lQ7kg5z
 bannerDescription: international
@@ -23,7 +23,7 @@ Internationalization, or i18n for short, is the process of designing and develop
 
 <br />
 
-With the introduction of `app` directory, my [previous translation blog](https://l.carlogino.com/b-nexti18n) is not applicable anymore since [next-i18next](https://github.com/i18next/next-i18next) is not necessary.
+With the introduction of `app` directory, my [previous i18n blog](https://l.carlogino.com/b-nexti18n) is not applicable anymore since [next-i18next](https://github.com/i18next/next-i18next) is not necessary.
 
 <br />
 
@@ -239,7 +239,7 @@ We're done with the project setup. It's time to actually do some internationaliz
 
 <br />
 
-#### Create translation files
+### Create translation files
 
 Unless our users use translation plugins like Google Translate, there is no way for our content to be magically translated. Therefore, we need to determine how our pages will be translated based on the user's locale.
 
@@ -681,7 +681,7 @@ We can omit some translation keys if we want it to use the default locale value(
 }
 ```
 
-```json fileName="i18n/locales/zh-CN/newsletter"
+```json fileName="i18n/locales/sv/newsletter"
 {
   "title": "Håll dig uppdaterad",
   "subtitle": "Prenumerera på mitt nyhetsbrev",
@@ -738,7 +738,7 @@ export default SubscribeForm;
 
 Render the form on the home page
 
-```tsx fileName="app/[locale]/page.tsx"
+```tsx fileName="app/[locale]/page"
 import SubscribeForm from '../../components/SubscribeForm';
 import {createTranslation} from '../../i18n/server';
 
