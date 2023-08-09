@@ -392,7 +392,7 @@ export async function createTranslation(lang: LocaleTypes, ns: string) {
 
 #### Translate the Home page
 
-```tsx
+```tsx fileName="app/[locale]/page"
 import {createTranslation} from '../../i18n/server';
 
 // This should be async cause we need to use `await` for createTranslation
@@ -412,7 +412,7 @@ export default IndexPage;
 
 #### Translate the About page
 
-```tsx
+```tsx fileName="app/[locale]/about/page"
 import {createTranslation} from '../../../i18n/server';
 
 // This should be async cause we need to use `await` for createTranslation
