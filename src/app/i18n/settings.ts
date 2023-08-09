@@ -1,5 +1,6 @@
 export const fallbackLng = 'en';
-export const languages = [fallbackLng, 'sv'];
+export const languages = [fallbackLng, 'sv'] as const;
+export type LocaleTypes = (typeof languages)[number];
 export const defaultNS = 'common';
 import type {InitOptions} from 'i18next';
 

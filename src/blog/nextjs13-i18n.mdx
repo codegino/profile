@@ -1,0 +1,925 @@
+---
+title: Internationalization in NextJS 13 app directory
+description: Building a multilingual NextJS app using the new app directory
+date: '2023-08-07'
+dateUpdated: '2023-08-09'
+bannerId: 40TNy2EZvtxBkf4lQ7kg5z
+bannerDescription: international
+tags: ['react', 'next.js', 'i18n']
+keywords: ['nextjs i18n', 'i18n app', 'nextjs app i18n', 'nextjs internationalization']
+published: true 
+---
+
+## TL;DR 
+
+> Check the demo [here](https://l.carlogino.com/nextjs-app-dir-i18n-demo)
+>
+> Check the source code [here](https://l.carlogino.com/nextjs-app-dir-i18n)
+
+
+## Introduction
+
+Internationalization, or i18n for short, is the process of designing and developing software applications that can be adapted to different languages and cultures. It is an important consideration for any application that is intended for a global audience. Next.js is a popular framework for building web applications that simplifies the process of implementing i18n. In this article, we will explore how to handle i18n in Next.js using the app directory and the i18next library. We will also cover some of the key translation functions and techniques that you can use to make your application more accessible to users around the world.
+
+<br />
+
+With the introduction of `app` directory, my [previous translation blog](https://l.carlogino.com/b-nexti18n) is not applicable anymore since [next-i18next](https://github.com/i18next/next-i18next) is not necessary.
+
+<br />
+
+## Installation
+
+The easiest way to follow this guide is to [degit](https://github.com/Rich-Harris/degit) a Nextjs boilerplate.
+
+```bash
+npx degit codegino/nextjs-ts-tw-tldr next13-i18n
+```
+
+### Remove unused files
+
+Delete everything under the `app` and `components` folders
+
+```bash
+rm -rf app/* components/*
+```
+
+## Project Structure
+
+### Our i18n strategy
+
+In this blog post, we will use a path-based strategy to determine the locale of our web application. Implementing this strategy in Next.js is easy because the framework follows a convention for creating paths. We will create a [locale] folder and place all our pages inside it. This means our folder structure should look like this:
+
+```txt noLine noHeader
+app 
+└── [locale]
+    ├── page.tsx    
+    └── about 
+        └── page.tsx
+```
+
+
+Since we're utilizing a path-based i18n approach, we can effortlessly obtain the locale from the params object that our page will receive.
+
+<br />
+
+
+#### Create our home page to display the locale
+
+```tsx fileName="app/[locale]/page"
+const IndexPage = ({params: {locale}}) => (
+  <div>
+    <h1>Hello world: {locale}</h1>
+  </div>
+);
+
+export default IndexPage;
+```
+
+#### Create another page to test navigation
+
+```tsx fileName="app/[locale]/about/page"
+const AboutPage = ({params: {locale}}) => (
+  <div>
+    <h1>About page: {locale}</h1>
+  </div>
+);
+
+export default AboutPage;
+```
+
+<br />
+
+NextJS has a feature that automatically creates a layout component if we don't provide one. However, I prefer to create my own layout component because I need to basic customization.
+
+```tsx fileName="app/layout"
+import '../styles/tailwind.css';
+
+export const metadata = {
+  title: 'Next.js i18n',
+};
+
+export default function RootLayout({children}) {
+  return (
+    <html lang="en">
+      <body className="p-3">{children}</body>
+    </html>
+  );
+}
+```
+
+### Testing our pages
+
+We'll get a 404 page if we try to access the root URL because every page is now under the `[locale]` folder. We'll handle this later.
+
+<Img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/zqhbx977m53yi8n5q5nk.png" />
+
+<br />
+
+To see our page, we need to add the "locale" of our choice to the URL. For example, if we want to see the English version of our page, we need to add `/en` to the URL.
+
+<Img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/xpxys09bc79t4zfmrtsu.png" />
+
+<Img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/kkpq87bacy45sx8bxr6b.png" />
+
+<br />
+
+
+### Locale switcher and navigation links
+
+To simplify our demo, we'll create a component that will handle the locale switcher and navigation links.
+
+<br />
+
+#### Implement a new layout component to manage the organization of page content
+
+> We can put everything in the root layout if you prefer.
+
+```tsx fileName="app/[locale]/layout"
+import React from 'react';
+import Header from '../../components/Header';
+
+const Layout = ({children}) => {
+  return (
+    <>
+      <Header />
+      {children}
+    </>
+  );
+};
+
+export default Layout;
+```
+
+#### Create the Header component
+
+This component will include the reusable navigation and locale switcher component
+
+```tsx fileName="app/components/Header"
+'use client';
+
+import {usePathname, useParams} from 'next/navigation';
+import Link from 'next/link';
+import ChangeLocale from './ChangeLocale';
+
+const Header = () => {
+  const pathName = usePathname();
+  const locale = useParams()?.locale;
+
+  return (
+    <header>
+      <nav className="flex gap-2 mb-2">
+        <Link
+          href={`/${locale}`}
+          className={pathName === `/${locale}` ? 'text-blue-700' : ''}
+        >
+          Home
+        </Link>
+        <Link
+          href={`/${locale}/about`}
+          className={pathName === `/${locale}/about` ? 'text-blue-700' : ''}
+        >
+          About
+        </Link>
+      </nav>
+      <ChangeLocale />
+    </header>
+  );
+};
+
+export default Header;
+```
+
+#### Create the locale switcher component
+
+```tsx fileName="app/components/ChangeLocale"
+'use client';
+
+import React from 'react';
+import {useRouter, useParams, useSelectedLayoutSegments} from 'next/navigation';
+
+const ChangeLocale = () => {
+  const router = useRouter();
+  const params = useParams();
+  const urlSegments = useSelectedLayoutSegments();
+
+  const handleLocaleChange = event => {
+    const newLocale = event.target.value;
+
+    // This is used by the Header component which is used in `app/[locale]/layout.tsx` file,
+    // urlSegments will contain the segments after the locale.
+    // We replace the URL with the new locale and the rest of the segments.
+    router.push(`/${newLocale}/${urlSegments.join('/')}`);
+  };
+
+  return (
+    <div>
+      <select onChange={handleLocaleChange} value={params.locale}>
+        <option value="en">🇺🇸 English</option>
+        <option value="zh-CN">🇨🇳 中文</option>
+        <option value="sv">🇸🇪 Swedish</option>
+      </select>
+    </div>
+  );
+};
+
+export default ChangeLocale;
+```
+
+<br />
+
+
+Now it's easier to test around what language and page we want to see.
+<Img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/f9oafhf3j0vw2cce20d3.gif" />
+
+<br />
+
+## Actual translation
+
+We're done with the project setup. It's time to actually do some internationalization
+
+<br />
+
+#### Create translation files
+
+Unless our users use translation plugins like Google Translate, there is no way for our content to be magically translated. Therefore, we need to determine how our pages will be translated based on the user's locale.
+
+<br />
+
+Here is what our translation files' structure will look like.
+
+```txt noLine noHeader
+i18n
+└── locales
+    ├── en
+    │   ├── about.json
+    │   └── home.json
+    ├── zh-CN
+    │   ├── about.json
+    │   └── home.json                
+    └── sv
+        ├── about.json
+        └── home.json
+```
+
+> NOTE: It does not matter where you put the translation files as long as you can import them correctly.
+
+#### English translations
+
+```json fileName="i18n/locales/en/home"
+{
+  "greeting": "Hello world!"
+}
+```
+
+```json fileName="i18n/locales/en/about"
+{
+  "aboutThisPage": "This is the About page"
+}
+```
+
+#### Chinese translations
+
+```json fileName="i18n/locales/zh-CN/home"
+{
+  "greeting": "世界您好"
+}
+```
+
+```json fileName="i18n/locales/zh-CN/about"
+{
+  "aboutThisPage": "这是关于页面"
+}
+```
+
+#### Swedish translation
+
+
+```json fileName="i18n/locales/sv/home"
+{
+  "greeting": "Hej världen!"
+}
+```
+
+```json fileName="i18n/locales/sv/about"
+{
+  "aboutThisPage": "Det här är sidan Om"
+}
+```
+
+<br />
+
+### Install required dependencies
+
+There are various libraries available for handling translations, but I find libraries from [i18next](https://www.i18next.com/) very easy to use.
+
+
+```bash
+npm install i18next react-i18next i18next-resources-to-backend
+```
+
+> [i18next-resources-to-backend](https://github.com/i18next/i18next-resources-to-backend/blob/main/src/index.js) is a very small utility, so you can just copy the implementation if you don't want an additional dependency.
+
+### Create a reusable settings file
+
+Let's create a utility file for both the server and the client-side translations
+
+
+```ts fileName="i18n/settings"
+import type {InitOptions} from 'i18next';
+
+export const fallbackLng = 'en';
+export const locales = [fallbackLng, 'zh-CN', 'sv'] as const;
+export type LocaleTypes = (typeof locales)[number];
+export const defaultNS = 'common';
+
+export function getOptions(lang = fallbackLng, ns = defaultNS): InitOptions {
+  return {
+    // debug: true, // Set to true to see console logs
+    supportedLngs: locales,
+    fallbackLng,
+    lng: lang,
+    fallbackNS: defaultNS,
+    defaultNS,
+    ns,
+  };
+}
+```
+
+> To learn more about the options, check out the [i18next documentation](https://www.i18next.com/overview/configuration-options).
+
+<br />
+
+### Server Components translation
+
+#### Create a utility for translations happening in the server/backend
+
+```ts fileName="i18n/server"
+import {createInstance} from 'i18next';
+import resourcesToBackend from 'i18next-resources-to-backend';
+import {initReactI18next} from 'react-i18next/initReactI18next';
+import {getOptions, LocaleTypes} from './settings';
+
+// Initialize the i18n instance
+const initI18next = async (lang: LocaleTypes, ns: string) => {
+  const i18nInstance = createInstance();
+  await i18nInstance
+    .use(initReactI18next)
+    .use(
+      resourcesToBackend(
+        (language: string, namespace: typeof ns) =>
+          // load the translation file depending on the language and namespace
+          import(`./locales/${language}/${namespace}.json`),
+      ),
+    )
+    .init(getOptions(lang, ns));
+
+  return i18nInstance;
+};
+
+// It will accept the locale and namespace for i18next to know what file to load
+export async function createTranslation(lang: LocaleTypes, ns: string) {
+  const i18nextInstance = await initI18next(lang, ns);
+
+  return {
+    // This is the translation function we'll use in our components
+    // e.g. t('greeting')
+    t: i18nextInstance.getFixedT(lang, Array.isArray(ns) ? ns[0] : ns),
+  };
+}
+```
+
+<br />
+
+#### Translate the Home page
+
+```tsx
+import {createTranslation} from '../../i18n/server';
+
+// This should be async cause we need to use `await` for createTranslation
+const IndexPage = async ({params: {locale}}) => {
+  // Make sure to use the correct namespace here.
+  const {t} = await createTranslation(locale, 'home');
+
+  return (
+    <div>
+      <h1>{t('greeting')}</h1>
+    </div>
+  );
+};
+
+export default IndexPage;
+```
+
+#### Translate the About page
+
+```tsx
+import {createTranslation} from '../../../i18n/server';
+
+// This should be async cause we need to use `await` for createTranslation
+const AboutPage = async ({params: {locale}}) => {
+  // Make sure to use the correct namespace here.
+  const {t} = await createTranslation(locale, 'about');
+
+  return (
+    <div>
+      <h1>{t('aboutThisPage')}</h1>
+    </div>
+  );
+};
+
+export default AboutPage;
+```
+
+With the codes above, we can now see the content translated.
+<Img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/8tunbi9dy6bmkg6et3b7.gif" />
+
+<br />
+
+### Client-side translation
+
+One issue in the previous example is that the links in the header do not update accordingly to the selected language.
+
+
+#### Create a reusable hook to use for translations
+
+Install [i18next-browser-languagedetector](https://github.com/i18next/i18next-browser-languageDetector) to simplify language detection in the frontend
+
+```bash
+npm install i18next-browser-languagedetector
+```
+
+The code below might be lengthy because we need to support both server rendering and client rendering. Don't confuse SSR with Server Component rendering.
+
+```ts fileName="i18n/client"
+'use client';
+
+import {useEffect, useState} from 'react';
+import i18next, {i18n} from 'i18next';
+import {initReactI18next, useTranslation as useTransAlias} from 'react-i18next';
+import resourcesToBackend from 'i18next-resources-to-backend';
+import LanguageDetector from 'i18next-browser-languagedetector';
+import {type LocaleTypes, getOptions, locales} from './settings';
+
+const runsOnServerSide = typeof window === 'undefined';
+
+// Initialize i18next for the client side
+i18next
+  .use(initReactI18next)
+  .use(LanguageDetector)
+  .use(
+    resourcesToBackend(
+      (language: LocaleTypes, namespace: string) =>
+        import(`./locales/${language}/${namespace}.json`),
+    ),
+  )
+  .init({
+    ...getOptions(),
+    lng: undefined, // detect the language on the client
+    detection: {
+      order: ['path', 'htmlTag'],
+    },
+    preload: runsOnServerSide ? locales : [],
+  });
+
+export function useTranslation(lng: LocaleTypes, ns: string) {
+  const translator = useTransAlias(ns);
+  const {i18n} = translator;
+
+  // Run content is being rendered on server side
+  if (runsOnServerSide && lng && i18n.resolvedLanguage !== lng) {
+    i18n.changeLanguage(lng);
+  } else {
+    // Use our custom implementation when running on client side
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    useCustomTranslationImplem(i18n, lng);
+  }
+  return translator;
+}
+
+function useCustomTranslationImplem(i18n: i18n, lng: LocaleTypes) {
+  const [activeLng, setActiveLng] = useState(i18n.resolvedLanguage);
+
+  // This effect updates the active language state variable when the resolved language changes,
+  useEffect(() => {
+    if (activeLng === i18n.resolvedLanguage) return;
+    setActiveLng(i18n.resolvedLanguage);
+  }, [activeLng, i18n.resolvedLanguage]);
+
+  // This effect changes the language of the application when the lng prop changes.
+  useEffect(() => {
+    if (!lng || i18n.resolvedLanguage === lng) return;
+    i18n.changeLanguage(lng);
+  }, [lng, i18n]);
+}
+
+```
+
+#### Create the translations for the navigation links
+
+We'll put the translations in the `common` namespace as they are shared common pages.
+
+```json fileName="i18n/locales/en/common"
+{
+  "home": "Home",
+  "about": "About"
+}
+```
+
+```json fileName="i18n/locales/zh-CN/common"
+{
+  "home": "主页",
+  "about": "关于页面"
+}
+```
+
+```json fileName="i18n/locales/sv/common"
+{
+  "home": "Hem",
+  "about": "Om"
+}
+```
+
+
+#### Translate the Header component
+
+```tsx fileName="components/Header"
+'use client';
+import {usePathname, useParams} from 'next/navigation';
+import Link from 'next/link';
+import ChangeLocale from './ChangeLocale';
+import {useTranslation} from '../i18n/client';
+import type {LocaleTypes} from '../i18n/settings';
+
+const Header = () => {
+  const pathName = usePathname();
+  const locale = useParams()?.locale as LocaleTypes;
+  const {t} = useTranslation(locale, 'common');
+
+  return (
+    <header>
+      <nav className="flex gap-2 mb-2">
+        <Link
+          href={`/${locale}`}
+          className={pathName === `/${locale}` ? 'text-blue-700' : ''}
+        >
+          {t('home')}
+        </Link>
+        <Link
+          href={`/${locale}/about`}
+          className={pathName === `/${locale}/about` ? 'text-blue-700' : ''}
+        >
+          {t('about')}
+        </Link>
+      </nav>
+      <ChangeLocale />
+    </header>
+  );
+};
+
+export default Header;
+```
+
+Now the links will update accordingly to the selected language
+<Img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/5cj0bg09w7ubyiavbcwl.gif" />
+
+<br />
+
+### Handle default locale
+
+This may vary based on the user's requirements, but I prefer not to include the default locale in the URL. I want `localhost:3000` to be equivalent to `localhost:3000/en`, and when I visit `localhost:3000/en`, I want the `/en` in the URL to be automatically removed.
+
+<br />
+
+To achieve this, we need to do some URL rewriting and redirecting.
+
+```ts fileName="middleware"
+import {NextResponse, NextRequest} from 'next/server';
+import {fallbackLng, locales} from './i18n/settings';
+
+export function middleware(request: NextRequest) {
+  // Check if there is any supported locale in the pathname
+  const pathname = request.nextUrl.pathname;
+
+  // Check if the default locale is in the pathname
+  if (
+    pathname.startsWith(`/${fallbackLng}/`) ||
+    pathname === `/${fallbackLng}`
+  ) {
+    // e.g. incoming request is /en/about
+    // The new URL is now /about
+    return NextResponse.redirect(
+      new URL(
+        pathname.replace(
+          `/${fallbackLng}`,
+          pathname === `/${fallbackLng}` ? '/' : '',
+        ),
+        request.url,
+      ),
+    );
+  }
+
+  const pathnameIsMissingLocale = locales.every(
+    locale => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`,
+  );
+
+  if (pathnameIsMissingLocale) {
+    // We are on the default locale
+    // Rewrite so Next.js understands
+
+    // e.g. incoming request is /about
+    // Tell Next.js it should pretend it's /en/about
+    return NextResponse.rewrite(
+      new URL(`/${fallbackLng}${pathname}`, request.url),
+    );
+  }
+}
+
+export const config = {
+  // Do not run the middleware on the following paths
+  matcher:
+    '/((?!api|_next/static|_next/image|manifest.json|assets|favicon.ico).*)',
+};
+```
+
+NextJS is truly magical in making things just work
+<Img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/uq9bt5fe1ltzx4xij84t.gif" />
+
+<br />
+
+## Bonus
+
+### Nested translation keys and default translation
+
+We are not limited to a flat JSON structure.
+
+```json fileName="i18n/locales/en/newsletter"
+{
+  "title": "Stay up to date",
+  "subtitle": "Subscribe to my newsletter",
+  "form": {
+    "firstName": "First name",
+    "email": "E-mail",
+    "action": {
+      "signUp": "Sign Up",
+      "cancel": "Cancel"
+    }
+  }
+}
+```
+
+We can omit some translation keys if we want it to use the default locale value(en in our case).
+
+```json fileName="i18n/locales/zh-CN/newsletter"
+{
+  "title": "保持最新状态",
+  "form": {
+    "email": "电子邮箱",
+    "action": {
+      "cancel": "取消"
+    }
+  }
+}
+```
+
+```json fileName="i18n/locales/zh-CN/newsletter"
+{
+  "title": "Håll dig uppdaterad",
+  "subtitle": "Prenumerera på mitt nyhetsbrev",
+  "form": {
+    "firstName": "Förnamn",
+    "email": "E-post",
+    "action": {
+      "signUp": "Registrera sig",
+      "cancel": "Annullera"
+    }
+  }
+}
+```
+
+#### Create the component
+
+Let's create a component that uses the translations above. We'll make this a server component to demonstrate one way of passing the locale.
+
+```tsx fileName="components/SubscribeForm"
+import React from 'react';
+import {createTranslation} from '../i18n/server';
+
+// pass the locale as a prop
+const SubscribeForm = async ({locale}) => {
+  const {t} = await createTranslation(locale, 'newsletter');
+
+  return (
+    <section className="w-[350px]">
+      <h3>{t('title')}</h3>
+      <h4>{t('subtitle')}</h4>
+
+      <form className="flex flex-col items-start">
+        <input placeholder={t('form.firstName')} className="form-field" />
+        <input placeholder={t('form.email')} className="form-field" />
+        <button className="form-field">{t('form.action.signUp')}</button>
+        <button className="form-field">{t('form.action.cancel')}</button>
+      </form>
+    </section>
+  );
+};
+
+export default SubscribeForm;
+```
+
+#### (OPTIONAL) Add styles to form fields
+
+```css fileName="styles/tailwind.css"
+// ...
+
+.form-field {
+  @apply border mb-1 p-1 w-full;
+}
+```
+
+Render the form on the home page
+
+```tsx fileName="app/[locale]/page.tsx"
+import SubscribeForm from '../../components/SubscribeForm';
+import {createTranslation} from '../../i18n/server';
+
+const IndexPage = async ({params: {locale}}) => {
+  // Make sure to use the correct namespace here.
+  const {t} = await createTranslation(locale, 'home');
+
+  return (
+    <div>
+      <h1>{t('greeting')}</h1>
+      <hr className="my-4" />
+      <SubscribeForm locale={locale} />
+    </div>
+  );
+};
+
+export default IndexPage;
+```
+
+And now, we have this!
+<Img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/wn8gpos0dcc7ffwitjr1.gif" />
+
+
+### Built-in Formatting
+
+It is very easy to format most of our data since [i18next](https://www.i18next.com/) comes with a lot of utilities we can use.
+
+- [Number](https://www.i18next.com/translation-function/formatting#number)
+- [Currency](https://www.i18next.com/translation-function/formatting#currency)
+- [DateTime](https://www.i18next.com/translation-function/formatting#datetime)
+- [RelativeTime](https://www.i18next.com/translation-function/formatting#relativetime)
+- [List](https://www.i18next.com/translation-function/formatting#list)
+
+<br />
+
+Let's use the translation files below to showcase the formatting features.
+
+```json fileName="i18n/en/built-in-demo"
+{
+  "number": "Number: {{val, number}}",
+  "currency": "Currency: {{val, currency}}",
+  "dateTime": "Date/Time: {{val, datetime}}",
+  "relativeTime": "Relative Time: {{val, relativetime}}",
+  "list": "List: {{val, list}}",
+  "weekdays": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+}
+```
+
+```json fileName="app/i18n/zh-CN/built-in-demo"
+{
+  "number": "数: {{val, number}}",
+  "currency": "货币: {{val, currency}}",
+  "dateTime": "日期/时间: {{val, datetime}}",
+  "relativeTime": "相对时间: {{val, relativetime}}",
+  "list": "列表: {{val, list}}",
+  "weekdays": ["星期一", "星期二", "星期三", "星期四", "星期五"]
+}
+```
+
+```json fileName="app/i18n/sv/built-in-demo"
+{
+  "number": "Nummer: {{val, number}}",
+  "currency": "Valuta: {{val, currency}}",
+  "dateTime": "Datum/tid: {{val, datetime}}",
+  "relativeTime": "Relativ tid: {{val, relativetime}}",
+  "list": "Lista: {{val, list}}",
+  "weekdays": ["Måndag", "Tisdag", "Onsdag", "Torsdag", "Fredag"]
+}
+```
+
+#### Create the component
+
+Let's create a component that will use the previous translations. We'll make it a client component just for fun.
+
+```tsx fileName="app/components/BuiltInFormatsDemo"
+'use client';
+import React from 'react';
+import {useTranslation} from '../i18n/client';
+import type {LocaleTypes} from '../i18n/settings';
+import {useParams} from 'next/navigation';
+
+const BuiltInFormatsDemo = () => {
+  let locale = useParams()?.locale as LocaleTypes;
+
+  const {t} = useTranslation(locale, 'built-in-demo');
+
+  return (
+    <div>
+      <p>
+        {/* "number": "Number: {{val, number}}", */}
+        {t('number', {
+          val: 123456789.0123,
+        })}
+      </p>
+      <p>
+        {/* "currency": "Currency: {{val, currency}}", */}
+        {t('currency', {
+          val: 123456789.0123,
+          style: 'currency',
+          currency: 'USD',
+        })}
+      </p>
+
+      <p>
+        {/* "dateTime": "Date/Time: {{val, datetime}}", */}
+        {t('dateTime', {
+          val: new Date(1234567890123),
+          formatParams: {
+            val: {
+              weekday: 'long',
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+            },
+          },
+        })}
+      </p>
+
+      <p>
+        {/* "relativeTime": "Relative Time: {{val, relativetime}}", */}
+        {t('relativeTime', {
+          val: 12,
+          style: 'long',
+        })}
+      </p>
+
+      <p>
+        {/* "list": "List: {{val, list}}", */}
+        {t('list', {
+          // https://www.i18next.com/translation-function/objects-and-arrays#objects
+          // Check the link for more details on `returnObjects`
+          val: t('weekdays', {returnObjects: true}),
+        })}
+      </p>
+    </div>
+  );
+};
+
+export default BuiltInFormatsDemo;
+```
+
+Don't forget to render the component on the home page.
+
+```tsx fileName="app/[locale]/page"
+import BuiltInFormatsDemo from '../../components/BuiltInFormatsDemo';
+import {createTranslation} from '../../i18n/server';
+
+const IndexPage = async ({params: {locale}}) => {
+  // Make sure to use the correct namespace here.
+  const {t} = await createTranslation(locale, 'home');
+
+  return (
+    <div>
+      <h1>{t('greeting')}</h1>
+      <hr className="my-4" />
+      <BuiltInFormatsDemo />
+    </div>
+  );
+};
+
+export default IndexPage;
+```
+
+<br />
+
+The more you look, the more you'll be amazed
+<Img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/rgnef36bxtteql75vkrb.gif" />
+
+
+<br />
+
+#### Other translation functions to check
+
+- [More info about Interpolation](https://www.i18next.com/translation-function/interpolation)
+- [Nesting](https://www.i18next.com/translation-function/nesting)
+- [Pluralization](https://www.i18next.com/translation-function/plurals)
+- [Context](https://www.i18next.com/translation-function/context)
+
+<br />
+
+
+## Conclusion
+
+Internationalization is a complex requirement simplified in Nextjs due to the way applications are built using the framework. With the introduction of `app` directory, we need a different approach to handle i18n. Because of `i18next` it makes the task even simpler.
