@@ -52,7 +52,7 @@
     "eslint-config-next": "13.4.3",
     "eslint-config-prettier": "8.8.0",
     "eslint-plugin-jsx-a11y": "6.7.1",
-    "globby": "13.2.1",
+    "globby": "13.2.2",
     "gray-matter": "4.0.3",
     "husky": "8.0.3",
     "lint-staged": "13.2.3",
