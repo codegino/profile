@@ -1,3 +1,5 @@
+'use client';
+
 import Image from 'next/image';
 import NextLink from '../../components/basic/NextLink';
 import type {IBlogMetadata} from '../../models/blog';

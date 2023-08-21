@@ -6,8 +6,8 @@ const BlogImg = ({width = 1100, height = 600, ...props}: ImageProps) => (
       {...props}
       width={width}
       height={height}
-      alt="GIF"
-      title="GIF"
+      alt={props.alt|| 'An image of a blog post'}
+      title={props.title || 'An image of a blog post'}
       placeholder="blur"
       className="object-contain object-center"
       blurDataURL="/assets/blog-placeholder.jpeg"

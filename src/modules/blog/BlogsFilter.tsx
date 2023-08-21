@@ -1,3 +1,5 @@
+'use client'
+
 import {useMemo, useState} from 'react';
 import type {FunctionComponent} from 'react';
 import clsx from 'clsx';

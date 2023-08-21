@@ -2,7 +2,6 @@ import fs from 'fs';
 import matter from 'gray-matter';
 import type {Metadata, NextPage} from 'next';
 import {serialize} from 'next-mdx-remote/serialize';
-import Head from 'next/head';
 import path from 'path';
 import remarkMdxCodeMeta from 'remark-mdx-code-meta';
 import type {IBlogMetadata} from '../../../../models/blog';
