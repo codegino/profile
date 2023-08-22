@@ -1,5 +1,5 @@
 ---
-title: Build your free link shortener with Next.js and Vercel Postgres
+title: Build a free link shortener with Next.js and Vercel Postgres
 description: Create a link shortener with Next.js and Vercel Postgres. Learn dynamic routing, database connection, and domain customization.
 date: '2023-08-21'
 dateUpdated: '2023-08-21'
@@ -19,6 +19,10 @@ published: true
 ## Introduction
 
 Link shorteners have become a go-to solution for sharing lengthy URLs, especially on platforms where character count matters. They're simple, efficient, and incredibly handy. In this blog post, we're diving into the creation of a simple and free link shortener using [Next.js](https://nextjs.org) and [Vercel Postgres](https://vercel.com/docs/storage/vercel-postgres).
+
+Vercel Postgres is my new go-to solution for free Postgresql database hosting. It offers a generous free tier for small projects and is easy to set up.
+
+Since Vercel hosting is also free, we can build and deploy our app without any cost.
 
 ### Our demo will showcase the following features:
 
@@ -356,6 +360,10 @@ Remember, this isn't free as you'll need to purchase a domain. I got mine from [
 2. Create a new record
 3. To direct all traffic to Vercel, I added an `A Record` with Host `@` and Value `76.76.21.21`
 4. Next, I added a `CNAME Record` with Host `links` and Value `cname.vercel-dns.com`
+
+<Img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/br9t0u4cc06upbnz8l61.png" />
+
+<br />
 
 #### To add the custom domain in Vercel:
 
