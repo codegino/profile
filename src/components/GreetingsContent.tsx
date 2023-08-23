@@ -24,11 +24,11 @@ const GreetingsContent: FunctionComponent<{className?: string}> = () => {
 
   return (
     <>
-      <div className="flex justify-center items-center h-screen w-screen relative lg:max-w-[30rem]">
-        <Zoom onVisibilityChange={() => setIsTyping(true)} triggerOnce>
+      <Zoom onVisibilityChange={() => setIsTyping(true)} triggerOnce>
+        <div className="flex justify-center items-center h-screen w-screen relative md:max-w-[37rem]">
           <div
             className="
-            w-full m-2 sm:m-0 sm:w-[95%] lg:w-[45rem]
+            w-full m-2 sm:m-0 sm:w-[95%] lg:w-[50rem]
             rounded-lg overflow-hidden text-[7px]
           "
           >
@@ -114,8 +114,8 @@ const GreetingsContent: FunctionComponent<{className?: string}> = () => {
               ) : null}
             </div>
           </div>
-        </Zoom>
-      </div>
+        </div>
+      </Zoom>
       {isGuideVisible ? (
         <div className="relative bottom-[8.5vh]">
           <GuideArrow onClick={scrollToContent} />
