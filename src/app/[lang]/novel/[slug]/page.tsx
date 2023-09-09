@@ -8,7 +8,7 @@ import type {IBlogMetadata} from '@/models/blog';
 import BlogContent from '@/modules/blog/BlogContent';
 import BlogHeader from '@/modules/blog/BlogHeader';
 import BlogLayout from '@/modules/common/ContentLayout';
-import {getBlogsMetadata, BLOGS_PATH} from '@/utils/mdx.utils';
+import {getNovelsMetadata, NOVELS_PATH} from '@/utils/mdx.utils';
 import {client} from '@/utils/contentful.utils';
 import {blurImage} from '@/utils/image-blur.utils';
 import BlogFooter from '@/modules/blog/BlogFooter';
@@ -22,7 +22,7 @@ export const generateMetadata = async ({
 }: {
   params: {slug: string};
 }): Promise<Metadata> => {
-  const postFilePath = path.join(BLOGS_PATH, `${slug}.mdx`);
+  const postFilePath = path.join(NOVELS_PATH, `${slug}.mdx`);
   const source = fs.readFileSync(postFilePath);
 
   const {data: blog} = matter(source);
@@ -33,12 +33,12 @@ export const generateMetadata = async ({
   const bannerUrl = `https:${asset.fields.file?.url}`;
 
   return {
-    ...newCommonMetaTags(blog.title, `/blog/${blog.slug}`),
+    ...newCommonMetaTags(blog.title, `/novel/${blog.slug}`),
     title: blog.title,
     description: blog.description,
     keywords: blog.keywords?.join(','),
     openGraph: {
-      url: `https://carlogino.com/blog/${blog.slug}`,
+      url: `https://carlogino.com/novel/${blog.slug}`,
       type: 'article',
       title: blog.title,
       description: blog.description,
@@ -107,7 +107,7 @@ const BlogPage: NextPage<{
 };
 
 const getStaticProps = async (slug: string) => {
-  const postFilePath = path.join(BLOGS_PATH, `${slug}.mdx`);
+  const postFilePath = path.join(NOVELS_PATH, `${slug}.mdx`);
   const source = fs.readFileSync(postFilePath);
 
   const {content, data} = matter(source);
@@ -140,7 +140,7 @@ const getStaticProps = async (slug: string) => {
 };
 
 export const generateStaticParams = async () => {
-  return (await getBlogsMetadata()).map(meta => {
+  return (await getNovelsMetadata()).map(meta => {
     return {
       slug: meta.slug,
     };

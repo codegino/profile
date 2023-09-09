@@ -3,6 +3,7 @@
   "resume": "Resume",
   "about": "About",
   "blog": "Blog",
+  "novel": "Novel",
   "nft": "NFT",
   "vocab": "Vocab",
   "date": "{{val, datetime}}",

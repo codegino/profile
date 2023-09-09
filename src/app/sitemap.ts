@@ -1,5 +1,5 @@
 import type {MetadataRoute} from 'next';
-import {getBlogsMetadata} from '../utils/blogs-mdx.utils';
+import {getBlogsMetadata} from '../utils/mdx.utils';
 
 const ROOT_URL = 'https://carlogino.com';
 

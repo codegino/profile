@@ -4,7 +4,7 @@ import Hero from '../../components/Hero';
 import ResumeSummary from '../../components/ResumeSummary';
 import NextLink from '../../components/basic/NextLink';
 import BlogSuggestionsList from '../../modules/blog/BlogSuggestionsList';
-import {getBlogsMetadata} from '../../utils/blogs-mdx.utils';
+import {getBlogsMetadata} from '../../utils/mdx.utils';
 import {client, getBlurringImage} from '../../utils/contentful.utils';
 import {fetchSkills} from '../../utils/resume-props';
 import {PropsWithLocale} from '../../types/server-component';

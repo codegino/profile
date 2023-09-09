@@ -1,4 +1,4 @@
-import {getBlogsMetadata} from '../../utils/blogs-mdx.utils';
+import {getBlogsMetadata} from '../../utils/mdx.utils';
 import {IBlogMetadata} from '../../models/blog';
 
 export const GET = async () => {

@@ -12,7 +12,7 @@ import {locales} from '../../app/i18n/locales.enum';
 
 const BlogCard: FunctionComponent<{
   blog: IBlogMetadata | ISlideMetadata;
-  slug?: 'blog' | 'slides';
+  slug?: 'blog' | 'novel';
 }> = ({blog, slug: feature = 'blog'}) => {
   const lang = useParams()?.lang as locales;
   const {t} = useTranslation(lang, 'blog');

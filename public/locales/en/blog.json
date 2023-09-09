@@ -1,5 +1,6 @@
 {
   "myBlogs": "My Blogs",
+  "myNovels": "My Novels",
   "filterByTags": "Filter by tags",
   "date": "{{val, datetime}}"
 }

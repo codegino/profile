@@ -3,6 +3,7 @@
   "resume": "Återupptas",
   "about": "Om",
   "blog": "Blogg",
+  "novel": "Roman",
   "nft": "NFT",
   "vocab": "Ordförråd",
   "date": "{{val, datetime}}",
