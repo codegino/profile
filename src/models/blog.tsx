@@ -1,4 +1,4 @@
-export type IBlogMetadata = {
+interface IMdxMetadata {
   title: string;
   author: string;
   date: string;
@@ -12,4 +12,8 @@ export type IBlogMetadata = {
   tags: string[];
   keywords: string[];
   published: boolean;
-};
+}
+
+export type IBlogMetadata = IMdxMetadata;
+
+export type INovelMetadata = IMdxMetadata & {narrationId: string};

@@ -59,6 +59,9 @@ dependencies:
   react-gtm-module:
     specifier: 2.0.11
     version: 2.0.11
+  react-h5-audio-player:
+    specifier: 3.8.6
+    version: registry.npmjs.org/react-h5-audio-player@3.8.6(react-dom@18.2.0)(react@18.2.0)
   react-i18next:
     specifier: 13.2.2
     version: registry.npmjs.org/react-i18next@13.2.2(i18next@23.4.4)(react-dom@18.2.0)(react@18.2.0)
@@ -5078,6 +5081,23 @@ packages:
     version: 1.2.1
     dev: true
 
+  registry.npmjs.org/@iconify/icons-mdi@1.1.47:
+    resolution: {integrity: sha512-6AZfvWru20Rl9pXULStkVvTWnua6VG56zOIKdkCzLh25XVeTDEp6f1dL7iX9w+way5+1hI0BBuqTQd61qYaKdg==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/@iconify/icons-mdi/-/icons-mdi-1.1.47.tgz}
+    name: '@iconify/icons-mdi'
+    version: 1.1.47
+    dev: false
+
+  registry.npmjs.org/@iconify/react@3.2.2(react@18.2.0):
+    resolution: {integrity: sha512-z3+Jno3VcJzgNHsN5mEvYMsgCkOZkydqdIwOxjXh45+i2Vs9RGH68Y52vt39izwFSfuYUXhaW+1u7m7+IhCn/g==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/@iconify/react/-/react-3.2.2.tgz}
+    id: registry.npmjs.org/@iconify/react/3.2.2
+    name: '@iconify/react'
+    version: 3.2.2
+    peerDependencies:
+      react: '>=16'
+    dependencies:
+      react: 18.2.0
+    dev: false
+
   registry.npmjs.org/@next/swc-darwin-arm64@13.4.3:
     resolution: {integrity: sha512-yx18udH/ZmR4Bw4M6lIIPE3JxsAZwo04iaucEfA2GMt1unXr2iodHUX/LAKNyi6xoLP2ghi0E+Xi1f4Qb8f1LQ==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/@next/swc-darwin-arm64/-/swc-darwin-arm64-13.4.3.tgz}
     name: '@next/swc-darwin-arm64'
@@ -6445,6 +6465,22 @@ packages:
       minimist: registry.npmjs.org/minimist@1.2.8
       strip-json-comments: registry.npmjs.org/strip-json-comments@2.0.1
     dev: true
+
+  registry.npmjs.org/react-h5-audio-player@3.8.6(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-eyViI47jRRybCcCkGdoAMd6yfhg3UMyXp39mqOWCbNQfAYI8U6zC0+0DLZjhrB7//DJtHhZx8h1q99HMxYkMWQ==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/react-h5-audio-player/-/react-h5-audio-player-3.8.6.tgz}
+    id: registry.npmjs.org/react-h5-audio-player/3.8.6
+    name: react-h5-audio-player
+    version: 3.8.6
+    peerDependencies:
+      react: ^16.3.0 || ^17.0.0 || ^18.0.0
+      react-dom: ^16.3.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      '@babel/runtime': registry.npmjs.org/@babel/runtime@7.22.6
+      '@iconify/icons-mdi': registry.npmjs.org/@iconify/icons-mdi@1.1.47
+      '@iconify/react': registry.npmjs.org/@iconify/react@3.2.2(react@18.2.0)
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    dev: false
 
   registry.npmjs.org/react-i18next@13.2.2(i18next@23.4.4)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-+nFUkbRByFwnrfDcYqvzBuaeZb+nACHx+fAWN/pZMddWOCJH5hoc21+Sa/N/Lqi6ne6/9wC/qRGOoQhJa6IkEQ==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/react-i18next/-/react-i18next-13.2.2.tgz}
