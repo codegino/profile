@@ -1,4 +1,5 @@
 'use client';
+import {createI18nUrlSegment} from '@/app/i18n/create-slug';
 import {useTranslation} from '../../app/i18n/client';
 import {locales} from '../../app/i18n/locales.enum';
 import NextLink from '../../components/basic/NextLink';
@@ -23,7 +24,7 @@ const BlogSuggestionsList = ({blogs}: Props) => {
       <h2 className="mb-16 text-4xl relative">
         {t('recent')}&nbsp;
         <NextLink
-          href={`/${lang}/blog`}
+          href={createI18nUrlSegment('/blog', lang)}
           aria-label="Blogs List"
           className="text-4xl text-primary-dark"
         >

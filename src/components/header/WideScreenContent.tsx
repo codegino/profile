@@ -8,6 +8,7 @@ import {navigationLinks} from './nav-links';
 import {useTranslation} from '../../app/i18n/client';
 import BuyMeACoffeeIcon from '../social/BuyMeACoffeeIcon';
 import {locales} from '../../app/i18n/locales.enum';
+import {createI18nUrlSegment} from '@/app/i18n/create-slug';
 
 const DarkModeToggle = dynamic(() => import('../DarkModeToggle'), {
   ssr: false,
@@ -31,7 +32,7 @@ export default function WideScreenContentImpl() {
               className="underline-on-hover text-white mr-3 last:mr-0 "
             >
               <NextLink
-                href={`/${locale}/${link.url}`}
+                href={createI18nUrlSegment(link.url, locale)}
                 className={clsx('hover:text-primary-600', {
                   'text-primary-600 border-b-2 border-b-primary-600':
                     path?.includes(link.url),

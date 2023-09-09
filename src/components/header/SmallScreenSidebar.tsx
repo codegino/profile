@@ -17,6 +17,7 @@ import {navigationLinks} from './nav-links';
 import {useTranslation} from '../../app/i18n/client';
 import BuyMeACoffeeIcon from '../social/BuyMeACoffeeIcon';
 import {locales} from '../../app/i18n/locales.enum';
+import {createI18nUrlSegment} from '@/app/i18n/create-slug';
 
 const sidebarLinks = [
   {
@@ -90,7 +91,7 @@ const SmallScreenSidebar: FunctionComponent = () => {
                         role="presentation"
                       >
                         <NextLink
-                          href={`/${locale}/${link.url}`}
+                          href={createI18nUrlSegment(link.url, locale)}
                           className={clsx(
                             'px-2 text-xl hover:text-dark hover:underline font-semibold',
                             {

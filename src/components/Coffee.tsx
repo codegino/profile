@@ -5,7 +5,7 @@ function Coffee() {
   return (
     <div className="relative w-full text-center flex justify-center">
       <Link
-        href="https://www.buymeacoffee.com/codegino"
+        href="https://l.carlogino.com/bmac"
         target="_blank"
         aria-label="Buy me a coffee"
         rel="noreferrer"

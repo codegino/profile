@@ -6,6 +6,7 @@ import type {IBlogMetadata} from '../../models/blog';
 import {useTranslation} from '../../app/i18n/client';
 import {useParams} from 'next/navigation';
 import {locales} from '../../app/i18n/locales.enum';
+import {createI18nUrlSegment} from '@/app/i18n/create-slug';
 
 type Props = {
   blog: IBlogMetadata;
@@ -17,7 +18,10 @@ export const BlogCardPreview = ({blog}: Props) => {
 
   return (
     <figure className="relative w-full min-h-[20rem] text-center overflow-hidden shadow-sm hover:shadow-md hover:shadow-dark shadow-dark rounded-2xl bg-light md:max-w-4xl">
-      <NextLink href={`/${locale}/blog/${blog.slug}`} aria-label={blog.title}>
+      <NextLink
+        href={createI18nUrlSegment(`/blog/${blog.slug}`, locale)}
+        aria-label={blog.title}
+      >
         <Image
           src={blog.bannerId}
           alt={blog.bannerDescription}

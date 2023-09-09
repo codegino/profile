@@ -9,6 +9,7 @@ import {ISlideMetadata} from '../../models/slide';
 import {useTranslation} from '../../app/i18n/client';
 import {useParams} from 'next/navigation';
 import {locales} from '../../app/i18n/locales.enum';
+import {createI18nUrlSegment} from '@/app/i18n/create-slug';
 
 const BlogCard: FunctionComponent<{
   blog: IBlogMetadata | ISlideMetadata;
@@ -45,7 +46,7 @@ const BlogCard: FunctionComponent<{
       </div>
       <figcaption className="bg-white dark:bg-black opacity-90 sm:opacity-100 p-4 sm:p-0 absolute bottom-0 w-full sm:relative">
         <NextLink
-          href={`/${lang}/${feature}/${blog.slug}`}
+          href={createI18nUrlSegment(`/${feature}/${blog.slug}`, lang)}
           aria-label={blog.title}
         >
           <h2 className="line-clamp-2">{blog.title}</h2>

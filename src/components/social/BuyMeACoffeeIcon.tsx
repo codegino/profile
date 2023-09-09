@@ -24,7 +24,7 @@ const BuyMeACoffeeIcon: FC<{className?: string}> = ({className}) => {
 };
 
 const bmac = {
-  url: 'https://www.buymeacoffee.com/codegino',
+  url: 'https://l.carlogino.com/bmac',
   title: 'Buy me a coffee',
 };
 
