@@ -4,7 +4,7 @@ import type {FunctionComponent} from 'react';
 import clsx from 'clsx';
 import Image from 'next/image';
 import NextLink from '../../components/basic/NextLink';
-import type {IBlogMetadata} from '../../models/blog';
+import type {IBlogMetadata} from '../../models/mdxFiles';
 import {ISlideMetadata} from '../../models/slide';
 import {useTranslation} from '../../app/i18n/client';
 import {useParams} from 'next/navigation';

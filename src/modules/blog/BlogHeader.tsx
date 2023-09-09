@@ -2,7 +2,7 @@
 import type {FunctionComponent} from 'react';
 import {useParams} from 'next/navigation';
 import {BlurringImage} from '../../components/BlurringImage';
-import type {IBlogMetadata} from '../../models/blog';
+import type {IBlogMetadata} from '../../models/mdxFiles';
 import {useTranslation} from '../../app/i18n/client';
 import type {BlurImageType} from '../../utils/image-blur.utils';
 import {locales} from '../../app/i18n/locales.enum';

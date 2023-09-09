@@ -5,7 +5,7 @@ import {useRouter} from 'next/navigation';
 import Coffee from '../../components/Coffee';
 import SubscribeButton from '../../components/basic/Button';
 import NextLink from '../../components/basic/NextLink';
-import {IBlogMetadata} from '../../models/blog';
+import {IBlogMetadata} from '../../models/mdxFiles';
 import ShareToSocialMedia from './ShareToSocialMedia';
 
 const BlogFooter = ({blog}: {blog: IBlogMetadata}) => {

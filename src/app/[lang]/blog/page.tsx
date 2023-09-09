@@ -1,7 +1,7 @@
 import {NextPage} from 'next';
 import SubscribeForm from '@/components/SubscribeForm';
 import {newCommonMetaTags} from '@/frontend-utils/meta-tags';
-import type {IBlogMetadata} from '@/models/blog';
+import type {IBlogMetadata} from '@/models/mdxFiles';
 import {getBlogsMetadata} from '@/utils/mdx.utils';
 import {client} from '@/utils/contentful.utils';
 import BlogsWrapper from './BlogsWrapper';

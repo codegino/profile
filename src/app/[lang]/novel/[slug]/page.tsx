@@ -4,7 +4,7 @@ import type {Metadata, NextPage} from 'next';
 import {serialize} from 'next-mdx-remote/serialize';
 import path from 'path';
 import remarkMdxCodeMeta from 'remark-mdx-code-meta';
-import type {INovelMetadata} from '@/models/blog';
+import type {INovelMetadata} from '@/models/mdxFiles';
 import BlogContent from '@/modules/blog/BlogContent';
 import BlogHeader from '@/modules/blog/BlogHeader';
 import ContentLayout from '@/modules/common/ContentLayout';

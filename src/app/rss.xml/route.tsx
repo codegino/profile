@@ -1,5 +1,5 @@
 import {getBlogsMetadata} from '../../utils/mdx.utils';
-import {IBlogMetadata} from '../../models/blog';
+import {IBlogMetadata} from '../../models/mdxFiles';
 
 export const GET = async () => {
   const blogs = (await getBlogsMetadata()).sort(

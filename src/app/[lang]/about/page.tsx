@@ -20,7 +20,7 @@ const TechStackCarousel = dynamicImport(
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    ...newCommonMetaTags('About Page'),
+    ...newCommonMetaTags('About Page', '/about'),
     title: 'About Page | Code Gino | Carlo Gino Catapang',
   };
 }

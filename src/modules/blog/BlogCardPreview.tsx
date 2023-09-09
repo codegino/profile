@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import NextLink from '../../components/basic/NextLink';
-import type {IBlogMetadata} from '../../models/blog';
+import type {IBlogMetadata} from '../../models/mdxFiles';
 import {useTranslation} from '../../app/i18n/client';
 import {useParams} from 'next/navigation';
 import {locales} from '../../app/i18n/locales.enum';

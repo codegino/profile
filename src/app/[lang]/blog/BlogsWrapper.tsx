@@ -1,6 +1,6 @@
 'use client';
 import React, {useState} from 'react';
-import {IBlogMetadata} from '../../../models/blog';
+import {IBlogMetadata} from '../../../models/mdxFiles';
 import BlogsFilter from '../../../modules/blog/BlogsFilter';
 import BlogCard from '../../../modules/common/ContentCard';
 import {locales} from '../../i18n/locales.enum';

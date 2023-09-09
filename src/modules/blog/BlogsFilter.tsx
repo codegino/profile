@@ -1,9 +1,9 @@
-'use client'
+'use client';
 
 import {useMemo, useState} from 'react';
 import type {FunctionComponent} from 'react';
 import clsx from 'clsx';
-import type {IBlogMetadata} from '../../models/blog';
+import type {IBlogMetadata} from '../../models/mdxFiles';
 import {useTranslation} from '../../app/i18n/client';
 import {locales} from '../../app/i18n/locales.enum';
 

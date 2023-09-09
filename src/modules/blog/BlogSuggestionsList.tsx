@@ -3,7 +3,7 @@ import {createI18nUrlSegment} from '@/app/i18n/create-slug';
 import {useTranslation} from '../../app/i18n/client';
 import {locales} from '../../app/i18n/locales.enum';
 import NextLink from '../../components/basic/NextLink';
-import type {IBlogMetadata} from '../../models/blog';
+import type {IBlogMetadata} from '../../models/mdxFiles';
 import {BlogCardPreview} from './BlogCardPreview';
 import {useParams} from 'next/navigation';
 

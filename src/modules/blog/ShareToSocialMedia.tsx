@@ -5,7 +5,7 @@ import {FaPinterest} from '@react-icons/all-files/fa/FaPinterest';
 import {FaShareAlt} from '@react-icons/all-files/fa/FaShareAlt';
 import {FaTwitterSquare} from '@react-icons/all-files/fa/FaTwitterSquare';
 import clsx from 'clsx';
-import {IBlogMetadata} from '../../models/blog';
+import {IBlogMetadata} from '../../models/mdxFiles';
 
 const socialMedia = [
   {
