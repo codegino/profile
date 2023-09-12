@@ -16,7 +16,7 @@
     "@supabase/supabase-js": "2.33.2",
     "clsx": "2.0.0",
     "contentful": "10.5.1",
-    "i18next": "23.4.4",
+    "i18next": "23.5.1",
     "i18next-browser-languagedetector": "7.1.0",
     "i18next-resources-to-backend": "1.1.4",
     "isomorphic-dompurify": "1.8.0",
