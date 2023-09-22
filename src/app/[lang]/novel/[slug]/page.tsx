@@ -98,11 +98,6 @@ const BlogPage: NextPage<{
       <main role="main">
         <ContentLayout>
           <BlogHeader blog={novel} img={img} svg={svg} />
-          {novel.narrationId && (
-            <div className="mb-14 min-h-[88px]">
-              <NovelAudioPlayer src={novel.narrationId} />
-            </div>
-          )}
           <BlogContent source={source} />
           <br />
           <BlogFooter blog={novel} />
@@ -119,10 +114,8 @@ const getStaticProps = async (slug: string) => {
   const {content, data} = matter(source);
 
   const banner = await client.getAsset(data.bannerId);
-  const narration = await client.getAsset(data.narrationId);
 
   const bannerUrl = `https:${banner.fields.file?.url}`;
-  const narrationUrl = `https:${narration.fields.file?.url}`;
   const {img, svg} = await blurImage(bannerUrl);
 
   const mdxSource = await serialize(content, {
@@ -141,7 +134,6 @@ const getStaticProps = async (slug: string) => {
       ...data,
       slug,
       bannerId: bannerUrl,
-      narrationId: narrationUrl,
     } as INovelMetadata,
     img,
     svg,
