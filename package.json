@@ -60,7 +60,7 @@
     "plaiceholder": "3.0.0",
     "postcss": "8.4.30",
     "prettier": "3.0.3",
-    "sharp": "0.32.5",
+    "sharp": "0.32.6",
     "tailwindcss": "3.3.3",
     "typescript": "5.2.2"
   },
