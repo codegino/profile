@@ -14,7 +14,6 @@ import {blurImage} from '@/utils/image-blur.utils';
 import BlogFooter from '@/modules/blog/BlogFooter';
 import {newCommonMetaTags} from '@/frontend-utils/meta-tags';
 import Script from 'next/script';
-import NovelAudioPlayer from './NovelAudioPlayer';
 
 export const dynamic = 'force-static';
 
