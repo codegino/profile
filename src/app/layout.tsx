@@ -1,4 +1,18 @@
+import { Viewport } from 'next';
 import GlobalEffects from './global-effects';
+
+export const viewport: Viewport = {
+  themeColor: [
+    {
+      media: '(prefers-color-scheme: light)',
+      color: 'white',
+    },
+    {
+      media: '(prefers-color-scheme: dark)',
+      color: 'black',
+    },
+  ],
+}
 
 export const metadata = {
   metadataBase: new URL(process.env.CNAME as string),
@@ -20,16 +34,7 @@ export const metadata = {
     'HTML',
     'CSS',
   ],
-  themeColor: [
-    {
-      media: '(prefers-color-scheme: light)',
-      color: 'white',
-    },
-    {
-      media: '(prefers-color-scheme: dark)',
-      color: 'black',
-    },
-  ],
+
 };
 
 export default function RootLayout({children}: {children: React.ReactNode}) {

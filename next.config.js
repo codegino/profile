@@ -8,13 +8,13 @@ const config = {
   pageExtensions: ['js', 'ts', 'jsx', 'tsx', 'md', 'mdx'],
   compress: true,
   images: {
-    domains: [
-      'i.imgur.com',
-      'media2.giphy.com',
-      'images.ctfassets.net',
-      'dev-to-uploads.s3.amazonaws.com',
-      'lh3.googleusercontent.com',
-      'openseauserdata.com',
+    remotePatterns: [
+      {hostname: 'i.imgur.com'},
+      {hostname: 'media2.giphy.com'},
+      {hostname: 'images.ctfassets.net'},
+      {hostname: 'dev-to-uploads.s3.amazonaws.com'},
+      {hostname: 'lh3.googleusercontent.com'},
+      {hostname: 'openseauserdata.com'},
     ],
     imageSizes: [16, 32, 48, 64],
     deviceSizes: [
