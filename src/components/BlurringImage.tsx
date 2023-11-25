@@ -54,7 +54,7 @@ export function BlurringImage({
         width={width}
         alt={alt}
         className={className}
-        onLoadingComplete={() => setHasPlaceholder(false)}
+        onLoad={() => setHasPlaceholder(false)}
       />
     </div>
   );

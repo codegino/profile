@@ -216,7 +216,7 @@ function BlurringImage({...}){
 
   return <Container>
     {hasPlaceholder && <Svg {...} />}
-    <Image {...} onLoadingComplete={() => setHasPlaceholder(false)} />
+    <Image {...} onLoad={() => setHasPlaceholder(false)} />
   </Container>
 }
 ```
@@ -264,7 +264,7 @@ export function BlurringImage({
         height={height}
         width={width}
         alt={alt}
-        onLoadingComplete={() => setHasPlaceholder(false)}
+        onLoad={() => setHasPlaceholder(false)}
       />
     </Container>
   )
