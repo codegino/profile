@@ -46,9 +46,9 @@ export default function CustomGithubCalendar() {
           <GithubCalendar
             username="codegino"
             fontSize={30}
-            blockMargin={10}
-            blockRadius={6}
-            blockSize={25}
+            blockMargin={4}
+            blockRadius={1}
+            blockSize={12}
           ></GithubCalendar>
         </div>
       </div>
