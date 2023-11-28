@@ -13,7 +13,7 @@
   "dependencies": {
     "@emotion/react": "11.11.1",
     "@react-icons/all-files": "4.1.0",
-    "@supabase/supabase-js": "2.38.5",
+    "@supabase/supabase-js": "2.39.0",
     "clsx": "2.0.0",
     "contentful": "10.6.12",
     "i18next": "23.7.6",
