@@ -54,8 +54,8 @@ dependencies:
     specifier: 18.2.0
     version: 18.2.0(react@18.2.0)
   react-github-calendar:
-    specifier: 4.0.6
-    version: 4.0.6(react-dom@18.2.0)(react@18.2.0)
+    specifier: 4.0.7
+    version: 4.0.7(react-dom@18.2.0)(react@18.2.0)
   react-gtm-module:
     specifier: 2.0.11
     version: 2.0.11
@@ -4580,8 +4580,8 @@ packages:
       prop-types: 15.8.1
     dev: false
 
-  /react-github-calendar@4.0.6(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-SG2h7zJqSPt/qsxfHCq6wK6g6Gu+Oh1SXUTIysoG/3sRb5QPhvbLfMNpyOyUNepfnx06GKqbymi9cMkz2Mm8HQ==}
+  /react-github-calendar@4.0.7(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-QYOHRi6W6Dr537oX/y+nkqqgZSAU/Aikkewhv2EoyHMbsQX7/NSlnimP2zmVQGHfQ6iy85toSxshH//ShTslBQ==}
     peerDependencies:
       react: ^17.0.0 || ^18.0.0
       react-dom: ^17.0.0 || ^18.0.0
