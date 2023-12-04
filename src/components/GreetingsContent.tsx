@@ -1,23 +1,20 @@
 'use client';
 import {useState} from 'react';
-import type {FunctionComponent} from 'react';
+import type {FC, FunctionComponent} from 'react';
 import {BsChevronRight} from '@react-icons/all-files/bs/BsChevronRight';
 import {BsTerminalFill} from '@react-icons/all-files/bs/BsTerminalFill';
 import clsx from 'clsx';
 import Typist from 'react-typist';
-import 'react-typist/dist/Typist.css';
 import {useScrollToView} from '../utils/scroll-to-view-hook';
 import {GuideArrow} from './GuideArrow';
 import {useTranslation} from '../app/i18n/client';
-import {useParams} from 'next/navigation';
-import {locales} from '../app/i18n/locales.enum';
+import {LocaleTypes} from '@/app/i18n/settings';
 
-const GreetingsContent: FunctionComponent = () => {
+const GreetingsContent: FC<{lang: LocaleTypes}> = ({lang}) => {
   const {scrollToContent} = useScrollToView('#resume-summary');
   const [isGuideVisible, setIsGuideVisible] = useState(false);
 
-  const locale = useParams()?.lang as locales;
-  const {t} = useTranslation(locale, 'home');
+  const {t} = useTranslation(lang, 'home');
 
   return (
     <>

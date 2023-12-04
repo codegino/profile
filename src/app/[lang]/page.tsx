@@ -66,7 +66,7 @@ const HomePage: NextPage<PropsWithLocale> = async ({params: {lang}}) => {
         bl
         className="isolate flex justify-center flex-col items-center min-h-screen w-full relative bg-zinc-100 dark:bg-zinc-900"
       >
-        <GreetingsContent />
+        <GreetingsContent lang={lang} />
         <svg
           className="absolute inset-0 -z-10 h-full w-full stroke-primary-dark [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)]"
           aria-hidden="true"
