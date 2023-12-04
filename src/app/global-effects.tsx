@@ -2,20 +2,10 @@
 import Script from 'next/script';
 import React, {useEffect} from 'react';
 import TagManager from 'react-gtm-module';
-import useDarkMode from 'use-dark-mode';
 import {useScrollDirection} from '../components/header/use-scroll-direction';
 
 const GlobalEffects = () => {
-  const {value: isDarkMode} = useDarkMode();
   const {direction} = useScrollDirection();
-
-  useEffect(() => {
-    if (isDarkMode) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  }, [isDarkMode]);
 
   // Google Tag Manager
   useEffect(() => {

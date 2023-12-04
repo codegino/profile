@@ -14,10 +14,7 @@ export default async function ResumeSummary({
   const {t} = await createTranslation(lang, 'resume');
 
   return (
-    <div
-      className="w-full flex justify-center items-center flex-col py-20 md:flex-row  min-w-max"
-      id="resume-summary"
-    >
+    <div className="w-full flex justify-center items-center flex-col py-20 md:flex-row  min-w-max">
       <div className="overflow-hidden rounded-full h-36 w-36 md:rounded-none md:h-44 md:w-44 xl:h-48 xl:w-48">
         <BlurringImage
           img={img}

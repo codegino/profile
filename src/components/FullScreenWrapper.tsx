@@ -15,7 +15,7 @@ export const FullScreenWrapper: FunctionComponent<{
   className?: string;
 }> = ({children, tr, bl, br, tl, className, ...props}) => {
   const classNames =
-    'min-h-screen min-w-full flex flex-col justify-center relative overflow-hidden';
+    'min-h-screen min-w-full flex flex-col justify-center relative overflow-hidden bg-blue-500';
 
   return (
     <div className={clsx(classNames, className)} {...props}>

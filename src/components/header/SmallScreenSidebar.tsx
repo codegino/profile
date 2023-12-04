@@ -150,7 +150,7 @@ const SmallScreenSidebar: FunctionComponent = () => {
 
                 <section className="text-left mt-12">
                   <div className="flex items-center">
-                    <DarkModeToggle className="outline-2 outline-white rounded-3xl" />
+                    <DarkModeToggle />
                     <ChangeLocale className="text-5xl ml-3" />
                   </div>
                 </section>

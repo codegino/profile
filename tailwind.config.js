@@ -16,9 +16,6 @@ module.exports = {
       fontSize: {
         inherit: 'inherit',
       },
-      zIndex: {
-        1: '1',
-      },
       animation: {
         'spin-fast': 'spin 0.15s linear',
       },

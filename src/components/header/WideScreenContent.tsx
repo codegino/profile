@@ -1,5 +1,4 @@
 import clsx from 'clsx';
-import dynamic from 'next/dynamic';
 import {useParams, usePathname} from 'next/navigation';
 import NextLink from '../basic/NextLink';
 import SocialMedia from '../social/SocialMedia';
@@ -9,10 +8,7 @@ import {useTranslation} from '../../app/i18n/client';
 import BuyMeACoffeeIcon from '../social/BuyMeACoffeeIcon';
 import {locales} from '../../app/i18n/locales.enum';
 import {createI18nUrlSegment} from '@/app/i18n/create-slug';
-
-const DarkModeToggle = dynamic(() => import('../DarkModeToggle'), {
-  ssr: false,
-});
+import DarkModeToggle from '../DarkModeToggle';
 
 export default function WideScreenContentImpl() {
   const path = usePathname();
@@ -23,7 +19,7 @@ export default function WideScreenContentImpl() {
   const {t} = useTranslation(locale, 'common');
 
   return (
-    <div className="hidden items-center justify-between w-full lg:flex">
+    <div className="hidden items-center justify-between w-full lg:flex ">
       <nav>
         <ul className="flex items-center p-0 m-0">
           {navigationLinks.map(link => (
@@ -48,7 +44,7 @@ export default function WideScreenContentImpl() {
       <div className="flex items-center pr-3">
         <SocialMedia />
         <BuyMeACoffeeIcon className="ml-4" />
-        <div className="h-full mx-3 min-w-[2.2rem]">
+        <div className="h-full mx-3">
           <DarkModeToggle />
         </div>
         <ChangeLocale />

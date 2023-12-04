@@ -1,5 +1,6 @@
-import { Viewport } from 'next';
+import {Viewport} from 'next';
 import GlobalEffects from './global-effects';
+import {Providers} from './providers';
 
 export const viewport: Viewport = {
   themeColor: [
@@ -12,7 +13,7 @@ export const viewport: Viewport = {
       color: 'black',
     },
   ],
-}
+};
 
 export const metadata = {
   metadataBase: new URL(process.env.CNAME as string),
@@ -34,7 +35,6 @@ export const metadata = {
     'HTML',
     'CSS',
   ],
-
 };
 
 export default function RootLayout({children}: {children: React.ReactNode}) {
@@ -46,7 +46,9 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
           href="https://sdk.birdeatsbug.com/latest/style.css"
         ></link>
       </head>
-      <body>{children}</body>
+      <body>
+        <Providers>{children}</Providers>
+      </body>
       <GlobalEffects />
     </html>
   );
