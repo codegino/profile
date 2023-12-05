@@ -55,7 +55,7 @@
     "globby": "14.0.0",
     "gray-matter": "4.0.3",
     "husky": "8.0.3",
-    "lint-staged": "15.1.0",
+    "lint-staged": "15.2.0",
     "plaiceholder": "3.0.0",
     "postcss": "8.4.31",
     "prettier": "3.1.0",
