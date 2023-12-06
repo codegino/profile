@@ -19,7 +19,7 @@ export default function WakatimeCharts() {
           aria-label="Wakatime profile"
           rel="noreferrer"
           title="Link to my Wakatime profile"
-          className="text-primary-dark text-2xl underline-on-hover underline--dark"
+          className="text-2xl underline-on-hover underline--dark"
         >
           Wakatime
         </NextLink>

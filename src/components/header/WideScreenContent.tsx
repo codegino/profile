@@ -25,13 +25,12 @@ export default function WideScreenContentImpl() {
           {navigationLinks.map(link => (
             <li
               key={link.label}
-              className="underline-on-hover text-white mr-3 last:mr-0 "
+              className="underline-on-hover text-white mr-3 last:mr-0"
             >
               <NextLink
                 href={createI18nUrlSegment(link.url, locale)}
                 className={clsx('hover:text-primary-600', {
-                  'text-primary-600 border-b-2 border-b-primary-600':
-                    path?.includes(link.url),
+                  'text-primary-400 font-semibold': path?.includes(link.url),
                 })}
                 aria-label={t(link.label)}
               >

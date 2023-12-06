@@ -12,12 +12,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--color-primary);
   width: 0.25rem;
   height: 2.5rem;
   position: absolute;
   top: -2.25rem;
   animation: appear 1s;
+  @apply bg-primary-800 dark:bg-primary-300;
 }
 
 .connector::before {
@@ -25,9 +25,9 @@
   width: 0.75rem;
   height: 0.75rem;
   position: absolute;
-  background-color: var(--color-primary);
   border-radius: 50%;
   z-index: 1;
+  @apply bg-primary-800 dark:bg-primary-300;
 }
 
 .connector--hidden {
@@ -38,30 +38,26 @@
   top: 0;
   left: 0;
   transform: skew(135deg) translateX(-60%);
-  background-color: var(--color-primary-dark);
-  border-right: 0.5rem solid var(--color-primary-light);
+  @apply bg-primary-800 dark:bg-primary-300 border-r-8 border-primary-700 dark:border-primary-200;
 }
 
 .top-right-shape {
   top: 0;
   right: 0;
   transform: skew(45deg) translateX(50%);
-  background-color: var(--color-primary-dark);
-  border-left: 0.5rem solid var(--color-primary-light);
+  @apply bg-primary-800 dark:bg-primary-300 border-l-8 border-primary-700 dark:border-primary-200;
 }
 
 .bottom-left-shape {
   bottom: 0;
   left: 0;
   transform: skew(225deg) translateX(-60%);
-  background-color: var(--color-primary-light);
-  border-right: 0.5rem solid var(--color-primary-dark);
+  @apply bg-primary-300 dark:bg-primary-800 border-r-8 border-primary-200 dark:border-primary-700;
 }
 
 .bottom-right-shape {
   bottom: 0;
   right: 0;
   transform: skew(315deg) translateX(50%);
-  background-color: var(--color-primary-light);
-  border-left: 0.5rem solid var(--color-primary-dark);
+  @apply bg-primary-300 dark:bg-primary-800 border-l-8 border-primary-200 dark:border-primary-700;
 }

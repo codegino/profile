@@ -59,16 +59,22 @@ function ClipboardCopyButton({value}: ClipboardCopyButtonProps) {
 
   return (
     <button
-      className="border-none flex items-center bg-transparent text-dark"
+      className="border-none flex items-center bg-transparent text-neutral-700 dark:text-neutral-300"
       onClick={() => setState(State.Copy)}
     >
       <span className="inline-block mr-2">
         {state === State.Copied ? 'Copied' : 'Copy'}
       </span>
       {state === State.Copied ? (
-        <CheckIcon fill="var(--color-primary)" size={22} />
+        <CheckIcon
+          className="text-primary-500 dark:text-primary-300"
+          size={20}
+        />
       ) : (
-        <CopyIcon fill="var(--color-primary)" size={22} />
+        <CopyIcon
+          className="text-neutral-800 dark:text-neutral-300"
+          size={18}
+        />
       )}
     </button>
   );

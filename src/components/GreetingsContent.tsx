@@ -25,7 +25,7 @@ const GreetingsContent: FC<{lang: LocaleTypes}> = ({lang}) => {
             rounded-lg overflow-hidden text-[7px]  ring-black/90 dark:ring-zinc-500/90 ring-2
           "
         >
-          <div className="bg-light relative min-h-[2rem] h-8 flex items-center pl-2">
+          <div className="bg-neutral-200 dark:bg-neutral-700 relative min-h-[2rem] h-8 flex items-center pl-2 border-b border-black/20 dark:border-white/20">
             <div className="min-h-[0.75rem] min-w-[0.75rem] rounded-full mr-2 bg-red-500" />
             <div className="min-h-[0.75rem] min-w-[0.75rem] rounded-full mr-2 bg-yellow-300" />
             <div className="min-h-[0.75rem] min-w-[0.75rem] rounded-full mr-3 bg-green-600" />
@@ -36,7 +36,7 @@ const GreetingsContent: FC<{lang: LocaleTypes}> = ({lang}) => {
           </div>
           <div
             className="h-[25rem] xs:h-[20rem] sm:max-h-[20rem]
-            py-1 px-1 font-mono bg-dark text-light text-[8px] leading-[1.2]"
+            py-1 px-1 font-mono bg-neutral-100 dark:bg-neutral-800 text-[8px] leading-[1.2]"
           >
             <Typist
               avgTypingDelay={20}
@@ -59,7 +59,7 @@ const GreetingsContent: FC<{lang: LocaleTypes}> = ({lang}) => {
               <Span>{t('greetings.4')}</Span>
               <Typist.Delay ms={1200} />
               <Typist.Backspace count={Number(t('greetings.del2'))} />
-              <Span className="font-bold text-primary-light">
+              <Span className="font-bold text-primary-500 dark:text-primary-100">
                 {t('greetings.5')}
               </Span>
               <Typist.Delay ms={200} />
@@ -117,7 +117,7 @@ const GreetingsContent: FC<{lang: LocaleTypes}> = ({lang}) => {
 
 const StyledBsChevronRight = () => {
   return (
-    <BsChevronRight className="text-[0.8rem] xs:text-xs sm:text-sm md:text-base text-primary-light" />
+    <BsChevronRight className="text-[0.8rem] xs:text-xs sm:text-sm md:text-base text-primary-700 dark:text-primary-100" />
   );
 };
 

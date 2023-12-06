@@ -55,9 +55,9 @@ const ContentLayout: FunctionComponent<{children: React.ReactNode}> = ({
         .slide-layout h4 code,
         .slide-layout h5 code,
         .slide-layout h6 code {
-          padding: 0 var(--spacing-very-small);
-          border: 1px solid var(--color-primary-dark);
-          border-radius: 2px;
+          padding: 0 0.125rem;
+          border: 1px solid lightgray;
+          border-radius: 4px;
           font-family: monospace;
         }
 

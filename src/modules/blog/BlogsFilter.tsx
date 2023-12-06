@@ -71,10 +71,9 @@ const BlogsFilter: FunctionComponent<{
         {tags.map((tag, i) => (
           <div
             className={clsx(
-              'inline-block bg-lightest py-2 px-4 rounded-xl shadow-md mr-2 last:mr-0 cursor-pointer whitespace-nowrap',
+              'inline-block bg-white dark:bg-black py-2 px-4 rounded-xl shadow-md mr-2 last:mr-0 cursor-pointer whitespace-nowrap',
               {
-                'text-primary-100': selectedTags.has(tag),
-                'bg-primary-900': selectedTags.has(tag),
+                'text-primary-600 bg-primary-800': selectedTags.has(tag),
               },
             )}
             onClick={() => handleTagClick(tag)}

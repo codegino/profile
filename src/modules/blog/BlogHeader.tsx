@@ -39,11 +39,9 @@ const BlogHeader: FunctionComponent<Props> = ({blog, img, svg}) => {
             title={blog.bannerDescription}
             img={img}
             svg={svg}
-            layout="fill"
-            objectFit="cover"
-            objectPosition="center"
+            fill
             priority={true}
-            className="rounded-xl shadow-sm shadow-dark"
+            className="rounded-xl shadow-sm shadow-neutral-900 object-cover object-center"
           />
         </div>
       ) : null}

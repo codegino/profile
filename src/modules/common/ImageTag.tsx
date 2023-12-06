@@ -6,7 +6,7 @@ const BlogImg = ({width = 1100, height = 600, ...props}: ImageProps) => (
       {...props}
       width={width}
       height={height}
-      alt={props.alt|| 'An image of a blog post'}
+      alt={props.alt || 'An image of a blog post'}
       title={props.title || 'An image of a blog post'}
       placeholder="blur"
       className="object-contain object-center"

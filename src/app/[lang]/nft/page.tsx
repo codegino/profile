@@ -35,7 +35,7 @@ export default async function NFT() {
               target="_blank"
               className="flex flex-col items-center"
             >
-              <h2 className="text-2xl text-primary-dark mb-4 underline-on-hover">
+              <h2 className="text-2xl text-primary-900 dark:text-primary-300 mb-4 underline-on-hover">
                 {name}
               </h2>
             </NextLink>
@@ -61,7 +61,7 @@ export default async function NFT() {
                     aria-label={`Collection #${id}`}
                     title={`${name} #${id}`}
                     target="_blank"
-                    className="text-primary-dark underline-on-hover"
+                    className="text-primary-900 dark:text-primary-300 underline-on-hover"
                   >
                     <div className="text-xl mt-1">{itemName}</div>
                   </NextLink>
@@ -79,7 +79,7 @@ export default async function NFT() {
             href="https://opensea.io/02CG"
             aria-label="OpenSea"
             title="OpenSea"
-            className="text-primary-dark underline-on-hover"
+            className="text-primary-900 dark:text-primary-300 underline-on-hover"
           >
             <span className="text-xl">OpenSea</span>
           </NextLink>
@@ -89,7 +89,7 @@ export default async function NFT() {
             href="https://nametag.org/u/0xCG"
             aria-label="Nametag"
             title="Nametag"
-            className="text-primary-dark underline-on-hover"
+            className="text-primary-900 dark:text-primary-300 underline-on-hover"
           >
             <span className="text-xl">Nametag</span>
           </NextLink>

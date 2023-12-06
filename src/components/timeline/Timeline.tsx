@@ -25,7 +25,7 @@ export default function Timeline({
       <div>
         <Slide direction="up" triggerOnce>
           <Experience>
-            <h2 className="m-0 text-dark">
+            <h2 className="m-0">
               <FaBriefcase />
               &nbsp; Work Experiences
             </h2>
@@ -37,7 +37,7 @@ export default function Timeline({
               <Experience hasConnector>
                 <Content exp={exp}>
                   <div
-                    className="mt-4 text-left text-dark"
+                    className="mt-4 text-left"
                     dangerouslySetInnerHTML={{
                       __html: dompurify.sanitize(exp.content),
                     }}
@@ -49,7 +49,7 @@ export default function Timeline({
         })}
         <Slide direction="down" triggerOnce>
           <Experience hasConnector>
-            <h2 className="m-0 text-dark">
+            <h2 className="m-0">
               <FaScroll />
               &nbsp;Education
             </h2>
@@ -85,7 +85,7 @@ const Content: FunctionComponent<{
   return (
     <>
       <div>
-        <p className="bg-light text-dark justify-self-center py-1">
+        <p className="justify-self-center py-1">
           {exp.endDate === exp.startDate
             ? 'Present'
             : t('date', {
@@ -107,7 +107,7 @@ const Content: FunctionComponent<{
             target="_blank"
             aria-label={exp.organization}
             rel="noreferrer"
-            className="text-primary-dark font-bold underline-on-hover underline--dark"
+            className="text-primary-900 dark:text-primary-300 font-bold underline-on-hover underline--dark"
             title={`Click to visit ${exp.organization}`}
           >
             {exp.organization}
@@ -118,7 +118,7 @@ const Content: FunctionComponent<{
         </div>
       </div>
       <div className="max-w-[45rem]">{children}</div>
-      <p className="bg-light text-dark justify-self-center py-1">
+      <p className="text-neutral-600 dark:text-neutral-500 justify-self-center py-1">
         {t('date', {
           val: new Date(exp.startDate),
           formatParams: {

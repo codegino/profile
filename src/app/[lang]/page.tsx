@@ -64,11 +64,11 @@ const HomePage: NextPage<PropsWithLocale> = async ({params: {lang}}) => {
       />
       <FullScreenWrapper
         bl
-        className="isolate flex justify-center flex-col items-center min-h-screen w-full relative bg-zinc-100 dark:bg-zinc-900"
+        className="isolate flex justify-center flex-col items-center min-h-screen w-full relative bg-zinc-200 dark:bg-zinc-900"
       >
         <GreetingsContent lang={lang} />
         <svg
-          className="absolute inset-0 -z-10 h-full w-full stroke-primary-dark [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)]"
+          className="absolute inset-1 -z-10 h-full w-full stroke-primary-900 dark:stroke-primary-50 [mask-image:radial-gradient(100%_100%_at_top_right,black,transparent)]"
           aria-hidden="true"
         >
           <defs>
@@ -92,7 +92,12 @@ const HomePage: NextPage<PropsWithLocale> = async ({params: {lang}}) => {
         </svg>
       </FullScreenWrapper>
       <main>
-        <FullScreenWrapper tl br className="bg-lightest" id="resume-summary">
+        <FullScreenWrapper
+          tl
+          br
+          className="bg-zinc-100 dark:bg-zinc-800"
+          id="resume-summary"
+        >
           <ResumeSummary img={profileImage} svg={profileSvg} lang={lang} />
           <Skills skills={skills} />
           <div className="text-center my-10">
@@ -101,7 +106,7 @@ const HomePage: NextPage<PropsWithLocale> = async ({params: {lang}}) => {
               <NextLink
                 href="/resume#skills"
                 aria-label="full skills list"
-                className="text-primary-dark underline-on-hover"
+                className="text-primary-900 dark:text-primary-300 underline-on-hover"
               >
                 <span className="text-xl">{t('visitSkills.2')}</span>
               </NextLink>
@@ -109,10 +114,10 @@ const HomePage: NextPage<PropsWithLocale> = async ({params: {lang}}) => {
             </p>
           </div>
         </FullScreenWrapper>
-        <FullScreenWrapper tr bl className="bg-lightest">
+        <FullScreenWrapper tr bl className="bg-zinc-50 dark:bg-zinc-700">
           <BlogSuggestionsList blogs={blogs} />
         </FullScreenWrapper>
-        <FullScreenWrapper tl br className="bg-lightest">
+        <FullScreenWrapper tl br className="bg-zinc-100 dark:bg-zinc-800">
           <div className="w-full flex justify-center">
             <div className="max-w-6xl">
               <CustomGithubCalendar />
@@ -130,7 +135,7 @@ const HomePage: NextPage<PropsWithLocale> = async ({params: {lang}}) => {
                 href="/resume"
                 aria-label="resume"
                 title="Link to my resume"
-                className="text-primary-dark underline-on-hover"
+                className="text-primary-900 dark:text-primary-300 underline-on-hover"
               >
                 <span className="text-xl">{t('visitResume.2')}</span>
               </NextLink>
@@ -139,7 +144,12 @@ const HomePage: NextPage<PropsWithLocale> = async ({params: {lang}}) => {
           </div>
         </FullScreenWrapper>
       </main>
-      <FullScreenWrapper className="bg-light" tr bl id="subscribe">
+      <FullScreenWrapper
+        className="bg-zinc-50 dark: dark:bg-zinc-700"
+        tr
+        bl
+        id="subscribe"
+      >
         <SubscribeForm />
       </FullScreenWrapper>{' '}
     </>

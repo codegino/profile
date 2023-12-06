@@ -18,13 +18,13 @@
   bottom: -2px;
   width: 100%;
   height: 2px;
-  background-color: var(--color-primary-light);
+  @apply bg-primary-600;
   transition: width 0.3s ease;
   animation: expandToFullWidth 0.5s;
 }
 
 .underline--dark:hover::before {
-  background-color: var(--color-primary-dark);
+  @apply bg-primary-900;
 }
 
 @keyframes appear {
@@ -40,4 +40,4 @@
   100% {
     opacity: 1;
   }
-} ;
+}

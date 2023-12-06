@@ -49,8 +49,8 @@ export default function Skills({skills}: {skills: CategorizedSkill[]}) {
                       <NextLink
                         key={i}
                         href={skill.url}
-                        className="py-1 px-3 bg-dark text-light border-dark rounded-lg border mr-2
-                    hover:bg-light hover:text-dark shadow-sm shadow-dark"
+                        className="py-1 px-3  rounded-lg border border-black mr-2
+                    bg-neutral-800 hover:bg-neutral-100 text-white hover:text-black"
                         title={`Click to visit ${skill.name}`}
                         target="_blank"
                         aria-label={skill.name}

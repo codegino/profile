@@ -1,7 +1,7 @@
 'use client';
+
 import {FaEnvelopeOpenText} from '@react-icons/all-files/fa/FaEnvelopeOpenText';
 import {FaTwitter} from '@react-icons/all-files/fa/FaTwitter';
-import {useRouter} from 'next/navigation';
 import Coffee from '../../components/Coffee';
 import SubscribeButton from '../../components/basic/Button';
 import NextLink from '../../components/basic/NextLink';
@@ -38,7 +38,7 @@ const BlogFooter = ({blog}: {blog: IBlogMetadata}) => {
         className="mt-2"
         rel="noreferrer"
       >
-        <span className="relative h-10 bg-[#1da1f2] text-white py-2 px-6 rounded-3xl hover:shadow-sm hover:shadow-dark">
+        <span className="relative h-10 bg-[#1da1f2] text-white py-2 px-6 rounded-3xl hover:shadow-sm hover:shadow-neutral-800">
           <FaTwitter /> Follow @codegino
         </span>
       </NextLink>

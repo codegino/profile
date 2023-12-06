@@ -19,14 +19,14 @@ const BlogSuggestionsList = ({blogs}: Props) => {
     <section
       id="blogs-list"
       className="flex flex-col justify-center items-center min-h-screen overflow-hidden
-        py-16 bg-light"
+        py-16"
     >
       <h2 className="mb-16 text-4xl relative">
         {t('recent')}&nbsp;
         <NextLink
           href={createI18nUrlSegment('/blog', lang)}
           aria-label="Blogs List"
-          className="text-4xl text-primary-dark"
+          className="text-4xl"
         >
           {t('blogs')}
         </NextLink>

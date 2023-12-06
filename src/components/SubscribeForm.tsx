@@ -74,45 +74,40 @@ const SubscribeForm = () => {
 
         <form
           onSubmit={handleSubmit}
-          className="relative mt-8 shadow-sm shadow-dark overflow-hidden bg-light w-full
-          max-w-2xl min-w-2xl mb-24 rounded-2xl min-h-[25rem]"
+          className="relative mt-8 shadow-sm shadow-black/20 overflow-hidden w-full bg-white dark:bg-black
+          max-w-2xl min-w-2xl mb-24 rounded-2xl min-h-[25rem] ring-1 ring-neutral-700"
           id="1j27oq"
         >
-          <div
-            className="flex justify-center bg-primary-dark py-2 items-center
-          "
-          >
-            <p className="text-light text-2xl">{t('form.title')}</p>
+          <div className="flex justify-center py-2 items-center">
+            <p className="text-2xl">{t('form.title')}</p>
           </div>
-          <div className="flex flex-col py-8 px-4 bg-light">
+          <div className="flex flex-col py-4 px-8 gap-4">
             <Input
               type="email"
               placeholder={'*' + t('form.email') ?? ''}
               name="email"
-              className="mb-6"
+              className="mb-2"
               required
             />
             <Input
               type="text"
               placeholder={'*' + t('form.firstName') ?? ''}
               name="firstName"
-              className="mb-4"
               required
             />
             <Input
               type="text"
               placeholder={t('form.lastName') ?? ''}
               name="lastName"
-              className="mb-8"
             />
             {error && (
-              <div className="w-full text-center text-red-500 font-bold mb-2">
+              <div className="w-full text-center text-red-500 font-bold">
                 {error}
               </div>
             )}
             <Button
               type="submit"
-              className="text-2xl font-bold disabled:bg-slate-500 disabled:text-slate-50 disabled:cursor-not-allowed"
+              className="text-2xl mt-4 font-bold disabled:bg-slate-500 disabled:text-slate-50 disabled:cursor-not-allowed"
               disabled={isLoading}
             >
               {t('form.button')}

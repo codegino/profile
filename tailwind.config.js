@@ -26,7 +26,8 @@ module.exports = {
         // color scheme is defined in /app.css
         // To enable text-primary-xxx, bg-primary-xxx, or border-primary-xxx
         primary: {
-          light: 'var(--color-primary-light)',
+          // light: 'var(--color-primary-light)',
+          50: 'var(--color-primary-50)',
           100: 'var(--color-primary-100)',
           200: 'var(--color-primary-200)',
           300: 'var(--color-primary-300)',
@@ -36,12 +37,12 @@ module.exports = {
           700: 'var(--color-primary-700)',
           800: 'var(--color-primary-800)',
           900: 'var(--color-primary-900)',
-          dark: 'var(--color-primary-dark)',
+          // dark: 'var(--color-primary-dark)',
         },
-        lightest: 'var(--color-lightest)',
-        darkest: 'var(--color-darkest)',
-        light: 'var(--color-light)',
-        dark: 'var(--color-dark)',
+        // lightest: 'var(--color-lightest)',
+        // darkest: 'var(--color-darkest)',
+        // light: 'var(--color-light)',
+        // dark: 'var(--color-dark)',
       },
     },
   },

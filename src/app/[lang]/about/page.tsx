@@ -64,7 +64,7 @@ const AboutMePage: NextPage<PropsWithLocale> = async ({params: {lang}}) => {
               target="_blank"
               aria-label="React Responsive Carousel"
               rel="noreferrer"
-              className="text-primary-dark"
+              className="text-primary-900 dark:text-primary-300"
             >
               React Responsive Carousel
             </NextLink>
@@ -78,7 +78,7 @@ const AboutMePage: NextPage<PropsWithLocale> = async ({params: {lang}}) => {
               href="https://github.com/codegino/profile"
               target="_blank"
               aria-label="Github Repo"
-              className="text-primary-dark"
+              className="text-primary-900 dark:text-primary-300"
             >
               Github Repo
             </NextLink>

@@ -14,7 +14,7 @@ const TableOfContents: FunctionComponent<{
           return (
             <li key={href} className="py-0.5">
               <a
-                className="underline-on-hover underline--dark text-primary-dark text-lg font-semibold"
+                className="underline-on-hover underline--dark text-lg font-semibold"
                 aria-label={label}
                 title={label}
                 href={href}

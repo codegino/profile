@@ -78,15 +78,14 @@ const CodeBlockImpl: FunctionComponent<CodeBlockProps> = ({
 
   return (
     <>
-      <code className="relative my-4 shadow-md shadow-purple-500">
+      <code className="relative my-4 ">
         {!noHeader && (
           <span
             className="
-        text-right w-full pl-2 pr-1 top-1 h-6 relative flex justify-between text-primary-dark
-        bg-lightest rounded-tr-lg rounded-tl-lg
+        ring-1 ring-neutral-200 dark:ring-neutral-800 file:bg-neutral-100 text-right w-full pl-2 pr-1 top-1 h-6 relative flex justify-between rounded-tr-lg rounded-tl-lg
         "
           >
-            <span className="inline-block text-ellipsis whitespace-nowrap overflow-hidden">
+            <span className="inline-block text-ellipsis whitespace-nowrap overflow-hidden text-neutral-700 dark:text-neutral-300">
               {fileName ? fileName : ''}
               {!noExt && languageLabel}
             </span>
@@ -128,7 +127,7 @@ const CodeBlockImpl: FunctionComponent<CodeBlockProps> = ({
               <span
                 className={clsx(
                   'p-2 pl-2 overflow-auto flex relative flex-col leading-[1.188] my-1 text-lg',
-                  'rounded-bl-md rounded-br-md shadow-sm shadow-darkest no-scrollbar',
+                  'rounded-bl-md rounded-br-md shadow-sm shadow-black no-scrollbar',
                   className,
                   {
                     'pl-8': !noLine,

@@ -23,9 +23,12 @@ export const LogoWrapper: FunctionComponent<{className?: string}> = ({
 
       <NextLink href={`/${lang}`} aria-label="Code Gino">
         <span
-          className={clsx('underline-on-hover ml-2 text-2xl font-bold', {
-            'text-white border-b-2 border-b-primary-600': path === '/',
-          })}
+          className={clsx(
+            'underline-on-hover ml-2 text-2xl font-bold text-white ',
+            {
+              'border-b-2 border-b-primary-600': path === '/',
+            },
+          )}
         >
           Code Gino
         </span>

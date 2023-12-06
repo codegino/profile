@@ -22,15 +22,15 @@ const BlogCard: FunctionComponent<{
     <figure
       className={clsx(
         'relative flex items-center justify-between flex-col sm:flex-row-reverse',
-        'rounded-xl w-full sm:py-4 sm:px-8 bg-lightest h-[25rem] sm:h-[20rem]',
-        'shadow-sm hover:shadow-md hover:shadow-dark shadow-dark mb-8 last:mb-0 max-w-[45rem] sm:max-w-[55rem]',
+        'rounded-xl w-full sm:py-4 sm:px-8 bg-white dark:bg-black h-[25rem] sm:h-[20rem]',
+        'shadow-sm hover:shadow-md hover:shadow-neutral-800 shadow-neutral-700 mb-8 last:mb-0 max-w-[45rem] sm:max-w-[55rem]',
       )}
     >
       <div
         className={clsx(
           'absolute sm:relative rounded-2xl overflow-hidden',
           'top-0 left-0 right-0 bottom-0',
-          'sm:mt-4 shadow-md shadow-dark sm:ml-2',
+          'sm:mt-4 shadow-md shadow-neutral-600 sm:ml-2',
           'h-full w-full sm:h-[15rem] sm:w-[20rem] sm:min-w-[20rem]',
         )}
       >
@@ -51,7 +51,7 @@ const BlogCard: FunctionComponent<{
         >
           <h2 className="line-clamp-2">{blog.title}</h2>
           <h3 className="line-clamp-2">{blog.description}</h3>
-          <p className="mt-3">
+          <p className="mt-3 dark:text-neutral-300">
             {t('date', {
               val: new Date(blog.date),
               formatParams: {
@@ -69,7 +69,7 @@ const BlogCard: FunctionComponent<{
             <div className="mt-4 sm:mt-8 flex gap-2 flex-wrap">
               {blog.tags.map(tag => (
                 <span
-                  className="inline-block bg-light border-light py-2 px-4 rounded-xl flex-nowrap"
+                  className="inline-block bg-neutral-100 dark:bg-neutral-900 py-2 px-4 rounded-xl flex-nowrap"
                   key={tag}
                 >
                   {tag}

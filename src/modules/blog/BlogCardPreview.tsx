@@ -17,7 +17,7 @@ export const BlogCardPreview = ({blog}: Props) => {
   const {t} = useTranslation(locale, 'common');
 
   return (
-    <figure className="relative w-full min-h-[20rem] text-center overflow-hidden shadow-sm hover:shadow-md hover:shadow-dark shadow-dark rounded-2xl bg-light md:max-w-4xl">
+    <figure className="relative w-ful min-h-[20rem] text-center overflow-hidden shadow-sm hover:shadow-md hover:shadow-neutral-800 shadow-neutral-800 rounded-2xl bg-light md:max-w-4xl">
       <NextLink
         href={createI18nUrlSegment(`/blog/${blog.slug}`, locale)}
         aria-label={blog.title}
@@ -31,24 +31,22 @@ export const BlogCardPreview = ({blog}: Props) => {
           placeholder="blur"
           blurDataURL={blog.bannerId}
         />
-        <figcaption className="absolute bottom-0 w-full bg-white dark:bg-black pb-4 opacity-90 px-4 md:h-[10rem] flex flex-col justify-between">
-          <h2 className="line-clamp-2">{blog.title}</h2>
+        <figcaption className="absolute bottom-0 w-full bg-white dark:bg-black pb-4 opacity-95 px-4 md:h-[10rem] flex flex-col justify-between">
+          <h2 className="line-clamp-2 text-xl">{blog.title}</h2>
           <div>
             <p className="line-clamp-1">{blog.description}</p>
-            <p className="mt-2 text-dark">
-              <i>
-                {t('date', {
-                  val: new Date(blog.date),
-                  formatParams: {
-                    val: {
-                      weekday: 'short',
-                      year: 'numeric',
-                      month: 'short',
-                      day: 'numeric',
-                    },
+            <p className="mt-2 text-neutral-700">
+              {t('date', {
+                val: new Date(blog.date),
+                formatParams: {
+                  val: {
+                    weekday: 'short',
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric',
                   },
-                })}
-              </i>
+                },
+              })}
             </p>
           </div>
         </figcaption>

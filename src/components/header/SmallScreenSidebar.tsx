@@ -50,7 +50,7 @@ const SmallScreenSidebar: FunctionComponent = () => {
         >
           <AiOutlineClose
             size={32}
-            className="fill-gray-900 select-none outline-none"
+            className="fill-neutral-900 select-none outline-none"
           />
         </RoundButton>
       )}
@@ -71,8 +71,8 @@ const SmallScreenSidebar: FunctionComponent = () => {
             onClick={e => e.stopPropagation()}
             role="presentation"
             className={clsx(
-              'w-[20rem] h-screen absolute bg-light top-0 left-0 text-dark flex flex-col',
-              'items-start p-4 text-2xl leading-10 shadow-dark shadow-md cursor-default',
+              'w-[20rem] h-screen absolute bg-zinc-50 dark:bg-zinc-900 top-0 left-0 flex flex-col',
+              'items-start p-4 text-2xl leading-10 shadow-neutral-800 shadow-md cursor-default',
             )}
           >
             <div className={clsx('flex items-center min-w-max relative pb-4')}>
@@ -93,9 +93,9 @@ const SmallScreenSidebar: FunctionComponent = () => {
                         <NextLink
                           href={createI18nUrlSegment(link.url, locale)}
                           className={clsx(
-                            'px-2 text-xl hover:text-dark hover:underline font-semibold',
+                            'px-2 text-xl hover:text-neutral-900 hover:underline font-semibold',
                             {
-                              'text-primary-dark underline':
+                              'text-primary-900 dark:text-primary-300 underline':
                                 (link.url === '/' && path === '/') ||
                                 (link.url !== '/' && path.includes(link.url)),
                             },

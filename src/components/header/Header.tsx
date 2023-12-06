@@ -33,7 +33,7 @@ export default function Header() {
       <InView
         as="header"
         onChange={setInView}
-        className="h-16 min-h-[4rem] relative bg-black flex items-center py-0 px-2 text-white"
+        className="h-16 min-h-[4rem] relative bg-black flex items-center py-0 px-2"
       >
         <TopLeftShape />
         <LogoWrapper />
