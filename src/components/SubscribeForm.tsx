@@ -74,14 +74,14 @@ const SubscribeForm = () => {
 
         <form
           onSubmit={handleSubmit}
-          className="relative mt-8 overflow-hidden w-full dark:bg-black
+          className="relative mt-8 overflow-hidden w-full dark:bg-neutral-800
           max-w-xl min-w-2xl mb-24 rounded-2xl min-h-[23rem] ring-1 ring-neutral-700 bg-white/90"
           id="1j27oq"
         >
           <div className="flex justify-center py-4 items-center">
             <p className="text-2xl">{t('form.title')}</p>
           </div>
-          <div className="flex flex-col py-4 px-4 gap-4">
+          <div className="flex flex-col py-4 px-8 gap-4">
             <Input
               type="email"
               placeholder={'*' + t('form.email') ?? ''}

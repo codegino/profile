@@ -1,19 +1,6 @@
 'use client';
 import type {FunctionComponent} from 'react';
 
-// .group li code,
-// .group p code,
-// .group h2 code,
-// .group h3 code,
-// .group h4 code,
-// .group h5 code,
-// .group h6 code {
-//   padding: 0 0.125rem;
-//   border: 1px solid lightgray;
-//   border-radius: 4px;
-//   font-family: var(--font-roboto);
-// }
-
 const ContentLayout: FunctionComponent<{children: React.ReactNode}> = ({
   children,
   ...props
@@ -71,6 +58,7 @@ const ContentLayout: FunctionComponent<{children: React.ReactNode}> = ({
           padding: 0 0.3rem;
           border-radius: 3px;
           font-family: var(--font-roboto);
+          font-size: 0.95rem;
         }
 
         .group h2 em,

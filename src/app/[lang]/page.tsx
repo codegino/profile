@@ -68,7 +68,7 @@ const HomePage: NextPage<PropsWithLocale> = async ({params: {lang}}) => {
       >
         <GreetingsContent lang={lang} />
         <svg
-          className="absolute inset-1 -z-10 h-full w-full stroke-primary-900 dark:stroke-primary-50 [mask-image:radial-gradient(100%_90%_at_bottom,black,transparent)]"
+          className="absolute inset-0 -z-10 h-full w-full stroke-primary-900 dark:stroke-primary-50 [mask-image:radial-gradient(50%_105%_at_bottom,black,transparent)]"
           aria-hidden="true"
         >
           <defs>
