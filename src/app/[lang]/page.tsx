@@ -64,7 +64,7 @@ const HomePage: NextPage<PropsWithLocale> = async ({params: {lang}}) => {
       />
       <FullScreenWrapper
         bl
-        className="isolate flex justify-center flex-col items-center min-h-screen w-full relative bg-zinc-200 dark:bg-zinc-900"
+        className="isolate flex justify-center flex-col items-center min-h-screen w-full bg-zinc-200 dark:bg-zinc-900"
       >
         <GreetingsContent lang={lang} />
         <svg

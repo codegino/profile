@@ -4,6 +4,7 @@ import {usePathname, useParams} from 'next/navigation';
 import NextLink from '../basic/NextLink';
 import Logo from './Logo';
 import {useHeader} from './header-context';
+import {twMerge} from 'tailwind-merge';
 
 export const LogoWrapper: FunctionComponent<{className?: string}> = ({
   className,
@@ -23,11 +24,9 @@ export const LogoWrapper: FunctionComponent<{className?: string}> = ({
 
       <NextLink href={`/${lang}`} aria-label="Code Gino">
         <span
-          className={clsx(
+          className={twMerge(
             'underline-on-hover ml-2 text-2xl font-bold text-white ',
-            {
-              'border-b-2 border-b-primary-600': path === '/',
-            },
+            path === '/' && 'text-primary-400',
           )}
         >
           Code Gino

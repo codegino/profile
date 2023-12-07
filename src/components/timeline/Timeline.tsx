@@ -25,7 +25,7 @@ export default function Timeline({
       <div>
         <Slide direction="up" triggerOnce>
           <Experience>
-            <h2 className="m-0">
+            <h2 className="m-0 text-xl text-neutral-800 dark:text-neutral-100">
               <FaBriefcase />
               &nbsp; Work Experiences
             </h2>

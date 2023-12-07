@@ -12,7 +12,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 0.25rem;
+  width: 0.125rem;
   height: 2.5rem;
   position: absolute;
   top: -2.25rem;
@@ -22,8 +22,8 @@
 
 .connector::before {
   content: '';
-  width: 0.75rem;
-  height: 0.75rem;
+  width: 0.5rem;
+  height: 0.5rem;
   position: absolute;
   border-radius: 50%;
   z-index: 1;

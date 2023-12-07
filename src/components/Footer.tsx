@@ -10,18 +10,18 @@ const Footer: FC<{lang: 'en' | 'sv'}> = async ({lang}) => {
   const {t} = await createTranslation(lang, 'common');
 
   return (
-    <footer className="w-full relative h-48 bg-black text-white flex justify-center overflow-hidden md:h-32">
+    <footer className="w-full relative h-48 bg-neutral-900 text-white flex justify-center overflow-hidden md:h-32">
       <TopLeftShape />
       <BottomRightShape />
       <div
-        className="flex items-center flex-col-reverse justify-center max-w-6xl w-full text-center
-      md:flex-row md:justify-around md:text-right"
+        className="flex items-center flex-col-reverse justify-center sm:max-w-2xl w-full text-center
+      md:flex-row md:justify-around sm:text-right gap-y-4"
       >
         <div className="m-1">
           <NextLink
             href="/sitemap.xml"
             aria-label="Sitemap"
-            className="mr-4 text-lg"
+            className="mr-4 font-bold"
           >
             {t('sitemap')}
           </NextLink>
@@ -29,11 +29,11 @@ const Footer: FC<{lang: 'en' | 'sv'}> = async ({lang}) => {
             href="/rss.xml"
             aria-label="Rss Feed"
             rel="noreferrer"
-            className="text-lg"
+            className=" font-bold"
           >
             {t('rssFeed')}
           </NextLink>
-          <p>{t('allRightsReserved')}</p>
+          <p className="mt-2">{t('allRightsReserved')}</p>
           <p>© Carlo Gino Catapang {new Date().getFullYear()}</p>
         </div>
         <div className="flex items-center">
