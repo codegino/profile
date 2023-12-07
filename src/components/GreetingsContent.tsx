@@ -21,7 +21,7 @@ const GreetingsContent: FC<{lang: LocaleTypes}> = ({lang}) => {
       <div className="flex justify-center items-center h-screen w-screen relative md:max-w-[40rem] sm:mt-[-15rem]">
         <div
           className="
-            w-full m-2 sm:m-0 sm:w-[95%] lg:w-[50rem]
+            @container w-full m-2 sm:m-0 sm:w-[95%] lg:w-[50rem]
             rounded-lg overflow-hidden text-[7px]  ring-black/90 dark:ring-zinc-500/90 ring-2
           "
         >
@@ -35,11 +35,11 @@ const GreetingsContent: FC<{lang: LocaleTypes}> = ({lang}) => {
             </div>
           </div>
           <div
-            className="h-[25rem] xs:h-[20rem] sm:max-h-[20rem]
+            className="h-[22rem] @md:h-[19rem]
             py-1 px-1 font-mono bg-neutral-100 dark:bg-neutral-800 text-[8px] leading-[1.2]"
           >
             <Typist
-              avgTypingDelay={20}
+              avgTypingDelay={10}
               onTypingDone={() => setIsGuideVisible(true)}
             >
               <StyledBsChevronRight />
@@ -72,7 +72,7 @@ const GreetingsContent: FC<{lang: LocaleTypes}> = ({lang}) => {
               <Typist.Delay ms={300} />
               <br />
               <StyledBsChevronRight />
-              <Typist.Delay ms={500} />
+              {/* <Typist.Delay ms={500} /> */}
               <Span>{t('greetings.7')}</Span>
               <Typist.Delay ms={300} />
               <Span>{t('greetings.8')}</Span>
@@ -80,11 +80,11 @@ const GreetingsContent: FC<{lang: LocaleTypes}> = ({lang}) => {
               <Span>{t('greetings.9')}</Span>
               <br />
               <StyledBsChevronRight />
-              <Typist.Delay ms={500} />
+              {/* <Typist.Delay ms={500} /> */}
               <Span>{t('greetings.10')}</Span>
               <br />
               <StyledBsChevronRight />
-              <Typist.Delay ms={500} />
+              {/* <Typist.Delay ms={500} /> */}
               <Span>{t('greetings.11')}</Span>
               <br />
               <StyledBsChevronRight />
