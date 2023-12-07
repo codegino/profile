@@ -64,11 +64,11 @@ const HomePage: NextPage<PropsWithLocale> = async ({params: {lang}}) => {
       />
       <FullScreenWrapper
         bl
-        className="isolate flex justify-center flex-col items-center min-h-screen w-full bg-zinc-200 dark:bg-zinc-900"
+        className="isolate flex justify-center flex-col items-center min-h-screen w-full bg-neutral-200 dark:bg-neutral-900"
       >
         <GreetingsContent lang={lang} />
         <svg
-          className="absolute inset-1 -z-10 h-full w-full stroke-primary-900 dark:stroke-primary-50 [mask-image:radial-gradient(100%_100%_at_top_right,black,transparent)]"
+          className="absolute inset-1 -z-10 h-full w-full stroke-primary-900 dark:stroke-primary-50 [mask-image:radial-gradient(100%_90%_at_bottom,black,transparent)]"
           aria-hidden="true"
         >
           <defs>

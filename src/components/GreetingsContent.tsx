@@ -25,7 +25,7 @@ const GreetingsContent: FC<{lang: LocaleTypes}> = ({lang}) => {
             rounded-lg overflow-hidden text-[7px]  ring-black/90 dark:ring-zinc-500/90 ring-2
           "
         >
-          <div className="bg-neutral-200 dark:bg-neutral-700 relative min-h-[2rem] h-8 flex items-center pl-2 border-b border-black/20 dark:border-white/20">
+          <div className="bg-zinc-100 dark:bg-neutral-700 relative min-h-[2rem] h-8 flex items-center pl-2 border-b border-black/20 dark:border-white/20">
             <div className="min-h-[0.75rem] min-w-[0.75rem] rounded-full mr-2 bg-red-500" />
             <div className="min-h-[0.75rem] min-w-[0.75rem] rounded-full mr-2 bg-yellow-300" />
             <div className="min-h-[0.75rem] min-w-[0.75rem] rounded-full mr-3 bg-green-600" />
@@ -36,7 +36,7 @@ const GreetingsContent: FC<{lang: LocaleTypes}> = ({lang}) => {
           </div>
           <div
             className="h-[22rem] @md:h-[19rem]
-            py-1 px-1 font-mono bg-neutral-100 dark:bg-neutral-800 text-[8px] leading-[1.2]"
+            py-1 px-1 font-mono bg-neutral-100 dark:bg-neutral-800 text-[8px] leading-[1.2] text-neutral-900 dark:text-neutral-50"
           >
             <Typist
               avgTypingDelay={10}

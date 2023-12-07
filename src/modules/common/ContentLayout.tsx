@@ -1,6 +1,19 @@
 'use client';
 import type {FunctionComponent} from 'react';
 
+// .group li code,
+// .group p code,
+// .group h2 code,
+// .group h3 code,
+// .group h4 code,
+// .group h5 code,
+// .group h6 code {
+//   padding: 0 0.125rem;
+//   border: 1px solid lightgray;
+//   border-radius: 4px;
+//   font-family: var(--font-roboto);
+// }
+
 const ContentLayout: FunctionComponent<{children: React.ReactNode}> = ({
   children,
   ...props
@@ -8,62 +21,61 @@ const ContentLayout: FunctionComponent<{children: React.ReactNode}> = ({
   return (
     <article
       {...props}
-      className="slide-layout m-auto px-2 mb-10 flex flex-col max-w-screen-md"
+      className="group m-auto px-2 mb-10 flex flex-col max-w-screen-md  [&_*_code]:bg-neutral-700 [&_*_code]:dark:bg-neutral-200 [&_*_code]:text-neutral-200 [&_*_code]:dark:text-neutral-700"
     >
       {children}
       <style jsx global>{`
-        .slide-layout > pre {
+        .group > pre {
           margin: var(--spacing-small) 0;
         }
 
-        .slide-layout blockquote > p {
+        .group blockquote > p {
           padding-left: var(--spacing-small);
         }
 
-        .slide-layout > ul {
+        .group > ul {
           margin: 0;
         }
 
-        .slide-layout ol > li,
-        .slide-layout ul > li {
+        .group ol > li,
+        .group ul > li {
           margin-left: 2rem;
           font-size: 1rem;
           line-height: 1.3;
         }
 
-        .slide-layout > ol > li {
+        .group > ol > li {
           list-style: auto;
         }
 
-        .slide-layout > ul > li {
+        .group > ul > li {
           list-style: disc;
         }
 
-        .slide-layout > ol {
+        .group > ol {
           margin: 0;
         }
 
-        .slide-layout > p {
+        .group > p {
           padding: 0 var(--spacing-small);
           margin-left: var(--spacing-small);
         }
 
-        .slide-layout li code,
-        .slide-layout p code,
-        .slide-layout h2 code,
-        .slide-layout h3 code,
-        .slide-layout h4 code,
-        .slide-layout h5 code,
-        .slide-layout h6 code {
-          padding: 0 0.125rem;
-          border: 1px solid lightgray;
-          border-radius: 4px;
+        .group li code,
+        .group p code,
+        .group h2 code,
+        .group h3 code,
+        .group h4 code,
+        .group h5 code,
+        .group h6 code {
+          padding: 0 0.3rem;
+          border-radius: 3px;
           font-family: var(--font-roboto);
         }
 
-        .slide-layout h2 em,
-        .slide-layout h3 em,
-        .slide-layout h4 em,
+        .group h2 em,
+        .group h3 em,
+        .group h4 em,
         .slide-layout h5 em,
         .slide-layout h6 em {
           font-size: 0.75rem;

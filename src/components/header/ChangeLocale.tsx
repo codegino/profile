@@ -19,7 +19,10 @@ export const ChangeLocale: FC<{className?: string}> = ({className}) => {
     <select
       onChange={handleChangeLocale}
       value={params?.lang}
-      className={clsx('bg-transparent text-4xl text-white', className)}
+      className={clsx(
+        'bg-transparent text-2xl sm:text-4xl text-white',
+        className,
+      )}
     >
       <option value={'en'} title="English" aria-label="English">
         🇺🇸

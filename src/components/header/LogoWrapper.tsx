@@ -25,7 +25,7 @@ export const LogoWrapper: FunctionComponent<{className?: string}> = ({
       <NextLink href={`/${lang}`} aria-label="Code Gino">
         <span
           className={twMerge(
-            'underline-on-hover ml-2 text-2xl font-bold text-white ',
+            'underline-on-hover ml-2 text-2xl font-bold text-neutral-50',
             path === '/' && 'text-primary-400',
           )}
         >

@@ -34,7 +34,7 @@
     padding: 0;
     margin: 0;
     @apply bg-neutral-50 dark:bg-neutral-900;
-    @apply text-black dark:text-white;
+    @apply text-neutral-800 dark:text-neutral-300;
   }
 
   body {

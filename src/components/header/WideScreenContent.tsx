@@ -25,7 +25,7 @@ export default function WideScreenContentImpl() {
           {navigationLinks.map(link => (
             <li
               key={link.label}
-              className="underline-on-hover text-white mr-3 last:mr-0"
+              className="underline-on-hover text-neutral-100 mr-3 last:mr-0"
             >
               <NextLink
                 href={createI18nUrlSegment(link.url, locale)}

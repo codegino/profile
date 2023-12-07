@@ -22,7 +22,7 @@ const BlogCard: FunctionComponent<{
     <figure
       className={clsx(
         'relative flex items-center justify-between flex-col sm:flex-row-reverse',
-        'rounded-xl w-full sm:py-4 sm:px-8 bg-white dark:bg-black h-[25rem] sm:h-[20rem]',
+        'rounded-xl w-full sm:py-4 sm:px-8 bg-neutral-50 dark:bg-neutral-800 h-[25rem] sm:h-[20rem]',
         'shadow-sm hover:shadow-md hover:shadow-neutral-800 shadow-neutral-700 mb-8 last:mb-0 max-w-[45rem] sm:max-w-[55rem]',
       )}
     >
@@ -44,7 +44,7 @@ const BlogCard: FunctionComponent<{
           blurDataURL={blog.bannerId}
         />
       </div>
-      <figcaption className="bg-white dark:bg-black opacity-90 sm:opacity-100 p-4 sm:p-0 absolute bottom-0 w-full sm:relative">
+      <figcaption className="bg-neutral-50 dark:bg-neutral-800 opacity-90 sm:opacity-100 p-4 sm:p-0 absolute bottom-0 w-full sm:relative">
         <NextLink
           href={createI18nUrlSegment(`/${feature}/${blog.slug}`, lang)}
           aria-label={blog.title}
@@ -71,7 +71,7 @@ const BlogCard: FunctionComponent<{
             <div className="mt-4 sm:mt-8 flex gap-2 flex-wrap">
               {blog.tags.map(tag => (
                 <span
-                  className="inline-block bg-neutral-100 dark:bg-neutral-900 py-2 px-4 rounded-xl flex-nowrap"
+                  className="inline-block bg-white shadow-sm shadow-neutral-200 dark:shadow-neutral-900 dark:bg-neutral-900 py-1 px-3 rounded-xl flex-nowrap"
                   key={tag}
                 >
                   {tag}

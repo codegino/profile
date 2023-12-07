@@ -18,11 +18,7 @@ const BlogHeader: FunctionComponent<Props> = ({blog, img, svg}) => {
   return (
     <article className="my-8 text-center flex flex-col items-center">
       <h1 className="mb-0 text-4xl">{blog.title}</h1>
-      {blog.description && (
-        <h2 className="description text-neutral-900 dark:text-neutral-50">
-          {blog.description}
-        </h2>
-      )}
+      {blog.description && <h2 className="description ">{blog.description}</h2>}
       <p className="mb-4 text-neutral-700 dark:text-neutral-200">
         {t('date', {
           val: new Date(blog.date),
@@ -50,12 +46,11 @@ const BlogHeader: FunctionComponent<Props> = ({blog, img, svg}) => {
         </div>
       ) : null}
       {blog.bannerDescription ? (
-        <aside className="mt-1 text-neutral-800 dark:text-neutral-100">
+        <aside className="mt-1 text-neutral-700 dark:text-neutral-200 text-sm">
           {blog.bannerDescription}
         </aside>
       ) : null}
       <br />
-      {locale !== 'en' && <i>Sorry, this blog is only available in English</i>}
     </article>
   );
 };

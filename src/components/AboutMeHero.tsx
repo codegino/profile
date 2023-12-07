@@ -32,7 +32,7 @@ export default function AboutMeHero({
       >
         {quote.map((word, i) => (
           <Zoom delay={i * 700 + i * i * 150} key={i} triggerOnce>
-            <p className="text-white text-3xl md:text-5xl lg:text-6xl text-shadow bg-transparent">
+            <p className="text-neutral-300 text-3xl md:text-5xl lg:text-6xl text-shadow bg-transparent">
               {word}
             </p>
           </Zoom>

@@ -71,7 +71,7 @@ const SmallScreenSidebar: FunctionComponent = () => {
             onClick={e => e.stopPropagation()}
             role="presentation"
             className={clsx(
-              'w-[20rem] h-screen absolute bg-zinc-50 dark:bg-zinc-900 top-0 left-0 flex flex-col',
+              'w-[20rem] h-screen absolute bg-neutral-50 dark:bg-neutral-900 top-0 left-0 flex flex-col',
               'items-start p-4 text-2xl leading-10 shadow-neutral-800 shadow-md cursor-default',
             )}
           >
@@ -80,7 +80,7 @@ const SmallScreenSidebar: FunctionComponent = () => {
             </div>
             <section className="sidebar__content overflow-y-auto w-full relative h-full flex flex-col justify-between">
               <div>
-                <h3 className="my-4 text-2xl">Links</h3>
+                <h3 className="mt-3 mb-0 text-xl">Links</h3>
 
                 <nav>
                   <ul className="flex items-start flex-col">
@@ -93,7 +93,7 @@ const SmallScreenSidebar: FunctionComponent = () => {
                         <NextLink
                           href={createI18nUrlSegment(link.url, locale)}
                           className={clsx(
-                            'px-2 text-xl hover:text-neutral-900 hover:text-primary-600 font-semibold',
+                            'px-2 text-lg hover:text-neutral-900 hover:text-primary-600 font-semibold',
                             {
                               'text-primary-900 dark:text-primary-300':
                                 (link.url === '/' && path === '/') ||
@@ -109,12 +109,12 @@ const SmallScreenSidebar: FunctionComponent = () => {
                   </ul>
                 </nav>
 
-                <h3 className="my-4 text-2xl">Social</h3>
-                <div className="flex items-center [&_.icon]:text-black [&_.icon]:dark:text-white">
+                <h3 className="mt-3 mb-0 text-xl">Social</h3>
+                <div className="flex items-center [&_.icon]:text-neutral-900 [&_.icon]:dark:text-neutral-50">
                   <SocialMedia />
                   <BuyMeACoffeeIcon className="ml-4 [&_.icon]:fill-orange-700 [&_.icon]:hover:fill-orange-600" />
                 </div>
-                <h3 className="my-4 text-2xl">Contact me</h3>
+                <h3 className="mt-3 mb-0 text-xl">Contact me</h3>
                 <div>
                   <NextLink
                     href={`mailto:${EMAIL_ADDRESS}`}
@@ -147,16 +147,15 @@ const SmallScreenSidebar: FunctionComponent = () => {
                     />
                   </NextLink>
                 </div>
+              </div>
 
-                <section className="text-left mt-12">
+              <div className="flex flex-col">
+                <section className="text-left mb-2">
                   <div className="flex items-center">
                     <DarkModeToggle />
                     <ChangeLocale className="text-5xl ml-3" />
                   </div>
                 </section>
-              </div>
-
-              <div className="flex flex-col items-center min-h-[4rem] justify-end">
                 <p>All rights reserved</p>
                 <p>© Carlo Gino Catapang {new Date().getFullYear()}</p>
               </div>

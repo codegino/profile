@@ -16,6 +16,7 @@ import {Zoom} from 'react-awesome-reveal';
 import {useTranslation} from '../../app/i18n/client';
 import {useParams} from 'next/navigation';
 import {locales} from '../../app/i18n/locales.enum';
+import DarkModeToggle from '../DarkModeToggle';
 
 export default function Skills({skills}: {skills: CategorizedSkill[]}) {
   const locale = useParams()?.lang as locales;
@@ -50,7 +51,7 @@ export default function Skills({skills}: {skills: CategorizedSkill[]}) {
                         key={i}
                         href={skill.url}
                         className="py-1 px-3  rounded-lg border border-black mr-2
-                    bg-neutral-950 hover:bg-neutral-50 text-white hover:text-black"
+                    bg-neutral-950 hover:bg-neutral-50 text-neutral-100 hover:text-neutral-800"
                         title={`Click to visit ${skill.name}`}
                         target="_blank"
                         aria-label={skill.name}
