@@ -93,9 +93,9 @@ const SmallScreenSidebar: FunctionComponent = () => {
                         <NextLink
                           href={createI18nUrlSegment(link.url, locale)}
                           className={clsx(
-                            'px-2 text-xl hover:text-neutral-900 hover:underline font-semibold',
+                            'px-2 text-xl hover:text-neutral-900 hover:text-primary-600 font-semibold',
                             {
-                              'text-primary-900 dark:text-primary-300 underline':
+                              'text-primary-900 dark:text-primary-300':
                                 (link.url === '/' && path === '/') ||
                                 (link.url !== '/' && path.includes(link.url)),
                             },
@@ -110,9 +110,9 @@ const SmallScreenSidebar: FunctionComponent = () => {
                 </nav>
 
                 <h3 className="my-4 text-2xl">Social</h3>
-                <div className="flex items-center">
+                <div className="flex items-center [&_.icon]:text-black [&_.icon]:dark:text-white">
                   <SocialMedia />
-                  <BuyMeACoffeeIcon className="ml-4" />
+                  <BuyMeACoffeeIcon className="ml-4 [&_.icon]:fill-orange-700 [&_.icon]:hover:fill-orange-600" />
                 </div>
                 <h3 className="my-4 text-2xl">Contact me</h3>
                 <div>

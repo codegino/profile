@@ -35,7 +35,8 @@
     "react-responsive-carousel": "3.2.23",
     "react-transition-group": "4.4.5",
     "react-typist": "2.0.5",
-    "remark-mdx-code-meta": "2.0.0"
+    "remark-mdx-code-meta": "2.0.0",
+    "tailwind-merge": "^2.1.0"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "14.0.3",

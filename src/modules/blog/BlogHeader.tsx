@@ -16,10 +16,14 @@ const BlogHeader: FunctionComponent<Props> = ({blog, img, svg}) => {
   const {t} = useTranslation(locale, 'common');
 
   return (
-    <article className="mb-8 text-center flex flex-col items-center">
-      <h1 className="mb-0">{blog.title}</h1>
-      {blog.description && <h2 className="description">{blog.description}</h2>}
-      <p className="mb-4">
+    <article className="my-8 text-center flex flex-col items-center">
+      <h1 className="mb-0 text-4xl">{blog.title}</h1>
+      {blog.description && (
+        <h2 className="description text-neutral-900 dark:text-neutral-50">
+          {blog.description}
+        </h2>
+      )}
+      <p className="mb-4 text-neutral-700 dark:text-neutral-200">
         {t('date', {
           val: new Date(blog.date),
           formatParams: {
@@ -46,8 +50,8 @@ const BlogHeader: FunctionComponent<Props> = ({blog, img, svg}) => {
         </div>
       ) : null}
       {blog.bannerDescription ? (
-        <aside className="mt-1">
-          <i className="text-base">{blog.bannerDescription}</i>
+        <aside className="mt-1 text-neutral-800 dark:text-neutral-100">
+          {blog.bannerDescription}
         </aside>
       ) : null}
       <br />

@@ -15,7 +15,7 @@ export default async function ResumeSummary({
 
   return (
     <div className="w-full flex justify-center items-center flex-col py-20 md:flex-row  min-w-max">
-      <div className="overflow-hidden rounded-full h-36 w-36 md:rounded-none md:h-44 md:w-44 xl:h-48 xl:w-48">
+      <div className="overflow-hidden rounded-full h-36 w-36 md:rounded-md md:h-44 md:w-44 xl:h-48 xl:w-48">
         <BlurringImage
           img={img}
           svg={svg}
@@ -28,16 +28,20 @@ export default async function ResumeSummary({
       <section className="flex flex-col items-center justify-start ml-0 md:ml-8">
         <h1 className="m-0">{summary.name}</h1>
         <div className="flex flex-col items-center md:flex-row">
-          <h2 className="m-0 lg:my-2">{t(summary.jobTitle)}</h2>
-          <NextLink
-            href={summary.companyWebsite}
-            target="_blank"
-            aria-label="Company Website"
-            rel="noreferrer"
-            className="underline-on-hover"
-          >
-            <h2 className="m-0 lg:my-2">&nbsp;at {summary.company}</h2>
-          </NextLink>
+          <h2 className="m-0 lg:my-2 text-2xl text-neutral-900 dark:text-neutral-100">
+            {t(summary.jobTitle)}
+            <NextLink
+              href={summary.companyWebsite}
+              target="_blank"
+              aria-label="Company Website"
+              rel="noreferrer"
+            >
+              <span className="text-2xl">&nbsp;at&nbsp;</span>
+              <span className="underline-on-hover text-2xl">
+                {summary.company}
+              </span>
+            </NextLink>
+          </h2>
         </div>
         <h3>
           <NextLink
@@ -46,15 +50,20 @@ export default async function ResumeSummary({
             aria-label="Email me"
             title="Send me an email"
             rel="noreferrer"
-            className="underline-on-hover underline-on-hover--dark"
+            className="underline-on-hover--dark text-neutral-900 dark:text-neutral-100"
           >
-            <span className="text-xl">
-              <FaEnvelopeSquare size={25} />
-              &nbsp;{summary.email}
+            <span className="font-roboto">
+              <FaEnvelopeSquare
+                size={24}
+                className="fill-primary-900 dark:fill-primary-400"
+              />
+              <span className="underline-on-hover text-lg">
+                &nbsp;{summary.email}
+              </span>
             </span>
           </NextLink>
         </h3>
-        <h3 className="m-2 lg:mt-4">
+        <h3 className="m-2a text-lg text-neutral-700 dark:text-neutral-200">
           <FaMapMarkerAlt />
           &nbsp;{summary.address}
         </h3>
@@ -65,9 +74,9 @@ export default async function ResumeSummary({
 
 const summary = {
   jobTitle: 'jobTitle',
-  company: 'Devoteam Creative Tech',
+  company: 'Tre',
   email: 'carloginocatapang@gmail.com',
   address: 'Stockholm, Sweden',
   name: 'Carlo Gino Catapang',
-  companyWebsite: 'https://se.devoteam.com/',
+  companyWebsite: 'https://www.tre.se',
 };

@@ -50,7 +50,7 @@ export default function Skills({skills}: {skills: CategorizedSkill[]}) {
                         key={i}
                         href={skill.url}
                         className="py-1 px-3  rounded-lg border border-black mr-2
-                    bg-neutral-800 hover:bg-neutral-100 text-white hover:text-black"
+                    bg-neutral-950 hover:bg-neutral-50 text-white hover:text-black"
                         title={`Click to visit ${skill.name}`}
                         target="_blank"
                         aria-label={skill.name}

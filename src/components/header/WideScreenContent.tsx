@@ -29,8 +29,8 @@ export default function WideScreenContentImpl() {
             >
               <NextLink
                 href={createI18nUrlSegment(link.url, locale)}
-                className={clsx('hover:text-primary-600', {
-                  'text-primary-400 font-semibold': path?.includes(link.url),
+                className={clsx('hover:text-primary-200 font-semibold', {
+                  'text-primary-300': path?.includes(link.url),
                 })}
                 aria-label={t(link.label)}
               >

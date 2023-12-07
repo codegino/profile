@@ -85,19 +85,23 @@ const Content: FunctionComponent<{
   return (
     <>
       <div>
-        <p className="justify-self-center py-1">
-          {exp.endDate === exp.startDate
-            ? 'Present'
-            : t('date', {
-                val: new Date(exp.endDate),
-                formatParams: {
-                  val: {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric',
-                  },
+        <p className="justify-self-center py-1 text-neutral-600 dark:text-neutral-500">
+          {exp.endDate === exp.startDate ? (
+            <span className="text-neutral-900 dark:text-neutral-100">
+              Present
+            </span>
+          ) : (
+            t('date', {
+              val: new Date(exp.endDate),
+              formatParams: {
+                val: {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric',
                 },
-              })}
+              },
+            })
+          )}
         </p>
         <div>
           {exp.category === 'work' ? <FaBuilding /> : <FaGraduationCap />}
