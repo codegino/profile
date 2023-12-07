@@ -66,7 +66,9 @@ const BlogsFilter: FunctionComponent<{
 
   return (
     <section className="flex flex-col items-center mb-8 max-w-4xl">
-      <h3 className="mb-4">{t('filterByTags')}</h3>
+      <h3 className="mb-4 text-neutral-700 dark:text-neutral-200">
+        {t('filterByTags')}
+      </h3>
       <div className="flex gap-2 flex-wrap justify-center mb-4">
         {tags.map((tag, i) => (
           <div

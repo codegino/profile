@@ -50,8 +50,10 @@ const BlogCard: FunctionComponent<{
           aria-label={blog.title}
         >
           <h2 className="line-clamp-2">{blog.title}</h2>
-          <h3 className="line-clamp-2">{blog.description}</h3>
-          <p className="mt-3 dark:text-neutral-300">
+          <h3 className="line-clamp-2 text-neutral-800 dark:text-neutral-200">
+            {blog.description}
+          </h3>
+          <p className="mt-3 text-neutral-700 dark:text-neutral-300">
             {t('date', {
               val: new Date(blog.date),
               formatParams: {

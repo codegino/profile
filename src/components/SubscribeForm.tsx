@@ -64,8 +64,10 @@ const SubscribeForm = () => {
       <div className="h-screen min-h-[40rem] px-2 w-full flex flex-col items-center justify-center">
         <div className="text-center max-w-2xl ">
           <h2 className="my-8 text-4xl">{t('title')}</h2>
-          <h3 className="mb-8 text-2xl">{t('subtitle')}</h3>
-          <h4>
+          <h3 className="mb-8 text-2xl text-neutral-900 dark:text-neutral-50">
+            {t('subtitle')}
+          </h3>
+          <h4 className="text-neutral-700 dark:text-neutral-300">
             {t('noSpam')}
             <RiSpamLine size={25} />. {t('unsubscribe')}
             <BiCool size={25} />
@@ -74,8 +76,8 @@ const SubscribeForm = () => {
 
         <form
           onSubmit={handleSubmit}
-          className="relative mt-8 shadow-sm shadow-black/20 overflow-hidden w-full bg-white dark:bg-black
-          max-w-2xl min-w-2xl mb-24 rounded-2xl min-h-[25rem] ring-1 ring-neutral-700"
+          className="relative mt-8 shadow-sm shadow-black/20 overflow-hidden w-full dark:bg-black
+          max-w-2xl min-w-2xl mb-24 rounded-2xl min-h-[23rem] ring-1 ring-neutral-700 bg-white/90"
           id="1j27oq"
         >
           <div className="flex justify-center py-2 items-center">
@@ -107,7 +109,7 @@ const SubscribeForm = () => {
             )}
             <Button
               type="submit"
-              className="text-2xl mt-4 font-bold disabled:bg-slate-500 disabled:text-slate-50 disabled:cursor-not-allowed"
+              className="text-xl mt-4 font-bold disabled:bg-slate-500 disabled:text-slate-50 disabled:cursor-not-allowed"
               disabled={isLoading}
             >
               {t('form.button')}
