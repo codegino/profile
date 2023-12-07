@@ -12,8 +12,8 @@ export default function CustomGithubCalendar() {
 
   return (
     <Zoom triggerOnce>
-      <div className="flex flex-col items-center my-10 bg-white dark:bg-black p-1 rounded-xl">
-        <h2 className="mb-5 text-lg">
+      <div className="flex flex-col items-center my-10 bg-neutral-100 dark:bg-neutral-800 p-1 rounded-xl">
+        <p className="mb-5 text-lg">
           <>
             {t('my')}&nbsp;
             <NextLink
@@ -28,7 +28,7 @@ export default function CustomGithubCalendar() {
             </NextLink>
             &nbsp;{t('activity')}
           </>
-        </h2>
+        </p>
 
         <div className="overflow-x-auto max-w-lg sm:max-w-6xl  pb-4 [&_.react-activity-calendar]:px-10">
           <GithubCalendar

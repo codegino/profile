@@ -44,7 +44,7 @@ const BlogCard: FunctionComponent<{
           blurDataURL={blog.bannerId}
         />
       </div>
-      <figcaption className="bg-neutral-50 dark:bg-neutral-800 opacity-90 sm:opacity-100 p-4 sm:p-0 absolute bottom-0 w-full sm:relative">
+      <figcaption className="bg-neutral-50 dark:bg-neutral-800 opacity-95 sm:opacity-100 p-4 sm:p-0 absolute bottom-0 w-full sm:relative">
         <NextLink
           href={createI18nUrlSegment(`/${feature}/${blog.slug}`, lang)}
           aria-label={blog.title}

@@ -10,7 +10,7 @@ const LinkWrapper: FC<{
   resumeWordUrl: string;
 }> = ({resumePdfUrl, resumeWordUrl}) => {
   return (
-    <div className="absolute flex right-5 top-24">
+    <div className="absolute flex right-5 top-3 sm:top-24">
       <NextLink
         href={resumePdfUrl}
         target="_blank"
@@ -20,7 +20,7 @@ const LinkWrapper: FC<{
       >
         <CustomIcon
           icon={FaFilePdf}
-          size={44}
+          size={40}
           color="#F40F02"
           title="Download PDF Version"
           hoverColor="red"
@@ -38,7 +38,7 @@ const LinkWrapper: FC<{
       >
         <CustomIcon
           icon={FaFileWord}
-          size={44}
+          size={40}
           color="#015299"
           title="Download Word Version"
           hoverColor="blue"

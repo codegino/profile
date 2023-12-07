@@ -64,7 +64,7 @@ const HomePage: NextPage<PropsWithLocale> = async ({params: {lang}}) => {
       />
       <FullScreenWrapper
         bl
-        className="isolate flex justify-center flex-col items-center min-h-screen w-full bg-neutral-200 dark:bg-neutral-900"
+        className="isolate flex justify-center items-center min-h-screen w-full bg-neutral-200 dark:bg-neutral-900"
       >
         <GreetingsContent lang={lang} />
         <svg
@@ -95,7 +95,7 @@ const HomePage: NextPage<PropsWithLocale> = async ({params: {lang}}) => {
         <FullScreenWrapper
           tl
           br
-          className="bg-zinc-100 dark:bg-zinc-800"
+          className="bg-neutral-100 dark:bg-neutral-800"
           id="resume-summary"
         >
           <ResumeSummary img={profileImage} svg={profileSvg} lang={lang} />
@@ -114,10 +114,14 @@ const HomePage: NextPage<PropsWithLocale> = async ({params: {lang}}) => {
             </p>
           </div>
         </FullScreenWrapper>
-        <FullScreenWrapper tr bl className="bg-zinc-50 dark:bg-zinc-700">
+        <FullScreenWrapper tr bl className="bg-neutral-50 dark:bg-neutral-700">
           <BlogSuggestionsList blogs={blogs} />
         </FullScreenWrapper>
-        <FullScreenWrapper tl br className="bg-zinc-100 dark:bg-zinc-800">
+        <FullScreenWrapper
+          tl
+          br
+          className="bg-neutral-100 dark:bg-neutral-800 px-2"
+        >
           <div className="w-full flex justify-center">
             <div className="max-w-6xl">
               <CustomGithubCalendar />
@@ -129,15 +133,15 @@ const HomePage: NextPage<PropsWithLocale> = async ({params: {lang}}) => {
             </div>
           </div>
           <div className="text-center mb-10">
-            <p className="text-xl">
+            <p className="text-lg">
               {t('visitResume.1')}
               <NextLink
                 href="/resume"
                 aria-label="resume"
                 title="Link to my resume"
-                className="text-primary-900 dark:text-primary-300 underline-on-hover"
+                className="text-lg text-primary-900 dark:text-primary-300 underline-on-hover"
               >
-                <span className="text-xl">{t('visitResume.2')}</span>
+                <span className="text-lg">{t('visitResume.2')}</span>
               </NextLink>
               {t('visitResume.3')}
             </p>
@@ -145,7 +149,7 @@ const HomePage: NextPage<PropsWithLocale> = async ({params: {lang}}) => {
         </FullScreenWrapper>
       </main>
       <FullScreenWrapper
-        className="bg-zinc-50 dark: dark:bg-zinc-700"
+        className="bg-neutral-50 dark: dark:bg-neutral-700"
         tr
         bl
         id="subscribe"

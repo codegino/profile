@@ -18,7 +18,7 @@ const GreetingsContent: FC<{lang: LocaleTypes}> = ({lang}) => {
 
   return (
     <>
-      <div className="flex justify-center items-center h-screen w-screen relative md:max-w-[40rem] sm:mt-[-20vh]">
+      <div className="flex justify-center items-center h-screen w-screen relative md:max-w-[40rem] pb-[25vh]">
         <div
           className="
             @container w-full m-2 sm:m-0 sm:w-[95%] lg:w-[50rem]
@@ -35,7 +35,7 @@ const GreetingsContent: FC<{lang: LocaleTypes}> = ({lang}) => {
             </div>
           </div>
           <div
-            className="h-[22rem] @md:h-[19rem]
+            className="h-[21rem] @sm:h-[20rem] @md:h-[19rem]
             py-1 px-1 font-mono bg-neutral-100 dark:bg-neutral-800 text-[8px] leading-[1.2] text-neutral-900 dark:text-neutral-50"
           >
             <Typist
@@ -107,7 +107,7 @@ const GreetingsContent: FC<{lang: LocaleTypes}> = ({lang}) => {
         </div>
       </div>
       {isGuideVisible ? (
-        <div className="absolute bottom-[8.5vh]">
+        <div className="absolute bottom-[10vh]">
           <GuideArrow onClick={scrollToContent} />
         </div>
       ) : null}

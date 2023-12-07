@@ -23,7 +23,7 @@ const BlogPage: NextPage<PropsWithLocale> = async ({params: {lang}}) => {
 
   return (
     <>
-      <main className="flex items-center flex-col pt-12">
+      <main className="flex items-center flex-col sm:pt-12">
         <h1>{t('myBlogs')}</h1>
         <BlogsWrapper blogs={blogs} lang={lang} />
       </main>

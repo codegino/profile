@@ -11,7 +11,7 @@ export default function WakatimeCharts() {
 
   return (
     <div className="overflow-hidden flex flex-col py-4 sm:px-24 w-full">
-      <h2 className="mb-4 text-center">
+      <p className="mb-4 text-lg text-center">
         {t('my')}&nbsp;
         <NextLink
           href="https://wakatime.com/@codegino"
@@ -19,12 +19,12 @@ export default function WakatimeCharts() {
           aria-label="Wakatime profile"
           rel="noreferrer"
           title="Link to my Wakatime profile"
-          className="text-2xl underline-on-hover underline--dark"
+          className="text-lg text-primary-900 dark:text-primary-300 underline-on-hover underline--dark"
         >
           Wakatime
         </NextLink>
         &nbsp;{t('activity')}
-      </h2>
+      </p>
       <Zoom triggerOnce>
         <figure className="flex justify-center">
           <embed

@@ -16,7 +16,7 @@ const BlogHeader: FunctionComponent<Props> = ({blog, img, svg}) => {
   const {t} = useTranslation(locale, 'common');
 
   return (
-    <article className="my-8 text-center flex flex-col items-center">
+    <article className="sm:pt-4 text-center flex flex-col items-center">
       <h1 className="mb-0 text-4xl">{blog.title}</h1>
       {blog.description && <h2 className="description ">{blog.description}</h2>}
       <p className="mb-4 text-neutral-700 dark:text-neutral-200">
