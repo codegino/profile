@@ -30,19 +30,7 @@ export default function CustomGithubCalendar() {
           </>
         </h2>
 
-        <div className="overflow-x-auto max-w-lg sm:max-w-6xl  pb-4">
-          <style jsx global>
-            {`
-              .react-activity-calendar__legend-month text {
-                font-size: 2rem;
-              }
-
-              .react-activity-calendar {
-                width: 65rem;
-                padding: 0 6rem;
-              }
-            `}
-          </style>
+        <div className="overflow-x-auto max-w-lg sm:max-w-6xl  pb-4 [&_.react-activity-calendar]:px-10">
           <GithubCalendar
             username="codegino"
             fontSize={30}
