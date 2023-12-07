@@ -32,8 +32,8 @@ const AboutMePage: NextPage<PropsWithLocale> = async ({params: {lang}}) => {
   return (
     <>
       <AboutMeHero img={img} svg={svg} />
-      <main className="mt-10">
-        <article className="mb-20" id="about-me-details">
+      <main>
+        <article className="mb-20 pt-20" id="about-me-details">
           <h1>About Carlo Gino Catapang</h1>
           {aboutMeDetails.map(detail => {
             return (

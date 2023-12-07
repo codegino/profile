@@ -33,7 +33,7 @@ const BlogHeader: FunctionComponent<Props> = ({blog, img, svg}) => {
         })}
       </p>
       {img && svg && !blog.hideBanner ? (
-        <div className="relative h-[66vh] w-[95vw] lg:h-[35rem] lg:w-[65rem] lg:px-10 flex justify-center items-center">
+        <div className="relative h-[60vh] w-[95vw] lg:h-[35rem] lg:w-[65rem] max-h-[35rem] md:max-h-[50rem] lg:px-10 flex justify-center items-center">
           <BlurringImage
             alt={blog.bannerDescription}
             title={blog.bannerDescription}

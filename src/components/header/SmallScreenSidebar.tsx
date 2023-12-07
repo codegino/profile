@@ -147,15 +147,17 @@ const SmallScreenSidebar: FunctionComponent = () => {
                     />
                   </NextLink>
                 </div>
-              </div>
+                <section className="text-left">
+                  <h3 className="mt-3 mb-0 text-xl">Settings</h3>
 
-              <div className="flex flex-col">
-                <section className="text-left mb-2">
                   <div className="flex items-center">
                     <DarkModeToggle />
                     <ChangeLocale className="text-5xl ml-3" />
                   </div>
                 </section>
+              </div>
+
+              <div className="flex flex-col">
                 <p>All rights reserved</p>
                 <p>© Carlo Gino Catapang {new Date().getFullYear()}</p>
               </div>

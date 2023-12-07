@@ -6,7 +6,12 @@ import {Zoom} from 'react-awesome-reveal';
 import {BlurringImage} from './BlurringImage';
 import type {BlurImageType} from '../utils/image-blur.utils';
 
-const quote = ['With great power', 'comes great', 'responsibility', '- Batman'];
+const quote = [
+  'With great power',
+  'comes great',
+  'responsibility',
+  '- Superman',
+];
 
 export default function AboutMeHero({
   img,
@@ -15,7 +20,7 @@ export default function AboutMeHero({
   const {scrollToContent} = useScrollToView('#about-me-details');
 
   return (
-    <div className="overflow-hidden relative h-[95vh] m-auto flex justify-center bg-black">
+    <div className="overflow-hidden relative h-[95vh] m-auto flex justify-center bg-black max-w-[2100px]">
       <BlurringImage
         alt="weird quote"
         title="weird quote"
@@ -27,12 +32,16 @@ export default function AboutMeHero({
       />
       <div
         className="absolute flex flex-col justify-start flex-wrap max-w-4xl
-          right-4 top-4 text-right md:top-4 md:left-8 md:text-left
-          lg:top-10 lg:left-10"
+          right-4 top-8 text-right md:left-8 md:text-left"
       >
         {quote.map((word, i) => (
-          <Zoom delay={i * 700 + i * i * 150} key={i} triggerOnce>
-            <p className="text-neutral-300 text-3xl md:text-5xl lg:text-6xl text-shadow bg-transparent">
+          <Zoom
+            delay={i * 700 + i * i * 150}
+            key={i}
+            triggerOnce
+            className="last:mt-8"
+          >
+            <p className="text-neutral-300 text-5xl lg:text-6xl bg-transparent">
               {word}
             </p>
           </Zoom>
