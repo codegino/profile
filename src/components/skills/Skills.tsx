@@ -32,7 +32,7 @@ export default function Skills({skills}: {skills: CategorizedSkill[]}) {
           return (
             <section className="mb-4" key={category.category}>
               <Zoom direction="down" triggerOnce>
-                <h3 className="text-center my-2">
+                <h3 className="text-center my-2 text-lg">
                   {getSkillCategoryIcon(category.category)}&nbsp;
                   {category.category.toUpperCase()}
                 </h3>

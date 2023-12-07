@@ -13,7 +13,7 @@ export default function CustomGithubCalendar() {
   return (
     <Zoom triggerOnce>
       <div className="flex flex-col items-center my-10 bg-white dark:bg-black p-1 rounded-xl">
-        <h2 className="mb-5">
+        <h2 className="mb-5 text-lg">
           <>
             {t('my')}&nbsp;
             <NextLink
@@ -22,7 +22,7 @@ export default function CustomGithubCalendar() {
               aria-label="Github profile"
               rel="noreferrer"
               title="Link to my Github profile"
-              className="text-2xl underline-on-hover underline--dark"
+              className="text-lg text-primary-900 dark:text-primary-300 underline-on-hover underline--dark"
             >
               Github
             </NextLink>

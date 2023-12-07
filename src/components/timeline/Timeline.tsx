@@ -85,7 +85,7 @@ const Content: FunctionComponent<{
   return (
     <>
       <div>
-        <p className="justify-self-center py-1 text-neutral-600 dark:text-neutral-500">
+        <p className="justify-self-center py-1 text-neutral-600 dark:text-neutral-500 text-sm">
           {exp.endDate === exp.startDate ? (
             <span className="text-neutral-900 dark:text-neutral-100">
               Present
@@ -122,7 +122,7 @@ const Content: FunctionComponent<{
         </div>
       </div>
       <div className="max-w-[45rem]">{children}</div>
-      <p className="text-neutral-600 dark:text-neutral-500 justify-self-center py-1">
+      <p className="text-neutral-600 dark:text-neutral-500 justify-self-center py-1 text-sm">
         {t('date', {
           val: new Date(exp.startDate),
           formatParams: {

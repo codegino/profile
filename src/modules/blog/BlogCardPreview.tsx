@@ -35,7 +35,7 @@ export const BlogCardPreview = ({blog}: Props) => {
           <h2 className="line-clamp-2 text-xl">{blog.title}</h2>
           <div>
             <p className="line-clamp-1">{blog.description}</p>
-            <p className="mt-2 text-neutral-700">
+            <p className="mt-2 text-neutral-700 dark:text-neutral-300">
               {t('date', {
                 val: new Date(blog.date),
                 formatParams: {
