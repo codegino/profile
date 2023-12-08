@@ -1,9 +1,5 @@
 import React from 'react';
-import dynamic from 'next/dynamic';
-
-const CodeBlock = dynamic(() => import('./CodeBlockImpl'), {
-  ssr: false,
-});
+import CodeBlockImpl from './CodeBlockImpl';
 
 const PreToCodeBlock = (preProps: any) => {
   const props = preToCodeBlock(preProps);
@@ -11,7 +7,7 @@ const PreToCodeBlock = (preProps: any) => {
   if (props) {
     return (
       <pre>
-        <CodeBlock {...props} />
+        <CodeBlockImpl {...props} />
       </pre>
     );
   } else {
