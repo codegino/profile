@@ -21,7 +21,7 @@ const BlogHeader: FunctionComponent<Props> = ({blog, img, svg}) => {
       {blog.description && (
         <h2 className="description text-balance">{blog.description}</h2>
       )}
-      <p className="mb-4 text-neutral-700 dark:text-neutral-200">
+      <p className="mb-4 text-neutral-700 dark:text-neutral-200 w-full">
         {t('date', {
           val: new Date(blog.date),
           formatParams: {
