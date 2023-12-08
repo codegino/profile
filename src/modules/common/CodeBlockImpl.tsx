@@ -78,7 +78,7 @@ const CodeBlockImpl: FunctionComponent<CodeBlockProps> = ({
 
   return (
     <>
-      <code className="relative my-4 ">
+      <code className="relative my-2">
         {!noHeader && (
           <span
             className="
