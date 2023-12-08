@@ -121,7 +121,7 @@ const Content: FunctionComponent<{
           <p className="font-bold">{exp.title}</p> <p>&nbsp;({exp.role})</p>
         </div>
       </div>
-      <div className="max-w-[45rem]">{children}</div>
+      <div className="max-w-[50rem]">{children}</div>
       <p className="text-neutral-600 dark:text-neutral-500 justify-self-center py-1 text-sm">
         {t('date', {
           val: new Date(exp.startDate),

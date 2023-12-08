@@ -100,7 +100,7 @@ const CodeBlockImpl: FunctionComponent<CodeBlockProps> = ({
           {({className, style, tokens, getLineProps, getTokenProps}) => (
             <div className="relative">
               {!noLine && (
-                <span className="absolute z-10 flex flex-col left-0 top-0 pt-2 bottom-0 bg-[#1e1e1e]">
+                <span className="absolute z-10 flex flex-col left-0 top-0 pt-2 bottom-0 rounded-md">
                   {tokens.map((_, i) => (
                     <span
                       className="bg-[#1e1e1e] pl-2 pr-3 text-white text-right leading-[1.188]

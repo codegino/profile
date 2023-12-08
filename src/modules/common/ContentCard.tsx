@@ -49,8 +49,8 @@ const BlogCard: FunctionComponent<{
           href={createI18nUrlSegment(`/${feature}/${blog.slug}`, lang)}
           aria-label={blog.title}
         >
-          <h2 className="line-clamp-2">{blog.title}</h2>
-          <h3 className="line-clamp-2 text-neutral-800 dark:text-neutral-200">
+          <h2 className="line-clamp-2 text-balance">{blog.title}</h2>
+          <h3 className="line-clamp-2 text-balance text-neutral-800 dark:text-neutral-200">
             {blog.description}
           </h3>
           <p className="mt-3 text-neutral-700 dark:text-neutral-300">

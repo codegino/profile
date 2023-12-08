@@ -32,7 +32,7 @@ export const BlogCardPreview = ({blog}: Props) => {
           blurDataURL={blog.bannerId}
         />
         <figcaption className="absolute bottom-0 w-full bg-neutral-100 dark:bg-neutral-800 pb-4 opacity-[0.98] px-4 md:h-[10rem] flex flex-col justify-between">
-          <h2 className="line-clamp-2 text-xl">{blog.title}</h2>
+          <h2 className="line-clamp-2 text-balance text-xl">{blog.title}</h2>
           <div>
             <p className="line-clamp-1">{blog.description}</p>
             <p className="mt-2 text-neutral-700 dark:text-neutral-300">

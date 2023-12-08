@@ -46,7 +46,7 @@ const BlogHeader: FunctionComponent<Props> = ({blog, img, svg}) => {
         </div>
       ) : null}
       {blog.bannerDescription ? (
-        <aside className="mt-1 text-neutral-700 dark:text-neutral-200 text-sm">
+        <aside className="line-clamp-1 mt-1 text-neutral-700 dark:text-neutral-200 text-sm">
           {blog.bannerDescription}
         </aside>
       ) : null}

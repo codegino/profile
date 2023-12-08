@@ -34,16 +34,16 @@ const AboutMePage: NextPage<PropsWithLocale> = async ({params: {lang}}) => {
       <AboutMeHero img={img} svg={svg} />
       <main>
         <article className="mb-20 pt-20" id="about-me-details">
-          <h1>About Carlo Gino Catapang</h1>
+          <h1 className="text-2xl sm:text-3xl">About Carlo Gino Catapang</h1>
           {aboutMeDetails.map(detail => {
             return (
               <section
-                className="flex flex-col items-center p-2"
+                className="flex flex-col items-center p-2 [&:not(:last-child)]:mb-4"
                 key={detail.key}
               >
-                <h3 className="mb-10 text-4xl">{detail.label}</h3>
+                <h3 className="mb-4 text-xl">{detail.label}</h3>
                 <div
-                  className="text-justify max-w-screen-md"
+                  className="text-justify max-w-screen-md px-4"
                   dangerouslySetInnerHTML={{
                     __html: dompurify.sanitize(detail.content),
                   }}
