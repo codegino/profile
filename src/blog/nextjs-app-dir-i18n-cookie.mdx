@@ -413,7 +413,7 @@ import {switchLocaleAction} from '../actions/switch-locale';
 import {useTranslation} from '../i18n/client';
 
 // We removed the `locale` prop because we can get it from the hook
-function ChangeLocale() {
+export default function ChangeLocale() {
   const {i18n, t} = useTranslation('common');
   // You can also use our custom hook instead of `i18n.resolvedLanguage`
   // const locale = useLocale();
@@ -431,8 +431,6 @@ function ChangeLocale() {
     </div>
   );
 }
-
-export default ChangeLocale;
 ```
 
 #### Update the layout component
@@ -561,7 +559,7 @@ Let's create a component that uses the translations above. We'll make this a ser
 import React from 'react';
 import {createTranslation} from '../i18n/server';
 
-const SubscribeForm = async () => {
+export default async function SubscribeForm() {
   const {t} = await createTranslation('newsletter');
 
   return (
@@ -578,19 +576,16 @@ const SubscribeForm = async () => {
     </section>
   );
 };
-
-export default SubscribeForm;
 ```
 
 Render the form on the home page.
 
-```tsx fileName="app/[locale]/page"
+```tsx fileName="app/page"
 import SubscribeForm from '../../components/SubscribeForm';
 import {createTranslation} from '../../i18n/server';
 
-const IndexPage = async ({params: {locale}}) => {
-  // Make sure to use the correct namespace here.
-  const {t} = await createTranslation(locale, 'home');
+export default async function IndexPage() {
+  const {t} = await createTranslation('home');
 
   return (
     <div>
@@ -600,8 +595,6 @@ const IndexPage = async ({params: {locale}}) => {
     </div>
   );
 };
-
-export default IndexPage;
 ```
 
 And now, we have this!
@@ -665,7 +658,7 @@ Let's create a component that will use the previous translations. We'll make it 
 import React from 'react';
 import {useTranslation} from '../i18n/client';
 
-const BuiltInFormatsDemo = () => {
+export default function BuiltInFormatsDemo() {
   const {t} = useTranslation('built-in-demo');
 
   return (
@@ -719,19 +712,16 @@ const BuiltInFormatsDemo = () => {
     </div>
   );
 };
-
-export default BuiltInFormatsDemo;
 ```
 
 Don't forget to render the component on the home page.
 
-```tsx fileName="app/[locale]/page"
+```tsx fileName="app/page"
 import BuiltInFormatsDemo from '../../components/BuiltInFormatsDemo';
 import {createTranslation} from '../../i18n/server';
 
-const IndexPage = async ({params: {locale}}) => {
-  // Make sure to use the correct namespace here.
-  const {t} = await createTranslation(locale, 'home');
+export default async function IndexPage() {
+  const {t} = await createTranslation('home');
 
   return (
     <div>
@@ -741,8 +731,6 @@ const IndexPage = async ({params: {locale}}) => {
     </div>
   );
 };
-
-export default IndexPage;
 ```
 
 The more you look, the more you'll be amazed
