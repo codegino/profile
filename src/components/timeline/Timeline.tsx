@@ -1,17 +1,15 @@
 'use client';
-import type {FunctionComponent} from 'react';
 import {FaBriefcase} from '@react-icons/all-files/fa/FaBriefcase';
 import {FaBuilding} from '@react-icons/all-files/fa/FaBuilding';
 import {FaGraduationCap} from '@react-icons/all-files/fa/FaGraduationCap';
 import {FaScroll} from '@react-icons/all-files/fa/FaScroll';
 import dompurify from 'isomorphic-dompurify';
+import type {FunctionComponent} from 'react';
+import {Slide} from 'react-awesome-reveal';
+import {useTranslation} from '../../app/i18n/client';
 import type {EducationExperience, WorkExperience} from '../../models/resume';
 import NextLink from '../basic/NextLink';
 import {Experience} from './Experience';
-import {useTranslation} from '../../app/i18n/client';
-import {useParams} from 'next/navigation';
-import {Slide} from 'react-awesome-reveal';
-import {locales} from '../../app/i18n/locales.enum';
 
 export default function Timeline({
   workExperiences,
@@ -79,8 +77,7 @@ const Content: FunctionComponent<{
   exp: WorkExperience | EducationExperience;
   children: React.ReactNode;
 }> = ({exp, children = null}) => {
-  const lang = useParams()?.lang as locales;
-  const {t} = useTranslation(lang, 'common');
+  const {t} = useTranslation('common');
 
   return (
     <>

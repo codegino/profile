@@ -5,14 +5,12 @@ import type {FunctionComponent} from 'react';
 import clsx from 'clsx';
 import type {IBlogMetadata} from '../../models/mdxFiles';
 import {useTranslation} from '../../app/i18n/client';
-import {locales} from '../../app/i18n/locales.enum';
 
 const BlogsFilter: FunctionComponent<{
   blogs: IBlogMetadata[];
-  lang: locales;
   onChange: (slugs: string[]) => void;
-}> = ({blogs, lang, onChange}) => {
-  const {t} = useTranslation(lang, 'blog');
+}> = ({blogs, onChange}) => {
+  const {t} = useTranslation('blog');
   const tags = useMemo(() => {
     const generatedTags = blogs.reduce((acc: Set<string>, blog) => {
       blog.tags.forEach(tag => {

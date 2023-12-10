@@ -7,16 +7,12 @@ import NextLink from '../../components/basic/NextLink';
 import type {IBlogMetadata} from '../../models/mdxFiles';
 import {ISlideMetadata} from '../../models/slide';
 import {useTranslation} from '../../app/i18n/client';
-import {useParams} from 'next/navigation';
-import {locales} from '../../app/i18n/locales.enum';
-import {createI18nUrlSegment} from '@/app/i18n/create-slug';
 
 const BlogCard: FunctionComponent<{
   blog: IBlogMetadata | ISlideMetadata;
   slug?: 'blog' | 'novel';
 }> = ({blog, slug: feature = 'blog'}) => {
-  const lang = useParams()?.lang as locales;
-  const {t} = useTranslation(lang, 'blog');
+  const {t} = useTranslation('blog');
 
   return (
     <figure
@@ -45,10 +41,7 @@ const BlogCard: FunctionComponent<{
         />
       </div>
       <figcaption className="bg-neutral-50 dark:bg-neutral-800 opacity-95 sm:opacity-100 p-4 sm:p-0 absolute bottom-0 w-full sm:relative">
-        <NextLink
-          href={createI18nUrlSegment(`/${feature}/${blog.slug}`, lang)}
-          aria-label={blog.title}
-        >
+        <NextLink href={`/${feature}/${blog.slug}`} aria-label={blog.title}>
           <h2 className="line-clamp-2 text-balance">{blog.title}</h2>
           <h3 className="line-clamp-2 text-balance text-neutral-800 dark:text-neutral-200">
             {blog.description}

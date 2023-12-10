@@ -5,27 +5,24 @@ import type {INovelMetadata} from '@/models/mdxFiles';
 import {getNovelsMetadata} from '@/utils/mdx.utils';
 import {client} from '@/utils/contentful.utils';
 import NovelsWrapper from './NovelsWrapper';
-import {PropsWithLocale} from '@/types/server-component';
-import {createTranslation} from '../../i18n';
-
-export const dynamic = 'force-static';
+import {createTranslation} from '../i18n/server';
 
 export const metadata = {
   ...newCommonMetaTags('Novels Page', '/novel'),
   title: 'My Novels Listing Page | CodeGino | Carlo Gino Catapang',
 };
 
-const BlogPage: NextPage<PropsWithLocale> = async ({params: {lang}}) => {
+const BlogPage: NextPage = async () => {
   const {
     props: {novels},
   } = await getStaticProps();
-  const {t} = await createTranslation(lang, 'blog');
+  const {t} = await createTranslation('blog');
 
   return (
     <>
       <main className="flex items-center flex-col pt-12">
         <h1>{t('myNovels')}</h1>
-        <NovelsWrapper novels={novels} lang={lang} />
+        <NovelsWrapper novels={novels} />
       </main>
       <SubscribeForm />
     </>

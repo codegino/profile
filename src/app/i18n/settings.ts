@@ -1,17 +1,18 @@
-export const fallbackLng = 'en';
-export const languages = [fallbackLng, 'sv'] as const;
-export type LocaleTypes = (typeof languages)[number];
-export const defaultNS = 'common';
 import type {InitOptions} from 'i18next';
 
-export function getOptions(lang = fallbackLng, ns = defaultNS): InitOptions {
+export const FALLBACK_LOCALE = 'en';
+export const supportedLocales = ['en', 'sv'] as const;
+export type Locales = (typeof supportedLocales)[number];
+
+// You can name the cookie to whatever you want
+export const LANGUAGE_COOKIE = 'preferred_language';
+
+export function getOptions(lang = FALLBACK_LOCALE, ns = 'common'): InitOptions {
   return {
-    // debug: true,
-    supportedLngs: languages,
-    fallbackLng,
+    // debug: true, // Set to true to see console logs
+    supportedLngs: supportedLocales,
+    fallbackLng: FALLBACK_LOCALE,
     lng: lang,
-    fallbackNS: defaultNS,
-    defaultNS,
     ns,
   };
 }

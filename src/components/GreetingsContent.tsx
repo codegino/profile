@@ -7,14 +7,13 @@ import clsx from 'clsx';
 import Typist from 'react-typist';
 import {useScrollToView} from '../utils/scroll-to-view-hook';
 import {GuideArrow} from './GuideArrow';
-import {useTranslation} from '../app/i18n/client';
-import {LocaleTypes} from '@/app/i18n/settings';
+import {useTranslation} from '@/app/i18n/client';
 
-const GreetingsContent: FC<{lang: LocaleTypes}> = ({lang}) => {
+const GreetingsContent: FC = () => {
   const {scrollToContent} = useScrollToView('#resume-summary');
   const [isGuideVisible, setIsGuideVisible] = useState(false);
 
-  const {t} = useTranslation(lang, 'home');
+  const {t} = useTranslation('home');
 
   return (
     <>

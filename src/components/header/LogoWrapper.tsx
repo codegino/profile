@@ -1,6 +1,6 @@
 import type {FunctionComponent} from 'react';
 import clsx from 'clsx';
-import {usePathname, useParams} from 'next/navigation';
+import {usePathname} from 'next/navigation';
 import NextLink from '../basic/NextLink';
 import Logo from './Logo';
 import {useHeader} from './header-context';
@@ -11,7 +11,6 @@ export const LogoWrapper: FunctionComponent<{className?: string}> = ({
 }) => {
   const {showSidebar, isSidebarVisible} = useHeader();
   const path = usePathname();
-  const lang = useParams()?.lang;
 
   return (
     <div className={clsx('flex items-center min-w-max ml-2.5 mr-6', className)}>
@@ -22,7 +21,7 @@ export const LogoWrapper: FunctionComponent<{className?: string}> = ({
       </div>
       <Logo className="hidden lg:flex relative left-[-1px]  cursor-default" />
 
-      <NextLink href={`/${lang}`} aria-label="Code Gino">
+      <NextLink href="/" aria-label="Code Gino">
         <span
           className={twMerge(
             'underline-on-hover ml-2 text-2xl font-bold text-neutral-50',

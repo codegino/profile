@@ -3,21 +3,13 @@ import React, {useState} from 'react';
 import {INovelMetadata} from '@/models/mdxFiles';
 import BlogsFilter from '@/modules/blog/BlogsFilter';
 import BlogCard from '@/modules/common/ContentCard';
-import {locales} from '../../i18n/locales.enum';
 
-const BlogsWrapper = ({
-  novels,
-  lang,
-}: {
-  novels: INovelMetadata[];
-  lang: locales;
-}) => {
+const BlogsWrapper = ({novels}: {novels: INovelMetadata[]}) => {
   const [filtered, setFiltered] = useState<INovelMetadata[]>(novels);
   return (
     <>
       <BlogsFilter
         blogs={novels}
-        lang={lang}
         onChange={slugs => {
           const filteredNovels = novels.filter(novel =>
             slugs.includes(novel.slug),

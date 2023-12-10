@@ -1,13 +1,10 @@
 'use client';
-import NextLink from './basic/NextLink';
-import {useTranslation} from '../app/i18n/client';
-import {useParams} from 'next/navigation';
 import {Zoom} from 'react-awesome-reveal';
-import {locales} from '../app/i18n/locales.enum';
+import {useTranslation} from '../app/i18n/client';
+import NextLink from './basic/NextLink';
 
 export default function WakatimeCharts() {
-  const params = useParams();
-  const {t} = useTranslation(params?.lang as locales, 'resume');
+  const {t} = useTranslation('resume');
 
   return (
     <div className="overflow-hidden flex flex-col py-4 sm:px-24 w-full">

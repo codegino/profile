@@ -21,7 +21,7 @@
     "i18next-browser-languagedetector": "7.2.0",
     "i18next-resources-to-backend": "1.2.0",
     "isomorphic-dompurify": "1.11.0",
-    "next": "14.0.3",
+    "next": "14.0.4",
     "next-mdx-remote": "4.4.1",
     "next-themes": "0.2.1",
     "prism-react-renderer": "2.3.0",
@@ -40,7 +40,7 @@
     "tailwind-merge": "^2.1.0"
   },
   "devDependencies": {
-    "@next/bundle-analyzer": "14.0.3",
+    "@next/bundle-analyzer": "14.0.4",
     "@types/node": "20.6.0",
     "@types/react": "18.2.41",
     "@types/react-dom": "18.2.17",
@@ -51,7 +51,7 @@
     "cross-env": "7.0.3",
     "cz-conventional-changelog": "3.3.0",
     "eslint": "8.54.0",
-    "eslint-config-next": "14.0.3",
+    "eslint-config-next": "14.0.4",
     "eslint-config-prettier": "9.1.0",
     "eslint-plugin-jsx-a11y": "6.8.0",
     "globby": "14.0.0",

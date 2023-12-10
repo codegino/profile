@@ -1,22 +1,17 @@
 import clsx from 'clsx';
-import {useParams, usePathname} from 'next/navigation';
+import {usePathname} from 'next/navigation';
 import NextLink from '../basic/NextLink';
 import SocialMedia from '../social/SocialMedia';
 import {ChangeLocale} from './ChangeLocale';
 import {navigationLinks} from './nav-links';
 import {useTranslation} from '../../app/i18n/client';
 import BuyMeACoffeeIcon from '../social/BuyMeACoffeeIcon';
-import {locales} from '../../app/i18n/locales.enum';
-import {createI18nUrlSegment} from '@/app/i18n/create-slug';
 import DarkModeToggle from '../DarkModeToggle';
 
 export default function WideScreenContentImpl() {
   const path = usePathname();
-  const params = useParams();
 
-  const locale = params?.lang as locales;
-
-  const {t} = useTranslation(locale, 'common');
+  const {t} = useTranslation('common');
 
   return (
     <div className="hidden items-center justify-between w-full lg:flex ">
@@ -28,7 +23,7 @@ export default function WideScreenContentImpl() {
               className="underline-on-hover text-neutral-100 mr-3 last:mr-0"
             >
               <NextLink
-                href={createI18nUrlSegment(link.url, locale)}
+                href={link.url}
                 className={clsx('hover:text-primary-200 font-semibold', {
                   'text-primary-300': path?.includes(link.url),
                 })}

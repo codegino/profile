@@ -1,11 +1,11 @@
 import React from 'react';
-import {LocaleTypes} from '../../i18n/settings';
-import {client} from '../../../utils/contentful.utils';
-import {mapLocale} from '../../i18n/map-locale.util';
+import {client} from '../../utils/contentful.utils';
+import {mapLocale} from '../i18n/map-locale.util';
 import {NextPage} from 'next';
-import {PropsWithLocale} from '../../../types/server-component';
+import {getLocale} from '@/app/i18n/server';
 
-const getData = async (lang: LocaleTypes) => {
+const getData = async () => {
+  const lang = getLocale();
   const privacyPolicy = await client.getEntry('3qFRrXH6Qng8ZEAsIwJKRz', {
     locale: mapLocale(lang),
   });
@@ -15,10 +15,8 @@ const getData = async (lang: LocaleTypes) => {
   };
 };
 
-const PrivacyPolicyPage: NextPage<PropsWithLocale> = async ({
-  params: {lang},
-}) => {
-  const {privacyPolicy} = await getData(lang);
+const PrivacyPolicyPage: NextPage = async () => {
+  const {privacyPolicy} = await getData();
 
   return (
     <main className="w-full flex justify-center mb-8">

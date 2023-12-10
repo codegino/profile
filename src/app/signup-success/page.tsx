@@ -1,5 +1,5 @@
 import {Metadata} from 'next';
-import {newCommonMetaTags} from '../../../frontend-utils/meta-tags';
+import {newCommonMetaTags} from '../../frontend-utils/meta-tags';
 
 export const metadata: Metadata = {
   ...newCommonMetaTags('Success Page', '/signup-success'),

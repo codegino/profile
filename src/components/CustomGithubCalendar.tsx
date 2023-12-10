@@ -1,14 +1,11 @@
 'use client';
 import GithubCalendar from 'react-github-calendar';
 import NextLink from './basic/NextLink';
-import {useTranslation} from '../app/i18n/client';
-import {useParams} from 'next/navigation';
+import {useTranslation} from '@/app/i18n/client';
 import {Zoom} from 'react-awesome-reveal';
-import {locales} from '../app/i18n/locales.enum';
 
 export default function CustomGithubCalendar() {
-  const locale = useParams()?.lang as locales;
-  const {t} = useTranslation(locale, 'resume');
+  const {t} = useTranslation('resume');
 
   return (
     <Zoom triggerOnce>

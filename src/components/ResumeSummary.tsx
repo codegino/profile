@@ -2,16 +2,14 @@ import {FaEnvelopeSquare} from '@react-icons/all-files/fa/FaEnvelopeSquare';
 import {FaMapMarkerAlt} from '@react-icons/all-files/fa/FaMapMarkerAlt';
 import {BlurringImage} from './BlurringImage';
 import NextLink from './basic/NextLink';
-import {createTranslation} from '../app/i18n';
+import {createTranslation} from '../app/i18n/server';
 import type {BlurImageType} from '../utils/image-blur.utils';
-import {locales} from '../app/i18n/locales.enum';
 
 export default async function ResumeSummary({
   img,
   svg,
-  lang,
-}: Pick<BlurImageType, 'svg' | 'img'> & {lang: locales}) {
-  const {t} = await createTranslation(lang, 'resume');
+}: Pick<BlurImageType, 'svg' | 'img'>) {
+  const {t} = await createTranslation('resume');
 
   return (
     <div className="w-full flex justify-center items-center flex-col gap-2 sm:gap-0 py-10 sm:py-20 md:flex-row  min-w-max">

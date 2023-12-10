@@ -2,8 +2,8 @@
 import React, {FC} from 'react';
 import {FaFilePdf} from '@react-icons/all-files/fa/FaFilePdf';
 import {FaFileWord} from '@react-icons/all-files/fa/FaFileWord';
-import NextLink from '../../../components/basic/NextLink';
-import CustomIcon from '../../../components/icon/CustomIcon';
+import NextLink from '../../components/basic/NextLink';
+import CustomIcon from '../../components/icon/CustomIcon';
 
 const LinkWrapper: FC<{
   resumePdfUrl: string;

@@ -3,6 +3,13 @@ import GlobalEffects from './global-effects';
 import {Providers} from './providers';
 import {Inter, Roboto} from 'next/font/google';
 import {twMerge} from 'tailwind-merge';
+import {getLocale} from './i18n/server';
+import {LocaleProvider} from './hooks/locale-provider';
+import Header from '@/components/header/Header';
+import Footer from '@/components/Footer';
+import '../../styles/tailwind.css';
+import '../styles/animations.css';
+import '../styles/custom.css';
 
 export const viewport: Viewport = {
   themeColor: [
@@ -52,16 +59,23 @@ const roboto = Roboto({
 });
 
 export default function RootLayout({children}: {children: React.ReactNode}) {
+  const locale = getLocale();
   return (
-    <html lang="en">
-      <head>
+    <html lang={locale}>
+      {/* <head>
         <link
           rel="stylesheet"
           href="https://sdk.birdeatsbug.com/latest/style.css"
         ></link>
-      </head>
+      </head> */}
       <body className={twMerge(inter.variable, roboto.variable)}>
-        <Providers>{children}</Providers>
+        <LocaleProvider value={locale}>
+          <Providers>
+            <Header />
+            {children}
+            <Footer />
+          </Providers>
+        </LocaleProvider>
       </body>
       <GlobalEffects />
     </html>
