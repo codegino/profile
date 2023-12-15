@@ -17,7 +17,7 @@
     "@tailwindcss/container-queries": "0.1.1",
     "clsx": "2.0.0",
     "contentful": "10.6.14",
-    "i18next": "23.7.7",
+    "i18next": "23.7.11",
     "i18next-browser-languagedetector": "7.2.0",
     "i18next-resources-to-backend": "1.2.0",
     "isomorphic-dompurify": "1.11.0",
