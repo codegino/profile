@@ -1,19 +1,16 @@
 'use client';
 import type {FunctionComponent} from 'react';
-import {useParams} from 'next/navigation';
+import {useTranslation} from '../../app/i18n/client';
 import {BlurringImage} from '../../components/BlurringImage';
 import type {IBlogMetadata} from '../../models/mdxFiles';
-import {useTranslation} from '../../app/i18n/client';
 import type {BlurImageType} from '../../utils/image-blur.utils';
-import {locales} from '../../app/i18n/locales.enum';
 
 type Props = {
   blog: IBlogMetadata;
 } & Pick<BlurImageType, 'svg' | 'img'>;
 
 const BlogHeader: FunctionComponent<Props> = ({blog, img, svg}) => {
-  const locale = useParams()?.lang as locales;
-  const {t} = useTranslation(locale, 'common');
+  const {t} = useTranslation('common');
 
   return (
     <article className="sm:pt-4 text-center flex flex-col items-center">

@@ -4,24 +4,17 @@ import Image from 'next/image';
 import NextLink from '../../components/basic/NextLink';
 import type {IBlogMetadata} from '../../models/mdxFiles';
 import {useTranslation} from '../../app/i18n/client';
-import {useParams} from 'next/navigation';
-import {locales} from '../../app/i18n/locales.enum';
-import {createI18nUrlSegment} from '@/app/i18n/create-slug';
 
 type Props = {
   blog: IBlogMetadata;
 };
 
 export const BlogCardPreview = ({blog}: Props) => {
-  const locale = useParams()?.lang as locales;
-  const {t} = useTranslation(locale, 'common');
+  const {t} = useTranslation('common');
 
   return (
     <figure className="relative w-ful min-h-[20rem] text-center overflow-hidden shadow-sm hover:shadow-md hover:shadow-neutral-800 shadow-neutral-800 rounded-2xl bg-light md:max-w-4xl">
-      <NextLink
-        href={createI18nUrlSegment(`/blog/${blog.slug}`, locale)}
-        aria-label={blog.title}
-      >
+      <NextLink href={`/blog/${blog.slug}`} aria-label={blog.title}>
         <Image
           src={blog.bannerId}
           alt={blog.bannerDescription}

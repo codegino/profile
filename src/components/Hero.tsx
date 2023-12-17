@@ -3,17 +3,14 @@ import {useScrollToView} from '../utils/scroll-to-view-hook';
 import {GuideArrow} from './GuideArrow';
 import {BottomRightShape} from './extras/BottomRightShape';
 import {useTranslation} from '../app/i18n/client';
-import {useParams} from 'next/navigation';
 import {Zoom} from 'react-awesome-reveal';
 import {BlurringImage} from './BlurringImage';
 import type {BlurImageType} from '../utils/image-blur.utils';
-import {locales} from '../app/i18n/locales.enum';
 
 export default function Hero({img, svg}: Pick<BlurImageType, 'svg' | 'img'>) {
   const {scrollToContent} = useScrollToView('#greetings');
 
-  const locale = useParams()?.lang as locales;
-  const {t} = useTranslation(locale, 'home');
+  const {t} = useTranslation('home');
 
   return (
     <div className="overflow-hidden relative h-[95vh] w-full flex justify-center items-center">

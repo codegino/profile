@@ -1,20 +1,18 @@
-import dompurify from 'isomorphic-dompurify';
-import dynamicImport from 'next/dynamic';
-import AboutMeHero from '../../../components/AboutMeHero';
-import NextLink from '../../../components/basic/NextLink';
-import type {StaticContent} from '../../../models/static-content';
-import {client, getBlurringImage} from '../../../utils/contentful.utils';
-import type {Metadata, NextPage} from 'next';
-import {PropsWithLocale} from '../../../types/server-component';
-import {newCommonMetaTags} from '../../../frontend-utils/meta-tags';
+import {getLocale} from '@/app/i18n/server';
+import {Locales} from '@/app/i18n/settings';
 import {EntryFieldTypes} from 'contentful';
-import {locales} from '../../i18n/locales.enum';
-import {mapLocale} from '../../i18n/map-locale.util';
-
-export const dynamic = 'force-static';
+import dompurify from 'isomorphic-dompurify';
+import type {Metadata, NextPage} from 'next';
+import dynamicImport from 'next/dynamic';
+import AboutMeHero from '../../components/AboutMeHero';
+import NextLink from '../../components/basic/NextLink';
+import {newCommonMetaTags} from '../../frontend-utils/meta-tags';
+import type {StaticContent} from '../../models/static-content';
+import {client, getBlurringImage} from '../../utils/contentful.utils';
+import {mapLocale} from '../i18n/map-locale.util';
 
 const TechStackCarousel = dynamicImport(
-  () => import('../../../components/TechStackCarousel'),
+  () => import('../../components/TechStackCarousel'),
   {ssr: false},
 );
 
@@ -25,10 +23,10 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-const AboutMePage: NextPage<PropsWithLocale> = async ({params: {lang}}) => {
+const AboutMePage: NextPage = async () => {
   const {
     props: {aboutMeDetails, img, svg, techStacks},
-  } = await getStaticProps(lang);
+  } = await getStaticProps();
   return (
     <>
       <AboutMeHero img={img} svg={svg} />
@@ -101,8 +99,9 @@ type StaticAssetSkeleton = {
   };
 };
 
-const getStaticProps = async (lang: locales) => {
-  const entries = await client.getEntries<StaticAssetSkeleton, locales>({
+const getStaticProps = async () => {
+  const lang = getLocale();
+  const entries = await client.getEntries<StaticAssetSkeleton, Locales>({
     content_type: 'staticText',
     'fields.category': 'about_me',
     order: ['fields.order'],
@@ -111,7 +110,7 @@ const getStaticProps = async (lang: locales) => {
 
   const {img, svg} = await getBlurringImage('6F53k0CwsdmREXx1Y2ErSl');
 
-  const assets = await client.getAssets<locales>({
+  const assets = await client.getAssets<Locales>({
     'fields.title[in]': [
       'React,TypeScript,NextJS,Prettier,ESLint,Emotion,Supabase,GitHub,Vercel',
     ],

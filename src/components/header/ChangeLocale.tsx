@@ -1,24 +1,25 @@
-import type {FC} from 'react';
+'use client';
+
+import {switchLocaleAction} from '@/app/actions/switch-locale';
+import {useLocale} from '@/app/hooks/locale-provider';
 import clsx from 'clsx';
-import {useRouter, useParams, useSelectedLayoutSegments} from 'next/navigation';
+import {useRouter} from 'next/navigation';
+import type {FC} from 'react';
 
 export const ChangeLocale: FC<{className?: string}> = ({className}) => {
+  const locale = useLocale();
   const router = useRouter();
-  const params = useParams();
-  const urlSegments = useSelectedLayoutSegments();
 
-  const handleChangeLocale = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const value = event.target.value;
-
-    const newPath = `/${value}/${urlSegments.join('/')}`;
-
-    router.push(newPath);
+  const handleChangeLocale = async (
+    event: React.ChangeEvent<HTMLSelectElement>,
+  ) => {
+    await switchLocaleAction(event.target.value);
   };
 
   return (
     <select
       onChange={handleChangeLocale}
-      value={params?.lang}
+      value={locale}
       className={clsx(
         'bg-transparent text-2xl sm:text-4xl text-white',
         className,

@@ -14,12 +14,9 @@ import type {CategorizedSkill, SkillCategory} from '../../models/skill';
 import NextLink from '../basic/NextLink';
 import {Zoom} from 'react-awesome-reveal';
 import {useTranslation} from '../../app/i18n/client';
-import {useParams} from 'next/navigation';
-import {locales} from '../../app/i18n/locales.enum';
 
 export default function Skills({skills}: {skills: CategorizedSkill[]}) {
-  const locale = useParams()?.lang as locales;
-  const {t} = useTranslation(locale, 'resume');
+  const {t} = useTranslation('resume');
 
   return (
     <div className="flex justify-center">

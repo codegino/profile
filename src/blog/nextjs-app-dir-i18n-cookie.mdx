@@ -247,7 +247,7 @@ It will be a weird application if we need to update the cookie manually in the d
 #### Create a server action to update the cookie
 We will take advantage of [server actions](https://nextjs.org/docs/app/building-your-application/data-fetching/server-actions-and-mutations) to update the cookie easily.
 
-```tsx  fileName="actions/switch-locale"
+```ts  fileName="actions/switch-locale"
 'use server';
 
 import {cookies} from 'next/headers';

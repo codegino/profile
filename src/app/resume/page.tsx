@@ -1,34 +1,27 @@
-import dynamicImport from 'next/dynamic';
-import ResumeSummary from '../../../components/ResumeSummary';
-import Timeline from '../../../components/timeline/Timeline';
-import {client, getBlurringImage} from '../../../utils/contentful.utils';
-import {fectchExperiences, fetchSkills} from '../../../utils/resume-props';
-import {locales} from '../../i18n/locales.enum';
-import LinkWrapper from './LinkWrapper';
 import {NextPage} from 'next';
-import {PropsWithLocale} from '../../../types/server-component';
-import {newCommonMetaTags} from '../../../frontend-utils/meta-tags';
-
-export const dynamic = 'force-static';
+import dynamicImport from 'next/dynamic';
+import ResumeSummary from '../../components/ResumeSummary';
+import Timeline from '../../components/timeline/Timeline';
+import {newCommonMetaTags} from '../../frontend-utils/meta-tags';
+import {client, getBlurringImage} from '../../utils/contentful.utils';
+import {fectchExperiences, fetchSkills} from '../../utils/resume-props';
+import LinkWrapper from './LinkWrapper';
 
 const CustomGithubCalendar = dynamicImport(
-  () => import('../../../components/CustomGithubCalendar'),
+  () => import('../../components/CustomGithubCalendar'),
   {ssr: false},
 );
 
-const Skills = dynamicImport(
-  () => import('../../../components/skills/Skills'),
-  {
-    ssr: false,
-  },
-);
+const Skills = dynamicImport(() => import('../../components/skills/Skills'), {
+  ssr: false,
+});
 
 export const metadata = {
   ...newCommonMetaTags('Resume Page', '/resume'),
   title: 'Carlo Gino Catapang | Code Gino | Resume',
 };
 
-const ResumePage: NextPage<PropsWithLocale> = async ({params: {lang}}) => {
+const ResumePage: NextPage = async () => {
   const {
     props: {
       workExperiences,
@@ -39,13 +32,13 @@ const ResumePage: NextPage<PropsWithLocale> = async ({params: {lang}}) => {
       resumePdfUrl,
       resumeWordUrl,
     },
-  } = await getStaticProps({locale: lang});
+  } = await getStaticProps();
 
   return (
     <>
       <LinkWrapper resumePdfUrl={resumePdfUrl} resumeWordUrl={resumeWordUrl} />
       <main>
-        <ResumeSummary img={profileImage} svg={profileSvg} lang={lang} />
+        <ResumeSummary img={profileImage} svg={profileSvg} />
         <hr />
         <hr />
         <Timeline
@@ -67,8 +60,8 @@ const ResumePage: NextPage<PropsWithLocale> = async ({params: {lang}}) => {
   );
 };
 
-const getStaticProps = async ({locale}: {locale: locales}) => {
-  const experiences = await fectchExperiences(locale);
+const getStaticProps = async () => {
+  const experiences = await fectchExperiences();
   const skills = await fetchSkills();
 
   const {img, svg} = await getBlurringImage('3fgK6fKTGvBcmIRel2hJ6Y');

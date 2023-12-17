@@ -6,7 +6,7 @@ const BlogAnchor = ({
 }: HTMLAttributes<HTMLAnchorElement>) => {
   return (
     <a
-      className="underline-on-hover underline--dark text-green-950 dark:text-primary-300"
+      className="underline-on-hover underline--dark text-green-800 dark:text-primary-300"
       target="_blank"
       aria-label={children as string}
       rel="noreferrer"

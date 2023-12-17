@@ -4,49 +4,47 @@ import type {Metadata, NextPage} from 'next';
 import {serialize} from 'next-mdx-remote/serialize';
 import path from 'path';
 import remarkMdxCodeMeta from 'remark-mdx-code-meta';
-import type {INovelMetadata} from '@/models/mdxFiles';
+import type {IBlogMetadata} from '@/models/mdxFiles';
 import BlogContent from '@/modules/blog/BlogContent';
 import BlogHeader from '@/modules/blog/BlogHeader';
-import ContentLayout from '@/modules/common/ContentLayout';
-import {getNovelsMetadata, NOVELS_PATH} from '@/utils/mdx.utils';
+import BlogLayout from '@/modules/common/ContentLayout';
+import {getBlogsMetadata, BLOGS_PATH} from '@/utils/mdx.utils';
 import {client} from '@/utils/contentful.utils';
 import {blurImage} from '@/utils/image-blur.utils';
 import BlogFooter from '@/modules/blog/BlogFooter';
 import {newCommonMetaTags} from '@/frontend-utils/meta-tags';
 import Script from 'next/script';
 
-export const dynamic = 'force-static';
-
 export const generateMetadata = async ({
   params: {slug},
 }: {
   params: {slug: string};
 }): Promise<Metadata> => {
-  const postFilePath = path.join(NOVELS_PATH, `${slug}.mdx`);
+  const postFilePath = path.join(BLOGS_PATH, `${slug}.mdx`);
   const source = fs.readFileSync(postFilePath);
 
-  const {data: novel} = matter(source);
-  novel.slug = slug;
+  const {data: blog} = matter(source);
+  blog.slug = slug;
 
-  const asset = await client.getAsset(novel.bannerId);
+  const asset = await client.getAsset(blog.bannerId);
 
   const bannerUrl = `https:${asset.fields.file?.url}`;
 
   return {
-    ...newCommonMetaTags(novel.title, `/novel/${novel.slug}`),
-    title: novel.title,
-    description: novel.description,
-    keywords: novel.keywords?.join(','),
+    ...newCommonMetaTags(blog.title, `/blog/${blog.slug}`),
+    title: blog.title,
+    description: blog.description,
+    keywords: blog.keywords?.join(','),
     openGraph: {
-      url: `https://carlogino.com/novel/${novel.slug}`,
+      url: `https://carlogino.com/blog/${blog.slug}`,
       type: 'article',
-      title: novel.title,
-      description: novel.description,
+      title: blog.title,
+      description: blog.description,
       images: bannerUrl,
     },
     twitter: {
-      title: novel.title,
-      description: novel.description,
+      title: blog.title,
+      description: blog.description,
       images: bannerUrl,
       creator: '@codegino',
       site: '@codegino',
@@ -59,9 +57,9 @@ const BlogPage: NextPage<{
     slug: string;
   };
 }> = async ({params: {slug}}) => {
-  const {frontMatter: novel, img, source, svg} = await getStaticProps(slug);
+  const {frontMatter: blog, img, source, svg} = await getStaticProps(slug);
 
-  if (!novel) {
+  if (!blog) {
     return (
       <div className="h-[80vh] w-full bg-transparent text-center pt-10">
         <h2>Please wait</h2>
@@ -79,42 +77,42 @@ const BlogPage: NextPage<{
           __html: `{
             "@context": "https://schema.org",
             "@type": "Article",
-            "headline": "${novel.title}",
-            "image": "${novel.bannerId}",
+            "headline": "${blog.title}",
+            "image": "${blog.bannerId}",
             "editor": "Carlo Gino Catapang",
             "author": "Carlo Gino Catapang",
-            "genre": "${novel.tags?.join(' ')}",
-            "keywords": "${novel.keywords?.join(' ')}",
-            "url": "https://carlogino.com/blog/${novel.slug}",
-            "dateCreated": "${novel.date}",
-            "dateModified": "${novel.dateUpdated}",
-            "description": "${novel.description}",
-            "articleBody": "${novel.title}. ${novel.description}"
+            "genre": "${blog.tags?.join(' ')}",
+            "keywords": "${blog.keywords?.join(' ')}",
+            "url": "https://carlogino.com/blog/${blog.slug}",
+            "dateCreated": "${blog.date}",
+            "dateModified": "${blog.dateUpdated}",
+            "description": "${blog.description}",
+            "articleBody": "${blog.title}. ${blog.description}"
             }`,
         }}
       ></Script>
 
       <main role="main">
-        <ContentLayout>
-          <BlogHeader blog={novel} img={img} svg={svg} />
+        <BlogLayout>
+          <BlogHeader blog={blog} img={img} svg={svg} />
           <BlogContent source={source} />
           <br />
-          <BlogFooter blog={novel} />
-        </ContentLayout>
+          <BlogFooter blog={blog} />
+        </BlogLayout>
       </main>
     </>
   );
 };
 
 const getStaticProps = async (slug: string) => {
-  const postFilePath = path.join(NOVELS_PATH, `${slug}.mdx`);
+  const postFilePath = path.join(BLOGS_PATH, `${slug}.mdx`);
   const source = fs.readFileSync(postFilePath);
 
   const {content, data} = matter(source);
 
-  const banner = await client.getAsset(data.bannerId);
+  const asset = await client.getAsset(data.bannerId);
 
-  const bannerUrl = `https:${banner.fields.file?.url}`;
+  const bannerUrl = `https:${asset.fields.file?.url}`;
   const {img, svg} = await blurImage(bannerUrl);
 
   const mdxSource = await serialize(content, {
@@ -133,14 +131,14 @@ const getStaticProps = async (slug: string) => {
       ...data,
       slug,
       bannerId: bannerUrl,
-    } as INovelMetadata,
+    } as IBlogMetadata,
     img,
     svg,
   };
 };
 
 export const generateStaticParams = async () => {
-  return (await getNovelsMetadata()).map(meta => {
+  return (await getBlogsMetadata()).map(meta => {
     return {
       slug: meta.slug,
     };

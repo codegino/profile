@@ -1,35 +1,32 @@
 import dynamicImport from 'next/dynamic';
-import {FullScreenWrapper} from '../../components/FullScreenWrapper';
-import ResumeSummary from '../../components/ResumeSummary';
-import NextLink from '../../components/basic/NextLink';
-import BlogSuggestionsList from '../../modules/blog/BlogSuggestionsList';
-import {getBlogsMetadata} from '../../utils/mdx.utils';
-import {client, getBlurringImage} from '../../utils/contentful.utils';
-import {fetchSkills} from '../../utils/resume-props';
-import {PropsWithLocale} from '../../types/server-component';
-import {createTranslation} from '../i18n';
+import {FullScreenWrapper} from '../components/FullScreenWrapper';
+import ResumeSummary from '../components/ResumeSummary';
+import NextLink from '../components/basic/NextLink';
+import BlogSuggestionsList from '../modules/blog/BlogSuggestionsList';
+import {getBlogsMetadata} from '../utils/mdx.utils';
+import {client, getBlurringImage} from '../utils/contentful.utils';
+import {fetchSkills} from '../utils/resume-props';
+import {createTranslation} from './i18n/server';
 import {NextPage} from 'next';
-import Skills from '../../components/skills/Skills';
-import {newCommonMetaTags} from '../../frontend-utils/meta-tags';
+import Skills from '../components/skills/Skills';
+import {newCommonMetaTags} from '../frontend-utils/meta-tags';
 import Script from 'next/script';
 import GreetingsContent from '@/components/GreetingsContent';
 
-export const dynamic = 'force-static';
-
 const SubscribeForm = dynamicImport(
-  () => import('../../components/SubscribeForm'),
+  () => import('../components/SubscribeForm'),
   {
     ssr: false,
   },
 );
 
 const CustomGithubCalendar = dynamicImport(
-  () => import('../../components/CustomGithubCalendar'),
+  () => import('../components/CustomGithubCalendar'),
   {ssr: false},
 );
 
 const WakatimeCharts = dynamicImport(
-  () => import('../../components/WakatimeCharts'),
+  () => import('../components/WakatimeCharts'),
   {
     ssr: false,
   },
@@ -40,12 +37,12 @@ export const metadata = {
   title: 'Home Page | Code Gino | Carlo Gino Catapang',
 };
 
-const HomePage: NextPage<PropsWithLocale> = async ({params: {lang}}) => {
+const HomePage: NextPage = async () => {
   const {
-    props: {skills, heroImage, heroSvg, profileImage, profileSvg, blogs},
+    props: {skills, profileImage, profileSvg, blogs},
   } = await getStaticProps();
 
-  const {t} = await createTranslation(lang, 'home');
+  const {t} = await createTranslation('home');
 
   return (
     <>
@@ -66,7 +63,7 @@ const HomePage: NextPage<PropsWithLocale> = async ({params: {lang}}) => {
         bl
         className="isolate flex justify-center items-center min-h-screen w-full bg-neutral-200 dark:bg-neutral-900"
       >
-        <GreetingsContent lang={lang} />
+        <GreetingsContent />
         <svg
           className="absolute inset-0 -z-10 h-full w-full stroke-primary-900 dark:stroke-primary-50 [mask-image:radial-gradient(50%_105%_at_bottom,black,transparent)]"
           aria-hidden="true"
@@ -98,7 +95,7 @@ const HomePage: NextPage<PropsWithLocale> = async ({params: {lang}}) => {
           className="bg-neutral-100 dark:bg-neutral-800"
           id="resume-summary"
         >
-          <ResumeSummary img={profileImage} svg={profileSvg} lang={lang} />
+          <ResumeSummary img={profileImage} svg={profileSvg} />
           <Skills skills={skills} />
           <div className="text-center my-10">
             <p className="text-xl">

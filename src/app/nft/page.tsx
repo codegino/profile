@@ -1,10 +1,8 @@
 import Image from 'next/image';
-import NextLink from '../../../components/basic/NextLink';
-import nfts from '../../../data/eth-nft.json';
+import NextLink from '../../components/basic/NextLink';
+import nfts from '../../data/eth-nft.json';
 
-import {newCommonMetaTags} from '../../../frontend-utils/meta-tags';
-
-export const dynamic = 'force-static';
+import {newCommonMetaTags} from '../../frontend-utils/meta-tags';
 
 export const metadata = {
   ...newCommonMetaTags('NFT Collection', '/nft', 'nft-preview.jpg'),

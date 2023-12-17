@@ -1,19 +1,15 @@
 'use client';
-import {createI18nUrlSegment} from '@/app/i18n/create-slug';
 import {useTranslation} from '../../app/i18n/client';
-import {locales} from '../../app/i18n/locales.enum';
 import NextLink from '../../components/basic/NextLink';
 import type {IBlogMetadata} from '../../models/mdxFiles';
 import {BlogCardPreview} from './BlogCardPreview';
-import {useParams} from 'next/navigation';
 
 type Props = {
   blogs: IBlogMetadata[];
 };
 
 const BlogSuggestionsList = ({blogs}: Props) => {
-  const lang = useParams()?.lang as locales;
-  const {t} = useTranslation(lang, 'home');
+  const {t} = useTranslation('home');
 
   return (
     <section
@@ -23,11 +19,7 @@ const BlogSuggestionsList = ({blogs}: Props) => {
     >
       <h2 className="mb-16 text-4xl relative">
         {t('recent')}&nbsp;
-        <NextLink
-          href={createI18nUrlSegment('/blog', lang)}
-          aria-label="Blogs List"
-          className="text-4xl"
-        >
+        <NextLink href={'/blog'} aria-label="Blogs List" className="text-4xl">
           {t('blogs')}
         </NextLink>
       </h2>
