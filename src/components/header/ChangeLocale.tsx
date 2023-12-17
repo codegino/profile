@@ -3,10 +3,12 @@
 import {switchLocaleAction} from '@/app/actions/switch-locale';
 import {useLocale} from '@/app/hooks/locale-provider';
 import clsx from 'clsx';
+import {useRouter} from 'next/navigation';
 import type {FC} from 'react';
 
 export const ChangeLocale: FC<{className?: string}> = ({className}) => {
   const locale = useLocale();
+  const router = useRouter();
 
   const handleChangeLocale = async (
     event: React.ChangeEvent<HTMLSelectElement>,

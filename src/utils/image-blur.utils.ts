@@ -1,5 +1,4 @@
 import {getPlaiceholder} from 'plaiceholder';
-import fs from 'node:fs/promises';
 
 type OPTIMIZE_LEVEL = 4 | 8 | 16 | 32 | 64;
 
