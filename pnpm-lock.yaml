@@ -33,8 +33,8 @@ dependencies:
     specifier: 1.2.0
     version: 1.2.0
   isomorphic-dompurify:
-    specifier: 1.13.0
-    version: 1.13.0
+    specifier: 2.0.0
+    version: 2.0.0
   next:
     specifier: 14.0.4
     version: 14.0.4(react-dom@18.2.0)(react@18.2.0)
@@ -3115,8 +3115,8 @@ packages:
     resolution: {integrity: sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==}
     dev: true
 
-  /isomorphic-dompurify@1.13.0:
-    resolution: {integrity: sha512-9qOYGngy9ZR9JB/iLmr7SViPSZ7uWGvepdnLaXYznbTxvJOCuONneKajJ54f+IRQpvL8608ylUy9EK1iPtL3Ag==}
+  /isomorphic-dompurify@2.0.0:
+    resolution: {integrity: sha512-BJvrSQzg7jleSaySaWyhzGqH9/QxYc3sflm5fvjcXWAQcHQvQPQdCN0ORyqvMqnQDbwFuZXvqh2IcuVa3dG/DA==}
     engines: {node: '>=18'}
     dependencies:
       '@types/dompurify': 3.0.5
