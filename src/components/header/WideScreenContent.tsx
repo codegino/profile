@@ -2,7 +2,6 @@ import clsx from 'clsx';
 import {usePathname} from 'next/navigation';
 import NextLink from '../basic/NextLink';
 import SocialMedia from '../social/SocialMedia';
-import {ChangeLocale} from './ChangeLocale';
 import {navigationLinks} from './nav-links';
 import {useTranslation} from '../../app/i18n/client';
 import BuyMeACoffeeIcon from '../social/BuyMeACoffeeIcon';
@@ -38,10 +37,9 @@ export default function WideScreenContentImpl() {
       <div className="flex items-center pr-3">
         <SocialMedia />
         <BuyMeACoffeeIcon className="ml-4" />
-        <div className="h-full mx-3">
+        <div className="h-full ml-3">
           <DarkModeToggle />
         </div>
-        <ChangeLocale />
       </div>
     </div>
   );

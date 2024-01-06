@@ -1,5 +1,4 @@
-import {getLocale} from '@/app/i18n/server';
-import {Locales} from '@/app/i18n/settings';
+import {FALLBACK_LOCALE, Locales} from '@/app/i18n/settings';
 import {EntryFieldTypes} from 'contentful';
 import dompurify from 'isomorphic-dompurify';
 import type {Metadata, NextPage} from 'next';
@@ -100,12 +99,11 @@ type StaticAssetSkeleton = {
 };
 
 const getStaticProps = async () => {
-  const lang = getLocale();
   const entries = await client.getEntries<StaticAssetSkeleton, Locales>({
     content_type: 'staticText',
     'fields.category': 'about_me',
     order: ['fields.order'],
-    locale: mapLocale(lang),
+    locale: mapLocale(FALLBACK_LOCALE),
   });
 
   const {img, svg} = await getBlurringImage('6F53k0CwsdmREXx1Y2ErSl');

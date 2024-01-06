@@ -13,7 +13,6 @@ import RoundButton from '../basic/RoundButton';
 import CustomIcon from '../icon/CustomIcon';
 import BuyMeACoffeeIcon from '../social/BuyMeACoffeeIcon';
 import SocialMedia from '../social/SocialMedia';
-import {ChangeLocale} from './ChangeLocale';
 import {useHeader} from './header-context';
 import {navigationLinks} from './nav-links';
 
@@ -147,9 +146,8 @@ const SmallScreenSidebar: FunctionComponent = () => {
                 <section className="text-left">
                   <h3 className="mt-3 mb-0 text-xl">Settings</h3>
 
-                  <div className="flex items-center">
+                  <div className="flex items-center py-2">
                     <DarkModeToggle />
-                    <ChangeLocale className="text-5xl ml-3" />
                   </div>
                 </section>
               </div>

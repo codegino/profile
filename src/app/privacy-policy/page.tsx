@@ -2,12 +2,11 @@ import React from 'react';
 import {client} from '../../utils/contentful.utils';
 import {mapLocale} from '../i18n/map-locale.util';
 import {NextPage} from 'next';
-import {getLocale} from '@/app/i18n/server';
+import {FALLBACK_LOCALE} from '../i18n/settings';
 
 const getData = async () => {
-  const lang = getLocale();
   const privacyPolicy = await client.getEntry('3qFRrXH6Qng8ZEAsIwJKRz', {
-    locale: mapLocale(lang),
+    locale: mapLocale(FALLBACK_LOCALE),
   });
 
   return {

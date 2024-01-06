@@ -3,26 +3,28 @@ import GlobalEffects from './global-effects';
 import {Providers} from './providers';
 import {Inter, Roboto} from 'next/font/google';
 import {twMerge} from 'tailwind-merge';
-import {getLocale} from './i18n/server';
 import {LocaleProvider} from './hooks/locale-provider';
 import Header from '@/components/header/Header';
 import Footer from '@/components/Footer';
 import '../../styles/tailwind.css';
 import '../styles/animations.css';
 import '../styles/custom.css';
+import {FALLBACK_LOCALE} from './i18n/settings';
 
 export const viewport: Viewport = {
   themeColor: [
     {
-      media: '(prefers-color-scheme: light)',
-      color: 'white',
-    },
-    {
       media: '(prefers-color-scheme: dark)',
       color: 'black',
     },
+    {
+      media: '(prefers-color-scheme: light)',
+      color: 'white',
+    },
   ],
 };
+
+export const dynamic = 'force-static';
 
 export const metadata = {
   metadataBase: new URL(process.env.CNAME as string),
@@ -59,17 +61,16 @@ const roboto = Roboto({
 });
 
 export default function RootLayout({children}: {children: React.ReactNode}) {
-  const locale = getLocale();
   return (
-    <html lang={locale}>
-      {/* <head>
+    <html lang={FALLBACK_LOCALE}>
+      <head>
         <link
           rel="stylesheet"
           href="https://sdk.birdeatsbug.com/latest/style.css"
         ></link>
-      </head> */}
+      </head>
       <body className={twMerge(inter.variable, roboto.variable)}>
-        <LocaleProvider value={locale}>
+        <LocaleProvider value={FALLBACK_LOCALE}>
           <Providers>
             <Header />
             {children}
