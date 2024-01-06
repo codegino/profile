@@ -10,6 +10,7 @@ import '../../styles/tailwind.css';
 import '../styles/animations.css';
 import '../styles/custom.css';
 import {FALLBACK_LOCALE} from './i18n/settings';
+import {SpeedInsights} from '@vercel/speed-insights/next';
 
 export const viewport: Viewport = {
   themeColor: [
@@ -77,6 +78,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
             <Footer />
           </Providers>
         </LocaleProvider>
+        <SpeedInsights />
       </body>
       <GlobalEffects />
     </html>

@@ -17,6 +17,9 @@ dependencies:
   '@tailwindcss/container-queries':
     specifier: 0.1.1
     version: 0.1.1(tailwindcss@3.4.0)
+  '@vercel/speed-insights':
+    specifier: ^1.0.2
+    version: registry.npmjs.org/@vercel/speed-insights@1.0.2
   clsx:
     specifier: 2.0.0
     version: 2.0.0
@@ -5461,6 +5464,13 @@ packages:
     version: 1.0.10
     dependencies:
       '@types/node': registry.npmjs.org/@types/node@20.10.6
+    dev: false
+
+  registry.npmjs.org/@vercel/speed-insights@1.0.2:
+    resolution: {integrity: sha512-y5HWeB6RmlyVYxJAMrjiDEz8qAIy2cit0fhBq+MD78WaUwQvuBnQlX4+5MuwVTWi46bV3klaRMq83u9zUy1KOg==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/@vercel/speed-insights/-/speed-insights-1.0.2.tgz}
+    name: '@vercel/speed-insights'
+    version: 1.0.2
+    requiresBuild: true
     dev: false
 
   registry.npmjs.org/agent-base@7.1.0:
