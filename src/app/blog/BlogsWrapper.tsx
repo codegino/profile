@@ -4,6 +4,7 @@ import {useMemo} from 'react';
 import {IBlogMetadata} from '../../models/mdxFiles';
 import BlogsFilter from '../../modules/blog/BlogsFilter';
 import BlogCard from '../../modules/common/ContentCard';
+import SearchField from './SearchField';
 
 const BlogsWrapper = ({blogs}: {blogs: IBlogMetadata[]}) => {
   const [selectedTags, setSelectedTags] = useQueryState(
@@ -16,6 +17,8 @@ const BlogsWrapper = ({blogs}: {blogs: IBlogMetadata[]}) => {
       })
       .withDefault([]),
   );
+
+  const [, setSearch] = useQueryState('search');
 
   const filtered = selectedTags.length
     ? blogs.filter(blog => selectedTags.every(tag => blog.tags.includes(tag)))
@@ -37,6 +40,8 @@ const BlogsWrapper = ({blogs}: {blogs: IBlogMetadata[]}) => {
 
   return (
     <>
+      <SearchField />
+      <br />
       <BlogsFilter
         tags={tags}
         selectedTags={selectedTags}
@@ -61,6 +66,15 @@ const BlogsWrapper = ({blogs}: {blogs: IBlogMetadata[]}) => {
         <section className="flex flex-col items-center">
           <h2>Empty result👎</h2>
           <h3>Try a different combination</h3>
+          <button
+            className="px-4 py-2 mt-4 text-white bg-primary-600 rounded-md hover:bg-primary-700"
+            onClick={() => {
+              setSelectedTags(null);
+              setSearch(null);
+            }}
+          >
+            Reset
+          </button>
         </section>
       )}
     </>

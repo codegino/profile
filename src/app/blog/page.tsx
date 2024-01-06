@@ -1,4 +1,3 @@
-import {NextPage} from 'next';
 import SubscribeForm from '@/components/SubscribeForm';
 import {newCommonMetaTags} from '@/frontend-utils/meta-tags';
 import type {IBlogMetadata} from '@/models/mdxFiles';
@@ -12,10 +11,16 @@ export const metadata = {
   title: 'My Blogs Listing Page | CodeGino | Carlo Gino Catapang',
 };
 
-const BlogPage: NextPage = async () => {
+export const dynamic = 'force-dynamic';
+
+async function BlogPage({
+  searchParams,
+}: {
+  searchParams: {[key: string]: string | undefined};
+}) {
   const {
     props: {blogs},
-  } = await getStaticProps();
+  } = await getStaticProps(searchParams.search);
   const {t} = await createTranslation('blog');
 
   return (
@@ -27,14 +32,25 @@ const BlogPage: NextPage = async () => {
       <SubscribeForm />
     </>
   );
-};
+}
 
 export default BlogPage;
 
-const getStaticProps = async () => {
-  const blogs = (await getBlogsMetadata()).sort(
-    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
-  );
+const getStaticProps = async (search: string | undefined) => {
+  let blogs = await getBlogsMetadata();
+
+  if (search) {
+    blogs = blogs.filter(blog => {
+      if (
+        blog.title.toLowerCase().includes(search.toLowerCase()) ||
+        blog.description.toLowerCase().includes(search.toLowerCase())
+      ) {
+        return true;
+      }
+    });
+  }
+
+  blogs.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
   for (let blog of blogs) {
     const asset = await client.getAsset(blog.bannerId);

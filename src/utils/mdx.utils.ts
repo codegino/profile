@@ -41,7 +41,7 @@ const getMdxMedata = async (list: string[], mdxPath: string) => {
   return blogs;
 };
 
-export const getBlogsMetadata = async () => {
+export const getBlogsMetadata = async (): Promise<IBlogMetadata[]> => {
   return getMdxMedata(await getAllBlogsPaths(), BLOGS_PATH);
 };
 

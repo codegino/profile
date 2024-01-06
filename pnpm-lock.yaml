@@ -23,9 +23,6 @@ dependencies:
   contentful:
     specifier: 10.6.15
     version: 10.6.15
-  fuse.js:
-    specifier: 7.0.0
-    version: registry.npmjs.org/fuse.js@7.0.0
   i18next:
     specifier: 23.7.11
     version: 23.7.11
@@ -5744,13 +5741,6 @@ packages:
     resolution: {integrity: sha512-7XHNxH7qX9xG5mIwxkhumTox/MIRNcOgDrxWsMt2pAr23WHp6MrRlN7FBSFpCpr+oVO0F744iUgR82nJMfG2SA==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/function-bind/-/function-bind-1.1.2.tgz}
     name: function-bind
     version: 1.1.2
-
-  registry.npmjs.org/fuse.js@7.0.0:
-    resolution: {integrity: sha512-14F4hBIxqKvD4Zz/XjDc3y94mNZN6pRv3U13Udo0lNLCWRBUsrMv2xwcF/y/Z5sV6+FQW+/ow68cHpm4sunt8Q==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/fuse.js/-/fuse.js-7.0.0.tgz}
-    name: fuse.js
-    version: 7.0.0
-    engines: {node: '>=10'}
-    dev: false
 
   registry.npmjs.org/graceful-fs@4.2.11:
     resolution: {integrity: sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/graceful-fs/-/graceful-fs-4.2.11.tgz}
