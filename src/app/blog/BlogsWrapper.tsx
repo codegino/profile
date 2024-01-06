@@ -9,20 +9,27 @@ import SearchField from './SearchField';
 const BlogsWrapper = ({blogs}: {blogs: IBlogMetadata[]}) => {
   const [selectedTags, setSelectedTags] = useQueryState(
     'tags',
-    parseAsArrayOf(parseAsString)
-      .withOptions({
-        shallow: false,
-        scroll: false,
-        history: 'replace',
-      })
-      .withDefault([]),
+    parseAsArrayOf(parseAsString).withDefault([]),
   );
 
-  const [, setSearch] = useQueryState('search');
+  const [search, setSearch] = useQueryState('search');
 
-  const filtered = selectedTags.length
-    ? blogs.filter(blog => selectedTags.every(tag => blog.tags.includes(tag)))
+  let filtered = blogs;
+
+  filtered = search
+    ? blogs.filter(blog => {
+        if (
+          blog.title.toLowerCase().includes(search.toLowerCase()) ||
+          blog.description.toLowerCase().includes(search.toLowerCase())
+        ) {
+          return true;
+        }
+      })
     : blogs;
+
+  filtered = selectedTags.length
+    ? blogs.filter(blog => selectedTags.every(tag => blog.tags.includes(tag)))
+    : filtered;
 
   const tags = useMemo(() => {
     const generatedTags = blogs.reduce((acc: Set<string>, blog) => {

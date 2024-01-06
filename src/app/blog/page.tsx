@@ -13,14 +13,10 @@ export const metadata = {
 
 export const dynamic = 'force-dynamic';
 
-async function BlogPage({
-  searchParams,
-}: {
-  searchParams: {[key: string]: string | undefined};
-}) {
+async function BlogPage() {
   const {
     props: {blogs},
-  } = await getStaticProps(searchParams.search);
+  } = await getStaticProps();
   const {t} = await createTranslation('blog');
 
   return (
@@ -36,19 +32,8 @@ async function BlogPage({
 
 export default BlogPage;
 
-const getStaticProps = async (search: string | undefined) => {
+const getStaticProps = async () => {
   let blogs = await getBlogsMetadata();
-
-  if (search) {
-    blogs = blogs.filter(blog => {
-      if (
-        blog.title.toLowerCase().includes(search.toLowerCase()) ||
-        blog.description.toLowerCase().includes(search.toLowerCase())
-      ) {
-        return true;
-      }
-    });
-  }
 
   blogs.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
