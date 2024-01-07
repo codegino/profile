@@ -21,7 +21,7 @@
     "i18next": "23.7.11",
     "i18next-browser-languagedetector": "7.2.0",
     "i18next-resources-to-backend": "1.2.0",
-    "isomorphic-dompurify": "2.1.0",
+    "isomorphic-dompurify": "2.2.0",
     "next": "14.0.4",
     "next-mdx-remote": "4.4.1",
     "next-themes": "0.2.1",
