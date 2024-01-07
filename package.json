@@ -16,7 +16,7 @@
     "@supabase/supabase-js": "2.39.2",
     "@tailwindcss/container-queries": "0.1.1",
     "@vercel/speed-insights": "^1.0.2",
-    "clsx": "2.0.0",
+    "clsx": "2.1.0",
     "contentful": "10.6.16",
     "i18next": "23.7.11",
     "i18next-browser-languagedetector": "7.2.0",
