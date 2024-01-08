@@ -18,7 +18,7 @@
     "@vercel/speed-insights": "^1.0.2",
     "clsx": "2.1.0",
     "contentful": "10.6.16",
-    "i18next": "23.7.11",
+    "i18next": "23.7.16",
     "i18next-browser-languagedetector": "7.2.0",
     "i18next-resources-to-backend": "1.2.0",
     "isomorphic-dompurify": "2.1.0",
