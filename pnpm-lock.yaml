@@ -98,8 +98,8 @@ devDependencies:
     specifier: 14.0.4
     version: 14.0.4
   '@types/node':
-    specifier: 20.10.6
-    version: 20.10.6
+    specifier: 20.11.2
+    version: 20.11.2
   '@types/react':
     specifier: 18.2.47
     version: 18.2.47
@@ -776,8 +776,8 @@ packages:
     dev: true
     optional: true
 
-  /@types/node@20.10.6:
-    resolution: {integrity: sha512-Vac8H+NlRNNlAmDfGUP7b5h/KA+AtWIzuXy0E6OyP8f1tCLYAtPvKRRDJjAPqhpCb0t6U2j7/xqAuLEebW2kiw==}
+  /@types/node@20.11.2:
+    resolution: {integrity: sha512-cZShBaVa+UO1LjWWBPmWRR4+/eY/JR/UIEcDlVsw3okjWEu+rB7/mH6X3B/L+qJVHDLjk9QW/y2upp9wp1yDXA==}
     dependencies:
       undici-types: 5.26.5
 
@@ -839,7 +839,7 @@ packages:
   /@types/websocket@1.0.10:
     resolution: {integrity: sha512-svjGZvPB7EzuYS94cI7a+qhwgGU1y89wUgjT6E2wVUfmAGIvRfT7obBvRtnhXCSsoMdlG4gBFGE7MfkIXZLoww==}
     dependencies:
-      '@types/node': 20.10.6
+      '@types/node': 20.11.2
     dev: false
 
   /@typescript-eslint/parser@6.14.0(eslint@8.56.0)(typescript@5.3.3):
