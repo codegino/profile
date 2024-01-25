@@ -4,7 +4,7 @@ import {createContext, useEffect} from 'react';
 import {ThemeProvider, useTheme} from 'next-themes';
 
 function ThemeWatcher() {
-  let {resolvedTheme, setTheme} = useTheme();
+  let {resolvedTheme, setTheme} = useTheme()();
 
   useEffect(() => {
     let media = window.matchMedia('(prefers-color-scheme: dark)');
