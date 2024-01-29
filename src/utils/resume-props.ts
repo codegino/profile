@@ -1,33 +1,20 @@
 import type {EntryFieldTypes} from 'contentful';
-import type {CategorizedSkill, Skill, SkillCategory} from '../models/skill';
+import type {CategorizedSkill, Skill} from '../models/skill';
 import {client} from './contentful.utils';
 import {mapLocale} from '@/app/i18n/map-locale.util';
 import {FALLBACK_LOCALE} from '@/app/i18n/settings';
+import {apitable} from './api-table';
 
-type SkillSkeleton = {
-  contentTypeId: 'skill';
-  fields: {
-    name: EntryFieldTypes.Text;
-    id: EntryFieldTypes.Text;
-    url: EntryFieldTypes.Text;
-    category: EntryFieldTypes.Text;
-    isHighlight: EntryFieldTypes.Boolean;
-    level: EntryFieldTypes.Number;
-  };
-};
+export const fetchSkills = async (
+  onlyHightlights = false,
+): Promise<CategorizedSkill[]> => {
+  const skillsDatasheet = apitable.datasheet('dsth3SW8jqkBAt0guK');
 
-export const fetchSkills = async (onlyHightlights = false) => {
-  const entries = await client.getEntries<SkillSkeleton>({
-    content_type: 'skill',
-    order: ['-fields.level'],
-  });
+  const {data} = await skillsDatasheet.records.query();
 
-  const skills = entries.items.map(skill => ({
+  const skills = data?.records.map(skill => ({
     ...skill.fields,
-    category: skill.fields.category as SkillCategory,
-    id: skill.sys.id,
-  }));
-
+  })) as Skill[];
   const categorizedSkills: CategorizedSkill[] = !onlyHightlights
     ? skills?.reduce(
         (acc: CategorizedSkill[], curr: Skill): CategorizedSkill[] => {
