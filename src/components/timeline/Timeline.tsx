@@ -37,7 +37,7 @@ export default function Timeline({
                   <div
                     className="mt-4 text-left"
                     dangerouslySetInnerHTML={{
-                      __html: dompurify.sanitize(exp.content),
+                      __html: dompurify.sanitize(exp.markdown),
                     }}
                   />
                 </Content>

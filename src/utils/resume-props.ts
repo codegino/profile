@@ -1,8 +1,5 @@
-import type {EntryFieldTypes} from 'contentful';
+import {EducationExperience, WorkExperience} from '@/models/resume';
 import type {CategorizedSkill, Skill} from '../models/skill';
-import {client} from './contentful.utils';
-import {mapLocale} from '@/app/i18n/map-locale.util';
-import {FALLBACK_LOCALE} from '@/app/i18n/settings';
 import {apitable} from './api-table';
 
 export const fetchSkills = async (
@@ -49,61 +46,18 @@ export const fetchSkills = async (
   return categorizedSkills;
 };
 
-type WorkExperienceSkeleton = {
-  contentTypeId: 'experience';
-  fields: {
-    id: EntryFieldTypes.Text;
-    url: EntryFieldTypes.Text;
-    organization: EntryFieldTypes.Text;
-    role: EntryFieldTypes.Text;
-    title: EntryFieldTypes.Text;
-    startDate: EntryFieldTypes.Date;
-    endDate: EntryFieldTypes.Text;
-    content: EntryFieldTypes.Text;
-    language: EntryFieldTypes.Text;
-    category: 'work';
-  };
-};
-
-type EducationSkeleton = {
-  contentTypeId: 'education';
-  fields: {
-    id: EntryFieldTypes.Text;
-    organization: EntryFieldTypes.Text;
-    role: EntryFieldTypes.Text;
-    title: EntryFieldTypes.Text;
-    startDate: EntryFieldTypes.Date;
-    endDate: EntryFieldTypes.Text;
-    content: EntryFieldTypes.Text;
-    language: EntryFieldTypes.Text;
-    category: 'education';
-    url: EntryFieldTypes.Text;
-  };
-};
-
 export const fectchExperiences = async () => {
-  const locale = mapLocale(FALLBACK_LOCALE);
-  const workExperiences = await client.getEntries<WorkExperienceSkeleton>({
-    content_type: 'experience',
-    order: ['-fields.startDate'],
-    locale,
-  });
-
-  const educationExperiences = await client.getEntries<EducationSkeleton>({
-    content_type: 'education',
-    order: ['-fields.startDate'],
-  });
+  const educationDatasheet = apitable.datasheet('dstRgM4WjV3VMCPAhe');
+  const workDatasheet = apitable.datasheet('dstubZqko7X7tsnlgl');
 
   return {
     workExperiences:
-      workExperiences.items?.map(exp => ({
-        ...exp.fields,
-        id: exp.sys.id,
-      })) ?? [],
+      ((await workDatasheet.records.query())?.data?.records.map(
+        exp => exp.fields,
+      ) as WorkExperience[]) ?? [],
     educationExperiences:
-      educationExperiences.items?.map(exp => ({
-        ...exp.fields,
-        id: exp.sys.id,
-      })) ?? [],
+      ((await educationDatasheet.records.query())?.data?.records.map(
+        exp => exp.fields,
+      ) as EducationExperience[]) ?? [],
   };
 };

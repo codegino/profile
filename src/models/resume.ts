@@ -5,7 +5,7 @@ export type WorkExperience = {
   title: string;
   startDate: string;
   endDate: string;
-  content: string;
+  markdown: string;
   category: 'work';
   url: string;
 };
@@ -17,7 +17,6 @@ export type EducationExperience = {
   title: string;
   startDate: string;
   endDate: string;
-  content: string;
   category: 'education';
   url: string;
 };
