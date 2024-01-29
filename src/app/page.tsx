@@ -1,17 +1,18 @@
+import GreetingsContent from '@/components/GreetingsContent';
+import {getBlogAssetRecords} from '@/utils/api-table-asset';
+import {NextPage} from 'next';
 import dynamicImport from 'next/dynamic';
+import Script from 'next/script';
 import {FullScreenWrapper} from '../components/FullScreenWrapper';
 import ResumeSummary from '../components/ResumeSummary';
 import NextLink from '../components/basic/NextLink';
-import BlogSuggestionsList from '../modules/blog/BlogSuggestionsList';
-import {getBlogsMetadata} from '../utils/mdx.utils';
-import {client, getBlurringImage} from '../utils/contentful.utils';
-import {fetchSkills} from '../utils/resume-props';
-import {createTranslation} from './i18n/server';
-import {NextPage} from 'next';
 import Skills from '../components/skills/Skills';
 import {newCommonMetaTags} from '../frontend-utils/meta-tags';
-import Script from 'next/script';
-import GreetingsContent from '@/components/GreetingsContent';
+import BlogSuggestionsList from '../modules/blog/BlogSuggestionsList';
+import {getBlurringImage} from '../utils/contentful.utils';
+import {getBlogsMetadata} from '../utils/mdx.utils';
+import {fetchSkills} from '../utils/resume-props';
+import {createTranslation} from './i18n/server';
 
 const SubscribeForm = dynamicImport(
   () => import('../components/SubscribeForm'),
@@ -158,10 +159,6 @@ const HomePage: NextPage = async () => {
 };
 
 const getStaticProps = async () => {
-  const {img: heroImage, svg: heroSvg} = await getBlurringImage(
-    '4tQ2p1PhiXEya0uWbAZC6O',
-  );
-
   const {img: profileImage, svg: profileSvg} = await getBlurringImage(
     '3fgK6fKTGvBcmIRel2hJ6Y',
   );
@@ -170,11 +167,10 @@ const getStaticProps = async () => {
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
     .slice(0, 4);
 
-  for (let blog of blogs) {
-    const asset = await client.getAsset(blog.bannerId);
+  const records = await getBlogAssetRecords();
 
-    const bannerUrl = `https:${asset.fields.file?.url}`;
-    blog.bannerId = bannerUrl;
+  for (let blog of blogs) {
+    blog.bannerId = records[blog.slug];
   }
 
   const skills = await fetchSkills(true);
@@ -183,8 +179,6 @@ const getStaticProps = async () => {
     props: {
       skills,
       blogs,
-      heroImage,
-      heroSvg,
       profileImage,
       profileSvg,
     },

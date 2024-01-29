@@ -19,7 +19,7 @@ const ContentLayout: FunctionComponent<{children: React.ReactNode}> = ({
         '[&>ol>li]:list-decimal [&>ul>li]:list-disc',
         '[&>ol]:m-0 [&>p]:px-1 [&>p]:mx-1 sm:[&>p]:px-2 sm:[&>p]:mx-2',
         '[&_:is(li,p,h2,h3,h4,h5,h6)_code]:whitespace-nowrap [&_:is(li,p,h2,h3,h4,h5,h6)_code]:px-1 [&_:is(li,p,h2,h3,h4,h5,h6)_code]:rounded-[3px] [&_:is(li,p,h2,h3,h4,h5,h6)_code]:font-roboto [&_:is(li,p,h2,h3,h4,h5,h6)_code]:text-[0.95rem]',
-        '[&_:is(h2,h3,h4)_em]:text-sm',
+        '[&_:is(h2,h3,h4)_em]:text-[0.95em]',
         '[&_h4]:mt-4',
       )}
     >

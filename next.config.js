@@ -15,6 +15,7 @@ const config = {
       {hostname: 'dev-to-uploads.s3.amazonaws.com'},
       {hostname: 'lh3.googleusercontent.com'},
       {hostname: 'openseauserdata.com'},
+      {hostname: 's1.aitable.ai'},
     ],
     imageSizes: [16, 32, 48, 64],
     deviceSizes: [
