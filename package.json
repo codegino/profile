@@ -40,7 +40,7 @@
     "react-transition-group": "4.4.5",
     "react-typist": "2.0.5",
     "remark-mdx-code-meta": "2.0.0",
-    "tailwind-merge": "^2.1.0"
+    "tailwind-merge": "^2.2.1"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "14.0.4",
