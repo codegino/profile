@@ -62,7 +62,7 @@
     "husky": "8.0.3",
     "lint-staged": "15.2.1",
     "plaiceholder": "3.0.0",
-    "postcss": "8.4.33",
+    "postcss": "8.4.35",
     "prettier": "3.2.5",
     "sharp": "0.32.6",
     "tailwindcss": "3.4.1",
