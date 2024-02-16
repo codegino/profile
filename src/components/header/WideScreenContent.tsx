@@ -14,7 +14,7 @@ export default function WideScreenContentImpl() {
 
   return (
     <div className="hidden items-center justify-between w-full lg:flex ">
-      <nav>
+      <nav className="items-center mx-auto">
         <ul className="flex items-center p-0 m-0">
           {navigationLinks.map(link => (
             <li
