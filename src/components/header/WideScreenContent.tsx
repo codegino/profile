@@ -26,6 +26,7 @@ export default function WideScreenContentImpl() {
                 className={clsx('hover:text-primary-200 font-semibold', {
                   'text-primary-300': path?.includes(link.url),
                 })}
+                target={link.target}
                 aria-label={t(link.label)}
               >
                 <span className="text-lg">{t(link.label)}</span>
