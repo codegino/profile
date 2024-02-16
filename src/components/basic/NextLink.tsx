@@ -1,11 +1,18 @@
-import type {FunctionComponent, HTMLProps} from 'react';
+import type {
+  AnchorHTMLAttributes,
+  FC,
+  HTMLAttributeReferrerPolicy,
+  PropsWithChildren,
+} from 'react';
 import Link from 'next/link';
-import type {LinkProps} from 'next/link';
 
-type NextLinkProps = LinkProps & HTMLProps<HTMLButtonElement>;
+type NextLinkProps = PropsWithChildren<
+  AnchorHTMLAttributes<HTMLAnchorElement> & {
+    referrerPolicy?: HTMLAttributeReferrerPolicy | undefined;
+  }
+>;
 
-// TODO update type definition
-const NextLink: FunctionComponent<any> = ({
+function NextLink({
   href,
   target,
   className,
@@ -14,18 +21,20 @@ const NextLink: FunctionComponent<any> = ({
   title,
   rel,
   ...rest
-}) => (
-  <Link
-    href={href}
-    {...rest}
-    className={className}
-    target={target}
-    rel={rel}
-    aria-label={ariaLabel}
-    title={title ? title : ariaLabel}
-  >
-    {children}
-  </Link>
-);
+}: NextLinkProps) {
+  return (
+    <Link
+      href={href as string}
+      {...rest}
+      className={className}
+      target={target}
+      rel={rel}
+      aria-label={ariaLabel}
+      title={title ? title : ariaLabel}
+    >
+      {children}
+    </Link>
+  );
+}
 
 export default NextLink;
