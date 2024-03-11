@@ -16,6 +16,7 @@ const config = {
       {hostname: 'lh3.googleusercontent.com'},
       {hostname: 'openseauserdata.com'},
       {hostname: 's1.aitable.ai'},
+      {hostname: 'i.seadn.io'},
     ],
     imageSizes: [16, 32, 48, 64],
     deviceSizes: [

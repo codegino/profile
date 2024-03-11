@@ -108,6 +108,85 @@
     ]
   },
   {
+    "name": "Bionic Apes",
+    "slug": "bionicapesnft",
+    "details": "5,555 unique Bionic Apes are the first robotic ape species on the blockchain. Surviving the Robopacolypse and gracefully willing to be held by their new owners.\r\n\r\nFocused on flourishing a community of positivity, and self-growth.\r\n\r\nJoin our Bionic force and grow with us together, forever.",
+    "contractAddress": "0x266fbcf5d358c4d48474834b1c70dfb73a48efab",
+    "owned": [
+      {
+        "id": 4575,
+        "name": "BAPE #4575",
+        "img": "https://i.seadn.io/gcs/files/5d55c1aafc38fb7d98c2a45208a5a5b9.png"
+      },
+      {
+        "id": 5420,
+        "name": "BAPE #5420",
+        "img": "https://i.seadn.io/gcs/files/4ad9acc6556d8f3cba1be409ec7eed70.png"
+      },
+      {
+        "id": 5419,
+        "name": "BAPE #5419",
+        "img": "https://i.seadn.io/gcs/files/99982306b159b64aafa430cc5ab61e23.png"
+      },
+      {
+        "id": 5417,
+        "name": "BAPE #5417",
+        "img": "https://i.seadn.io/gcs/files/fc87a870200e9006d50a76fd40bc8a07.png"
+      },
+      {
+        "id": 5416,
+        "name": "BAPE #5416",
+        "img": "https://i.seadn.io/gcs/files/d4c22fa728788fc10da45dd9345c43b6.png"
+      },
+      {
+        "id": 5414,
+        "name": "BAPE #5414",
+        "img": "https://i.seadn.io/gcs/files/b0eb2921c7d39dec31718d5e91caf553.png"
+      },
+      {
+        "id": 5413,
+        "name": "BAPE #5413",
+        "img": "https://i.seadn.io/gcs/files/09c671fc0680dccd2ee5ddb915b31d0b.png"
+      },
+      {
+        "id": 5412,
+        "name": "BAPE #5412",
+        "img": "https://i.seadn.io/gcs/files/ad2e5f052ecf4ebef903811f8024386b.png"
+      },
+      {
+        "id": 5411,
+        "name": "BAPE #5411",
+        "img": "https://i.seadn.io/gcs/files/d4543ced53e05c66fd4813569f877810.png"
+      },
+      {
+        "id": 5409,
+        "name": "BAPE #5409",
+        "img": "https://i.seadn.io/gcs/files/3e6e5c364d54e3fad5dc1d7430018c46.png"
+      },
+      {
+        "id": 5407,
+        "name": "BAPE #5407",
+        "img": "https://i.seadn.io/gcs/files/86f482019062ddc453fd2638d5fe6b5d.png"
+      },
+      {
+        "id": 5101,
+        "name": "BAPE #5101",
+        "img": "https://i.seadn.io/gcs/files/bf27530c611d1a0ff504db3d533de054.png"
+      },
+      {
+        "id": 4581,
+        "name": "BAPE #4581",
+        "img": "https://i.seadn.io/gcs/files/1d19cbfc4ccde98aad3e86f44ef1e133.png"
+      },
+      {
+        "id": 4503,
+        "name": "BAPE #4503",
+        "img": "https://i.seadn.io/gcs/files/e81d3c5050a7b39f32d65031da426e6d.png"
+      }
+    ],
+    "order": 2
+  },
+  {
     "details": "Fantasy Football, but for NFTs. \nCollection of 6400 crispy critters with a weekly competition. \n1 part crispy, 1 part competition. \nYou ready to ball?",
     "slug": "footballcritter",
     "name": "footballcritter",
@@ -225,19 +304,6 @@
   },
 
   {
-    "details": "5,555 unique Bionic Apes are the first robotic ape species on the blockchain. Surviving the Robopacolypse and gracefully willing to be held by their new owners.\r\n\r\nFocused on flourishing a community of positivity, and self-growth.\r\n\r\nJoin our Bionic force and grow with us together, forever.\r\n\r\nOur Whitepaper: https://medium.com/@BionicApe/bionic-ape-whitepaper-tokenomics-9ee6521fe01d",
-    "slug": "bionicapesnft",
-    "name": "Official Bionic Apes Collection",
-    "contractAddress": "0x266fbcf5d358c4d48474834b1c70dfb73a48efab",
-    "owned": [
-      {
-        "name": "BAPE #4575",
-        "img": "https://lh3.googleusercontent.com/eFxxAzxiVYsLX6CT5uUV8O1A7xG29T6AIwRWCHX43-s1Yu8nRVIUxmFlnGWQnRHt9dHrjuypFk-37ltRYA-T6qT9IEZikpYdVnO75jM",
-        "id": "4575"
-      }
-    ]
-  },
-  {
     "details": "Nametags are universal usernames stored on blockchain. They power your multi-wallet, cross-chain profile within the Nametag ecosystem, which lets you bring your NFTs with you across the web.",
     "slug": "nametag-general",
     "name": "Nametag",
@@ -267,24 +333,5 @@
         "id": "84520090924953467942856831582054905858699795370182230946887211783238281313935"
       }
     ]
-  },
-  {
-    "name": "Bionic Apes",
-    "slug": "bionicapesnft",
-    "contractAddress": "0x266fbcf5d358c4d48474834b1c70dfb73a48efab",
-    "owned": [
-      {
-        "id": 356,
-        "name": "BAPE #356",
-        "img": "https://lh3.googleusercontent.com/4f9uM8MQIik5vBEs9pvH5QmzEqTLe698V8ixaUWUwxu46Scyl0J9E1m6s-g0A5_8IlaiLeraSUMdQ0xfOWSMcRtR803Sco7Si2jbUQ=s0"
-      },
-      {
-        "id": 1746,
-        "name": "BAPE #1746",
-        "img": "https://lh3.googleusercontent.com/UiRZySqrup2l9DJlF00GEBgIAwrDCE0gSz02w9_7t2Oqe2i5jsZzo-abp2gowFOFgwQNYsJcHmK8NjJQLi7i5BG0ue-KsUuqS6PrkvI=s0"
-      }
-    ],
-    "details": "5,555 unique Bionic Apes are the first robotic ape species on the blockchain. Surviving the Robopacolypse and gracefully willing to be held by their new owners.",
-    "order": 2
   }
 ]
