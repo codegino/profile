@@ -7,6 +7,7 @@ import {useState} from 'react';
 import {useTranslation} from '../app/i18n/client';
 import Button from './basic/Button';
 import Input from './basic/Input';
+import {addSubscriberAction} from './subscribe.action';
 
 interface FormElements extends HTMLFormControlsCollection {
   firstName: HTMLInputElement;
@@ -30,30 +31,19 @@ const SubscribeForm = () => {
     setIsLoading(true);
     const {email, firstName, lastName} = e.currentTarget.elements;
 
-    fetch('/api/newsletter', {
-      method: 'POST',
-      headers: new Headers({'Content-Type': 'application/json'}),
-      credentials: 'same-origin',
-      body: JSON.stringify({
-        email: email.value,
-        firstName: firstName.value,
-        lastName: lastName.value,
-      }),
-    })
-      .then(async (res: any) => {
-        const body = await res.json();
-        if (res.status >= 400 && res.status < 600) {
-          throw new Error(body.message);
-        }
-        return body;
-      })
-      .then(() => {
+    await addSubscriberAction({
+      email: email.value,
+      firstName: firstName.value,
+      lastName: lastName.value,
+    }).then(res => {
+      if (res.success) {
         router.push('/signup-success');
-      })
-      .finally(() => setIsLoading(false))
-      .catch(err => {
-        setError(err.message);
-      });
+      } else {
+        setError(res?.message as string);
+      }
+    });
+
+    setIsLoading(false);
   };
 
   return (
