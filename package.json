@@ -11,7 +11,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "@emotion/react": "11.11.3",
+    "@emotion/react": "11.11.4",
     "@react-icons/all-files": "4.1.0",
     "@tailwindcss/container-queries": "0.1.1",
     "@vercel/speed-insights": "1.0.10",
