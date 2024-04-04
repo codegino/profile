@@ -1,5 +1,4 @@
 import GreetingsContent from '@/components/GreetingsContent';
-import {getBlogAssetRecords} from '@/utils/api-table-asset';
 import {NextPage} from 'next';
 import dynamicImport from 'next/dynamic';
 import Script from 'next/script';
@@ -13,24 +12,25 @@ import {getBlurringImage} from '../utils/contentful.utils';
 import {getBlogsMetadata} from '../utils/mdx.utils';
 import {fetchSkills} from '../utils/resume-props';
 import {createTranslation} from './i18n/server';
+import {blogAssets} from '@/data/blog-asset';
 
 const SubscribeForm = dynamicImport(
   () => import('../components/SubscribeForm'),
-  {
-    ssr: false,
-  },
+  // {
+  // ssr: false,
+  // },
 );
 
 const CustomGithubCalendar = dynamicImport(
   () => import('../components/CustomGithubCalendar'),
-  {ssr: false},
+  // {ssr: false},
 );
 
 const WakatimeCharts = dynamicImport(
   () => import('../components/WakatimeCharts'),
-  {
-    ssr: false,
-  },
+  // {
+  // ssr: false,
+  // },
 );
 
 export const metadata = {
@@ -167,10 +167,8 @@ const getStaticProps = async () => {
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
     .slice(0, 4);
 
-  const records = await getBlogAssetRecords();
-
   for (let blog of blogs) {
-    blog.bannerId = records[blog.slug];
+    blog.bannerId = blogAssets[blog.slug];
   }
 
   const skills = await fetchSkills(true);

@@ -14,7 +14,7 @@ import {blurImage} from '@/utils/image-blur.utils';
 import BlogFooter from '@/modules/blog/BlogFooter';
 import {newCommonMetaTags} from '@/frontend-utils/meta-tags';
 import Script from 'next/script';
-import {getBlogAssetUrlFromApiTable} from '@/utils/api-table-asset';
+import {blogAssets} from '@/data/blog-asset';
 
 export const generateMetadata = async ({
   params: {slug},
@@ -111,9 +111,7 @@ const getStaticProps = async (slug: string) => {
 
   const {content, data} = matter(source);
 
-  const asset = await getBlogAssetUrlFromApiTable(slug);
-
-  const bannerUrl = asset.url;
+  const bannerUrl = blogAssets[slug];
   const {img, svg} = await blurImage(bannerUrl);
 
   const mdxSource = await serialize(content, {
