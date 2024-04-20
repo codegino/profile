@@ -1,7 +1,6 @@
 'use client';
 import type {FunctionComponent, ComponentProps} from 'react';
-import {MDXRemote} from 'next-mdx-remote';
-import type {MDXRemoteSerializeResult} from 'next-mdx-remote';
+import {MDXRemote} from 'next-mdx-remote/rsc';
 import ContentAnchor from '../common/AnchorTag';
 import ContentBlockQuote from '../common/BlockquoteTag';
 import ContentBookMark from '../common/BookmarkElement';
@@ -10,6 +9,7 @@ import ContentImage from '../common/ImageTag';
 import ContentListElement from '../common/ListElementTag';
 import ContentParagraph from '../common/ParagraphTag';
 import TableOfContents from './TableOfContents';
+import remarkMdxCodeMeta from 'remark-mdx-code-meta';
 
 // Custom components/renderers to pass to MDX.
 // Since the MDX files aren't loaded by webpack, they have no knowledge of how
@@ -29,11 +29,25 @@ const components: ComponentProps<FunctionComponent> = {
 };
 
 type Props = {
-  source: MDXRemoteSerializeResult<Record<string, unknown>>;
+  content: string;
+  scope: Record<string, unknown> | undefined;
 };
 
-const BlogContent: FunctionComponent<Props> = ({source}) => {
-  return <MDXRemote {...source} components={components} lazy={false} />;
-};
+function BlogContent({content, scope}: Props) {
+  return (
+    <MDXRemote
+      components={components}
+      source={content}
+      options={{
+        mdxOptions: {
+          remarkPlugins: [remarkMdxCodeMeta],
+          rehypePlugins: [],
+          format: 'mdx',
+        },
+        scope,
+      }}
+    />
+  );
+}
 
 export default BlogContent;

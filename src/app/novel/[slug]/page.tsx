@@ -1,9 +1,7 @@
 import fs from 'fs';
 import matter from 'gray-matter';
 import type {Metadata, NextPage} from 'next';
-import {serialize} from 'next-mdx-remote/serialize';
 import path from 'path';
-import remarkMdxCodeMeta from 'remark-mdx-code-meta';
 import type {INovelMetadata} from '@/models/mdxFiles';
 import BlogContent from '@/modules/blog/BlogContent';
 import BlogHeader from '@/modules/blog/BlogHeader';
@@ -57,7 +55,13 @@ const BlogPage: NextPage<{
     slug: string;
   };
 }> = async ({params: {slug}}) => {
-  const {frontMatter: novel, img, source, svg} = await getStaticProps(slug);
+  const {
+    frontMatter: novel,
+    img,
+    svg,
+    content,
+    scope,
+  } = await getStaticProps(slug);
 
   if (!novel) {
     return (
@@ -95,7 +99,7 @@ const BlogPage: NextPage<{
       <main role="main">
         <ContentLayout>
           <BlogHeader blog={novel} img={img} svg={svg} />
-          <BlogContent source={source} />
+          <BlogContent content={content} scope={scope} />
           <br />
           <BlogFooter blog={novel} />
         </ContentLayout>
@@ -115,18 +119,9 @@ const getStaticProps = async (slug: string) => {
   const bannerUrl = `https:${banner.fields.file?.url}`;
   const {img, svg} = await blurImage(bannerUrl);
 
-  const mdxSource = await serialize(content, {
-    // Optionally pass remark/rehype plugins
-    mdxOptions: {
-      remarkPlugins: [remarkMdxCodeMeta],
-      rehypePlugins: [],
-      format: 'mdx',
-    },
-    scope: data,
-  });
-
   return {
-    source: mdxSource,
+    content: content,
+    scope: data,
     frontMatter: {
       ...data,
       slug,

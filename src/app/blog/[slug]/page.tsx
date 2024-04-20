@@ -1,20 +1,18 @@
+import {blogAssets} from '@/data/blog-asset';
+import {newCommonMetaTags} from '@/frontend-utils/meta-tags';
+import type {IBlogMetadata} from '@/models/mdxFiles';
+import BlogContent from '@/modules/blog/BlogContent';
+import BlogFooter from '@/modules/blog/BlogFooter';
+import BlogHeader from '@/modules/blog/BlogHeader';
+import BlogLayout from '@/modules/common/ContentLayout';
+import {client} from '@/utils/contentful.utils';
+import {blurImage} from '@/utils/image-blur.utils';
+import {BLOGS_PATH, getBlogsMetadata} from '@/utils/mdx.utils';
 import fs from 'fs';
 import matter from 'gray-matter';
 import type {Metadata, NextPage} from 'next';
-import {serialize} from 'next-mdx-remote/serialize';
-import path from 'path';
-import remarkMdxCodeMeta from 'remark-mdx-code-meta';
-import type {IBlogMetadata} from '@/models/mdxFiles';
-import BlogContent from '@/modules/blog/BlogContent';
-import BlogHeader from '@/modules/blog/BlogHeader';
-import BlogLayout from '@/modules/common/ContentLayout';
-import {getBlogsMetadata, BLOGS_PATH} from '@/utils/mdx.utils';
-import {client} from '@/utils/contentful.utils';
-import {blurImage} from '@/utils/image-blur.utils';
-import BlogFooter from '@/modules/blog/BlogFooter';
-import {newCommonMetaTags} from '@/frontend-utils/meta-tags';
 import Script from 'next/script';
-import {blogAssets} from '@/data/blog-asset';
+import path from 'path';
 
 export const generateMetadata = async ({
   params: {slug},
@@ -58,7 +56,13 @@ const BlogPage: NextPage<{
     slug: string;
   };
 }> = async ({params: {slug}}) => {
-  const {frontMatter: blog, img, source, svg} = await getStaticProps(slug);
+  const {
+    frontMatter: blog,
+    img,
+    svg,
+    content,
+    scope,
+  } = await getStaticProps(slug);
 
   if (!blog) {
     return (
@@ -96,7 +100,7 @@ const BlogPage: NextPage<{
       <main role="main">
         <BlogLayout>
           <BlogHeader blog={blog} img={img} svg={svg} />
-          <BlogContent source={source} />
+          <BlogContent content={content} scope={scope} />
           <br />
           <BlogFooter blog={blog} />
         </BlogLayout>
@@ -114,18 +118,9 @@ const getStaticProps = async (slug: string) => {
   const bannerUrl = blogAssets[slug];
   const {img, svg} = await blurImage(bannerUrl);
 
-  const mdxSource = await serialize(content, {
-    // Optionally pass remark/rehype plugins
-    mdxOptions: {
-      remarkPlugins: [remarkMdxCodeMeta],
-      rehypePlugins: [],
-      format: 'mdx',
-    },
-    scope: data,
-  });
-
   return {
-    source: mdxSource,
+    content,
+    scope: data,
     frontMatter: {
       ...data,
       slug,
