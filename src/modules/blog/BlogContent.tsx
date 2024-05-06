@@ -1,6 +1,5 @@
 'use client';
 import type {FunctionComponent, ComponentProps} from 'react';
-import {MDXRemote} from 'next-mdx-remote/rsc';
 import ContentAnchor from '../common/AnchorTag';
 import ContentBlockQuote from '../common/BlockquoteTag';
 import ContentBookMark from '../common/BookmarkElement';
@@ -9,12 +8,10 @@ import ContentImage from '../common/ImageTag';
 import ContentListElement from '../common/ListElementTag';
 import ContentParagraph from '../common/ParagraphTag';
 import TableOfContents from './TableOfContents';
-import remarkMdxCodeMeta from 'remark-mdx-code-meta';
+import {MDX} from '@/components/mdx';
+import rehypeMdxCodeProps from 'rehype-mdx-code-props'
 
-// Custom components/renderers to pass to MDX.
-// Since the MDX files aren't loaded by webpack, they have no knowledge of how
-// to handle import statements. Instead, you must include components in scope
-// here.
+
 const components: ComponentProps<FunctionComponent> = {
   inlineCode: ({children}: {children: JSX.Element}) => <code>{children}</code>,
   blockquote: ContentBlockQuote,
@@ -35,17 +32,11 @@ type Props = {
 
 function BlogContent({content, scope}: Props) {
   return (
-    <MDXRemote
-      components={components}
+    <MDX
+      useMDXComponents={() => components}
       source={content}
-      options={{
-        mdxOptions: {
-          remarkPlugins: [remarkMdxCodeMeta],
-          rehypePlugins: [],
-          format: 'mdx',
-        },
-        scope,
-      }}
+      rehypePlugins={[rehypeMdxCodeProps]}
+      remarkPlugins={[]}
     />
   );
 }
