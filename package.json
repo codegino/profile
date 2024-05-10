@@ -19,7 +19,7 @@
     "apitable": "1.3.0",
     "clsx": "2.1.1",
     "contentful": "10.9.2",
-    "i18next": "23.11.3",
+    "i18next": "23.11.4",
     "i18next-browser-languagedetector": "7.2.1",
     "i18next-resources-to-backend": "1.2.1",
     "isomorphic-dompurify": "2.9.0",
