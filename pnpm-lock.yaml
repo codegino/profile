@@ -48,8 +48,8 @@ dependencies:
     specifier: 0.3.0
     version: 0.3.0(react-dom@18.3.1)(react@18.3.1)
   next-usequerystate:
-    specifier: 1.17.2
-    version: 1.17.2(next@14.2.3)
+    specifier: 1.17.4
+    version: 1.17.4(next@14.2.3)
   prism-react-renderer:
     specifier: 2.3.1
     version: 2.3.1(react@18.3.1)
@@ -1492,6 +1492,7 @@ packages:
   /callsites@3.1.0:
     resolution: {integrity: sha512-P8BjAsXvZS+VIDUI11hHCQEv74YT67YUi5JJFNWIqL235sBmjX4+qx9Muvls5ivyNENctx46xQLQ3aTuE7ssaQ==}
     engines: {node: '>=6'}
+    requiresBuild: true
 
   /camelcase-css@2.0.1:
     resolution: {integrity: sha512-QOSvevhslijgYwRx6Rv7zKdMF8lbRmx+uQGx2+vDc+KI/eBnsy9kit5aj23AgGu3pa4t9AgwbnXWqS+iOY+2aA==}
@@ -4338,8 +4339,8 @@ packages:
       react-dom: 18.3.1(react@18.3.1)
     dev: false
 
-  /next-usequerystate@1.17.2(next@14.2.3):
-    resolution: {integrity: sha512-C+8i56c32aso/tfdgfWZ8GQaQARrEz7rTim0YczXIjlnzdFZVr5D2+yFGLQGXHDm3QRO1sD61IVaEc2fhiYV/Q==}
+  /next-usequerystate@1.17.4(next@14.2.3):
+    resolution: {integrity: sha512-d+X6k9tppgVGm+ZWlEqIBnQbXHQ3tNo5ZkQw6ouxtftVpCOiKXMpozcR4UZU9Ck64W2Mhb8wqWIlzrxqjvE3ww==}
     peerDependencies:
       next: '>=13.4 <14.0.2 || ^14.0.3'
     dependencies:
@@ -4567,6 +4568,7 @@ packages:
   /parent-module@1.0.1:
     resolution: {integrity: sha512-GQ2EWRpQV8/o+Aw8YqtfZZPfNRWZYkbidE9k5rpl/hC3vtHHBfGm2Ifi6qWV+coDGkrUKZAxE3Lot5kcsRlh+g==}
     engines: {node: '>=6'}
+    requiresBuild: true
     dependencies:
       callsites: 3.1.0
 
@@ -5087,6 +5089,7 @@ packages:
   /resolve-from@4.0.0:
     resolution: {integrity: sha512-pb/MYmXstAkysRFx8piNI1tGFNQIFA3vkE3Gq4EuA1dF6gHp/+vgZqsCGJapvy8N3Q+4o7FwvquPJcnZ7RYy4g==}
     engines: {node: '>=4'}
+    requiresBuild: true
 
   /resolve-from@5.0.0:
     resolution: {integrity: sha512-qYg9KP24dD5qka9J47d0aVky0N+b4fTU89LN9iDnjB5waksiC49rvMB0PrUJQGoTmH50XPiqOvAjDfaijGxYZw==}
