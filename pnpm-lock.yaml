@@ -27,8 +27,8 @@ dependencies:
     specifier: 2.1.1
     version: 2.1.1
   contentful:
-    specifier: 10.10.0
-    version: 10.10.0
+    specifier: 10.11.0
+    version: 10.11.0
   i18next:
     specifier: 23.11.4
     version: 23.11.4
@@ -294,6 +294,13 @@ packages:
       chalk: 5.3.0
     dev: true
     optional: true
+
+  /@contentful/content-source-maps@0.5.0:
+    resolution: {integrity: sha512-Ui14m5QvgFWteAXsv5pmFtbm2deGUJrn1WPHoBa79SK3Z3nV47wQb3/aDZhnXushgpJlk2HmH32Fda/0XZqq1w==}
+    dependencies:
+      '@vercel/stega': 0.1.2
+      json-pointer: 0.6.2
+    dev: false
 
   /@contentful/rich-text-types@16.3.5:
     resolution: {integrity: sha512-ZLq6p5uyQXg+i1XGDFu4tAc2VYS12S1KA/jIOyyZjNgC1DvDajsi1JzuiBuOuMEhi1sKEUy6Ry3Yr9jsQtOKuQ==}
@@ -1093,6 +1100,10 @@ packages:
       react: 18.3.1
     dev: false
 
+  /@vercel/stega@0.1.2:
+    resolution: {integrity: sha512-P7mafQXjkrsoyTRppnt0N21udKS9wUmLXHRyP9saLXLHw32j/FgUJ3FscSWgvSqRs4cj7wKZtwqJEvWJ2jbGmA==}
+    dev: false
+
   /acorn-jsx@5.3.2(acorn@8.11.3):
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
     peerDependencies:
@@ -1724,10 +1735,11 @@ packages:
       qs: 6.12.0
     dev: false
 
-  /contentful@10.10.0:
-    resolution: {integrity: sha512-VO+24VfY5GbS87lEi0KcgcWJHvhHvStKeQ6Mlo22D8r8HsGv7Cpo0oWex0NUfsK4UpIcGId+DbSgBCzWN3lJlg==}
+  /contentful@10.11.0:
+    resolution: {integrity: sha512-WUcUrGY0C+KhL3qRMh6QIZnOw4XvMO2LrWWfG4q7D48UwUHjEHbeYc82c8PamblJEav27ocdwosq6l1b9IqAZA==}
     engines: {node: '>=18'}
     dependencies:
+      '@contentful/content-source-maps': 0.5.0
       '@contentful/rich-text-types': 16.3.5
       axios: 1.6.8
       contentful-resolve-response: 1.8.1
@@ -2762,6 +2774,10 @@ packages:
       is-callable: 1.2.7
     dev: true
 
+  /foreach@2.0.6:
+    resolution: {integrity: sha512-k6GAGDyqLe9JaebCsFCoudPPWfihKu8pylYXRlqP1J7ms39iPoTtk2fviNglIeQEwdh0bQeKJ01ZPyuyQvKzwg==}
+    dev: false
+
   /foreground-child@3.1.1:
     resolution: {integrity: sha512-TMKDUnIte6bfb5nWv7V/caI169OHgvwjb7V4WkeUvbQQdjr5rWKqHFiKWb/fcOwB+CzBT+qbWjvj+DVwRskpIg==}
     engines: {node: '>=14'}
@@ -3635,6 +3651,12 @@ packages:
   /json-parse-even-better-errors@2.3.1:
     resolution: {integrity: sha512-xyFwyhro/JEof6Ghe2iz2NcXoj2sloNsWr/XsERDK/oiPCfaNhl5ONfp+jQdAZRQQ0IJWNzH9zIZF7li91kh2w==}
     requiresBuild: true
+
+  /json-pointer@0.6.2:
+    resolution: {integrity: sha512-vLWcKbOaXlO+jvRy4qNd+TI1QUPZzfJj1tpJ3vAXDych5XJf93ftpUKe5pKCrzyIIwgBJcOcCVRUfqQP25afBw==}
+    dependencies:
+      foreach: 2.0.6
+    dev: false
 
   /json-schema-traverse@0.4.1:
     resolution: {integrity: sha512-xbbCH5dCYU5T8LcEhhuh7HJ88HXuW3qsI3Y0zOZFKfZEHcpWiHU/Jxzk629Brsab/mMiHQti9wMP+845RPe3Vg==}
