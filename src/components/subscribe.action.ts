@@ -2,7 +2,7 @@
 
 import {apitable} from '@/utils/api-table';
 
-const datasheet = apitable.datasheet('dsttoPSYCcdrQcTYp9');
+const datasheet = apitable.datasheet('dstKt9KEFDMSvJBjxN');
 
 export async function addSubscriberAction({
   email,
