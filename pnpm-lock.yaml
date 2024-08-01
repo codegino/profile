@@ -54,8 +54,8 @@ dependencies:
     specifier: 18.3.1
     version: 18.3.1
   react-awesome-reveal:
-    specifier: 4.2.11
-    version: 4.2.11(@emotion/react@11.11.4)(react-dom@18.3.1)(react@18.3.1)
+    specifier: 4.2.14
+    version: 4.2.14(@emotion/react@11.11.4)(react-dom@18.3.1)(react@18.3.1)
   react-content-loader:
     specifier: 7.0.2
     version: 7.0.2(react@18.3.1)
@@ -4856,15 +4856,15 @@ packages:
       react-dom: 18.3.1(react@18.3.1)
     dev: false
 
-  /react-awesome-reveal@4.2.11(@emotion/react@11.11.4)(react-dom@18.3.1)(react@18.3.1):
-    resolution: {integrity: sha512-BXdU3nzZkRYf6h2lIx4SCMEERhIQd7wKheHKRH8U9601m1U2W4LrwEpKbpUxIPWSjcUwci4w7EotdfF+9ZQHhQ==}
+  /react-awesome-reveal@4.2.14(@emotion/react@11.11.4)(react-dom@18.3.1)(react@18.3.1):
+    resolution: {integrity: sha512-wknbDl+z5MIhQFfKKSj3iBJzvssqJLP8LbxQjW9OCyXPGtMSYvOFKwjG4/2p1de+qh5gqb8WBMQIYS6wVN3tNw==}
     peerDependencies:
       '@emotion/react': ^11.0.0
       react: '>=16.14.0'
     dependencies:
       '@emotion/react': 11.11.4(@types/react@18.3.3)(react@18.3.1)
       react: 18.3.1
-      react-intersection-observer: 9.10.3(react-dom@18.3.1)(react@18.3.1)
+      react-intersection-observer: 9.13.0(react-dom@18.3.1)(react@18.3.1)
       react-is: 18.3.1
     transitivePeerDependencies:
       - react-dom
@@ -4943,6 +4943,19 @@ packages:
 
   /react-intersection-observer@9.10.3(react-dom@18.3.1)(react@18.3.1):
     resolution: {integrity: sha512-9NYfKwPZRovB6QJee7fDg0zz/SyYrqXtn5xTZU0vwLtLVBtfu9aZt1pVmr825REE49VPDZ7Lm5SNHjJBOTZHpA==}
+    peerDependencies:
+      react: ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+      react-dom: ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+    peerDependenciesMeta:
+      react-dom:
+        optional: true
+    dependencies:
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+    dev: false
+
+  /react-intersection-observer@9.13.0(react-dom@18.3.1)(react@18.3.1):
+    resolution: {integrity: sha512-y0UvBfjDiXqC8h0EWccyaj4dVBWMxgEx0t5RGNzQsvkfvZwugnKwxpu70StY4ivzYuMajavwUDjH4LJyIki9Lw==}
     peerDependencies:
       react: ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
       react-dom: ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
