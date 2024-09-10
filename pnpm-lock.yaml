@@ -27,8 +27,8 @@ dependencies:
     specifier: 2.1.1
     version: 2.1.1
   contentful:
-    specifier: 10.12.7
-    version: 10.12.7
+    specifier: 10.15.1
+    version: 10.15.1
   i18next:
     specifier: 23.11.5
     version: 23.11.5
@@ -292,8 +292,8 @@ packages:
     dev: true
     optional: true
 
-  /@contentful/content-source-maps@0.6.0:
-    resolution: {integrity: sha512-REX3kUm4f2tkdfJArqblhKL7SMLfEG18eF3vcQA+8KdBqo+7lNS2W2CuPt2i8uvdgt1aKliGXJeJTgZjYFpCqw==}
+  /@contentful/content-source-maps@0.11.2:
+    resolution: {integrity: sha512-N85VAzEaeQw7tQq3++BksYoHafsXQjmDpeK+Eo6eBcy7Zi6Uwph9gHbaJ0c/vuTig1PtKEVDwzg2tbtQJWWxSg==}
     dependencies:
       '@vercel/stega': 0.1.2
       json-pointer: 0.6.2
@@ -1391,8 +1391,8 @@ packages:
       - supports-color
     dev: false
 
-  /axios@1.6.8:
-    resolution: {integrity: sha512-v/ZHtJDU39mDpyBoFVkETcd/uNdxrWRrg3bKpOKzXFA6Bvqopts6ALSMU3y6ijYxbw2B+wPrIv46egTzJXCLGQ==}
+  /axios@1.7.7:
+    resolution: {integrity: sha512-S4kL7XrjgBmvdGut0sN3yJxqYzrDOnivkBiN0OFs6hLiUam3UPvswUo0kqGyhqUZGEOytHyumEdXsAkgCOUf3Q==}
     dependencies:
       follow-redirects: 1.15.6
       form-data: 4.0.0
@@ -1721,16 +1721,16 @@ packages:
     resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==}
     dev: true
 
-  /contentful-resolve-response@1.8.1:
-    resolution: {integrity: sha512-VXGK2c8dBIGcRCknqudKmkDr2PzsUYfjLN6hhx71T09UzoXOdA/c0kfDhsf/BBCBWPWcLaUgaJEFU0lCo45TSg==}
+  /contentful-resolve-response@1.9.0:
+    resolution: {integrity: sha512-LtgPx/eREpHXOX82od48zFZbFhXzYw/NfUoYK4Qf1OaKpLzmYPE4cAY4aD+rxVgnMM5JN/mQaPCsofUlJRYEUA==}
     engines: {node: '>=4.7.2'}
     dependencies:
       fast-copy: 2.1.7
     dev: false
 
-  /contentful-sdk-core@8.1.2:
-    resolution: {integrity: sha512-XZvX2JMJF4YiICXLrHFv59KBHaQJ6ElqAP8gSNgnCu4x+pPG7Y1bC2JMNOiyAgJuGQGVUOcNZ5PmK+tsNEayYw==}
-    engines: {node: '>=12'}
+  /contentful-sdk-core@8.3.1:
+    resolution: {integrity: sha512-HYy4ecFA76ERxz7P0jW7hgDcL8jH+bRckv2QfAwQ4k1yPP9TvxpZwrKnlLM69JOStxVkCXP37HvbjbFnjcoWdg==}
+    engines: {node: '>=18'}
     dependencies:
       fast-copy: 2.1.7
       lodash.isplainobject: 4.0.6
@@ -1739,15 +1739,15 @@ packages:
       qs: 6.12.0
     dev: false
 
-  /contentful@10.12.7:
-    resolution: {integrity: sha512-qY2GyiwXK3Hb+QuyCSbNgvnF+Si7qlX0dG9KoqmJ3uiT8ga5jUikYw/BXjbZiqhsV5KI4IyXp2rhBcBKfj1YIQ==}
+  /contentful@10.15.1:
+    resolution: {integrity: sha512-vPgQvpzqWHauroXrhPOW03iz/ZVqZrv6BX2Fk/vMOlMMB7a+zrhUWAuUjY9WFDVMRcAwPhZF2Lvey6Nvyyd6sQ==}
     engines: {node: '>=18'}
     dependencies:
-      '@contentful/content-source-maps': 0.6.0
+      '@contentful/content-source-maps': 0.11.2
       '@contentful/rich-text-types': 16.3.5
-      axios: 1.6.8
-      contentful-resolve-response: 1.8.1
-      contentful-sdk-core: 8.1.2
+      axios: 1.7.7
+      contentful-resolve-response: 1.9.0
+      contentful-sdk-core: 8.3.1
       json-stringify-safe: 5.0.1
       type-fest: 4.12.0
     transitivePeerDependencies:
