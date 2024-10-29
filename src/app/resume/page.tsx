@@ -9,12 +9,10 @@ import LinkWrapper from './LinkWrapper';
 
 const CustomGithubCalendar = dynamicImport(
   () => import('../../components/CustomGithubCalendar'),
-  {ssr: false},
 );
 
-const Skills = dynamicImport(() => import('../../components/skills/Skills'), {
-  ssr: false,
-});
+const Skills = dynamicImport(() => import('../../components/skills/Skills'), 
+);
 
 export const metadata = {
   ...newCommonMetaTags('Resume Page', '/resume'),

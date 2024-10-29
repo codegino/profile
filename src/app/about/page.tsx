@@ -12,7 +12,6 @@ import {mapLocale} from '../i18n/map-locale.util';
 
 const TechStackCarousel = dynamicImport(
   () => import('../../components/TechStackCarousel'),
-  {ssr: false},
 );
 
 export async function generateMetadata(): Promise<Metadata> {

@@ -14,16 +14,17 @@ import type {Metadata, NextPage} from 'next';
 import Script from 'next/script';
 import path from 'path';
 
-export const generateMetadata = async ({
-  params: {slug},
-}: {
-  params: {slug: string};
-}): Promise<Metadata> => {
-  const postFilePath = path.join(BLOGS_PATH, `${slug}.mdx`);
+export const generateMetadata = async (
+  props: {
+    params: Promise<{slug: string}>;
+  }
+): Promise<Metadata> => {
+  const params = await props.params;
+  const postFilePath = path.join(BLOGS_PATH, `${params.slug}.mdx`);
   const source = fs.readFileSync(postFilePath);
 
   const {data: blog} = matter(source);
-  blog.slug = slug;
+  blog.slug = params.slug;
 
   const asset = await client.getAsset(blog.bannerId);
 
@@ -52,17 +53,18 @@ export const generateMetadata = async ({
 };
 
 const BlogPage: NextPage<{
-  params: {
+  params: Promise<{
     slug: string;
-  };
-}> = async ({params: {slug}}) => {
+  }>;
+}> = async ({params}) => {
+  const param = await params;
   const {
     frontMatter: blog,
     img,
     svg,
     content,
     scope,
-  } = await getStaticProps(slug);
+  } = await getStaticProps(param.slug);
 
   if (!blog) {
     return (

@@ -13,16 +13,17 @@ import BlogFooter from '@/modules/blog/BlogFooter';
 import {newCommonMetaTags} from '@/frontend-utils/meta-tags';
 import Script from 'next/script';
 
-export const generateMetadata = async ({
-  params: {slug},
-}: {
-  params: {slug: string};
-}): Promise<Metadata> => {
-  const postFilePath = path.join(NOVELS_PATH, `${slug}.mdx`);
+export const generateMetadata = async (
+  props: {
+    params: Promise<{slug: string}>;
+  }
+): Promise<Metadata> => {
+  const params = await props.params;
+  const postFilePath = path.join(NOVELS_PATH, `${params.slug}.mdx`);
   const source = fs.readFileSync(postFilePath);
 
   const {data: novel} = matter(source);
-  novel.slug = slug;
+  novel.slug = params.slug;
 
   const asset = await client.getAsset(novel.bannerId);
 
@@ -51,10 +52,16 @@ export const generateMetadata = async ({
 };
 
 const BlogPage: NextPage<{
-  params: {
+  params: Promise<{
     slug: string;
-  };
-}> = async ({params: {slug}}) => {
+  }>;
+}> = async props => {
+  const params = await props.params;
+
+  const {
+    slug
+  } = params;
+
   const {
     frontMatter: novel,
     img,

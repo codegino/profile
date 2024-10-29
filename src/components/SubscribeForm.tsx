@@ -71,14 +71,14 @@ const SubscribeForm = () => {
           <div className="flex flex-col py-4 px-8 gap-4">
             <Input
               type="email"
-              placeholder={'*' + t('form.email') ?? ''}
+              placeholder={'*' + t('form.email')}
               name="email"
               className="mb-2"
               required
             />
             <Input
               type="text"
-              placeholder={'*' + t('form.firstName') ?? ''}
+              placeholder={'*' + t('form.firstName')}
               name="firstName"
               required
             />
