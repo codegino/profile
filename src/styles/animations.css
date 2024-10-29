@@ -8,6 +8,18 @@
   }
 }
 
+@keyframes waveFloat {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
 .underline-on-hover {
   position: relative;
 }
@@ -19,8 +31,10 @@
   width: 100%;
   height: 2px;
   @apply bg-primary-600;
-  transition: width 0.3s ease;
-  animation: expandToFullWidth 0.5s;
+  transition: all 0.3s ease;
+  animation: expandToFullWidth 0.5s, waveFloat 1s ease-in-out infinite;
+  opacity: 0.9;
+  border-radius: 1px;
 }
 
 .underline--dark:hover::before {
