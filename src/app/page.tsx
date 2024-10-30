@@ -67,7 +67,7 @@ const HomePage: NextPage = async () => {
         className="flex justify-center items-center min-h-screen  h-screen w-full bg-neutral-200 dark:bg-neutral-900"
       >
         <BlinkProvider>
-          <div className="pt-36 -pb-36 flex gap-8 z-50 sticky top-0">
+          <div className="pt-36 -pb-36 flex gap-8 sticky top-0">
             <Eye />
             <Eye />
           </div>

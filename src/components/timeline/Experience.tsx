@@ -4,8 +4,8 @@ export const Experience: FunctionComponent<{
   hasConnector?: boolean;
   children: React.ReactNode;
 }> = ({children}) => {
-  // Generate a random rotation between -1 and 2 degrees
-  const rotation = Math.floor(Math.random() * 4) - 1;
+  // Generate a random rotation between -1 and 1 degrees
+  const rotation = Math.random() * 2 - 1;
 
   return (
     <div className="relative flex items-center flex-col z-10 mb-12 text-center max-w-6xl">
