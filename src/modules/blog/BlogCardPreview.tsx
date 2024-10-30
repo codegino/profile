@@ -12,23 +12,34 @@ type Props = {
 export const BlogCardPreview = ({blog}: Props) => {
   const {t} = useTranslation('common');
 
+  // Generate random rotations for note and stamp
+  const noteRotation = Math.random() * 6 - 3;
+  const stampRotation = Math.random() * 10 - 5;
+
   return (
-    <figure className="relative w-ful min-h-[20rem] text-center overflow-hidden shadow-sm hover:shadow-md hover:shadow-neutral-800 shadow-neutral-800 rounded-2xl bg-light md:max-w-4xl">
-      <NextLink href={`/blog/${blog.slug}`} aria-label={blog.title}>
-        <Image
-          src={blog.bannerId}
-          alt={blog.bannerDescription}
-          title={blog.bannerDescription}
-          fill={true}
-          className="object-cover"
-          placeholder="blur"
-          blurDataURL={blog.bannerId}
-        />
-        <figcaption className="absolute bottom-0 w-full bg-neutral-100 dark:bg-neutral-800 pb-4 opacity-[0.98] px-4 md:h-[10rem] flex flex-col justify-between">
-          <h2 className="line-clamp-2 text-balance text-xl">{blog.title}</h2>
-          <div>
-            <p className="line-clamp-1">{blog.description}</p>
-            <p className="mt-2 text-neutral-700 dark:text-neutral-300">
+    <NextLink href={`/blog/${blog.slug}`} aria-label={blog.title}>
+      <div
+        className="relative min-h-[16rem] w-full md:max-w-md p-6 m-4 bg-yellow-100 dark:bg-yellow-200 
+          hover:shadow-lg transition-all duration-300 cursor-pointer"
+        style={{
+          transform: `rotate(${noteRotation}deg)`,
+          boxShadow: '2px 3px 15px rgba(0,0,0,0.15)',
+          clipPath: 'polygon(0% 0%, 100% 1%, 100% 100%, 1% 100%)',
+        }}
+      >
+        <div className="absolute top-0 right-0 w-0 h-0 border-0 border-t-[40px] border-r-[40px] border-t-yellow-200 border-r-yellow-300 dark:border-t-yellow-300 dark:border-r-yellow-400" />
+
+        <div className="flex flex-col h-full">
+          <h2 className="mb-4 text-2xl font-bold text-neutral-800 line-clamp-2 text-balance">
+            {blog.title}
+          </h2>
+
+          <p className="flex-grow mb-4 text-neutral-700 line-clamp-3">
+            {blog.description}
+          </p>
+
+          <div className="flex justify-between items-end">
+            <p className="text-sm text-neutral-600 italic">
               {t('date', {
                 val: new Date(blog.date),
                 formatParams: {
@@ -41,9 +52,28 @@ export const BlogCardPreview = ({blog}: Props) => {
                 },
               })}
             </p>
+
+            {/* Stamp-like image */}
+            <div
+              className="relative w-24 h-24 border-2 border-neutral-800/20 rounded-sm overflow-hidden"
+              style={{
+                transform: `rotate(${stampRotation}deg)`,
+                boxShadow: '1px 1px 3px rgba(0,0,0,0.1)',
+              }}
+            >
+              <Image
+                src={blog.bannerId}
+                alt={blog.bannerDescription}
+                title={blog.bannerDescription}
+                fill={true}
+                className="object-cover grayscale opacity-90"
+                placeholder="blur"
+                blurDataURL={blog.bannerId}
+              />
+            </div>
           </div>
-        </figcaption>
-      </NextLink>
-    </figure>
+        </div>
+      </div>
+    </NextLink>
   );
 };

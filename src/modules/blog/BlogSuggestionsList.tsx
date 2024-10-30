@@ -23,7 +23,7 @@ const BlogSuggestionsList = ({blogs}: Props) => {
           {t('blogs')}
         </NextLink>
       </h2>
-      <div className="grid-cols-1 w-screen px-6 mb-0 grid md:grid-cols-2 md:max-w-4xl gap-8 ">
+      <div className="grid-cols-1 w-screen px-8 mb-0 grid md:grid-cols-2 md:max-w-4xl gap-8 ">
         {blogs.map(blog => (
           <BlogCardPreview blog={blog} key={blog.slug} />
         ))}
