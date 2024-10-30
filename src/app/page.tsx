@@ -13,6 +13,7 @@ import {getBlogsMetadata} from '../utils/mdx.utils';
 import {fetchSkills} from '../utils/resume-props';
 import {createTranslation} from './i18n/server';
 import {blogAssets} from '@/data/blog-asset';
+import Eye from '@/components/Eye';
 
 const SubscribeForm = dynamicImport(
   () => import('../components/SubscribeForm'),
@@ -64,6 +65,9 @@ const HomePage: NextPage = async () => {
         bl
         className="isolate flex justify-center items-center min-h-screen w-full bg-neutral-200 dark:bg-neutral-900"
       >
+        <div className="pt-12 -pb-8">
+          <Eye />
+        </div>
         <GreetingsContent />
         <svg
           className="absolute inset-0 -z-10 h-full w-full stroke-primary-900 dark:stroke-primary-50 [mask-image:radial-gradient(50%_105%_at_bottom,black,transparent)]"
