@@ -14,6 +14,7 @@ import {fetchSkills} from '../utils/resume-props';
 import {createTranslation} from './i18n/server';
 import {blogAssets} from '@/data/blog-asset';
 import Eye from '@/components/Eye';
+import {BlinkProvider} from '../contexts/BlinkContext';
 
 const SubscribeForm = dynamicImport(
   () => import('../components/SubscribeForm'),
@@ -63,11 +64,14 @@ const HomePage: NextPage = async () => {
       />
       <FullScreenWrapper
         bl
-        className="isolate flex justify-center items-center min-h-screen w-full bg-neutral-200 dark:bg-neutral-900"
+        className="flex justify-center items-center min-h-screen  h-screen w-full bg-neutral-200 dark:bg-neutral-900"
       >
-        <div className="pt-12 -pb-8">
-          <Eye />
-        </div>
+        <BlinkProvider>
+          <div className="pt-36 -pb-36 flex gap-8 z-50 sticky top-0">
+            <Eye />
+            <Eye />
+          </div>
+        </BlinkProvider>
         <GreetingsContent />
         <svg
           className="absolute inset-0 -z-10 h-full w-full stroke-primary-900 dark:stroke-primary-50 [mask-image:radial-gradient(50%_105%_at_bottom,black,transparent)]"

@@ -1,9 +1,11 @@
 'use client';
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
+import {useBlink} from '../contexts/BlinkContext';
 
 export default function Eye() {
+  const isBlinking = useBlink();
   const [position, setPosition] = useState({x: 0, y: 0});
-  const [isBlinking, setIsBlinking] = useState(false);
+  const [isMouseOver, setIsMouseOver] = useState(false);
   const eyeRef = React.useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -27,18 +29,11 @@ export default function Eye() {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, [isBlinking]);
 
-  useEffect(() => {
-    const blinkInterval = setInterval(() => {
-      setIsBlinking(true);
-      setTimeout(() => setIsBlinking(false), 150); // Blink duration
-    }, 5000); // Blink every 5 seconds (adjust 'n' seconds as needed)
-
-    return () => clearInterval(blinkInterval);
-  }, []);
-
   return (
     <div
       ref={eyeRef}
+      onMouseEnter={() => setIsMouseOver(true)}
+      onMouseLeave={() => setIsMouseOver(false)}
       style={{
         width: 120,
         height: 60,
@@ -71,7 +66,8 @@ export default function Eye() {
           width: '100%',
           height: '100%',
           backgroundColor: '#ccc', // Set eyelid color to light gray
-          transform: isBlinking ? 'translateY(0%)' : 'translateY(-100%)',
+          transform:
+            isBlinking || isMouseOver ? 'translateY(0%)' : 'translateY(-100%)',
           transition: 'transform 0.15s',
         }}
       />
