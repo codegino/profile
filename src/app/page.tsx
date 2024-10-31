@@ -13,8 +13,7 @@ import {getBlogsMetadata} from '../utils/mdx.utils';
 import {fetchSkills} from '../utils/resume-props';
 import {createTranslation} from './i18n/server';
 import {blogAssets} from '@/data/blog-asset';
-import Eye from '@/components/Eye';
-import {BlinkProvider} from '../contexts/BlinkContext';
+import ParallaxEyes from '../components/ParallaxEyes';
 
 const SubscribeForm = dynamicImport(
   () => import('../components/SubscribeForm'),
@@ -66,13 +65,9 @@ const HomePage: NextPage = async () => {
         bl
         className="flex justify-center items-center min-h-screen  h-screen w-full bg-neutral-200 dark:bg-neutral-900"
       >
-        <BlinkProvider>
-          <div className="pt-36 -pb-36 flex gap-8 sticky top-0">
-            <Eye />
-            <Eye />
-          </div>
-        </BlinkProvider>
+        <ParallaxEyes />
         <GreetingsContent />
+
         <svg
           className="absolute inset-0 -z-10 h-full w-full stroke-primary-900 dark:stroke-primary-50 [mask-image:radial-gradient(50%_105%_at_bottom,black,transparent)]"
           aria-hidden="true"
