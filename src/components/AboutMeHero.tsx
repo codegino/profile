@@ -20,7 +20,7 @@ export default function AboutMeHero({
   const {scrollToContent} = useScrollToView('#about-me-details');
 
   return (
-    <div className="overflow-hidden relative h-[92vh] m-auto flex justify-center max-w-[2100px]">
+    <div className="relative m-auto flex h-[92vh] max-w-[2100px] justify-center overflow-hidden">
       <BlurringImage
         alt="weird quote"
         title="weird quote"
@@ -31,8 +31,8 @@ export default function AboutMeHero({
         priority={true}
       />
       <div
-        className="absolute flex flex-col justify-start flex-wrap max-w-4xl
-          top-2 sm:top-8 left-8 text-left text-shadow"
+        className="text-shadow absolute left-8 top-2 flex max-w-4xl
+          flex-col flex-wrap justify-start text-left sm:top-8"
       >
         {quote.map((word, i) => (
           <Zoom
@@ -41,7 +41,7 @@ export default function AboutMeHero({
             triggerOnce
             className="last:mt-8"
           >
-            <p className="text-4xl lg:text-6xl bg-transparent">{word}</p>
+            <p className="bg-transparent text-4xl lg:text-6xl">{word}</p>
           </Zoom>
         ))}
       </div>

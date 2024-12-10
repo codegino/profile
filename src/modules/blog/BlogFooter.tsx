@@ -10,7 +10,7 @@ import ShareToSocialMedia from './ShareToSocialMedia';
 
 const BlogFooter = ({blog}: {blog: IBlogMetadata}) => {
   return (
-    <footer className="flex w-full m-auto flex-col text-center">
+    <footer className="m-auto flex w-full flex-col text-center">
       <ShareToSocialMedia blog={blog} />
 
       <p className="my-4 text-neutral-700 dark:text-neutral-300">
@@ -22,13 +22,13 @@ const BlogFooter = ({blog}: {blog: IBlogMetadata}) => {
         Get latest updates directly into your mailbox.
       </p>
       <form action={`/#subscribe`} className="flex justify-center">
-        <SubscribeButton className="px-5 bg-primary-900 flex items-center font-semibold">
-          <FaEnvelopeOpenText size={25} className="text-white mr-2" />
+        <SubscribeButton className="flex items-center bg-primary-900 px-5 font-semibold">
+          <FaEnvelopeOpenText size={25} className="mr-2 text-white" />
           <span className="text-white">Subscribe to my Newsletter</span>
         </SubscribeButton>
       </form>
 
-      <p className="mt-4 mb-2 text-neutral-700 dark:text-neutral-300">
+      <p className="mb-2 mt-4 text-neutral-700 dark:text-neutral-300">
         <i>Connect with me</i>
       </p>
       <NextLink
@@ -38,7 +38,7 @@ const BlogFooter = ({blog}: {blog: IBlogMetadata}) => {
         className="mt-2"
         rel="noreferrer"
       >
-        <span className="relative h-10 bg-[#1da1f2] text-white py-2 px-6 rounded-3xl hover:shadow-sm hover:shadow-neutral-800">
+        <span className="relative h-10 rounded-3xl bg-[#1da1f2] px-6 py-2 text-white hover:shadow-sm hover:shadow-neutral-800">
           <FaTwitter /> Follow @codegino
         </span>
       </NextLink>

@@ -13,13 +13,13 @@ export const LogoWrapper: FunctionComponent<{className?: string}> = ({
   const path = usePathname();
 
   return (
-    <div className={clsx('flex items-center min-w-max ml-2.5 mr-6', className)}>
-      <div className="h-10 w-10 relative left-[-1px] z-50 lg:hidden ">
+    <div className={clsx('ml-2.5 mr-6 flex min-w-max items-center', className)}>
+      <div className="relative -left-px z-50 size-10 lg:hidden ">
         {!isSidebarVisible && (
           <Logo className="animate-spin-fast" onClick={showSidebar} />
         )}
       </div>
-      <Logo className="hidden lg:flex relative left-[-1px]  cursor-default" />
+      <Logo className="relative -left-px hidden cursor-default  lg:flex" />
 
       <NextLink href="/" aria-label="Code Gino">
         <span

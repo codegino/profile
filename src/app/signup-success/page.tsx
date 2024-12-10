@@ -1,4 +1,4 @@
-import {Metadata} from 'next';
+import type {Metadata} from 'next';
 import {newCommonMetaTags} from '../../frontend-utils/meta-tags';
 
 export const metadata: Metadata = {
@@ -9,8 +9,8 @@ export const metadata: Metadata = {
 export default function Blog() {
   return (
     <>
-      <main className="flex items-center flex-col min-h-[80vh] py-8">
-        <article className="textc max-w-2xl">
+      <main className="flex min-h-[80vh] flex-col items-center py-8">
+        <article className="max-w-2xl">
           <h1>Success🥳</h1>
           <h2>Welcome aboard to my newsletter! 📬</h2>
 

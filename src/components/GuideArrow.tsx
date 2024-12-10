@@ -7,7 +7,7 @@ type Props = {
 
 export const GuideArrow = ({onClick}: Props) => {
   return (
-    <div className="animate-bounce cursor-pointer bg-primary-600 text-neutral-200 rounded-full flex justify-center items-center h-16 w-16 text-3xl">
+    <div className="flex size-16 animate-bounce cursor-pointer items-center justify-center rounded-full bg-primary-600 text-3xl text-neutral-200">
       <BsChevronDoubleDown
         size={37}
         className="guide-arrow"

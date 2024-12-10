@@ -48,8 +48,8 @@ const SubscribeForm = () => {
 
   return (
     <>
-      <div className="h-screen min-h-[40rem] px-2 w-full flex flex-col items-center justify-center">
-        <div className="text-center max-w-2xl">
+      <div className="flex h-screen min-h-[40rem] w-full flex-col items-center justify-center px-2">
+        <div className="max-w-2xl text-center">
           <h2 className="my-8 text-4xl">{t('title')}</h2>
           <h3 className="mb-8 text-2xl">{t('subtitle')}</h3>
           <h4 className="text-neutral-700 dark:text-neutral-400">
@@ -61,14 +61,14 @@ const SubscribeForm = () => {
 
         <form
           onSubmit={handleSubmit}
-          className="relative mt-8 overflow-hidden w-full dark:bg-neutral-800
-          max-w-xl min-w-2xl mb-24 rounded-2xl min-h-[23rem] ring-1 ring-neutral-700 bg-white/90"
+          className="min-w-2xl relative mb-24 mt-8 min-h-[23rem]
+          w-full max-w-xl overflow-hidden rounded-2xl bg-white/90 ring-1 ring-neutral-700 dark:bg-neutral-800"
           id="1j27oq"
         >
-          <div className="flex justify-center py-4 items-center">
+          <div className="flex items-center justify-center py-4">
             <p className="text-2xl">{t('form.title')}</p>
           </div>
-          <div className="flex flex-col py-4 px-8 gap-4">
+          <div className="flex flex-col gap-4 px-8 py-4">
             <Input
               type="email"
               placeholder={'*' + t('form.email')}
@@ -88,13 +88,13 @@ const SubscribeForm = () => {
               name="lastName"
             />
             {error && (
-              <div className="w-full text-center text-red-500 font-bold">
+              <div className="w-full text-center font-bold text-red-500">
                 {error}
               </div>
             )}
             <Button
               type="submit"
-              className="text-xl mt-4 font-bold disabled:bg-slate-500 disabled:text-slate-50 disabled:cursor-not-allowed"
+              className="mt-4 text-xl font-bold disabled:cursor-not-allowed disabled:bg-slate-500 disabled:text-slate-50"
               disabled={isLoading}
             >
               {t('form.button')}

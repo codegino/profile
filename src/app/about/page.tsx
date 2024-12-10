@@ -39,7 +39,7 @@ const AboutMePage: NextPage = async () => {
               >
                 <h3 className="mb-4 text-xl">{detail.label}</h3>
                 <div
-                  className="text-justify max-w-screen-md px-4"
+                  className="max-w-screen-md px-4 text-justify"
                   dangerouslySetInnerHTML={{
                     __html: dompurify.sanitize(detail.content),
                   }}
@@ -52,7 +52,7 @@ const AboutMePage: NextPage = async () => {
         <h2 className="text-center">This website is powered by</h2>
         <TechStackCarousel techStacks={techStacks} />
 
-        <section className="mt-4 mb-2">
+        <section className="mb-2 mt-4">
           <h4 className="text-center">
             This awesome carousel is easily made using&nbsp;
             <NextLink

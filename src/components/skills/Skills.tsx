@@ -20,7 +20,7 @@ export default function Skills({skills}: {skills: CategorizedSkill[]}) {
 
   return (
     <div className="flex justify-center">
-      <article className="flex justify-center items-center flex-col pb-2 overflow-hidden max-w-3xl">
+      <article className="flex max-w-3xl flex-col items-center justify-center overflow-hidden pb-2">
         <h2>
           <FaDumbbell />
           &nbsp; {t('skills')}
@@ -29,12 +29,12 @@ export default function Skills({skills}: {skills: CategorizedSkill[]}) {
           return (
             <section className="mb-4" key={category.category}>
               <Zoom direction="down" triggerOnce>
-                <h3 className="text-center my-2 text-lg">
+                <h3 className="my-2 text-center text-lg">
                   {getSkillCategoryIcon(category.category)}&nbsp;
                   {category.category.toUpperCase()}
                 </h3>
               </Zoom>
-              <div className="max-w-5xl flex flex-wrap justify-center gap-y-3">
+              <div className="flex max-w-5xl flex-wrap justify-center gap-y-3">
                 {category.skills.map((skill, i) => {
                   return (
                     <Zoom
@@ -46,8 +46,8 @@ export default function Skills({skills}: {skills: CategorizedSkill[]}) {
                       <NextLink
                         key={i}
                         href={skill.url}
-                        className="py-1 px-3  rounded-lg ring-1 ring-neutral-800 mr-2
-                    bg-neutral-700 hover:bg-neutral-100 text-neutral-100 hover:text-neutral-800"
+                        className="mr-2 rounded-lg  bg-neutral-700 px-3 py-1 text-neutral-100
+                    ring-1 ring-neutral-800 hover:bg-neutral-100 hover:text-neutral-800"
                         title={`Click to visit ${skill.name}`}
                         target="_blank"
                         aria-label={skill.name}

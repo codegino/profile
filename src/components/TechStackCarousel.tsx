@@ -15,7 +15,7 @@ type Props = {
 
 export default function TechStackCarousel({techStacks}: Props) {
   return (
-    <div className="text-center flex justify-center overflow-hidden">
+    <div className="flex justify-center overflow-hidden text-center">
       <div>
         <Carousel
           infiniteLoop
@@ -29,7 +29,7 @@ export default function TechStackCarousel({techStacks}: Props) {
           {techStacks.map(techstack => {
             return (
               <div
-                className="bg-light py-10 h-[300px] w-[40px]"
+                className="bg-light h-[300px] w-[40px] py-10"
                 key={techstack.name}
               >
                 {techstack.url ? (

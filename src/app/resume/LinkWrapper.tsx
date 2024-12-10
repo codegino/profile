@@ -10,7 +10,7 @@ const LinkWrapper: FC<{
   resumeWordUrl: string;
 }> = ({resumePdfUrl, resumeWordUrl}) => {
   return (
-    <div className="absolute flex right-5 top-3 sm:top-24">
+    <div className="absolute right-5 top-3 flex sm:top-24">
       <NextLink
         href={resumePdfUrl}
         target="_blank"

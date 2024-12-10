@@ -1,7 +1,7 @@
 import Image, {type ImageProps} from 'next/image';
 
 const BlogImg = ({width = 1100, height = 600, ...props}: ImageProps) => (
-  <div className="w-full h-full px-8">
+  <div className="size-full px-8">
     <Image
       {...props}
       width={width}

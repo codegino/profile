@@ -19,7 +19,7 @@ export default async function NFT() {
 
       <div>
         {collections.map(({name, details, contractAddress, owned, slug}) => (
-          <div key={name} className="flex flex-col items-center mb-10">
+          <div key={name} className="mb-10 flex flex-col items-center">
             <span
               aria-hidden="true"
               tabIndex={-1}
@@ -33,14 +33,14 @@ export default async function NFT() {
               target="_blank"
               className="flex flex-col items-center"
             >
-              <h2 className="text-2xl text-primary-900 dark:text-primary-300 mb-4 underline-on-hover">
+              <h2 className="underline-on-hover mb-4 text-2xl text-primary-900 dark:text-primary-300">
                 {name}
               </h2>
             </NextLink>
-            <div className="max-w-[400px] md:max-w-[800px] mb-4 text-center">
+            <div className="mb-4 max-w-screen-xs text-center md:max-w-[800px]">
               {details}
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
               {owned.map(({id, img, name: itemName}) => (
                 <div key={id} className="flex flex-col items-center">
                   <Image
@@ -59,9 +59,9 @@ export default async function NFT() {
                     aria-label={`Collection #${id}`}
                     title={`${name} #${id}`}
                     target="_blank"
-                    className="text-primary-900 dark:text-primary-300 underline-on-hover"
+                    className="underline-on-hover text-primary-900 dark:text-primary-300"
                   >
-                    <div className="text-xl mt-1">{itemName}</div>
+                    <div className="mt-1 text-xl">{itemName}</div>
                   </NextLink>
                 </div>
               ))}
@@ -70,14 +70,14 @@ export default async function NFT() {
         ))}
       </div>
 
-      <div className="text-center mb-10">
+      <div className="mb-10 text-center">
         <h3>Check all of my collections</h3>
         <p className="text-xl">
           <NextLink
             href="https://opensea.io/02CG"
             aria-label="OpenSea"
             title="OpenSea"
-            className="text-primary-900 dark:text-primary-300 underline-on-hover"
+            className="underline-on-hover text-primary-900 dark:text-primary-300"
           >
             <span className="text-xl">OpenSea</span>
           </NextLink>
@@ -87,7 +87,7 @@ export default async function NFT() {
             href="https://nametag.org/u/0xCG"
             aria-label="Nametag"
             title="Nametag"
-            className="text-primary-900 dark:text-primary-300 underline-on-hover"
+            className="underline-on-hover text-primary-900 dark:text-primary-300"
           >
             <span className="text-xl">Nametag</span>
           </NextLink>

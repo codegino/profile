@@ -74,7 +74,7 @@ const BlogsWrapper = ({blogs}: {blogs: IBlogMetadata[]}) => {
           <h2>Empty result👎</h2>
           <h3>Try a different combination</h3>
           <button
-            className="px-4 py-2 mt-4 text-white bg-primary-600 rounded-md hover:bg-primary-700"
+            className="mt-4 rounded-md bg-primary-600 px-4 py-2 text-white hover:bg-primary-700"
             onClick={() => {
               setSelectedTags(null);
               setSearch(null);

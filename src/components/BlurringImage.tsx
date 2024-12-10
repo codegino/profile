@@ -29,7 +29,7 @@ export function BlurringImage({
   img;
   return (
     <div
-      className={clsx('relative overflow-hidden h-full w-full', className)}
+      className={clsx('relative size-full overflow-hidden', className)}
       style={style}
     >
       {hasPlaceholder && (

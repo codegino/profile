@@ -13,12 +13,12 @@ const BlogHeader: FunctionComponent<Props> = ({blog, img, svg}) => {
   const {t} = useTranslation('common');
 
   return (
-    <article className="sm:pt-4 text-center flex flex-col items-center">
-      <h1 className="mb-0 text-4xl text-balance">{blog.title}</h1>
+    <article className="flex flex-col items-center text-center sm:pt-4">
+      <h1 className="mb-0 text-balance text-4xl">{blog.title}</h1>
       {blog.description && (
         <h2 className="description text-balance">{blog.description}</h2>
       )}
-      <p className="mb-4 text-neutral-700 dark:text-neutral-200 w-full">
+      <p className="mb-4 w-full text-neutral-700 dark:text-neutral-200">
         {t('date', {
           val: new Date(blog.date),
           formatParams: {
@@ -32,7 +32,7 @@ const BlogHeader: FunctionComponent<Props> = ({blog, img, svg}) => {
         })}
       </p>
       {img && svg && !blog.hideBanner ? (
-        <div className="relative h-[60vh] w-[95vw] lg:h-[35rem] lg:w-[65rem] max-h-[35rem] md:max-h-[50rem] lg:px-10 flex justify-center items-center">
+        <div className="relative flex h-[60vh] max-h-[35rem] w-[95vw] items-center justify-center md:max-h-[50rem] lg:h-[35rem] lg:w-[65rem] lg:px-10">
           <BlurringImage
             alt={blog.bannerDescription}
             title={blog.bannerDescription}
@@ -40,12 +40,12 @@ const BlogHeader: FunctionComponent<Props> = ({blog, img, svg}) => {
             svg={svg}
             fill
             priority={true}
-            className="rounded-xl shadow-sm shadow-neutral-900 object-cover object-center"
+            className="rounded-xl object-cover object-center shadow-sm shadow-neutral-900"
           />
         </div>
       ) : null}
       {blog.bannerDescription ? (
-        <aside className="line-clamp-1 mt-1 w-full text-neutral-700 dark:text-neutral-200 text-sm">
+        <aside className="mt-1 line-clamp-1 w-full text-sm text-neutral-700 dark:text-neutral-200">
           {blog.bannerDescription}
         </aside>
       ) : null}

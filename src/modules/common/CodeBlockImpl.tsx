@@ -82,10 +82,10 @@ const CodeBlockImpl: FunctionComponent<CodeBlockProps> = ({
         {!noHeader && (
           <span
             className="
-        ring-1 ring-neutral-200 dark:ring-neutral-800 file:bg-neutral-100 text-right w-full pl-2 pr-1 top-1 h-6 relative flex justify-between rounded-tr-lg rounded-tl-lg
+        relative top-1 flex h-6 w-full justify-between rounded-t-lg pl-2 pr-1 text-right ring-1 ring-neutral-200 file:bg-neutral-100 dark:ring-neutral-800
         "
           >
-            <span className="inline-block text-ellipsis whitespace-nowrap overflow-hidden text-neutral-700 dark:text-neutral-300">
+            <span className="inline-block truncate text-neutral-700 dark:text-neutral-300">
               {fileName ? fileName : ''}
               {!noExt && languageLabel}
             </span>
@@ -100,22 +100,22 @@ const CodeBlockImpl: FunctionComponent<CodeBlockProps> = ({
           {({className, style, tokens, getLineProps, getTokenProps}) => (
             <div className="relative">
               {!noLine && (
-                <span className="absolute z-10 flex flex-col left-0 top-0 pt-2 bottom-0 rounded-md">
+                <span className="absolute inset-y-0 left-0 z-10 flex flex-col rounded-md pt-2">
                   {tokens.map((_, i) => (
                     <span
-                      className="bg-[#1e1e1e] pl-2 pr-3 text-white text-right leading-[1.188]
-                    max-w-[2rem] min-w-[2rem] select-none
+                      className="min-w-8 max-w-8 select-none bg-[#1e1e1e] pl-2 pr-3
+                    text-right leading-[1.188] text-white
                     "
                       key={i}
                     >
                       {i + 1}
                       {add && addedLines.has(i + 1) && (
-                        <span className="w-[4.25ch] inline-block absolute left-0 text-right text-green-400">
+                        <span className="absolute left-0 inline-block w-[4.25ch] text-right text-green-400">
                           +
                         </span>
                       )}
                       {del && removedLines.has(i + 1) && (
-                        <span className="w-[4.25ch] inline-block absolute left-0 text-right text-red-400">
+                        <span className="absolute left-0 inline-block w-[4.25ch] text-right text-red-400">
                           -
                         </span>
                       )}
@@ -126,8 +126,8 @@ const CodeBlockImpl: FunctionComponent<CodeBlockProps> = ({
 
               <span
                 className={clsx(
-                  'p-2 pl-2 overflow-auto flex relative flex-col leading-[1.188] my-1 text-lg',
-                  'rounded-bl-md rounded-br-md shadow-sm shadow-black no-scrollbar',
+                  'relative my-1 flex flex-col overflow-auto p-2 text-lg leading-[1.188]',
+                  'no-scrollbar rounded-b-md shadow-sm shadow-black',
                   className,
                   {
                     'pl-8': !noLine,

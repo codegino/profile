@@ -72,7 +72,7 @@ const BlogPage: NextPage<{
 
   if (!novel) {
     return (
-      <div className="h-[80vh] w-full bg-transparent text-center pt-10">
+      <div className="h-[80vh] w-full bg-transparent pt-10 text-center">
         <h2>Please wait</h2>
         <h3>Using magic to load content...</h3>
       </div>

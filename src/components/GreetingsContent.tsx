@@ -17,25 +17,25 @@ const GreetingsContent: FC = () => {
 
   return (
     <>
-      <div className="flex justify-center items-center h-screen w-screen relative md:max-w-[40rem] pb-[25vh]">
+      <div className="relative flex h-screen w-screen items-center justify-center pb-[25vh] md:max-w-[40rem]">
         <div
           className="
-            @container w-full m-2 sm:m-0 sm:w-[95%] lg:w-[50rem]
-            rounded-lg overflow-hidden text-[7px]  ring-black/90 dark:ring-zinc-500/90 ring-2
+            m-2 w-full overflow-hidden rounded-lg text-[7px] ring-2
+            ring-black/90 @container dark:ring-zinc-500/90  sm:m-0 sm:w-[95%] lg:w-[50rem]
           "
         >
-          <div className="bg-zinc-100 dark:bg-neutral-700 relative min-h-[2rem] h-8 flex items-center pl-2 border-b border-black/20 dark:border-white/20">
-            <div className="min-h-[0.75rem] min-w-[0.75rem] rounded-full mr-2 bg-red-500" />
-            <div className="min-h-[0.75rem] min-w-[0.75rem] rounded-full mr-2 bg-yellow-300" />
-            <div className="min-h-[0.75rem] min-w-[0.75rem] rounded-full mr-3 bg-green-600" />
+          <div className="relative flex h-8 min-h-8 items-center border-b border-black/20 bg-zinc-100 pl-2 dark:border-white/20 dark:bg-neutral-700">
+            <div className="mr-2 min-h-3 min-w-3 rounded-full bg-red-500" />
+            <div className="mr-2 min-h-3 min-w-3 rounded-full bg-yellow-300" />
+            <div className="mr-3 min-h-3 min-w-3 rounded-full bg-green-600" />
             <BsTerminalFill size={18} />
-            <div className="relative md:absolute w-full justify-self-center text-center text-base font-mono">
+            <div className="relative w-full justify-self-center text-center font-mono text-base md:absolute">
               {t('greetings.filename')}
             </div>
           </div>
           <div
-            className="h-[21rem] @sm:h-[20rem] @md:h-[19rem]
-            py-1 px-1 font-mono bg-neutral-100 dark:bg-neutral-800 text-[8px] leading-[1.2] text-neutral-900 dark:text-neutral-50"
+            className="h-[21rem] bg-neutral-100 p-1
+            font-mono text-[8px] leading-[1.2] text-neutral-900 @sm:h-80 @md:h-[19rem] dark:bg-neutral-800 dark:text-neutral-50"
           >
             <Typist
               avgTypingDelay={10}
@@ -116,7 +116,7 @@ const GreetingsContent: FC = () => {
 
 const StyledBsChevronRight = () => {
   return (
-    <BsChevronRight className="text-[0.8rem] xs:text-xs sm:text-sm md:text-base text-primary-700 dark:text-primary-100" />
+    <BsChevronRight className="text-[0.8rem] text-primary-700 dark:text-primary-100 xs:text-xs sm:text-sm md:text-base" />
   );
 };
 

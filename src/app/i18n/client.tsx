@@ -1,10 +1,10 @@
 'use client';
 
 import {useEffect} from 'react';
-import i18next, {i18n} from 'i18next';
+import i18next, {type i18n} from 'i18next';
 import {initReactI18next, useTranslation as useTransAlias} from 'react-i18next';
 import resourcesToBackend from 'i18next-resources-to-backend';
-import {Locales, getOptions, supportedLocales} from './settings';
+import {type Locales, getOptions, supportedLocales} from './settings';
 import {useLocale} from '../hooks/locale-provider';
 
 const runsOnServerSide = typeof window === 'undefined';
@@ -33,7 +33,6 @@ export function useTranslation(ns: string) {
     i18n.changeLanguage(lng);
   } else {
     // Use our custom implementation when running on client side
-    // eslint-disable-next-line react-hooks/rules-of-hooks
     useCustomTranslationImplem(i18n, lng);
   }
   return translator;

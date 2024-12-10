@@ -8,7 +8,7 @@ export default function CustomIcon(sm: IconProps) {
   return (
     <sm.icon
       size={sm.size || 32}
-      className="icon text-neutral-100 hover:bg-white hover:rounded"
+      className="icon text-neutral-100 hover:rounded hover:bg-white"
       style={{
         fill: hover ? sm.hoverColor : sm.color,
       }}

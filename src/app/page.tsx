@@ -1,5 +1,5 @@
 import GreetingsContent from '@/components/GreetingsContent';
-import {NextPage} from 'next';
+import type {NextPage} from 'next';
 import dynamicImport from 'next/dynamic';
 import Script from 'next/script';
 import {FullScreenWrapper} from '../components/FullScreenWrapper';
@@ -63,13 +63,13 @@ const HomePage: NextPage = async () => {
       />
       <FullScreenWrapper
         bl
-        className="flex justify-center items-center min-h-screen  h-screen w-full bg-neutral-200 dark:bg-neutral-900"
+        className="flex h-screen min-h-screen w-full  items-center justify-center bg-neutral-200 dark:bg-neutral-900"
       >
         <ParallaxEyes />
         <GreetingsContent />
 
         <svg
-          className="absolute inset-0 -z-10 h-full w-full stroke-primary-900 dark:stroke-primary-50 [mask-image:radial-gradient(50%_105%_at_bottom,black,transparent)]"
+          className="absolute inset-0 -z-10 size-full stroke-primary-900 [mask-image:radial-gradient(50%_105%_at_bottom,black,transparent)] dark:stroke-primary-50"
           aria-hidden="true"
         >
           <defs>
@@ -101,13 +101,13 @@ const HomePage: NextPage = async () => {
         >
           <ResumeSummary img={profileImage} svg={profileSvg} />
           <Skills skills={skills} />
-          <div className="text-center my-10">
+          <div className="my-10 text-center">
             <p className="text-xl">
               {t('visitSkills.1')}
               <NextLink
                 href="/resume#skills"
                 aria-label="full skills list"
-                className="text-primary-900 dark:text-primary-300 underline-on-hover"
+                className="underline-on-hover text-primary-900 dark:text-primary-300"
               >
                 <span className="text-xl">{t('visitSkills.2')}</span>
               </NextLink>
@@ -121,26 +121,26 @@ const HomePage: NextPage = async () => {
         <FullScreenWrapper
           tl
           br
-          className="bg-neutral-100 dark:bg-neutral-800 px-2"
+          className="bg-neutral-100 px-2 dark:bg-neutral-800"
         >
-          <div className="w-full flex justify-center">
+          <div className="flex w-full justify-center">
             <div className="max-w-6xl">
               <CustomGithubCalendar />
             </div>
           </div>
-          <div className="w-full flex justify-center mb-10">
+          <div className="mb-10 flex w-full justify-center">
             <div className="w-full max-w-4xl">
               <WakatimeCharts />
             </div>
           </div>
-          <div className="text-center mb-10">
+          <div className="mb-10 text-center">
             <p className="text-lg">
               {t('visitResume.1')}
               <NextLink
                 href="/resume"
                 aria-label="resume"
                 title="Link to my resume"
-                className="text-lg text-primary-900 dark:text-primary-300 underline-on-hover"
+                className="underline-on-hover text-lg text-primary-900 dark:text-primary-300"
               >
                 <span className="text-lg">{t('visitResume.2')}</span>
               </NextLink>
@@ -150,7 +150,7 @@ const HomePage: NextPage = async () => {
         </FullScreenWrapper>
       </main>
       <FullScreenWrapper
-        className="bg-neutral-50 dark: dark:bg-neutral-700"
+        className="bg-neutral-50 dark:bg-neutral-700"
         tr
         bl
         id="subscribe"
@@ -170,7 +170,7 @@ const getStaticProps = async () => {
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
     .slice(0, 4);
 
-  for (let blog of blogs) {
+  for (const blog of blogs) {
     blog.bannerId = blogAssets[blog.slug];
   }
 

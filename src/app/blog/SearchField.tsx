@@ -44,7 +44,7 @@ function DebouncedInput({
   return (
     <input
       {...props}
-      className="md:pl-8 bg-transparent focus:outline-none w-full ring-1 ring-neutral-500 dark:ring-neutral-200 rounded-md"
+      className="w-full rounded-md bg-transparent ring-1 ring-neutral-500 focus:outline-none dark:ring-neutral-200 md:pl-8"
       value={value}
       onChange={e => setValue(e.target.value)}
     />
@@ -72,8 +72,8 @@ export default function SearchField() {
   };
 
   return (
-    <div className="relative flex items-center w-96">
-      <SearchIcon className="absolute w-4 h-4 ml-2  text-neutral-600 dark:text-neutral-200" />
+    <div className="relative flex w-96 items-center">
+      <SearchIcon className="absolute ml-2 size-4 text-neutral-600  dark:text-neutral-200" />
       <DebouncedInput
         placeholder="Filter by title or description"
         value={searchFilter}
@@ -81,7 +81,7 @@ export default function SearchField() {
       />
       {searchFilter && (
         <div
-          className="absolute w-4 h-4 mr-2 right-0 flex"
+          className="absolute right-0 mr-2 flex size-4"
           onClick={() => {
             setSearchFilter(null);
           }}

@@ -13,17 +13,17 @@ export default function WideScreenContentImpl() {
   const {t} = useTranslation('common');
 
   return (
-    <div className="hidden items-center justify-between w-full lg:flex ">
-      <nav className="items-center mx-auto">
-        <ul className="flex items-center p-0 m-0">
+    <div className="hidden w-full items-center justify-between lg:flex ">
+      <nav className="mx-auto items-center">
+        <ul className="m-0 flex items-center p-0">
           {navigationLinks.map(link => (
             <li
               key={link.label}
-              className="underline-on-hover text-neutral-100 mr-3 last:mr-0"
+              className="underline-on-hover mr-3 text-neutral-100 last:mr-0"
             >
               <NextLink
                 href={link.url}
-                className={clsx('hover:text-primary-200 font-semibold', {
+                className={clsx('font-semibold hover:text-primary-200', {
                   'text-primary-300': path?.includes(link.url),
                 })}
                 target={link.target}
@@ -38,7 +38,7 @@ export default function WideScreenContentImpl() {
       <div className="flex items-center pr-3">
         <SocialMedia />
         <BuyMeACoffeeIcon className="ml-4" />
-        <div className="h-full ml-3">
+        <div className="ml-3 h-full">
           <DarkModeToggle />
         </div>
       </div>

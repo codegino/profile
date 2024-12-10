@@ -18,7 +18,7 @@ const PrivacyPolicyPage: NextPage = async () => {
   const {privacyPolicy} = await getData();
 
   return (
-    <main className="w-full flex justify-center mb-8">
+    <main className="mb-8 flex w-full justify-center">
       <article
         className="max-w-[50rem]"
         dangerouslySetInnerHTML={{

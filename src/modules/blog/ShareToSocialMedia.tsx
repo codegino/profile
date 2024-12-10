@@ -46,7 +46,7 @@ const ShareToSocialMedia: FunctionComponent<{blog: IBlogMetadata}> = ({
       <h3 className="mb-6">
         <FaShareAlt /> Share now
       </h3>
-      <div className="flex flex-wrap gap-x-2 gap-y-3 justify-center">
+      <div className="flex flex-wrap justify-center gap-x-2 gap-y-3">
         {socialMedia.map(sm => (
           <a
             href={sm.href(blog)}
@@ -56,7 +56,7 @@ const ShareToSocialMedia: FunctionComponent<{blog: IBlogMetadata}> = ({
             title={`Share on ${sm.name}`}
             aria-label={`Share on ${sm.name}`}
             className={clsx(
-              'relative h-10 text-white py-2 px-4 rounded-3xl hover:shadow-sm hover:shadow-dark',
+              'hover:shadow-dark relative h-10 rounded-3xl px-4 py-2 text-white hover:shadow-sm',
               'text-lg',
               'flex items-center',
             )}

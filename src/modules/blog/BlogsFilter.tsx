@@ -12,15 +12,15 @@ const BlogsFilter: FunctionComponent<{
   const {t} = useTranslation('blog');
 
   return (
-    <section className="flex flex-col items-center mb-8 max-w-4xl">
+    <section className="mb-8 flex max-w-4xl flex-col items-center">
       <h3 className="mb-4 text-neutral-700 dark:text-neutral-200">
         {t('filterByTags')}
       </h3>
-      <div className="flex gap-2 flex-wrap justify-center mb-4">
+      <div className="mb-4 flex flex-wrap justify-center gap-2">
         {tags.map((tag, i) => (
           <div
             className={clsx(
-              'inline-block bg-white dark:bg-black py-1 px-3 rounded-xl shadow-md mr-2 last:mr-0 cursor-pointer whitespace-nowrap',
+              'mr-2 inline-block cursor-pointer whitespace-nowrap rounded-xl bg-white px-3 py-1 shadow-md last:mr-0 dark:bg-black',
               {
                 'text-primary-600 bg-primary-800': selectedTags.includes(tag),
               },

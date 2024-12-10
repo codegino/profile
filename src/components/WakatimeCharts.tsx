@@ -7,8 +7,8 @@ export default function WakatimeCharts() {
   const {t} = useTranslation('resume');
 
   return (
-    <div className="overflow-hidden flex flex-col py-4 sm:px-24 w-full">
-      <p className="mb-4 text-lg text-center">
+    <div className="flex w-full flex-col overflow-hidden py-4 sm:px-24">
+      <p className="mb-4 text-center text-lg">
         {t('my')}&nbsp;
         <NextLink
           href="https://wakatime.com/@codegino"
@@ -16,7 +16,7 @@ export default function WakatimeCharts() {
           aria-label="Wakatime profile"
           rel="noreferrer"
           title="Link to my Wakatime profile"
-          className="text-lg text-primary-900 dark:text-primary-300 underline-on-hover underline--dark"
+          className="underline-on-hover underline--dark text-lg text-primary-900 dark:text-primary-300"
         >
           Wakatime
         </NextLink>

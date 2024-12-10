@@ -9,8 +9,8 @@ const RoundButton: FunctionComponent<{
   return (
     <div
       className={clsx(
-        'shadow-lg rounded-full box-content cursor-pointer',
-        'h-10 w-10 flex items-center justify-center bg-white',
+        'box-content cursor-pointer rounded-full shadow-lg',
+        'flex size-10 items-center justify-center bg-white',
         className,
       )}
       onClick={onClick}

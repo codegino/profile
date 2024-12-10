@@ -19,7 +19,7 @@ const FloatingLogo: FunctionComponent = () => {
   return !isSidebarVisible ? (
     <Logo
       onClick={showSidebar}
-      className={'fixed top-3 left-[17px] z-[100] animate-spin-fast'}
+      className={'fixed left-[17px] top-3 z-[100] animate-spin-fast'}
     />
   ) : null;
 };
@@ -33,7 +33,7 @@ export default function Header() {
       <InView
         as="header"
         onChange={setInView}
-        className="h-16 min-h-[4rem] relative bg-neutral-900 flex items-center py-0 px-2"
+        className="relative flex h-16 min-h-16 items-center bg-neutral-900 px-2 py-0"
       >
         <TopLeftShape />
         <LogoWrapper />

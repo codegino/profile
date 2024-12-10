@@ -3,7 +3,7 @@ import Link from './basic/NextLink';
 
 function Coffee() {
   return (
-    <div className="relative w-full text-center flex justify-center">
+    <div className="relative flex w-full justify-center text-center">
       <Link
         href="https://l.carlogino.com/bmac"
         target="_blank"
@@ -11,14 +11,14 @@ function Coffee() {
         rel="noreferrer"
       >
         <span
-          className="leading-3 flex h-12 w-[16rem]
-            items-center justify-center p-3
-            bg-orange-700 text-neutral-800 relative
-            rounded-xl hover:shadow-md hover:shadow-dark
+          className="relative flex h-12
+            w-64 items-center justify-center
+            rounded-xl bg-orange-700 p-3
+            leading-3 text-neutral-800 hover:shadow-md
           "
         >
           <SiBuymeacoffee size={30} fill="white" />
-          <p className="text-xl ml-3 text-neutral-50">Buy me a coffee</p>
+          <p className="ml-3 text-xl text-neutral-50">Buy me a coffee</p>
         </span>
       </Link>
     </div>

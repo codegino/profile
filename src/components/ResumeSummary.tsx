@@ -12,8 +12,8 @@ export default async function ResumeSummary({
   const {t} = await createTranslation('resume');
 
   return (
-    <div className="w-full flex justify-center items-center flex-col gap-2 sm:gap-0 py-10 sm:py-20 md:flex-row  min-w-max">
-      <div className="overflow-hidden rounded-full h-36 w-36 md:rounded-md md:h-44 md:w-44 xl:h-48 xl:w-48">
+    <div className="flex w-full min-w-max flex-col items-center justify-center gap-2 py-10 sm:gap-0 sm:py-20  md:flex-row">
+      <div className="size-36 overflow-hidden rounded-full md:size-44 md:rounded-md xl:size-48">
         <BlurringImage
           img={img}
           svg={svg}
@@ -23,10 +23,10 @@ export default async function ResumeSummary({
           width={200}
         />
       </div>
-      <section className="flex flex-col items-center justify-start ml-0 md:ml-8">
+      <section className="ml-0 flex flex-col items-center justify-start md:ml-8">
         <h1 className="m-0">{summary.name}</h1>
         <div className="flex flex-col items-center md:flex-row">
-          <h2 className="m-0 lg:my-2 text-2xl">
+          <h2 className="m-0 text-2xl lg:my-2">
             {t(summary.jobTitle)}
             <NextLink
               href={summary.companyWebsite}

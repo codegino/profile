@@ -9,7 +9,7 @@ export default function CustomGithubCalendar() {
 
   return (
     <Zoom triggerOnce>
-      <div className="flex flex-col items-center my-10 bg-neutral-100 dark:bg-neutral-800 p-1 rounded-xl">
+      <div className="my-10 flex flex-col items-center rounded-xl bg-neutral-100 p-1 dark:bg-neutral-800">
         <p className="mb-5 text-lg">
           <>
             {t('my')}&nbsp;
@@ -19,7 +19,7 @@ export default function CustomGithubCalendar() {
               aria-label="Github profile"
               rel="noreferrer"
               title="Link to my Github profile"
-              className="text-lg text-primary-900 dark:text-primary-300 underline-on-hover underline--dark"
+              className="underline-on-hover underline--dark text-lg text-primary-900 dark:text-primary-300"
             >
               Github
             </NextLink>
@@ -27,7 +27,7 @@ export default function CustomGithubCalendar() {
           </>
         </p>
 
-        <div className="overflow-x-auto max-w-lg sm:max-w-6xl  pb-4 [&_.react-activity-calendar]:px-10">
+        <div className="max-w-lg overflow-x-auto pb-4  sm:max-w-6xl [&_.react-activity-calendar]:px-10">
           <GithubCalendar
             username="codegino"
             fontSize={30}

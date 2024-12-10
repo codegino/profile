@@ -17,17 +17,17 @@ const BlogCard: FunctionComponent<{
   return (
     <figure
       className={clsx(
-        'relative flex items-center justify-between flex-col sm:flex-row-reverse',
-        'rounded-xl w-full sm:py-4 sm:px-8 bg-neutral-50 dark:bg-neutral-800 h-[25rem] sm:h-[20rem]',
-        'shadow-sm hover:shadow-md hover:shadow-neutral-800 shadow-neutral-700 mb-8 last:mb-0 max-w-[45rem] sm:max-w-[55rem]',
+        'relative flex flex-col items-center justify-between sm:flex-row-reverse',
+        'h-[25rem] w-full rounded-xl bg-neutral-50 dark:bg-neutral-800 sm:h-80 sm:px-8 sm:py-4',
+        'mb-8 max-w-[45rem] shadow-sm shadow-neutral-700 last:mb-0 hover:shadow-md hover:shadow-neutral-800 sm:max-w-[55rem]',
       )}
     >
       <div
         className={clsx(
-          'absolute sm:relative rounded-2xl overflow-hidden',
-          'top-0 left-0 right-0 bottom-0',
-          'sm:mt-4 shadow-md shadow-neutral-600 sm:ml-2',
-          'h-full w-full sm:h-[15rem] sm:w-[20rem] sm:min-w-[20rem]',
+          'absolute overflow-hidden rounded-2xl sm:relative',
+          'inset-0',
+          'shadow-md shadow-neutral-600 sm:ml-2 sm:mt-4',
+          'size-full sm:h-60 sm:w-80 sm:min-w-80',
         )}
       >
         <Image
@@ -40,7 +40,7 @@ const BlogCard: FunctionComponent<{
           blurDataURL={blog.bannerId}
         />
       </div>
-      <figcaption className="bg-neutral-50 dark:bg-neutral-800 opacity-95 sm:opacity-100 p-4 sm:p-0 absolute bottom-0 w-full sm:relative">
+      <figcaption className="absolute bottom-0 w-full bg-neutral-50 p-4 opacity-95 dark:bg-neutral-800 sm:relative sm:p-0 sm:opacity-100">
         <NextLink href={`/${feature}/${blog.slug}`} aria-label={blog.title}>
           <h2 className="line-clamp-2 text-balance">{blog.title}</h2>
           <h3 className="line-clamp-2 text-balance text-neutral-800 dark:text-neutral-200">
@@ -61,10 +61,10 @@ const BlogCard: FunctionComponent<{
           </p>
 
           {blog.tags && blog.tags.length ? (
-            <div className="mt-4 sm:mt-8 flex gap-2 flex-wrap">
+            <div className="mt-4 flex flex-wrap gap-2 sm:mt-8">
               {blog.tags.map(tag => (
                 <span
-                  className="inline-block bg-white shadow-sm shadow-neutral-200 dark:shadow-neutral-900 dark:bg-neutral-900 py-1 px-3 rounded-xl flex-nowrap"
+                  className="inline-block flex-nowrap rounded-xl bg-white px-3 py-1 shadow-sm shadow-neutral-200 dark:bg-neutral-900 dark:shadow-neutral-900"
                   key={tag}
                 >
                   {tag}

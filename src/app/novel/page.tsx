@@ -20,7 +20,7 @@ const BlogPage: NextPage = async () => {
 
   return (
     <>
-      <main className="flex items-center flex-col pt-12">
+      <main className="flex flex-col items-center pt-12">
         <h1>{t('myNovels')}</h1>
         <NovelsWrapper novels={novels} />
       </main>

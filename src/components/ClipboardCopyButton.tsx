@@ -59,10 +59,10 @@ function ClipboardCopyButton({value}: ClipboardCopyButtonProps) {
 
   return (
     <button
-      className="border-none flex items-center bg-transparent text-neutral-700 dark:text-neutral-300"
+      className="flex items-center border-none bg-transparent text-neutral-700 dark:text-neutral-300"
       onClick={() => setState(State.Copy)}
     >
-      <span className="inline-block mr-2">
+      <span className="mr-2 inline-block">
         {state === State.Copied ? 'Copied' : 'Copy'}
       </span>
       {state === State.Copied ? (

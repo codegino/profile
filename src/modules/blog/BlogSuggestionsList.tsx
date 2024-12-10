@@ -14,16 +14,16 @@ const BlogSuggestionsList = ({blogs}: Props) => {
   return (
     <section
       id="blogs-list"
-      className="flex flex-col justify-center items-center min-h-screen overflow-hidden
+      className="flex min-h-screen flex-col items-center justify-center overflow-hidden
         py-16"
     >
-      <h2 className="mb-16 text-4xl relative">
+      <h2 className="relative mb-16 text-4xl">
         {t('recent')}&nbsp;
         <NextLink href={'/blog'} aria-label="Blogs List" className="text-4xl">
           {t('blogs')}
         </NextLink>
       </h2>
-      <div className="grid-cols-1 w-screen px-6 mb-0 grid md:grid-cols-2 md:max-w-4xl gap-8 ">
+      <div className="mb-0 grid w-screen grid-cols-1 gap-8 px-6 md:max-w-4xl md:grid-cols-2 ">
         {blogs.map(blog => (
           <BlogCardPreview blog={blog} key={blog.slug} />
         ))}

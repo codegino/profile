@@ -26,7 +26,7 @@ const ParallaxEyes: React.FC = () => {
   return (
     <BlinkProvider>
       <div
-        className="pt-[15vh] -pb-[15vh] flex sticky top-0"
+        className="-pb-[15vh] sticky top-0 flex pt-[15vh]"
         style={{
           gap: `${gap}px`,
           transform: `translateY(${offsetY}px)`,

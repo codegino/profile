@@ -41,12 +41,12 @@ const SmallScreenSidebar: FunctionComponent = () => {
     <>
       {isSidebarVisible && (
         <RoundButton
-          className="fixed top-3 left-[17px] z-[100] animate-spin-fast"
+          className="fixed left-[17px] top-3 z-[100] animate-spin-fast"
           onClick={hideSidebar}
         >
           <AiOutlineClose
             size={32}
-            className="fill-neutral-900 select-none outline-none"
+            className="select-none fill-neutral-900 outline-none"
           />
         </RoundButton>
       )}
@@ -67,19 +67,19 @@ const SmallScreenSidebar: FunctionComponent = () => {
             onClick={e => e.stopPropagation()}
             role="presentation"
             className={clsx(
-              'w-[20rem] h-screen absolute bg-neutral-50 dark:bg-neutral-900 top-0 left-0 flex flex-col',
-              'items-start p-4 text-2xl leading-10 shadow-neutral-800 shadow-md cursor-default',
+              'absolute left-0 top-0 flex h-screen w-80 flex-col bg-neutral-50 dark:bg-neutral-900',
+              'cursor-default items-start p-4 text-2xl leading-10 shadow-md shadow-neutral-800',
             )}
           >
-            <div className={clsx('flex items-center min-w-max relative pb-4')}>
+            <div className={clsx('relative flex min-w-max items-center pb-4')}>
               <span className="ml-14 text-2xl font-bold">Code Gino</span>
             </div>
-            <section className="sidebar__content overflow-y-auto w-full relative h-full flex flex-col justify-between">
+            <section className="sidebar__content relative flex size-full flex-col justify-between overflow-y-auto">
               <div>
-                <h3 className="mt-3 mb-0 text-xl">Links</h3>
+                <h3 className="mb-0 mt-3 text-xl">Links</h3>
 
                 <nav>
-                  <ul className="flex items-start flex-col">
+                  <ul className="flex flex-col items-start">
                     {sidebarLinks.map(link => (
                       <li
                         key={link.label}
@@ -89,7 +89,7 @@ const SmallScreenSidebar: FunctionComponent = () => {
                         <NextLink
                           href={link.url}
                           className={clsx(
-                            'px-2 text-lg hover:text-neutral-900 hover:text-primary-600 font-semibold',
+                            'px-2 text-lg font-semibold hover:text-primary-600',
                             {
                               'text-primary-900 dark:text-primary-300':
                                 (link.url === '/' && path === '/') ||
@@ -105,12 +105,12 @@ const SmallScreenSidebar: FunctionComponent = () => {
                   </ul>
                 </nav>
 
-                <h3 className="mt-3 mb-0 text-xl">Social</h3>
+                <h3 className="mb-0 mt-3 text-xl">Social</h3>
                 <div className="flex items-center [&_.icon]:text-neutral-900 [&_.icon]:dark:text-neutral-50">
                   <SocialMedia />
                   <BuyMeACoffeeIcon className="ml-4 [&_.icon]:fill-orange-700 [&_.icon]:hover:fill-orange-600" />
                 </div>
-                <h3 className="mt-3 mb-0 text-xl">Contact me</h3>
+                <h3 className="mb-0 mt-3 text-xl">Contact me</h3>
                 <div>
                   <NextLink
                     href={`mailto:${EMAIL_ADDRESS}`}
@@ -129,7 +129,7 @@ const SmallScreenSidebar: FunctionComponent = () => {
                     />
                   </NextLink>
                   <NextLink
-                    href={`https://m.me/codegino`}
+                    href={'https://m.me/codegino'}
                     target="_blank"
                     title="Send me a facebook message"
                     aria-label="Facebook Messenger"
@@ -144,7 +144,7 @@ const SmallScreenSidebar: FunctionComponent = () => {
                   </NextLink>
                 </div>
                 <section className="text-left">
-                  <h3 className="mt-3 mb-0 text-xl">Settings</h3>
+                  <h3 className="mb-0 mt-3 text-xl">Settings</h3>
 
                   <div className="flex items-center py-2">
                     <DarkModeToggle />
