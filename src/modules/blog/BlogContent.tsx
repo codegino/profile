@@ -1,5 +1,5 @@
 'use client';
-import type {FunctionComponent, ComponentProps} from 'react';
+import type { FunctionComponent, ComponentProps, JSX } from 'react';
 import ContentAnchor from '../common/AnchorTag';
 import ContentBlockQuote from '../common/BlockquoteTag';
 import ContentBookMark from '../common/BookmarkElement';

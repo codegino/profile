@@ -1,11 +1,11 @@
-import {forwardRef} from 'react';
+import { forwardRef, type JSX } from 'react';
 
 const Input = forwardRef<HTMLInputElement, JSX.IntrinsicElements['input']>(
   ({color, className = '', ...props}, ref) => (
     <input
       {...props}
       ref={ref}
-      className={`py-3 px-4 text-normal w-full rounded-xl ring-1 ring-neutral-700 ${
+      className={`text-normal w-full rounded-xl px-4 py-3 ring-1 ring-neutral-700 ${
         className ? ` ${className}` : ''
       }`}
     />
