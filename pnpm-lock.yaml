@@ -117,8 +117,8 @@ devDependencies:
     specifier: 2.0.6
     version: 2.0.6
   autoprefixer:
-    specifier: 10.4.20
-    version: 10.4.20(postcss@8.4.49)
+    specifier: 10.4.21
+    version: 10.4.21(postcss@8.4.49)
   cross-env:
     specifier: 7.0.3
     version: 7.0.3
@@ -1710,8 +1710,8 @@ packages:
     engines: {node: '>= 4.0.0'}
     dev: true
 
-  /autoprefixer@10.4.20(postcss@8.4.49):
-    resolution: {integrity: sha512-XY25y5xSv/wEoqzDyXXME4AFfkZI0P23z6Fs3YgymDnKJkCGOnkL0iTxCa85UTqaSgfcqyf3UA6+c7wUvx/16g==}
+  /autoprefixer@10.4.21(postcss@8.4.49):
+    resolution: {integrity: sha512-O+A6LWV5LDHSJD3LjHYoNi4VLsj/Whi7k6zG12xTYaU4cQ8oxQGckXNX8cRHK5yOZ/ppVHe0ZBXGzSV9jXdVbQ==}
     engines: {node: ^10 || ^12 || >=14}
     hasBin: true
     peerDependencies:
