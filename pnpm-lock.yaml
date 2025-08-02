@@ -111,8 +111,8 @@ devDependencies:
     specifier: 2.0.4
     version: 2.0.4
   '@types/react-transition-group':
-    specifier: 4.4.11
-    version: 4.4.11
+    specifier: 4.4.12
+    version: 4.4.12(@types/react@19.0.1)
   '@types/react-typist':
     specifier: 2.0.6
     version: 2.0.6
@@ -1110,8 +1110,10 @@ packages:
     resolution: {integrity: sha512-5wPMWsUE5AI6O0B0K1/zbs0rFHBKu+7NWXQwDXhqvA12ooLD6W1AYiWZqR4UiOd7ixZDV1H5Ys301zEsqyIfNg==}
     dev: true
 
-  /@types/react-transition-group@4.4.11:
-    resolution: {integrity: sha512-RM05tAniPZ5DZPzzNFP+DmrcOdD0efDUxMy3145oljWSl3x9ZV5vhme98gTxFrj2lhXvmGNnUiuDyJgY9IKkNA==}
+  /@types/react-transition-group@4.4.12(@types/react@19.0.1):
+    resolution: {integrity: sha512-8TV6R3h2j7a91c+1DXdJi3Syo69zzIZbz7Lg5tORM5LEJG7X/E6a1V3drRyBRZq7/utz7A+c4OgYLiLcYGHG6w==}
+    peerDependencies:
+      '@types/react': 19.0.1
     dependencies:
       '@types/react': 19.0.1
     dev: true
