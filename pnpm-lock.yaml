@@ -10,8 +10,8 @@ overrides:
 
 dependencies:
   '@emotion/react':
-    specifier: 11.13.3
-    version: 11.13.3(@types/react@19.0.1)(react@19.0.0)
+    specifier: 11.14.0
+    version: 11.14.0(@types/react@19.0.1)(react@19.0.0)
   '@mdx-js/mdx':
     specifier: 3.1.0
     version: 3.1.0(acorn@8.15.0)
@@ -59,7 +59,7 @@ dependencies:
     version: 19.0.0
   react-awesome-reveal:
     specifier: 4.2.14
-    version: 4.2.14(@emotion/react@11.13.3)(react-dom@19.0.0)(react@19.0.0)
+    version: 4.2.14(@emotion/react@11.14.0)(react-dom@19.0.0)(react@19.0.0)
   react-content-loader:
     specifier: 7.0.2
     version: 7.0.2(react@19.0.0)
@@ -454,8 +454,8 @@ packages:
     resolution: {integrity: sha512-30FAj7/EoJ5mwVPOWhAyCX+FPfMDrVecJAM+Iw9NRoSl4BBAQeqj4cApHHUXOVvIPgLVDsCFoz/hGD+5QQD1GQ==}
     dev: false
 
-  /@emotion/react@11.13.3(@types/react@19.0.1)(react@19.0.0):
-    resolution: {integrity: sha512-lIsdU6JNrmYfJ5EbUCf4xW1ovy5wKQ2CkPRM4xogziOxH1nXxBSjpC9YqbFAP7circxMfYp+6x676BqWcEiixg==}
+  /@emotion/react@11.14.0(@types/react@19.0.1)(react@19.0.0):
+    resolution: {integrity: sha512-O000MLDBDdk/EohJPFUqvnp4qnHeYkVP5B0xEG0D/L7cOKP9kefu2DXn8dj74cQfsEzUqh+sr1RzFqiL1o+PpA==}
     peerDependencies:
       '@types/react': '*'
       react: '>=16.8.0'
@@ -5322,13 +5322,13 @@ packages:
       react: 19.0.0
     dev: false
 
-  /react-awesome-reveal@4.2.14(@emotion/react@11.13.3)(react-dom@19.0.0)(react@19.0.0):
+  /react-awesome-reveal@4.2.14(@emotion/react@11.14.0)(react-dom@19.0.0)(react@19.0.0):
     resolution: {integrity: sha512-wknbDl+z5MIhQFfKKSj3iBJzvssqJLP8LbxQjW9OCyXPGtMSYvOFKwjG4/2p1de+qh5gqb8WBMQIYS6wVN3tNw==}
     peerDependencies:
       '@emotion/react': ^11.0.0
       react: '>=16.14.0'
     dependencies:
-      '@emotion/react': 11.13.3(@types/react@19.0.1)(react@19.0.0)
+      '@emotion/react': 11.14.0(@types/react@19.0.1)(react@19.0.0)
       react: 19.0.0
       react-intersection-observer: 9.13.1(react-dom@19.0.0)(react@19.0.0)
       react-is: 18.3.1
