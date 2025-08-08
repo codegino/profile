@@ -42,7 +42,7 @@
   },
   "devDependencies": {
     "@next/bundle-analyzer": "15.0.4",
-    "@types/node": "22.8.2",
+    "@types/node": "22.17.1",
     "@types/react": "19.0.1",
     "@types/react-dom": "19.0.2",
     "@types/react-gtm-module": "2.0.4",
