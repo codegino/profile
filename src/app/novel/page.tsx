@@ -3,9 +3,9 @@ import SubscribeForm from '@/components/SubscribeForm';
 import {newCommonMetaTags} from '@/frontend-utils/meta-tags';
 import type {INovelMetadata} from '@/models/mdxFiles';
 import {getNovelsMetadata} from '@/utils/mdx.utils';
-import {client} from '@/utils/contentful.utils';
 import NovelsWrapper from './NovelsWrapper';
 import {createTranslation} from '../i18n/server';
+import {getImageUrl} from '@/utils/get-image';
 
 export const metadata = {
   ...newCommonMetaTags('Novels Page', '/novel'),
@@ -37,10 +37,7 @@ const getStaticProps = async () => {
   );
 
   for (let blog of novels) {
-    const asset = await client.getAsset(blog.bannerId);
-
-    const bannerUrl = `https:${asset.fields.file?.url}`;
-    blog.bannerId = bannerUrl;
+    blog.bannerId = getImageUrl('codecraft.jpeg');
   }
 
   return {

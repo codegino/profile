@@ -7,17 +7,15 @@ import BlogContent from '@/modules/blog/BlogContent';
 import BlogHeader from '@/modules/blog/BlogHeader';
 import ContentLayout from '@/modules/common/ContentLayout';
 import {getNovelsMetadata, NOVELS_PATH} from '@/utils/mdx.utils';
-import {client} from '@/utils/contentful.utils';
 import {blurImage} from '@/utils/image-blur.utils';
 import BlogFooter from '@/modules/blog/BlogFooter';
 import {newCommonMetaTags} from '@/frontend-utils/meta-tags';
 import Script from 'next/script';
+import {getImageUrl} from '@/utils/get-image';
 
-export const generateMetadata = async (
-  props: {
-    params: Promise<{slug: string}>;
-  }
-): Promise<Metadata> => {
+export const generateMetadata = async (props: {
+  params: Promise<{slug: string}>;
+}): Promise<Metadata> => {
   const params = await props.params;
   const postFilePath = path.join(NOVELS_PATH, `${params.slug}.mdx`);
   const source = fs.readFileSync(postFilePath);
@@ -25,9 +23,7 @@ export const generateMetadata = async (
   const {data: novel} = matter(source);
   novel.slug = params.slug;
 
-  const asset = await client.getAsset(novel.bannerId);
-
-  const bannerUrl = `https:${asset.fields.file?.url}`;
+  const bannerUrl = getImageUrl('codecraft.jpeg');
 
   return {
     ...newCommonMetaTags(novel.title, `/novel/${novel.slug}`),
@@ -58,9 +54,7 @@ const BlogPage: NextPage<{
 }> = async props => {
   const params = await props.params;
 
-  const {
-    slug
-  } = params;
+  const {slug} = params;
 
   const {
     frontMatter: novel,
@@ -120,10 +114,8 @@ const getStaticProps = async (slug: string) => {
   const source = fs.readFileSync(postFilePath);
 
   const {content, data} = matter(source);
+  const bannerUrl = getImageUrl('codecraft.jpeg');
 
-  const banner = await client.getAsset(data.bannerId);
-
-  const bannerUrl = `https:${banner.fields.file?.url}`;
   const {img, svg} = await blurImage(bannerUrl);
 
   return {
