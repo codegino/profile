@@ -163,7 +163,7 @@ const HomePage: NextPage = async () => {
 
 const getStaticProps = async () => {
   const {img: profileImage, svg: profileSvg} = await getBlurringImage(
-    '3fgK6fKTGvBcmIRel2hJ6Y',
+    'profile-picture.jpeg',
   );
 
   const blogs = (await getBlogsMetadata())

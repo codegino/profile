@@ -105,7 +105,7 @@ const getStaticProps = async () => {
     locale: mapLocale(FALLBACK_LOCALE),
   });
 
-  const {img, svg} = await getBlurringImage('6F53k0CwsdmREXx1Y2ErSl');
+  const {img, svg} = await getBlurringImage('batman_cover.png');
 
   const assets = await client.getAssets<Locales>({
     'fields.title[in]': [

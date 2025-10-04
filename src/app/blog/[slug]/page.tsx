@@ -5,7 +5,7 @@ import BlogContent from '@/modules/blog/BlogContent';
 import BlogFooter from '@/modules/blog/BlogFooter';
 import BlogHeader from '@/modules/blog/BlogHeader';
 import BlogLayout from '@/modules/common/ContentLayout';
-import {client} from '@/utils/contentful.utils';
+import {getImageUrl} from '@/utils/get-image';
 import {blurImage} from '@/utils/image-blur.utils';
 import {BLOGS_PATH, getBlogsMetadata} from '@/utils/mdx.utils';
 import fs from 'fs';
@@ -14,11 +14,9 @@ import type {Metadata, NextPage} from 'next';
 import Script from 'next/script';
 import path from 'path';
 
-export const generateMetadata = async (
-  props: {
-    params: Promise<{slug: string}>;
-  }
-): Promise<Metadata> => {
+export const generateMetadata = async (props: {
+  params: Promise<{slug: string}>;
+}): Promise<Metadata> => {
   const params = await props.params;
   const postFilePath = path.join(BLOGS_PATH, `${params.slug}.mdx`);
   const source = fs.readFileSync(postFilePath);
@@ -26,9 +24,7 @@ export const generateMetadata = async (
   const {data: blog} = matter(source);
   blog.slug = params.slug;
 
-  const asset = await client.getAsset(blog.bannerId);
-
-  const bannerUrl = `https:${asset.fields.file?.url}`;
+  const bannerUrl = blogAssets[params.slug];
 
   return {
     ...newCommonMetaTags(blog.title, `/blog/${blog.slug}`),

@@ -3,7 +3,7 @@ import dynamicImport from 'next/dynamic';
 import ResumeSummary from '../../components/ResumeSummary';
 import Timeline from '../../components/timeline/Timeline';
 import {newCommonMetaTags} from '../../frontend-utils/meta-tags';
-import {client, getBlurringImage} from '../../utils/contentful.utils';
+import {getBlurringImage} from '../../utils/contentful.utils';
 import {fectchExperiences, fetchSkills} from '../../utils/resume-props';
 import LinkWrapper from './LinkWrapper';
 
@@ -11,8 +11,7 @@ const CustomGithubCalendar = dynamicImport(
   () => import('../../components/CustomGithubCalendar'),
 );
 
-const Skills = dynamicImport(() => import('../../components/skills/Skills'), 
-);
+const Skills = dynamicImport(() => import('../../components/skills/Skills'));
 
 export const metadata = {
   ...newCommonMetaTags('Resume Page', '/resume'),
@@ -62,13 +61,12 @@ const getStaticProps = async () => {
   const experiences = await fectchExperiences();
   const skills = await fetchSkills();
 
-  const {img, svg} = await getBlurringImage('3fgK6fKTGvBcmIRel2hJ6Y');
+  const {img, svg} = await getBlurringImage('profile-picture.jpeg');
 
-  const resumePdfAsset = await client.getAsset('3BjRYsXrkYX4uwCWkYHCjK');
-  const resumeWordAsset = await client.getAsset('3WY4hQgMdEJiffLSpsHRnJ');
-
-  const resumePdfUrl = `https:${resumePdfAsset.fields?.file?.url}`;
-  const resumeWordUrl = `https:${resumeWordAsset.fields?.file?.url}`;
+  const resumePdfUrl =
+    'https://cdn.grigora.co/projects/10ddb1b4-c8f5-48cd-98f4-e11824bf400b/others/cv/CarloGinoCatapang-FullStack.pdf';
+  const resumeWordUrl =
+    'https://cdn.grigora.co/projects/10ddb1b4-c8f5-48cd-98f4-e11824bf400b/others/cv/Carlo Gino Catapang Full Stack.docx';
 
   return {
     props: {
