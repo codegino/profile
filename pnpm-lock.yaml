@@ -137,7 +137,7 @@ importers:
         specifier: 9.1.0
         version: 9.1.0(eslint@9.16.0(jiti@2.5.1))
       eslint-plugin-tailwindcss:
-        specifier: ^3.17.5
+        specifier: ^3.18.2
         version: 3.18.2(tailwindcss@3.4.14)
       globby:
         specifier: 14.0.2
@@ -1710,7 +1710,7 @@ packages:
       eslint: ^3 || ^4 || ^5 || ^6 || ^7 || ^8 || ^9.7
 
   eslint-plugin-tailwindcss@3.18.2:
-    resolution: {integrity: sha512-QbkMLDC/OkkjFQ1iz/5jkMdHfiMu/uwujUHLAJK5iwNHD8RTxVTlsUezE0toTZ6VhybNBsk+gYGPDq2agfeRNA==}
+    resolution: {integrity: sha512-QbkMLDC/OkkjFQ1iz/5jkMdHfiMu/uwujUHLAJK5iwNHD8RTxVTlsUezE0toTZ6VhybNBsk+gYGPDq2agfeRNA==, tarball: https://registry.npmjs.org/eslint-plugin-tailwindcss/-/eslint-plugin-tailwindcss-3.18.2.tgz}
     engines: {node: '>=18.12.0'}
     peerDependencies:
       tailwindcss: ^3.4.0
