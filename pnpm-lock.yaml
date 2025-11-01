@@ -61,14 +61,14 @@ importers:
         specifier: 4.3.1
         version: 4.3.1(@emotion/react@11.13.3(@types/react@19.0.1)(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       react-content-loader:
-        specifier: 7.0.2
-        version: 7.0.2(react@19.2.0)
+        specifier: 7.1.1
+        version: 7.1.1(react@19.2.0)
       react-dom:
         specifier: 19.2.0
         version: 19.2.0(react@19.2.0)
       react-github-calendar:
-        specifier: 4.5.10
-        version: 4.5.10(react@19.2.0)
+        specifier: 4.5.11
+        version: 4.5.11(react@19.2.0)
       react-gtm-module:
         specifier: 2.0.11
         version: 2.0.11
@@ -2937,8 +2937,8 @@ packages:
   queue-microtask@1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
 
-  react-activity-calendar@2.7.14:
-    resolution: {integrity: sha512-/yzI76ioAWLQ/xnYt1buDlHhQxDFI3EZV5EFoMVZ4VloMZpCk2TXKSOUY7IO+dliQwLRuS9zbY0VL6LYUA1+IA==, tarball: https://registry.npmjs.org/react-activity-calendar/-/react-activity-calendar-2.7.14.tgz}
+  react-activity-calendar@2.7.15:
+    resolution: {integrity: sha512-sPO4tDJp+sRbV8F/LhUZ/woHmi4dg0Phd+Kt1Jw0orSfGfEqGCm7fFXiTIAvuuAwpwxqPEYEnfNzOLEfUrdg1A==, tarball: https://registry.npmjs.org/react-activity-calendar/-/react-activity-calendar-2.7.15.tgz}
     peerDependencies:
       react: ^18.0.0 || ^19.0.0
 
@@ -2948,8 +2948,8 @@ packages:
       '@emotion/react': ^11.0.0
       react: '>=16.14.0'
 
-  react-content-loader@7.0.2:
-    resolution: {integrity: sha512-773S98JTyC8VB2nu7LXUhpHx8tZMieGxMcx3qTe7IkohT6Br7d9AXnIXs/wQ6IhlUdKQcw6JLKk1QKigYCWDRA==}
+  react-content-loader@7.1.1:
+    resolution: {integrity: sha512-yNkqtd+15wXRLfDKZb5nTqDV2fPTG2kpUgeGRb+WBz43bU0j4DSGXETF0bnFr44fAoTPpm0Dya0WGdhpHSvtYA==, tarball: https://registry.npmjs.org/react-content-loader/-/react-content-loader-7.1.1.tgz}
     engines: {node: '>=10'}
     peerDependencies:
       react: '>=16.0.0'
@@ -2963,8 +2963,8 @@ packages:
     resolution: {integrity: sha512-OeR2jAxdoqUMHIn/nS9fgreI5hSpgGoL5ezdal4+oO7YSSgJR8ga+PkYGJrSrJ9MKlPcQjMQXnketrD7WNmNsg==}
     engines: {node: '>= 6'}
 
-  react-github-calendar@4.5.10:
-    resolution: {integrity: sha512-p8MeJuM13rLsIIiJmpdNiiWLQfmoVRlq7lRI2z+aX58kYyibioA7vllDQudUzUmvvpV78HXNgsWKUIuaKTCMuQ==, tarball: https://registry.npmjs.org/react-github-calendar/-/react-github-calendar-4.5.10.tgz}
+  react-github-calendar@4.5.11:
+    resolution: {integrity: sha512-tDUjAIYILYtPmPUrA/KKuCcGY9A0PcRQEjnOGcAoqV2qeaibh3IQ+YznQOYr78PsBfLIVtq4nZYYM3QadjGu+Q==, tarball: https://registry.npmjs.org/react-github-calendar/-/react-github-calendar-4.5.11.tgz}
     peerDependencies:
       react: ^18.0.0 || ^19.0.0
 
@@ -6866,7 +6866,7 @@ snapshots:
 
   queue-microtask@1.2.3: {}
 
-  react-activity-calendar@2.7.14(react@19.2.0):
+  react-activity-calendar@2.7.15(react@19.2.0):
     dependencies:
       date-fns: 4.1.0
       react: 19.2.0
@@ -6880,7 +6880,7 @@ snapshots:
     transitivePeerDependencies:
       - react-dom
 
-  react-content-loader@7.0.2(react@19.2.0):
+  react-content-loader@7.1.1(react@19.2.0):
     dependencies:
       react: 19.2.0
 
@@ -6893,10 +6893,10 @@ snapshots:
     dependencies:
       prop-types: 15.8.1
 
-  react-github-calendar@4.5.10(react@19.2.0):
+  react-github-calendar@4.5.11(react@19.2.0):
     dependencies:
       react: 19.2.0
-      react-activity-calendar: 2.7.14(react@19.2.0)
+      react-activity-calendar: 2.7.15(react@19.2.0)
 
   react-gtm-module@2.0.11: {}
 
