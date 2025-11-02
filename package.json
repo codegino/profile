@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@emotion/react": "11.13.3",
-    "@mdx-js/mdx": "3.1.0",
+    "@mdx-js/mdx": "3.1.1",
     "@react-icons/all-files": "4.1.0",
     "@tailwindcss/container-queries": "0.1.1",
     "@vercel/speed-insights": "1.1.0",
