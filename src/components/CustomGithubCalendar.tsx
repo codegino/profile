@@ -1,5 +1,5 @@
 'use client';
-import GithubCalendar from 'react-github-calendar';
+import {GitHubCalendar} from 'react-github-calendar';
 import NextLink from './basic/NextLink';
 import {useTranslation} from '@/app/i18n/client';
 import {Zoom} from 'react-awesome-reveal';
@@ -28,13 +28,13 @@ export default function CustomGithubCalendar() {
         </p>
 
         <div className="max-w-lg overflow-x-auto pb-4  sm:max-w-6xl [&_.react-activity-calendar]:px-10">
-          <GithubCalendar
+          <GitHubCalendar
             username="codegino"
             fontSize={30}
             blockMargin={4}
             blockRadius={1}
             blockSize={12}
-          ></GithubCalendar>
+          ></GitHubCalendar>
         </div>
       </div>
     </Zoom>

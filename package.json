@@ -29,7 +29,7 @@
     "react-awesome-reveal": "4.3.1",
     "react-content-loader": "7.1.1",
     "react-dom": "19.2.0",
-    "react-github-calendar": "4.5.11",
+    "react-github-calendar": "5.0.0",
     "react-gtm-module": "2.0.11",
     "react-i18next": "16.3.5",
     "react-intersection-observer": "10.0.0",
@@ -37,13 +37,13 @@
     "react-transition-group": "4.4.5",
     "react-typist": "2.0.5",
     "rehype-mdx-code-props": "3.0.1",
-    "tailwind-merge": "3.3.1"
+    "tailwind-merge": "3.4.0"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "15.5.4",
     "@types/node": "22.8.2",
-    "@types/react": "19.2.2",
-    "@types/react-dom": "19.2.2",
+    "@types/react": "19.2.6",
+    "@types/react-dom": "19.2.3",
     "@types/react-gtm-module": "2.0.4",
     "@types/react-transition-group": "4.4.11",
     "@types/react-typist": "2.0.6",
