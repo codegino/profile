@@ -45,7 +45,7 @@
     "@types/react": "19.2.6",
     "@types/react-dom": "19.2.3",
     "@types/react-gtm-module": "2.0.4",
-    "@types/react-transition-group": "4.4.11",
+    "@types/react-transition-group": "4.4.12",
     "@types/react-typist": "2.0.6",
     "autoprefixer": "10.4.21",
     "cross-env": "7.0.3",
