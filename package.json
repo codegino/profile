@@ -50,7 +50,7 @@
     "autoprefixer": "10.4.21",
     "cross-env": "7.0.3",
     "cz-conventional-changelog": "3.3.0",
-    "eslint": "9.16.0",
+    "eslint": "9.39.2",
     "eslint-config-next": "15.0.4",
     "eslint-config-prettier": "9.1.0",
     "eslint-plugin-tailwindcss": "^3.18.2",
