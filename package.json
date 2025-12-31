@@ -18,7 +18,7 @@
     "@vercel/speed-insights": "1.3.1",
     "apitable": "1.3.0",
     "clsx": "2.1.1",
-    "i18next": "25.7.2",
+    "i18next": "25.7.3",
     "i18next-resources-to-backend": "1.2.1",
     "isomorphic-dompurify": "2.16.0",
     "next": "16.0.10",
