@@ -30,11 +30,11 @@ export default async function ResumeHero({
       {/* Decorative background accents */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -top-24 right-[10%] size-72 rounded-full bg-primary-300/20 blur-3xl dark:bg-primary-700/20"
+        className="bg-primary-300/20 dark:bg-primary-700/20 pointer-events-none absolute -top-24 right-[10%] size-72 rounded-full blur-3xl"
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute -bottom-32 left-[5%] size-96 rounded-full bg-primary-200/20 blur-3xl dark:bg-primary-800/20"
+        className="bg-primary-200/20 dark:bg-primary-800/20 pointer-events-none absolute -bottom-32 left-[5%] size-96 rounded-full blur-3xl"
       />
 
       <div className="relative mx-auto flex max-w-5xl flex-col items-center gap-8 md:flex-row md:items-center md:gap-12">

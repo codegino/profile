@@ -54,7 +54,7 @@ export default function ResumeTimeline({
 const TimelineLine = () => (
   <div
     aria-hidden
-    className="absolute inset-y-2 left-[7px] w-0.5 rounded bg-gradient-to-b from-primary-400 via-primary-600 to-primary-400/30 dark:from-primary-300 dark:via-primary-500 dark:to-primary-300/30 sm:left-[11px]"
+    className="to-primary-400/30 dark:to-primary-300/30 absolute inset-y-2 left-[7px] w-0.5 rounded bg-gradient-to-b from-primary-400 via-primary-600 dark:from-primary-300 dark:via-primary-500 sm:left-[11px]"
   />
 );
 
