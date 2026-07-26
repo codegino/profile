@@ -9,7 +9,7 @@ export default function CustomGithubCalendar() {
 
   return (
     <Zoom triggerOnce>
-      <div className="my-10 flex flex-col items-center rounded-xl bg-neutral-100 p-1 dark:bg-neutral-800">
+      <div className="my-10 flex flex-col items-center rounded-xl p-1 dark:bg-neutral-800">
         <p className="mb-5 text-lg">
           <>
             {t('my')}&nbsp;

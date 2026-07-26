@@ -5,7 +5,7 @@ import Script from 'next/script';
 import {FullScreenWrapper} from '../components/FullScreenWrapper';
 import AboutTeaser from '../components/home/AboutTeaser';
 import CodingActivity from '../components/home/CodingActivity';
-import SkillsMarquee from '../components/home/SkillsMarquee';
+import SkillsHighlights from '../components/home/SkillsHighlights';
 import {newCommonMetaTags} from '../frontend-utils/meta-tags';
 import BlogSuggestionsList from '../modules/blog/BlogSuggestionsList';
 import {getBlurringImage} from '../utils/contentful.utils';
@@ -87,7 +87,7 @@ const HomePage: NextPage = async () => {
       <main>
         <div id="resume-summary" className="bg-neutral-100 dark:bg-neutral-800">
           <AboutTeaser img={profileImage} svg={profileSvg} />
-          <SkillsMarquee skills={skills} />
+          <SkillsHighlights skills={skills} />
         </div>
         <div className="bg-neutral-50 dark:bg-neutral-700">
           <BlogSuggestionsList blogs={blogs} />
