@@ -24,10 +24,13 @@ export default function WakatimeCharts() {
       </p>
       <Zoom triggerOnce>
         <figure className="flex justify-center">
-          <embed
-            className="max-w-md md:max-w-lg"
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            className="w-full max-w-md md:max-w-lg"
             src="https://wakatime.com/share/@codegino/aa8c74ed-2174-445a-805d-e46a869c3b8b.svg"
-          ></embed>
+            alt="Wakatime coding activity chart"
+            loading="lazy"
+          />
         </figure>
       </Zoom>
     </div>

@@ -4,15 +4,23 @@
   "at": "at",
   "blogs": "Bloggar",
   "recent": "Senaste",
-  "visitSkills": {
-    "1": "Kontrollera hela ",
-    "2": "listan",
-    "3": " över färdigheter"
+  "about": {
+    "kicker": "Om mig",
+    "viewResume": "Se hela CV:t"
   },
-  "visitResume": {
-    "1": "Besök mitt ",
-    "2": "CV",
-    "3": " för mer information"
+  "skillsMarquee": {
+    "kicker": "Min stack",
+    "title": "Tekniker jag arbetar med",
+    "cta": "Se hela listan över färdigheter"
+  },
+  "blogSection": {
+    "kicker": "Från bloggen",
+    "title": "Senaste inläggen",
+    "viewAll": "Visa alla inlägg"
+  },
+  "activity": {
+    "kicker": "Kodningsaktivitet",
+    "title": "Bygger alltid"
   },
   "greetings": {
     "filename": "Hälsningsfraser.sh",

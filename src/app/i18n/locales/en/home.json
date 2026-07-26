@@ -4,15 +4,23 @@
   "at": "at",
   "blogs": "Blogs",
   "recent": "Recent",
-  "visitSkills": {
-    "1": "Check the ",
-    "2": "full list",
-    "3": " of skills"
+  "about": {
+    "kicker": "About me",
+    "viewResume": "View full resume"
   },
-  "visitResume": {
-    "1": "Visit my ",
-    "2": "resume",
-    "3": " for more info"
+  "skillsMarquee": {
+    "kicker": "My stack",
+    "title": "Technologies I work with",
+    "cta": "See the full skills list"
+  },
+  "blogSection": {
+    "kicker": "From the blog",
+    "title": "Recent posts",
+    "viewAll": "View all posts"
+  },
+  "activity": {
+    "kicker": "Coding activity",
+    "title": "Always building"
   },
   "greetings": {
     "filename": "Greetings.sh",
