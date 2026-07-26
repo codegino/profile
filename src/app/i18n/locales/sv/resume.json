@@ -1,7 +1,23 @@
 {
-  "jobTitle": "Frontend-utvecklare",
-  "at": "at",
+  "jobTitle": "Senior fullstackutvecklare",
+  "at": "på",
   "my": "Min",
   "activity": "aktivitet",
-  "skills": "Färdigheter"
+  "skills": "Färdigheter",
+  "tagline": "Senior fullstackutvecklare med över 10 års erfarenhet av att bygga webbprodukter inom telekom, bank och e-handel — från Manila till Singapore till Stockholm.",
+  "yearsOfExperience": "års erfarenhet",
+  "companies": "företag",
+  "downloadPdf": "Ladda ner PDF",
+  "downloadWord": "Ladda ner Word",
+  "workExperiences": "Arbetslivserfarenhet",
+  "education": "Utbildning",
+  "present": "Nuvarande",
+  "showMore": "Visa detaljer",
+  "showLess": "Dölj detaljer",
+  "visitCompany": "Besök {{company}}",
+  "coreStack": "Kärnkompetens",
+  "ctaTitle": "Intresserad av att samarbeta?",
+  "ctaSubtitle": "Jag är alltid öppen för att diskutera nya möjligheter, intressanta projekt eller bara prata teknik.",
+  "emailMe": "Mejla mig",
+  "grabACopy": "Ladda ner mitt CV"
 }

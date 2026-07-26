@@ -2,7 +2,7 @@
 import {BiCool} from '@react-icons/all-files/bi/BiCool';
 import {RiSpamLine} from '@react-icons/all-files/ri/RiSpamLine';
 import {useRouter} from 'next/navigation';
-import type {FormEvent} from 'react';
+import type {SubmitEvent} from 'react';
 import {useState} from 'react';
 import {useTranslation} from '../app/i18n/client';
 import Button from './basic/Button';
@@ -26,10 +26,11 @@ const SubscribeForm = () => {
 
   const {t} = useTranslation('newsletter');
 
-  const handleSubmit = async (e: FormEvent<SubscribeFormElement>) => {
+  const handleSubmit = async (e: SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
-    const {email, firstName, lastName} = e.currentTarget.elements;
+    const {email, firstName, lastName} = (e.currentTarget as SubscribeFormElement)
+      .elements;
 
     await addSubscriberAction({
       email: email.value,

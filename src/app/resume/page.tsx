@@ -1,17 +1,16 @@
 import {NextPage} from 'next';
 import dynamicImport from 'next/dynamic';
-import ResumeSummary from '../../components/ResumeSummary';
-import Timeline from '../../components/timeline/Timeline';
 import {newCommonMetaTags} from '../../frontend-utils/meta-tags';
 import {getBlurringImage} from '../../utils/contentful.utils';
 import {fectchExperiences, fetchSkills} from '../../utils/resume-props';
-import LinkWrapper from './LinkWrapper';
+import ResumeContactCta from './ResumeContactCta';
+import ResumeHero from './ResumeHero';
+import ResumeSkills from './ResumeSkills';
+import ResumeTimeline from './ResumeTimeline';
 
 const CustomGithubCalendar = dynamicImport(
   () => import('../../components/CustomGithubCalendar'),
 );
-
-const Skills = dynamicImport(() => import('../../components/skills/Skills'));
 
 export const metadata = {
   ...newCommonMetaTags('Resume Page', '/resume'),
@@ -32,28 +31,30 @@ const ResumePage: NextPage = async () => {
   } = await getStaticProps();
 
   return (
-    <>
-      <LinkWrapper resumePdfUrl={resumePdfUrl} resumeWordUrl={resumeWordUrl} />
-      <main>
-        <ResumeSummary img={profileImage} svg={profileSvg} />
-        <hr />
-        <hr />
-        <Timeline
-          workExperiences={workExperiences}
-          educationExperiences={educationExperiences}
-        />
-        <hr />
-        <hr />
-        <div id="skills">
-          <Skills skills={skills} />
+    <main>
+      <ResumeHero
+        img={profileImage}
+        svg={profileSvg}
+        resumePdfUrl={resumePdfUrl}
+        resumeWordUrl={resumeWordUrl}
+      />
+      <ResumeTimeline
+        workExperiences={workExperiences}
+        educationExperiences={educationExperiences}
+      />
+      <div id="skills">
+        <ResumeSkills skills={skills} />
+      </div>
+      <section className="flex w-full justify-center overflow-hidden px-4">
+        <div className="w-full max-w-4xl">
+          <CustomGithubCalendar />
         </div>
-        <div className="flex w-full justify-center overflow-hidden">
-          <div className="max-w-6xl">
-            <CustomGithubCalendar />
-          </div>
-        </div>
-      </main>
-    </>
+      </section>
+      <ResumeContactCta
+        resumePdfUrl={resumePdfUrl}
+        resumeWordUrl={resumeWordUrl}
+      />
+    </main>
   );
 };
 

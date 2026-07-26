@@ -1,7 +1,23 @@
 {
-  "jobTitle": "Frontend Developer",
+  "jobTitle": "Senior Full Stack Engineer",
   "at": "at",
   "my": "My",
   "activity": "activity",
-  "skills": "Skills"
+  "skills": "Skills",
+  "tagline": "Senior full-stack engineer with 10+ years building web products across telecom, banking, and e-commerce — from Manila to Singapore to Stockholm.",
+  "yearsOfExperience": "years of experience",
+  "companies": "companies",
+  "downloadPdf": "Download PDF",
+  "downloadWord": "Download Word",
+  "workExperiences": "Work Experience",
+  "education": "Education",
+  "present": "Present",
+  "showMore": "Show details",
+  "showLess": "Hide details",
+  "visitCompany": "Visit {{company}}",
+  "coreStack": "Core Stack",
+  "ctaTitle": "Interested in working together?",
+  "ctaSubtitle": "I'm always open to discussing new opportunities, interesting projects, or just talking shop.",
+  "emailMe": "Email me",
+  "grabACopy": "Grab a copy of my resume"
 }
