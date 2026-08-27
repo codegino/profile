@@ -65,9 +65,9 @@ const getStaticProps = async () => {
   const {img, svg} = await getBlurringImage('profile-picture.jpeg');
 
   const resumePdfUrl =
-    'https://cdn.grigora.co/projects/10ddb1b4-c8f5-48cd-98f4-e11824bf400b/others/cv/CarloGinoCatapang-FullStack.pdf';
+    'https://prod.grigora-cdn.com/projects/10ddb1b4-c8f5-48cd-98f4-e11824bf400b/root-files/Attachments/Carlo%20Gino%20Catapang%20Resume.pdf';
   const resumeWordUrl =
-    'https://cdn.grigora.co/projects/10ddb1b4-c8f5-48cd-98f4-e11824bf400b/others/cv/Carlo Gino Catapang Full Stack.docx';
+    'https://prod.grigora-cdn.com/projects/10ddb1b4-c8f5-48cd-98f4-e11824bf400b/root-files/Attachments/Carlo%20Gino%20Catapang%20Resume.docx';
 
   return {
     props: {
