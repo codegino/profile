@@ -80,9 +80,9 @@ export const workExperiences: WorkExperience[] = [
     title: 'Senior Software Engineer',
     markdown: `<p>Part of O2O team responsible for the following:</p>
     <ul>
-        <li>&bull; Developing features for the admin web portal of the FairPrice web and mobile applications using React</li>
-        <li>&bull; Improving legacy code by adhering to modern React practices</li>
-        <li>&bull; Improving the code quality by writing better tests</li>
+        <li>Developing features for the admin web portal of the FairPrice web and mobile applications using React</li>
+        <li>Improving legacy code by adhering to modern React practices</li>
+        <li>Improving the code quality by writing better tests</li>
     </ul>`,
     category: 'work',
   },
