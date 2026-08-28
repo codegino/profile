@@ -10,34 +10,24 @@ export const workExperiences: WorkExperience[] = [
     role: 'Software Engineer',
     title: 'Research and Development Engineer',
     markdown: `<p><strong>Research &amp; Development Engineer II (5G Feature Team)</strong></p>
-    <p>
-      &bull; Led the initiative to re-engineer poorly written modules and project in
-      compliance with SOLID principles
-    </p>
-    <p>
-      &bull; Part of feature team responsible for developing 5G Mobile Simulator
-    </p>
-    <p>
-      &bull; Led the overall architecture of Software Component Testing Framework
-      for automated module testing
-    </p>
-    <p>&bull; Created utility web apps to improve team&rsquo;s productivity</p>
-    <p>&emsp;o Test Server monitoring tool</p>
-    <p>&emsp;o Root Cause Analysis manager</p>
-    <br />
-    <p>
-      <strong>Research &amp; Development Engineer I (BTS Site Manager Team)</strong>
-    </p>
-    <p>
-      &bull; Developed BTS Site Manager, an application used to operate BTS remotely
-    </p>
-    <p>
-      &bull; Worked in an in-house web application used to organize domain-specific
-      test cases
-    </p>
-    <p>
-      &bull; Implemented java-based application used to validate BTS configurations
-    </p>`,
+    <ul>
+        <li>Led the initiative to re-engineer poorly written modules and project in compliance with SOLID principles</li>
+        <li>Part of feature team responsible for developing 5G Mobile Simulator</li>
+        <li>Led the overall architecture of Software Component Testing Framework for automated module testing</li>
+        <li>
+          Created utility web apps to improve team&rsquo;s productivity
+          <ul>
+              <li>Test Server monitoring tool</li>
+              <li>Root Cause Analysis manager</li>
+          </ul>
+        </li>
+    </ul>
+    <p><strong>Research &amp; Development Engineer I (BTS Site Manager Team)</strong></p>
+    <ul>
+        <li>Developed BTS Site Manager, an application used to operate BTS remotely</li>
+        <li>Worked in an in-house web application used to organize domain-specific test cases</li>
+        <li>Implemented java-based application used to validate BTS configurations</li>
+    </ul>`,
     category: 'work',
   },
   {
@@ -48,10 +38,12 @@ export const workExperiences: WorkExperience[] = [
     endDate: '2018/11/30',
     role: 'Software Engineer',
     title: 'Associate Consultant',
-    markdown: `<p>&bull; Led development of CapGenie Web, an internal website used for employee management</p>
-    <p>&bull; Part of feature team responsible for developing CapGenie Mobile</p>
-    <p>&bull; Refactored poorly written code to improve performance, readability, and maintainability</p>
-    <p>&bull; Led the initiative to transition CapGenie Mobile from Cordova to React Native</p>`,
+    markdown: `<ul>
+        <li>Led development of CapGenie Web, an internal website used for employee management</li>
+        <li>Part of feature team responsible for developing CapGenie Mobile</li>
+        <li>Refactored poorly written code to improve performance, readability, and maintainability</li>
+        <li>Led the initiative to transition CapGenie Mobile from Cordova to React Native</li>
+    </ul>`,
     category: 'work',
   },
   {
@@ -62,12 +54,13 @@ export const workExperiences: WorkExperience[] = [
     endDate: '2021/09/16',
     role: 'Software Engineer',
     title: 'UI Java Full Stack Developer',
-    markdown: `<p>&bull; ReportX - Using web-based technologies, users can design a template (Similar to Crystal Report), configure a data source (CSV, Excel, database, S3, etc.), and set scheduled generation.</p>
-    <p>PDFs will be generated from the template, but different output based on multiple factors.</p>
-    <p>&bull; File Browser - In-house simple store solution; Following the bucket model of storing files; Capable of creating a profile for individuals and groups; Capable of whitelisting/blacklisting filetypes and actions to be performed</p>
-    <p>&bull; Chatbot - In-house solution to reduce repetitive queries. The Client-side is used by the front office to reduce interaction with the back office regarding redundant queries. Admin side enables the owner to train the bot, provides analytics for users/questions.</p>
-    <p>&bull; eDoc - Document repository for Post-trade document; End to end solution to manage and deliver documents to clients via dedicated UI or via email</p>
-    <p>&bull; Barclays Blockchain Hackaton 2019 (Overall Winner) - Led UI development for blockchain application</p>`,
+    markdown: `<ul>
+        <li>ReportX - Using web-based technologies, users can design a template (Similar to Crystal Report), configure a data source (CSV, Excel, database, S3, etc.), and set scheduled generation. PDFs will be generated from the template, but different output based on multiple factors.</li>
+        <li>File Browser - In-house simple store solution; Following the bucket model of storing files; Capable of creating a profile for individuals and groups; Capable of whitelisting/blacklisting filetypes and actions to be performed</li>
+        <li>Chatbot - In-house solution to reduce repetitive queries. The Client-side is used by the front office to reduce interaction with the back office regarding redundant queries. Admin side enables the owner to train the bot, provides analytics for users/questions.</li>
+        <li>eDoc - Document repository for Post-trade document; End to end solution to manage and deliver documents to clients via dedicated UI or via email</li>
+        <li>Barclays Blockchain Hackaton 2019 (Overall Winner) - Led UI development for blockchain application</li>
+    </ul>`,
     category: 'work',
   },
   {
@@ -88,14 +81,32 @@ export const workExperiences: WorkExperience[] = [
   },
   {
     id: '5',
-    organization: 'Devoteam Sweden',
+    organization: 'Devoteam Creative Tech',
     url: 'https://se.devoteam.com',
     startDate: '2022/08/02',
-    endDate: '2022/08/02',
+    endDate: '2022/05/31',
     role: 'Software Engineer',
-    title: 'Senior Software Engineer',
-    markdown: `<p style="text-align: center">I'm just starting to do awesome stuff</p>
-    <p style="text-align: center">Connect with me if you have a project in mind</p>`,
+    title: 'Senior Full Stack Developer',
+    markdown: `<ul>
+        <li>Built and maintained web applications for clients as a consultant</li>
+        <li>Worked across the stack, from UI implementation to backend services</li>
+        <li>Advocated for modern frontend practices, testing, and code quality</li>
+    </ul>`,
+    category: 'work',
+  },
+  {
+    id: '6',
+    organization: 'Tre',
+    url: 'https://www.tre.se/',
+    startDate: '2023/06/01',
+    endDate: '2022/06/01',
+    role: 'Software Engineer',
+    title: 'Senior Full Stack Developer',
+    markdown: `<p>Projects:</p>
+    <ul>
+        <li>B2B Portal &ndash; Migrated the Swedish and Danish B2B applications into one Scandinavian solution</li>
+        <li>Danish B2C Portal &ndash; Migrated the old Tre DK B2C Portal</li>
+    </ul>`,
     category: 'work',
   },
 ];
