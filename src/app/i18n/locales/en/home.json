@@ -13,6 +13,19 @@
     "title": "Technologies I work with",
     "cta": "See the full skills list"
   },
+  "sideProjects": {
+    "kicker": "Side projects",
+    "title": "Things I build for fun",
+    "larotune": {
+      "description": "A pitch and tempo trainer to help musicians practice with immediate feedback."
+    },
+    "breathing": {
+      "description": "A breathing exercise companion that guides you through calming breathing patterns."
+    },
+    "tankably": {
+      "description": "A database of aquarium creatures and plants with care requirements and compatibility."
+    }
+  },
   "blogSection": {
     "kicker": "From the blog",
     "title": "Recent posts",

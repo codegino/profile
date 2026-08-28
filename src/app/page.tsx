@@ -5,6 +5,7 @@ import Script from 'next/script';
 import {FullScreenWrapper} from '../components/FullScreenWrapper';
 import AboutTeaser from '../components/home/AboutTeaser';
 import CodingActivity from '../components/home/CodingActivity';
+import SideProjects from '../components/home/SideProjects';
 import SkillsHighlights from '../components/home/SkillsHighlights';
 import {newCommonMetaTags} from '../frontend-utils/meta-tags';
 import BlogSuggestionsList from '../modules/blog/BlogSuggestionsList';
@@ -90,13 +91,16 @@ const HomePage: NextPage = async () => {
           <SkillsHighlights skills={skills} />
         </div>
         <div className="bg-neutral-50 dark:bg-neutral-700">
-          <BlogSuggestionsList blogs={blogs} />
+          <SideProjects />
         </div>
         <div className="bg-neutral-100 dark:bg-neutral-800">
+          <BlogSuggestionsList blogs={blogs} />
+        </div>
+        <div className="bg-neutral-50 dark:bg-neutral-700">
           <CodingActivity />
         </div>
       </main>
-      <div className="bg-neutral-50 dark:bg-neutral-700" id="subscribe">
+      <div className="bg-neutral-100 dark:bg-neutral-800" id="subscribe">
         <SubscribeForm />
       </div>
     </>

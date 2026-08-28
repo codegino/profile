@@ -13,6 +13,19 @@
     "title": "Tekniker jag arbetar med",
     "cta": "Se hela listan över färdigheter"
   },
+  "sideProjects": {
+    "kicker": "Sidoprojekt",
+    "title": "Saker jag bygger för skojs skull",
+    "larotune": {
+      "description": "En tonhöjds- och tempotränare som hjälper musiker att öva med direkt återkoppling."
+    },
+    "breathing": {
+      "description": "En andningsövningskompanjon som guidar dig genom lugnande andningsmönster."
+    },
+    "tankably": {
+      "description": "En databas över akvariedjur och växter med skötselkrav och kompatibilitet."
+    }
+  },
   "blogSection": {
     "kicker": "Från bloggen",
     "title": "Senaste inläggen",
