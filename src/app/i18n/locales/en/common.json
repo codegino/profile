@@ -9,5 +9,8 @@
   "date": "{{val, datetime}}",
   "sitemap": "Sitemap",
   "rssFeed": "RSS Feed",
-  "allRightsReserved": "All rights reserved"
+  "allRightsReserved": "All rights reserved",
+  "bookACall": "Book a 15-min call",
+  "bookACallTitle": "Book a 15-minute meeting",
+  "closeDialog": "Close"
 }

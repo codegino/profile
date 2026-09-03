@@ -9,5 +9,8 @@
   "date": "{{val, datetime}}",
   "sitemap": "Webbplatskarta",
   "rssFeed": "RSS-Feed",
-  "allRightsReserved": "Alla rättigheter reserverade"
+  "allRightsReserved": "Alla rättigheter reserverade",
+  "bookACall": "Boka ett 15-min samtal",
+  "bookACallTitle": "Boka ett 15-minuters möte",
+  "closeDialog": "Stäng"
 }

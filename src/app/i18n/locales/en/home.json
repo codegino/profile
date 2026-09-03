@@ -35,6 +35,12 @@
     "kicker": "Coding activity",
     "title": "Always building"
   },
+  "contact": {
+    "kicker": "Get in touch",
+    "title": "Let's talk",
+    "description": "Pick a slot that works for you and let's chat about your project, an opportunity, or anything tech.",
+    "emailMe": "Email me instead"
+  },
   "greetings": {
     "filename": "Greetings.sh",
     "1": "Hi! How are you?",

@@ -1,4 +1,5 @@
 import NextLink from './basic/NextLink';
+import BookACallButton from './booking/BookACallButton';
 import {BottomRightShape} from './extras/BottomRightShape';
 import {TopLeftShape} from './extras/TopLeftShape';
 import SocialMedia from './social/SocialMedia';
@@ -10,7 +11,7 @@ const Footer: FC = async () => {
   const {t} = await createTranslation('common');
 
   return (
-    <footer className="relative flex h-48 w-full justify-center overflow-hidden bg-neutral-900 text-white md:h-32">
+    <footer className="relative flex h-64 w-full justify-center overflow-hidden bg-neutral-900 text-white md:h-40">
       <TopLeftShape />
       <BottomRightShape />
       <div
@@ -36,10 +37,18 @@ const Footer: FC = async () => {
           <p className="mt-2">{t('allRightsReserved')}</p>
           <p>© Carlo Gino Catapang {new Date().getFullYear()}</p>
         </div>
-        <div className="flex items-center">
-          <BuyMeACoffeeIcon className="mr-1" />
+        <div className="flex flex-col items-center gap-y-3">
+          <BookACallButton
+            label={t('bookACall')}
+            title={t('bookACallTitle')}
+            closeLabel={t('closeDialog')}
+            className="inline-flex items-center gap-2 rounded-lg border-2 border-neutral-600 px-4 py-2 text-sm font-bold transition-colors duration-200 hover:border-primary-300 hover:text-primary-300"
+          />
+          <div className="flex items-center">
+            <BuyMeACoffeeIcon className="mr-1" />
 
-          <SocialMedia />
+            <SocialMedia />
+          </div>
         </div>
       </div>
     </footer>

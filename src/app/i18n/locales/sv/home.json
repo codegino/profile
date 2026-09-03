@@ -35,6 +35,12 @@
     "kicker": "Kodningsaktivitet",
     "title": "Bygger alltid"
   },
+  "contact": {
+    "kicker": "Hör av dig",
+    "title": "Låt oss prata",
+    "description": "Välj en tid som passar dig så pratar vi om ditt projekt, en möjlighet eller vad som helst inom teknik.",
+    "emailMe": "Mejla mig i stället"
+  },
   "greetings": {
     "filename": "Hälsningsfraser.sh",
     "1": "Hej! Hur mår du?",

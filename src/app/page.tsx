@@ -5,6 +5,7 @@ import Script from 'next/script';
 import {FullScreenWrapper} from '../components/FullScreenWrapper';
 import AboutTeaser from '../components/home/AboutTeaser';
 import CodingActivity from '../components/home/CodingActivity';
+import ContactCta from '../components/home/ContactCta';
 import SideProjects from '../components/home/SideProjects';
 import SkillsHighlights from '../components/home/SkillsHighlights';
 import {newCommonMetaTags} from '../frontend-utils/meta-tags';
@@ -99,8 +100,11 @@ const HomePage: NextPage = async () => {
         <div className="bg-neutral-50 dark:bg-neutral-700">
           <CodingActivity />
         </div>
+        <div className="bg-neutral-100 dark:bg-neutral-800" id="contact">
+          <ContactCta />
+        </div>
       </main>
-      <div className="bg-neutral-100 dark:bg-neutral-800" id="subscribe">
+      <div className="bg-neutral-50 dark:bg-neutral-700" id="subscribe">
         <SubscribeForm />
       </div>
     </>
