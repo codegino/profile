@@ -18,8 +18,8 @@ const BlogCard: FunctionComponent<{
     <figure
       className={clsx(
         'relative flex flex-col items-center justify-between sm:flex-row-reverse',
-        'h-[25rem] w-full rounded-xl bg-neutral-50 dark:bg-neutral-800 sm:h-80 sm:px-8 sm:py-4',
-        'mb-8 max-w-[45rem] shadow-sm shadow-neutral-700 last:mb-0 hover:shadow-md hover:shadow-neutral-800 sm:max-w-[55rem]',
+        'h-100 w-full rounded-xl bg-neutral-50 dark:bg-neutral-800 sm:h-80 sm:px-8 sm:py-4',
+        'mb-8 max-w-180 shadow-xs shadow-neutral-700 last:mb-0 hover:shadow-md hover:shadow-neutral-800 sm:max-w-220',
       )}
     >
       <div
@@ -64,7 +64,7 @@ const BlogCard: FunctionComponent<{
             <div className="mt-4 flex flex-wrap gap-2 sm:mt-8">
               {blog.tags.map(tag => (
                 <span
-                  className="inline-block flex-nowrap rounded-xl bg-white px-3 py-1 shadow-sm shadow-neutral-200 dark:bg-neutral-900 dark:shadow-neutral-900"
+                  className="inline-block flex-nowrap rounded-xl bg-white px-3 py-1 shadow-xs shadow-neutral-200 dark:bg-neutral-900 dark:shadow-neutral-900"
                   key={tag}
                 >
                   {tag}

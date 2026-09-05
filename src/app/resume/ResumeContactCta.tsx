@@ -18,7 +18,7 @@ const ResumeContactCta: FC<{
   return (
     <section className="mx-auto max-w-4xl px-4 pb-16 pt-8">
       <Fade direction="up" triggerOnce>
-        <div className="rounded-2xl border border-neutral-200 bg-gradient-to-br from-neutral-50 to-primary-50 p-8 text-center shadow-sm dark:border-neutral-700 dark:from-neutral-800 dark:to-neutral-800 sm:p-12">
+        <div className="rounded-2xl border border-neutral-200 bg-linear-to-br from-neutral-50 to-primary-50 p-8 text-center shadow-xs dark:border-neutral-700 dark:from-neutral-800 dark:to-neutral-800 sm:p-12">
           <h2 className="m-0 text-3xl font-bold">{t('ctaTitle')}</h2>
           <p className="mx-auto mt-3 max-w-xl text-lg text-neutral-600 dark:text-neutral-300">
             {t('ctaSubtitle')}

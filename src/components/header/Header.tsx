@@ -19,7 +19,7 @@ const FloatingLogo: FunctionComponent = () => {
   return !isSidebarVisible ? (
     <Logo
       onClick={showSidebar}
-      className={'fixed left-[17px] top-3 z-[100] animate-spin-fast'}
+      className={'fixed left-[17px] top-3 z-100 animate-spin-fast'}
     />
   ) : null;
 };

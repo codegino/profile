@@ -41,12 +41,12 @@ const SmallScreenSidebar: FunctionComponent = () => {
     <>
       {isSidebarVisible && (
         <RoundButton
-          className="fixed left-[17px] top-3 z-[100] animate-spin-fast"
+          className="fixed left-[17px] top-3 z-100 animate-spin-fast"
           onClick={hideSidebar}
         >
           <AiOutlineClose
             size={32}
-            className="select-none fill-neutral-900 outline-none"
+            className="select-none fill-neutral-900 outline-hidden"
           />
         </RoundButton>
       )}
@@ -106,9 +106,9 @@ const SmallScreenSidebar: FunctionComponent = () => {
                 </nav>
 
                 <h3 className="mb-0 mt-3 text-xl">Social</h3>
-                <div className="flex items-center [&_.icon]:text-neutral-900 [&_.icon]:dark:text-neutral-50">
+                <div className="flex items-center [&_.icon]:text-neutral-900 dark:[&_.icon]:text-neutral-50">
                   <SocialMedia />
-                  <BuyMeACoffeeIcon className="ml-4 [&_.icon]:fill-orange-700 [&_.icon]:hover:fill-orange-600" />
+                  <BuyMeACoffeeIcon className="ml-4 [&_.icon]:fill-orange-700 hover:[&_.icon]:fill-orange-600" />
                 </div>
                 <h3 className="mb-0 mt-3 text-xl">Contact me</h3>
                 <div>

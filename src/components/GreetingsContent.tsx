@@ -17,11 +17,11 @@ const GreetingsContent: FC = () => {
 
   return (
     <>
-      <div className="relative flex h-screen w-screen items-center justify-center pb-[25vh] md:max-w-[40rem]">
+      <div className="relative flex h-screen w-screen items-center justify-center pb-[25vh] md:max-w-160">
         <div
           className="
             m-2 w-full overflow-hidden rounded-lg text-[7px] ring-2
-            ring-black/90 @container dark:ring-zinc-500/90  sm:m-0 sm:w-[95%] lg:w-[50rem]
+            ring-black/90 @container dark:ring-zinc-500/90  sm:m-0 sm:w-[95%] lg:w-200
           "
         >
           <div className="relative flex h-8 min-h-8 items-center border-b border-black/20 bg-zinc-100 pl-2 dark:border-white/20 dark:bg-neutral-700">
@@ -34,8 +34,8 @@ const GreetingsContent: FC = () => {
             </div>
           </div>
           <div
-            className="h-[21rem] bg-neutral-100 p-1
-            font-mono text-[8px] leading-[1.2] text-neutral-900 @sm:h-80 @md:h-[19rem] dark:bg-neutral-800 dark:text-neutral-50"
+            className="h-84 bg-neutral-100 p-1
+            font-mono text-[8px] leading-[1.2] text-neutral-900 @sm:h-80 @md:h-76 dark:bg-neutral-800 dark:text-neutral-50"
           >
             <Typist
               avgTypingDelay={10}

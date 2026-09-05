@@ -56,7 +56,7 @@ const ShareToSocialMedia: FunctionComponent<{blog: IBlogMetadata}> = ({
             title={`Share on ${sm.name}`}
             aria-label={`Share on ${sm.name}`}
             className={clsx(
-              'hover:shadow-dark relative h-10 rounded-3xl px-4 py-2 text-white hover:shadow-sm',
+              'hover:shadow-dark relative h-10 rounded-3xl px-4 py-2 text-white hover:shadow-xs',
               'text-lg',
               'flex items-center',
             )}

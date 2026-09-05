@@ -62,7 +62,7 @@ const BookACallButton: FC<{
             close();
           }
         }}
-        className="size-full max-h-full max-w-full bg-neutral-900 p-0 backdrop:bg-black/70 backdrop:backdrop-blur-sm sm:h-[90vh] sm:max-h-[800px] sm:w-[90vw] sm:max-w-4xl sm:rounded-2xl"
+        className="size-full max-h-full max-w-full bg-neutral-900 p-0 backdrop:bg-black/70 backdrop:backdrop-blur-xs sm:h-[90vh] sm:max-h-[800px] sm:w-[90vw] sm:max-w-4xl sm:rounded-2xl"
       >
         <div className="relative size-full">
           <button

@@ -63,7 +63,7 @@ const HomePage: NextPage = async () => {
         />
 
         <svg
-          className="absolute inset-0 -z-10 size-full stroke-primary-900 [mask-image:radial-gradient(50%_105%_at_bottom,black,transparent)] dark:stroke-primary-50"
+          className="absolute inset-0 -z-10 size-full stroke-primary-900 mask-[radial-gradient(50%_105%_at_bottom,black,transparent)] dark:stroke-primary-50"
           aria-hidden="true"
         >
           <defs>

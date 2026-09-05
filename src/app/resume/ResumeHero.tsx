@@ -41,7 +41,7 @@ export default async function ResumeHero({
         <div className="relative shrink-0">
           <div
             aria-hidden
-            className="absolute -inset-2 rounded-full bg-gradient-to-br from-primary-400 to-primary-800 opacity-70 blur-sm dark:from-primary-300 dark:to-primary-600"
+            className="absolute -inset-2 rounded-full bg-linear-to-br from-primary-400 to-primary-800 opacity-70 blur-xs dark:from-primary-300 dark:to-primary-600"
           />
           <div className="relative size-40 overflow-hidden rounded-full ring-4 ring-white dark:ring-neutral-900 md:size-48">
             <BlurringImage

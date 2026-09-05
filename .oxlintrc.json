@@ -1,0 +1,24 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["eslint", "typescript", "react", "jsx-a11y", "nextjs", "import"],
+  "categories": {
+    "correctness": "error"
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "es2024": true
+  },
+  "settings": {
+    "react": {
+      "version": "19.2.8"
+    }
+  },
+  "ignorePatterns": [
+    ".next/**",
+    "node_modules/**",
+    "public/**",
+    "gino/**",
+    "**/*.mdx"
+  ]
+}

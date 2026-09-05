@@ -50,7 +50,7 @@ export default function ResumeSkills({skills}: {skills: CategorizedSkill[]}) {
                   rel="noreferrer"
                   aria-label={skill.name}
                   title={`Click to visit ${skill.name}`}
-                  className="rounded-xl border border-primary-300 bg-primary-50 px-5 py-3 text-lg font-bold text-primary-900 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md dark:border-primary-600 dark:bg-neutral-800 dark:text-primary-300"
+                  className="rounded-xl border border-primary-300 bg-primary-50 px-5 py-3 text-lg font-bold text-primary-900 shadow-xs transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md dark:border-primary-600 dark:bg-neutral-800 dark:text-primary-300"
                 >
                   {skill.name}
                 </NextLink>
@@ -64,7 +64,7 @@ export default function ResumeSkills({skills}: {skills: CategorizedSkill[]}) {
       <div className="grid gap-6 sm:grid-cols-2">
         {otherCategories.map(category => (
           <Fade key={category.category} direction="up" triggerOnce>
-            <div className="h-full rounded-xl border border-neutral-200 bg-white p-5 shadow-sm dark:border-neutral-700 dark:bg-neutral-800">
+            <div className="h-full rounded-xl border border-neutral-200 bg-white p-5 shadow-xs dark:border-neutral-700 dark:bg-neutral-800">
               <h3 className="mb-3 flex items-center gap-2 text-base font-semibold uppercase tracking-wide text-neutral-500 dark:text-neutral-400">
                 {getSkillCategoryIcon(category.category)}
                 {category.category}

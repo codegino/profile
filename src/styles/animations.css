@@ -1,3 +1,5 @@
+@reference '../../styles/tailwind.css';
+
 @keyframes expandToFullWidth {
   0% {
     width: 0;

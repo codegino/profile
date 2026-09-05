@@ -34,7 +34,7 @@ export default function SkillsHighlights({
               rel="noreferrer"
               aria-label={skill.name}
               title={`Click to visit ${skill.name}`}
-              className="whitespace-nowrap rounded-xl border border-primary-300 bg-primary-50 px-5 py-3 text-lg font-bold text-primary-900 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md dark:border-primary-600 dark:bg-neutral-800 dark:text-primary-300"
+              className="whitespace-nowrap rounded-xl border border-primary-300 bg-primary-50 px-5 py-3 text-lg font-bold text-primary-900 shadow-xs transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md dark:border-primary-600 dark:bg-neutral-800 dark:text-primary-300"
             >
               {skill.name}
             </NextLink>

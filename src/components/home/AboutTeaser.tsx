@@ -32,7 +32,7 @@ export default async function AboutTeaser({
       />
 
       <Fade direction="up" triggerOnce>
-        <div className="relative mx-auto max-w-4xl rounded-2xl border border-neutral-200 bg-white/70 p-8 shadow-sm backdrop-blur-sm dark:border-neutral-700 dark:bg-neutral-800/70 sm:p-12">
+        <div className="relative mx-auto max-w-4xl rounded-2xl border border-neutral-200 bg-white/70 p-8 shadow-xs backdrop-blur-xs dark:border-neutral-700 dark:bg-neutral-800/70 sm:p-12">
           <p className="m-0 mb-6 text-center text-sm font-semibold uppercase tracking-widest text-primary-900 dark:text-primary-300">
             {tHome('about.kicker')}
           </p>
@@ -41,7 +41,7 @@ export default async function AboutTeaser({
             <div className="relative shrink-0">
               <div
                 aria-hidden
-                className="absolute -inset-2 rounded-full bg-gradient-to-br from-primary-400 to-primary-800 opacity-70 blur-sm dark:from-primary-300 dark:to-primary-600"
+                className="absolute -inset-2 rounded-full bg-linear-to-br from-primary-400 to-primary-800 opacity-70 blur-xs dark:from-primary-300 dark:to-primary-600"
               />
               <div className="relative size-36 overflow-hidden rounded-full ring-4 ring-white dark:ring-neutral-900 md:size-40">
                 <BlurringImage

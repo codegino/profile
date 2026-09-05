@@ -112,7 +112,7 @@ const Content: FunctionComponent<{
           <p className="md:ml-2">({exp.role})</p>
         </div>
       </div>
-      <div className="max-w-[50rem]">{children}</div>
+      <div className="max-w-200">{children}</div>
       <p className="mt-2 text-sm text-neutral-700 dark:text-neutral-700">
         {t('date', {
           val: new Date(exp.startDate),

@@ -104,7 +104,7 @@ const CodeBlockImpl: FunctionComponent<CodeBlockProps> = ({
                   {tokens.map((_, i) => (
                     <span
                       className="min-w-8 max-w-8 select-none bg-[#1e1e1e] pl-2 pr-3
-                    text-right leading-[1.188] text-white
+                    text-right code-line-height text-white
                     "
                       key={i}
                     >
@@ -126,8 +126,8 @@ const CodeBlockImpl: FunctionComponent<CodeBlockProps> = ({
 
               <span
                 className={clsx(
-                  'relative my-1 flex flex-col overflow-auto p-2 text-lg leading-[1.188]',
-                  'no-scrollbar rounded-b-md shadow-sm shadow-black',
+                  'relative my-1 flex flex-col overflow-auto p-2 text-lg code-line-height',
+                  'no-scrollbar rounded-b-md shadow-xs shadow-black',
                   className,
                   {
                     'pl-8': !noLine,
@@ -143,8 +143,8 @@ const CodeBlockImpl: FunctionComponent<CodeBlockProps> = ({
                         {...getTokenProps({token, key})}
                         key={key}
                         className={clsx({
-                          '!text-green-400': add && addedLines.has(i + 1),
-                          '!text-red-400': del && removedLines.has(i + 1),
+                          'text-green-400!': add && addedLines.has(i + 1),
+                          'text-red-400!': del && removedLines.has(i + 1),
                         })}
                       />
                     ))}

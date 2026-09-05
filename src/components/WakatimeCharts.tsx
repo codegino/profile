@@ -24,7 +24,7 @@ export default function WakatimeCharts() {
       </p>
       <Zoom triggerOnce>
         <figure className="flex justify-center">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
+          {/* oxlint-disable-next-line nextjs/no-img-element */}
           <img
             className="w-full max-w-md md:max-w-lg"
             src="https://wakatime.com/share/@codegino/aa8c74ed-2174-445a-805d-e46a869c3b8b.svg"

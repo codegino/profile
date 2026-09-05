@@ -44,7 +44,7 @@ function DebouncedInput({
   return (
     <input
       {...props}
-      className="w-full rounded-md bg-transparent ring-1 ring-neutral-500 focus:outline-none dark:ring-neutral-200 md:pl-8"
+      className="w-full rounded-md bg-transparent ring-1 ring-neutral-500 focus:outline-hidden dark:ring-neutral-200 md:pl-8"
       value={value}
       onChange={e => setValue(e.target.value)}
     />

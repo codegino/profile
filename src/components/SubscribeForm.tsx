@@ -52,7 +52,7 @@ const SubscribeForm = () => {
   return (
     <section className="mx-auto w-full max-w-4xl px-4 py-16 sm:py-20">
       <Fade direction="up" triggerOnce>
-        <div className="flex flex-col items-center rounded-2xl border border-neutral-200 bg-gradient-to-br from-neutral-50 to-primary-50 p-8 text-center shadow-sm dark:border-neutral-700 dark:from-neutral-800 dark:to-neutral-800 sm:p-12">
+        <div className="flex flex-col items-center rounded-2xl border border-neutral-200 bg-linear-to-br from-neutral-50 to-primary-50 p-8 text-center shadow-xs dark:border-neutral-700 dark:from-neutral-800 dark:to-neutral-800 sm:p-12">
           <div className="max-w-2xl text-center">
             <h2 className="m-0 text-3xl font-bold sm:text-4xl">{t('title')}</h2>
             <h3 className="mx-auto mt-3 max-w-xl text-lg font-normal text-neutral-600 dark:text-neutral-300">
@@ -67,7 +67,7 @@ const SubscribeForm = () => {
 
           <form
             onSubmit={handleSubmit}
-            className="relative mt-8 w-full max-w-xl overflow-hidden rounded-2xl border border-neutral-200 bg-white/90 shadow-sm dark:border-neutral-600 dark:bg-neutral-800"
+            className="relative mt-8 w-full max-w-xl overflow-hidden rounded-2xl border border-neutral-200 bg-white/90 shadow-xs dark:border-neutral-600 dark:bg-neutral-800"
             id="1j27oq"
           >
             <div className="flex items-center justify-center pt-6">

@@ -10,8 +10,8 @@ const ContentLayout: FunctionComponent<{children: React.ReactNode}> = ({
     <article
       {...props}
       className={clsx(
-        'm-auto mb-10 flex max-w-screen-md flex-col px-2',
-        '[&_*_code]:bg-neutral-700 [&_*_code]:text-neutral-200 [&_*_code]:dark:bg-neutral-200 [&_*_code]:dark:text-neutral-700',
+        'm-auto mb-10 flex max-w-(--breakpoint-md) flex-col px-2',
+        '[&_*_code]:bg-neutral-700 [&_*_code]:text-neutral-200 dark:[&_*_code]:bg-neutral-200 dark:[&_*_code]:text-neutral-700',
         '[&>pre]:my-3',
         '[&_blockquote>p]:pl-2',
         '[&>ul]:m-0',

@@ -38,7 +38,7 @@ const BlogFooter = ({blog}: {blog: IBlogMetadata}) => {
         className="mt-2"
         rel="noreferrer"
       >
-        <span className="relative h-10 rounded-3xl bg-[#1da1f2] px-6 py-2 text-white hover:shadow-sm hover:shadow-neutral-800">
+        <span className="relative h-10 rounded-3xl bg-[#1da1f2] px-6 py-2 text-white hover:shadow-xs hover:shadow-neutral-800">
           <FaTwitter /> Follow @codegino
         </span>
       </NextLink>

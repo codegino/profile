@@ -37,7 +37,7 @@ export default async function NFT() {
                 {name}
               </h2>
             </NextLink>
-            <div className="mb-4 max-w-screen-xs text-center md:max-w-[800px]">
+            <div className="mb-4 max-w-(--breakpoint-xs) text-center md:max-w-[800px]">
               {details}
             </div>
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2">

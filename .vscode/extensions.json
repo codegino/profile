@@ -1,7 +1,7 @@
 {
   "recommendations": [
     "wix.vscode-import-cost",
-    "dbaeumer.vscode-eslint",
+    "oxc.oxc-vscode",
     "eamodio.gitlens",
     "csstools.postcss",
     "esbenp.prettier-vscode",

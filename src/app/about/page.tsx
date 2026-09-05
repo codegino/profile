@@ -32,12 +32,12 @@ const AboutMePage: NextPage = async () => {
           {aboutMeDetails.map(detail => {
             return (
               <section
-                className="flex flex-col items-center p-2 [&:not(:last-child)]:mb-4"
+                className="flex flex-col items-center p-2 not-last:mb-4"
                 key={detail.key}
               >
                 <h3 className="mb-4 text-xl">{detail.label}</h3>
                 <div
-                  className="max-w-screen-md px-4 text-justify"
+                  className="max-w-(--breakpoint-md) px-4 text-justify"
                   dangerouslySetInnerHTML={{
                     __html: dompurify.sanitize(detail.content),
                   }}

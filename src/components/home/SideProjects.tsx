@@ -54,7 +54,7 @@ export default async function SideProjects() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`${name} - ${t(`sideProjects.${key}.description`)}`}
-              className="group flex h-full flex-col gap-3 rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-primary-900 hover:shadow-md dark:border-neutral-700 dark:bg-neutral-800 dark:hover:border-primary-300"
+              className="group flex h-full flex-col gap-3 rounded-2xl border border-neutral-200 bg-white p-6 shadow-xs transition-all duration-200 hover:-translate-y-1 hover:border-primary-900 hover:shadow-md dark:border-neutral-700 dark:bg-neutral-800 dark:hover:border-primary-300"
             >
               <span
                 aria-hidden

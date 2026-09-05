@@ -13,7 +13,7 @@ export const BlogCardPreview = ({blog}: Props) => {
   const {t} = useTranslation('common');
 
   return (
-    <figure className="bg-light relative min-h-80 w-full overflow-hidden rounded-2xl text-center shadow-sm shadow-neutral-800 hover:shadow-md hover:shadow-neutral-800 md:max-w-4xl">
+    <figure className="bg-light relative min-h-80 w-full overflow-hidden rounded-2xl text-center shadow-xs shadow-neutral-800 hover:shadow-md hover:shadow-neutral-800 md:max-w-4xl">
       <NextLink href={`/blog/${blog.slug}`} aria-label={blog.title}>
         <Image
           src={blog.bannerId}

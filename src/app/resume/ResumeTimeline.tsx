@@ -54,12 +54,12 @@ export default function ResumeTimeline({
 const TimelineLine = () => (
   <div
     aria-hidden
-    className="to-primary-400/30 dark:to-primary-300/30 absolute inset-y-2 left-[7px] w-0.5 rounded bg-gradient-to-b from-primary-400 via-primary-600 dark:from-primary-300 dark:via-primary-500 sm:left-[11px]"
+    className="to-primary-400/30 dark:to-primary-300/30 absolute inset-y-2 left-[7px] w-0.5 rounded-sm bg-linear-to-b from-primary-400 via-primary-600 dark:from-primary-300 dark:via-primary-500 sm:left-[11px]"
   />
 );
 
 const TimelineDot = () => (
-  <div className="absolute left-0 top-7 size-4 rounded-full border-2 border-primary-600 bg-white shadow dark:border-primary-300 dark:bg-neutral-900 sm:size-6 sm:border-4" />
+  <div className="absolute left-0 top-7 size-4 rounded-full border-2 border-primary-600 bg-white shadow-sm dark:border-primary-300 dark:bg-neutral-900 sm:size-6 sm:border-4" />
 );
 
 const DateRange: FunctionComponent<{
@@ -101,7 +101,7 @@ const WorkItem: FunctionComponent<{
   return (
     <div className="relative mb-8 pl-8 sm:pl-12">
       <TimelineDot />
-      <div className="rounded-xl border border-neutral-200 bg-white shadow-sm transition-shadow duration-200 hover:shadow-md dark:border-neutral-700 dark:bg-neutral-800">
+      <div className="rounded-xl border border-neutral-200 bg-white shadow-xs transition-shadow duration-200 hover:shadow-md dark:border-neutral-700 dark:bg-neutral-800">
         <button
           type="button"
           onClick={() => setExpanded(v => !v)}
@@ -166,7 +166,7 @@ const EducationItem: FunctionComponent<{exp: EducationExperience}> = ({
   return (
     <div className="relative mb-8 pl-8 sm:pl-12">
       <TimelineDot />
-      <div className="rounded-xl border border-neutral-200 bg-white p-5 shadow-sm transition-shadow duration-200 hover:shadow-md dark:border-neutral-700 dark:bg-neutral-800">
+      <div className="rounded-xl border border-neutral-200 bg-white p-5 shadow-xs transition-shadow duration-200 hover:shadow-md dark:border-neutral-700 dark:bg-neutral-800">
         <div className="space-y-1">
           <DateRange startDate={exp.startDate} endDate={exp.endDate} />
           <h3 className="m-0 text-xl font-bold">{exp.title}</h3>

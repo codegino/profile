@@ -240,7 +240,7 @@ const PrivacyPolicyPage: NextPage = async () => {
   return (
     <main className="mb-8 flex w-full justify-center">
       <article
-        className="max-w-[50rem]"
+        className="max-w-200"
         dangerouslySetInnerHTML={{
           __html: privacyPolicy,
         }}

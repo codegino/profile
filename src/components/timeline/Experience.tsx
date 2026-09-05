@@ -11,7 +11,7 @@ export const Experience: FunctionComponent<{
     <div className="relative z-10 mb-12 flex max-w-6xl flex-col items-center text-center">
       {/* Pin */}
       <div
-        className="absolute -top-4 left-1/2 z-20 size-6 -translate-x-1/2 rounded-full bg-gradient-to-br from-red-400 to-red-600 shadow-lg"
+        className="absolute -top-4 left-1/2 z-20 size-6 -translate-x-1/2 rounded-full bg-linear-to-br from-red-400 to-red-600 shadow-lg"
         style={{
           boxShadow: '0 2px 4px rgba(0, 0, 0, 0.2)',
         }}
@@ -21,7 +21,7 @@ export const Experience: FunctionComponent<{
 
       {/* Sticky Note */}
       <div
-        className={`w-full rounded bg-yellow-100 p-6 shadow-lg transition-transform duration-200 ease-in-out hover:scale-105 dark:bg-yellow-200 md:w-3/4 lg:w-2/3`}
+        className={`w-full rounded-sm bg-yellow-100 p-6 shadow-lg transition-transform duration-200 ease-in-out hover:scale-105 dark:bg-yellow-200 md:w-3/4 lg:w-2/3`}
         style={{
           transform: `rotate(${rotation}deg)`,
           boxShadow:
@@ -32,7 +32,7 @@ export const Experience: FunctionComponent<{
           {children}
           {/* Add subtle lines to make it look more like paper */}
           <div className="pointer-events-none absolute inset-0">
-            <div className="size-full bg-gradient-to-b from-transparent to-yellow-200/10 dark:to-yellow-300/10"></div>
+            <div className="size-full bg-linear-to-b from-transparent to-yellow-200/10 dark:to-yellow-300/10"></div>
           </div>
         </div>
       </div>
