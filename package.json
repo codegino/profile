@@ -9,6 +9,7 @@
     "start": "next start",
     "lint": "oxlint",
     "lint:fix": "oxlint --fix",
+    "typecheck": "tsc --noEmit",
     "prepare": "husky"
   },
   "dependencies": {
@@ -52,18 +53,12 @@
     "globby": "16.2.4",
     "gray-matter": "4.0.3",
     "husky": "9.1.7",
-    "lint-staged": "16.2.7",
     "oxlint": "1.81.0",
     "plaiceholder": "3.0.0",
     "prettier": "3.9.6",
     "sharp": "0.35.4",
     "tailwindcss": "4.3.3",
     "typescript": "5.9.3"
-  },
-  "lint-staged": {
-    "src/**/*.{js,jsx,ts,tsx}": [
-      "oxlint --fix"
-    ]
   },
   "config": {
     "commitizen": {
