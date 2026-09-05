@@ -1,5 +1,5 @@
 import type {MetadataRoute} from 'next';
-import {getBlogsMetadata, getNovelsMetadata} from '../utils/mdx.utils';
+import {getBlogsMetadata} from '../utils/mdx.utils';
 
 const ROOT_URL = 'https://carlogino.com';
 
@@ -24,10 +24,6 @@ const staticPages: MetadataRoute.Sitemap = [
     url: `${ROOT_URL}/blog`,
     lastModified: '2021-12-29',
   },
-  {
-    url: `${ROOT_URL}/novel`,
-    lastModified: '2021-12-29',
-  },
 ];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -37,11 +33,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     lastModified: meta.dateUpdated,
   }));
 
-  const novelsMetadata = await getNovelsMetadata();
-  const novelsSitemaps: MetadataRoute.Sitemap = novelsMetadata.map(meta => ({
-    url: `${ROOT_URL}/novel/${meta.slug}`,
-    lastModified: meta.dateUpdated,
-  }));
-
-  return [...staticPages, ...blogsSitemaps, ...novelsSitemaps];
+  return [...staticPages, ...blogsSitemaps];
 }

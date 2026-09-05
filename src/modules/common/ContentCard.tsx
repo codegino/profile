@@ -10,8 +10,7 @@ import {useTranslation} from '../../app/i18n/client';
 
 const BlogCard: FunctionComponent<{
   blog: IBlogMetadata | ISlideMetadata;
-  slug?: 'blog' | 'novel';
-}> = ({blog, slug: feature = 'blog'}) => {
+}> = ({blog}) => {
   const {t} = useTranslation('blog');
 
   return (
@@ -41,7 +40,7 @@ const BlogCard: FunctionComponent<{
         />
       </div>
       <figcaption className="absolute bottom-0 w-full bg-neutral-50 p-4 opacity-95 dark:bg-neutral-800 sm:relative sm:p-0 sm:opacity-100">
-        <NextLink href={`/${feature}/${blog.slug}`} aria-label={blog.title}>
+        <NextLink href={`/blog/${blog.slug}`} aria-label={blog.title}>
           <h2 className="line-clamp-2 text-balance">{blog.title}</h2>
           <h3 className="line-clamp-2 text-balance text-neutral-800 dark:text-neutral-200">
             {blog.description}

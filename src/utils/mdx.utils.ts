@@ -6,18 +6,11 @@ import type {IBlogMetadata} from '../models/mdxFiles';
 
 // BLOGS_PATH is useful when you want to get the path to a specific file
 export const BLOGS_PATH = path.join(process.cwd(), 'src/blog');
-export const NOVELS_PATH = path.join(process.cwd(), 'src/novel');
 
 export const getAllBlogsPaths = async () => {
   const pages = await globby(['src/blog/*.mdx']);
 
   return pages.map(page => page.replace('src/blog/', ''));
-};
-
-export const getAllNovelsPaths = async () => {
-  const pages = await globby(['src/novel/*.mdx']);
-
-  return pages.map(page => page.replace('src/novel/', ''));
 };
 
 const getMdxMedata = async (list: string[], mdxPath: string) => {
@@ -43,8 +36,4 @@ const getMdxMedata = async (list: string[], mdxPath: string) => {
 
 export const getBlogsMetadata = async (): Promise<IBlogMetadata[]> => {
   return getMdxMedata(await getAllBlogsPaths(), BLOGS_PATH);
-};
-
-export const getNovelsMetadata = async () => {
-  return getMdxMedata(await getAllNovelsPaths(), NOVELS_PATH);
 };

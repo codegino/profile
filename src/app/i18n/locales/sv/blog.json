@@ -1,6 +1,5 @@
 {
   "myBlogs": "Mina bloggar",
-  "myNovels": "Mina romaner",
   "filterByTags": "Filtrera efter taggar",
   "date": "{{val, datetime}}"
 }

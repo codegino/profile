@@ -1,4 +1,4 @@
-interface IMdxMetadata {
+export interface IBlogMetadata {
   title: string;
   author: string;
   date: string;
@@ -13,7 +13,3 @@ interface IMdxMetadata {
   keywords: string[];
   published: boolean;
 }
-
-export type IBlogMetadata = IMdxMetadata;
-
-export type INovelMetadata = IMdxMetadata & {narrationId: string};
