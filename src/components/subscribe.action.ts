@@ -1,8 +1,6 @@
 'use server';
 
-import {apitable} from '@/utils/api-table';
-
-const datasheet = apitable.datasheet('dstKt9KEFDMSvJBjxN');
+import {createSubscriber, findSubscriberByEmail} from '@/utils/teable';
 
 export async function addSubscriberAction({
   email,
@@ -13,36 +11,34 @@ export async function addSubscriberAction({
   firstName: string;
   lastName: string;
 }) {
-  const existing = await datasheet.records.query({
-    filterByFormula: `{email} = "${email}"`,
-  });
+  const normalizedEmail = email.trim().toLowerCase();
 
-  if (!existing.success) {
+  try {
+    const existing = await findSubscriberByEmail(normalizedEmail);
+
+    if (existing) {
+      return {
+        success: false,
+        message: "You're already subscribed!",
+      };
+    }
+
+    await createSubscriber({
+      'Email': normalizedEmail,
+      'First Name': firstName.trim(),
+      'Last Name': lastName.trim(),
+    });
+
+    return {
+      success: true,
+      message: undefined,
+    };
+  } catch (error) {
+    console.error('Failed to add subscriber', error);
+
     return {
       success: false,
       message: 'An error has occured',
     };
   }
-
-  if (existing?.data?.total && existing.data.total > 0) {
-    return {
-      success: false,
-      message: "You're already subscribed!",
-    };
-  }
-
-  const {success, code} = await datasheet.records.create([
-    {
-      fields: {
-        email,
-        first_name: firstName,
-        last_name: lastName,
-      },
-    },
-  ]);
-
-  return {
-    success,
-    message: success ? undefined : `Error: ${code}`,
-  };
 }

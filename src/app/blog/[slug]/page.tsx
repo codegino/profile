@@ -1,5 +1,5 @@
 import {blogAssets} from '@/data/blog-asset';
-import {newCommonMetaTags} from '@/frontend-utils/meta-tags';
+import {newCommonMetaTags, SITE_URL} from '@/frontend-utils/meta-tags';
 import type {IBlogMetadata} from '@/models/mdxFiles';
 import BlogContent from '@/modules/blog/BlogContent';
 import BlogFooter from '@/modules/blog/BlogFooter';
@@ -25,6 +25,7 @@ export const generateMetadata = async (props: {
   blog.slug = params.slug;
 
   const bannerUrl = blogAssets[params.slug];
+  const absoluteBannerUrl = bannerUrl ? `${SITE_URL}${bannerUrl}` : undefined;
 
   return {
     ...newCommonMetaTags(blog.title, `/blog/${blog.slug}`),
@@ -36,12 +37,12 @@ export const generateMetadata = async (props: {
       type: 'article',
       title: blog.title,
       description: blog.description,
-      images: bannerUrl,
+      images: absoluteBannerUrl,
     },
     twitter: {
       title: blog.title,
       description: blog.description,
-      images: bannerUrl,
+      images: absoluteBannerUrl,
       creator: '@codegino',
       site: '@codegino',
     },
@@ -81,7 +82,7 @@ const BlogPage: NextPage<{
             "@context": "https://schema.org",
             "@type": "Article",
             "headline": "${blog.title}",
-            "image": "${blog.bannerId}",
+            "image": "${SITE_URL}${blog.bannerId}",
             "editor": "Carlo Gino Catapang",
             "author": "Carlo Gino Catapang",
             "genre": "${blog.tags?.join(' ')}",

@@ -1,3 +1,5 @@
+import {readFile} from 'node:fs/promises';
+import {join} from 'node:path';
 import {getPlaiceholder} from 'plaiceholder';
 
 type OPTIMIZE_LEVEL = 4 | 8 | 16 | 32 | 64;
@@ -6,9 +8,11 @@ export const blurImage = async (
   uri: string,
   optimizeLevel: OPTIMIZE_LEVEL = 4,
 ) => {
-  const buffer = await fetch(uri).then(async res =>
-    Buffer.from(await res.arrayBuffer()),
-  );
+  const buffer = uri.startsWith('/')
+    ? await readFile(join(process.cwd(), 'public', uri))
+    : await fetch(uri).then(async res =>
+        Buffer.from(await res.arrayBuffer()),
+      );
 
   const placeholder = await getPlaiceholder(buffer, {
     size: optimizeLevel,
