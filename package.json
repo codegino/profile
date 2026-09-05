@@ -52,7 +52,7 @@
     "globby": "16.2.4",
     "gray-matter": "4.0.3",
     "husky": "9.1.7",
-    "lint-staged": "16.2.7",
+    "lint-staged": "16.4.0",
     "oxlint": "1.81.0",
     "plaiceholder": "3.0.0",
     "prettier": "3.9.6",
