@@ -1,14 +1,11 @@
 {
-  "extends": ["config:base"],
+  "extends": ["config:recommended"],
   "labels": ["dependencies"],
   "packageRules": [
     {
       "matchDepTypes": ["devDependencies"],
+      "matchUpdateTypes": ["minor", "patch"],
       "automerge": true
-    },
-    {
-      "matchPackageNames": ["eslint"],
-      "allowedVersions": "<10"
     }
   ]
 }
