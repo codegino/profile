@@ -1,16 +1,10 @@
-import {FALLBACK_LOCALE, Locales} from '@/app/i18n/settings';
 import dompurify from 'isomorphic-dompurify';
 import type {Metadata, NextPage} from 'next';
-import dynamicImport from 'next/dynamic';
 import AboutMeHero from '../../components/AboutMeHero';
 import NextLink from '../../components/basic/NextLink';
 import {newCommonMetaTags} from '../../frontend-utils/meta-tags';
 import {getBlurringImage} from '../../utils/contentful.utils';
 import {aboutMeData} from '@/models/static-content';
-
-const TechStackCarousel = dynamicImport(
-  () => import('../../components/TechStackCarousel'),
-);
 
 export async function generateMetadata(): Promise<Metadata> {
   return {

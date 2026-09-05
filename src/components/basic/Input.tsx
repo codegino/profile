@@ -1,7 +1,7 @@
 import { forwardRef, type JSX } from 'react';
 
 const Input = forwardRef<HTMLInputElement, JSX.IntrinsicElements['input']>(
-  ({color, className = '', ...props}, ref) => (
+  ({color: _color, className = '', ...props}, ref) => (
     <input
       {...props}
       ref={ref}

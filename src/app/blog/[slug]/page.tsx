@@ -5,7 +5,6 @@ import BlogContent from '@/modules/blog/BlogContent';
 import BlogFooter from '@/modules/blog/BlogFooter';
 import BlogHeader from '@/modules/blog/BlogHeader';
 import BlogLayout from '@/modules/common/ContentLayout';
-import {getImageUrl} from '@/utils/get-image';
 import {blurImage} from '@/utils/image-blur.utils';
 import {BLOGS_PATH, getBlogsMetadata} from '@/utils/mdx.utils';
 import fs from 'fs';

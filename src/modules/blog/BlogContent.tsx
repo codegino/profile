@@ -30,7 +30,7 @@ type Props = {
   scope: Record<string, unknown> | undefined;
 };
 
-function BlogContent({content, scope}: Props) {
+function BlogContent({content, scope: _scope}: Props) {
   return (
     <MDX
       useMDXComponents={() => components}

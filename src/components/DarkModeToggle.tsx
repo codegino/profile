@@ -1,5 +1,12 @@
-import {useState, useEffect} from 'react';
+import {useSyncExternalStore} from 'react';
 import {useTheme} from 'next-themes';
+
+// `useSyncExternalStore` is the purpose-built way to ask "have we hydrated yet?":
+// the server snapshot is `false` and the client snapshot is `true`, with no
+// effect and no cascading render.
+const emptySubscribe = () => () => {};
+const getSnapshot = () => true;
+const getServerSnapshot = () => false;
 
 function SunIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   return (
@@ -36,11 +43,11 @@ function MoonIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
 function DarkModeToggle() {
   let {resolvedTheme, setTheme} = useTheme();
   let otherTheme = resolvedTheme === 'dark' ? 'light' : 'dark';
-  let [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const mounted = useSyncExternalStore(
+    emptySubscribe,
+    getSnapshot,
+    getServerSnapshot,
+  );
 
   return (
     <button

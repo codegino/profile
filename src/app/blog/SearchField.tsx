@@ -16,10 +16,14 @@ function DebouncedInput({
   debounce?: number;
 } & Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'>) {
   const [value, setValue] = useState(initialValue);
+  const [previousInitialValue, setPreviousInitialValue] = useState(initialValue);
 
-  useEffect(() => {
+  // Sync the prop into state during render rather than in an effect, so the
+  // stale value is never painted first. https://react.dev/learn/you-might-not-need-an-effect
+  if (initialValue !== previousInitialValue) {
+    setPreviousInitialValue(initialValue);
     setValue(initialValue);
-  }, [initialValue]);
+  }
 
   useEffect(() => {
     let timeout: NodeJS.Timeout;
@@ -80,17 +84,16 @@ export default function SearchField() {
         onChange={handleGlobalFilterChange}
       />
       {searchFilter && (
-        <div
+        <button
+          type="button"
+          aria-label="Clear search"
           className="absolute right-0 mr-2 flex size-4"
           onClick={() => {
             setSearchFilter(null);
           }}
-          onKeyDown={e => e.key === ' ' && setSearchFilter(null)}
-          tabIndex={0}
-          role="button"
         >
           <CloseIcon className="text-red-600 dark:text-neutral-200 " />
-        </div>
+        </button>
       )}
     </div>
   );

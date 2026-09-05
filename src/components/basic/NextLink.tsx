@@ -1,6 +1,5 @@
 import type {
   AnchorHTMLAttributes,
-  FC,
   HTMLAttributeReferrerPolicy,
   PropsWithChildren,
 } from 'react';

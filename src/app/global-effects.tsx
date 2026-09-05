@@ -2,11 +2,8 @@
 import Script from 'next/script';
 import  {useEffect} from 'react';
 import TagManager from 'react-gtm-module';
-import {useScrollDirection} from '../components/header/use-scroll-direction';
 
 const GlobalEffects = () => {
-  const {direction} = useScrollDirection();
-
   // Google Tag Manager
   useEffect(() => {
     if (process.env.NODE_ENV === 'production') {

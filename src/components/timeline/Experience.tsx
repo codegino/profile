@@ -1,11 +1,23 @@
+import {useId} from 'react';
 import type {FunctionComponent} from 'react';
+
+// Deterministic, stable pseudo-random rotation in the range [-1, 1] degrees.
+// Derived from `useId()` so the server and client agree (no hydration mismatch)
+// and the angle does not jitter on re-render.
+function useRotation() {
+  const id = useId();
+  let hash = 0;
+  for (let i = 0; i < id.length; i++) {
+    hash = (hash * 31 + id.charCodeAt(i)) | 0;
+  }
+  return (Math.abs(hash) % 201) / 100 - 1;
+}
 
 export const Experience: FunctionComponent<{
   hasConnector?: boolean;
   children: React.ReactNode;
 }> = ({children}) => {
-  // Generate a random rotation between -1 and 1 degrees
-  const rotation = Math.random() * 2 - 1;
+  const rotation = useRotation();
 
   return (
     <div className="relative z-10 mb-12 flex max-w-6xl flex-col items-center text-center">

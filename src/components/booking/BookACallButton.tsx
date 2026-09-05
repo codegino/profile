@@ -34,6 +34,8 @@ const BookACallButton: FC<{
   };
 
   useEffect(() => {
+    const dialog = dialogRef.current;
+
     const onMessage = (event: MessageEvent) => {
       if (event.origin !== EMBED_ORIGIN) return;
       if (event.data?.type === 'calendarjet:close') {
@@ -41,8 +43,21 @@ const BookACallButton: FC<{
       }
     };
 
+    // Backdrop click-to-close. Registered natively rather than as a JSX handler:
+    // a <dialog> is not an interactive element, and its backdrop is not a
+    // separate node, so this is the only correct place to express it.
+    const onDialogClick = (event: MouseEvent) => {
+      if (event.target === dialog) {
+        close();
+      }
+    };
+
     window.addEventListener('message', onMessage);
-    return () => window.removeEventListener('message', onMessage);
+    dialog?.addEventListener('click', onDialogClick);
+    return () => {
+      window.removeEventListener('message', onMessage);
+      dialog?.removeEventListener('click', onDialogClick);
+    };
   }, [close]);
 
   return (
@@ -56,11 +71,6 @@ const BookACallButton: FC<{
         aria-label={title}
         onClose={() => {
           document.body.style.overflow = '';
-        }}
-        onClick={event => {
-          if (event.target === dialogRef.current) {
-            close();
-          }
         }}
         className="size-full max-h-full max-w-full bg-neutral-900 p-0 backdrop:bg-black/70 backdrop:backdrop-blur-xs sm:h-[90vh] sm:max-h-[800px] sm:w-[90vw] sm:max-w-4xl sm:rounded-2xl"
       >
