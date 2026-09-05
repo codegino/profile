@@ -4,7 +4,6 @@
   "about": "About",
   "blog": "Blog",
   "nft": "NFT",
-  "vocab": "Vocab",
   "date": "{{val, datetime}}",
   "sitemap": "Sitemap",
   "rssFeed": "RSS Feed",
