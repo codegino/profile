@@ -20,6 +20,7 @@ const Logo: FunctionComponent<{onClick?: () => void; className?: string}> = ({
         src="/assets/logo.svg"
         height={26}
         width={26}
+        className="h-auto w-auto"
         alt="CG"
         title="CG"
         aria-label="CG Logo"

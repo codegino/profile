@@ -14,12 +14,17 @@ export const BlogCardPreview = ({blog}: Props) => {
 
   return (
     <figure className="bg-light relative min-h-80 w-full overflow-hidden rounded-2xl text-center shadow-xs shadow-neutral-800 hover:shadow-md hover:shadow-neutral-800 md:max-w-4xl">
-      <NextLink href={`/blog/${blog.slug}`} aria-label={blog.title}>
+      <NextLink
+        href={`/blog/${blog.slug}`}
+        aria-label={blog.title}
+        className="absolute inset-0"
+      >
         <Image
           src={blog.bannerId}
           alt={blog.bannerDescription}
           title={blog.bannerDescription}
           fill={true}
+          sizes="(max-width: 768px) 100vw, 432px"
           className="object-cover"
           placeholder="blur"
           blurDataURL={blog.bannerId}
