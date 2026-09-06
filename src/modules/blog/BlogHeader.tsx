@@ -39,6 +39,7 @@ const BlogHeader: FunctionComponent<Props> = ({blog, img, svg}) => {
             img={img}
             svg={svg}
             fill
+            sizes="(max-width: 1024px) 95vw, 1040px"
             priority={true}
             className="rounded-xl object-cover object-center shadow-xs shadow-neutral-900"
           />

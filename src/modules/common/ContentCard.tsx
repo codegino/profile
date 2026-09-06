@@ -31,9 +31,10 @@ const BlogCard: FunctionComponent<{
       >
         <Image
           src={blog.bannerId}
-          alt={blog.bannerDescription}
-          title={blog.bannerDescription}
+          alt={blog.bannerDescription ?? blog.title}
+          title={blog.bannerDescription ?? blog.title}
           fill={true}
+          sizes="(max-width: 640px) 100vw, 320px"
           className="object-cover"
           placeholder="blur"
           blurDataURL={blog.bannerId}

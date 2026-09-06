@@ -1,7 +1,6 @@
 import GreetingsContent from '@/components/GreetingsContent';
 import type {NextPage} from 'next';
 import dynamicImport from 'next/dynamic';
-import Script from 'next/script';
 import {FullScreenWrapper} from '../components/FullScreenWrapper';
 import AboutTeaser from '../components/home/AboutTeaser';
 import CodingActivity from '../components/home/CodingActivity';
@@ -32,17 +31,17 @@ const HomePage: NextPage = async () => {
 
   return (
     <>
-      <Script
+      <script
         id="structured-data"
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: `{
-          "@context": "http://schema.org/",
-          "@type": "Person",
-          "name": "Carlo Gino Catapang",
-          "jobTitle": "Senior Software Engineer",
-          "url": "https://carlogino.com"
-          }`,
+          __html: JSON.stringify({
+            '@context': 'http://schema.org/',
+            '@type': 'Person',
+            name: 'Carlo Gino Catapang',
+            jobTitle: 'Senior Software Engineer',
+            url: 'https://carlogino.com',
+          }),
         }}
       />
       <FullScreenWrapper

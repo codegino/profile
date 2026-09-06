@@ -63,7 +63,7 @@ const roboto = Roboto({
 
 export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
-    <html lang={FALLBACK_LOCALE}>
+    <html lang={FALLBACK_LOCALE} suppressHydrationWarning>
       <head>
         <link
           rel="stylesheet"
@@ -79,8 +79,8 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
           </Providers>
         </LocaleProvider>
         <SpeedInsights />
+        <GlobalEffects />
       </body>
-      <GlobalEffects />
     </html>
   );
 }

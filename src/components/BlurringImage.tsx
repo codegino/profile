@@ -8,6 +8,15 @@ import type {BlurImageType} from '../utils/image-blur.utils';
 
 type BlurringImageProps = {blurLevel?: number; transformScaleLevel?: number};
 
+// plaiceholder emits SVG attribute names (e.g. `fill-opacity`), React expects camelCase
+const toReactSvgProps = <T extends object>(props: T): T =>
+  Object.fromEntries(
+    Object.entries(props).map(([key, value]) => [
+      key.replace(/-([a-z])/g, (_, char: string) => char.toUpperCase()),
+      value,
+    ]),
+  ) as T;
+
 type Props = BlurringImageProps & {
   style?: CSSProperties;
 } & Omit<ImageProps, 'src'> &
@@ -33,7 +42,7 @@ export function BlurringImage({
     >
       {hasPlaceholder && (
         <Svg
-          {...svgProps}
+          {...toReactSvgProps(svgProps)}
           style={{
             ...svgProps.style,
             transform: `scale(${transformScaleLevel}) ${svgProps.style.transform}`,
@@ -41,7 +50,10 @@ export function BlurringImage({
           }}
         >
           {rectangles.map(([Rect, rectProps]) => (
-            <Rect {...rectProps} key={`${rectProps.x} ${rectProps.y}`} />
+            <Rect
+              {...toReactSvgProps(rectProps)}
+              key={`${rectProps.x} ${rectProps.y}`}
+            />
           ))}
         </Svg>
       )}

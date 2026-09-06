@@ -21,8 +21,8 @@ export const BlogCardPreview = ({blog}: Props) => {
       >
         <Image
           src={blog.bannerId}
-          alt={blog.bannerDescription}
-          title={blog.bannerDescription}
+          alt={blog.bannerDescription ?? blog.title}
+          title={blog.bannerDescription ?? blog.title}
           fill={true}
           sizes="(max-width: 768px) 100vw, 432px"
           className="object-cover"

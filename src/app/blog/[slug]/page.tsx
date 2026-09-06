@@ -10,7 +10,6 @@ import {BLOGS_PATH, getBlogsMetadata} from '@/utils/mdx.utils';
 import fs from 'fs';
 import matter from 'gray-matter';
 import type {Metadata, NextPage} from 'next';
-import Script from 'next/script';
 import path from 'path';
 
 export const generateMetadata = async (props: {
@@ -73,27 +72,27 @@ const BlogPage: NextPage<{
 
   return (
     <>
-      <Script
+      <script
         id="structured-data"
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: `{
-            "@context": "https://schema.org",
-            "@type": "Article",
-            "headline": "${blog.title}",
-            "image": "${SITE_URL}${blog.bannerId}",
-            "editor": "Carlo Gino Catapang",
-            "author": "Carlo Gino Catapang",
-            "genre": "${blog.tags?.join(' ')}",
-            "keywords": "${blog.keywords?.join(' ')}",
-            "url": "https://carlogino.com/blog/${blog.slug}",
-            "dateCreated": "${blog.date}",
-            "dateModified": "${blog.dateUpdated}",
-            "description": "${blog.description}",
-            "articleBody": "${blog.title}. ${blog.description}"
-            }`,
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Article',
+            headline: blog.title,
+            image: `${SITE_URL}${blog.bannerId}`,
+            editor: 'Carlo Gino Catapang',
+            author: 'Carlo Gino Catapang',
+            genre: blog.tags?.join(' '),
+            keywords: blog.keywords?.join(' '),
+            url: `https://carlogino.com/blog/${blog.slug}`,
+            dateCreated: blog.date,
+            dateModified: blog.dateUpdated,
+            description: blog.description,
+            articleBody: `${blog.title}. ${blog.description}`,
+          }),
         }}
-      ></Script>
+      />
 
       <main role="main">
         <BlogLayout>

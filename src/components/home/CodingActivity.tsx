@@ -4,8 +4,10 @@ import {Fade} from 'react-awesome-reveal';
 import {useTranslation} from '../../app/i18n/client';
 import SectionHeader from './SectionHeader';
 
+// react-activity-calendar renders different markup on the server, so skip SSR
 const CustomGithubCalendar = dynamicImport(
   () => import('../CustomGithubCalendar'),
+  {ssr: false},
 );
 
 const WakatimeCharts = dynamicImport(() => import('../WakatimeCharts'));
