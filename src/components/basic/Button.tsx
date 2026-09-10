@@ -1,4 +1,4 @@
-import { forwardRef, type JSX } from 'react';
+import {forwardRef, type JSX} from 'react';
 
 const Button = forwardRef<HTMLButtonElement, JSX.IntrinsicElements['button']>(
   ({className = '', ...props}, ref) => {

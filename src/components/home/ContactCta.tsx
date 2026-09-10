@@ -18,7 +18,10 @@ export default function ContactCta() {
       />
 
       <Fade direction="up" triggerOnce>
-        <SectionHeader kicker={t('contact.kicker')} title={t('contact.title')} />
+        <SectionHeader
+          kicker={t('contact.kicker')}
+          title={t('contact.title')}
+        />
       </Fade>
 
       <Fade direction="up" triggerOnce>

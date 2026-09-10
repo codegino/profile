@@ -16,7 +16,8 @@ function DebouncedInput({
   debounce?: number;
 } & Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'>) {
   const [value, setValue] = useState(initialValue);
-  const [previousInitialValue, setPreviousInitialValue] = useState(initialValue);
+  const [previousInitialValue, setPreviousInitialValue] =
+    useState(initialValue);
 
   // Sync the prop into state during render rather than in an effect, so the
   // stale value is never painted first. https://react.dev/learn/you-might-not-need-an-effect

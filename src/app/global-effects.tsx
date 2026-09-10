@@ -1,6 +1,6 @@
 'use client';
 import Script from 'next/script';
-import  {useEffect} from 'react';
+import {useEffect} from 'react';
 import TagManager from 'react-gtm-module';
 
 const GlobalEffects = () => {
@@ -10,7 +10,6 @@ const GlobalEffects = () => {
       TagManager.initialize({gtmId: process.env.NEXT_PUBLIC_GTM as string});
     }
   }, []);
-
 
   return (
     <>

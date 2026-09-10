@@ -14,11 +14,5 @@
       "version": "19.2.8"
     }
   },
-  "ignorePatterns": [
-    ".next/**",
-    "node_modules/**",
-    "public/**",
-    "gino/**",
-    "**/*.mdx"
-  ]
+  "ignorePatterns": [".next/**", "node_modules/**", "public/**", "**/*.mdx"]
 }

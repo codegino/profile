@@ -1,5 +1,5 @@
 'use client';
-import type { FunctionComponent, ComponentProps, JSX } from 'react';
+import type {FunctionComponent, ComponentProps, JSX} from 'react';
 import ContentAnchor from '../common/AnchorTag';
 import ContentBlockQuote from '../common/BlockquoteTag';
 import ContentBookMark from '../common/BookmarkElement';
@@ -9,8 +9,7 @@ import ContentListElement from '../common/ListElementTag';
 import ContentParagraph from '../common/ParagraphTag';
 import TableOfContents from './TableOfContents';
 import {MDX} from '@/components/mdx';
-import rehypeMdxCodeProps from 'rehype-mdx-code-props'
-
+import rehypeMdxCodeProps from 'rehype-mdx-code-props';
 
 const components: ComponentProps<FunctionComponent> = {
   inlineCode: ({children}: {children: JSX.Element}) => <code>{children}</code>,

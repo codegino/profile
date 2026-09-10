@@ -34,7 +34,9 @@
   height: 2px;
   @apply bg-primary-600;
   transition: all 0.3s ease;
-  animation: expandToFullWidth 0.5s, waveFloat 1s ease-in-out infinite;
+  animation:
+    expandToFullWidth 0.5s,
+    waveFloat 1s ease-in-out infinite;
   opacity: 0.9;
   border-radius: 1px;
 }

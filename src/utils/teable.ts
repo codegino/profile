@@ -71,14 +71,11 @@ export async function findSubscriberByEmail(email: string) {
 }
 
 export async function createSubscriber(fields: SubscriberFields) {
-  return teableFetch<{records: TeableRecord[]}>(
-    `/table/${TABLE_ID}/record`,
-    {
-      method: 'POST',
-      body: JSON.stringify({
-        fieldKeyType: 'name',
-        records: [{fields}],
-      }),
-    },
-  );
+  return teableFetch<{records: TeableRecord[]}>(`/table/${TABLE_ID}/record`, {
+    method: 'POST',
+    body: JSON.stringify({
+      fieldKeyType: 'name',
+      records: [{fields}],
+    }),
+  });
 }

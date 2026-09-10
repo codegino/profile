@@ -6,7 +6,7 @@ export const fetchSkills = async (
   onlyHightlights = false,
 ): Promise<CategorizedSkill[]> => {
   const categorizedSkills: CategorizedSkill[] = !onlyHightlights
-    ? skills?.reduce(
+    ? (skills?.reduce(
         (acc: CategorizedSkill[], curr: Skill): CategorizedSkill[] => {
           const existingCategory = acc.find(
             category => category.category === curr.category,
@@ -24,7 +24,7 @@ export const fetchSkills = async (
           return acc;
         },
         [],
-      ) ?? []
+      ) ?? [])
     : [];
 
   // Create category for active skills

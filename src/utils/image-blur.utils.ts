@@ -10,9 +10,7 @@ export const blurImage = async (
 ) => {
   const buffer = uri.startsWith('/')
     ? await readFile(join(process.cwd(), 'public', uri))
-    : await fetch(uri).then(async res =>
-        Buffer.from(await res.arrayBuffer()),
-      );
+    : await fetch(uri).then(async res => Buffer.from(await res.arrayBuffer()));
 
   const placeholder = await getPlaiceholder(buffer, {
     size: optimizeLevel,

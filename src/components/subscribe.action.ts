@@ -24,7 +24,7 @@ export async function addSubscriberAction({
     }
 
     await createSubscriber({
-      'Email': normalizedEmail,
+      Email: normalizedEmail,
       'First Name': firstName.trim(),
       'Last Name': lastName.trim(),
     });

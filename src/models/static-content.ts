@@ -6,7 +6,6 @@ export type StaticContent = {
   order: number;
 };
 
-
 export const aboutMeData: StaticContent[] = [
   {
     category: 'about_me',
@@ -25,7 +24,7 @@ Make your app, web, and other ideas come to existence. Partner with a knowledgea
 That's all for now! If you want more stories, you may let me know.`,
     label: 'About Me Long(1st Person)',
     key: 'about_me_long_1st_pov',
-    order: 0
+    order: 0,
   },
   {
     category: 'about_me',
@@ -44,6 +43,6 @@ Make your app, web, and other ideas come to existence. Partner with a knowledgea
 That's all for now! If you want more stories, you may let Carlo Gino know.`,
     label: 'About Me Long(3rd Person)',
     key: 'about_me_long_3rd_pov',
-    order: 1
-  }
+    order: 1,
+  },
 ];

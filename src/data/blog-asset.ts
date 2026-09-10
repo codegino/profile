@@ -1,11 +1,16 @@
 export const blogAssets: Record<string, string> = {
-  'adding-webpage-to-google-search-results': '/assets/blog/adding-webpage-to-google-search-results.jpg',
+  'adding-webpage-to-google-search-results':
+    '/assets/blog/adding-webpage-to-google-search-results.jpg',
   'nextjs-app-dir-i18n-cookie': '/assets/blog/nextjs-app-dir-i18n-cookie.jpg',
-  'nextjs-vercel-link-shortener': '/assets/blog/nextjs-vercel-link-shortener.jpg',
+  'nextjs-vercel-link-shortener':
+    '/assets/blog/nextjs-vercel-link-shortener.jpg',
   'nextjs13-i18n': '/assets/blog/nextjs13-i18n.jpg',
-  'openai-nextjs-text-completion': '/assets/blog/openai-nextjs-text-completion.png',
-  'svelte-chromium-extension-sync-states': '/assets/blog/svelte-chromium-extension-sync-states.jpg',
-  'svelte-chromium-extension-options': '/assets/blog/svelte-chromium-extension-options.jpg',
+  'openai-nextjs-text-completion':
+    '/assets/blog/openai-nextjs-text-completion.png',
+  'svelte-chromium-extension-sync-states':
+    '/assets/blog/svelte-chromium-extension-sync-states.jpg',
+  'svelte-chromium-extension-options':
+    '/assets/blog/svelte-chromium-extension-options.jpg',
   'svelte-chromium-extension': '/assets/blog/svelte-chromium-extension.jpg',
   'javascript-hoisting': '/assets/blog/javascript-hoisting.jpg',
   'react-sync-state-with-url': '/assets/blog/react-sync-state-with-url.jpg',
@@ -14,23 +19,30 @@ export const blogAssets: Record<string, string> = {
   'remix-seo': '/assets/blog/remix-seo.jpg',
   'lighthouse-best-practices': '/assets/blog/lighthouse-best-practices.jpg',
   'improve-website-seo': '/assets/blog/improve-website-seo.jpg',
-  'improve-website-accessibility': '/assets/blog/improve-website-accessibility.jpg',
+  'improve-website-accessibility':
+    '/assets/blog/improve-website-accessibility.jpg',
   'improve-website-performance': '/assets/blog/improve-website-performance.jpg',
   'remix-error-handling': '/assets/blog/remix-error-handling.jpg',
   'screpy-review': '/assets/blog/screpy-review.png',
   'remix-supabase-auth': '/assets/blog/remix-supabase-auth.jpg',
-  'remix-styling-tailwind-postcss': '/assets/blog/remix-styling-tailwind-postcss.jpg',
+  'remix-styling-tailwind-postcss':
+    '/assets/blog/remix-styling-tailwind-postcss.jpg',
   'remix-styling-css': '/assets/blog/remix-styling-css.jpg',
   'remix-supabase-integration': '/assets/blog/remix-supabase-integration.jpg',
   'list-of-newsletters': '/assets/blog/list-of-newsletters.jpg',
   'remix-getting-started': '/assets/blog/remix-getting-started.jpg',
   'next-hide-api-key': '/assets/blog/next-hide-api-key.jpg',
-  'nextjs-environment-variables': '/assets/blog/nextjs-environment-variables.jpg',
+  'nextjs-environment-variables':
+    '/assets/blog/nextjs-environment-variables.jpg',
   'next-image-state-handling': '/assets/blog/next-image-state-handling.jpg',
-  'next-dynamic-image-placeholder': '/assets/blog/next-dynamic-image-placeholder.jpg',
+  'next-dynamic-image-placeholder':
+    '/assets/blog/next-dynamic-image-placeholder.jpg',
   'react-useeffect': '/assets/blog/react-useeffect.jpg',
-  'lifecycle-methods-to-useeffect': '/assets/blog/lifecycle-methods-to-useeffect.jpg',
-  'react-setstate-callback-function': '/assets/blog/react-setstate-callback-function.jpg',
-  'react-usestate-callback-function': '/assets/blog/react-usestate-callback-function.jpg',
+  'lifecycle-methods-to-useeffect':
+    '/assets/blog/lifecycle-methods-to-useeffect.jpg',
+  'react-setstate-callback-function':
+    '/assets/blog/react-setstate-callback-function.jpg',
+  'react-usestate-callback-function':
+    '/assets/blog/react-usestate-callback-function.jpg',
   'react-usestate': '/assets/blog/react-usestate.jpg',
 };

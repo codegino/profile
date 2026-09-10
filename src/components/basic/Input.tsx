@@ -1,4 +1,4 @@
-import { forwardRef, type JSX } from 'react';
+import {forwardRef, type JSX} from 'react';
 
 const Input = forwardRef<HTMLInputElement, JSX.IntrinsicElements['input']>(
   ({color: _color, className = '', ...props}, ref) => (

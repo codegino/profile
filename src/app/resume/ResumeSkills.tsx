@@ -10,11 +10,7 @@ import {FaStar} from '@react-icons/all-files/fa/FaStar';
 import {FaThumbsUp} from '@react-icons/all-files/fa/FaThumbsUp';
 import {FaTools} from '@react-icons/all-files/fa/FaTools';
 import {Fade} from 'react-awesome-reveal';
-import type {
-  CategorizedSkill,
-  Skill,
-  SkillCategory,
-} from '../../models/skill';
+import type {CategorizedSkill, Skill, SkillCategory} from '../../models/skill';
 import NextLink from '../../components/basic/NextLink';
 import {useTranslation} from '../i18n/client';
 
