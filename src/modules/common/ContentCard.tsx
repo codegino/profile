@@ -29,16 +29,22 @@ const BlogCard: FunctionComponent<{
           'size-full sm:h-60 sm:w-80 sm:min-w-80',
         )}
       >
-        <Image
-          src={blog.bannerId}
-          alt={blog.bannerDescription ?? blog.title}
-          title={blog.bannerDescription ?? blog.title}
-          fill={true}
-          sizes="(max-width: 640px) 100vw, 320px"
-          className="object-cover"
-          placeholder="blur"
-          blurDataURL={blog.bannerId}
-        />
+        {/* Drafts (published: false) have no slug, so no banner asset is
+            mapped for them. next/image cannot take an empty src. */}
+        {blog.bannerId ? (
+          <Image
+            src={blog.bannerId}
+            alt={blog.bannerDescription ?? blog.title}
+            title={blog.bannerDescription ?? blog.title}
+            fill={true}
+            sizes="(max-width: 640px) 100vw, 320px"
+            className="object-cover"
+            placeholder="blur"
+            blurDataURL={blog.bannerId}
+          />
+        ) : (
+          <div className="absolute inset-0 bg-neutral-200 dark:bg-neutral-700" />
+        )}
       </div>
       <figcaption className="absolute bottom-0 w-full bg-neutral-50 p-4 opacity-95 dark:bg-neutral-800 sm:relative sm:p-0 sm:opacity-100">
         <NextLink href={`/blog/${blog.slug}`} aria-label={blog.title}>

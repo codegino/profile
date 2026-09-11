@@ -7,7 +7,8 @@ import type {BlurImageType} from '../../utils/image-blur.utils';
 
 type Props = {
   blog: IBlogMetadata;
-} & Pick<BlurImageType, 'svg' | 'img'>;
+  // Optional: drafts have no banner asset mapped yet.
+} & Partial<Pick<BlurImageType, 'svg' | 'img'>>;
 
 const BlogHeader: FunctionComponent<Props> = ({blog, img, svg}) => {
   const {t} = useTranslation('common');

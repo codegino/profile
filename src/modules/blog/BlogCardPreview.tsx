@@ -19,16 +19,22 @@ export const BlogCardPreview = ({blog}: Props) => {
         aria-label={blog.title}
         className="absolute inset-0"
       >
-        <Image
-          src={blog.bannerId}
-          alt={blog.bannerDescription ?? blog.title}
-          title={blog.bannerDescription ?? blog.title}
-          fill={true}
-          sizes="(max-width: 768px) 100vw, 432px"
-          className="object-cover"
-          placeholder="blur"
-          blurDataURL={blog.bannerId}
-        />
+        {/* Drafts (published: false) have no slug, so no banner asset is
+            mapped for them. next/image cannot take an empty src. */}
+        {blog.bannerId ? (
+          <Image
+            src={blog.bannerId}
+            alt={blog.bannerDescription ?? blog.title}
+            title={blog.bannerDescription ?? blog.title}
+            fill={true}
+            sizes="(max-width: 768px) 100vw, 432px"
+            className="object-cover"
+            placeholder="blur"
+            blurDataURL={blog.bannerId}
+          />
+        ) : (
+          <div className="absolute inset-0 bg-neutral-200 dark:bg-neutral-700" />
+        )}
         <figcaption className="absolute bottom-0 flex w-full flex-col justify-between bg-neutral-100 px-4 pb-4 opacity-[0.98] dark:bg-neutral-800 md:h-40">
           <h2 className="line-clamp-2 text-balance text-xl">{blog.title}</h2>
           <div>

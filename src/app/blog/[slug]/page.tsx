@@ -113,7 +113,10 @@ const getStaticProps = async (slug: string) => {
   const {content, data} = matter(source);
 
   const bannerUrl = blogAssets[slug];
-  const {img, svg} = await blurImage(bannerUrl);
+  // Drafts have no banner asset yet; plaiceholder cannot blur nothing.
+  const {img, svg} = bannerUrl
+    ? await blurImage(bannerUrl)
+    : {img: undefined, svg: undefined};
 
   return {
     content,
