@@ -64,10 +64,12 @@ const getStaticProps = async () => {
 
   const {img, svg} = await getBlurringImage('profile-picture.jpeg');
 
-  const resumePdfUrl =
-    'https://prod.grigora-cdn.com/projects/10ddb1b4-c8f5-48cd-98f4-e11824bf400b/root-files/Attachments/Carlo%20Gino%20Catapang%20Resume.pdf';
-  const resumeWordUrl =
-    'https://prod.grigora-cdn.com/projects/10ddb1b4-c8f5-48cd-98f4-e11824bf400b/root-files/Attachments/Carlo%20Gino%20Catapang%20Resume.docx';
+  // Stored in Supabase Storage (public bucket: "resume").
+  // To publish an update, upload over the same object name so these URLs stay valid.
+  const resumeBaseUrl =
+    'https://wqxykwsooyvgyappeyat.supabase.co/storage/v1/object/public/resume';
+  const resumePdfUrl = `${resumeBaseUrl}/carlo-gino-catapang-resume.pdf`;
+  const resumeWordUrl = `${resumeBaseUrl}/carlo-gino-catapang-resume.docx`;
 
   return {
     props: {
