@@ -17,6 +17,7 @@ const config = {
       {hostname: 'lh3.googleusercontent.com'},
       {hostname: 'openseauserdata.com'},
       {hostname: 'i.seadn.io'},
+      {hostname: '*.supabase.co', pathname: '/storage/v1/object/public/**'},
     ],
     imageSizes: [16, 32, 48, 64],
     deviceSizes: [
