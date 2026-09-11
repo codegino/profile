@@ -30,8 +30,8 @@ importers:
         specifier: 1.2.3
         version: 1.2.3
       isomorphic-dompurify:
-        specifier: 4.1.0
-        version: 4.1.0
+        specifier: 4.2.0
+        version: 4.2.0
       next:
         specifier: 16.3.4
         version: 16.3.4(@types/node@25.9.5)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
@@ -124,7 +124,7 @@ importers:
         specifier: 9.1.7
         version: 9.1.7
       oxfmt:
-        specifier: ^0.67.0
+        specifier: 0.67.0
         version: 0.67.0
       oxlint:
         specifier: 1.82.0
@@ -1768,8 +1768,8 @@ packages:
   isexe@2.0.0:
     resolution: {integrity: sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==, tarball: https://registry.npmjs.org/isexe/-/isexe-2.0.0.tgz}
 
-  isomorphic-dompurify@4.1.0:
-    resolution: {integrity: sha512-vjQwQSxyEkJHO6g+KIDlWj8swAzUB01pJu9GU9cLGHjE10d59GFzJkgtB2Lj5WTOoq9JeHlYjR/FFuqeopPO0Q==, tarball: https://registry.npmjs.org/isomorphic-dompurify/-/isomorphic-dompurify-4.1.0.tgz}
+  isomorphic-dompurify@4.2.0:
+    resolution: {integrity: sha512-0rp/dna3nh3lQNZrWRJTZzRS8rSYBFXq7zuDOMn0MiklhFyND8fQqQbAcVFv1MkRJ2xDhgR6G7E0bl1msYQKTQ==, tarball: https://registry.npmjs.org/isomorphic-dompurify/-/isomorphic-dompurify-4.2.0.tgz}
     engines: {node: ^22.22.2 || ^24.15.0 || >=26.0.0}
 
   jiti@2.6.1:
@@ -4165,7 +4165,7 @@ snapshots:
 
   isexe@2.0.0: {}
 
-  isomorphic-dompurify@4.1.0:
+  isomorphic-dompurify@4.2.0:
     dependencies:
       dompurify: 3.4.14
       jsdom: 30.0.1
