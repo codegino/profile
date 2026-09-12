@@ -4,7 +4,6 @@ import type {IBlogMetadata} from '@/models/mdxFiles';
 import {getBlogsMetadata} from '@/utils/mdx.utils';
 import BlogsWrapper from './BlogsWrapper';
 import {createTranslation} from '../i18n/server';
-import {blogAssets} from '@/data/blog-asset';
 
 export const metadata = {
   ...newCommonMetaTags('Blogs Page', '/blog'),
@@ -36,10 +35,6 @@ const getStaticProps = async () => {
   let blogs = await getBlogsMetadata();
 
   blogs.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-
-  for (let blog of blogs) {
-    blog.bannerId = blogAssets[blog.slug];
-  }
 
   return {
     props: {

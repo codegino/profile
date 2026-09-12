@@ -7,11 +7,13 @@ import NextLink from '../../components/basic/NextLink';
 import type {IBlogMetadata} from '../../models/mdxFiles';
 import {ISlideMetadata} from '../../models/slide';
 import {useTranslation} from '../../app/i18n/client';
+import {getBlogBanner} from '../../data/blog-asset';
 
 const BlogCard: FunctionComponent<{
   blog: IBlogMetadata | ISlideMetadata;
 }> = ({blog}) => {
   const {t} = useTranslation('blog');
+  const banner = getBlogBanner(blog.slug);
 
   return (
     <figure
@@ -29,18 +31,18 @@ const BlogCard: FunctionComponent<{
           'size-full sm:h-60 sm:w-80 sm:min-w-80',
         )}
       >
-        {/* Drafts (published: false) have no slug, so no banner asset is
-            mapped for them. next/image cannot take an empty src. */}
-        {blog.bannerId ? (
+        {/* Drafts (published: false) have no slug, so there is no banner
+            asset. next/image cannot take an empty src. */}
+        {banner ? (
           <Image
-            src={blog.bannerId}
+            src={banner}
             alt={blog.bannerDescription ?? blog.title}
             title={blog.bannerDescription ?? blog.title}
             fill={true}
             sizes="(max-width: 640px) 100vw, 320px"
             className="object-cover"
             placeholder="blur"
-            blurDataURL={blog.bannerId}
+            blurDataURL={banner}
           />
         ) : (
           <div className="absolute inset-0 bg-neutral-200 dark:bg-neutral-700" />

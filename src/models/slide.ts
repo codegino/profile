@@ -6,7 +6,6 @@ export type ISlideMetadata = {
   slug: string;
   order: number;
   description: string;
-  bannerId: string;
   hideBanner: boolean;
   bannerDescription: string;
   tags: string[];

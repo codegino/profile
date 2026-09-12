@@ -6,6 +6,7 @@ import {FaShareAlt} from '@react-icons/all-files/fa/FaShareAlt';
 import {FaTwitterSquare} from '@react-icons/all-files/fa/FaTwitterSquare';
 import clsx from 'clsx';
 import {IBlogMetadata} from '../../models/mdxFiles';
+import {getBlogBanner} from '../../data/blog-asset';
 
 const socialMedia = [
   {
@@ -32,7 +33,7 @@ const socialMedia = [
   {
     name: 'Pinterest',
     href: (blog: IBlogMetadata) =>
-      `http://pinterest.com/pin/create/button/?url=https://carlogino.com/blog/${blog.slug}&media=${blog.bannerId}&description=${blog.description}&title=${blog.title}`,
+      `http://pinterest.com/pin/create/button/?url=https://carlogino.com/blog/${blog.slug}&media=${getBlogBanner(blog.slug)}&description=${blog.description}&title=${blog.title}`,
     color: '#bd081c',
     icon: FaPinterest,
   },

@@ -6,7 +6,6 @@ export interface IBlogMetadata {
   slug: string;
   order: number;
   description: string;
-  bannerId: string;
   hideBanner: boolean;
   bannerDescription: string;
   tags: string[];

@@ -1,72 +1,17 @@
-// Blog cover images live in Supabase Storage (bucket: "blog"), not in git.
-// Upload a new cover to that bucket, then add its public URL here.
-export const blogAssets: Record<string, string> = {
-  'adding-webpage-to-google-search-results':
-    'https://wqxykwsooyvgyappeyat.supabase.co/storage/v1/object/public/blog/adding-webpage-to-google-search-results.jpg',
-  'fetching-opensea-collection':
-    'https://wqxykwsooyvgyappeyat.supabase.co/storage/v1/object/public/blog/fetching-opensea-collection.jpg',
-  'improve-website-accessibility':
-    'https://wqxykwsooyvgyappeyat.supabase.co/storage/v1/object/public/blog/improve-website-accessibility.jpg',
-  'improve-website-performance':
-    'https://wqxykwsooyvgyappeyat.supabase.co/storage/v1/object/public/blog/improve-website-performance.jpg',
-  'improve-website-seo':
-    'https://wqxykwsooyvgyappeyat.supabase.co/storage/v1/object/public/blog/improve-website-seo.jpg',
-  'javascript-hoisting':
-    'https://wqxykwsooyvgyappeyat.supabase.co/storage/v1/object/public/blog/javascript-hoisting.jpg',
-  'lifecycle-methods-to-useeffect':
-    'https://wqxykwsooyvgyappeyat.supabase.co/storage/v1/object/public/blog/lifecycle-methods-to-useeffect.jpg',
-  'lighthouse-best-practices':
-    'https://wqxykwsooyvgyappeyat.supabase.co/storage/v1/object/public/blog/lighthouse-best-practices.jpg',
-  'list-of-newsletters':
-    'https://wqxykwsooyvgyappeyat.supabase.co/storage/v1/object/public/blog/list-of-newsletters.jpg',
-  'next-dynamic-image-placeholder':
-    'https://wqxykwsooyvgyappeyat.supabase.co/storage/v1/object/public/blog/next-dynamic-image-placeholder.jpg',
-  'next-hide-api-key':
-    'https://wqxykwsooyvgyappeyat.supabase.co/storage/v1/object/public/blog/next-hide-api-key.jpg',
-  'next-image-state-handling':
-    'https://wqxykwsooyvgyappeyat.supabase.co/storage/v1/object/public/blog/next-image-state-handling.jpg',
-  'nextjs-app-dir-i18n-cookie':
-    'https://wqxykwsooyvgyappeyat.supabase.co/storage/v1/object/public/blog/nextjs-app-dir-i18n-cookie.jpg',
-  'nextjs-environment-variables':
-    'https://wqxykwsooyvgyappeyat.supabase.co/storage/v1/object/public/blog/nextjs-environment-variables.jpg',
-  'nextjs-i18n':
-    'https://wqxykwsooyvgyappeyat.supabase.co/storage/v1/object/public/blog/nextjs-i18n.jpg',
-  'nextjs-vercel-link-shortener':
-    'https://wqxykwsooyvgyappeyat.supabase.co/storage/v1/object/public/blog/nextjs-vercel-link-shortener.jpg',
-  'nextjs13-i18n':
-    'https://wqxykwsooyvgyappeyat.supabase.co/storage/v1/object/public/blog/nextjs13-i18n.jpg',
-  'openai-nextjs-text-completion':
-    'https://wqxykwsooyvgyappeyat.supabase.co/storage/v1/object/public/blog/openai-nextjs-text-completion.png',
-  'react-setstate-callback-function':
-    'https://wqxykwsooyvgyappeyat.supabase.co/storage/v1/object/public/blog/react-setstate-callback-function.jpg',
-  'react-sync-state-with-url':
-    'https://wqxykwsooyvgyappeyat.supabase.co/storage/v1/object/public/blog/react-sync-state-with-url.jpg',
-  'react-useeffect':
-    'https://wqxykwsooyvgyappeyat.supabase.co/storage/v1/object/public/blog/react-useeffect.jpg',
-  'react-usestate-callback-function':
-    'https://wqxykwsooyvgyappeyat.supabase.co/storage/v1/object/public/blog/react-usestate-callback-function.jpg',
-  'react-usestate':
-    'https://wqxykwsooyvgyappeyat.supabase.co/storage/v1/object/public/blog/react-usestate.jpg',
-  'remix-error-handling':
-    'https://wqxykwsooyvgyappeyat.supabase.co/storage/v1/object/public/blog/remix-error-handling.jpg',
-  'remix-getting-started':
-    'https://wqxykwsooyvgyappeyat.supabase.co/storage/v1/object/public/blog/remix-getting-started.jpg',
-  'remix-seo':
-    'https://wqxykwsooyvgyappeyat.supabase.co/storage/v1/object/public/blog/remix-seo.jpg',
-  'remix-styling-css':
-    'https://wqxykwsooyvgyappeyat.supabase.co/storage/v1/object/public/blog/remix-styling-css.jpg',
-  'remix-styling-tailwind-postcss':
-    'https://wqxykwsooyvgyappeyat.supabase.co/storage/v1/object/public/blog/remix-styling-tailwind-postcss.jpg',
-  'remix-supabase-auth':
-    'https://wqxykwsooyvgyappeyat.supabase.co/storage/v1/object/public/blog/remix-supabase-auth.jpg',
-  'remix-supabase-integration':
-    'https://wqxykwsooyvgyappeyat.supabase.co/storage/v1/object/public/blog/remix-supabase-integration.jpg',
-  'screpy-review':
-    'https://wqxykwsooyvgyappeyat.supabase.co/storage/v1/object/public/blog/screpy-review.png',
-  'svelte-chromium-extension-options':
-    'https://wqxykwsooyvgyappeyat.supabase.co/storage/v1/object/public/blog/svelte-chromium-extension-options.jpg',
-  'svelte-chromium-extension-sync-states':
-    'https://wqxykwsooyvgyappeyat.supabase.co/storage/v1/object/public/blog/svelte-chromium-extension-sync-states.jpg',
-  'svelte-chromium-extension':
-    'https://wqxykwsooyvgyappeyat.supabase.co/storage/v1/object/public/blog/svelte-chromium-extension.jpg',
-};
+// Blog cover images all live in the same Supabase Storage bucket ("blog"),
+// and the file name always matches the blog slug, so the URL is derived
+// instead of mapped. To add a cover, upload `<slug>.jpg` to that bucket.
+const BLOG_BUCKET_URL =
+  'https://wqxykwsooyvgyappeyat.supabase.co/storage/v1/object/public/blog';
+
+// Legacy covers uploaded before `.jpg` became the convention.
+const PNG_SLUGS = new Set(['openai-nextjs-text-completion', 'screpy-review']);
+
+/**
+ * Public URL of a blog cover image.
+ * Returns an empty string for drafts (unpublished blogs have no slug).
+ */
+export const getBlogBanner = (slug: string): string =>
+  slug
+    ? `${BLOG_BUCKET_URL}/${slug}.${PNG_SLUGS.has(slug) ? 'png' : 'jpg'}`
+    : '';

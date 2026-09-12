@@ -12,7 +12,6 @@ import BlogSuggestionsList from '../modules/blog/BlogSuggestionsList';
 import {getBlurringImage} from '../utils/contentful.utils';
 import {getBlogsMetadata} from '../utils/mdx.utils';
 import {fetchSkills} from '../utils/resume-props';
-import {blogAssets} from '@/data/blog-asset';
 import ParallaxEyes from '../components/ParallaxEyes';
 
 const SubscribeForm = dynamicImport(
@@ -118,10 +117,6 @@ const getStaticProps = async () => {
   const blogs = (await getBlogsMetadata())
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
     .slice(0, 4);
-
-  for (const blog of blogs) {
-    blog.bannerId = blogAssets[blog.slug];
-  }
 
   const skills = await fetchSkills(true);
 

@@ -1,5 +1,5 @@
-import {blogAssets} from '@/data/blog-asset';
-import {newCommonMetaTags, SITE_URL} from '@/frontend-utils/meta-tags';
+import {getBlogBanner} from '@/data/blog-asset';
+import {newCommonMetaTags} from '@/frontend-utils/meta-tags';
 import type {IBlogMetadata} from '@/models/mdxFiles';
 import BlogContent from '@/modules/blog/BlogContent';
 import BlogFooter from '@/modules/blog/BlogFooter';
@@ -22,8 +22,7 @@ export const generateMetadata = async (props: {
   const {data: blog} = matter(source);
   blog.slug = params.slug;
 
-  const bannerUrl = blogAssets[params.slug];
-  const absoluteBannerUrl = bannerUrl ? `${SITE_URL}${bannerUrl}` : undefined;
+  const bannerUrl = getBlogBanner(params.slug) || undefined;
 
   return {
     ...newCommonMetaTags(blog.title, `/blog/${blog.slug}`),
@@ -35,12 +34,12 @@ export const generateMetadata = async (props: {
       type: 'article',
       title: blog.title,
       description: blog.description,
-      images: absoluteBannerUrl,
+      images: bannerUrl,
     },
     twitter: {
       title: blog.title,
       description: blog.description,
-      images: absoluteBannerUrl,
+      images: bannerUrl,
       creator: '@codegino',
       site: '@codegino',
     },
@@ -80,7 +79,7 @@ const BlogPage: NextPage<{
             '@context': 'https://schema.org',
             '@type': 'Article',
             headline: blog.title,
-            image: `${SITE_URL}${blog.bannerId}`,
+            image: getBlogBanner(blog.slug),
             editor: 'Carlo Gino Catapang',
             author: 'Carlo Gino Catapang',
             genre: blog.tags?.join(' '),
@@ -112,7 +111,7 @@ const getStaticProps = async (slug: string) => {
 
   const {content, data} = matter(source);
 
-  const bannerUrl = blogAssets[slug];
+  const bannerUrl = getBlogBanner(slug);
   // Drafts have no banner asset yet; plaiceholder cannot blur nothing.
   const {img, svg} = bannerUrl
     ? await blurImage(bannerUrl)
@@ -124,7 +123,6 @@ const getStaticProps = async (slug: string) => {
     frontMatter: {
       ...data,
       slug,
-      bannerId: bannerUrl,
     } as IBlogMetadata,
     img,
     svg,

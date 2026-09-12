@@ -4,6 +4,7 @@ import Image from 'next/image';
 import NextLink from '../../components/basic/NextLink';
 import type {IBlogMetadata} from '../../models/mdxFiles';
 import {useTranslation} from '../../app/i18n/client';
+import {getBlogBanner} from '../../data/blog-asset';
 
 type Props = {
   blog: IBlogMetadata;
@@ -11,6 +12,7 @@ type Props = {
 
 export const BlogCardPreview = ({blog}: Props) => {
   const {t} = useTranslation('common');
+  const banner = getBlogBanner(blog.slug);
 
   return (
     <figure className="bg-light relative min-h-80 w-full overflow-hidden rounded-2xl text-center shadow-xs shadow-neutral-800 hover:shadow-md hover:shadow-neutral-800 md:max-w-4xl">
@@ -19,18 +21,18 @@ export const BlogCardPreview = ({blog}: Props) => {
         aria-label={blog.title}
         className="absolute inset-0"
       >
-        {/* Drafts (published: false) have no slug, so no banner asset is
-            mapped for them. next/image cannot take an empty src. */}
-        {blog.bannerId ? (
+        {/* Drafts (published: false) have no slug, so there is no banner
+            asset. next/image cannot take an empty src. */}
+        {banner ? (
           <Image
-            src={blog.bannerId}
+            src={banner}
             alt={blog.bannerDescription ?? blog.title}
             title={blog.bannerDescription ?? blog.title}
             fill={true}
             sizes="(max-width: 768px) 100vw, 432px"
             className="object-cover"
             placeholder="blur"
-            blurDataURL={blog.bannerId}
+            blurDataURL={banner}
           />
         ) : (
           <div className="absolute inset-0 bg-neutral-200 dark:bg-neutral-700" />
