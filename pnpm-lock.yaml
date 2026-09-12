@@ -74,9 +74,6 @@ importers:
       react-transition-group:
         specifier: 4.4.5
         version: 4.4.5(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
-      react-typist:
-        specifier: 2.0.5
-        version: 2.0.5(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       rehype-mdx-code-props:
         specifier: 3.0.1
         version: 3.0.1
@@ -105,9 +102,6 @@ importers:
       '@types/react-transition-group':
         specifier: 4.4.12
         version: 4.4.12(@types/react@19.3.0)
-      '@types/react-typist':
-        specifier: 2.0.6
-        version: 2.0.6
       cross-env:
         specifier: 10.1.0
         version: 10.1.0
@@ -993,9 +987,6 @@ packages:
     resolution: {integrity: sha512-8TV6R3h2j7a91c+1DXdJi3Syo69zzIZbz7Lg5tORM5LEJG7X/E6a1V3drRyBRZq7/utz7A+c4OgYLiLcYGHG6w==, tarball: https://registry.npmjs.org/@types/react-transition-group/-/react-transition-group-4.4.12.tgz}
     peerDependencies:
       '@types/react': '*'
-
-  '@types/react-typist@2.0.6':
-    resolution: {integrity: sha512-/7tmwNwKLOAdL1kx0y7yel4DqOvdQSk13MlCnBX8GyLoYicrU7t8rPOzu2soFTzq0c6QAeX6uSqTRX3tdya7rg==, tarball: https://registry.npmjs.org/@types/react-typist/-/react-typist-2.0.6.tgz}
 
   '@types/react@19.3.0':
     resolution: {integrity: sha512-N0rFCuH9YoxG9/m61l9MfpJKfmLOVU0em7ipIz6TRgSSkvReLB9vL85GB+yr8Bs5leqpvg96JSwF4ZS1s4viQg==, tarball: https://registry.npmjs.org/@types/react/-/react-19.3.0.tgz}
@@ -2323,12 +2314,6 @@ packages:
       react: '>=16.6.0'
       react-dom: '>=16.6.0'
 
-  react-typist@2.0.5:
-    resolution: {integrity: sha512-iZCkeqeegO0TlkTMiH2JD1tvMtY9RrXkRylnAI6m8aCVAUUwNzoWTVF7CKLij6THeOMcUDCznLDDvNp55s+YZA==, tarball: https://registry.npmjs.org/react-typist/-/react-typist-2.0.5.tgz}
-    peerDependencies:
-      react: ^0.14 || ^15.0 || ^16.0
-      react-dom: ^^0.14 || ^15.0 || ^16.0
-
   react@19.3.0:
     resolution: {integrity: sha512-E8LUcbtBWt20bbl2YoHfx4ZDBdxVTfOKtCZn9cDSJ4l6/nuoApcpIBcj47t2wZoVX8g2ZHuMHbiShgCR1T5Sog==, tarball: https://registry.npmjs.org/react/-/react-19.3.0.tgz}
     engines: {node: '>=0.10.0'}
@@ -3409,10 +3394,6 @@ snapshots:
   '@types/react-gtm-module@2.0.4': {}
 
   '@types/react-transition-group@4.4.12(@types/react@19.3.0)':
-    dependencies:
-      '@types/react': 19.3.0
-
-  '@types/react-typist@2.0.6':
     dependencies:
       '@types/react': 19.3.0
 
@@ -4904,12 +4885,6 @@ snapshots:
       '@babel/runtime': 7.28.4
       dom-helpers: 5.2.1
       loose-envify: 1.4.0
-      prop-types: 15.8.1
-      react: 19.3.0
-      react-dom: 19.3.0(react@19.3.0)
-
-  react-typist@2.0.5(react-dom@19.3.0(react@19.3.0))(react@19.3.0):
-    dependencies:
       prop-types: 15.8.1
       react: 19.3.0
       react-dom: 19.3.0(react@19.3.0)

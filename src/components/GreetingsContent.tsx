@@ -1,19 +1,114 @@
 'use client';
-import {useState} from 'react';
+import {useCallback, useMemo, useState} from 'react';
 import type {FC, FunctionComponent} from 'react';
 import {BsChevronRight} from '@react-icons/all-files/bs/BsChevronRight';
 import {BsTerminalFill} from '@react-icons/all-files/bs/BsTerminalFill';
 import clsx from 'clsx';
-import Typist from 'react-typist';
 import {useScrollToView} from '../utils/scroll-to-view-hook';
+import type {TypewriterChunk, TypewriterStep} from '../utils/typewriter-hook';
+import {useTypewriter} from '../utils/typewriter-hook';
 import {GuideArrow} from './GuideArrow';
 import {useTranslation} from '@/app/i18n/client';
+
+type TypedLine = {
+  hasPrompt: boolean;
+  texts: Extract<TypewriterChunk, {kind: 'text'}>[];
+};
 
 const GreetingsContent: FC = () => {
   const {scrollToContent} = useScrollToView('#resume-summary');
   const [isGuideVisible, setIsGuideVisible] = useState(false);
 
   const {t} = useTranslation('home');
+
+  const steps = useMemo<TypewriterStep[]>(
+    () => [
+      {kind: 'prompt'},
+      {kind: 'delay', ms: 1200},
+      {kind: 'text', value: t('greetings.1')},
+      {kind: 'break'},
+      {kind: 'prompt'},
+      {kind: 'delay', ms: 500},
+      {kind: 'break'},
+      {kind: 'prompt'},
+      {kind: 'delay', ms: 500},
+      {kind: 'text', value: t('greetings.2')},
+      {kind: 'delay', ms: 500},
+      {kind: 'text', value: t('greetings.3')},
+      {kind: 'delay', ms: 1000},
+      {kind: 'backspace', count: Number(t('greetings.del1'))},
+      {kind: 'text', value: t('greetings.4')},
+      {kind: 'delay', ms: 1200},
+      {kind: 'backspace', count: Number(t('greetings.del2'))},
+      {
+        kind: 'text',
+        value: t('greetings.5'),
+        className: 'font-bold text-primary-500 dark:text-primary-100',
+      },
+      {kind: 'delay', ms: 200},
+      {kind: 'break'},
+      {kind: 'prompt'},
+      {kind: 'text', value: t('greetings.6')},
+      {kind: 'delay', ms: 1500},
+      {kind: 'break'},
+      {kind: 'prompt'},
+      {kind: 'delay', ms: 300},
+      {kind: 'break'},
+      {kind: 'prompt'},
+      {kind: 'text', value: t('greetings.7')},
+      {kind: 'delay', ms: 300},
+      {kind: 'text', value: t('greetings.8')},
+      {kind: 'delay', ms: 300},
+      {kind: 'text', value: t('greetings.9')},
+      {kind: 'break'},
+      {kind: 'prompt'},
+      {kind: 'text', value: t('greetings.10')},
+      {kind: 'break'},
+      {kind: 'prompt'},
+      {kind: 'text', value: t('greetings.11')},
+      {kind: 'break'},
+      {kind: 'prompt'},
+      {kind: 'delay', ms: 300},
+      {kind: 'break'},
+      {kind: 'prompt'},
+      {kind: 'delay', ms: 300},
+      {kind: 'break'},
+      {kind: 'prompt'},
+      {kind: 'delay', ms: 300},
+      {kind: 'break'},
+      {kind: 'prompt'},
+      {kind: 'delay', ms: 300},
+      {kind: 'break'},
+      {kind: 'prompt'},
+      {kind: 'delay', ms: 1000},
+      {kind: 'text', value: `${t('greetings.12')}.`},
+    ],
+    [t],
+  );
+
+  const onDone = useCallback(() => setIsGuideVisible(true), []);
+  const {chunks} = useTypewriter(steps, {charDelay: 10, onDone});
+
+  const lines = useMemo(
+    () =>
+      chunks.reduce<TypedLine[]>(
+        (grouped, chunk) => {
+          if (chunk.kind === 'break') {
+            return [...grouped, {hasPrompt: false, texts: []}];
+          }
+
+          const current = grouped.at(-1)!;
+          const updated =
+            chunk.kind === 'prompt'
+              ? {...current, hasPrompt: true}
+              : {...current, texts: [...current.texts, chunk]};
+
+          return [...grouped.slice(0, -1), updated];
+        },
+        [{hasPrompt: false, texts: []}],
+      ),
+    [chunks],
+  );
 
   return (
     <>
@@ -37,71 +132,22 @@ const GreetingsContent: FC = () => {
             className="h-84 bg-neutral-100 p-1
             font-mono text-[8px] leading-[1.2] text-neutral-900 @sm:h-80 @md:h-76 dark:bg-neutral-800 dark:text-neutral-50"
           >
-            <Typist
-              avgTypingDelay={10}
-              onTypingDone={() => setIsGuideVisible(true)}
-            >
-              <StyledBsChevronRight />
-              <Typist.Delay ms={1200} />
-              <Span>{t('greetings.1')}</Span>
-              <br />
-              <StyledBsChevronRight />
-              <Typist.Delay ms={500} />
-              <br />
-              <StyledBsChevronRight />
-              <Typist.Delay ms={500} />
-              <Span>{t('greetings.2')}</Span>
-              <Typist.Delay ms={500} />
-              <Span>{t('greetings.3')}</Span>
-              <Typist.Delay ms={1000} />
-              <Typist.Backspace count={Number(t('greetings.del1'))} />
-              <Span>{t('greetings.4')}</Span>
-              <Typist.Delay ms={1200} />
-              <Typist.Backspace count={Number(t('greetings.del2'))} />
-              <Span className="font-bold text-primary-500 dark:text-primary-100">
-                {t('greetings.5')}
-              </Span>
-              <Typist.Delay ms={200} />
-              <br />
-              <StyledBsChevronRight />
-              <Span>{t('greetings.6')}</Span>
-              <Typist.Delay ms={1500} />
-              <br />
-              <StyledBsChevronRight />
-              <Typist.Delay ms={300} />
-              <br />
-              <StyledBsChevronRight />
-              {/* <Typist.Delay ms={500} /> */}
-              <Span>{t('greetings.7')}</Span>
-              <Typist.Delay ms={300} />
-              <Span>{t('greetings.8')}</Span>
-              <Typist.Delay ms={300} />
-              <Span>{t('greetings.9')}</Span>
-              <br />
-              <StyledBsChevronRight />
-              {/* <Typist.Delay ms={500} /> */}
-              <Span>{t('greetings.10')}</Span>
-              <br />
-              <StyledBsChevronRight />
-              {/* <Typist.Delay ms={500} /> */}
-              <Span>{t('greetings.11')}</Span>
-              <br />
-              <StyledBsChevronRight />
-              <Typist.Delay ms={300} />
-              <br />
-              <StyledBsChevronRight />
-              <Typist.Delay ms={300} />
-              <br />
-              <StyledBsChevronRight />
-              <Typist.Delay ms={300} />
-              <br />
-              <StyledBsChevronRight />
-              <Typist.Delay ms={300} />
-              <br />
-              <StyledBsChevronRight />
-              <Typist.Delay ms={1000} />
-              <Span>{t('greetings.12')}.</Span>
-            </Typist>
+            {lines.map((line, lineIndex) => (
+              <div key={lineIndex} className="flex items-center">
+                {line.hasPrompt ? <StyledBsChevronRight /> : null}
+                {/* Text stays in a single inline flow so spaces between chunks survive. */}
+                <div className="min-w-0">
+                  {line.texts.map((chunk, index) => (
+                    <Span key={index} className={chunk.className}>
+                      {chunk.value}
+                    </Span>
+                  ))}
+                  {lineIndex === lines.length - 1 ? (
+                    <Span className="animate-blink">|</Span>
+                  ) : null}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
@@ -116,7 +162,7 @@ const GreetingsContent: FC = () => {
 
 const StyledBsChevronRight = () => {
   return (
-    <BsChevronRight className="text-[0.8rem] text-primary-700 dark:text-primary-100 xs:text-xs sm:text-sm md:text-base" />
+    <BsChevronRight className="shrink-0 text-[0.8rem] text-primary-700 dark:text-primary-100 xs:text-xs sm:text-sm md:text-base" />
   );
 };
 

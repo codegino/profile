@@ -17,6 +17,13 @@
   --breakpoint-xs: 400px;
 
   --animate-spin-fast: spin 0.15s linear;
+  --animate-blink: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
 }
 
 /* `inline` so the font vars injected by next/font on <html> win over :root. */
