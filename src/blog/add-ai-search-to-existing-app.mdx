@@ -25,14 +25,9 @@ published: true
 > 2. When a row is created, send its text to an **embedding model** and store the numbers it returns in that column.
 > 3. On search, embed the **search term the same way** and ask the database which rows are closest.
 
-> No training. No fine-tuning. No GPU. It is one HTTP call and one `order by`.
-> 
-> Check the [changes needed to add AI search](https://github.com/codegino/todo-list-with-ai/compare/starting-point...with-ai-search)
-
-
 ## Introduction
 
-I have a [super simple todo app](https://github.com/codegino/todo-list-with-ai/tree/starting-point). A Next.js App Router frontend and a `todos` table in Postgres.
+I have a [super simple todo app](https://github.com/codegino/todo-list-with-ai/tree/starting-point) written in Next.js connected to a Postgres database.
 
 <br />
 
@@ -55,12 +50,18 @@ That is the gap people reach for "AI" to fill. The surprise is how little is inv
 
 <br />
 
-If you want to follow along in code rather than read, the whole thing is on GitHub:
+### Run the demo yourself
+
+If you would rather try the app than read about it, both versions are on GitHub:
 
 <br />
 
 - [starting-point](https://github.com/codegino/todo-list-with-ai/tree/starting-point): the plain todo app, substring search and all. Start here.
 - [with-ai-search](https://github.com/codegino/todo-list-with-ai/tree/with-ai-search): the same app after the three changes below.
+
+<br />
+
+To run either branch on your machine you only need two things: a Postgres database with `pgvector` support and an OpenAI API key. Put them in `.env` as `DATABASE_URL` and `OPENAI_API_KEY`, install the dependencies, and start the app.
 
 <br />
 
@@ -81,7 +82,7 @@ An **embedding model** is a function. Text goes in, a fixed-length list of numbe
 "groceries"             ->  [0.019, -0.038, 0.121, ... ]   (1536 numbers)
 ```
 
-Those numbers are coordinates. Not in 2D or 3D, but in a space with 1536 axes, which is impossible to picture and does not matter, because the rule is the same as on a map: **things that mean similar things land near each other.**
+Think of those numbers as a location on a map. On a real map, two places with similar coordinates are close to each other. Same idea here, except this map has 1536 directions instead of two. You cannot picture that, and you do not need to. Only the rule matters: **text that means similar things ends up close together.**
 
 <br />
 
@@ -116,9 +117,7 @@ create extension if not exists vector;
 alter table todos add column if not exists embedding vector(1536);
 ```
 
-> If you are picking a database right now, pick one where `pgvector` is available. `docker run postgres:17` is the common trap; use `pgvector/pgvector:pg17`. Supabase has it out of the box, which is what I use.
-
-<br />
+> Postgres is not the only place you can keep vectors, it just happens to be where my app already lived. I use Supabase, which is free and ships `pgvector` out of the box. If you run Postgres yourself, note that `docker run postgres:17` does not include the extension; use `pgvector/pgvector:pg17` instead. [Where to store embeddings](https://note.carlogino.com/ai/where-to-store-embeddings) compares the other options in my notes.
 
 Setting that up is not really part of this post, so it lives in my notes instead:
 
@@ -139,10 +138,6 @@ Two reasons, and both come up in any real app:
 
 - You are adding this column to a table that **already has rows**, and there is no sensible default vector for them.
 - When a todo is created, the row is written first and the embedding is filled in a moment later. A todo is briefly embedding-less, or indefinitely so if the provider is down.
-
-<br />
-
-Remember `1536`. It is the width of the model's output, and it is now part of your schema. Change the model, change the column.
 
 <br />
 
@@ -187,17 +182,11 @@ That is the AI in "AI search". A string in, an array of numbers out.
 
 <br />
 
-If you do not want to use OpenAI, nothing above is load-bearing except the shape of the function. Swap in Google, Voyage, Cohere, or a model running locally through Ollama. [The alternatives and what changes when you switch](https://note.carlogino.com/ai/alternatives-to-openai-embeddings) is its own note. The two things that move are the dimension count in your schema and the fact that every vector you have already stored becomes stale.
+You do not have to use OpenAI. Any embedding model works, as long as it takes text and gives back numbers. Google, Voyage, Cohere, or a model running locally through Ollama all fit in the same function. [The alternatives and what changes when you switch](https://note.carlogino.com/ai/alternatives-to-openai-embeddings) is its own note. The two things that move are the dimension count in your schema and the fact that every vector you have already stored becomes stale.
 
 <br />
 
-`pgvector`'s wire format happens to look exactly like a JSON array, so the bridge from JavaScript to Postgres is one line plus an explicit `::vector` cast at the call site:
-
-```ts fileName="src/lib/embeddings"
-export function toVector(embedding: number[]): string {
-  return JSON.stringify(embedding);
-}
-```
+One small detail: `pgvector` accepts a vector written as a plain JSON array, so sending one from your code is just the array turned into a string, with an explicit `::vector` cast in the query. In the snippets below that is the `toVector` helper.
 
 ### Write the vector when a todo is created
 
@@ -241,24 +230,6 @@ export async function POST(request: Request) {
 ```
 
 > `after()` is best-effort, not a queue. No retries, and if the process dies mid-callback the work is lost. That is fine for a demo and not fine for production. See the caveats at the end.
-
-### What this costs
-
-You now make one API call per todo, so it is worth knowing the bill before you write a backfill loop.
-
-<br />
-
-You are billed per **input token**, and only on the way in. There is no output cost, because the output is a vector and not text.
-
-<br />
-
-For an app this size the numbers are barely real. A todo title is about 8 tokens, so embedding 10,000 of them is around 80,000 tokens, which is under a fifth of a cent on `text-embedding-3-small`. Searches are even smaller.
-
-<br />
-
-So the thing to watch is not the price per token. It is re-embedding text that did not change, embedding on every keystroke, and hitting the tokens-per-minute rate limit in the middle of a backfill. [How to count tokens and estimate the bill](https://note.carlogino.com/ai/counting-tokens-and-cost-for-embeddings) is in my notes, including the input length cap you will hit the moment your text is longer than a todo title.
-
-<br />
 
 ## Step 3: Search with the same model
 
@@ -323,24 +294,24 @@ Nearest-neighbour search has no concept of "no results". Ask it for the top 20 a
 
 <br />
 
-## The payoff
+## The result
 
-Two searches, same data, same gesture:
+Remember the two searches that returned nothing at the start of the post? Here they are again, on the same todo list, with the old search and the new one side by side:
 
 ```sh noLine noHeader
-# keyword mode: substring test on the title
+# keyword: does the title contain these letters?
 "groceries"  ->  (nothing)
 "cleaning"   ->  (nothing)
 
-# AI mode: same queries, through embeddings
-"groceries"  ->  Purchase some apples   0.71
-                 Buy bread and eggs     0.68
+# AI: which titles mean something close to this? (1 = identical meaning)
+"groceries"  ->  Purchase some apples    0.71
+                 Buy bread and eggs      0.68
 
-"cleaning"   ->  Do the dishes          0.66
-                 Laundry day            0.64
+"cleaning"   ->  Do the dishes           0.66
+                 Laundry day             0.64
 ```
 
-And here are the queries that came up empty at the top of the post, after the three changes. The letters still do not match, but the coordinates are close, so the rows come back ranked by how near they landed:
+The letters still do not match. `groceries` is nowhere in "Purchase some apples". But the two sit close together on that map, so the row comes back anyway, with a number telling you how close:
 
 <br />
 
@@ -351,19 +322,13 @@ And here are the queries that came up empty at the top of the post, after the th
 
 <br />
 
-I kept both modes in the UI. I added a button next to the search box that toggles "AI" search on and off, so you can run the same query both ways and see the difference.
-
-<br />
-
-Both modes only search when you submit, not as you type. Use whatever strategy you like here. I just did not want to fire an embedding call on every keystroke.
-
 ### Keyword search is not obsolete
 
-Notice that I did not replace the old search. The toggle is the feature, and that is not just for the demo.
+Notice that I did not replace the old search. I added a button next to the search box that toggles "AI" search on and off, so you can run the same query both ways and see the difference. The toggle is the feature, and that is not just for the demo.
 
 <br />
 
-Vector search is bad at exact terms. Ticket IDs, product codes, names, acronyms, anything rare. Search for `TODO-4821` and it will happily return four todos that feel vaguely related and none that match. Substring search gets that right every time.
+Vector search is bad at exact terms. Ticket IDs, product codes, names, acronyms, anything rare. Search for `TODO-1234` and it will happily return four todos that feel vaguely related and none that match. Substring search gets that right every time.
 
 <br />
 
@@ -371,17 +336,22 @@ So the two are not rivals. Keyword wins on exact hits, vectors win on meaning, a
 
 <br />
 
-## The part nobody warns you about: backfilling
-
-Your table already has rows. The migration added an empty `embedding` column to all of them, and the search query skips rows where `embedding is null`.
+One small detail: both modes only search when you submit, not as you type. Use whatever strategy you like here. I just did not want to fire an embedding call on every keystroke.
 
 <br />
 
-So every todo that existed before today will never show up in AI search. It looks like the feature is broken, but it is just missing data.
+## Backfill the rows that have no embedding
+
+The search query skips rows where `embedding is null`, so a todo without an embedding is invisible to AI search. Two things put rows in that state:
 
 <br />
 
-Embedding on create only covers new todos. You still need something that goes back and fills in the old ones. Here it is as an API route:
+- Rows that already existed when you added the column.
+- Rows whose embedding call failed after creation.
+
+<br />
+
+Both are fixed the same way: select the rows with a null embedding, embed them, write the vectors back. Here it is as an API route, using an `embedMany` variant of the earlier `embed` function that sends an array in one request:
 
 ```ts fileName="src/app/api/todos/backfill/route"
 import {NextResponse} from 'next/server';
@@ -417,50 +387,37 @@ curl -X POST localhost:3000/api/todos/backfill
 # {"embedded":7}
 ```
 
-An API route is just the easiest way to trigger this. A one-off script, a cron job, a queue worker, or a button in your admin page all work the same. The only part that matters is the query: find rows without an embedding, embed them, save them.
+The route is just the easiest trigger. A one-off script, a cron job, a queue worker, or a button in your admin page do the same job. The `limit` keeps one run bounded, so call it until it returns `0`.
 
-### This is the same endpoint you will need again
+### You will run this again when you change models
 
-Here is the idea worth carrying to your own app: **an embedding is derived data.** It is a function of the text _and_ the model that produced it.
-
-<br />
-
-Switch to `text-embedding-3-large`, shorten the output to 512 dimensions, or move to another provider, and every vector in your table is stale. They are not wrong-looking, they are just no longer comparable to the vectors your new queries produce. Search quietly gets worse and nothing errors.
+**An embedding is derived data.** It is a function of the text _and_ the model that produced it.
 
 <br />
 
-The fix is to re-embed everything with the new model. That is the same backfill code you just wrote, with a different `where` clause:
-
-```sql noLine noHeader
--- backfill: only the rows that never got an embedding
-where embedding is null
-
--- re-embed: every row, because the model changed
-where true
-```
-
-So it is worth writing the backfill in a way you can run again later. You will need it the first time you change models.
+Switch to `text-embedding-3-large`, shorten the output to 512 dimensions, or move to another provider, and every stored vector becomes stale. Nothing errors, because the old vectors still look like valid numbers. They are simply no longer comparable to the vectors your new queries produce, so search quietly gets worse.
 
 <br />
 
-## So where is the "AI"?
-
-Worth saying plainly, because the marketing muddies it:
+So write the backfill as something you can run again, not as a one-time migration.
 
 <br />
 
-- You did **not** train anything.
-- You did **not** fine-tune anything.
-- You did **not** run a model on your own hardware.
-- Your app does **not** "understand" todos.
+### What this costs
+
+Backfilling is the first time you send a lot of text to the model at once, so this is the right moment to talk about the bill.
 
 <br />
 
-You called someone else's model once per todo and once per search, and it handed you coordinates. Everything that feels smart, like "Purchase some apples" answering "groceries", is a consequence of _where those coordinates landed_, decided long before you showed up, and surfaced by an `order by`.
+You are billed per **input token**, and only on the way in. There is no output cost, because the output is a vector and not text.
 
 <br />
 
-Thinking of it as a lookup table you query with meaning instead of with keys is much closer to the truth than thinking of it as a brain, and it makes the failure modes obvious. Bad results are not the model "misunderstanding" you. They are rows in the wrong place, a cutoff set too loose, or vectors made by a model you no longer use.
+For an app this size the numbers are barely real. A todo title is about 8 tokens, so embedding 10,000 of them is around 80,000 tokens, which is under a fifth of a cent on `text-embedding-3-small`. Searches are even smaller.
+
+<br />
+
+So the thing to watch is not the price per token. It is re-embedding text that did not change, embedding on every keystroke, and hitting the tokens-per-minute rate limit in the middle of a backfill. [How to count tokens and estimate the bill](https://note.carlogino.com/ai/counting-tokens-and-cost-for-embeddings) is in my notes, including the input length cap you will hit the moment your text is longer than a todo title.
 
 <br />
 
@@ -482,38 +439,17 @@ This is a demo app, so here is what I skipped:
 
 ## Conclusion
 
-"Add AI to the app" sounds like a project. In practice it was a column, an HTTP call, and a different `order by`, plus one honest bit of homework in the backfill.
+The demo app went from "search only finds words you already typed correctly" to "search finds what you meant" with one migration, one embedding call on insert, and one `order by distance` query. No new service, no separate search engine, no rewrite. The database you already have does the hard part.
 
 <br />
 
-The useful reframe is that the model is a translator, not a brain. It turns text into coordinates; your database does the rest with arithmetic it has always been good at. Once you see it that way, most of the AI features on that list stop looking like magic and start looking like plumbing you already know how to write.
-
-<br />
-
-If you want to try it yourself: clone [`starting-point`](https://github.com/codegino/todo-list-with-ai/tree/starting-point), point `DATABASE_URL` and `OPENAI_API_KEY` at your own, and see how far you get before peeking at [`with-ai-search`](https://github.com/codegino/todo-list-with-ai/tree/with-ai-search).
+The piece worth keeping in your head is that the model is doing one job: turning text into a position on a map. Everything else in this post is plumbing around that. Once the numbers are in a column, `groceries` finding _"Purchase some apples"_ is just arithmetic.
 
 <br />
 
 ## What's next
 
-The column is there now, so a few features get much cheaper to add. Roughly in order of effort:
-
-<br />
-
-**Hybrid search.** Run the substring search and the vector search together and merge the results, so you stop making the user pick a mode.
-
-<br />
-
-**Generating todos with structured output.** Type "plan a birthday party" and get a list of todos back. This is a different kind of AI call: a chat model instead of an embedding model, with a JSON schema so the reply is a real array you can insert instead of prose you have to parse. The gotcha is that it is a slow, expensive call that can also just be wrong, so the generated todos should land in front of the user for review before they hit the table.
-
-<br />
-
-**Asking questions about your todos, also known as RAG.** "What do I still need to buy?" Search is already the hard half of this. You embed the question, pull the closest todos out of Postgres, paste them into a prompt, and ask a chat model to answer using only those. Retrieval Augmented Generation sounds like an architecture, but it is search plus a prompt. If the search is bad, the answer is bad, which is why it is worth getting the search right first.
-
-<br />
-
-**Auto tagging.** Ask a model to label each todo as groceries, chores, work, and so on when it is created. Cheaper and more predictable than it sounds, and it gives you plain filters that are easier to debug than distances.
-
-<br />
-
-Every one of these follows the same shape as this post: call a model, store what it gives you, and let your database do the rest.
+- **Hybrid search.** Merge keyword and vector results so the user never picks a mode.
+- **Structured output.** A chat model plus a JSON schema turns "plan a birthday party" into a real array of todos. Show them for review before inserting.
+- **Retrieval Augmented Generation (RAG).** Embed the question, pull the closest todos, and let a chat model answer from those. It is search plus a prompt, so good search comes first.
+- **Classification.** Label each todo as groceries, chores, or work on creation, and get plain filters that are easier to debug than distances.
