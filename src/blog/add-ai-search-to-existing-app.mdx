@@ -268,21 +268,21 @@ export async function GET(request: Request) {
 
 ### Reading that query
 
-`<=>` is pgvector's **cosine distance** operator. It answers one question about two lists of numbers: how far apart do they point?
+`<=>` is pgvector's [**cosine distance**](https://note.carlogino.com/ai/what-cosine-distance-is) operator. It answers one question about two lists of numbers: how far apart do they point?
 
 <br />
 
 - `0`: same direction, effectively the same meaning.
-- `1`: unrelated.
-- `2`: opposite.
+- `1`: at right angles, no relationship.
+- `2`: opposite directions.
 
 <br />
 
-So `order by embedding <=> $query` is literally "closest first", and `1 - distance` gives you a similarity between 0 and 1 that is friendlier to show and to reason about.
+So `order by embedding <=> $query` is literally "closest first", and `1 - distance` flips it into a similarity, where `1` is a perfect match and `0` is unrelated. That is friendlier to show and to reason about. (Since distance can in theory reach `2`, the similarity can in theory go negative, but with real embeddings you will not see it.)
 
 <br />
 
-Notice what is _not_ in that query: no model, no prompt, no API call. By the time Postgres is involved, the AI part is over. This is ordinary maths over a column, and it is why the feature is fast and cheap to run.
+Notice what is _not_ in that query: no model, no prompt, no API call. The one API call already happened — that `embed(q)` above. By the time Postgres is involved, the AI part is over. This is ordinary maths over a column, and it is why the feature is fast and cheap to run.
 
 ### Why there has to be a cutoff
 
@@ -328,7 +328,7 @@ Notice that I did not replace the old search. I added a button next to the searc
 
 <br />
 
-Vector search is bad at exact terms. Ticket IDs, product codes, names, acronyms, anything rare. Search for `TODO-1234` and it will happily return four todos that feel vaguely related and none that match. Substring search gets that right every time.
+Vector search is bad at exact terms such as ticket IDs, product codes, names, acronyms, anything rare. If we search for `TODO-1234`, it will return four todos that feel vaguely related and none that match. Substring search gets that right every time.
 
 <br />
 
