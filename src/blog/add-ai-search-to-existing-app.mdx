@@ -233,7 +233,7 @@ export async function POST(request: Request) {
 
 ## Step 3: Search with the same model
 
-The search term goes through the exact same embedding call as the stored text.** Then you ask the database which stored vectors are nearest to that one.
+The search term goes through the exact same embedding call as the stored text. Then you ask the database which stored vectors are nearest to that one.
 
 ```ts fileName="src/app/api/todos/search/route"
 import {NextResponse} from 'next/server';
