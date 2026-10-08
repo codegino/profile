@@ -24,6 +24,8 @@ const sidebarLinks = [
   ...navigationLinks,
 ];
 
+const CURRENT_YEAR = new Date().getFullYear();
+
 const SmallScreenSidebar: FunctionComponent = () => {
   const EMAIL_ADDRESS = 'carloginocatapang@gmail.com';
   const nodeRef = useRef(null);
@@ -154,7 +156,7 @@ const SmallScreenSidebar: FunctionComponent = () => {
 
               <div className="flex flex-col">
                 <p>All rights reserved</p>
-                <p>© Carlo Gino Catapang {new Date().getFullYear()}</p>
+                <p>© Carlo Gino Catapang {CURRENT_YEAR}</p>
               </div>
             </section>
           </div>

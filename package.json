@@ -21,7 +21,7 @@
     "clsx": "2.1.1",
     "i18next": "26.4.2",
     "i18next-resources-to-backend": "1.2.3",
-    "isomorphic-dompurify": "4.2.0",
+    "isomorphic-dompurify": "4.5.0",
     "next": "16.4.0",
     "next-themes": "0.4.6",
     "next-usequerystate": "1.20.0",
@@ -52,8 +52,8 @@
     "globby": "16.2.4",
     "gray-matter": "4.0.3",
     "husky": "9.1.7",
-    "oxfmt": "0.68.0",
-    "oxlint": "1.83.0",
+    "oxfmt": "0.72.0",
+    "oxlint": "1.87.0",
     "plaiceholder": "3.0.0",
     "sharp": "0.35.5",
     "tailwindcss": "4.3.3",
@@ -64,5 +64,5 @@
       "path": "./node_modules/cz-conventional-changelog"
     }
   },
-  "packageManager": "pnpm@10.34.5"
+  "packageManager": "pnpm@10.34.6"
 }

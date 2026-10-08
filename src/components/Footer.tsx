@@ -7,6 +7,8 @@ import type {FC} from 'react';
 import {createTranslation} from '../app/i18n/server';
 import BuyMeACoffeeIcon from './social/BuyMeACoffeeIcon';
 
+const CURRENT_YEAR = new Date().getFullYear();
+
 const Footer: FC = async () => {
   const {t} = await createTranslation('common');
 
@@ -35,7 +37,7 @@ const Footer: FC = async () => {
             {t('rssFeed')}
           </NextLink>
           <p className="mt-2">{t('allRightsReserved')}</p>
-          <p>© Carlo Gino Catapang {new Date().getFullYear()}</p>
+          <p>© Carlo Gino Catapang {CURRENT_YEAR}</p>
         </div>
         <div className="flex flex-col items-center gap-y-3">
           <BookACallButton
