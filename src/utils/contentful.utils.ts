@@ -1,7 +1,7 @@
 import {blurImage} from './image-blur.utils';
 import {getImageUrl} from './get-image';
 
-export async function getBlurringImage(key: string, prefix = 'static') {
+export async function getBlurringImage(key: string, prefix = 'static_assets') {
   const url = getImageUrl(key, prefix);
 
   if (!url) {

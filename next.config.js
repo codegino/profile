@@ -10,7 +10,6 @@ const config = {
   images: {
     remotePatterns: [
       {hostname: 'i.imgur.com'},
-      {hostname: 'cdn.grigora.co'},
       {hostname: 'media2.giphy.com'},
       {hostname: 'images.ctfassets.net'},
       {hostname: 'dev-to-uploads.s3.amazonaws.com'},

@@ -62,7 +62,7 @@ const getStaticProps = async () => {
   const experiences = await fectchExperiences();
   const skills = await fetchSkills();
 
-  const {img, svg} = await getBlurringImage('profile-picture.jpeg');
+  const {img, svg} = await getBlurringImage('profile_picture.jpg');
 
   // Stored in Supabase Storage (public bucket: "resume").
   // To publish an update, upload over the same object name so these URLs stay valid.

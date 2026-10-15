@@ -1,6 +1,8 @@
-const grigoraHost =
-  'https://cdn.grigora.co/projects/10ddb1b4-c8f5-48cd-98f4-e11824bf400b';
+const supabaseHost = 'https://wqxykwsooyvgyappeyat.supabase.co';
 
-export function getImageUrl(imageName: string, prefix = 'static'): string {
-  return `${grigoraHost}/images/${prefix}/${imageName}`;
+export function getImageUrl(
+  imageName: string,
+  prefix = 'static_assets',
+): string {
+  return `${supabaseHost}/storage/v1/object/public/${prefix}/${imageName}`;
 }
