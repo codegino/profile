@@ -3,7 +3,6 @@
   "resume": "Resume",
   "about": "About",
   "blog": "Blog",
-  "nft": "NFT",
   "date": "{{val, datetime}}",
   "sitemap": "Sitemap",
   "rssFeed": "RSS Feed",

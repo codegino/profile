@@ -9,10 +9,6 @@ const staticPages: MetadataRoute.Sitemap = [
     lastModified: '2021-12-29',
   },
   {
-    url: `${ROOT_URL}/nft`,
-    lastModified: '2021-12-29',
-  },
-  {
     url: `${ROOT_URL}/about`,
     lastModified: '2021-12-29',
   },
