@@ -1,6 +1,7 @@
 {
   "extends": ["config:recommended"],
   "labels": ["dependencies"],
+  "minimumReleaseAge": "1 day",
   "packageRules": [
     {
       "matchDepTypes": ["devDependencies"],
