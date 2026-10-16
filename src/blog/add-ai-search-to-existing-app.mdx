@@ -11,6 +11,7 @@ keywords:
     'vector search',
     'pgvector',
     'openai embeddings',
+    'openrouter embeddings',
     'nextjs ai',
     'add ai to existing app',
   ]
@@ -61,7 +62,7 @@ If you would rather try the app than read about it, both versions are on GitHub:
 
 <br />
 
-To run either branch on your machine you only need two things: a Postgres database with `pgvector` support and an OpenAI API key. Put them in `.env` as `DATABASE_URL` and `OPENAI_API_KEY`, install the dependencies, and start the app.
+To run either branch on your machine you only need two things: a Postgres database with `pgvector` support and an OpenRouter API key. Put them in `.env` as `DATABASE_URL` and `OPENROUTER_API_KEY`, install the dependencies, and start the app.
 
 <br />
 
@@ -146,16 +147,16 @@ Two reasons, and both come up in any real app:
 The entire "AI dependency" is one HTTP POST. No SDK required.
 
 ```ts fileName="src/lib/embeddings"
-const ENDPOINT = 'https://api.openai.com/v1/embeddings';
+const ENDPOINT = 'https://openrouter.ai/api/v1/embeddings';
 
-export const EMBEDDING_MODEL = 'text-embedding-3-small';
+export const EMBEDDING_MODEL = 'openai/text-embedding-3-small';
 
 export async function embed(text: string): Promise<number[]> {
   const response = await fetch(ENDPOINT, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
+      Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
     },
     body: JSON.stringify({model: EMBEDDING_MODEL, input: text}),
     // A hung provider must not pin a request open forever.
@@ -163,7 +164,7 @@ export async function embed(text: string): Promise<number[]> {
   });
 
   if (!response.ok) {
-    throw new Error(`OpenAI embeddings failed: ${response.status}`);
+    throw new Error(`OpenRouter embeddings failed: ${response.status}`);
   }
 
   const payload = (await response.json()) as {
@@ -178,11 +179,15 @@ That is the AI in "AI search". A string in, an array of numbers out.
 
 <br />
 
-`OPENAI_API_KEY` is the only credential involved. [Getting one is a five minute detour](https://note.carlogino.com/openai/get-an-openai-api-key-for-embeddings), and the API platform is billed separately from ChatGPT Plus, which trips up most people the first time.
+`OPENROUTER_API_KEY` is the only credential involved. [Getting one is a five minute detour](https://note.carlogino.com/openrouter/get-an-openrouter-api-key-for-embeddings). The one thing that trips people up is that OpenRouter is prepaid: with no credits on the account, every request fails.
 
 <br />
 
-You do not have to use OpenAI. Any embedding model works, as long as it takes text and gives back numbers. Google, Voyage, Cohere, or a model running locally through Ollama all fit in the same function. [The alternatives and what changes when you switch](https://note.carlogino.com/ai/alternatives-to-openai-embeddings) is its own note.
+I use [OpenRouter](https://openrouter.ai) instead of calling OpenAI directly because one key gives you embedding models from several providers behind the same OpenAI-compatible endpoint. The model is still OpenAI's `text-embedding-3-small`, hence the `openai/` prefix. Trying another provider is a change to the model string, not a new account.
+
+<br />
+
+You do not have to use OpenRouter either. Any embedding model works, as long as it takes text and gives back numbers. OpenAI directly, Google, Voyage, Cohere, or a model running locally through Ollama all fit in the same function. [The alternatives and what changes when you switch](https://note.carlogino.com/ai/alternatives-to-openai-embeddings) is its own note.
 
 <br />
 
@@ -190,7 +195,7 @@ One small detail: `pgvector` accepts a vector written as a plain JSON array, so 
 
 ### Write the vector when a todo is created
 
-The important decision here is _where_ the call goes. Creating a todo is the core feature; embedding it is not. If you `await` OpenAI before inserting the row, an OpenAI outage takes down todo creation.
+The important decision here is _where_ the call goes. Creating a todo is the core feature; embedding it is not. If you `await` the embedding call before inserting the row, an outage at your provider takes down todo creation.
 
 <br />
 
@@ -393,7 +398,7 @@ The route is just the easiest trigger. A one-off script, a cron job, a queue wor
 
 <br />
 
-Switch to `text-embedding-3-large`, shorten the output to 512 dimensions, or move to another provider, and every stored vector becomes stale. Nothing errors, because the old vectors still look like valid numbers. They are simply no longer comparable to the vectors your new queries produce, so search quietly gets worse.
+Switch to `openai/text-embedding-3-large`, shorten the output to 512 dimensions, or move to another provider, and every stored vector becomes stale. Nothing errors, because the old vectors still look like valid numbers. They are simply no longer comparable to the vectors your new queries produce, so search quietly gets worse.
 
 <br />
 
