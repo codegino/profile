@@ -1,0 +1,259 @@
+---
+title: Classify data with an AI decision model
+description: When a decision model beats a chat model for classification
+date: '2026-10-17'
+dateUpdated: '2026-10-17'
+bannerDescription: robot checking a box
+tags: ['nextjs', 'ai', 'postgres', 'tech']
+keywords:
+  [
+    'ai classification',
+    'ai tagging',
+    'decision model',
+    'jev',
+    'typesafe jev',
+    'openrouter',
+    'llm vs classifier',
+    'nextjs ai',
+  ]
+published: true
+---
+
+## TL;DR
+
+> For classification, use a **decision model**, not a chat model.
+>
+> A chat model writes text you then have to parse. A decision model, like [Jev](https://openrouter.ai/typesafe/jev-1.14), answers each yes/no question with a probability: no text to generate, nothing to parse, and a number you can set a threshold on. Ask one question per label, keep the labels above the threshold, and you get the same tags faster and cheaper.
+
+## Introduction
+
+In [Add AI search to existing application](https://carlogino.com/blog/add-ai-search-to-existing-app), I added semantic search to a [super simple todo app](https://github.com/codegino/todo-list-with-ai) written in Next.js and backed by Postgres. This post adds a different AI feature to the same app, using a different kind of model. You do not need to read the first post; nothing here depends on it.
+
+<br />
+
+The goal: every todo is labelled automatically as **groceries**, **chores**, or **work**, without the user picking anything. _"Buy bread and eggs"_ is groceries, _"Do the dishes"_ is chores, _"Prepare slides for Monday standup"_ is work, and _"Renew passport"_ is none of them.
+
+<br />
+
+## Why not just ask a chat model?
+
+The obvious first move is to ask a chat model like GPT or Claude: _"Here are three tags, here is a todo, which tags apply? Reply in JSON. Make no mistakes"_. Yes, it works, but it might not be the ideal tool for this job.
+
+<br />
+
+A chat model is a **generator**. It writes an answer one token at a time, and you pay for and wait on every one of them. The label you want is buried in text you then have to parse. And if you ask it how sure it is, the `"confidence": 0.8` it writes back is just more generated text, not a real measurement.
+
+<br />
+
+A **decision model** is built for exactly this narrow kind of question. I use [Jev](https://openrouter.ai/typesafe/jev-1.14) from TypeSafe, available on OpenRouter with the same API key. You give it some state and a set of typed questions, and it returns typed answers:
+
+<br />
+
+- **No text to generate.** Each answer is a number, not a sentence. Output tokens are free.
+- **No text to parse.** The response is already the shape your code needs.
+- **A real probability.** Each yes/no answer is a calibrated probability from 0 to 1, so "tag it if it is at least 0.7" actually means something.
+- **All questions in one pass.** Three labels are three questions in one request, answered in parallel.
+
+<br />
+
+
+## Run the demo yourself
+
+The [with-ai-classification](https://github.com/codegino/todo-list-with-ai/tree/with-ai-classification) branch is the app after the changes below. Here is the [diff](https://github.com/codegino/todo-list-with-ai/pull/18/changes) comparing to the previous post.
+
+<br />
+
+You need a Postgres database and an [OpenRouter API key](https://note.carlogino.com/openrouter/get-an-openrouter-api-key-for-embeddings) in `.env` as `DATABASE_URL` and `OPENROUTER_API_KEY`.
+
+<br />
+
+### Step 1: Add a tags column
+
+For a todo application, we can utilize the classification model to automatically assign tags to a todo item. But first we need a place to store them.
+
+```sql fileName="migrations/003_tags.sql"
+alter table todos add column if not exists tags text[];
+```
+
+It is nullable, so a todo whose classification failed simply has no tags. Starting from scratch? [migrations/reset.sql](https://github.com/codegino/todo-list-with-ai/blob/with-ai-classification/migrations/reset.sql) recreates the whole table instead, deleting all todos.
+
+<br />
+
+### Step 2: Describe the labels
+
+List each tag with the yes/no question that decides it. The model reads the question, so write it like you would ask a person:
+
+```ts fileName="src/lib/tags"
+export const TAGS = {
+  groceries: 'Is this about buying food, drinks, or household supplies from a store or market?',
+  chores:
+    'Is this a task done in or around the home, like cleaning, laundry, dishes, cooking, repairs, or taking out the trash?',
+  work: 'Is this related to a job or career, like meetings, reports, emails to colleagues, or deadlines?',
+} as const;
+
+export const TAG_THRESHOLD = 0.7;
+```
+
+> In a real app, labels usually live in their own `labels` table with a join table to `todos`, so users can rename and manage them.
+
+### Step 3: Ask one question per tag
+
+Jev supports a few [question types](https://note.carlogino.com/ai/choice-vs-noul-vs-score-in-jev). A **`choice`** picks exactly one option. A **`noul`** answers one yes/no question with a probability. A todo can be both groceries and chores (_"Buy dish soap"_), or neither, so each tag gets its own `noul`, all in one request:
+
+```ts fileName="src/lib/tags"
+const questions = Object.fromEntries(
+  Object.entries(TAGS).map(([tag, question]) => [tag, {type: 'noul', instructions: question}]),
+);
+
+export async function classify(title: string): Promise<Tag[]> {
+  const response = await fetch('https://openrouter.ai/api/alpha/decisions', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
+    },
+    body: JSON.stringify({model: 'typesafe/jev-1.14', state: title, questions}),
+    signal: AbortSignal.timeout(3_000),
+  });
+
+  if (!response.ok) {
+    throw new Error(`OpenRouter decisions failed: ${response.status}`);
+  }
+
+  const {answers} = await response.json();
+
+  return Object.keys(TAGS).filter(tag => answers[tag].noul >= TAG_THRESHOLD);
+}
+```
+
+`state` is what the model looks at. `questions` is what you want to know about it. For _"Buy dish soap"_, the code above sends this. Each entry in `TAGS` becomes one question:
+
+```json noLine noHeader
+{
+  "model": "typesafe/jev-1.14",
+  "state": "Buy dish soap",
+  "questions": {
+    "groceries": {
+      "type": "noul",
+      "instructions": "Is this about buying food, drinks, or household supplies from a store or market?"
+    },
+    "chores": {
+      "type": "noul",
+      "instructions": "Is this a task done in or around the home, like cleaning, laundry, dishes, cooking, repairs, or taking out the trash?"
+    },
+    "work": {
+      "type": "noul",
+      "instructions": "Is this related to a job or career, like meetings, reports, emails to colleagues, or deadlines?"
+    }
+  }
+}
+```
+
+And Jev answers each question under the same key:
+
+```json noLine noHeader
+{
+  "answers": {
+    "groceries": {"type": "noul", "noul": 0.96},
+    "chores": {"type": "noul", "noul": 0.92},
+    "work": {"type": "noul", "noul": 0.09}
+  },
+  "usage": {"input_tokens": 349, "cost": 0.000014658}
+}
+```
+
+Each `noul` is the probability that the answer is yes. Anything at or above `0.7` becomes a tag, so this todo gets `groceries` and `chores`. There is no prose to parse and nothing to clean up. The filter in the last line is the whole post-processing step.
+
+<br />
+
+`0.7` is a number I picked by eye on a handful of todos, the same way you pick any cutoff. Raise it and you get fewer wrong tags but miss more; lower it and the opposite. [How to pick a threshold properly](https://note.carlogino.com/ai/picking-a-classification-threshold) is in my notes.
+
+<br />
+
+### Step 4: Tag on create, and survive a failure
+
+Because the call usually takes a few hundred milliseconds, it can run **before** the insert, so the todo comes back with its tags already on it:
+
+```ts fileName="src/app/api/todos/route"
+export async function POST(request: Request) {
+  const {title} = createTodoSchema.parse(await request.json());
+
+  let tags: Tag[] | null = null;
+
+  try {
+    tags = await classify(title);
+  } catch (error) {
+    console.error(`Failed to classify "${title}"`, error);
+  }
+
+  const [created] = await sql`
+    insert into todos (title, tags)
+    values (${title}, ${tags})
+    returning id, title, completed, tags, created_at
+  `;
+
+  return NextResponse.json(created, {status: 201});
+}
+```
+
+#### What happens when it fails
+
+Tagging is a nice extra; creating a todo is the actual feature. So a broken model must never stop a todo from being created:
+
+<br />
+
+- **The provider is down, or returns an error.** `classify` throws, the error is logged, and the todo is inserted with `tags = null`.
+- **The provider is slow.** `AbortSignal.timeout(3_000)` cuts the call off after 3 seconds. Same result: the todo is created untagged. The user waited at most 3 seconds longer than usual.
+- **Your key is out of credits.** OpenRouter returns `402`, which is just another error. Same result.
+
+<br />
+
+In every case the user gets their todo; it just has no tags. Nothing on screen says the tagging failed, and the row stays untagged. The demo does not retry; see the caveats.
+
+<br />
+
+### Step 5: Use the tags
+
+The tags are just a column now, so using them is ordinary app code. In the demo, each todo shows its tags as small chips next to the title, and a todo with `null` or `[]` tags shows nothing. The list API already returns the `tags` column, so there is no extra request; the [diff](https://github.com/codegino/todo-list-with-ai/pull/18/changes) has the details.
+
+<br />
+
+## The result
+
+The same todo list, with each todo tagged as it was added:
+
+```txt noLine noHeader
+Buy bread and eggs                   ->  groceries
+Purchase some apples                 ->  groceries
+Do the dishes                        ->  chores
+Laundry day                          ->  chores
+Buy dish soap                        ->  groceries, chores
+Prepare slides for Monday standup    ->  work
+Email the client about the invoice   ->  work
+Renew passport                       ->  (no tags)
+```
+
+_"Buy dish soap"_ gets two tags, because a todo can belong to more than one, and _"Renew passport"_ gets none, because no question scored high enough.
+
+<br />
+
+<img
+  src="https://dev-to-uploads.s3.us-east-2.amazonaws.com/uploads/articles/ypyv01l0a58wauh9cubd.gif"
+  alt="Adding todos: each one appears with its groceries, chores, or work tag already attached"
+/>
+
+<br />
+
+### My "Trust me bro" benchmark
+
+Same 8 todos, 3 runs each, Jev 1.14 vs OpenAI's small `gpt-5.6-luna` with a strict JSON schema, on my laptop and my Wi-Fi. Both picked the same tags and neither broke the format. Jev answered in about **300 ms vs 1,000 ms** and cost about **$0.016 vs $0.044 per 1,000 todos**, and only Jev told me how sure it was.
+
+<br />
+
+## Conclusion
+
+Classification is a yes/no question per label. A decision model answers it with a probability, so the integration is one request and one threshold. Compared to a chat model, I got the same tags, about 3× faster, at about a third of the cost.
+
+<br />
+
+"Add AI" does not have to mean "add a chat model". Pick the model by the shape of the answer you need: an embedding model for search, a decision model for labels, and a chat model only when you need text.
