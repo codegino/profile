@@ -9,8 +9,8 @@ minimumReleaseAgeExclude:
   - '@next/swc-linux-x64-musl@16.4.1 || 16.4.2'
   - '@next/swc-win32-arm64-msvc@16.4.1 || 16.4.2'
   - '@next/swc-win32-x64-msvc@16.4.1 || 16.4.2'
-  - i18next@26.4.7
+  - i18next@26.4.7 || 26.5.2
   - next@16.4.2
   - react-dom@19.3.1
   - react@19.3.1
-  - react-i18next@17.0.19
+  - react-i18next@17.0.19 || 17.1.0
