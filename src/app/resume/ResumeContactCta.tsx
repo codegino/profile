@@ -54,7 +54,7 @@ const ResumeContactCta: FC<{
               LinkedIn
             </NextLink>
             <NextLink
-              href="https://github.com/codegino"
+              href="https://github.com/pogicodes"
               target="_blank"
               rel="noreferrer"
               aria-label="GitHub"

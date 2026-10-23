@@ -44,7 +44,7 @@ const socialMedia: SocialMediaProps[] = [
     hoverColor: '#333333',
   },
   {
-    url: 'https://github.com/codegino',
+    url: 'https://github.com/pogicodes',
     icon: FaGithubSquare,
     title: 'github',
     color: '',

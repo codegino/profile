@@ -45,7 +45,7 @@ const AboutMePage: NextPage = async () => {
           <h4 className="text-center">
             Here is the link to my&nbsp;
             <NextLink
-              href="https://github.com/codegino/profile"
+              href="https://github.com/pogicodes/profile"
               target="_blank"
               aria-label="Github Repo"
               className="text-primary-900 dark:text-primary-300"

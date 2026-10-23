@@ -27,7 +27,7 @@ published: true
 
 ## Introduction
 
-In [Add AI search to existing application](https://carlogino.com/blog/add-ai-search-to-existing-app), I added semantic search to a [super simple todo app](https://github.com/codegino/todo-list-with-ai) written in Next.js and backed by Postgres. This post adds a different AI feature to the same app, using a different kind of model. You do not need to read the first post; nothing here depends on it.
+In [Add AI search to existing application](https://carlogino.com/blog/add-ai-search-to-existing-app), I added semantic search to a [super simple todo app](https://github.com/pogicodes/todo-list-with-ai) written in Next.js and backed by Postgres. This post adds a different AI feature to the same app, using a different kind of model. You do not need to read the first post; nothing here depends on it.
 
 <br />
 
@@ -59,7 +59,7 @@ A **decision model** is built for exactly this narrow kind of question. I use [J
 
 ## Run the demo yourself
 
-The [with-ai-classification](https://github.com/codegino/todo-list-with-ai/tree/with-ai-classification) branch is the app after the changes below. Here is the [diff](https://github.com/codegino/todo-list-with-ai/pull/18/changes) comparing to the previous post.
+The [with-ai-classification](https://github.com/pogicodes/todo-list-with-ai/tree/with-ai-classification) branch is the app after the changes below. Here is the [diff](https://github.com/pogicodes/todo-list-with-ai/pull/18/changes) comparing to the previous post.
 
 <br />
 
@@ -75,7 +75,7 @@ For a todo application, we can utilize the classification model to automatically
 alter table todos add column if not exists tags text[];
 ```
 
-It is nullable, so a todo whose classification failed simply has no tags. Starting from scratch? [migrations/reset.sql](https://github.com/codegino/todo-list-with-ai/blob/with-ai-classification/migrations/reset.sql) recreates the whole table instead, deleting all todos.
+It is nullable, so a todo whose classification failed simply has no tags. Starting from scratch? [migrations/reset.sql](https://github.com/pogicodes/todo-list-with-ai/blob/with-ai-classification/migrations/reset.sql) recreates the whole table instead, deleting all todos.
 
 <br />
 
@@ -214,7 +214,7 @@ In every case the user gets their todo; it just has no tags. Nothing on screen s
 
 ### Step 5: Use the tags
 
-The tags are just a column now, so using them is ordinary app code. In the demo, each todo shows its tags as small chips next to the title, and a todo with `null` or `[]` tags shows nothing. The list API already returns the `tags` column, so there is no extra request; the [diff](https://github.com/codegino/todo-list-with-ai/pull/18/changes) has the details.
+The tags are just a column now, so using them is ordinary app code. In the demo, each todo shows its tags as small chips next to the title, and a todo with `null` or `[]` tags shows nothing. The list API already returns the `tags` column, so there is no extra request; the [diff](https://github.com/pogicodes/todo-list-with-ai/pull/18/changes) has the details.
 
 <br />
 
