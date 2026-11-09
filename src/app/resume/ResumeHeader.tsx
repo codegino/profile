@@ -17,7 +17,7 @@ const contactLinks = [
     label: 'linkedin.com/in/codegino',
     href: 'https://www.linkedin.com/in/codegino',
   },
-  {label: 'github.com/pogicodes', href: 'https://github.com/pogicodes'},
+  {label: 'github.com/codegino', href: 'https://github.com/codegino'},
 ];
 
 const linkClass = 'text-xs hover:text-accent print:text-ink';

@@ -52,7 +52,7 @@ export default async function CodingActivity() {
         <Card
           label={t('activity.contributions')}
           detail={t('activity.last12Months')}
-          href="https://github.com/pogicodes"
+          href="https://github.com/codegino"
           linkText="github"
         >
           <ContributionCalendar />

@@ -14,7 +14,7 @@ export default function CustomGithubCalendar() {
           <>
             {t('my')}&nbsp;
             <NextLink
-              href="https://github.com/pogicodes"
+              href="https://github.com/codegino"
               target="_blank"
               aria-label="Github profile"
               rel="noreferrer"

@@ -104,7 +104,7 @@ const AboutMePage: NextPage = async () => {
               </li>
               <li>
                 <a
-                  href="https://github.com/pogicodes/profile"
+                  href="https://github.com/codegino/profile"
                   target="_blank"
                   rel="noreferrer"
                   className="text-sm lowercase hover:text-accent"
