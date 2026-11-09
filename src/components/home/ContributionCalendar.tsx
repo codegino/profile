@@ -45,7 +45,7 @@ export default function ContributionCalendar() {
     >
       {isMounted ? (
         <GitHubCalendar
-          username="pogicodes"
+          username="codegino"
           theme={calendarTheme}
           colorScheme={resolvedTheme === 'dark' ? 'dark' : 'light'}
           blockSize={10}
