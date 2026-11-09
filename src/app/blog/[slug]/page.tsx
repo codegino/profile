@@ -40,8 +40,8 @@ export const generateMetadata = async (props: {
       title: blog.title,
       description: blog.description,
       images: bannerUrl,
-      creator: '@ginocatapang',
-      site: '@ginocatapang',
+      creator: '@codegino',
+      site: '@codegino',
     },
   };
 };

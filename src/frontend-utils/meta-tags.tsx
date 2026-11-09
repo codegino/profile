@@ -15,8 +15,8 @@ export const newCommonMetaTags = (
       images: `${SITE_URL}/assets/${previewImg}`,
       title: 'Carlo Gino Catapang',
       description: metaDescription(pageName),
-      creator: '@ginocatapang',
-      site: '@ginocatapang',
+      creator: '@codegino',
+      site: '@codegino',
     },
     openGraph: {
       url: `${SITE_URL}${slug}`,
