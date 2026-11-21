@@ -13,6 +13,7 @@ export type SkillCategory =
   | 'backend'
   | 'styling'
   | 'testing'
+  | 'ai'
   | 'tools'
   | 'discipline'
   | 'hosting'
