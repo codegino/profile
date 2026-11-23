@@ -19,7 +19,7 @@
     "@react-icons/all-files": "4.1.0",
     "@vercel/speed-insights": "2.1.0",
     "clsx": "2.1.1",
-    "i18next": "26.7.2",
+    "i18next": "27.2.2",
     "i18next-resources-to-backend": "1.2.4",
     "isomorphic-dompurify": "4.7.0",
     "next": "16.4.6",
